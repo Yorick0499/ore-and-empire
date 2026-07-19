@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ore & Empire - Stara Kopalnia</title>
+    <!-- Gothic typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Marcellus&family=IM+Fell+DW+Pica:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --gothic-gold: #c29d53;
+            --gothic-gold-bright: #e5c17b;
+            --gothic-dark: #120e0a;
+            --gothic-panel: #1c1610;
+            --gothic-border: #382c1e;
+            --gothic-text: #d4c3b3;
+            --gothic-text-bright: #f5eae0;
+            --gothic-accent: #8a2518;
+            --gothic-success: #1b5e20;
+            --gothic-success-bright: #2e7d32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--gothic-dark);
+            color: var(--gothic-text);
+            font-family: 'IM Fell DW Pica', 'Georgia', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 50%, transparent 60%, rgba(0,0,0,0.8) 100%),
+                repeating-linear-gradient(rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 4px);
+        }
+
+        /* SIDEBAR (Dziennik i Statystyki Postaci) */
+        .sidebar {
+            width: 340px;
+            background-color: var(--gothic-panel);
+            border-right: 3px double var(--gothic-border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+            z-index: 10;
+            position: relative;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 20px; height: 20px;
+            border-top: 3px solid var(--gothic-gold);
+            border-right: 3px solid var(--gothic-gold);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .sidebar-header {
+            padding: 30px 24px;
+            border-bottom: 2px dashed var(--gothic-border);
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gothic-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-header subtitle {
+            font-family: 'Marcellus', serif;
+            font-size: 13px;
+            color: var(--gothic-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            display: block;
+        }
+
+        .nav-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .nav-category {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gothic-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--gothic-border);
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-category:first-of-type {
+            margin-top: 0;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--gothic-border);
+            border-radius: 4px;
+            color: var(--gothic-text);
+            font-family: 'Marcellus', serif;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .stat-item span.val {
+            color: var(--gothic-text-bright);
+            font-weight: bold;
+        }
+
+        .stat-item span.gold-val {
+            color: var(--gothic-gold-bright);
+            font-weight: bold;
+        }
+
+        /* MAIN SCREEN CONTENT */
+        .main-content {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(18, 14, 10, 0.95);
+            position: relative;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ornamental frame border */
+        .guide-frame {
+            max-width: 750px;
+            width: 100%;
+            background: #18130e;
+            border: 2px solid var(--gothic-border);
+            outline: 6px solid #18130e;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            padding: 50px 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .guide-frame::before {
+            content: '✥';
+            position: absolute;
+            top: 10px; left: 15px;
+            color: var(--gothic-gold);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .guide-frame::after {
+            content: '✥';
+            position: absolute;
+            top: 10px; right: 15px;
+            color: var(--gothic-gold);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        .faction-crest {
+            font-size: 54px;
+            color: var(--gothic-gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(194, 157, 83, 0.4);
+        }
+
+        .guide-frame h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--gothic-gold-bright);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .guide-frame p {
+            font-size: 19px;
+            margin-bottom: 30px;
+            color: var(--gothic-text);
+            font-style: italic;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gothic-gold), transparent);
+            margin: 30px 0;
+            border: none;
+        }
+
+        /* STATUS BOXES */
+        .status-panel {
+            background: var(--gothic-panel);
+            border: 1px solid var(--gothic-border);
+            padding: 25px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .status-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gothic-gold);
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .timer {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gothic-text-bright);
+            text-shadow: 0 0 10px rgba(245, 234, 224, 0.2);
+        }
+
+        /* BUTTONS */
+        .gothic-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 15px 35px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .btn-action {
+            background-color: var(--gothic-accent);
+            border: 1px solid #a32d1e;
+            color: var(--gothic-text-bright);
+        }
+
+        .btn-action:hover {
+            background-color: #a32d1e;
+            box-shadow: 0 0 15px rgba(163, 45, 30, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: var(--gothic-success);
+            border: 1px solid var(--gothic-success-bright);
+            color: var(--gothic-text-bright);
+        }
+
+        .btn-success:hover {
+            background-color: var(--gothic-success-bright);
+            box-shadow: 0 0 15px rgba(46, 125, 50, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-disabled {
+            background-color: #26201a;
+            border: 1px solid #1f1a15;
+            color: #594e43;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .gothic-btn:active:not(.btn-disabled) {
+            transform: translateY(1px);
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR: DZIENNIK I HUD -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Ore & Empire</h1>
+            <subtitle>Dziennik Kolonii</subtitle>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-category"><i class="fa-solid fa-user"></i> Bohater</div>
+            <div class="stat-item">Obóz: <span class="val">{{ profile.get_camp_display }}</span></div>
+            <div class="stat-item">Gildia: <span class="val">{{ profile.guild }}</span></div>
+            <div class="stat-item">Poziom: <span class="val">{{ profile.level }}</span></div>
+            
+            <div class="nav-category"><i class="fa-solid fa-bolt"></i> Zasoby</div>
+            <div class="stat-item">Bryłki Rudy: <span class="gold-val">💰 {{ profile.ore_balance }}</span></div>
+            <div class="stat-item">Energia: <span class="val">⚡ {{ profile.current_energy }}/100</span></div>
+        <div class="nav-category"><i class="fa-solid fa-dumbbell"></i> Atrybuty</div>
+            <div class="stat-item">Siła: <span class="val">{{ profile.strength }}</span></div>
+            <div class="stat-item">Zręczność: <span class="val">{{ profile.dexterity }}</span></div>
+            <div class="stat-item">Życie: <span class="val">{{ profile.life }}</span></div>
+        </div>
+    </div>
+
+ <!-- MAIN SCREEN CONTENT -->
+    <div class="main-content">
+        <div class="guide-frame">
+            <div class="faction-crest">
+                <i class="fa-solid fa-helmet-safety"></i>
+            </div>
+            <h2>Stara Kopalnia Rudy</h2>
+            <p>Brutalna rzeczywistość pod kopułą. Każde uderzenie kilofa w twardą skałę przybliża Cię do bogactwa, ale wysysa siły życiowe.</p>
+            
+            {% if profile.is_busy %}
+                <!-- STATUS: PRACA -->
+                <div class="status-panel">
+                    <div class="status-title">Wydobywanie rudy z żyły skały...</div>
+                    <div class="timer" id="countdown-timer">--:--</div>
+                </div>
+
+                <form method="POST" id="claim-form" class="hidden">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="claim">
+                    <button type="submit" class="gothic-btn btn-success">Odbierz urobek z kopalni</button>
+                </form>
+            {% else %}
+                <!-- STATUS: WOLNY -->
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="mine">
+                    {% if profile.current_energy >= 10 %}
+                        <button type="submit" class="gothic-btn btn-action">Chwyć za kilof (Koszt: 10 ⚡)</button>
+                    {% else %}
+                        <button type="button" class="gothic-btn btn-disabled">Wycieńczenie (Brak Energii)</button>
+                    {% endif %}
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TIMER -->
+    {% if profile.is_busy %}
+    <script>
+        const endTime = new Date("{{ profile.action_end_time|date:'c' }}").getTime();
+        const timerElement = document.getElementById('countdown-timer');
+        const claimForm = document.getElementById('claim-form');
+
+        const interval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                timerElement.parentElement.classList.add('hidden');
+                claimForm.classList.remove('hidden');
+                return;
+            }
+
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const displayMinutes = minutes < 10 ? "0" + minutes : minutes;
+            const displaySeconds = seconds < 10 ? "0" + seconds : seconds;
+
+            timerElement.innerHTML = displayMinutes + ":" + displaySeconds;
+        }, 1000);
+    </script>
+    {% endif %}
+
+</body>
+</html>
