@@ -6,13 +6,43 @@ class PlayerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # main
-    GUILD_LIST = [
-        ("NONE", "Skazaniec"),
+    CAMP_LIST = [
+        ("NONE", "Brak przynależności"),
+        ("SWAMP_CAMP", "Obóz na bagnie"),
         ("OLD_CAMP", "Stary Obóz"),
         ("NEW_CAMP", "Nowy Obóz"),
     ]
-    guild = models.CharField(max_length=20)
+
+    OLD_CAMP_GUILDS = [
+        ("DIGGER", "Kopacz"),
+        ("SHADOW", "Cień"),
+        ("GUARD", "Strażnik"),
+        ("FIRE_MAGE", "Mag Ognia"),
+        ("ARCH_FIRE", "Arcymag Ognia"),
+        ("BARON", "Magnat"),
+    ]
+
+    NEW_CAMP_GUILDS = [
+        ("MOLE", "Kret"),
+        ("ROGUE", "Szkodnik"),
+        ("MERC", "Najemnik"),
+        ("WATER_MAGE", "Mag Wody"),
+        ("ARCH_WATER", "Arcymag Wody"),
+        ("ELITE_MERC", "Gwardzista Lee"),
+    ]
+
+    SWAMP_CAMP_GUILDS = [
+        ("PICKER", "Zbieracz"),
+        ("NOVICE", "Nowicjusz"),
+        ("SWAMP_GUARD", "Strażnik świątynny"),
+        ("GURU", "Guru"),
+        ("ARCH_GURU", "Arcyguru"),
+        ("TEMPLAR", "Templariusz bagien"),
+    ]
+
+    camp = models.CharField(max_length=20, choices=CAMP_LIST, default="NONE")
     level = models.IntegerField(default=0)
+    guild = models.CharField(max_length=20, default="NONE")
 
     # exp
     experience = models.IntegerField(default=0)
@@ -52,4 +82,5 @@ class PlayerProfile(models.Model):
 
     @property
     def required_exp(self):
-        return (self.level + 0.5) * 100
+        n = self.level + 1
+        return 250 * n * (n + 1)
