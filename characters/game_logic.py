@@ -24,3 +24,77 @@ def claim_ore_reward(profile):
     profile.action_end_time = None
     profile.save()
     return True
+
+
+BESTIARY = {
+    "scavenger": {
+        "nazwa": "Ścierwojad",
+        "life": 40,
+        "strength": 20,
+        "weapon_prot": 5,
+        "exp_reward": 50,
+    },
+    "molerat": {
+        "nazwa": "Kretoszczur",
+        "life": 50,
+        "strength": 25,
+        "weapon_prot": 10,
+        "exp_reward": 60,
+    },
+    "shadowbeast": {
+        "nazwa": "Cieniostwór",
+        "life": 400,
+        "strength": 120,
+        "weapon_prot": 60,
+        "exp_reward": 400,
+    },
+}
+
+
+def simulate_combat(profile, monster_key):
+    monster = BESTIARY[monster_key]
+    hunt_result = None
+
+    temp_hero_life = profile.life
+    temp_monster_life = monster["life"]
+
+    combat_log = []
+    weapon_damage = 10
+
+    while temp_hero_life > 0 and temp_monster_life > 0:
+        # hero turn
+        critical_chance = random.randint(1, 100)
+        if critical_chance <= profile.onehand_skill:
+            hero_damage = profile.strength + weapon_damage
+        else:
+            hero_damage = weapon_damage
+        hero_damage = max(1, hero_damage - monster["weapon_prot"])
+        temp_monster_life = temp_monster_life - hero_damage
+
+        combat_log.append(f"{profile.user} zadaje {hero_damage} obrażeń.")
+        combat_log.append(f"{monster['nazwa']} pozostało {temp_monster_life} HP")
+
+        if temp_monster_life <= 0:
+            combat_log.append(f"{profile.user} zwyciężył.")
+            break
+
+        # monster turn
+        monster_damage = max(1, monster["strength"] - profile.weapon_prot)
+
+        temp_hero_life = temp_hero_life - monster_damage
+
+        combat_log.append(f"{monster['nazwa']} zadaje {monster_damage} obrażeń")
+        combat_log.append(f"{profile.user} pozostało {temp_hero_life} HP")
+
+        if temp_hero_life <= 0:
+            combat_log.append(f"{monster['nazwa']} zwyciężył")
+            break
+
+    # check hunt_result
+    if temp_hero_life <= 0:
+        hunt_result = False
+
+    if temp_monster_life <= 0:
+        hunt_result = True
+
+    return hunt_result, combat_log
