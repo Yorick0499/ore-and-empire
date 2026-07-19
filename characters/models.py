@@ -82,10 +82,25 @@ class PlayerProfile(models.Model):
     # ore balance
     ore_balance = models.IntegerField(default=50)
 
+    # energy_points
+    current_energy = models.IntegerField(default=100)
+    max_energy = models.IntegerField(default=100)
+
+    # actions time
+    action_end_time = models.DateTimeField(null=True, blank=True)
+
     @property
     def required_exp(self):
         n = self.level + 1
         return 250 * n * (n + 1)
+
+    @property
+    def is_busy(self):
+        from django.utils import timezone
+
+        if self.action_end_time and timezone.now() < self.action_end_time:
+            return True
+        return False
 
 
 @receiver(post_save, sender=User)
