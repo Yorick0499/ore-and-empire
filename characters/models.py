@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class PlayerProfile(models.Model):
@@ -84,3 +86,9 @@ class PlayerProfile(models.Model):
     def required_exp(self):
         n = self.level + 1
         return 250 * n * (n + 1)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        PlayerProfile.objects.create(user=instance)
