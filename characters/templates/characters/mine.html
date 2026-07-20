@@ -294,6 +294,35 @@
         }
 
         .hidden { display: none !important; }
+
+
+        /* LINKI W MENU NAWIGACJI */
+        .nav-links {
+            margin-top: 30px;
+            border-top: 1px solid var(--gothic-border);
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .nav-link-btn {
+            display: block;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--gothic-gold);
+            text-decoration: none;
+            padding: 8px;
+            border: 1px solid var(--gothic-border);
+            border-radius: 4px;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+    }
+        .nav-link-btn:hover {
+            color: var(--gothic-gold-bright);
+            border-color: var(--gothic-gold);
+            background: rgba(194, 157, 83, 0.05);
+    }
     </style>
 </head>
 <body>
@@ -310,14 +339,21 @@
             <div class="stat-item">Obóz: <span class="val">{{ profile.get_camp_display }}</span></div>
             <div class="stat-item">Gildia: <span class="val">{{ profile.guild }}</span></div>
             <div class="stat-item">Poziom: <span class="val">{{ profile.level }}</span></div>
+            <div class="stat-item">PD: <span class="val">{{ profile.experience }}</span></div>
             
             <div class="nav-category"><i class="fa-solid fa-bolt"></i> Zasoby</div>
             <div class="stat-item">Bryłki Rudy: <span class="gold-val">💰 {{ profile.ore_balance }}</span></div>
             <div class="stat-item">Energia: <span class="val">⚡ {{ profile.current_energy }}/100</span></div>
-        <div class="nav-category"><i class="fa-solid fa-dumbbell"></i> Atrybuty</div>
+
+
+            <div class="nav-category"><i class="fa-solid fa-dumbbell"></i> Atrybuty</div>
             <div class="stat-item">Siła: <span class="val">{{ profile.strength }}</span></div>
             <div class="stat-item">Zręczność: <span class="val">{{ profile.dexterity }}</span></div>
             <div class="stat-item">Życie: <span class="val">{{ profile.life }}</span></div>
+
+            <div class="nav-links">
+                <a href="{% url 'hunt_page' %}" class="nav-link-btn">🏹 Mroczny Las</a>
+            </div>
         </div>
     </div>
 
