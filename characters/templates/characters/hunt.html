@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ore & Empire - Polowanie</title>
+    <!-- Gothic typography from Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Marcellus&family=IM+Fell+DW+Pica:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <style>
+        :root {
+            --gothic-gold: #c29d53;
+            --gothic-gold-bright: #e5c17b;
+            --gothic-dark: #120e0a;
+            --gothic-panel: #1c1610;
+            --gothic-border: #382c1e;
+            --gothic-text: #d4c3b3;
+            --gothic-text-bright: #f5eae0;
+            --gothic-accent: #8a2518;
+            --gothic-success: #1b5e20;
+            --gothic-success-bright: #2e7d32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--gothic-dark);
+            color: var(--gothic-text);
+            font-family: 'IM Fell DW Pica', 'Georgia', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 50%, transparent 60%, rgba(0,0,0,0.8) 100%),
+                repeating-linear-gradient(rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 4px);
+        }
+
+        /* SIDEBAR (Dziennik i Statystyki Postaci) */
+        .sidebar {
+            width: 340px;
+            background-color: var(--gothic-panel);
+            border-right: 3px double var(--gothic-border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+            z-index: 10;
+            position: relative;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 20px; height: 20px;
+            border-top: 3px solid var(--gothic-gold);
+            border-right: 3px solid var(--gothic-gold);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .sidebar-header {
+            padding: 30px 24px;
+            border-bottom: 2px dashed var(--gothic-border);
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gothic-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-header subtitle {
+            font-family: 'Marcellus', serif;
+            font-size: 13px;
+            color: var(--gothic-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            display: block;
+        }
+
+        .nav-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .nav-category {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gothic-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--gothic-border);
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-category:first-of-type {
+            margin-top: 0;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--gothic-border);
+            border-radius: 4px;
+            color: var(--gothic-text);
+            font-family: 'Marcellus', serif;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .stat-item span.val {
+            color: var(--gothic-text-bright);
+            font-weight: bold;
+        }
+
+        .stat-item span.gold-val {
+            color: var(--gothic-gold-bright);
+            font-weight: bold;
+        }
+
+        /* MAIN SCREEN CONTENT */
+        .main-content {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(18, 14, 10, 0.95);
+            position: relative;
+            padding: 50px;
+        }
+
+        /* Ornamental frame border */
+        .guide-frame {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #18130e;
+            border: 2px solid var(--gothic-border);
+            outline: 6px solid #18130e;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            padding: 40px 50px;
+            position: relative;
+        }
+
+        .guide-frame::before {
+            content: '✥';
+            position: absolute;
+            top: 10px; left: 15px;
+            color: var(--gothic-gold);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        .guide-frame::after {
+            content: '✥';
+            position: absolute;
+            top: 10px; right: 15px;
+            color: var(--gothic-gold);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        .guide-frame h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--gothic-gold-bright);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        p.desc {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--gothic-text);
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* KARTY POTWORÓW - LISTA */
+        .monster-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .monster-card {
+            background: var(--gothic-panel);
+            border: 1px solid var(--gothic-border);
+            border-radius: 4px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .monster-card:hover {
+            border-color: var(--gothic-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .monster-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--gothic-gold-bright);
+            margin-bottom: 5px;
+        }
+
+        .monster-stats {
+            font-family: 'Marcellus', serif;
+            font-size: 14px;
+            color: var(--gothic-text);
+            display: flex;
+            gap: 15px;
+            opacity: 0.8;
+        }
+
+        /* RAPORT Z WALKI */
+        .combat-log-container {
+            background-color: #0b0806;
+            border: 1px solid var(--gothic-accent);
+            border-radius: 4px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .combat-log-container h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gothic-gold-bright);
+            font-size: 18px;
+            border-bottom: 1px dashed var(--gothic-accent);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .combat-log-entries {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 10px;
+            color: #e4e4e7;
+        }
+
+        .combat-log-entries p {
+            margin-bottom: 4px;
+        }
+
+        /* BUTTONS */
+        .gothic-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #a32d1e;
+            background-color: var(--gothic-accent);
+            color: var(--gothic-text-bright);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+        }
+
+        .gothic-btn:hover {
+            background-color: #a32d1e;
+            box-shadow: 0 0 12px rgba(163, 45, 30, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .btn-disabled {
+            background-color: #26201a;
+            border: 1px solid #1f1a15;
+            color: #594e43;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .gothic-btn:active:not(.btn-disabled) {
+            transform: translateY(1px);
+        }
+
+        /* LINKI W MENU NAWIGACJI */
+        .nav-links {
+            margin-top: 30px;
+            border-top: 1px solid var(--gothic-border);
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .nav-link-btn {
+            display: block;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--gothic-gold);
+            text-decoration: none;
+            padding: 8px;
+            border: 1px solid var(--gothic-border);
+            border-radius: 4px;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+    }
+        .nav-link-btn:hover {
+            color: var(--gothic-gold-bright);
+            border-color: var(--gothic-gold);
+            background: rgba(194, 157, 83, 0.05);
+    }
+</style>
+</head>
+<body>
+
+    <!-- SIDEBAR: DZIENNIK I HUD -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Ore & Empire</h1>
+            <subtitle>Dziennik Kolonii</subtitle>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-category"><i class="fa-solid fa-user"></i> Bohater</div>
+            <div class="stat-item">Obóz: <span class="val">{{ profile.get_camp_display }}</span></div>
+            <div class="stat-item">Gildia: <span class="val">{{ profile.guild }}</span></div>
+            <div class="stat-item">Poziom: <span class="val">{{ profile.level }}</span></div>
+            <div class="stat-item">PD: <span class="val">{{ profile.experience }}</span></div>
+            
+            <div class="nav-category"><i class="fa-solid fa-bolt"></i> Zasoby</div>
+            <div class="stat-item">Bryłki Rudy: <span class="gold-val">💰 {{ profile.ore_balance }}</span></div>
+            <div class="stat-item">Energia: <span class="val">⚡ {{ profile.current_energy }}/100</span></div>
+            
+            <div class="nav-category"><i class="fa-solid fa-dumbbell"></i> Atrybuty</div>
+            <div class="stat-item">Siła: <span class="val">{{ profile.strength }}</span></div>
+            <div class="stat-item">Zręczność: <span class="val">{{ profile.dexterity }}</span></div>
+            <div class="stat-item">Życie: <span class="val">{{ profile.life }}</span></div>
+
+            <div class="nav-links">
+                <a href="{% url 'mine_page' %}" class="nav-link-btn">⛏️ Idź do Kopalni</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- GŁÓWNY PANEL GRY -->
+    <div class="main-content">
+        <div class="guide-frame">
+            
+            <!-- SEKCJA: LOGI Z WALKI -->
+            {% if combat_log %}
+                <div class="combat-log-container">
+                    <h3>📜 Raport z Przebiegu Starcia</h3>
+                    <div class="combat-log-entries">
+                        {% if combat_log == False %}
+                            <p style="color: var(--gothic-accent); font-weight: bold;">⚠️ Masz za mało energii na polowanie! Wymagane 15 ⚡.</p>
+                        {% else %}
+                            {% for entry in combat_log %}
+                                <p>{{ entry }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <h2>Mroczny las</h2>
+            <p class="desc">Mroczny las znajduje się niedaleko Starego Obozu. Możesz tu polować na dzikie bestie, aby zdobywać cenne doświadczenie, ale ryzykujesz życiem.</p>
+            
+            <div class="monster-list">
+                <!-- AUTOMATYCZNA PĘTLA GENERUJĄCA POTWORY -->
+                {% for key, monster in BESTIARY.items %}
+                    <div class="monster-card">
+                        <div class="monster-info">
+                            <h3>{{ monster.nazwa }}</h3>
+                            <div class="monster-stats">
+                                <span>❤️ Życie: {{ monster.life }}</span>
+                                <span>⚔️ Siła: {{ monster.strength }}</span>
+                                <span>🛡️ Pancerz: {{ monster.weapon_prot }}</span>
+                                <span style="color: var(--gothic-gold-bright);">⭐ Nagroda: +{{ monster.exp_reward }} PD</span>
+                            </div>
+                        </div>
+                        
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="monster_key" value="{{ key }}">
+                            
+                            {% if profile.current_energy >= 15 %}
+                                <button type="submit" class="gothic-btn">Atakuj (15 ⚡)</button>
+                            {% else %}
+                                <button type="button" class="gothic-btn btn-disabled">Brak sił</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
