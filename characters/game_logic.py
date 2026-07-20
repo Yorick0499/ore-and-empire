@@ -98,3 +98,22 @@ def simulate_combat(profile, monster_key):
         hunt_result = True
 
     return hunt_result, combat_log
+
+
+def execute_hunt(profile, monster_key):
+    if profile.current_energy < 15:
+        return False
+    profile.current_energy = profile.current_energy - 15
+
+    win, log = simulate_combat(profile, monster_key)
+    if win:
+        monster = BESTIARY[monster_key]
+        profile.experience = profile.experience + monster["exp_reward"]
+        log.append(f"Zyskałeś {monster['exp_reward']} EXP.")
+    else:
+        log.append("Zyskałeś 0 EXP.")
+        log.append(
+            "Ledwo uszedłeś z życiem. Miałeś jednak dużo szczęścia - uratowali cię myśliwi polujący w tych terenach."
+        )
+    profile.save()
+    return log

@@ -7,7 +7,7 @@ from django.dispatch import receiver
 class PlayerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    # main
+    # camp and guild list
     CAMP_LIST = [
         ("NONE", "Brak przynależności"),
         ("SWAMP_CAMP", "Obóz na bagnie"),
@@ -42,6 +42,7 @@ class PlayerProfile(models.Model):
         ("TEMPLAR", "Templariusz bagien"),
     ]
 
+    # main
     camp = models.CharField(max_length=20, choices=CAMP_LIST, default="NONE")
     level = models.IntegerField(default=0)
     guild = models.CharField(max_length=20, default="NONE")
