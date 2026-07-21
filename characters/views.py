@@ -19,10 +19,12 @@ def mine_view(request):
 
 def hunt_view(request):
     profile = PlayerProfile.objects.get(id=1)
-    combat_log = None
+    combat_log = request.session.pop("combat_log", None)
     if request.method == "POST":
         monster = request.POST.get("monster_key")
         combat_log = execute_hunt(profile, monster)
+        request.session["combat_log"] = combat_log
+        return redirect(request.path)
     return render(
         request,
         "characters/hunt.html",
