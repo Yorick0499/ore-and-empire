@@ -29,6 +29,7 @@ def claim_ore_reward(profile):
 BESTIARY = {
     "scavenger": {
         "nazwa": "Ścierwojad",
+        "level": 3,
         "life": 40,
         "strength": 20,
         "weapon_prot": 5,
@@ -36,6 +37,7 @@ BESTIARY = {
     },
     "molerat": {
         "nazwa": "Kretoszczur",
+        "level": 5,
         "life": 50,
         "strength": 25,
         "weapon_prot": 10,
@@ -43,6 +45,7 @@ BESTIARY = {
     },
     "shadowbeast": {
         "nazwa": "Cieniostwór",
+        "level": 25,
         "life": 400,
         "strength": 120,
         "weapon_prot": 60,
