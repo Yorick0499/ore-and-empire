@@ -363,8 +363,8 @@
             <div class="stat-item">PD: <span class="val">{{ profile.experience }}</span></div>
             
             <div class="nav-category"><i class="fa-solid fa-bolt"></i> Zasoby</div>
-            <div class="stat-item">Bryłki Rudy: <span class="gold-val">💰 {{ profile.ore_balance }}</span></div>
-            <div class="stat-item">Energia: <span class="val">⚡ {{ profile.current_energy }}/100</span></div>
+            <div class="stat-item">Bryłki Rudy: <span class="gold-val"> {{ profile.ore_balance }}</span></div>
+            <div class="stat-item">Energia: <span class="val"> {{ profile.current_energy }}/100</span></div>
             
             <div class="nav-category"><i class="fa-solid fa-dumbbell"></i> Atrybuty</div>
             <div class="stat-item">Siła: <span class="val">{{ profile.strength }}</span></div>
@@ -405,7 +405,7 @@
                 {% for key, monster in BESTIARY.items %}
                     <div class="monster-card">
                         <div class="monster-info">
-                            <h3>{{ monster.nazwa }}</h3>
+              <h3>{{ monster.nazwa }}  (Poziom {{monster.level}})</h3>
                             <div class="monster-stats">
                                 <span>❤️ Życie: {{ monster.life }}</span>
                                 <span>⚔️ Siła: {{ monster.strength }}</span>
