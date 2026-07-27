@@ -120,3 +120,16 @@ def execute_hunt(profile, monster_key):
         )
     profile.save()
     return log
+
+
+def list_item_on_market(profile, owned_item, price):
+    if owned_item.owner != profile:
+        return False
+    if owned_item.is_market_listed:
+        return False
+    if price <= 0:
+        return False
+    owned_item.is_market_listed = True
+    owned_item.market_price = price
+    owned_item.save()
+    return True
