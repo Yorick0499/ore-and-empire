@@ -1,3 +1,5 @@
+from typing import Required
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -102,6 +104,22 @@ class PlayerProfile(models.Model):
         if self.action_end_time and timezone.now() < self.action_end_time:
             return True
         return False
+
+
+class ItemBluePrint(models.Model):
+    name = models.CharField(max_length=50)
+    damage = models.IntegerField(default=0)
+    required_strength = models.IntegerField(default=0)
+    base_value = models.IntegerField(default=0)
+
+
+class OwnedItem(models.Model):
+    blueprint = models.ForeignKey(ItemBluePrint, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        PlayerProfile, on_delete=models.CASCADE, related_name="inventory"
+    )
+    is_market_listed = models.BooleanField(default=False)
+    market_price = models.IntegerField(null=True, blank=True)
 
 
 @receiver(post_save, sender=User)
