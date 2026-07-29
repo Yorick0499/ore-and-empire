@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ore & Empire - Stara Kopalnia</title>
+    <title>Ore & Empire - Targowisko</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Marcellus&family=IM+Fell+DW+Pica:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -158,15 +158,14 @@
 
         /* Ornamental frame border */
         .guide-frame {
-            max-width: 750px;
-            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
             background: #18130e;
             border: 2px solid var(--gothic-border);
             outline: 6px solid #18130e;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            padding: 50px 60px;
+            padding: 40px 50px;
             position: relative;
-            text-align: center;
         }
 
         .guide-frame::before {
@@ -186,144 +185,183 @@
             opacity: 0.5;
         }
 
-        .faction-crest {
-            font-size: 54px;
-            color: var(--gothic-gold);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(194, 157, 83, 0.4);
-        }
-
         .guide-frame h2 {
             font-family: 'Cinzel', serif;
             font-size: 32px;
             color: var(--gothic-gold-bright);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-align: center;
         }
 
-        .guide-frame p {
-            font-size: 19px;
+        p.desc {
+            font-size: 18px;
             margin-bottom: 30px;
             color: var(--gothic-text);
             font-style: italic;
+            text-align: center;
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(to right, transparent, var(--gothic-gold), transparent);
-            margin: 30px 0;
-            border: none;
+        /* RYNEK GRID NA DWIE KOLUMNY */
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
         }
 
-        /* STATUS BOXES */
-        .status-panel {
+        .market-column-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--gothic-gold);
+            border-bottom: 2px solid var(--gothic-border);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .item-card {
             background: var(--gothic-panel);
             border: 1px solid var(--gothic-border);
-            padding: 25px;
             border-radius: 4px;
-            margin-bottom: 30px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
         }
 
-        .status-title {
+        .item-card:hover {
+            border-color: var(--gothic-gold);
+        }
+
+        .item-info h4 {
             font-family: 'Cinzel', serif;
-            color: var(--gothic-gold);
-            font-size: 15px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--gothic-text-bright);
+            margin-bottom: 4px;
         }
 
-        .timer {
+        .item-stats {
+            font-family: 'Marcellus', serif;
+            font-size: 13px;
+            color: var(--gothic-text);
+            display: flex;
+            flex-direction: column;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* FORMS & INPUTS */
+        .market-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gothic-input {
+            background-color: #0b0806;
+            border: 1px solid var(--gothic-border);
+            color: var(--gothic-gold-bright);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--gothic-text-bright);
-            text-shadow: 0 0 10px rgba(245, 234, 224, 0.2);
+            font-size: 14px;
+            padding: 8px;
+            width: 80px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .gothic-input:focus {
+            outline: none;
+            border-color: var(--gothic-gold);
         }
 
         /* BUTTONS */
         .gothic-btn {
             font-family: 'Cinzel', serif;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 15px 35px;
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            white-space: nowrap;
         }
 
-        .btn-action {
-            background-color: var(--gothic-accent);
-            border: 1px solid #a32d1e;
-            color: var(--gothic-text-bright);
-        }
-
-        .btn-action:hover {
-            background-color: #a32d1e;
-            box-shadow: 0 0 15px rgba(163, 45, 30, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .btn-success {
+        .btn-buy {
             background-color: var(--gothic-success);
             border: 1px solid var(--gothic-success-bright);
             color: var(--gothic-text-bright);
         }
 
-        .btn-success:hover {
+        .btn-buy:hover {
             background-color: var(--gothic-success-bright);
-            box-shadow: 0 0 15px rgba(46, 125, 50, 0.6);
-            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
         }
 
-        .btn-disabled {
-            background-color: #26201a;
-            border: 1px solid #1f1a15;
-            color: #594e43;
-            cursor: not-allowed;
-            box-shadow: none;
+        .btn-sell {
+            background-color: var(--gothic-accent);
+            border: 1px solid #a32d1e;
+            color: var(--gothic-text-bright);
         }
 
-        .gothic-btn:active:not(.btn-disabled) {
-            transform: translateY(1px);
+        .btn-sell:hover {
+            background-color: #a32d1e;
+            box-shadow: 0 0 10px rgba(163, 45, 30, 0.5);
         }
 
-        .hidden { display: none !important; }
-
+        .price-tag {
+            font-family: 'Marcellus', serif;
+            color: var(--gothic-gold-bright);
+            font-weight: bold;
+            font-size: 15px;
+            margin-right: 5px;
+        }
 
         /* LINKI W MENU NAWIGACJI */
         .nav-links {
             margin-top: 30px;
             border-top: 1px solid var(--gothic-border);
-            padding-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .nav-link-btn {
-            display: block;
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 14px;
-            color: var(--gothic-gold);
-            text-decoration: none;
-            padding: 8px;
-            border: 1px solid var(--gothic-border);
-            border-radius: 4px;
-            background: rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
-        .nav-link-btn:hover {
-            color: var(--gothic-gold-bright);
-            border-color: var(--gothic-gold);
-            background: rgba(194, 157, 83, 0.05);
+    .nav-link-btn {
+        display: block;
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-size: 14px;
+        color: var(--gothic-gold);
+        text-decoration: none;
+        padding: 8px;
+        border: 1px solid var(--gothic-border);
+        border-radius: 4px;
+        background: rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
     }
-    </style>
+    .nav-link-btn:hover {
+        color: var(--gothic-gold-bright);
+        border-color: var(--gothic-gold);
+        background: rgba(194, 157, 83, 0.05);
+    }
+</style>
 </head>
 <body>
 
@@ -341,84 +379,85 @@
             <div class="stat-item">PD: <span class="val">{{ profile.experience }}</span></div>
             
             <div class="nav-category"><i class="fa-solid fa-bolt"></i> Zasoby</div>
-            <div class="stat-item">Bryłki Rudy: <span class="gold-val"> {{ profile.ore_balance }}</span></div>
-            <div class="stat-item">Energia: <span class="val"> {{ profile.current_energy }}/100</span></div>
-
-
+            <div class="stat-item">Bryłki Rudy: <span class="gold-val">{{ profile.ore_balance }}</span></div>
+            <div class="stat-item">Energia: <span class="val">{{ profile.current_energy }}/100</span></div>
+            
             <div class="nav-category"><i class="fa-solid fa-dumbbell"></i> Atrybuty</div>
             <div class="stat-item">Siła: <span class="val">{{ profile.strength }}</span></div>
             <div class="stat-item">Zręczność: <span class="val">{{ profile.dexterity }}</span></div>
             <div class="stat-item">Życie: <span class="val">{{ profile.life }}</span></div>
 
             <div class="nav-links">
-                <a href="{% url 'hunt_page' %}" class="nav-link-btn">🏹 Mroczny Las</a>
+                <a href="{% url 'mine_page' %}" class="nav-link-btn">⛏️ Idź do Kopalni</a>
+                <a href="{% url 'hunt_page' %}" class="nav-link-btn">⚔️ Wyjdź na Polowanie</a>
             </div>
         </div>
     </div>
 
     <div class="main-content">
         <div class="guide-frame">
-            <div class="faction-crest">
-                <i class="fa-solid fa-gem"></i>
-            </div>
-            <h2>Stara Kopalnia</h2>
-            <p>Brutalna rzeczywistość pod kopułą. Każde uderzenie kilofa w twardą skałę przybliża Cię do bogactwa, ale wysysa siły życiowe.</p>
+            <h2>Plac Targowy Starego Obozu</h2>
+            <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
             
-            {% if profile.is_busy %}
-                <!-- STATUS: PRACA -->
-                <div class="status-panel">
-                    <div class="status-title">Wydobywanie rudy...</div>
-                    <div class="timer" id="countdown-timer">--:--</div>
+            <div class="market-grid">
+                
+                <div>
+                    <div class="market-column-title"><i class="fa-solid fa-shop"></i> Oferty na targu</div>
+                    <div class="card-list">
+                        {% for item in market_all_items %}
+                            <div class="item-card">
+                                <div class="item-info">
+                                    <h4>{{ item.blueprint.name }}</h4>
+                                    <div class="item-stats">
+                                        <span>Obrażenia: {{ item.blueprint.damage }}</span>
+                                        <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
+                                        <span style="color: var(--gothic-gold);">Sprzedawca: {{ item.owner.user.username }}</span>
+                                    </div>
+                                </div>
+                                <form method="POST" class="market-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="buy">
+                                    <input type="hidden" name="buy_item_id" value="{{ item.id }}">
+                                    <span class="price-tag">{{ item.market_price }}</span>
+                                    <button type="submit" class="gothic-btn btn-buy">Kup</button>
+                                </form>
+                            </div>
+                        {% empty %}
+                            <p style="font-style: italic; color: #594e43; text-align: center; margin-top: 20px;">Targ jest obecnie pusty...</p>
+                        {% endfor %}
+                    </div>
                 </div>
 
-                <form method="POST" id="claim-form" class="hidden">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="claim">
-                    <button type="submit" class="gothic-btn btn-success">Odbierz urobek z kopalni</button>
-                </form>
-            {% else %}
-                <!-- STATUS: WOLNY -->
-                <form method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="mine">
-                    {% if profile.current_energy >= 10 %}
-                        <button type="submit" class="gothic-btn btn-action">Chwyć za kilof (Koszt: 10 ⚡)</button>
-                    {% else %}
-                        <button type="button" class="gothic-btn btn-disabled">Wycieńczenie (Brak Energii)</button>
-                    {% endif %}
-                </form>
-            {% endif %}
+                <div>
+                    <div class="market-column-title"><i class="fa-solid fa-bag-shopping"></i> Twój Plecak</div>
+                    <div class="card-list">
+                        {% for item in player_inventory %}
+                            <div class="item-card">
+                                <div class="item-info">
+                                    <h4>{{ item.blueprint.name }}</h4>
+                                    <div class="item-stats">
+                                        <span>Obrażenia: {{ item.blueprint.damage }}</span>
+                                        <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
+                                    </div>
+                                </div>
+                                <form method="POST" class="market-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="list">
+                                    <input type="hidden" name="sell_item_id" value="{{ item.id }}">
+                                    <input type="number" name="item_price" class="gothic-input" placeholder="Cena" required min="1">
+                                    <button type="submit" class="gothic-btn btn-sell">Wystaw</button>
+                                </form>
+                            </div>
+                        {% empty %}
+                            <p style="font-style: italic; color: #594e43; text-align: center; margin-top: 20px;">Twój plecak jest pusty...</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT TIMER -->
-    {% if profile.is_busy %}
-    <script>
-        const endTime = new Date("{{ profile.action_end_time|date:'c' }}").getTime();
-        const timerElement = document.getElementById('countdown-timer');
-        const claimForm = document.getElementById('claim-form');
-
-        const interval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = endTime - now;
-
-            if (distance < 0) {
-                clearInterval(interval);
-                timerElement.parentElement.classList.add('hidden');
-                claimForm.classList.remove('hidden');
-                return;
-            }
-
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            const displayMinutes = minutes < 10 ? "0" + minutes : minutes;
-            const displaySeconds = seconds < 10 ? "0" + seconds : seconds;
-
-            timerElement.innerHTML = displayMinutes + ":" + displaySeconds;
-        }, 1000);
-    </script>
-    {% endif %}
-
 </body>
 </html>
+

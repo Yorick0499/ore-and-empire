@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ore & Empire - Polowanie</title>
-    <!-- Gothic typography from Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Marcellus&family=IM+Fell+DW+Pica:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -348,7 +347,6 @@
 </head>
 <body>
 
-    <!-- SIDEBAR: DZIENNIK I HUD -->
     <div class="sidebar">
         <div class="sidebar-header">
             <h1>Ore & Empire</h1>
@@ -377,11 +375,9 @@
         </div>
     </div>
 
-    <!-- GŁÓWNY PANEL GRY -->
     <div class="main-content">
         <div class="guide-frame">
             
-            <!-- SEKCJA: LOGI Z WALKI -->
             {% if combat_log %}
                 <div class="combat-log-container">
                     <h3>📜 Raport z Przebiegu Starcia</h3>
@@ -401,7 +397,6 @@
             <p class="desc">Mroczny las znajduje się niedaleko Starego Obozu. Możesz tu polować na dzikie bestie, aby zdobywać cenne doświadczenie, ale ryzykujesz życiem.</p>
             
             <div class="monster-list">
-                <!-- AUTOMATYCZNA PĘTLA GENERUJĄCA POTWORY -->
                 {% for key, monster in BESTIARY.items %}
                     <div class="monster-card">
                         <div class="monster-info">
