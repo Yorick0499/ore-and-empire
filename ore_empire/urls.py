@@ -17,11 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from characters.views import hunt_view, mine_view
+from characters.views import hunt_view, market_view, mine_view
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("kopalnia/", mine_view, name="mine_page"),
     path("polowanie/", hunt_view, name="hunt_page"),
+    path("plac_targowy/", market_view, name="market_page"),
 ]

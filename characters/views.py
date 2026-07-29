@@ -1,6 +1,13 @@
 from django.shortcuts import render
-from .models import PlayerProfile
-from .game_logic import BESTIARY, execute_hunt, start_mining, claim_ore_reward
+from .models import PlayerProfile, OwnedItem
+from .game_logic import (
+    BESTIARY,
+    execute_hunt,
+    start_mining,
+    claim_ore_reward,
+    buy_item_on_market,
+    list_item_on_market,
+)
 from django.shortcuts import render, redirect
 
 
@@ -29,4 +36,37 @@ def hunt_view(request):
         request,
         "characters/hunt.html",
         {"profile": profile, "combat_log": combat_log, "BESTIARY": BESTIARY},
+    )
+
+
+def market_view(request):
+    profile = PlayerProfile.objects.get(id=1)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "list":
+            sell_item_id = request.POST.get("sell_item_id")
+            price = request.POST.get("item_price")
+            if not price:
+                return redirect(request.path)
+            sell_item = OwnedItem.objects.get(id=sell_item_id)
+            item_price = int(price)
+            if item_price <= 0:
+                return redirect(request.path)
+            list_item_on_market(profile, sell_item, item_price)
+            return redirect(request.path)
+        if action == "buy":
+            buy_item_id = request.POST.get("buy_item_id")
+            owned_item = OwnedItem.objects.get(id=buy_item_id)
+            buy_item_on_market(profile, owned_item)
+            return redirect(request.path)
+    market_all_items = OwnedItem.objects.filter(is_market_listed=True)
+    player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    return render(
+        request,
+        "characters/market.html",
+        {
+            "profile": profile,
+            "market_all_items": market_all_items,
+            "player_inventory": player_inventory,
+        },
     )
