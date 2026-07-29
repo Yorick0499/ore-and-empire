@@ -122,8 +122,8 @@ def execute_hunt(profile, monster_key):
     return log
 
 
-def list_item_on_market(profile, owned_item, price):
-    if owned_item.owner != profile:
+def list_item_on_market(seller_profile, owned_item, price):
+    if owned_item.owner != seller_profile:
         return False
     if owned_item.is_market_listed:
         return False
@@ -132,4 +132,23 @@ def list_item_on_market(profile, owned_item, price):
     owned_item.is_market_listed = True
     owned_item.market_price = price
     owned_item.save()
+    return True
+
+
+def buy_item_on_market(buyer_profile, owned_item):
+    current_owner = owned_item.owner
+    if not owned_item.is_market_listed:
+        return False
+    if owned_item.owner == buyer_profile:
+        return False
+    if owned_item.market_price > buyer_profile.ore_balance:
+        return False
+    buyer_profile.ore_balance = buyer_profile.ore_balance - owned_item.market_price
+    current_owner.ore_balance = current_owner.ore_balance + owned_item.market_price
+    owned_item.owner = buyer_profile
+    owned_item.market_price = None
+    owned_item.is_market_listed = False
+    owned_item.save()
+    buyer_profile.save()
+    current_owner.save()
     return True
