@@ -152,3 +152,14 @@ def buy_item_on_market(buyer_profile, owned_item):
     buyer_profile.save()
     current_owner.save()
     return True
+
+
+def delist_item_from_market(seller_profile, owned_item):
+    if owned_item.owner != seller_profile:
+        return False
+    if not owned_item.is_market_listed:
+        return False
+    owned_item.is_market_listed = False
+    owned_item.market_price = None
+    owned_item.save()
+    return True
