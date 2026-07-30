@@ -414,14 +414,24 @@
                                         <span style="color: var(--gothic-gold);">Sprzedawca: {{ item.owner.user.username }}</span>
                                     </div>
                                 </div>
-                                <form method="POST" class="market-form">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="action" value="buy">
-                                    <input type="hidden" name="buy_item_id" value="{{ item.id }}">
-                                    <span class="price-tag">{{ item.market_price }}</span>
-                                    <button type="submit" class="gothic-btn btn-buy">Kup</button>
-                                </form>
-                            </div>
+                                {% if item.owner == profile %}
+                                    <form method="POST" class="market-form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="delist">
+                                        <input type="hidden" name="delist_item_id" value="{{ item.id }}">
+                                        <span class="price-tag">{{ item.market_price }}</span>
+                                        <button type="submit" class="gothic-btn btn-sell">Wycofaj</button>
+                                    </form>
+                                {% else %}
+                                    <form method="POST" class="market-form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="buy">
+                                        <input type="hidden" name="buy_item_id" value="{{ item.id }}">
+                                        <span class="price-tag">{{ item.market_price }}</span>
+                                        <button type="submit" class="gothic-btn btn-buy">Kup</button>
+                                    </form>
+                                {% endif %}
+                           </div>
                         {% empty %}
                             <p style="font-style: italic; color: #594e43; text-align: center; margin-top: 20px;">Targ jest obecnie pusty...</p>
                         {% endfor %}
