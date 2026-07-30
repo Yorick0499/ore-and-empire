@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import PlayerProfile, OwnedItem
 from .game_logic import (
     BESTIARY,
+    delist_item_from_market,
     execute_hunt,
     start_mining,
     claim_ore_reward,
@@ -58,6 +59,13 @@ def market_view(request):
             buy_item_id = request.POST.get("buy_item_id")
             owned_item = OwnedItem.objects.get(id=buy_item_id)
             buy_item_on_market(profile, owned_item)
+            return redirect(request.path)
+        if action == "delist":
+            sell_item_id = request.POST.get("delist_item_id")
+            sell_item = OwnedItem.objects.get(id=sell_item_id)
+            if sell_item.owner != profile:
+                return redirect(request.path)
+            delist_item_from_market(profile, sell_item)
             return redirect(request.path)
     market_all_items = OwnedItem.objects.filter(is_market_listed=True)
     player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
