@@ -163,3 +163,17 @@ def delist_item_from_market(seller_profile, owned_item):
     owned_item.market_price = None
     owned_item.save()
     return True
+
+
+def equip_item(profile, owned_item):
+    if owned_item.is_equipped:
+        return False
+    if owned_item.owner != profile:
+        return False
+    if owned_item.is_market_listed:
+        return False
+    if owned_item.blueprint.required_strength > profile.strength:
+        return False
+    owned_item.is_equipped = True
+    owned_item.save()
+    return True
