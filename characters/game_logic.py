@@ -62,7 +62,12 @@ def simulate_combat(profile, monster_key):
     temp_monster_life = monster["life"]
 
     combat_log = []
-    weapon_damage = 10
+    equipped_item = profile.inventory.filter(is_equipped=True).first()
+    weapon_damage = None
+    if equipped_item:
+        weapon_damage = equipped_item.blueprint.damage
+    else:
+        weapon_damage = 0
 
     while temp_hero_life > 0 and temp_monster_life > 0:
         # hero turn
@@ -174,6 +179,19 @@ def equip_item(profile, owned_item):
         return False
     if owned_item.blueprint.required_strength > profile.strength:
         return False
+    profile.inventory.filter(is_equipped=True).update(is_equipped=False)
     owned_item.is_equipped = True
+    owned_item.save()
+    return True
+
+
+def unequip_item(profile, owned_item):
+    if not owned_item.is_equipped:
+        return False
+    if owned_item.owner != profile:
+        return False
+    if owned_item.is_market_listed:
+        return False
+    owned_item.is_equipped = False
     owned_item.save()
     return True
