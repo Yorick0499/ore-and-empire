@@ -118,6 +118,7 @@ class OwnedItem(models.Model):
     owner = models.ForeignKey(
         PlayerProfile, on_delete=models.CASCADE, related_name="inventory"
     )
+    is_equipped = models.BooleanField(default=False)
     is_market_listed = models.BooleanField(default=False)
     market_price = models.IntegerField(null=True, blank=True)
 
