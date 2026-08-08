@@ -19,6 +19,9 @@ Here is the current state of the features:
 *   [ ] **Main Locations** - Adding all the iconic places from the original game.
 *   [ ] **Gated Progression** - High-level areas locked by level or camp requirements.
 *   [ ] **Boss Mechanics** - Epic encounters.
+*   [ ] **NPC Merchants** - Trade with merchants. Buy equipment or sell loot for 50% value.
+*   [ ] **Equipment System** - Dynamically equip weapons and armor from the inventory, tracking strength requirements and gaining combat bonuses.
+*   [ ] **Leveling & Teachers** - Spend Learning Points (LP) and ore at camp mentors to permanently train attributes.
 *   [ ] *And much more to come! :D*
 
 ---
