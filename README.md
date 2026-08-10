@@ -20,7 +20,7 @@ Here is the current state of the features:
 *   [ ] **Gated Progression** - High-level areas locked by level or camp requirements.
 *   [ ] **Boss Mechanics** - Epic encounters.
 *   [ ] **NPC Merchants** - Trade with merchants. Buy equipment or sell loot for 50% value.
-*   [ ] **Equipment System** - Equip items from the inventory, tracking strength requirements.
+*   [x] **Equipment System** - Equip items from the inventory, tracking strength requirements.
 *   [ ] **Leveling & Teachers** - Spend Learning Points (LP) and ore at camp mentors to permanently train attributes.
 *   [ ] *And much more to come! :D*
 
