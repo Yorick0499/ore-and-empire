@@ -1,10 +1,14 @@
+from typing import ItemsView
+
 from django.shortcuts import render
-from .models import PlayerProfile, OwnedItem
+from .models import ItemBluePrint, PlayerProfile, OwnedItem
 from .game_logic import (
     BESTIARY,
+    buy_item_from_npc,
     delist_item_from_market,
     equip_item,
     execute_hunt,
+    sell_item_from_npc,
     start_mining,
     claim_ore_reward,
     buy_item_on_market,
@@ -105,5 +109,32 @@ def inventory_view(request):
             "profile": profile,
             "player_inventory": player_inventory,
             "equipped_weapon": equipped_weapon,
+        },
+    )
+
+
+def shop_view(request):
+    profile = PlayerProfile.objects.get(id=1)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "buy":
+            item_id = request.POST.get("buy_item_id")
+            item = ItemBluePrint.objects.get(id=item_id)
+            buy_item_from_npc(profile, item)
+            return redirect(request.path)
+        if action == "sell":
+            item_id = request.POST.get("sell_item_id")
+            item = OwnedItem.objects.get(id=item_id)
+            sell_item_from_npc(profile, item)
+            return redirect(request.path)
+    player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    merchant_inventory = ItemBluePrint.objects.all()
+    return render(
+        request,
+        "characters/shop.html",
+        {
+            "profile": profile,
+            "player_inventory": player_inventory,
+            "shop_items": merchant_inventory,
         },
     )

@@ -17,7 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from characters.views import hunt_view, inventory_view, market_view, mine_view
+from characters.views import (
+    hunt_view,
+    inventory_view,
+    market_view,
+    mine_view,
+    shop_view,
+)
 
 
 urlpatterns = [
@@ -26,4 +32,5 @@ urlpatterns = [
     path("polowanie/", hunt_view, name="hunt_page"),
     path("plac_targowy/", market_view, name="market_page"),
     path("ekwipunek/", inventory_view, name="inventory_page"),
+    path("sklep/", shop_view, name="shop_page"),
 ]
