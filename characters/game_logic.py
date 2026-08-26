@@ -1,3 +1,4 @@
+from characters.models import OwnedItem
 from django.utils import timezone
 from datetime import timedelta
 import random
@@ -196,4 +197,26 @@ def unequip_item(profile, owned_item):
         return False
     owned_item.is_equipped = False
     owned_item.save()
+    return True
+
+
+def buy_item_from_npc(profile, item):
+    if profile.ore_balance < item.base_value:
+        return False
+    profile.ore_balance = profile.ore_balance - item.base_value
+    OwnedItem.objects.create(owner=profile, blueprint=item)
+    profile.save()
+    return True
+
+
+def sell_item_from_npc(profile, item):
+    if item.owner != profile:
+        return False
+    if item.is_equipped:
+        return False
+    if item.is_market_listed:
+        return False
+    profile.ore_balance = profile.ore_balance + int(item.blueprint.base_value * 0.5)
+    item.delete()
+    profile.save()
     return True
