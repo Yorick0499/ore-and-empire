@@ -130,6 +130,8 @@ def execute_hunt(profile, monster_key):
 def list_item_on_market(seller_profile, owned_item, price):
     if owned_item.owner != seller_profile:
         return False
+    if owned_item.is_equipped:
+        return False
     if owned_item.is_market_listed:
         return False
     if price <= 0:

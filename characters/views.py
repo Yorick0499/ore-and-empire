@@ -3,11 +3,13 @@ from .models import PlayerProfile, OwnedItem
 from .game_logic import (
     BESTIARY,
     delist_item_from_market,
+    equip_item,
     execute_hunt,
     start_mining,
     claim_ore_reward,
     buy_item_on_market,
     list_item_on_market,
+    unequip_item,
 )
 from django.shortcuts import render, redirect
 
@@ -76,5 +78,32 @@ def market_view(request):
             "profile": profile,
             "market_all_items": market_all_items,
             "player_inventory": player_inventory,
+        },
+    )
+
+
+def inventory_view(request):
+    profile = PlayerProfile.objects.get(id=1)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "equip":
+            item_id = request.POST.get("item_id")
+            item = OwnedItem.objects.get(id=item_id)
+            equip_item(profile, item)
+            return redirect(request.path)
+        if action == "unequip":
+            item_id = request.POST.get("item_id")
+            item = OwnedItem.objects.get(id=item_id)
+            unequip_item(profile, item)
+            return redirect(request.path)
+    player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True).first()
+    return render(
+        request,
+        "characters/inventory.html",
+        {
+            "profile": profile,
+            "player_inventory": player_inventory,
+            "equipped_weapon": equipped_weapon,
         },
     )
