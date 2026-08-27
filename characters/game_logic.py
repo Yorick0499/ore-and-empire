@@ -229,5 +229,19 @@ def check_level_up(profile):
     while profile.experience >= profile.required_exp:
         profile.level += 1
         profile.skill_points += 10
+        profile.life += 12
+    profile.save()
+    return True
+
+
+def train_attribute(profile, attribute_name):
+    if profile.skill_points < 1:
+        return False
+    if profile.ore_balance < 10:
+        return False
+    current_value = getattr(profile, attribute_name)
+    setattr(profile, attribute_name, current_value + 1)
+    profile.ore_balance = profile.ore_balance - 10
+    profile.skill_points = profile.skill_points - 1
     profile.save()
     return True
