@@ -119,6 +119,7 @@ def execute_hunt(profile, monster_key):
         monster = BESTIARY[monster_key]
         profile.experience = profile.experience + monster["exp_reward"]
         log.append(f"Zyskałeś {monster['exp_reward']} EXP.")
+        check_level_up(profile)
     else:
         log.append("Zyskałeś 0 EXP.")
         log.append(
@@ -218,5 +219,15 @@ def sell_item_from_npc(profile, item):
         return False
     profile.ore_balance = profile.ore_balance + int(item.blueprint.base_value * 0.5)
     item.delete()
+    profile.save()
+    return True
+
+
+def check_level_up(profile):
+    if profile.experience < profile.required_exp:
+        return False
+    while profile.experience >= profile.required_exp:
+        profile.level += 1
+        profile.skill_points += 10
     profile.save()
     return True
