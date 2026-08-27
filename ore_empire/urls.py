@@ -23,6 +23,7 @@ from characters.views import (
     market_view,
     mine_view,
     shop_view,
+    train_view,
 )
 
 
@@ -33,4 +34,5 @@ urlpatterns = [
     path("plac_targowy/", market_view, name="market_page"),
     path("ekwipunek/", inventory_view, name="inventory_page"),
     path("sklep/", shop_view, name="shop_page"),
+    path("trening/", train_view, name="train_page"),
 ]

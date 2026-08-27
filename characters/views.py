@@ -13,6 +13,7 @@ from .game_logic import (
     claim_ore_reward,
     buy_item_on_market,
     list_item_on_market,
+    train_attribute,
     unequip_item,
 )
 from django.shortcuts import render, redirect
@@ -138,3 +139,19 @@ def shop_view(request):
             "shop_items": merchant_inventory,
         },
     )
+
+
+def train_view(request):
+    profile = PlayerProfile.objects.get(id=1)
+    if request.method == "POST":
+        attribute_name = request.POST.get("attribute")
+        if attribute_name == "strength":
+            train_attribute(profile, attribute_name)
+            return redirect(request.path)
+        if attribute_name == "dexterity":
+            train_attribute(profile, attribute_name)
+            return redirect(request.path)
+        if attribute_name == "mana":
+            train_attribute(profile, attribute_name)
+            return redirect(request.path)
+    return render(request, "characters/train.html", {"profile": profile})
