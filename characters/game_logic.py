@@ -1,4 +1,5 @@
-from characters.models import OwnedItem, PlayerProfile, MarketTrade
+from characters.models import OwnedItem, PlayerProfile, MarketTrade, BossAttempt
+from .bosses import BOSSES
 from django.db import transaction
 from functools import wraps
 from django.utils import timezone
@@ -135,8 +136,8 @@ BESTIARY = {
 }
 
 
-def simulate_combat(profile, monster_key):
-    monster = BESTIARY[monster_key]
+def simulate_combat(profile, monster_key, *, monster=None):
+    monster = BESTIARY[monster_key] if monster is None else monster
     hunt_result = None
 
     temp_hero_life = profile.life
@@ -348,3 +349,39 @@ def train_attribute(profile, attribute_name):
     profile.skill_points = profile.skill_points - 1
     profile.save()
     return True
+
+
+@player_action
+def execute_boss(profile, boss_key):
+    boss = BOSSES.get(boss_key)
+    if boss is None or profile.level < boss.level or profile.is_busy:
+        return False
+    if profile.current_energy < boss.energy_cost:
+        return False
+    now = timezone.now()
+    last = BossAttempt.objects.filter(profile=profile, boss_key=boss_key).first()
+    if last and now < last.created_at + timedelta(minutes=boss.cooldown_minutes):
+        return False
+    won, combat_log = simulate_combat(profile, boss_key, monster=boss.monster)
+    profile.current_energy -= boss.energy_cost
+    experience = boss.experience if won else 0
+    ore = boss.ore if won else 0
+    if won:
+        profile.experience += experience
+        profile.ore_balance += ore
+        check_level_up(profile)
+        combat_log.append(f"Nagroda: {experience} PD i {ore} bryłek rudy.")
+    else:
+        combat_log.append(
+            "Wycofujesz się bez łupu. Przygotuj lepszy oręż przed kolejną próbą."
+        )
+    profile.save()
+    return BossAttempt.objects.create(
+        profile=profile,
+        boss_key=boss_key,
+        created_at=now,
+        won=won,
+        experience_reward=experience,
+        ore_reward=ore,
+        combat_log=combat_log,
+    )

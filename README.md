@@ -35,6 +35,16 @@ screen; the current UI allows one permanent choice. Locations show level and
 camp requirements, which the server also enforces. Locations currently reuse
 the mining, hunting, training and trading screens; unique quests come later.
 
+### Boss expeditions
+
+The colony directory includes two solo boss encounters: the minecrawler queen
+(level 5) and an ancient swamp creature (level 8). Each attempt costs 25 energy
+and starts a per-character, per-boss 30-minute cooldown, including defeats.
+Victories grant fixed experience and ore; defeats grant neither. Reports and
+actual rewards are saved in the database and are visible only to their player
+and administrators. Gates, costs, rewards and cooldowns are enforced on the
+server. Mining must finish before starting an expedition.
+
 ### Baseline bots and market data
 
 ```sh

@@ -154,3 +154,19 @@ class MarketTrade(models.Model):
                 name="trade_distinct_players",
             ),
         ]
+
+
+class BossAttempt(models.Model):
+    profile = models.ForeignKey(
+        PlayerProfile, on_delete=models.CASCADE, related_name="boss_attempts"
+    )
+    boss_key = models.CharField(max_length=40)
+    created_at = models.DateTimeField(default=timezone.now)
+    won = models.BooleanField()
+    experience_reward = models.PositiveIntegerField(default=0)
+    ore_reward = models.PositiveIntegerField(default=0)
+    combat_log = models.JSONField(default=list)
+
+    class Meta:
+        ordering = ["-created_at", "-pk"]
+        indexes = [models.Index(fields=["profile", "boss_key", "-created_at"])]

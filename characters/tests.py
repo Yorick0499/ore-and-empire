@@ -360,3 +360,128 @@ class ColonyTests(TestCase):
         game.list_item_on_market(self.a, self.item, 15)
         self.assertEqual(tick_bot(self.b), ("buy", True))
         self.assertEqual(MarketTrade.objects.get().buyer_id, self.b.pk)
+
+
+class BossTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("boss-hunter")
+        self.profile = self.user.playerprofile
+        self.profile.level = 5
+        self.profile.life = 110
+        self.profile.strength = 30
+        self.profile.save()
+        blueprint = ItemBluePrint.objects.create(
+            name="Guard sword", damage=35, required_strength=30, base_value=240
+        )
+        OwnedItem.objects.create(
+            owner=self.profile, blueprint=blueprint, is_equipped=True
+        )
+
+    def test_victory_records_report_and_awards_server_rewards(self):
+        from .models import BossAttempt
+
+        attempt = game.execute_boss(self.profile, "crawler_nest")
+        self.assertTrue(attempt.won)
+        self.profile.refresh_from_db()
+        self.assertEqual(
+            (
+                self.profile.experience,
+                self.profile.ore_balance,
+                self.profile.current_energy,
+            ),
+            (300, 110, 75),
+        )
+        self.assertEqual(BossAttempt.objects.count(), 1)
+        self.assertIn("Nagroda: 300 PD i 60 bryłek rudy.", attempt.combat_log)
+
+    def test_cooldown_prevents_repeat_rewards_and_costs(self):
+        game.execute_boss(self.profile, "crawler_nest")
+        self.assertFalse(game.execute_boss(self.profile, "crawler_nest"))
+        self.profile.refresh_from_db()
+        self.assertEqual(
+            (self.profile.experience, self.profile.current_energy), (300, 75)
+        )
+
+    def test_cooldown_expires_at_boundary(self):
+        from .models import BossAttempt
+
+        now = timezone.now()
+        BossAttempt.objects.create(
+            profile=self.profile,
+            boss_key="crawler_nest",
+            won=False,
+            created_at=now - timedelta(minutes=30),
+        )
+        with patch("characters.game_logic.timezone.now", return_value=now):
+            self.assertIsNot(game.execute_boss(self.profile, "crawler_nest"), False)
+
+    def test_defeat_charges_energy_without_reward_and_still_cools_down(self):
+        self.profile.inventory.all().delete()
+        self.profile.life = 20
+        self.profile.save()
+        attempt = game.execute_boss(self.profile, "crawler_nest")
+        self.assertFalse(attempt.won)
+        self.assertEqual((attempt.experience_reward, attempt.ore_reward), (0, 0))
+        self.profile.refresh_from_db()
+        self.assertEqual(
+            (
+                self.profile.experience,
+                self.profile.ore_balance,
+                self.profile.current_energy,
+            ),
+            (0, 50, 75),
+        )
+        self.assertFalse(game.execute_boss(self.profile, "crawler_nest"))
+
+    def test_invalid_locked_and_low_energy_attempts_do_not_create_reports(self):
+        from .models import BossAttempt
+
+        self.assertFalse(game.execute_boss(self.profile, "unknown"))
+        self.assertFalse(game.execute_boss(self.profile, "swamp_den"))
+        self.profile.current_energy = 24
+        self.profile.save()
+        self.assertFalse(game.execute_boss(self.profile, "crawler_nest"))
+        self.assertFalse(BossAttempt.objects.exists())
+
+    def test_working_miner_cannot_fight_boss(self):
+        self.assertTrue(game.start_mining(self.profile, 15))
+        self.assertFalse(game.execute_boss(self.profile, "crawler_nest"))
+        self.profile.refresh_from_db()
+        self.assertEqual(self.profile.current_energy, 90)
+
+    def test_report_and_rewards_roll_back_together(self):
+        from .models import BossAttempt
+
+        with patch.object(
+            BossAttempt.objects, "create", side_effect=RuntimeError("write failed")
+        ):
+            with self.assertRaises(RuntimeError):
+                game.execute_boss(self.profile, "crawler_nest")
+        self.profile.refresh_from_db()
+        self.assertEqual(
+            (
+                self.profile.experience,
+                self.profile.ore_balance,
+                self.profile.current_energy,
+            ),
+            (0, 50, 100),
+        )
+
+    def test_boss_view_gates_and_persists_private_report(self):
+        self.client.force_login(self.user)
+        url = reverse("boss_page") + "?location=crawler_nest"
+        self.assertContains(self.client.get(url), "Królowa pełzaczy")
+        self.assertRedirects(self.client.post(url, {"ore": 999999}), url)
+        self.assertContains(self.client.get(url), "Zwycięstwo")
+        other = User.objects.create_user("other-hunter")
+        other.playerprofile.level = 5
+        other.playerprofile.save()
+        self.client.force_login(other)
+        self.assertNotContains(self.client.get(url), "Ostatnia wyprawa")
+        self.profile.level = 4
+        self.profile.save()
+        self.client.force_login(self.user)
+        self.assertEqual(self.client.post(url).status_code, 403)
+
+    def test_anonymous_boss_requires_login(self):
+        self.assertEqual(self.client.get(reverse("boss_page")).status_code, 302)

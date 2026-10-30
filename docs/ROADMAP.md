@@ -20,9 +20,13 @@ claims about Gothic canon. No third-party artwork has been imported.
 - Bounded management-command bot ticks, using ordinary game services.
 - Clearly distinguish baseline rule-based bots from future AI/LLM policies.
 
+## 4. Solo boss expeditions (#6) — implemented
+- Two level-gated encounters with independent per-player cooldowns.
+- Energy cost on each valid attempt, rewards only on victory, durable reports.
+- Atomic attempts; replay, defeat, access and rollback regression tests.
+
 ## Later milestones
-- Boss encounters (#6): design rewards, cooldowns, combat balance and party rules
-  before implementing. Not resolved by adding a stronger ordinary monster.
+- Boss expansion: party raids, unique mechanics, loot tables and balance telemetry.
 - Quests, loot tables, camp/guild ranks, equipment types, persistent combat reports.
 - AI policies: observation/action interface, budget limits, deterministic replay,
   per-bot credentials and rate limits; never allow policies direct database writes.
@@ -38,7 +42,7 @@ and a browser-flow smoke test. Push completed milestones to the development
 branch; do not merge into main automatically.
 
 ## Verified in this milestone
-- 34 Django tests passed.
+- 43 Django tests passed.
 - Dependency checks, Django system checks and migration drift checks passed.
 - Real Chromium smoke: registration, NPC purchase, equipment, hunt XP, timed
   mining and reward claim, logout; desktop and 390px layouts checked.

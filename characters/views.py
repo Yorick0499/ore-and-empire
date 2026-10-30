@@ -316,3 +316,46 @@ def market_monitor_view(request):
         "characters/market_monitor.html",
         {"summary": summary, "trades": trades[:100]},
     )
+
+
+@login_required
+def boss_view(request):
+    from datetime import timedelta
+    from django.utils import timezone
+    from .bosses import BOSSES
+    from .models import BossAttempt
+    from .game_logic import execute_boss
+
+    profile = request.user.playerprofile
+    refresh_player(profile)
+    location = current_location(request, profile, "crawler_nest", "boss_page")
+    boss = BOSSES[location.key]
+    if request.method == "POST":
+        attempt = execute_boss(profile, boss.key)
+        if attempt is False:
+            messages.error(
+                request,
+                "Wyprawa niemożliwa. Sprawdź energię, pracę w kopalni i czas do kolejnej próby.",
+            )
+        else:
+            messages.success(request, "Zapisano raport wyprawy.")
+        return redirect(request.get_full_path())
+    last = BossAttempt.objects.filter(profile=profile, boss_key=boss.key).first()
+    next_attempt = (
+        last.created_at + timedelta(minutes=boss.cooldown_minutes) if last else None
+    )
+    waiting = next_attempt is not None and timezone.now() < next_attempt
+    return render(
+        request,
+        "characters/boss.html",
+        {
+            "profile": profile,
+            "location": location,
+            "boss": boss,
+            "last_attempt": last,
+            "next_attempt": next_attempt if waiting else None,
+            "can_fight": not waiting
+            and not profile.is_busy
+            and profile.current_energy >= boss.energy_cost,
+        },
+    )

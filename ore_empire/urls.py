@@ -18,7 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from characters.views import register_view, locations_view, market_monitor_view
+from characters.views import (
+    register_view,
+    locations_view,
+    market_monitor_view,
+    boss_view,
+)
 from characters.views import (
     hunt_view,
     inventory_view,
@@ -35,6 +40,7 @@ urlpatterns = [
     path("konto/logowanie/", auth_views.LoginView.as_view(), name="login"),
     path("konto/wylogowanie/", auth_views.LogoutView.as_view(), name="logout"),
     path("rynek/monitor/", market_monitor_view, name="market_monitor"),
+    path("wyprawa/", boss_view, name="boss_page"),
     path("admin/", admin.site.urls),
     path("kopalnia/", mine_view, name="mine_page"),
     path("polowanie/", hunt_view, name="hunt_page"),

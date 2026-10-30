@@ -24,3 +24,29 @@ class MarketTradeAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+from .models import BossAttempt
+
+
+@admin.register(BossAttempt)
+class BossAttemptAdmin(admin.ModelAdmin):
+    list_display = ("created_at", "profile", "boss_key", "won", "ore_reward")
+    readonly_fields = (
+        "profile",
+        "boss_key",
+        "created_at",
+        "won",
+        "experience_reward",
+        "ore_reward",
+        "combat_log",
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

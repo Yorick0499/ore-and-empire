@@ -21,6 +21,20 @@ class Location:
 
 LOCATIONS = (
     Location(
+        "crawler_nest",
+        "Gniazdo pełzaczy",
+        "Królowa pełzaczy czeka na śmiałków. Walka z bossem.",
+        level=5,
+        route="boss_page",
+    ),
+    Location(
+        "swamp_den",
+        "Legowisko błotnego węża",
+        "Prastara bestia strzeże głębi bagien. Walka z bossem.",
+        level=8,
+        route="boss_page",
+    ),
+    Location(
         "old_camp",
         "Stary Obóz",
         "Targ, kupcy i nauczyciele w cieniu zamku.",
@@ -87,4 +101,5 @@ LOCATIONS = (
         monsters=("shadowbeast",),
     ),
 )
+LOCATIONS = tuple(sorted(LOCATIONS, key=lambda location: location.level))
 BY_KEY = {location.key: location for location in LOCATIONS}
