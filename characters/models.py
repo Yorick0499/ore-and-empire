@@ -89,6 +89,15 @@ class PlayerProfile(models.Model):
     max_energy = models.IntegerField(default=100)
     energy_updated_at = models.DateTimeField(default=timezone.now)
     is_bot = models.BooleanField(default=False)
+    bot_role = models.CharField(
+        max_length=10,
+        default="hunter",
+        choices=[
+            ("hunter", "Łowca"),
+            ("trader", "Kupiec"),
+            ("miner", "Górnik"),
+        ],
+    )
 
     # actions time
     action_end_time = models.DateTimeField(null=True, blank=True)

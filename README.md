@@ -1,28 +1,67 @@
 # Ore & Empire: Colony Chronicles
 
-**Ore & Empire** is a text-based browser MMORPG inspired by the cult-classic game *Gothic*. It is basically *Gothic* moved entirely into an old-school browser MMO format! :D
+**Ore & Empire** is a local-first text browser RPG inspired by *Gothic*, with a bot-populated colony and optional multiplayer over LAN or public hosting.
 
 This is a 100% fan-made project created out of passion. The game is still heavily in development, which means features are constantly changing, and new ones are being added regularly. 
 
-## Development quick start
+## Local game first
 
-Requires Python 3.12+ and SQLite (included with standard Python).
+The default experience is one human playing a local colony populated by bots.
+Human accounts, trading and permissions remain compatible with LAN and public
+hosting. AI/ML policies are a later extension; current bots are rule-based and
+need no Internet service or API key.
+
+Requires Python 3.12+ (SQLite is included with standard Python).
 
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install -r requirements.txt
-# Create .env locally, never commit it:
-python -c 'from pathlib import Path; import secrets; p=Path(".env"); p.exists() or p.write_text("SECRET_KEY=" + secrets.token_urlsafe(64) + "\nDEBUG=True\n")'
-python manage.py migrate
-python manage.py seed_world
-python manage.py runserver
+python play.py
 ```
 
-Open the application, register a character, and start in the colony directory.
-Each account has its own profile. `seed_world` creates missing starter weapons
-without overwriting existing merchant prices or player data. Do not use the local
-SQLite development server as a public multiplayer deployment.
+On Windows activate with `.venv\Scripts\activate` instead. `play.py` creates a
+local `.env` with a random development key only if it is absent, applies
+migrations, seeds missing merchant stock and starts six bots alongside the web
+server. Register a character in your browser at the address printed by the
+command (default port 8000 on this machine). Ctrl+C stops both the server and
+bots; SQLite progress is kept in `db.sqlite3`. Restarting reuses existing accounts,
+items, prices and balances. Do not start another bot scheduler at the same time.
+
+```sh
+python play.py --bots 12 --interval 5 --port 8000
+python play.py --bots 0  # human-only mode
+```
+
+`--bots` selects up to that many active bot profiles and creates missing numbered
+accounts, up to 20. Existing roles and player progress are preserved. HTTP
+requests and bot rounds execute sequentially in this local server, avoiding
+simultaneous bot/web writes to SQLite. This favors a small local world, not high
+request throughput. Bot rounds run while the command is open, including when
+your browser is closed; no offline bot catch-up is simulated after shutdown.
+Energy still recovers with elapsed time.
+
+### Optional LAN and public hosting
+
+For trusted LAN play, add your machine's LAN IP to `ALLOWED_HOSTS` in `.env`
+(for example `ALLOWED_HOSTS=localhost,127.0.0.1,192.168.1.50`) and run:
+
+```sh
+python play.py --host 0.0.0.0
+```
+
+Other players connect to that machine's LAN IP and port using separate accounts.
+Allow the selected port in your local firewall if necessary. Default startup
+binds to loopback; it does not expose the game to the network automatically.
+
+For public hosting, use `ore_empire.wsgi:application` with a production WSGI
+server, explicit hosts, HTTPS, `DEBUG=False`, static-file serving and backups.
+Run the bot scheduler separately there; `play.py` is a local/LAN server. Networked
+accounts and game services are retained, but production deployment and PostgreSQL
+configuration/load testing remain a separate milestone.
+
+For code development without automatic bots, `python manage.py runserver` still
+works after migrations and `python manage.py seed_world`.
 
 ### Play loop
 
@@ -52,12 +91,16 @@ python manage.py run_bots --create 3 --limit 3
 python manage.py run_bots --limit 3
 ```
 
-Each invocation runs at most one action per selected bot. Bots have ordinary
+The manual command is an alternative to the automatic local launcher. Each
+invocation runs at most one action per selected bot. Bots have ordinary
 starting resources, unusable login passwords and use the same services as human
-players: buy, equip, hunt, mine, claim rewards and list surplus equipment. They
-buy market offers up to 120% of NPC value, list at 110%, and hold at most three
+players. New numbered accounts rotate between three roles: hunters equip weapons,
+train strength and hunt; traders buy and list stock; miners mine and claim ore.
+Role labels appear on market offers and the colony directory shows the population.
+Bots buy market offers up to 120% of NPC value, list at 110%, and hold at most three
 items through their baseline policy. Repeated calls or an external scheduler are
-required; there is no hidden infinite loop. Avoid overlapping scheduled runs.
+required when using the manual command; `play.py` runs its own periodic rounds.
+Avoid overlapping scheduled runs.
 `--create` reuses designated bots and refuses to convert a human account.
 
 These are **rule-based baseline bots**, not an LLM or trained AI. The immutable

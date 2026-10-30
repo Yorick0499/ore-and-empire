@@ -412,7 +412,7 @@
                                     <div class="item-stats">
                                         <span>Obrażenia: {{ item.blueprint.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
-                                        <span style="color: var(--gothic-gold);">Sprzedawca: {{ item.owner.user.username }}</span>
+                                        <span style="color: var(--gothic-gold);">Sprzedawca: {{ item.owner.user.username }}{% if item.owner.is_bot %} [bot · {{ item.owner.get_bot_role_display }}]{% endif %}</span>
                                     </div>
                                 </div>
                                 {% if item.owner == profile %}

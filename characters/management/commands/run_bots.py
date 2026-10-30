@@ -10,6 +10,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
+            "--create-only",
+            action="store_true",
+            help="Initialize bot accounts without running any actions.",
+        )
+        parser.add_argument(
             "--create",
             type=int,
             default=0,
@@ -33,7 +38,13 @@ class Command(BaseCommand):
                 if created:
                     user.set_unusable_password()
                     user.save(update_fields=["password"])
-                    PlayerProfile.objects.filter(user=user).update(is_bot=True)
+                    PlayerProfile.objects.filter(user=user).update(
+                        is_bot=True,
+                        bot_role=("hunter", "trader", "miner")[(number - 1) % 3],
+                    )
+        if options["create_only"]:
+            self.stdout.write("Bot population initialized without taking actions.")
+            return
         profiles = PlayerProfile.objects.filter(
             is_bot=True, user__is_active=True
         ).order_by("pk")[: options["limit"]]

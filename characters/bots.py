@@ -21,6 +21,9 @@ class Observation:
     blueprint_id: int | None
     equip_id: int | None
     armed: bool
+    role: str = "hunter"
+    skill_points: int = 0
+    strength: int = 10
 
 
 class Policy(Protocol):
@@ -33,6 +36,22 @@ class BaselinePolicy:
             return "claim", None
         if observation.busy:
             return "wait", None
+        if observation.role == "miner":
+            return ("mine", None) if observation.energy >= 10 else ("wait", None)
+        if observation.role == "trader":
+            if observation.inventory_id is not None:
+                return "list", observation.inventory_id
+            if observation.offer_id is not None:
+                return "buy", observation.offer_id
+            if observation.blueprint_id is not None:
+                return "stock", observation.blueprint_id
+            return ("mine", None) if observation.energy >= 10 else ("wait", None)
+        if (
+            observation.skill_points > 0
+            and observation.ore >= 10
+            and observation.strength < 45
+        ):
+            return "train", None
         if observation.equip_id is not None:
             return "equip", observation.equip_id
         if observation.armed and observation.energy >= 15 and observation.ore >= 50:
@@ -106,6 +125,9 @@ def tick_bot(profile, policy=None):
         stock.pk if stock else None,
         equipment.pk if equipment else None,
         armed,
+        profile.bot_role,
+        profile.skill_points,
+        profile.strength,
     )
     action, target = (policy or BaselinePolicy()).choose(obs)
     # Execute only the offered target; a policy cannot act on arbitrary objects.
@@ -115,6 +137,8 @@ def tick_bot(profile, policy=None):
         success = game.start_mining(profile, 15)
     elif action == "equip" and equipment and target == equipment.pk:
         success = game.equip_item(profile, equipment)
+    elif action == "train":
+        success = game.train_attribute(profile, "strength")
     elif action == "hunt":
         success = game.execute_hunt(profile, "young_scavenger") is not False
     elif action == "list" and item and target == item.pk:

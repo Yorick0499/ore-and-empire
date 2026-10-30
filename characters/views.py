@@ -114,7 +114,9 @@ def market_view(request):
                 return redirect(request.get_full_path())
             report_action(request, delist_item_from_market(profile, sell_item))
             return redirect(request.get_full_path())
-    market_all_items = OwnedItem.objects.filter(is_market_listed=True)
+    market_all_items = OwnedItem.objects.filter(is_market_listed=True).select_related(
+        "owner__user", "blueprint"
+    )
     player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
     return render(
         request,
@@ -267,7 +269,17 @@ def locations_view(request):
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS
     ]
     return render(
-        request, "characters/locations.html", {"profile": profile, "cards": cards}
+        request,
+        "characters/locations.html",
+        {
+            "profile": profile,
+            "cards": cards,
+            "population": PlayerProfile.objects.filter(
+                is_bot=True, user__is_active=True
+            )
+            .values("bot_role")
+            .annotate(total=Count("pk")),
+        },
     )
 
 

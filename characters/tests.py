@@ -485,3 +485,171 @@ class BossTests(TestCase):
 
     def test_anonymous_boss_requires_login(self):
         self.assertEqual(self.client.get(reverse("boss_page")).status_code, 302)
+
+
+class LocalWorldTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("local-bot")
+        self.bot = self.user.playerprofile
+        self.bot.is_bot = True
+        self.bot.save()
+        self.blueprint = ItemBluePrint.objects.create(
+            name="Starter", base_value=20, damage=12
+        )
+
+    def test_trader_lists_stock_instead_of_equipping_it(self):
+        self.bot.bot_role = "trader"
+        self.bot.save()
+        self.assertEqual(tick_bot(self.bot), ("stock", True))
+        self.assertEqual(tick_bot(self.bot), ("list", True))
+        item = self.bot.inventory.get()
+        self.assertTrue(item.is_market_listed)
+        self.assertFalse(item.is_equipped)
+
+    def test_miner_preserves_ore_instead_of_buying_weapons(self):
+        self.bot.bot_role = "miner"
+        self.bot.save()
+        self.assertEqual(tick_bot(self.bot), ("mine", True))
+        self.bot.refresh_from_db()
+        self.assertEqual(self.bot.ore_balance, 50)
+        self.assertFalse(self.bot.inventory.exists())
+        self.assertEqual(tick_bot(self.bot), ("wait", True))
+        self.bot.action_end_time = timezone.now() - timedelta(seconds=1)
+        self.bot.save()
+        self.assertEqual(tick_bot(self.bot), ("claim", True))
+        self.bot.refresh_from_db()
+        self.assertGreater(self.bot.ore_balance, 50)
+
+    def test_hunter_spends_earned_learning_points(self):
+        self.bot.skill_points = 2
+        self.bot.save()
+        self.assertEqual(tick_bot(self.bot), ("train", True))
+        self.bot.refresh_from_db()
+        self.assertEqual(
+            (self.bot.strength, self.bot.skill_points, self.bot.ore_balance),
+            (11, 1, 40),
+        )
+
+    def test_created_population_has_three_roles_and_preserves_existing_accounts(self):
+        call_command("run_bots", create=3, limit=3, stdout=StringIO())
+        roles = list(
+            PlayerProfile.objects.filter(user__username__startswith="colony-bot-")
+            .order_by("user__username")
+            .values_list("bot_role", flat=True)
+        )
+        self.assertEqual(roles, ["hunter", "trader", "miner"])
+        miner = PlayerProfile.objects.get(user__username="colony-bot-3")
+        miner.ore_balance = 123
+        miner.save()
+        call_command("run_bots", create=3, limit=1, stdout=StringIO())
+        miner.refresh_from_db()
+        self.assertEqual(miner.ore_balance, 123)
+
+    def test_local_server_ticks_between_requests_and_stops_cleanly(self):
+        from unittest.mock import MagicMock
+
+        server = MagicMock()
+        server.__enter__.return_value = server
+        server.handle_request.side_effect = [None, KeyboardInterrupt]
+        with patch(
+            "characters.management.commands.run_colony.make_server", return_value=server
+        ), patch(
+            "characters.management.commands.run_colony.call_command"
+        ) as setup, patch(
+            "characters.management.commands.run_colony.time.monotonic",
+            side_effect=[0, 6, 6],
+        ), patch(
+            "characters.management.commands.run_colony.tick_bot",
+            return_value=("mine", True),
+        ) as tick:
+            call_command("run_colony", bots=1, stdout=StringIO())
+        tick.assert_called_once()
+        self.assertEqual(tick.call_args.args[0].pk, self.bot.pk)
+        self.assertEqual(setup.call_count, 3)
+        server.__exit__.assert_called_once()
+
+    def test_no_bot_mode_never_ticks(self):
+        from unittest.mock import MagicMock
+
+        server = MagicMock()
+        server.__enter__.return_value = server
+        server.handle_request.side_effect = [None, KeyboardInterrupt]
+        with patch(
+            "characters.management.commands.run_colony.make_server", return_value=server
+        ), patch(
+            "characters.management.commands.run_colony.call_command"
+        ) as setup, patch(
+            "characters.management.commands.run_colony.time.monotonic",
+            side_effect=[0, 6, 6],
+        ), patch(
+            "characters.management.commands.run_colony.tick_bot"
+        ) as tick:
+            call_command("run_colony", bots=0, stdout=StringIO())
+        tick.assert_not_called()
+        self.assertEqual(setup.call_count, 2)
+
+    def test_busy_port_does_not_initialize_or_modify_world(self):
+        with patch(
+            "characters.management.commands.run_colony.make_server",
+            side_effect=OSError("busy"),
+        ), patch("characters.management.commands.run_colony.call_command") as setup:
+            with self.assertRaises(CommandError):
+                call_command("run_colony", stdout=StringIO())
+        setup.assert_not_called()
+
+    def test_invalid_local_server_options(self):
+        for options in [
+            {"bots": 21},
+            {"bots": -1},
+            {"port": 0},
+            {"interval": 0},
+            {"interval": float("nan")},
+        ]:
+            with self.assertRaises(CommandError):
+                call_command("run_colony", stdout=StringIO(), **options)
+
+    def test_broken_bot_does_not_stop_other_bots_or_http_loop(self):
+        from unittest.mock import MagicMock
+
+        other = User.objects.create_user("other-local-bot").playerprofile
+        other.is_bot = True
+        other.save()
+        server = MagicMock()
+        server.__enter__.return_value = server
+        server.handle_request.side_effect = [None, KeyboardInterrupt]
+        errors = StringIO()
+        with patch(
+            "characters.management.commands.run_colony.make_server", return_value=server
+        ), patch("characters.management.commands.run_colony.call_command"), patch(
+            "characters.management.commands.run_colony.time.monotonic",
+            side_effect=[0, 6, 6],
+        ), patch(
+            "characters.management.commands.run_colony.tick_bot",
+            side_effect=[ValueError("bad policy"), ("wait", True)],
+        ) as tick:
+            call_command("run_colony", bots=2, stdout=StringIO(), stderr=errors)
+        self.assertEqual(tick.call_count, 2)
+        self.assertIn("bot skipped (ValueError)", errors.getvalue())
+        server.__exit__.assert_called_once()
+
+    def test_colony_and_market_show_bot_roles(self):
+        self.bot.bot_role = "trader"
+        self.bot.save()
+        OwnedItem.objects.create(
+            owner=self.bot,
+            blueprint=self.blueprint,
+            is_market_listed=True,
+            market_price=22,
+        )
+        human = User.objects.create_user("local-human")
+        self.client.force_login(human)
+        self.assertContains(self.client.get(reverse("locations_page")), "Kupcy: 1")
+        self.assertContains(self.client.get(reverse("market_page")), "[bot · Kupiec]")
+
+    def test_population_initialization_does_not_spend_resources(self):
+        call_command("run_bots", create=3, create_only=True, stdout=StringIO())
+        bots = PlayerProfile.objects.filter(user__username__startswith="colony-bot-")
+        self.assertEqual(bots.count(), 3)
+        for bot in bots:
+            self.assertEqual((bot.ore_balance, bot.current_energy), (50, 100))
+            self.assertFalse(bot.inventory.exists())
