@@ -1,0 +1,20 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'characters/colony.css' %}">
+<nav class="colony-toolbar" aria-label="Nawigacja kolonii">
+    {% if user.is_authenticated %}
+    <strong>{{ user.username }}</strong>
+    <a href="{% url 'locations_page' %}">Kolonia</a>
+    <a href="{% url 'mine_page' %}">Kopalnia</a>
+    <a href="{% url 'hunt_page' %}">Polowanie</a>
+    <a href="{% url 'market_page' %}">Targ</a>
+    <a href="{% url 'inventory_page' %}">Ekwipunek</a>
+    <a href="{% url 'shop_page' %}">Kupiec</a>
+    <a href="{% url 'train_page' %}">Nauczyciel</a>
+    {% if user.is_staff %}<a href="{% url 'market_monitor' %}">Stan rynku</a>{% endif %}
+    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button>Wyloguj</button></form>
+    {% else %}
+    <strong>Ore &amp; Empire</strong>
+    <a href="{% url 'login' %}">Logowanie</a><a href="{% url 'register' %}">Dołącz do kolonii</a>
+    {% endif %}
+</nav>
+{% if messages %}<div class="colony-messages" role="status">{% for message in messages %}<div class="colony-message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}

@@ -326,6 +326,7 @@
     </style>
 </head>
 <body>
+{% include "characters/navigation.html" %}
 
     <div class="sidebar">
         <div class="sidebar-header">
@@ -361,7 +362,7 @@
             <div class="faction-crest">
                 <i class="fa-solid fa-gem"></i>
             </div>
-            <h2>Stara Kopalnia</h2>
+            <h2>{{ location.name }}</h2>
             <p>Brutalna rzeczywistość pod kopułą. Każde uderzenie kilofa w twardą skałę przybliża Cię do bogactwa, ale wysysa siły życiowe.</p>
             
             {% if profile.is_busy %}
@@ -372,6 +373,12 @@
                 </div>
 
                 <form method="POST" id="claim-form" class="hidden">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="claim">
+                    <button type="submit" class="gothic-btn btn-success">Odbierz urobek z kopalni</button>
+                </form>
+            {% elif profile.action_end_time %}
+                <form method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="action" value="claim">
                     <button type="submit" class="gothic-btn btn-success">Odbierz urobek z kopalni</button>

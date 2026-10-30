@@ -346,6 +346,7 @@
 </style>
 </head>
 <body>
+{% include "characters/navigation.html" %}
 
     <div class="sidebar">
         <div class="sidebar-header">
@@ -393,8 +394,8 @@
                 </div>
             {% endif %}
 
-            <h2>Mroczny las</h2>
-            <p class="desc">Mroczny las znajduje się niedaleko Starego Obozu. Możesz tu polować na dzikie bestie, aby zdobywać cenne doświadczenie, ale ryzykujesz życiem.</p>
+            <h2>{{ location.name }}</h2>
+            <p class="desc">{{ location.description }} Możesz tu polować na dzikie bestie i zdobywać doświadczenie.</p>
             
             <div class="monster-list">
                 {% for key, monster in BESTIARY.items %}

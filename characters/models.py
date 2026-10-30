@@ -1,5 +1,4 @@
-from typing import Required
-
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -88,6 +87,8 @@ class PlayerProfile(models.Model):
     # energy_points
     current_energy = models.IntegerField(default=100)
     max_energy = models.IntegerField(default=100)
+    energy_updated_at = models.DateTimeField(default=timezone.now)
+    is_bot = models.BooleanField(default=False)
 
     # actions time
     action_end_time = models.DateTimeField(null=True, blank=True)
@@ -127,3 +128,29 @@ class OwnedItem(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         PlayerProfile.objects.create(user=instance)
+
+
+class MarketTrade(models.Model):
+    """Append-only trade facts; item ownership may change after the transaction."""
+
+    blueprint = models.ForeignKey(ItemBluePrint, on_delete=models.PROTECT)
+    seller = models.ForeignKey(
+        PlayerProfile, on_delete=models.PROTECT, related_name="sales"
+    )
+    buyer = models.ForeignKey(
+        PlayerProfile, on_delete=models.PROTECT, related_name="purchases"
+    )
+    price = models.PositiveIntegerField()
+    created_at = models.DateTimeField(default=timezone.now, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at", "-pk"]
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(price__gt=0), name="trade_positive_price"
+            ),
+            models.CheckConstraint(
+                condition=~models.Q(seller=models.F("buyer")),
+                name="trade_distinct_players",
+            ),
+        ]

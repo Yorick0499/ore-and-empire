@@ -1,11 +1,82 @@
-from characters.models import OwnedItem
+from characters.models import OwnedItem, PlayerProfile, MarketTrade
+from django.db import transaction
+from functools import wraps
 from django.utils import timezone
 from datetime import timedelta
 import random
 
 
+ENERGY_INTERVAL_SECONDS = 60
+MAX_MARKET_PRICE = 1_000_000
+
+
+def recover_energy(profile):
+    now = timezone.now()
+    elapsed = max(0, int((now - profile.energy_updated_at).total_seconds()))
+    points = elapsed // ENERGY_INTERVAL_SECONDS
+    if profile.current_energy >= profile.max_energy:
+        profile.energy_updated_at = now
+    elif points:
+        profile.current_energy = min(
+            profile.max_energy, profile.current_energy + points
+        )
+        profile.energy_updated_at += timedelta(seconds=points * ENERGY_INTERVAL_SECONDS)
+        if profile.current_energy == profile.max_energy:
+            profile.energy_updated_at = now
+    profile.save(update_fields=["current_energy", "energy_updated_at"])
+
+
+def player_action(fn):
+    """Refresh stale objects and serialize actions on the same player/item.
+
+    PostgreSQL honors row locks; SQLite is for local development only.
+    """
+
+    @wraps(fn)
+    def wrapped(profile, *args, **kwargs):
+        with transaction.atomic():
+            ids = {profile.pk}
+            if fn.__name__ == "buy_item_on_market" and args:
+                owner_id = (
+                    OwnedItem.objects.filter(pk=args[0].pk)
+                    .values_list("owner_id", flat=True)
+                    .first()
+                )
+                if owner_id is not None:
+                    ids.add(owner_id)
+            list(
+                PlayerProfile.objects.select_for_update()
+                .filter(pk__in=ids)
+                .order_by("pk")
+            )
+            profile.refresh_from_db()
+            recover_energy(profile)
+            for arg in args:
+                if isinstance(arg, OwnedItem):
+                    fresh = (
+                        OwnedItem.objects.select_for_update().filter(pk=arg.pk).first()
+                    )
+                    if fresh is None:
+                        return False
+                    arg.refresh_from_db()
+                    # A listing changed owner while locks were being acquired.
+                    if fn.__name__ == "buy_item_on_market" and arg.owner_id not in ids:
+                        return False
+            return fn(profile, *args, **kwargs)
+
+    return wrapped
+
+
+@player_action
+def refresh_player(profile):
+    return profile
+
+
+@player_action
 def start_mining(profile, duration_seconds):
-    if profile.is_busy:
+    if not isinstance(duration_seconds, int) or not 1 <= duration_seconds <= 3600:
+        return False
+    if profile.action_end_time is not None:
         return False
     if profile.current_energy < 10:
         return False
@@ -15,6 +86,7 @@ def start_mining(profile, duration_seconds):
     return True
 
 
+@player_action
 def claim_ore_reward(profile):
     if not profile.action_end_time:
         return False
@@ -28,6 +100,14 @@ def claim_ore_reward(profile):
 
 
 BESTIARY = {
+    "young_scavenger": {
+        "nazwa": "Młody ścierwojad",
+        "level": 0,
+        "life": 12,
+        "strength": 3,
+        "weapon_prot": 0,
+        "exp_reward": 30,
+    },
     "scavenger": {
         "nazwa": "Ścierwojad",
         "level": 3,
@@ -109,7 +189,10 @@ def simulate_combat(profile, monster_key):
     return hunt_result, combat_log
 
 
+@player_action
 def execute_hunt(profile, monster_key):
+    if monster_key not in BESTIARY or profile.is_busy:
+        return False
     if profile.current_energy < 15:
         return False
     profile.current_energy = profile.current_energy - 15
@@ -129,6 +212,7 @@ def execute_hunt(profile, monster_key):
     return log
 
 
+@player_action
 def list_item_on_market(seller_profile, owned_item, price):
     if owned_item.owner != seller_profile:
         return False
@@ -136,7 +220,7 @@ def list_item_on_market(seller_profile, owned_item, price):
         return False
     if owned_item.is_market_listed:
         return False
-    if price <= 0:
+    if type(price) is not int or not 1 <= price <= MAX_MARKET_PRICE:
         return False
     owned_item.is_market_listed = True
     owned_item.market_price = price
@@ -144,14 +228,23 @@ def list_item_on_market(seller_profile, owned_item, price):
     return True
 
 
+@player_action
 def buy_item_on_market(buyer_profile, owned_item):
     current_owner = owned_item.owner
     if not owned_item.is_market_listed:
         return False
     if owned_item.owner == buyer_profile:
         return False
+    if owned_item.market_price is None or owned_item.market_price <= 0:
+        return False
     if owned_item.market_price > buyer_profile.ore_balance:
         return False
+    MarketTrade.objects.create(
+        blueprint=owned_item.blueprint,
+        seller=current_owner,
+        buyer=buyer_profile,
+        price=owned_item.market_price,
+    )
     buyer_profile.ore_balance = buyer_profile.ore_balance - owned_item.market_price
     current_owner.ore_balance = current_owner.ore_balance + owned_item.market_price
     owned_item.owner = buyer_profile
@@ -163,6 +256,7 @@ def buy_item_on_market(buyer_profile, owned_item):
     return True
 
 
+@player_action
 def delist_item_from_market(seller_profile, owned_item):
     if owned_item.owner != seller_profile:
         return False
@@ -174,6 +268,7 @@ def delist_item_from_market(seller_profile, owned_item):
     return True
 
 
+@player_action
 def equip_item(profile, owned_item):
     if owned_item.is_equipped:
         return False
@@ -189,6 +284,7 @@ def equip_item(profile, owned_item):
     return True
 
 
+@player_action
 def unequip_item(profile, owned_item):
     if not owned_item.is_equipped:
         return False
@@ -201,7 +297,10 @@ def unequip_item(profile, owned_item):
     return True
 
 
+@player_action
 def buy_item_from_npc(profile, item):
+    if item.base_value < 0:
+        return False
     if profile.ore_balance < item.base_value:
         return False
     profile.ore_balance = profile.ore_balance - item.base_value
@@ -210,6 +309,7 @@ def buy_item_from_npc(profile, item):
     return True
 
 
+@player_action
 def sell_item_from_npc(profile, item):
     if item.owner != profile:
         return False
@@ -234,7 +334,10 @@ def check_level_up(profile):
     return True
 
 
+@player_action
 def train_attribute(profile, attribute_name):
+    if attribute_name not in {"strength", "dexterity", "mana"}:
+        return False
     if profile.skill_points < 1:
         return False
     if profile.ore_balance < 10:

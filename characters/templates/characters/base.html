@@ -1,0 +1,3 @@
+{% load static %}<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}Ore &amp; Empire — Kolonia{% endblock %}</title><link rel="stylesheet" href="{% static 'characters/colony.css' %}"></head>
+<body class="colony-page">{% include 'characters/navigation.html' %}<main class="colony-shell">{% block content %}{% endblock %}</main></body></html>
