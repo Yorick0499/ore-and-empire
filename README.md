@@ -312,3 +312,17 @@ The Old Camp castle requires tier 1; the Water Mages headquarters and Brotherhoo
 temple require tier 2 plus their corresponding camp and entry level. Base training
 remains available in the New Camp. Mage ranks are implemented; spell combat is a
 later milestone. See [camp progression](docs/CAMPS.md) for the complete requirements.
+
+### Timed errands, events, rankings and shard shop
+
+The colony now includes 11 repeatable timed errands, persistent health and passive
+health/energy recovery. Earn magic shards from errands, collect event bonuses and
+buy Gothic-themed weapons or immediate recovery drinks. Global and camp rankings
+can include humans, bots or both. Seasonal, holiday, random and manual events share
+an editable calendar. See [living-world rules](docs/LIVING_WORLD.md).
+
+For local operator access, run `python play.py --setup-admin`. Read the generated
+credentials in the ignored `.admin-access.json`, sign in, and open **Zarządca**.
+The game-master panel can restore resources, grant equipment/shards and edit stats;
+full Django administration also manages accounts, events, errands and shop stock.
+No administrator password is committed to the repository.

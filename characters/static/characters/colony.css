@@ -223,3 +223,15 @@ button, .colony-button, .gothic-btn { max-width: 100%; line-height: 1.45; }
 .camp-path { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
 .camp-path li { display: flex; align-items: center; gap: 8px; }
 .camp-path li + li::before { content: "→"; color: var(--gold); }
+.store-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.store-card { min-width: 0; margin: 0; display: flex; flex-direction: column; }
+.store-card form { margin-top: auto; }
+.reward-line { color: var(--gold); }
+@media (max-width: 900px) { .store-grid { grid-template-columns: 1fr; } }
+.admin-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 28px; }
+.admin-stats > div, .admin-operation { min-width: 0; }
+.admin-stats input, .admin-stats select { width: 100%; }
+.admin-operation { display: flex; flex-direction: column; gap: 12px; align-items: start; }
+.admin-operation select { width: 100%; }
+@media (max-width: 900px) { .admin-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 500px) { .admin-stats { grid-template-columns: 1fr; } }

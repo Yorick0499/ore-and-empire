@@ -205,6 +205,7 @@ class CampProgressionTests(TestCase):
 
     def test_trained_character_can_defeat_every_species_without_mocked_combat(self):
         self.profile.life = 500
+        self.profile.current_health = 500
         self.profile.strength = 250
         self.profile.onehand_skill = 0
         for key in BESTIARY:

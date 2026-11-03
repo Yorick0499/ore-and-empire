@@ -59,7 +59,7 @@ def hunt_view(request):
             return redirect(request.get_full_path())
         combat_log = execute_hunt(profile, monster, location.key)
         if combat_log is False:
-            messages.error(request, "Brakuje energii lub trwa praca w kopalni.")
+            messages.error(request, "Potrzebujesz 15 energii i co najmniej 10 zdrowia. Zakończ też trwające zadanie.")
             combat_log = None
         request.session["combat_log"] = combat_log
         return redirect(request.get_full_path())
@@ -257,15 +257,8 @@ def locations_view(request):
     refresh_player(profile)
     if request.method == "POST":
         camp = request.POST.get("camp")
-        # Initial allegiance is permanent; promotions follow the camp quest tree.
-        with transaction.atomic():
-            locked = PlayerProfile.objects.select_for_update().get(pk=profile.pk)
-            if locked.camp == "NONE" and camp in {"OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP"}:
-                locked.camp = camp
-                locked.save(update_fields=["camp"])
-                messages.success(request, "Obóz przyjął cię w swoje szeregi.")
-            else:
-                messages.error(request, "Nie możesz zmienić wybranego obozu.")
+        from .game_logic import choose_camp
+        report_action(request, choose_camp(profile, camp))
         return redirect("locations_page")
     cards = [
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS
@@ -399,7 +392,8 @@ def boss_view(request):
             "next_attempt": next_attempt if waiting else None,
             "can_fight": not waiting
             and not profile.is_busy
-            and profile.current_energy >= boss.energy_cost,
+            and profile.current_energy >= boss.energy_cost
+            and profile.current_health >= 10,
         },
     )
 
@@ -448,3 +442,92 @@ def camp_view(request):
         "selected": selected, "camp_name": camps[selected], "paths": CAMP_PATHS[selected],
         "camps": [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"],
     })
+
+
+@login_required
+def adventures_view(request):
+    from django.utils import timezone
+    from .models import AdventureTemplate
+    from .economy import start_adventure, claim_adventure
+    from .world_events import reward_snapshot
+    profile = request.user.playerprofile
+    refresh_player(profile)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "start":
+            result = start_adventure(profile, positive_id(request.POST.get("template")))
+        elif action == "claim":
+            result = claim_adventure(profile, positive_id(request.POST.get("run")))
+        else:
+            result = False
+        report_action(request, result)
+        return redirect("adventures_page")
+    run = profile.adventures.filter(claimed_at__isnull=True).select_related("template").first()
+    quests = []
+    for quest in AdventureTemplate.objects.filter(enabled=True):
+        ore, experience, premium, events = reward_snapshot(quest.ore_reward, quest.experience_reward, quest.premium_reward)
+        quests.append({"quest": quest, "ore": ore, "experience": experience, "premium": premium, "events": events,
+                      "available": profile.level >= quest.level and profile.current_energy >= quest.energy_cost and not run and profile.action_end_time is None})
+    return render(request, "characters/adventures.html", {"profile": profile, "quests": quests, "run": run, "ready": run and timezone.now() >= run.ends_at, "history": profile.adventures.filter(claimed_at__isnull=False).select_related("template")[:10]})
+
+
+@login_required
+def itemshop_view(request):
+    from uuid import uuid4
+    from .models import StoreProduct
+    from .economy import purchase_product
+    profile = request.user.playerprofile
+    refresh_player(profile)
+    if request.method == "POST":
+        report_action(request, purchase_product(profile, positive_id(request.POST.get("product")), request.POST.get("request_key")))
+        return redirect("itemshop_page")
+    products = [{"product": product, "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
+    return render(request, "characters/itemshop.html", {"profile": profile, "products": products, "entries": profile.premium_entries.all()[:15]})
+
+
+def events_view(request):
+    from django.utils import timezone
+    from .models import WorldEvent
+    from .world_events import active_events
+    return render(request, "characters/events.html", {"active": active_events(), "upcoming": WorldEvent.objects.filter(enabled=True, starts_at__gt=timezone.now())[:6]})
+
+
+@login_required
+def rankings_view(request):
+    from django.core.paginator import Paginator
+    populations = {"all": "Wszyscy", "humans": "Gracze", "bots": "Boty"}
+    population = request.GET.get("population", "all")
+    camp = request.GET.get("camp", "")
+    camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"]
+    if population not in populations or camp not in {"", *(key for key, _ in camps)}:
+        raise Http404("Nieznany ranking")
+    profiles = PlayerProfile.objects.filter(user__is_active=True, user__is_staff=False).select_related("user")
+    if population != "all":
+        profiles = profiles.filter(is_bot=population == "bots")
+    totals = {row["camp"]: row for row in profiles.values("camp").annotate(players=Count("pk"), experience=Sum("experience"), average=Avg("level"))}
+    camp_ranking = sorted([{"key": key, "name": name, **totals.get(key, {"players": 0, "experience": 0, "average": 0})} for key, name in camps], key=lambda row: (-row["experience"], -row["players"], row["key"]))
+    if camp:
+        profiles = profiles.filter(camp=camp)
+    page = Paginator(profiles.order_by("-level", "-experience", "pk"), 50).get_page(request.GET.get("page"))
+    return render(request, "characters/rankings.html", {"page": page, "camp_ranking": camp_ranking, "camps": camps, "populations": populations.items(), "population": population, "camp": camp})
+
+
+@login_required
+def game_master_view(request):
+    from .admin_tools import ProfileStatsForm, administer_player
+    from .models import AdminAction
+    if not request.user.is_superuser:
+        raise PermissionDenied("Panel zarządcy wymaga konta administratora.")
+    profiles = PlayerProfile.objects.select_related("user").order_by("user__username")
+    selected = request.POST.get("profile") if request.method == "POST" else request.GET.get("profile")
+    target = get_object_or_404(PlayerProfile, pk=positive_id(selected)) if selected else profiles.first()
+    if request.method == "POST":
+        success, message = administer_player(request.user, target.pk, request.POST.get("action"), request.POST)
+        (messages.success if success else messages.error)(request, message)
+        return redirect(reverse_url("game_master") + "?profile=" + str(target.pk))
+    return render(request, "characters/game_master.html", {"profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.select_related("actor", "profile__user")[:30]})
+
+
+def reverse_url(name):
+    from django.urls import reverse
+    return reverse(name)

@@ -663,5 +663,33 @@
     "source": "https://gothic.fandom.com/pl/wiki/Orkowie_niewolnicy",
     "original": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl",
     "download": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl"
+  },
+  "rice_spirit": {
+    "title": "Ryżówka",
+    "path": "characters/art/rice_spirit.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ry%C5%BC%C3%B3wka",
+    "original": "https://static.wikia.nocookie.net/gothic/images/2/20/Ry%C5%BC%C3%B3wka_GI.png/revision/latest?cb=20201001031141&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/20/Ry%C5%BC%C3%B3wka_GI.png/revision/latest?cb=20201001031141&path-prefix=pl"
+  },
+  "healing_essence": {
+    "title": "Esencja lecznicza",
+    "path": "characters/art/healing_essence.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Esencja_lecznicza",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/49/Esencja_lecznicza_%28G2%29.png/revision/latest?cb=20170422145520&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/49/Esencja_lecznicza_%28G2%29.png/revision/latest?cb=20170422145520&path-prefix=pl"
+  },
+  "battle_staff": {
+    "title": "Pałka z kolcami",
+    "path": "characters/art/battle_staff.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka_z_kolcami",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/8e/Pa%C5%82ka_Namiba.png/revision/latest?cb=20201001031128&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/8e/Pa%C5%82ka_Namiba.png/revision/latest/scale-to-width-down/640?cb=20201001031128&path-prefix=pl"
+  },
+  "rune_sword": {
+    "title": "Miecz runiczny",
+    "path": "characters/art/rune_sword.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Miecz_runiczny",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/df/Miecz_%C5%9Bmierci_%28G1%29.png/revision/latest?cb=20171127185515&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/df/Miecz_%C5%9Bmierci_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20171127185515&path-prefix=pl"
   }
 }

@@ -16,6 +16,7 @@ class Command(BaseCommand):
     )
 
     def add_arguments(self, parser):
+        parser.add_argument("--setup-admin", action="store_true", help="Create the local administrator and a private credential file.")
         parser.add_argument("--host", default="127.0.0.1")
         parser.add_argument("--port", type=int, default=8000)
         parser.add_argument("--bots", type=int, default=6)
@@ -40,6 +41,9 @@ class Command(BaseCommand):
         with server:
             call_command("migrate", interactive=False, stdout=self.stdout)
             call_command("seed_world", stdout=self.stdout)
+            call_command("seed_adventures", stdout=self.stdout)
+            if options["setup_admin"]:
+                call_command("create_game_admin", stdout=self.stdout)
             if options["bots"]:
                 call_command(
                     "run_bots",
@@ -60,12 +64,18 @@ class Command(BaseCommand):
                 self.stdout.write(
                     "LAN mode: configure ALLOWED_HOSTS with your machine's LAN address. This server is for trusted local networks, not public hosting."
                 )
+            event_day = None
             next_round = time.monotonic() + options["interval"]
             server.timeout = min(1, options["interval"])
             try:
                 while True:
                     server.handle_request()
                     if time.monotonic() >= next_round:
+                        from django.utils import timezone
+                        from characters.world_events import ensure_world_events
+                        if event_day != timezone.now().date():
+                            ensure_world_events()
+                            event_day = timezone.now().date()
                         profiles = PlayerProfile.objects.filter(
                             is_bot=True, user__is_active=True
                         ).order_by("pk")[: options["bots"]]

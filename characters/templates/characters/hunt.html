@@ -42,10 +42,10 @@
                             {% csrf_token %}
                             <input type="hidden" name="monster_key" value="{{ key }}">
 
-                            {% if profile.current_energy >= 15 %}
+                            {% if profile.current_energy >= 15 and profile.current_health >= 10 and not profile.is_busy %}
                                 <button type="submit" class="gothic-btn">Atakuj (15 ⚡)</button>
                             {% else %}
-                                <button type="button" class="gothic-btn btn-disabled" disabled>Brak sił</button>
+                                <button type="button" class="gothic-btn btn-disabled" disabled>Odpocznij lub zakończ zadanie</button>
                             {% endif %}
                         </form>
                     </div>

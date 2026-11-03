@@ -84,6 +84,11 @@ class PlayerProfile(models.Model):
     # ore balance
     ore_balance = models.IntegerField(default=50)
 
+    premium_balance = models.PositiveIntegerField(default=0)
+    current_health = models.PositiveIntegerField(default=50)
+    health_updated_at = models.DateTimeField(default=timezone.now)
+    bot_turn = models.PositiveIntegerField(default=0)
+
     # energy_points
     current_energy = models.IntegerField(default=100)
     max_energy = models.IntegerField(default=100)
@@ -125,7 +130,7 @@ class PlayerProfile(models.Model):
 
         if self.action_end_time and timezone.now() < self.action_end_time:
             return True
-        return False
+        return self.adventures.filter(claimed_at__isnull=True).exists()
 
 
 class ItemBluePrint(models.Model):
@@ -220,3 +225,106 @@ class CampQuest(models.Model):
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=["profile", "rank_key"], name="unique_camp_quest")]
+
+
+class AdventureTemplate(models.Model):
+    key = models.SlugField(unique=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    level = models.PositiveIntegerField(default=0)
+    duration_seconds = models.PositiveIntegerField(default=60)
+    energy_cost = models.PositiveIntegerField(default=5)
+    ore_reward = models.PositiveIntegerField(default=10)
+    experience_reward = models.PositiveIntegerField(default=50)
+    premium_reward = models.PositiveIntegerField(default=1)
+    enabled = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["level", "pk"]
+        constraints = [models.CheckConstraint(condition=models.Q(duration_seconds__gte=1), name="adventure_duration_positive")]
+
+
+class WorldEvent(models.Model):
+    key = models.SlugField(unique=True, max_length=100)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    kind = models.CharField(max_length=12, choices=[("seasonal", "Sezonowy"), ("holiday", "Świąteczny"), ("random", "Losowy"), ("manual", "Specjalny")], default="manual")
+    starts_at = models.DateTimeField(db_index=True)
+    ends_at = models.DateTimeField(db_index=True)
+    enabled = models.BooleanField(default=True)
+    ore_percent = models.PositiveIntegerField(default=100)
+    experience_percent = models.PositiveIntegerField(default=100)
+    premium_bonus = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["starts_at", "pk"]
+        constraints = [models.CheckConstraint(condition=models.Q(ends_at__gt=models.F("starts_at")), name="event_end_after_start")]
+
+
+class AdventureRun(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name="adventures")
+    template = models.ForeignKey(AdventureTemplate, on_delete=models.PROTECT)
+    started_at = models.DateTimeField(default=timezone.now)
+    ends_at = models.DateTimeField()
+    claimed_at = models.DateTimeField(null=True, blank=True)
+    ore_reward = models.PositiveIntegerField()
+    experience_reward = models.PositiveIntegerField()
+    premium_reward = models.PositiveIntegerField()
+    event_names = models.JSONField(default=list)
+
+    class Meta:
+        ordering = ["-started_at", "-pk"]
+        constraints = [models.UniqueConstraint(fields=["profile"], condition=models.Q(claimed_at__isnull=True), name="one_unclaimed_adventure")]
+
+
+class PremiumEntry(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT, related_name="premium_entries")
+    created_at = models.DateTimeField(default=timezone.now, db_index=True)
+    amount = models.IntegerField()
+    balance_after = models.PositiveIntegerField()
+    reason = models.CharField(max_length=120)
+    reference = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        ordering = ["-created_at", "-pk"]
+        constraints = [models.CheckConstraint(condition=~models.Q(amount=0), name="premium_entry_nonzero")]
+
+
+class StoreProduct(models.Model):
+    key = models.SlugField(unique=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    kind = models.CharField(max_length=10, choices=[("weapon", "Oręż"), ("energy", "Energia"), ("health", "Zdrowie")])
+    price = models.PositiveIntegerField()
+    level = models.PositiveIntegerField(default=0)
+    effect = models.PositiveIntegerField(default=0)
+    blueprint = models.ForeignKey(ItemBluePrint, null=True, blank=True, on_delete=models.PROTECT)
+    enabled = models.BooleanField(default=True)
+    art_key = models.CharField(max_length=50, blank=True)
+
+    class Meta:
+        ordering = ["price", "pk"]
+        constraints = [models.CheckConstraint(condition=models.Q(price__gte=1), name="store_price_positive")]
+
+
+class StorePurchase(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT, related_name="store_purchases")
+    product = models.ForeignKey(StoreProduct, on_delete=models.PROTECT)
+    request_key = models.UUIDField()
+    created_at = models.DateTimeField(default=timezone.now)
+    price = models.PositiveIntegerField()
+    effect = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["profile", "request_key"], name="unique_store_request")]
+
+
+class AdminAction(models.Model):
+    actor = models.ForeignKey(User, on_delete=models.PROTECT)
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(default=timezone.now)
+    action = models.CharField(max_length=30)
+    details = models.JSONField(default=dict)
+
+    class Meta:
+        ordering = ["-created_at", "-pk"]

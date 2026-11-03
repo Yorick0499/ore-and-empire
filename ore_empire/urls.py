@@ -22,6 +22,7 @@ from characters.views import (
     register_view,
     bestiary_view,
     camp_view,
+    adventures_view, itemshop_view, events_view, rankings_view, game_master_view,
     credits_view,
     locations_view,
     market_monitor_view,
@@ -38,6 +39,11 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("zarzadca/", game_master_view, name="game_master"),
+    path("zadania/", adventures_view, name="adventures_page"),
+    path("sklep-odlamkow/", itemshop_view, name="itemshop_page"),
+    path("wydarzenia/", events_view, name="events_page"),
+    path("rankingi/", rankings_view, name="rankings_page"),
     path("oboz/", camp_view, name="camp_page"),
     path("bestiariusz/", bestiary_view, name="bestiary_page"),
     path("zrodla/", credits_view, name="credits_page"),

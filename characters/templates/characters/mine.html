@@ -11,7 +11,9 @@
             <h2>{{ location.name }}</h2>
             <p>Brutalna rzeczywistość pod kopułą. Każde uderzenie kilofa w twardą skałę przybliża Cię do bogactwa, ale wysysa siły życiowe.</p>
 
-            {% if profile.is_busy %}
+            {% if profile.is_busy and not profile.action_end_time %}
+                <p>Trwa wyprawa. <a href="{% url 'adventures_page' %}">Wróć do dziennika zadań</a>.</p>
+            {% elif profile.is_busy %}
                 <!-- STATUS: PRACA -->
                 <div class="status-panel">
                     <div class="status-title">Wydobywanie rudy...</div>
@@ -45,7 +47,7 @@
     </div>
 
     <!-- JAVASCRIPT TIMER -->
-    {% if profile.is_busy %}
+    {% if profile.is_busy and profile.action_end_time %}
     <script>
         const endTime = new Date("{{ profile.action_end_time|date:'c' }}").getTime();
         const timerElement = document.getElementById('countdown-timer');

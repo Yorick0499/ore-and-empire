@@ -5,6 +5,7 @@ from functools import wraps
 from django.utils import timezone
 from datetime import timedelta
 import random
+from dataclasses import dataclass
 
 
 ENERGY_INTERVAL_SECONDS = 60
@@ -24,7 +25,17 @@ def recover_energy(profile):
         profile.energy_updated_at += timedelta(seconds=points * ENERGY_INTERVAL_SECONDS)
         if profile.current_energy == profile.max_energy:
             profile.energy_updated_at = now
-    profile.save(update_fields=["current_energy", "energy_updated_at"])
+    elapsed_health = max(0, int((now - profile.health_updated_at).total_seconds()))
+    health_points = elapsed_health // ENERGY_INTERVAL_SECONDS
+    if profile.current_health >= profile.life:
+        profile.current_health = profile.life
+        profile.health_updated_at = now
+    elif health_points:
+        profile.current_health = min(profile.life, profile.current_health + health_points)
+        profile.health_updated_at += timedelta(seconds=health_points * ENERGY_INTERVAL_SECONDS)
+        if profile.current_health == profile.life:
+            profile.health_updated_at = now
+    profile.save(update_fields=["current_energy", "energy_updated_at", "current_health", "health_updated_at"])
 
 
 def player_action(fn):
@@ -77,7 +88,7 @@ def refresh_player(profile):
 def start_mining(profile, duration_seconds):
     if not isinstance(duration_seconds, int) or not 1 <= duration_seconds <= 3600:
         return False
-    if profile.action_end_time is not None:
+    if profile.action_end_time is not None or profile.adventures.filter(claimed_at__isnull=True).exists():
         return False
     if profile.current_energy < 10:
         return False
@@ -93,7 +104,8 @@ def claim_ore_reward(profile):
         return False
     if profile.action_end_time > timezone.now():
         return False
-    ore_reward = random.randint(10, 25)
+    from .world_events import reward_snapshot
+    ore_reward = reward_snapshot(random.randint(10, 25), 0)[0]
     profile.ore_balance = profile.ore_balance + ore_reward
     profile.action_end_time = None
     profile.save()
@@ -105,11 +117,22 @@ def claim_ore_reward(profile):
 from .bestiary import BESTIARY
 
 
+@dataclass(frozen=True)
+class CombatResult:
+    won: bool
+    log: list
+    remaining_health: int
+
+    def __iter__(self):
+        yield self.won
+        yield self.log
+
+
 def simulate_combat(profile, monster_key, *, monster=None):
     monster = BESTIARY[monster_key] if monster is None else monster
     hunt_result = None
 
-    temp_hero_life = profile.life
+    temp_hero_life = profile.current_health
     temp_monster_life = monster["life"]
 
     combat_log = []
@@ -156,7 +179,7 @@ def simulate_combat(profile, monster_key, *, monster=None):
     if temp_monster_life <= 0:
         hunt_result = True
 
-    return hunt_result, combat_log
+    return CombatResult(hunt_result, combat_log, max(1, temp_hero_life))
 
 
 @player_action
@@ -168,15 +191,20 @@ def execute_hunt(profile, monster_key, location_key="forest"):
         return False
     if monster_key not in BESTIARY or profile.is_busy:
         return False
-    if profile.current_energy < 15:
+    if profile.current_energy < 15 or profile.current_health < 10:
         return False
     profile.current_energy = profile.current_energy - 15
 
-    win, log = simulate_combat(profile, monster_key)
+    result = simulate_combat(profile, monster_key)
+    win, log = result
+    profile.current_health = getattr(result, "remaining_health", profile.current_health)
+    profile.health_updated_at = timezone.now()
     if win:
         monster = BESTIARY[monster_key]
-        profile.experience = profile.experience + monster["exp_reward"]
-        log.append(f"Zyskałeś {monster['exp_reward']} EXP.")
+        from .world_events import reward_snapshot
+        experience = reward_snapshot(0, monster["exp_reward"])[1]
+        profile.experience += experience
+        log.append(f"Zyskałeś {experience} EXP.")
         check_level_up(profile)
         from .camp_progression import record_camp_event
         record_camp_event(profile, "hunt:" + monster_key)
@@ -338,16 +366,22 @@ def execute_boss(profile, boss_key):
     boss = BOSSES.get(boss_key)
     if boss is None or profile.level < boss.level or profile.is_busy:
         return False
-    if profile.current_energy < boss.energy_cost:
+    if profile.current_energy < boss.energy_cost or profile.current_health < 10:
         return False
     now = timezone.now()
     last = BossAttempt.objects.filter(profile=profile, boss_key=boss_key).first()
     if last and now < last.created_at + timedelta(minutes=boss.cooldown_minutes):
         return False
-    won, combat_log = simulate_combat(profile, boss_key, monster=boss.monster)
+    result = simulate_combat(profile, boss_key, monster=boss.monster)
+    won, combat_log = result
+    profile.current_health = getattr(result, "remaining_health", profile.current_health)
+    profile.health_updated_at = now
     profile.current_energy -= boss.energy_cost
     experience = boss.experience if won else 0
     ore = boss.ore if won else 0
+    if won:
+        from .world_events import reward_snapshot
+        ore, experience, _, _ = reward_snapshot(ore, experience)
     if won:
         profile.experience += experience
         profile.ore_balance += ore
@@ -369,3 +403,12 @@ def execute_boss(profile, boss_key):
         ore_reward=ore,
         combat_log=combat_log,
     )
+
+
+@player_action
+def choose_camp(profile, camp):
+    if profile.camp != "NONE" or camp not in {"OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP"}:
+        return False
+    profile.camp = camp
+    profile.save(update_fields=["camp"])
+    return True
