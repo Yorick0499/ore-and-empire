@@ -192,7 +192,7 @@ def shop_view(request):
 def train_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
-    current_location(request, profile, "new_camp", "train_page")
+    location = current_location(request, profile, "new_camp", "train_page")
     if request.method == "POST":
         attribute_name = request.POST.get("attribute")
         if attribute_name == "strength":
@@ -204,7 +204,7 @@ def train_view(request):
         if attribute_name == "mana":
             report_action(request, train_attribute(profile, attribute_name))
             return redirect(request.get_full_path())
-    return render(request, "characters/train.html", {"profile": profile, "attributes": [("strength", "Siła", profile.strength), ("dexterity", "Zręczność", profile.dexterity), ("mana", "Mana", profile.mana)]})
+    return render(request, "characters/train.html", {"profile": profile, "location": location, "attributes": [("strength", "Siła", profile.strength), ("dexterity", "Zręczność", profile.dexterity), ("mana", "Mana", profile.mana)]})
 
 
 def positive_id(value):
@@ -234,7 +234,7 @@ def current_location(request, profile, default, route):
         raise Http404("Nieznana lokacja")
     if not location.accessible(profile):
         raise PermissionDenied(
-            "Ta lokacja wymaga wyższego poziomu lub przynależności do obozu."
+            "Ta lokacja wymaga wyższego poziomu, właściwego obozu lub rangi."
         )
     return location
 
@@ -257,7 +257,7 @@ def locations_view(request):
     refresh_player(profile)
     if request.method == "POST":
         camp = request.POST.get("camp")
-        # Initial allegiance is permanent through the UI; guild ranks come later.
+        # Initial allegiance is permanent; promotions follow the camp quest tree.
         with transaction.atomic():
             locked = PlayerProfile.objects.select_for_update().get(pk=profile.pk)
             if locked.camp == "NONE" and camp in {"OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP"}:
@@ -426,4 +426,25 @@ def bestiary_view(request):
     return render(request, "characters/bestiary.html", {
         "page": Paginator(entries, 12).get_page(request.GET.get("page")),
         "query": query, "total": len(BESTIARY),
+    })
+
+
+@login_required
+def camp_view(request):
+    from .camp_progression import rank_cards, accept_camp_quest, abandon_camp_quest, promote_in_camp, CAMP_PATHS
+    profile = request.user.playerprofile
+    refresh_player(profile)
+    if request.method == "POST":
+        actions = {"accept": accept_camp_quest, "abandon": abandon_camp_quest, "promote": promote_in_camp}
+        action = actions.get(request.POST.get("action"))
+        report_action(request, action(profile, request.POST.get("rank")) if action else False)
+        return redirect("camp_page")
+    camps = dict(PlayerProfile.CAMP_LIST)
+    selected = request.GET.get("camp", profile.camp if profile.camp != "NONE" else "OLD_CAMP")
+    if selected not in camps or selected == "NONE":
+        raise Http404("Nieznany obóz")
+    return render(request, "characters/camp.html", {
+        "profile": profile, "cards": rank_cards(profile, selected),
+        "selected": selected, "camp_name": camps[selected], "paths": CAMP_PATHS[selected],
+        "camps": [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"],
     })

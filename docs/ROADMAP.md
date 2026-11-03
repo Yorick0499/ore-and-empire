@@ -7,7 +7,7 @@ a prerequisite for enjoying the game locally.
 Development branch: `feature/playable-colony`. Preserve the existing dark brown,
 aged gold Gothic-inspired UI. New mechanics must share the same domain services
 for humans and bots. Balance values are original provisional game design, not
-claims about Gothic canon. Seven attributed Gothicpedia illustrations are bundled locally.
+claims about Gothic canon. The full creature roster and 41 main destinations have attributed local Gothicpedia artwork.
 
 ## 1. Multiplayer foundations — implemented
 - Account registration, login/logout, per-account profiles, protected game views.
@@ -53,7 +53,7 @@ and a browser-flow smoke test. Push completed milestones to the development
 branch; do not merge into main automatically.
 
 ## Verified in this milestone
-- 63 Django tests passed.
+- 82 Django tests passed.
 - Dependency checks, Django system checks and migration drift checks passed.
 - Real Chromium smoke: registration, NPC purchase, equipment, hunt XP, timed
   mining and reward claim, logout; desktop and 390px layouts checked.
@@ -70,3 +70,14 @@ branch; do not merge into main automatically.
 - History begins at migration 0008; this is not historical reconstruction.
 - Storage grows with each tick. Retention/archival is a future operational task.
 - Ore deltas include transfers and are not a money-supply metric.
+
+## Expanded world and camp promotion — implemented
+- 53 repeatable creature types/variants, queen and Sleeper expeditions, 41 main destinations.
+- Searchable paginated bestiary, per-location rosters, level and camp/rank gates.
+- 18 camp ranks with original promotion quests and permanent branch choices.
+- Successful action events update accepted quests inside domain transactions.
+- Combat strength now contributes to ordinary hits, so training affects encounters.
+- Browser: actual mining, hunt objectives, two promotions and castle unlock verified.
+- GUI: seven screens checked at 320/390/768/1280px with a long username;
+  no document overflow or overflowing heading/button/stat text detected.
+- 88 distinct image files decoded and verified; repeated wiki models share files.

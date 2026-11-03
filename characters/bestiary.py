@@ -28,6 +28,7 @@ CREATURES = [
     ("skeleton_scout", "Szkielet zwiadowca", 8, 140, 28, 12, 180, "Szkielet zwiadowca"),
     ("skeleton", "Szkielet", 9, 160, 30, 14, 200, "Szkielet"),
     ("zombie", "Zombie", 9, 220, 28, 10, 220, "Zombie"),
+    ("orc_slave", "Ork niewolnik", 7, 90, 16, 4, 100, "Orkowie niewolnicy"),
     ("orc_scout", "Ork zwiadowca", 9, 170, 30, 14, 220, "Zwiadowcy orków"),
     ("harpy", "Harpia", 10, 170, 32, 14, 240, "Harpia"),
     ("skeleton_warrior", "Szkielet wojownik", 11, 210, 34, 18, 260, "Szkielet wojownik"),

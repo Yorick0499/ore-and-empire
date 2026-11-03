@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 from characters.views import (
     register_view,
     bestiary_view,
+    camp_view,
     credits_view,
     locations_view,
     market_monitor_view,
@@ -37,6 +38,7 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("oboz/", camp_view, name="camp_page"),
     path("bestiariusz/", bestiary_view, name="bestiary_page"),
     path("zrodla/", credits_view, name="credits_page"),
     path("", locations_view, name="locations_page"),

@@ -206,3 +206,20 @@ button, .colony-button, .gothic-btn { max-width: 100%; line-height: 1.45; }
   .monster-card { grid-template-columns: 1fr; }
   .monster-card .gothic-art { grid-row: auto; }
 }
+.pagination, .camp-tabs, .rank-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 24px 0; }
+.rank-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.rank-card { min-width: 0; margin: 0; }
+.rank-current { border-color: var(--gold); }
+.rank-requirements { margin: 16px 0 24px; }
+.rank-requirements > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-bottom: 1px solid #55534a; padding: 8px 0; }
+.rank-requirements dd { margin: 0; font-variant-numeric: tabular-nums; }
+.quest-goals { padding-left: 20px; }
+.quest-goals li { padding: 6px 0; overflow-wrap: anywhere; }
+.quest-goals strong { color: var(--gold); white-space: nowrap; }
+.secondary-button { background: #202426; border-color: #68675f; color: var(--muted); }
+.camp-tabs [aria-current=page] { border-color: var(--gold); color: #ffe69e; }
+@media (max-width: 800px) { .rank-grid { grid-template-columns: 1fr; } }
+
+.camp-path { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
+.camp-path li { display: flex; align-items: center; gap: 8px; }
+.camp-path li + li::before { content: "→"; color: var(--gold); }

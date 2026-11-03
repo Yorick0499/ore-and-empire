@@ -27,6 +27,9 @@ class Location:
 
 
 LOCATIONS = (
+    Location("old_castle", "Zamek Starego Obozu", "Wewnętrzny krąg obozu. Wstęp dla Cieni i wyższych rang.", 3, camps=("OLD_CAMP",), route="train_page", wiki="Zamek w Górniczej Dolinie", min_tier=1),
+    Location("water_mages", "Siedziba Magów Wody", "Zaufani ludzie Nowego Obozu mogą korzystać z tutejszych nauk.", 8, camps=("NEW_CAMP",), route="train_page", wiki="Siedziba magów wody w Nowym Obozie", min_tier=2),
+    Location("brotherhood_temple", "Świątynia Bractwa", "Miejsce nauki dla starszych członków Bractwa.", 8, camps=("SWAMP_CAMP",), route="train_page", wiki="Świątynia w Obozie Bractwa", min_tier=2),
     Location("exchange", "Plac wymian", "Pierwsze kroki pod barierą. Łagodne zbocza i drobna zwierzyna.", monsters=("meatbug", "young_scavenger", "young_molerat"), wiki="Plac wymian"),
     Location("old_camp", "Stary Obóz", "Targowisko w cieniu zamku. Handel z mieszkańcami kolonii.", route="market_page", wiki="Stary Obóz"),
     Location("old_mine", "Stara Kopalnia", "Praca za rudę. Zakończ zmianę, zanim wyruszysz dalej.", route="mine_page", wiki="Stara Kopalnia"),
@@ -62,7 +65,7 @@ LOCATIONS = (
     Location("sunken_tower", "Zatopiona wieża Xardasa", "Zalane podziemia i nieumarli mieszkańcy dawnej wieży.", 19, monsters=("zombie", "skeleton_mage", "demon"), wiki="Zatopiona wieża Xardasa"),
     Location("orc_city", "Miasto Orków", "Strażnicy, szamani i wiarusi osłaniają wejście do świątyni.", 20, monsters=("orc_guard", "orc_shaman", "orc_veteran", "orc_warrior"), wiki="Miasto orków"),
     Location("troll_canyon", "Kanion trolli", "Olbrzymy trzymają straż nad górskim przejściem.", 22, monsters=("young_troll", "troll", "goblin_warrior"), wiki="Kanion trolli"),
-    Location("sleeper_temple", "Świątynia Śniącego", "Pełzacze świątynne, demony i orkowi nieumarli.", 25, monsters=("temple_crawler", "temple_guardian", "undead_orc", "demon", "fire_demon", "demon_lord"), wiki="Świątynia Śniącego"),
+    Location("sleeper_temple", "Świątynia Śniącego", "Pełzacze świątynne, demony i orkowi nieumarli.", 25, monsters=("orc_slave", "temple_crawler", "temple_guardian", "undead_orc", "demon", "fire_demon", "demon_lord"), wiki="Świątynia Śniącego"),
     Location("sleeper_sanctum", "Sanktuarium Śniącego", "Ostatnia wyprawa w głąb świątyni. Przygotuj oręż i zapasy energii.", 30, route="boss_page", wiki="Portal w świątyni Śniącego"),
     Location("overseer_crypt", "Krypta Nadzorcy", "Najgłębszej krypty broni Nadzorca i jego nieumarła świta.", 28, monsters=("overseer", "skeleton_mage", "demon_lord"), wiki="Krypta Nadzorcy"),
 )

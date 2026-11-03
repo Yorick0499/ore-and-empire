@@ -635,5 +635,33 @@
     "source": "https://gothic.fandom.com/pl/wiki/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20260514190302&path-prefix=pl",
     "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20260514190302&path-prefix=pl"
+  },
+  "old_castle": {
+    "title": "Zamek w Górniczej Dolinie",
+    "path": "characters/art/old_castle.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Zamek_w_G%C3%B3rniczej_Dolinie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/92/Zamek_w_GD_%28G1%29_og%C3%B3lny_widok_dzie%C5%84_%28by_Ossowski21%29.png/revision/latest?cb=20231116145929&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/92/Zamek_w_GD_%28G1%29_og%C3%B3lny_widok_dzie%C5%84_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20231116145929&path-prefix=pl"
+  },
+  "water_mages": {
+    "title": "Siedziba magów wody w Nowym Obozie",
+    "path": "characters/art/water_mages.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Siedziba_mag%C3%B3w_wody_w_Nowym_Obozie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/42/G1_Siedziba_mag%C3%B3w_wody_przej%C5%9Bcie.png/revision/latest?cb=20241009105251&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/42/G1_Siedziba_mag%C3%B3w_wody_przej%C5%9Bcie.png/revision/latest/scale-to-width-down/640?cb=20241009105251&path-prefix=pl"
+  },
+  "brotherhood_temple": {
+    "title": "Świątynia w Obozie Bractwa",
+    "path": "characters/art/brotherhood_temple.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%85tynia_w_Obozie_Bractwa",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/58/%C5%9Awi%C4%85tynia_w_obozie_Bractwa.png/revision/latest?cb=20241029162234&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/58/%C5%9Awi%C4%85tynia_w_obozie_Bractwa.png/revision/latest/scale-to-width-down/640?cb=20241029162234&path-prefix=pl"
+  },
+  "orc_slave": {
+    "title": "Orkowie niewolnicy",
+    "path": "characters/art/orc_slave.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Orkowie_niewolnicy",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl"
   }
 }

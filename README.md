@@ -260,7 +260,7 @@ Here is the current state of the features:
 *   [x] **Hunt Mechanics** - Turn-based text battle loop against monsters.
 *   [x] **Timed Actions** - Asynchronous mining work timers in the Old Mine.
 *   [x] **Camps & Guilds** - Database architecture ready for faction progression.
-*   [ ] **Main Locations** - Adding all the iconic places from the original game.
+*   [x] **Main Locations** - Adding all the iconic places from the original game.
 *   [x] **Gated Progression** - High-level areas locked by level or camp requirements.
 *   [x] **Boss Mechanics** - Epic encounters.
 *   [X] **NPC Merchants** - Trade with merchants. Buy equipment or sell loot for 50% value.
@@ -294,7 +294,21 @@ python manage.py collectstatic --noinput
 
 ### Expanded Gothic I world
 
-The searchable bestiary contains 52 creature types and variants; the queen and
-Sleeper appear as bosses. 38 main destinations have local Gothicpedia artwork,
+The searchable bestiary contains 53 creature types and variants; the queen and
+Sleeper appear as bosses. 41 main destinations have local Gothicpedia artwork,
 level requirements and distinct encounter rosters. See [world coverage](docs/WORLD.md)
 for sources and the scope of this browser adaptation.
+
+### Camp quests and promotion
+
+Open **Obóz i zadania** to compare the three camp hierarchies. Each camp has six
+ranks, with permanent warrior/mage branches and an original promotion quest for
+each rank. Accept one quest, complete its mining/hunting/training/boss objectives,
+then meet the level, attribute and ore requirements to promote. Progress starts
+when accepting; only successful server-side actions count. Abandoning a quest
+loses its progress. Promotion and payment happen once in one transaction.
+
+The Old Camp castle requires tier 1; the Water Mages headquarters and Brotherhood
+temple require tier 2 plus their corresponding camp and entry level. Base training
+remains available in the New Camp. Mage ranks are implemented; spell combat is a
+later milestone. See [camp progression](docs/CAMPS.md) for the complete requirements.

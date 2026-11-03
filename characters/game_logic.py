@@ -97,6 +97,8 @@ def claim_ore_reward(profile):
     profile.ore_balance = profile.ore_balance + ore_reward
     profile.action_end_time = None
     profile.save()
+    from .camp_progression import record_camp_event
+    record_camp_event(profile, "mine")
     return True
 
 
@@ -122,9 +124,9 @@ def simulate_combat(profile, monster_key, *, monster=None):
         # hero turn
         critical_chance = random.randint(1, 100)
         if critical_chance <= profile.onehand_skill:
-            hero_damage = profile.strength + weapon_damage
+            hero_damage = 2 * (profile.strength + weapon_damage)
         else:
-            hero_damage = weapon_damage
+            hero_damage = profile.strength + weapon_damage
         hero_damage = max(1, hero_damage - monster["weapon_prot"])
         temp_monster_life = temp_monster_life - hero_damage
 
@@ -176,6 +178,8 @@ def execute_hunt(profile, monster_key, location_key="forest"):
         profile.experience = profile.experience + monster["exp_reward"]
         log.append(f"Zyskałeś {monster['exp_reward']} EXP.")
         check_level_up(profile)
+        from .camp_progression import record_camp_event
+        record_camp_event(profile, "hunt:" + monster_key)
     else:
         log.append("Zyskałeś 0 EXP.")
         log.append(
@@ -320,11 +324,17 @@ def train_attribute(profile, attribute_name):
     profile.ore_balance = profile.ore_balance - 10
     profile.skill_points = profile.skill_points - 1
     profile.save()
+    from .camp_progression import record_camp_event
+    record_camp_event(profile, "train:" + attribute_name)
     return True
 
 
 @player_action
 def execute_boss(profile, boss_key):
+    from .locations import BY_KEY
+    location = BY_KEY.get(boss_key)
+    if location is None or not location.accessible(profile):
+        return False
     boss = BOSSES.get(boss_key)
     if boss is None or profile.level < boss.level or profile.is_busy:
         return False
@@ -342,6 +352,8 @@ def execute_boss(profile, boss_key):
         profile.experience += experience
         profile.ore_balance += ore
         check_level_up(profile)
+        from .camp_progression import record_camp_event
+        record_camp_event(profile, "boss:" + boss_key)
         combat_log.append(f"Nagroda: {experience} PD i {ore} bryłek rudy.")
     else:
         combat_log.append(

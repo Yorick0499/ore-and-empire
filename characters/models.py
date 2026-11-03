@@ -104,7 +104,15 @@ class PlayerProfile(models.Model):
 
     @property
     def camp_tier(self):
-        return 0
+        from .camp_progression import BY_RANK
+        rank = BY_RANK.get(self.guild)
+        return rank.tier if rank and rank.camp == self.camp else 0
+
+    @property
+    def guild_name(self):
+        from .camp_progression import BY_RANK
+        rank = BY_RANK.get(self.guild)
+        return rank.name if rank and rank.camp == self.camp else "Bez rangi"
 
     @property
     def required_exp(self):
@@ -201,3 +209,14 @@ class BotDecision(models.Model):
 
     class Meta:
         ordering = ["-created_at", "-pk"]
+
+
+class CampQuest(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name="camp_quests")
+    rank_key = models.CharField(max_length=20)
+    accepted_at = models.DateTimeField(default=timezone.now)
+    progress = models.JSONField(default=dict)
+    promoted_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["profile", "rank_key"], name="unique_camp_quest")]
