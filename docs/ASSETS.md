@@ -38,6 +38,8 @@ Attribution links appear below images and on `/zrodla/`. Wiki page licensing doe
 not automatically grant rights to the underlying game artwork. Review each
 source's terms when adding or replacing images.
 
-The initial manifest is empty because the managed environment's destination
-policy blocked the wiki and image CDN during implementation. No image is falsely
-attributed to Gothicpedia.
+Seven illustrations are now bundled locally: shadowbeast, scavenger, molerat,
+Old Camp, New Camp, Swamp Camp and Old Mine. The manifest records the exact
+page and CDN URL returned by Gothicpedia. The scavenger page currently supplies
+a young scavenger illustration, shared by both scavenger encounters.
+The README screenshots predate this import.

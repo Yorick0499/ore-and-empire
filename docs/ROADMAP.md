@@ -7,7 +7,7 @@ a prerequisite for enjoying the game locally.
 Development branch: `feature/playable-colony`. Preserve the existing dark brown,
 aged gold Gothic-inspired UI. New mechanics must share the same domain services
 for humans and bots. Balance values are original provisional game design, not
-claims about Gothic canon. No third-party artwork has been imported.
+claims about Gothic canon. Seven attributed Gothicpedia illustrations are bundled locally.
 
 ## 1. Multiplayer foundations — implemented
 - Account registration, login/logout, per-account profiles, protected game views.
@@ -53,10 +53,20 @@ and a browser-flow smoke test. Push completed milestones to the development
 branch; do not merge into main automatically.
 
 ## Verified in this milestone
-- 54 Django tests passed.
+- 63 Django tests passed.
 - Dependency checks, Django system checks and migration drift checks passed.
 - Real Chromium smoke: registration, NPC purchase, equipment, hunt XP, timed
   mining and reward claim, logout; desktop and 390px layouts checked.
 - Fresh local-world smoke: initialization, automatic offers, graceful shutdown,
   unchanged save/settings after restart and human-only mode.
 - No production concurrency claim: PostgreSQL and load tests remain outstanding.
+
+## Decision telemetry — November 2026
+- Every completed bot tick saves a schema-v1 observation, allowlisted action,
+  outcome, ore delta and energy delta in the same database transaction.
+- Rejected targets are recorded; unexpected exceptions roll back the action.
+- Staff market monitor shows action/role/outcome totals, recent decisions and
+  complete CSV export without usernames. Wait ticks are included.
+- History begins at migration 0008; this is not historical reconstruction.
+- Storage grows with each tick. Retention/archival is a future operational task.
+- Ore deltas include transfers and are not a money-supply metric.

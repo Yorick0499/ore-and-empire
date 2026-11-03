@@ -1,1 +1,44 @@
-{}
+{
+  "shadowbeast": {
+    "title": "Cieniostwór",
+    "path": "characters/art/shadowbeast.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Cieniostw%C3%B3r",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/8a/Cieniostw%C3%B3r_%28Gothic%29.png/revision/latest?cb=20230725171346&path-prefix=pl"
+  },
+  "scavenger": {
+    "title": "Ścierwojad",
+    "path": "characters/art/scavenger.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%9Acierwojad",
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/1e/M%C5%82ody_%C5%9Bcierwojad_%28G1%29_%28by_Kubar906%29.png/revision/latest?cb=20230709103937&path-prefix=pl"
+  },
+  "molerat": {
+    "title": "Kretoszczur",
+    "path": "characters/art/molerat.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Kretoszczur",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/b7/Kretoszczur_G.png/revision/latest?cb=20230725190207&path-prefix=pl"
+  },
+  "old_camp": {
+    "title": "Stary Obóz",
+    "path": "characters/art/old_camp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Stary_Ob%C3%B3z",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/7a/Zamek_w_G%C3%B3rniczej_Dolinie_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20231231200631&path-prefix=pl"
+  },
+  "new_camp": {
+    "title": "Nowy Obóz",
+    "path": "characters/art/new_camp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Nowy_Ob%C3%B3z",
+    "original": "https://static.wikia.nocookie.net/gothic/images/e/ec/Nowy_Ob%C3%B3z_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230501133105&path-prefix=pl"
+  },
+  "swamp_camp": {
+    "title": "Obóz Bractwa",
+    "path": "characters/art/swamp_camp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_Bractwa",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/91/Ob%C3%B3z_Bractwa_G.png/revision/latest?cb=20231231201024&path-prefix=pl"
+  },
+  "old_mine": {
+    "title": "Stara Kopalnia",
+    "path": "characters/art/old_mine.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Stara_Kopalnia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest?cb=20250106115318&path-prefix=pl"
+  }
+}

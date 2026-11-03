@@ -6,6 +6,8 @@ receive ORM objects or permission to mint ore. Every action uses game_logic.
 
 from dataclasses import dataclass
 from typing import Protocol
+from django.db import transaction
+from .bot_telemetry import record_decision
 from .models import OwnedItem, ItemBluePrint
 from . import game_logic as game
 
@@ -69,9 +71,12 @@ class BaselinePolicy:
         return "wait", None
 
 
+@transaction.atomic
 def tick_bot(profile, policy=None):
     if not profile.is_bot:
         raise ValueError("Only designated bot profiles may run bot policies")
+    # Serialize concurrent rounds for the same bot on databases with row locks.
+    profile = type(profile).objects.select_for_update().get(pk=profile.pk)
     game.refresh_player(profile)
     offer = (
         OwnedItem.objects.filter(
@@ -151,5 +156,7 @@ def tick_bot(profile, policy=None):
     elif action == "wait":
         success = True
     else:
+        record_decision(profile, obs, "rejected", None, False)
         return "rejected", False
+    record_decision(profile, obs, action, target, success)
     return action, success

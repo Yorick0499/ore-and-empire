@@ -285,6 +285,29 @@ def locations_view(request):
 
 @user_passes_test(lambda user: user.is_active and user.is_staff)
 def market_monitor_view(request):
+    from .models import BotDecision
+
+    decisions = BotDecision.objects.all()
+    if request.GET.get("format") == "bots-csv":
+        import csv
+        import json
+
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="bot-decisions.csv"'
+        writer = csv.writer(response)
+        writer.writerow([
+            "decision_id", "timestamp_utc", "schema_version", "profile_id",
+            "role", "action", "target_id", "success", "ore_delta",
+            "energy_delta", "observation_json",
+        ])
+        for decision in decisions.iterator():
+            writer.writerow([
+                decision.pk, decision.created_at.isoformat(), decision.schema_version,
+                decision.profile_id, decision.role, decision.action, decision.target_id,
+                decision.success, decision.ore_delta, decision.energy_delta,
+                json.dumps(decision.observation, sort_keys=True),
+            ])
+        return response
     trades = MarketTrade.objects.select_related(
         "blueprint", "seller__user", "buyer__user"
     )
@@ -326,7 +349,13 @@ def market_monitor_view(request):
     return render(
         request,
         "characters/market_monitor.html",
-        {"summary": summary, "trades": trades[:100]},
+        {
+            "summary": summary, "trades": trades[:100],
+            "bot_summary": decisions.values("role", "action", "success")
+                .annotate(count=Count("id"), ore_delta=Sum("ore_delta"))
+                .order_by("role", "action", "success"),
+            "decisions": decisions[:50],
+        },
     )
 
 

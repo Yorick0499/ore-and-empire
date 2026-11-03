@@ -226,7 +226,12 @@ volume, recent transactions and full CSV export. CSV includes UTC timestamps,
 blueprint/player IDs, bot flags and actual paid prices; it excludes usernames.
 NPC trades and listing/cancellation events are not yet part of this dataset.
 Trade history begins with this migration; earlier trades cannot be reconstructed.
-ML forecasting remains a later milestone after collecting enough observations.
+The same staff monitor now records bot decisions and exports them separately as
+CSV: schema version, immutable observation, role, action, target, success and
+actual ore/energy deltas. Action execution and its record commit together. Waits
+are included; unexpected exceptions roll back the action. Data starts at migration
+0008 and grows per tick. Ore deltas include trades, so they do not measure currency
+creation. ML forecasting remains a later milestone after collecting enough observations.
 
 ### Validation
 
@@ -256,8 +261,8 @@ Here is the current state of the features:
 *   [x] **Timed Actions** - Asynchronous mining work timers in the Old Mine.
 *   [x] **Camps & Guilds** - Database architecture ready for faction progression.
 *   [ ] **Main Locations** - Adding all the iconic places from the original game.
-*   [ ] **Gated Progression** - High-level areas locked by level or camp requirements.
-*   [ ] **Boss Mechanics** - Epic encounters.
+*   [x] **Gated Progression** - High-level areas locked by level or camp requirements.
+*   [x] **Boss Mechanics** - Epic encounters.
 *   [X] **NPC Merchants** - Trade with merchants. Buy equipment or sell loot for 50% value.
 *   [x] **Equipment System** - Equip items from the inventory, tracking strength requirements.
 *   [X] **Leveling & Teachers** - Spend Learning Points (LP) and ore at camp mentors to permanently train attributes.

@@ -707,3 +707,57 @@ class GothicInterfaceTests(TestCase):
             self.assertEqual(asset["title"], "Cieniostwór")
             self.assertIn("gothic.fandom.com/pl/wiki/", asset["source"])
             self.assertEqual((root / asset["path"]).read_bytes(), b"image-fixture")
+
+
+class BotTelemetryTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("telemetry-bot")
+        self.bot = self.user.playerprofile
+        self.bot.is_bot = True
+        self.bot.bot_role = "miner"
+        self.bot.save()
+
+    def test_records_observation_and_actual_cost_once(self):
+        from .models import BotDecision
+
+        self.assertEqual(tick_bot(self.bot), ("mine", True))
+        decision = BotDecision.objects.get()
+        self.assertEqual(decision.observation["energy"], 100)
+        self.assertEqual(decision.observation["role"], "miner")
+        self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
+                         ("mine", -10, 0))
+        self.assertEqual(decision.schema_version, 1)
+
+    def test_rejected_target_is_recorded_without_mutation(self):
+        from .models import BotDecision
+
+        class InvalidPolicy:
+            def choose(self, observation):
+                return "buy", 999999
+
+        self.assertEqual(tick_bot(self.bot, InvalidPolicy()), ("rejected", False))
+        decision = BotDecision.objects.get()
+        self.assertFalse(decision.success)
+        self.assertIsNone(decision.target_id)
+        self.assertEqual((decision.ore_delta, decision.energy_delta), (0, 0))
+
+    def test_telemetry_failure_rolls_back_action(self):
+        with patch("characters.bots.record_decision", side_effect=RuntimeError):
+            with self.assertRaises(RuntimeError):
+                tick_bot(self.bot)
+        self.bot.refresh_from_db()
+        self.assertEqual(self.bot.current_energy, 100)
+        self.assertIsNone(self.bot.action_end_time)
+
+    def test_staff_export_has_observation_and_excludes_usernames(self):
+        tick_bot(self.bot)
+        self.client.force_login(self.user)
+        url = reverse("market_monitor") + "?format=bots-csv"
+        self.assertEqual(self.client.get(url).status_code, 302)
+        self.user.is_staff = True
+        self.user.save()
+        response = self.client.get(url)
+        self.assertContains(response, "observation_json")
+        self.assertContains(response, "miner")
+        self.assertNotContains(response, self.user.username)
+        self.assertContains(self.client.get(reverse("market_monitor")), "Decyzje botów")

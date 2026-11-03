@@ -179,3 +179,21 @@ class BossAttempt(models.Model):
     class Meta:
         ordering = ["-created_at", "-pk"]
         indexes = [models.Index(fields=["profile", "boss_key", "-created_at"])]
+
+
+class BotDecision(models.Model):
+    """Policy observation and actual outcome; no usernames or credentials."""
+
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(default=timezone.now, db_index=True)
+    schema_version = models.PositiveSmallIntegerField(default=1)
+    role = models.CharField(max_length=10)
+    observation = models.JSONField()
+    action = models.CharField(max_length=20)
+    target_id = models.PositiveBigIntegerField(null=True)
+    success = models.BooleanField()
+    ore_delta = models.IntegerField()
+    energy_delta = models.IntegerField()
+
+    class Meta:
+        ordering = ["-created_at", "-pk"]
