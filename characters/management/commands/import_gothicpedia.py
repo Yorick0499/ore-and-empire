@@ -1,5 +1,6 @@
 """Import attributed Gothicpedia illustrations as local static assets."""
 import json
+import re
 import tempfile
 from pathlib import Path
 from urllib.parse import quote, urlencode, urlsplit
@@ -36,25 +37,42 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--only", choices=sorted(ASSET_PAGES), action="append")
+        parser.add_argument("--skip-existing", action="store_true")
 
     def handle(self, *args, **options):
         assets = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         staged = []
         try:
             for key in options["only"] or ASSET_PAGES:
+                if options["skip_existing"] and key in assets:
+                    continue
                 title = ASSET_PAGES[key]
-                query = urlencode({"action": "query", "format": "json", "prop": "pageimages", "piprop": "original", "redirects": 1, "titles": title})
+                query = urlencode({"action": "query", "format": "json", "prop": "pageimages|revisions", "rvprop": "content", "piprop": "original", "redirects": 1, "titles": title})
                 body, _ = read_remote(API + "?" + query)
-                pages = json.loads(body)["query"]["pages"].values()
+                pages = list(json.loads(body)["query"]["pages"].values())
                 original = next((page["original"]["source"] for page in pages if "original" in page), None)
+                # The first infobox is Gothic I on these curated creature pages.
+                # pageimages alone may choose a sequel or quest-variant image.
+                text = next((page["revisions"][0].get("*", "") for page in pages if page.get("revisions")), "")
+                match = re.search(r"\|Obraz\s*=\s*([^\n|]+)", text)
+                download_url = original
+                if match:
+                    image_title = match.group(1).strip()
+                    image_query = urlencode({"action": "query", "format": "json", "prop": "imageinfo", "iiprop": "url", "iiurlwidth": 640, "titles": "Plik:" + image_title})
+                    image_body, _ = read_remote(API + "?" + image_query)
+                    image_pages = json.loads(image_body)["query"]["pages"].values()
+                    info = next((page["imageinfo"][0] for page in image_pages if page.get("imageinfo")), None)
+                    if info:
+                        original = info["url"]
+                        download_url = info.get("thumburl", original)
                 if not original:
                     raise ValueError(f"No page illustration for {title}")
-                image, mime = read_remote(original)
+                image, mime = read_remote(download_url)
                 if mime not in IMAGE_TYPES:
                     raise ValueError(f"Unsupported image type: {mime}")
                 relative = f"characters/art/{key}{IMAGE_TYPES[mime]}"
                 staged.append((ASSET_ROOT.parent / relative, image))
-                assets[key] = {"title": title, "path": relative, "source": "https://gothic.fandom.com/pl/wiki/" + quote(title.replace(" ", "_")), "original": original}
+                assets[key] = {"title": title, "path": relative, "source": "https://gothic.fandom.com/pl/wiki/" + quote(title.replace(" ", "_")), "original": original, "download": download_url}
         except Exception as exc:
             raise CommandError(f"Import failed; no assets changed: {exc}") from exc
         for target, body in staged:

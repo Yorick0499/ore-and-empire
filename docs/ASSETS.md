@@ -38,8 +38,8 @@ Attribution links appear below images and on `/zrodla/`. Wiki page licensing doe
 not automatically grant rights to the underlying game artwork. Review each
 source's terms when adding or replacing images.
 
-Seven illustrations are now bundled locally: shadowbeast, scavenger, molerat,
-Old Camp, New Camp, Swamp Camp and Old Mine. The manifest records the exact
-page and CDN URL returned by Gothicpedia. The scavenger page currently supplies
-a young scavenger illustration, shared by both scavenger encounters.
-The README screenshots predate this import.
+The bundled manifest now covers all creatures and main destinations listed in
+[WORLD.md](WORLD.md), plus boss portraits. Duplicate source images share a local
+file. The importer selects the first creature infobox to avoid accidentally
+choosing sequel artwork. Original CDN URLs and thumbnail download URLs are kept
+separately. Existing README screenshots predate this expansion.

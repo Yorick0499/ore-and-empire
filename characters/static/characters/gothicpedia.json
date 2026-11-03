@@ -40,5 +40,600 @@
     "path": "characters/art/old_mine.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stara_Kopalnia",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest?cb=20250106115318&path-prefix=pl"
+  },
+  "meatbug": {
+    "title": "Chrząszcz",
+    "path": "characters/art/meatbug.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Chrz%C4%85szcz",
+    "original": "https://static.wikia.nocookie.net/gothic/images/6/6b/Chrz%C4%85szcz_G1.png/revision/latest?cb=20211201113620&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/6b/Chrz%C4%85szcz_G1.png/revision/latest?cb=20211201113620&path-prefix=pl"
+  },
+  "young_scavenger": {
+    "title": "Młody ścierwojad",
+    "path": "characters/art/young_scavenger.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_%C5%9Bcierwojad",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/44/M%C5%82ody_%C5%9Bcierwojad_G.png/revision/latest?cb=20230725170236&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/44/M%C5%82ody_%C5%9Bcierwojad_G.png/revision/latest/scale-to-width-down/640?cb=20230725170236&path-prefix=pl"
+  },
+  "young_molerat": {
+    "title": "Młody kretoszczur",
+    "path": "characters/art/young_molerat.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_kretoszczur",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/57/Kretoszczur_GI_%28by_Wedkarski%29.png/revision/latest?cb=20230725181021&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/57/Kretoszczur_GI_%28by_Wedkarski%29.png/revision/latest/scale-to-width-down/640?cb=20230725181021&path-prefix=pl"
+  },
+  "goblin": {
+    "title": "Goblin",
+    "path": "characters/art/goblin.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Goblin",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/a1/Goblin_G1_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230725145020&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a1/Goblin_G1_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230725145020&path-prefix=pl"
+  },
+  "bloodfly": {
+    "title": "Krwiopijca",
+    "path": "characters/art/bloodfly.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Krwiopijca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest?cb=20230805120552&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230805120552&path-prefix=pl"
+  },
+  "wolf": {
+    "title": "Wilk",
+    "path": "characters/art/wolf.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wilk",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/db/Wilk_%28GI%29.png/revision/latest?cb=20230725140616&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/db/Wilk_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725140616&path-prefix=pl"
+  },
+  "black_goblin": {
+    "title": "Czarny goblin",
+    "path": "characters/art/black_goblin.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Czarny_goblin",
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/17/Czarny_goblin_%28G1%29.png/revision/latest?cb=20230725144506&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/17/Czarny_goblin_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725144506&path-prefix=pl"
+  },
+  "aggressive_bloodfly": {
+    "title": "Agresywny krwiopijca",
+    "path": "characters/art/bloodfly.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Agresywny_krwiopijca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest?cb=20230805120552&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230805120552&path-prefix=pl"
+  },
+  "lizard": {
+    "title": "Jaszczur",
+    "path": "characters/art/lizard.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Jaszczur",
+    "original": "https://static.wikia.nocookie.net/gothic/images/6/61/Jaszczur_%28GI%29.png/revision/latest?cb=20230725174937&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/61/Jaszczur_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725174937&path-prefix=pl"
+  },
+  "lurker": {
+    "title": "Topielec",
+    "path": "characters/art/lurker.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Topielec",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/38/Topielec_%28GI%29.png/revision/latest?cb=20240726112853&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/38/Topielec_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240726112853&path-prefix=pl"
+  },
+  "minecrawler": {
+    "title": "Pełzacz",
+    "path": "characters/art/minecrawler.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pe%C5%82zacz",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d9/Pe%C5%82zacz_%28Gothic_I%29.PNG/revision/latest?cb=20240814102954&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Pe%C5%82zacz_%28Gothic_I%29.PNG/revision/latest/scale-to-width-down/640?cb=20240814102954&path-prefix=pl"
+  },
+  "goblin_warrior": {
+    "title": "Goblin wojownik",
+    "path": "characters/art/goblin_warrior.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Goblin_wojownik",
+    "original": "https://static.wikia.nocookie.net/gothic/images/2/2a/Goblin_wojownik_%28Gothic_I%29_%28by_Ossowwski%29.png/revision/latest?cb=20230725144706&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/2a/Goblin_wojownik_%28Gothic_I%29_%28by_Ossowwski%29.png/revision/latest/scale-to-width-down/640?cb=20230725144706&path-prefix=pl"
+  },
+  "biter": {
+    "title": "Kąsacz",
+    "path": "characters/art/biter.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/K%C4%85sacz",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/84/K%C4%85sacz_G1.png/revision/latest?cb=20230725152142&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/84/K%C4%85sacz_G1.png/revision/latest/scale-to-width-down/640?cb=20230725152142&path-prefix=pl"
+  },
+  "dam_lurker": {
+    "title": "Topielec spod tamy",
+    "path": "characters/art/dam_lurker.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Topielec_spod_tamy",
+    "original": "https://static.wikia.nocookie.net/gothic/images/e/e5/Topielec_pod_tam%C4%85.png/revision/latest?cb=20240901204849&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/e/e5/Topielec_pod_tam%C4%85.png/revision/latest/scale-to-width-down/640?cb=20240901204849&path-prefix=pl"
+  },
+  "snapper": {
+    "title": "Zębacz",
+    "path": "characters/art/snapper.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Z%C4%99bacz",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/95/Z%C4%99bacz_%28GI%29.png/revision/latest?cb=20230819104446&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/95/Z%C4%99bacz_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230819104446&path-prefix=pl"
+  },
+  "orc_dog": {
+    "title": "Orkowy pies",
+    "path": "characters/art/orc_dog.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Orkowy_pies",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/83/Orkowy_pies_%28G1%29.png/revision/latest?cb=20230725151620&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/83/Orkowy_pies_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725151620&path-prefix=pl"
+  },
+  "skeleton_scout": {
+    "title": "Szkielet zwiadowca",
+    "path": "characters/art/skeleton_scout.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet_zwiadowca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/42/Szkielet_zwiadowca_%28siekacz%29_%28G1%29.png/revision/latest?cb=20240825191330&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/42/Szkielet_zwiadowca_%28siekacz%29_%28G1%29.png/revision/latest?cb=20240825191330&path-prefix=pl"
+  },
+  "skeleton": {
+    "title": "Szkielet",
+    "path": "characters/art/skeleton.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/bf/Szkielet_%28zardzewia%C5%82y_miecz%29_%28G1%29.png/revision/latest?cb=20240825192619&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bf/Szkielet_%28zardzewia%C5%82y_miecz%29_%28G1%29.png/revision/latest?cb=20240825192619&path-prefix=pl"
+  },
+  "zombie": {
+    "title": "Zombie",
+    "path": "characters/art/zombie.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Zombie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/0/03/G1_zombie.png/revision/latest?cb=20221213140855&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/03/G1_zombie.png/revision/latest?cb=20221213140855&path-prefix=pl"
+  },
+  "orc_scout": {
+    "title": "Zwiadowcy orków",
+    "path": "characters/art/orc_scout.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Zwiadowcy_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/e/e0/Ork_zwiadowca_G.png/revision/latest?cb=20240628114327&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/e/e0/Ork_zwiadowca_G.png/revision/latest/scale-to-width-down/640?cb=20240628114327&path-prefix=pl"
+  },
+  "harpy": {
+    "title": "Harpia",
+    "path": "characters/art/harpy.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Harpia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/1a/Harpia_G.png/revision/latest?cb=20230805120813&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/1a/Harpia_G.png/revision/latest/scale-to-width-down/640?cb=20230805120813&path-prefix=pl"
+  },
+  "skeleton_warrior": {
+    "title": "Szkielet wojownik",
+    "path": "characters/art/skeleton_warrior.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet_wojownik",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/33/Szkielet_wojownik_%28wyszczerbiony_top%C3%B3r%29_%28G1%29.png/revision/latest?cb=20240825191344&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/33/Szkielet_wojownik_%28wyszczerbiony_top%C3%B3r%29_%28G1%29.png/revision/latest?cb=20240825191344&path-prefix=pl"
+  },
+  "skeleton_mage": {
+    "title": "Szkielet mag",
+    "path": "characters/art/skeleton_mage.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet_mag",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d5/Szkielet_mag_%28zwyk%C5%82y%29_%28G1%29.png/revision/latest?cb=20240901211811&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d5/Szkielet_mag_%28zwyk%C5%82y%29_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240901211811&path-prefix=pl"
+  },
+  "fog_mage": {
+    "title": "Szkielet maga z Wieży Mgieł",
+    "path": "characters/art/fog_mage.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82",
+    "original": "https://static.wikia.nocookie.net/gothic/images/c/ca/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82_%28G1%29.png/revision/latest?cb=20240825191315&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/ca/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240825191315&path-prefix=pl"
+  },
+  "razor": {
+    "title": "Brzytwiak",
+    "path": "characters/art/razor.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Brzytwiak",
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/10/Brzytwa_%28GI%29.png/revision/latest?cb=20230725151719&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/10/Brzytwa_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725151719&path-prefix=pl"
+  },
+  "minecrawler_warrior": {
+    "title": "Pełzacz wojownik",
+    "path": "characters/art/minecrawler_warrior.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pe%C5%82zacz_wojownik",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/4b/Pe%C5%82zacz_wojownik_%28Gothic_I%29_%28by_BagiennySzopen%29.png/revision/latest?cb=20240815210611&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/4b/Pe%C5%82zacz_wojownik_%28Gothic_I%29_%28by_BagiennySzopen%29.png/revision/latest/scale-to-width-down/640?cb=20240815210611&path-prefix=pl"
+  },
+  "orc": {
+    "title": "Ork",
+    "path": "characters/art/orc.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ork",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/32/G1_Ork_typ_1.png/revision/latest?cb=20240628115254&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/32/G1_Ork_typ_1.png/revision/latest?cb=20240628115254&path-prefix=pl"
+  },
+  "orc_hunter": {
+    "title": "Myśliwi orków",
+    "path": "characters/art/orc_hunter.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/My%C5%9Bliwi_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/19/Ork-my%C5%9Bliwy_G1.png/revision/latest?cb=20170419173256&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/19/Ork-my%C5%9Bliwy_G1.png/revision/latest?cb=20170419173256&path-prefix=pl"
+  },
+  "orc_soldier": {
+    "title": "Żołnierze orków",
+    "path": "characters/art/orc_soldier.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%BBo%C5%82nierze_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/88/Ork-%C5%BCo%C5%82nierz_G1.png/revision/latest?cb=20170419173005&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/88/Ork-%C5%BCo%C5%82nierz_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173005&path-prefix=pl"
+  },
+  "orc_warrior": {
+    "title": "Wojownicy orków",
+    "path": "characters/art/orc_warrior.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wojownicy_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/83/Ork-wojownik_G1.png/revision/latest?cb=20170419173334&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/83/Ork-wojownik_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173334&path-prefix=pl"
+  },
+  "fire_lizard": {
+    "title": "Ognisty jaszczur",
+    "path": "characters/art/fire_lizard.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ognisty_jaszczur",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/90/Ognisty_jaszczur_%28GI%29.png/revision/latest?cb=20240827212714&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/90/Ognisty_jaszczur_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240827212714&path-prefix=pl"
+  },
+  "bridge_golem": {
+    "title": "Golem mostowy",
+    "path": "characters/art/bridge_golem.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Golem_mostowy",
+    "original": "https://static.wikia.nocookie.net/gothic/images/6/6d/Golem_mostowy_G1.png/revision/latest?cb=20240818200252&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/6d/Golem_mostowy_G1.png/revision/latest/scale-to-width-down/640?cb=20240818200252&path-prefix=pl"
+  },
+  "swampshark": {
+    "title": "Wąż błotny",
+    "path": "characters/art/swampshark.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/W%C4%85%C5%BC_b%C5%82otny",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest?cb=20240806120934&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest/scale-to-width-down/640?cb=20240806120934&path-prefix=pl"
+  },
+  "wounded_swampshark": {
+    "title": "Ranny wąż błotny",
+    "path": "characters/art/swampshark.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ranny_w%C4%85%C5%BC_b%C5%82otny",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest?cb=20240806120934&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest/scale-to-width-down/640?cb=20240806120934&path-prefix=pl"
+  },
+  "orc_guard": {
+    "title": "Strażnicy orków",
+    "path": "characters/art/orc_guard.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Stra%C5%BCnicy_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d8/Ork-stra%C5%BCnik_G1.png/revision/latest?cb=20240703144733&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d8/Ork-stra%C5%BCnik_G1.png/revision/latest/scale-to-width-down/640?cb=20240703144733&path-prefix=pl"
+  },
+  "orc_shaman": {
+    "title": "Szamani orków",
+    "path": "characters/art/orc_shaman.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Szamani_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/fc/Szaman_orkowy_G.png/revision/latest?cb=20240709125953&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fc/Szaman_orkowy_G.png/revision/latest/scale-to-width-down/640?cb=20240709125953&path-prefix=pl"
+  },
+  "young_troll": {
+    "title": "Młody troll",
+    "path": "characters/art/young_troll.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_troll",
+    "original": "https://static.wikia.nocookie.net/gothic/images/2/2b/Mlody_troll_%28G1%29.png/revision/latest?cb=20230725223601&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/2b/Mlody_troll_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725223601&path-prefix=pl"
+  },
+  "stone_golem": {
+    "title": "Kamienny golem",
+    "path": "characters/art/stone_golem.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Kamienny_golem",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/50/Kamienny_golem_G1.png/revision/latest?cb=20240817210457&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/50/Kamienny_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210457&path-prefix=pl"
+  },
+  "fire_golem": {
+    "title": "Ognisty golem",
+    "path": "characters/art/fire_golem.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ognisty_golem",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/f1/Ognisty_golem_G1.png/revision/latest?cb=20240817210513&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/f1/Ognisty_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210513&path-prefix=pl"
+  },
+  "ice_golem": {
+    "title": "Lodowy golem",
+    "path": "characters/art/ice_golem.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Lodowy_golem",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9f/Lodowy_golem_G1.png/revision/latest?cb=20240817210528&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9f/Lodowy_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210528&path-prefix=pl"
+  },
+  "orc_veteran": {
+    "title": "Wiarusi orków",
+    "path": "characters/art/orc_veteran.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wiarusi_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/4d/Ork-wiarus_G1.png/revision/latest?cb=20170419173128&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/4d/Ork-wiarus_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173128&path-prefix=pl"
+  },
+  "troll": {
+    "title": "Troll",
+    "path": "characters/art/troll.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Troll",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/a4/Troll_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20121117143400&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a4/Troll_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20121117143400&path-prefix=pl"
+  },
+  "demon": {
+    "title": "Pomniejszy demon",
+    "path": "characters/art/demon.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pomniejszy_demon",
+    "original": "https://static.wikia.nocookie.net/gothic/images/c/c9/Pomniejszy_demon_%28G1%29.png/revision/latest?cb=20240901204712&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/c9/Pomniejszy_demon_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240901204712&path-prefix=pl"
+  },
+  "fire_demon": {
+    "title": "Demon ognia",
+    "path": "characters/art/fire_demon.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Demon_ognia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d6/Demon_ognia_%28GI%29.png/revision/latest?cb=20240901204448&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d6/Demon_ognia_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240901204448&path-prefix=pl"
+  },
+  "temple_crawler": {
+    "title": "Świątynny pełzacz",
+    "path": "characters/art/temple_crawler.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%85tynny_pe%C5%82zacz",
+    "original": "https://static.wikia.nocookie.net/gothic/images/2/20/%C5%9Awi%C4%85tynny_pe%C5%82zacz_G1.png/revision/latest?cb=20240816105729&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/20/%C5%9Awi%C4%85tynny_pe%C5%82zacz_G1.png/revision/latest/scale-to-width-down/640?cb=20240816105729&path-prefix=pl"
+  },
+  "temple_guardian": {
+    "title": "Opiekunowie świątyni",
+    "path": "characters/art/temple_guardian.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Opiekunowie_%C5%9Bwi%C4%85tyni",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest?cb=20240608222528&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest/scale-to-width-down/640?cb=20240608222528&path-prefix=pl"
+  },
+  "undead_orc": {
+    "title": "Starsi opiekunowie świątyni",
+    "path": "characters/art/temple_guardian.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Starsi_opiekunowie_%C5%9Bwi%C4%85tyni",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest?cb=20240608222528&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest/scale-to-width-down/640?cb=20240608222528&path-prefix=pl"
+  },
+  "demon_lord": {
+    "title": "Książę demonów",
+    "path": "characters/art/demon_lord.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%85%C5%BC%C4%99_demon%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/2/2e/Ksi%C4%85%C5%BCe_Demon%C3%B3w_GI.png/revision/latest?cb=20240901204552&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/2e/Ksi%C4%85%C5%BCe_Demon%C3%B3w_GI.png/revision/latest/scale-to-width-down/640?cb=20240901204552&path-prefix=pl"
+  },
+  "overseer": {
+    "title": "Nadzorca",
+    "path": "characters/art/overseer.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Nadzorca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/6/67/Nadzorca_%28GI%29.png/revision/latest?cb=20230722152657&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/67/Nadzorca_%28GI%29.png/revision/latest?cb=20230722152657&path-prefix=pl"
+  },
+  "exchange": {
+    "title": "Plac wymian",
+    "path": "characters/art/exchange.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Plac_wymian",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/7e/Plac_wymian_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20241222202406&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/7e/Plac_wymian_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20241222202406&path-prefix=pl"
+  },
+  "forest": {
+    "title": "Most do Starego Obozu",
+    "path": "characters/art/forest.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Most_do_Starego_Obozu",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/75/Most_do_Starego_Obozu_G.png/revision/latest?cb=20250711095620&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/75/Most_do_Starego_Obozu_G.png/revision/latest/scale-to-width-down/640?cb=20250711095620&path-prefix=pl"
+  },
+  "abandoned_mine": {
+    "title": "Opuszczona kopalnia",
+    "path": "characters/art/abandoned_mine.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Opuszczona_kopalnia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/fd/Opuszczona_kopalnia_1_%28G1%29.png/revision/latest?cb=20231231202117&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fd/Opuszczona_kopalnia_1_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231231202117&path-prefix=pl"
+  },
+  "cavalorn": {
+    "title": "Chata Cavalorna",
+    "path": "characters/art/cavalorn.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Chata_Cavalorna",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9d/Chata_Cavalorna_G.png/revision/latest?cb=20250725205753&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9d/Chata_Cavalorna_G.png/revision/latest/scale-to-width-down/640?cb=20250725205753&path-prefix=pl"
+  },
+  "rice_fields": {
+    "title": "Pola ryżowe w Nowym Obozie",
+    "path": "characters/art/rice_fields.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pola_ry%C5%BCowe_w_Nowym_Obozie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/a2/Pola_ry%C5%BCowe_%28GI%29.png/revision/latest?cb=20230718190536&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a2/Pola_ry%C5%BCowe_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230718190536&path-prefix=pl"
+  },
+  "lake_tavern": {
+    "title": "Karczma na jeziorze",
+    "path": "characters/art/lake_tavern.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Karczma_na_jeziorze",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9d/Karczma_na_jeziorze_%28Gothic_I%29_%28dzie%C5%84%29_%28by_SpY%29.png/revision/latest?cb=20241009105231&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9d/Karczma_na_jeziorze_%28Gothic_I%29_%28dzie%C5%84%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20241009105231&path-prefix=pl"
+  },
+  "free_mine": {
+    "title": "Wolna Kopalnia",
+    "path": "characters/art/free_mine.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wolna_Kopalnia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest?cb=20250206142851&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest/scale-to-width-down/640?cb=20250206142851&path-prefix=pl"
+  },
+  "aidan": {
+    "title": "Obóz Aidana",
+    "path": "characters/art/aidan.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_Aidana",
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/1e/Chata_Aidana_%28G1%29.png/revision/latest?cb=20231123202707&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/1e/Chata_Aidana_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231123202707&path-prefix=pl"
+  },
+  "swamp": {
+    "title": "Bagno koło Obozu Bractwa",
+    "path": "characters/art/swamp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Bagno_ko%C5%82o_Obozu_Bractwa",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest?cb=20231222103447&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl"
+  },
+  "almanac_cave": {
+    "title": "Jaskinia z almanachem",
+    "path": "characters/art/almanac_cave.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Jaskinia_z_almanachem",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/b2/Jaskinia_czarnych_goblin%C3%B3w.png/revision/latest?cb=20250221192922&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Jaskinia_czarnych_goblin%C3%B3w.png/revision/latest/scale-to-width-down/640?cb=20250221192922&path-prefix=pl"
+  },
+  "crawler_tunnels": {
+    "title": "Stara Kopalnia",
+    "path": "characters/art/old_mine.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Stara_Kopalnia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest?cb=20250106115318&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20250106115318&path-prefix=pl"
+  },
+  "crawler_nest": {
+    "title": "Gniazdo pełzaczy (lokacja)",
+    "path": "characters/art/crawler_nest.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Gniazdo_pe%C5%82zaczy_%28lokacja%29",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/92/G1_Stara_Kopalnia_brama_oddzielaj%C4%85ca_gniazdo.png/revision/latest?cb=20250106120355&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/92/G1_Stara_Kopalnia_brama_oddzielaj%C4%85ca_gniazdo.png/revision/latest/scale-to-width-down/640?cb=20250106120355&path-prefix=pl"
+  },
+  "orc_cemetery": {
+    "title": "Cmentarzysko orków (lokacja)",
+    "path": "characters/art/orc_cemetery.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Cmentarzysko_ork%C3%B3w_%28lokacja%29",
+    "original": "https://static.wikia.nocookie.net/gothic/images/0/0c/Cmentarzysko_Ork%C3%B3w_%28wej%C5%9Bcie%29.png/revision/latest?cb=20180224132703&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/0c/Cmentarzysko_Ork%C3%B3w_%28wej%C5%9Bcie%29.png/revision/latest/scale-to-width-down/640?cb=20180224132703&path-prefix=pl"
+  },
+  "dam": {
+    "title": "Tama w Nowym Obozie",
+    "path": "characters/art/dam.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Tama_w_Nowym_Obozie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9e/Tama_w_Nowym_Obozie_G.png/revision/latest?cb=20250817104520&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9e/Tama_w_Nowym_Obozie_G.png/revision/latest/scale-to-width-down/640?cb=20250817104520&path-prefix=pl"
+  },
+  "eastern_forest": {
+    "title": "Wschodni las w Górniczej Dolinie",
+    "path": "characters/art/eastern_forest.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wschodni_las_w_G%C3%B3rniczej_Dolinie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/35/Wschodni_las_w_GD_G.png/revision/latest?cb=20250807133755&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/35/Wschodni_las_w_GD_G.png/revision/latest/scale-to-width-down/640?cb=20250807133755&path-prefix=pl"
+  },
+  "swamp_den": {
+    "title": "Bagno koło Obozu Bractwa",
+    "path": "characters/art/swamp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Bagno_ko%C5%82o_Obozu_Bractwa",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest?cb=20231222103447&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl"
+  },
+  "swamp_depths": {
+    "title": "Bagno koło Obozu Bractwa",
+    "path": "characters/art/swamp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Bagno_ko%C5%82o_Obozu_Bractwa",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest?cb=20231222103447&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl"
+  },
+  "stone_circle": {
+    "title": "Kamienne kręgi",
+    "path": "characters/art/stone_circle.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Kamienne_kr%C4%99gi",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest?cb=20241110165449&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20241110165449&path-prefix=pl"
+  },
+  "fog_tower": {
+    "title": "Wieża Mgieł",
+    "path": "characters/art/fog_tower.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wie%C5%BCa_Mgie%C5%82",
+    "original": "https://static.wikia.nocookie.net/gothic/images/3/39/Wie%C5%BCa_mgie%C5%82_%28by_Ossowski21%29.png/revision/latest?cb=20231205200946&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/39/Wie%C5%BCa_mgie%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20231205200946&path-prefix=pl"
+  },
+  "fog_beach": {
+    "title": "Plaża przy Wieży Mgieł",
+    "path": "characters/art/fog_beach.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pla%C5%BCa_przy_Wie%C5%BCy_Mgie%C5%82",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/bc/Pla%C5%BCa_og%C3%B3%C5%82_%28by_Ossowski21%29.png/revision/latest?cb=20240816143151&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bc/Pla%C5%BCa_og%C3%B3%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20240816143151&path-prefix=pl"
+  },
+  "quentin_camp": {
+    "title": "Obóz Quentina",
+    "path": "characters/art/quentin_camp.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_Quentina",
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/87/Ob%C3%B3z_Quentina_G1_%28by_Wedkarski%29.png/revision/latest?cb=20230501134207&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/87/Ob%C3%B3z_Quentina_G1_%28by_Wedkarski%29.png/revision/latest/scale-to-width-down/640?cb=20230501134207&path-prefix=pl"
+  },
+  "free_mine_depths": {
+    "title": "Wolna Kopalnia",
+    "path": "characters/art/free_mine.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wolna_Kopalnia",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest?cb=20250206142851&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest/scale-to-width-down/640?cb=20250206142851&path-prefix=pl"
+  },
+  "old_monastery": {
+    "title": "Stary klasztor",
+    "path": "characters/art/old_monastery.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Stary_klasztor",
+    "original": "https://static.wikia.nocookie.net/gothic/images/c/c1/Klasztor_mnich%C3%B3w_widok_og%C3%B3lny_G.png/revision/latest?cb=20241101171452&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/c1/Klasztor_mnich%C3%B3w_widok_og%C3%B3lny_G.png/revision/latest/scale-to-width-down/640?cb=20241101171452&path-prefix=pl"
+  },
+  "northern_forest": {
+    "title": "Północny las w Górniczej Dolinie",
+    "path": "characters/art/northern_forest.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/fa/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie_1_%28G1%29.png/revision/latest?cb=20230501110135&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie_1_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230501110135&path-prefix=pl"
+  },
+  "mountain_fortress": {
+    "title": "Górska forteca",
+    "path": "characters/art/mountain_fortress.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/G%C3%B3rska_forteca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/b0/Twierdza_g1_ogo%C5%82_%28by_Ossowski21%29.png/revision/latest?cb=20241111141144&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/b0/Twierdza_g1_ogo%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20241111141144&path-prefix=pl"
+  },
+  "orc_lands": {
+    "title": "Ziemie orków",
+    "path": "characters/art/orc_lands.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Ziemie_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/a2/G1_Ziemie_ork%C3%B3w_00_ko%C5%82o_skrzy%C5%BCowania.png/revision/latest?cb=20221214114454&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a2/G1_Ziemie_ork%C3%B3w_00_ko%C5%82o_skrzy%C5%BCowania.png/revision/latest/scale-to-width-down/640?cb=20221214114454&path-prefix=pl"
+  },
+  "old_citadel": {
+    "title": "Stara cytadela",
+    "path": "characters/art/old_citadel.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Stara_cytadela",
+    "original": "https://static.wikia.nocookie.net/gothic/images/e/e0/Stara_cytadela_%281%29.png/revision/latest?cb=20241213173715&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/e/e0/Stara_cytadela_%281%29.png/revision/latest/scale-to-width-down/640?cb=20241213173715&path-prefix=pl"
+  },
+  "xardas_tower": {
+    "title": "Wieża Xardasa w Górniczej Dolinie",
+    "path": "characters/art/xardas_tower.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wie%C5%BCa_Xardasa_w_G%C3%B3rniczej_Dolinie",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d6/Wie%C5%BCa_Xardasa_w_Dolinie_%28Gothic%29.png/revision/latest?cb=20250217125150&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d6/Wie%C5%BCa_Xardasa_w_Dolinie_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20250217125150&path-prefix=pl"
+  },
+  "sunken_tower": {
+    "title": "Zatopiona wieża Xardasa",
+    "path": "characters/art/sunken_tower.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Zatopiona_wie%C5%BCa_Xardasa",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/51/Zatopiona_wie%C5%BCa_widok_og%C3%B3lny_G.png/revision/latest?cb=20241220181702&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/51/Zatopiona_wie%C5%BCa_widok_og%C3%B3lny_G.png/revision/latest/scale-to-width-down/640?cb=20241220181702&path-prefix=pl"
+  },
+  "orc_city": {
+    "title": "Miasto orków",
+    "path": "characters/art/orc_city.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Miasto_ork%C3%B3w",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/fb/Miasto_ork%C3%B3w_G1.png/revision/latest?cb=20250406165302&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fb/Miasto_ork%C3%B3w_G1.png/revision/latest/scale-to-width-down/640?cb=20250406165302&path-prefix=pl"
+  },
+  "troll_canyon": {
+    "title": "Kanion trolli",
+    "path": "characters/art/troll_canyon.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Kanion_trolli",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/48/Kanion_og%C3%B3lny_widok_2_%28by_Ossowski21%29.png/revision/latest?cb=20230807200449&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/48/Kanion_og%C3%B3lny_widok_2_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20230807200449&path-prefix=pl"
+  },
+  "sleeper_temple": {
+    "title": "Świątynia Śniącego",
+    "path": "characters/art/sleeper_temple.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%85tynia_%C5%9Ani%C4%85cego",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/7f/%C5%9Awi%C4%85tynia_wej%C5%9Bcie_G1.png/revision/latest?cb=20161008103739&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/7f/%C5%9Awi%C4%85tynia_wej%C5%9Bcie_G1.png/revision/latest/scale-to-width-down/640?cb=20161008103739&path-prefix=pl"
+  },
+  "overseer_crypt": {
+    "title": "Krypta Nadzorcy",
+    "path": "characters/art/stone_circle.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Krypta_Nadzorcy",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest?cb=20241110165449&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20241110165449&path-prefix=pl"
+  },
+  "crawler_queen": {
+    "title": "Królowa pełzaczy",
+    "path": "characters/art/crawler_queen.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Kr%C3%B3lowa_pe%C5%82zaczy",
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/ac/G1_Kr%C3%B3lowa_pe%C5%82zaczy.png/revision/latest?cb=20240901204504&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/ac/G1_Kr%C3%B3lowa_pe%C5%82zaczy.png/revision/latest/scale-to-width-down/640?cb=20240901204504&path-prefix=pl"
+  },
+  "sleeper": {
+    "title": "Śniący",
+    "path": "characters/art/sleeper.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%9Ani%C4%85cy",
+    "original": "https://static.wikia.nocookie.net/gothic/images/6/66/%C5%9Ani%C4%85cy_%28Gothic%29.png/revision/latest?cb=20230828180826&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/66/%C5%9Ani%C4%85cy_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20230828180826&path-prefix=pl"
+  },
+  "sleeper_sanctum": {
+    "title": "Portal w świątyni Śniącego",
+    "path": "characters/art/sleeper_sanctum.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego",
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20260514190302&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20260514190302&path-prefix=pl"
   }
 }

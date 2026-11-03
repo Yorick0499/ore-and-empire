@@ -57,7 +57,7 @@ def hunt_view(request):
         if monster not in available:
             messages.error(request, "Nie ma tutaj takiego przeciwnika.")
             return redirect(request.get_full_path())
-        combat_log = execute_hunt(profile, monster)
+        combat_log = execute_hunt(profile, monster, location.key)
         if combat_log is False:
             messages.error(request, "Brakuje energii lub trwa praca w kopalni.")
             combat_log = None
@@ -79,6 +79,7 @@ def hunt_view(request):
 def market_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
+    current_location(request, profile, "old_camp", "market_page")
     if request.method == "POST":
         action = request.POST.get("action")
         if action == "list":
@@ -191,6 +192,7 @@ def shop_view(request):
 def train_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
+    current_location(request, profile, "new_camp", "train_page")
     if request.method == "POST":
         attribute_name = request.POST.get("attribute")
         if attribute_name == "strength":
@@ -408,4 +410,20 @@ def credits_view(request):
 
     return render(request, "characters/credits.html", {
         "assets": json.loads(MANIFEST_PATH.read_text(encoding="utf-8")).values(),
+    })
+
+
+@login_required
+def bestiary_view(request):
+    from django.core.paginator import Paginator
+    query = request.GET.get("q", "").strip()[:100]
+    entries = []
+    for key, monster in sorted(BESTIARY.items(), key=lambda entry: (entry[1]["level"], entry[1]["nazwa"])):
+        if query.casefold() not in monster["nazwa"].casefold():
+            continue
+        habitats = [loc for loc in LOCATIONS if key in loc.monsters]
+        entries.append({"key": key, "monster": monster, "habitats": habitats})
+    return render(request, "characters/bestiary.html", {
+        "page": Paginator(entries, 12).get_page(request.GET.get("page")),
+        "query": query, "total": len(BESTIARY),
     })

@@ -1,5 +1,4 @@
-"""Original early-alpha balance for a Gothic-inspired colony."""
-
+"""Main Gothic I destinations with original browser-game unlock requirements."""
 from dataclasses import dataclass
 
 
@@ -12,94 +11,60 @@ class Location:
     camps: tuple = ()
     route: str = "hunt_page"
     monsters: tuple = ()
+    wiki: str = ""
+    min_tier: int = 0
 
     def accessible(self, profile):
         return profile.level >= self.level and (
             not self.camps or profile.camp in self.camps
-        )
+        ) and profile.camp_tier >= self.min_tier
+
+    @property
+    def camp_names(self):
+        from .models import PlayerProfile
+        names = dict(PlayerProfile.CAMP_LIST)
+        return ", ".join(names[key] for key in self.camps)
 
 
 LOCATIONS = (
-    Location(
-        "crawler_nest",
-        "Gniazdo pełzaczy",
-        "Królowa pełzaczy czeka na śmiałków. Walka z bossem.",
-        level=5,
-        route="boss_page",
-    ),
-    Location(
-        "swamp_den",
-        "Legowisko błotnego węża",
-        "Prastara bestia strzeże głębi bagien. Walka z bossem.",
-        level=8,
-        route="boss_page",
-    ),
-    Location(
-        "old_camp",
-        "Stary Obóz",
-        "Targ, kupcy i nauczyciele w cieniu zamku.",
-        route="market_page",
-    ),
-    Location(
-        "old_mine",
-        "Stara Kopalnia",
-        "Praca za rudę. Każda zmiana kosztuje 10 energii.",
-        route="mine_page",
-    ),
-    Location(
-        "forest",
-        "Mroczny Las",
-        "Pierwsze polowania na ścierwojady.",
-        monsters=("young_scavenger", "scavenger"),
-    ),
-    Location(
-        "new_camp",
-        "Nowy Obóz",
-        "Wolność ma swoją cenę. Spotkaj nauczycieli.",
-        route="train_page",
-    ),
-    Location(
-        "swamp_camp",
-        "Obóz na Bagnie",
-        "Bractwo, bagna i kretoszczury.",
-        monsters=("molerat",),
-    ),
-    Location(
-        "free_mine",
-        "Wolna Kopalnia",
-        "Złoża dostępne dla ludzi Nowego Obozu.",
-        level=3,
-        camps=("NEW_CAMP",),
-        route="mine_page",
-    ),
-    Location(
-        "orc_cemetery",
-        "Cmentarzysko Orków",
-        "Niebezpieczne łowisko dla doświadczonych skazańców.",
-        level=5,
-        monsters=("molerat",),
-    ),
-    Location(
-        "fog_tower",
-        "Wieża Mgieł",
-        "Cieniostwory strzegą drogi do starej wieży.",
-        level=10,
-        monsters=("shadowbeast",),
-    ),
-    Location(
-        "orc_lands",
-        "Ziemie Orków",
-        "Wyprawa na granicę kolonii.",
-        level=15,
-        monsters=("shadowbeast",),
-    ),
-    Location(
-        "sleeper_temple",
-        "Świątynia Śniącego",
-        "Droga dla najbardziej doświadczonych. Bossowie w kolejnym etapie.",
-        level=25,
-        monsters=("shadowbeast",),
-    ),
+    Location("exchange", "Plac wymian", "Pierwsze kroki pod barierą. Łagodne zbocza i drobna zwierzyna.", monsters=("meatbug", "young_scavenger", "young_molerat"), wiki="Plac wymian"),
+    Location("old_camp", "Stary Obóz", "Targowisko w cieniu zamku. Handel z mieszkańcami kolonii.", route="market_page", wiki="Stary Obóz"),
+    Location("old_mine", "Stara Kopalnia", "Praca za rudę. Zakończ zmianę, zanim wyruszysz dalej.", route="mine_page", wiki="Stara Kopalnia"),
+    Location("forest", "Szlak do Starego Obozu", "Droga od placu wymian. Miejsce pierwszych polowań.", monsters=("young_scavenger", "scavenger", "meatbug"), wiki="Most do Starego Obozu"),
+    Location("new_camp", "Nowy Obóz", "Schronienie wolnych ludzi. Wspólne treningi i nauka.", route="train_page", wiki="Nowy Obóz"),
+    Location("swamp_camp", "Obóz na Bagnie", "Siedziba Bractwa. Na obrzeżach obozu grasują kretoszczury.", monsters=("young_molerat", "molerat"), wiki="Obóz Bractwa"),
+    Location("abandoned_mine", "Opuszczona kopalnia", "Zarośnięte wejście i opuszczone wyrobiska.", 1, monsters=("meatbug", "molerat", "goblin"), wiki="Opuszczona kopalnia"),
+    Location("cavalorn", "Chata Cavalorna", "Polana myśliwego. Wilki i gobliny schodzą do pobliskich jaskiń.", 2, monsters=("goblin", "wolf"), wiki="Chata Cavalorna"),
+    Location("rice_fields", "Pola ryżowe", "Pola Nowego Obozu. Drobne bestie zagrażają zbiorom.", 2, monsters=("molerat", "bloodfly"), wiki="Pola ryżowe w Nowym Obozie"),
+    Location("lake_tavern", "Karczma na jeziorze", "Kupcy spotykają się na wodzie pod ochroną szkodników.", 2, route="market_page", wiki="Karczma na jeziorze"),
+    Location("free_mine", "Wolna Kopalnia", "Złoża dostępne dla ludzi Nowego Obozu.", 3, camps=("NEW_CAMP",), route="mine_page", wiki="Wolna Kopalnia"),
+    Location("aidan", "Obóz Aidana", "Myśliwski trakt pośród drzew i skał.", 3, monsters=("wolf", "scavenger", "black_goblin"), wiki="Obóz Aidana"),
+    Location("swamp", "Bagno koło Obozu Bractwa", "Rój krwiopijców i topielce na zalanych ścieżkach.", 4, monsters=("bloodfly", "aggressive_bloodfly", "lurker", "lizard"), wiki="Bagno koło Obozu Bractwa"),
+    Location("almanac_cave", "Jaskinia z almanachem", "Gobliny bronią swej skalnej kryjówki.", 4, monsters=("goblin", "black_goblin", "goblin_warrior"), wiki="Jaskinia z almanachem"),
+    Location("crawler_tunnels", "Szyby Starej Kopalni", "W głębokich tunelach słychać chrzęst pancerzy pełzaczy.", 5, monsters=("minecrawler",), wiki="Stara Kopalnia"),
+    Location("crawler_nest", "Gniazdo pełzaczy", "Wyprawa przeciw królowej pełzaczy.", 5, route="boss_page", wiki="Gniazdo pełzaczy (lokacja)"),
+    Location("orc_cemetery", "Cmentarzysko Orków", "Orkowi zwiadowcy strzegą grobowych korytarzy.", 5, monsters=("orc_scout", "orc_soldier"), wiki="Cmentarzysko orków (lokacja)"),
+    Location("dam", "Tama w Nowym Obozie", "Topielce podgryzają konstrukcję tamy.", 6, monsters=("lurker", "dam_lurker"), wiki="Tama w Nowym Obozie"),
+    Location("eastern_forest", "Wschodni las", "Kąsacze i zębacze polują na nieostrożnych wędrowców.", 7, monsters=("biter", "snapper", "wolf"), wiki="Wschodni las w Górniczej Dolinie"),
+    Location("swamp_den", "Legowisko błotnego węża", "Samotna wyprawa w głębiny bagna.", 8, route="boss_page", wiki="Bagno koło Obozu Bractwa"),
+    Location("swamp_depths", "Głębokie bagno", "Pośród trzcin kryją się olbrzymie błotne węże.", 8, monsters=("wounded_swampshark", "swampshark", "lurker"), wiki="Bagno koło Obozu Bractwa"),
+    Location("stone_circle", "Kamienne kręgi", "Pradawne kamienie otaczają nieumarli.", 9, monsters=("skeleton_scout", "skeleton", "zombie"), wiki="Kamienne kręgi"),
+    Location("fog_tower", "Wieża Mgieł", "Nieumarli pilnują tajemnicy Chromaninu.", 10, monsters=("skeleton", "skeleton_warrior", "skeleton_mage", "fog_mage"), wiki="Wieża Mgieł"),
+    Location("fog_beach", "Plaża przy Wieży Mgieł", "Na kamieniste wybrzeże wychodzą jaszczury i topielce.", 10, monsters=("lizard", "lurker", "fire_lizard"), wiki="Plaża przy Wieży Mgieł"),
+    Location("quentin_camp", "Obóz Quentina", "Bestie otaczają ukryty obóz w górach.", 11, monsters=("razor", "snapper", "orc_dog"), wiki="Obóz Quentina"),
+    Location("free_mine_depths", "Głębie Wolnej Kopalni", "Wojownicy pełzaczy opanowali porzucone chodniki.", 12, monsters=("minecrawler_warrior", "minecrawler"), wiki="Wolna Kopalnia"),
+    Location("old_monastery", "Stary klasztor", "Zarośnięte ruiny kryją nieumarłych i młodego trolla.", 12, monsters=("skeleton_warrior", "zombie", "young_troll"), wiki="Stary klasztor"),
+    Location("northern_forest", "Północny las", "Brzytwiaki i cieniostwory czają się pod koronami drzew.", 14, monsters=("razor", "shadowbeast", "snapper"), wiki="Północny las w Górniczej Dolinie"),
+    Location("mountain_fortress", "Górska forteca", "Harpie krążą nad mostem strzeżonym przez golema.", 15, monsters=("harpy", "bridge_golem"), wiki="Górska forteca"),
+    Location("orc_lands", "Ziemie Orków", "Watahy orkowych psów i patrole wojowników.", 15, monsters=("orc", "orc_dog", "orc_hunter", "orc_soldier", "orc_warrior"), wiki="Ziemie orków"),
+    Location("old_citadel", "Stara cytadela", "Szkielety i kamienny strażnik bronią zrujnowanej warowni.", 17, monsters=("skeleton_warrior", "stone_golem", "harpy"), wiki="Stara cytadela"),
+    Location("xardas_tower", "Wieża Xardasa", "Trzy golemy strzegą ścieżki do nekromanty.", 18, monsters=("stone_golem", "fire_golem", "ice_golem"), wiki="Wieża Xardasa w Górniczej Dolinie"),
+    Location("sunken_tower", "Zatopiona wieża Xardasa", "Zalane podziemia i nieumarli mieszkańcy dawnej wieży.", 19, monsters=("zombie", "skeleton_mage", "demon"), wiki="Zatopiona wieża Xardasa"),
+    Location("orc_city", "Miasto Orków", "Strażnicy, szamani i wiarusi osłaniają wejście do świątyni.", 20, monsters=("orc_guard", "orc_shaman", "orc_veteran", "orc_warrior"), wiki="Miasto orków"),
+    Location("troll_canyon", "Kanion trolli", "Olbrzymy trzymają straż nad górskim przejściem.", 22, monsters=("young_troll", "troll", "goblin_warrior"), wiki="Kanion trolli"),
+    Location("sleeper_temple", "Świątynia Śniącego", "Pełzacze świątynne, demony i orkowi nieumarli.", 25, monsters=("temple_crawler", "temple_guardian", "undead_orc", "demon", "fire_demon", "demon_lord"), wiki="Świątynia Śniącego"),
+    Location("sleeper_sanctum", "Sanktuarium Śniącego", "Ostatnia wyprawa w głąb świątyni. Przygotuj oręż i zapasy energii.", 30, route="boss_page", wiki="Portal w świątyni Śniącego"),
+    Location("overseer_crypt", "Krypta Nadzorcy", "Najgłębszej krypty broni Nadzorca i jego nieumarła świta.", 28, monsters=("overseer", "skeleton_mage", "demon_lord"), wiki="Krypta Nadzorcy"),
 )
 LOCATIONS = tuple(sorted(LOCATIONS, key=lambda location: location.level))
 BY_KEY = {location.key: location for location in LOCATIONS}

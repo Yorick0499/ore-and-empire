@@ -100,40 +100,7 @@ def claim_ore_reward(profile):
     return True
 
 
-BESTIARY = {
-    "young_scavenger": {
-        "nazwa": "Młody ścierwojad",
-        "level": 0,
-        "life": 12,
-        "strength": 3,
-        "weapon_prot": 0,
-        "exp_reward": 30,
-    },
-    "scavenger": {
-        "nazwa": "Ścierwojad",
-        "level": 3,
-        "life": 40,
-        "strength": 20,
-        "weapon_prot": 5,
-        "exp_reward": 50,
-    },
-    "molerat": {
-        "nazwa": "Kretoszczur",
-        "level": 5,
-        "life": 50,
-        "strength": 25,
-        "weapon_prot": 10,
-        "exp_reward": 60,
-    },
-    "shadowbeast": {
-        "nazwa": "Cieniostwór",
-        "level": 25,
-        "life": 400,
-        "strength": 120,
-        "weapon_prot": 60,
-        "exp_reward": 400,
-    },
-}
+from .bestiary import BESTIARY
 
 
 def simulate_combat(profile, monster_key, *, monster=None):
@@ -191,7 +158,12 @@ def simulate_combat(profile, monster_key, *, monster=None):
 
 
 @player_action
-def execute_hunt(profile, monster_key):
+def execute_hunt(profile, monster_key, location_key="forest"):
+    from .locations import BY_KEY
+
+    location = BY_KEY.get(location_key)
+    if location is None or not location.accessible(profile) or monster_key not in location.monsters:
+        return False
     if monster_key not in BESTIARY or profile.is_busy:
         return False
     if profile.current_energy < 15:

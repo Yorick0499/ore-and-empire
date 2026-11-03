@@ -103,6 +103,10 @@ class PlayerProfile(models.Model):
     action_end_time = models.DateTimeField(null=True, blank=True)
 
     @property
+    def camp_tier(self):
+        return 0
+
+    @property
     def required_exp(self):
         n = self.level + 1
         return 250 * n * (n + 1)

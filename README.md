@@ -291,3 +291,10 @@ python manage.py makemigrations --check --dry-run
 python manage.py test --noinput
 python manage.py collectstatic --noinput
 ```
+
+### Expanded Gothic I world
+
+The searchable bestiary contains 52 creature types and variants; the queen and
+Sleeper appear as bosses. 38 main destinations have local Gothicpedia artwork,
+level requirements and distinct encounter rosters. See [world coverage](docs/WORLD.md)
+for sources and the scope of this browser adaptation.

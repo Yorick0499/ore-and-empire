@@ -27,6 +27,7 @@ class Boss:
 
 
 BOSSES = {
+    "sleeper_sanctum": Boss("sleeper_sanctum", "Śniący", 30, 1400, 80, 45, 3000, 500),
     "crawler_nest": Boss("crawler_nest", "Królowa pełzaczy", 5, 150, 20, 8, 300, 60),
     "swamp_den": Boss("swamp_den", "Prastary błotny wąż", 8, 220, 25, 10, 500, 100),
 }
