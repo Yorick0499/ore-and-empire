@@ -653,3 +653,57 @@ class LocalWorldTests(TestCase):
         for bot in bots:
             self.assertEqual((bot.ore_balance, bot.current_energy), (50, 100))
             self.assertFalse(bot.inventory.exists())
+
+
+class GothicInterfaceTests(TestCase):
+    def test_shared_interface_on_game_screens(self):
+        user = User.objects.create_user("reader", password="test-password-123")
+        self.client.force_login(user)
+        for route in ("locations_page", "mine_page", "hunt_page", "inventory_page", "market_page", "shop_page", "train_page"):
+            with self.subTest(route=route):
+                response = self.client.get(reverse(route))
+                self.assertContains(response, 'id="main-content"')
+                self.assertContains(response, 'aria-current="page"', count=1)
+                self.assertContains(response, "characters/fonts/GothicII.ttf")
+                self.assertContains(response, reverse("credits_page"))
+                self.assertNotContains(response, "fonts.googleapis.com")
+
+    def test_credits_are_public(self):
+        response = self.client.get(reverse("credits_page"))
+        self.assertContains(response, "Patrix9999/Gothic-2-Font")
+
+    def test_manifest_images_render_with_local_path_and_source(self):
+        import json
+        from django.template import Context, Template
+        manifest = {"shadowbeast": {"title": "Cieniostwór", "path": "characters/art/shadowbeast.png", "source": "https://gothic.fandom.com/pl/wiki/Cieniostwór"}}
+        with patch("characters.templatetags.gothic_media.MANIFEST_PATH") as path:
+            path.read_text.return_value = json.dumps(manifest)
+            rendered = Template("{% load gothic_media %}{% gothic_art 'shadowbeast' %}").render(Context())
+        self.assertIn('/static/characters/art/shadowbeast.png', rendered)
+        self.assertIn('Cieniostwór · Gothicpedia', rendered)
+        self.assertIn('loading="lazy"', rendered)
+
+    def test_failed_import_preserves_existing_assets(self):
+        from characters.gothic_assets import MANIFEST_PATH
+        before = MANIFEST_PATH.read_bytes()
+        with patch("characters.management.commands.import_gothicpedia.read_remote", side_effect=OSError("blocked")):
+            with self.assertRaisesMessage(CommandError, "no assets changed"):
+                call_command("import_gothicpedia", only=["shadowbeast"])
+        self.assertEqual(MANIFEST_PATH.read_bytes(), before)
+
+    def test_successful_import_records_attribution(self):
+        import json
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        with TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "characters/art").mkdir(parents=True)
+            manifest = root / "characters/gothicpedia.json"
+            manifest.write_text("{}")
+            responses = [(b'{"query":{"pages":{"1":{"original":{"source":"https://static.wikia.nocookie.net/gothic/shadow.png"}}}}}', "application/json"), (b"image-fixture", "image/png")]
+            with patch("characters.management.commands.import_gothicpedia.MANIFEST_PATH", manifest), patch("characters.management.commands.import_gothicpedia.ASSET_ROOT", root / "characters"), patch("characters.management.commands.import_gothicpedia.read_remote", side_effect=responses):
+                call_command("import_gothicpedia", only=["shadowbeast"], stdout=StringIO())
+            asset = json.loads(manifest.read_text())["shadowbeast"]
+            self.assertEqual(asset["title"], "Cieniostwór")
+            self.assertIn("gothic.fandom.com/pl/wiki/", asset["source"])
+            self.assertEqual((root / asset["path"]).read_bytes(), b"image-fixture")

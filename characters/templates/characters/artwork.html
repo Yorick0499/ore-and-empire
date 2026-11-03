@@ -1,0 +1,1 @@
+{% load static %}{% if artwork %}<figure class="gothic-art"><img src="{% static artwork.path %}" alt="{{ artwork.title }} — Gothic" loading="lazy" width="640" height="360"><figcaption><a href="{{ artwork.source }}" rel="noopener noreferrer" target="_blank">{{ artwork.title }} · Gothicpedia</a></figcaption></figure>{% endif %}

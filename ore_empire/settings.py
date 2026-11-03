@@ -124,3 +124,6 @@ STATIC_URL = "static/"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "locations_page"
 LOGOUT_REDIRECT_URL = "login"
+
+# A deterministic destination for CI artifacts and production static serving.
+STATIC_ROOT = BASE_DIR / "staticfiles"

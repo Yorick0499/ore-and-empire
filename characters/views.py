@@ -371,3 +371,12 @@ def boss_view(request):
             and profile.current_energy >= boss.energy_cost,
         },
     )
+
+
+def credits_view(request):
+    import json
+    from .gothic_assets import MANIFEST_PATH
+
+    return render(request, "characters/credits.html", {
+        "assets": json.loads(MANIFEST_PATH.read_text(encoding="utf-8")).values(),
+    })

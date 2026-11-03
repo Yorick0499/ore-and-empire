@@ -219,3 +219,7 @@ __marimo__/
 
 # context
 context/
+
+# Local research, browser checks and generated static output
+work/
+staticfiles/

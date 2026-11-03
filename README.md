@@ -154,3 +154,25 @@ Here is the current state of the features:
 
 ## 📸 Gallery
 *Screenshots from the early alpha versions will be displayed here soon.*
+
+## Interface and continuous integration
+
+The Gothic I inspired interface shares a local stylesheet and a locally served
+Gothic II font across game screens. It includes responsive layouts, keyboard focus
+states, active navigation, and an asset credits page. See [asset sources and the
+Gothicpedia importer](docs/ASSETS.md) for image setup.
+
+GitHub Actions runs configuration checks, migration consistency, the Django test
+suite and static asset collection on pushes to `main` and
+`feature/playable-colony`, and on pull requests. Static output is uploaded as a
+build artifact. Deployment is not configured: there is no production target or
+hosting credential in this repository.
+
+Run the same checks locally:
+
+```sh
+python manage.py check
+python manage.py makemigrations --check --dry-run
+python manage.py test --noinput
+python manage.py collectstatic --noinput
+```

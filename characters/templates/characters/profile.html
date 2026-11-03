@@ -1,0 +1,18 @@
+<aside class="sidebar" aria-label="Karta postaci">
+  <div class="sidebar-header"><span class="eyebrow">Dziennik skazańca</span><h2>{{ profile.user.username }}</h2><p>{{ profile.get_camp_display }} · {{ profile.guild }}</p></div>
+  <div class="nav-section">
+    <h3 class="nav-category">Postać</h3>
+    <div class="stat-item">Poziom <span class="val">{{ profile.level }}</span></div>
+    <div class="stat-item">Doświadczenie <span class="val">{{ profile.experience }} PD</span></div>
+    <h3 class="nav-category">Zasoby</h3>
+    <div class="stat-item">Bryłki rudy <span class="gold-val">{{ profile.ore_balance }}</span></div>
+    <label for="character-energy" class="stat-item">Energia <span>{{ profile.current_energy }}/{{ profile.max_energy }}</span></label>
+    <meter id="character-energy" value="{{ profile.current_energy }}" max="{{ profile.max_energy }}">{{ profile.current_energy }}</meter>
+    <h3 class="nav-category">Atrybuty</h3>
+    <div class="stat-item">Siła <span class="val">{{ profile.strength }}</span></div>
+    <div class="stat-item">Zręczność <span class="val">{{ profile.dexterity }}</span></div>
+    <div class="stat-item">Życie <span class="val">{{ profile.life }}</span></div>
+    <div class="stat-item">Punkty nauki <span class="gold-val">{{ profile.skill_points }}</span></div>
+    <a class="nav-link-btn" href="{% url 'locations_page' %}">« Wróć do Górniczej Doliny</a>
+  </div>
+</aside>

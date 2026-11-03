@@ -20,6 +20,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
     register_view,
+    credits_view,
     locations_view,
     market_monitor_view,
     boss_view,
@@ -35,6 +36,7 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("zrodla/", credits_view, name="credits_page"),
     path("", locations_view, name="locations_page"),
     path("konto/rejestracja/", register_view, name="register"),
     path("konto/logowanie/", auth_views.LoginView.as_view(), name="login"),
