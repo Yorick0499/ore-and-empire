@@ -202,7 +202,7 @@ def train_view(request):
         if attribute_name == "mana":
             report_action(request, train_attribute(profile, attribute_name))
             return redirect(request.get_full_path())
-    return render(request, "characters/train.html", {"profile": profile})
+    return render(request, "characters/train.html", {"profile": profile, "attributes": [("strength", "Siła", profile.strength), ("dexterity", "Zręczność", profile.dexterity), ("mana", "Mana", profile.mana)]})
 
 
 def positive_id(value):
