@@ -4,6 +4,119 @@
 
 This is a 100% fan-made project created out of passion. The game is still heavily in development, which means features are constantly changing, and new ones are being added regularly. 
 
+## Screenshots and main screens
+
+A stone-and-metal interface inspired by Gothic I, with gold menu highlights and
+a locally served Gothic II font. The Polish UI shares the same navigation and
+character sheet across gameplay screens, keeping your ore, energy and attributes
+close at hand.
+
+These screenshots show the current panel with a **demo character and sample
+items**, captured at 1440 × 1050 on desktop and 390 × 1050 on mobile. Character
+values illustrate the interface, not the starting balance. The landscape is an
+original project illustration; Gothicpedia images are not included in these
+captures. See [asset sources](docs/ASSETS.md) for details.
+
+### Colony — your journey starts here
+
+**Kolonia** is the hub for exploring Górnicza Dolina. Check your level, ore and
+energy, choose a camp, and see the colony's bot population. The expedition
+journal below lists destinations with their level and camp requirements, so you
+can see which routes are open and what still needs to be unlocked.
+
+![Colony hub with the valley landscape, character resources and camp affiliation](docs/screenshots/colony.png)
+
+<details>
+<summary><strong>Hunting — choose your next opponent</strong></summary>
+
+**Polowanie** shows the creatures available in the current location, their level,
+health, strength, armour and experience reward. Each attack costs 15 energy;
+the battle report records the exchange of blows and the result. The character
+sheet stays visible alongside the encounter list.
+
+![Hunting screen with scavenger encounters, combat statistics and attack buttons](docs/screenshots/hunting.png)
+
+</details>
+
+<details>
+<summary><strong>Mining — turn time and energy into ore</strong></summary>
+
+**Kopalnia** is the colony's basic source of income. Start a shift for 10 energy,
+watch the countdown, and claim the ore when the work finishes. You can leave the
+screen while the timer runs and return to collect your reward.
+
+![Old Mine screen with the mining action and its energy cost](docs/screenshots/mining.png)
+
+</details>
+
+<details>
+<summary><strong>Inventory — prepare your equipment</strong></summary>
+
+**Ekwipunek** separates the weapon in your hand from the items in your backpack.
+Compare damage and strength requirements, equip a suitable weapon, or remove it
+before changing your loadout. Equipped weapons contribute to your hunting damage.
+
+![Inventory with an equipped guard sword and a spare rusty sword in the backpack](docs/screenshots/inventory.png)
+
+</details>
+
+<details>
+<summary><strong>Marketplace — trade with the colony</strong></summary>
+
+**Targ** places market offers beside your own backpack. Buy equipment from other
+characters, set a price for your items, and withdraw your unsold listings.
+Seller names and bot role labels help identify the colony's traders; prices are
+shown in ore.
+
+![Player marketplace with seller offers, bot labels and item listing controls](docs/screenshots/market.png)
+
+</details>
+
+<details>
+<summary><strong>Merchant — buy and sell at the NPC stall</strong></summary>
+
+**Kupiec** provides a separate NPC shop with equipment prices, damage and strength
+requirements. Buy an upgrade from the merchant's stock or sell spare gear for
+50% of its base value. Your ore balance remains visible in the character sheet.
+
+![NPC merchant screen showing equipment stock, prices and backpack items](docs/screenshots/merchant.png)
+
+</details>
+
+<details>
+<summary><strong>Training — spend learning points on your character</strong></summary>
+
+**Nauczyciel** shows your learning points and ore alongside training options for
+strength, dexterity and mana. Each attribute increase costs one learning point
+and 10 ore. Unavailable actions are disabled until you meet the requirements.
+
+![Teacher screen with learning points, ore and attribute training options](docs/screenshots/training.png)
+
+</details>
+
+<details>
+<summary><strong>Boss expeditions — weigh the risk before entering</strong></summary>
+
+The expedition screen presents the boss's attributes, entry level, fixed rewards
+and energy cost before you commit. Each attempt costs 25 energy and starts a
+30-minute cooldown, including defeats. After a fight, the same screen shows your
+last result, rewards and saved combat report.
+
+![Minecrawler queen expedition with boss statistics, rewards and entry conditions](docs/screenshots/boss.png)
+
+</details>
+
+<details>
+<summary><strong>Mobile — the colony on a smaller screen</strong></summary>
+
+Navigation wraps to fit the viewport, location cards form a single column, and
+character panels stack above the main content. The same Gothic styling and game
+actions remain available on mobile.
+
+<img src="docs/screenshots/mobile.png" alt="Mobile colony hub with wrapped navigation and a single-column layout" width="320">
+
+</details>
+
 ## Local game first
 
 The default experience is one human playing a local colony populated by bots.
@@ -151,9 +264,6 @@ Here is the current state of the features:
 *   [ ] *And much more to come! :D*
 
 ---
-
-## 📸 Gallery
-*Screenshots from the early alpha versions will be displayed here soon.*
 
 ## Interface and continuous integration
 
