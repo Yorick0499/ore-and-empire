@@ -207,11 +207,13 @@ python manage.py run_bots --limit 3
 The manual command is an alternative to the automatic local launcher. Each
 invocation runs at most one action per selected bot. Bots have ordinary
 starting resources, unusable login passwords and use the same services as human
-players. New numbered accounts rotate between three roles: hunters equip weapons,
-train strength and hunt; traders buy and list stock; miners mine and claim ore.
+players. New numbered accounts rotate between hunter, trader and miner roles. These are
+preferences: every role can mine, fight, train, run timed errands and join a camp.
+Bots choose survivable encounters from unlocked locations, complete promotion
+objectives, recover resources and buy useful shard-shop products.
 Role labels appear on market offers and the colony directory shows the population.
-Bots buy market offers up to 120% of NPC value, list at 110%, and hold at most three
-items through their baseline policy. Repeated calls or an external scheduler are
+Bots buy market offers up to 120% of NPC value, list at 110%, and hold at most six
+items through their policy. Repeated calls or an external scheduler are
 required when using the manual command; `play.py` runs its own periodic rounds.
 Avoid overlapping scheduled runs.
 `--create` reuses designated bots and refuses to convert a human account.
@@ -228,9 +230,10 @@ NPC trades and listing/cancellation events are not yet part of this dataset.
 Trade history begins with this migration; earlier trades cannot be reconstructed.
 The same staff monitor now records bot decisions and exports them separately as
 CSV: schema version, immutable observation, role, action, target, success and
-actual ore/energy deltas. Action execution and its record commit together. Waits
+actual ore/energy/health/shard deltas. Action execution and its record commit together. Waits
 are included; unexpected exceptions roll back the action. Data starts at migration
-0008 and grows per tick. Ore deltas include trades, so they do not measure currency
+0008; schema 2 expands observations and outcomes. Rest is sampled at five-minute
+intervals, while non-rest actions retain full history. Ore deltas include trades, so they do not measure currency
 creation. ML forecasting remains a later milestone after collecting enough observations.
 
 ### Validation
@@ -326,3 +329,23 @@ credentials in the ignored `.admin-access.json`, sign in, and open **Zarządca**
 The game-master panel can restore resources, grant equipment/shards and edit stats;
 full Django administration also manages accounts, events, errands and shop stock.
 No administrator password is committed to the repository.
+
+### Autonomous bot scheduler
+
+`play.py` runs the full bot loop while the local server is open, even with the
+browser closed. Progress is saved; resources recover with elapsed time after a
+restart. Gameplay actions are not replayed for time spent with the server stopped.
+The policies are autonomous rule-based players, not an LLM service.
+
+For a separate web server, initialize the pool and run one scheduler instead:
+
+```sh
+python manage.py seed_adventures
+python manage.py run_bots --create 6 --loop --interval 5
+# Or a bounded batch (one action per bot per round):
+python manage.py run_bots --limit 6 --rounds 10 --interval 5
+```
+
+Do not run a separate scheduler alongside `play.py` bots. The immutable observation
+and allowlisted executor also cover camp advancement, boss objectives, errands and
+shop purchases. Bots cannot mint ore/shards or call administrator operations.

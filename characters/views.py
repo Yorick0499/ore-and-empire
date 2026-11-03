@@ -293,13 +293,13 @@ def market_monitor_view(request):
         writer.writerow([
             "decision_id", "timestamp_utc", "schema_version", "profile_id",
             "role", "action", "target_id", "success", "ore_delta",
-            "energy_delta", "observation_json",
+            "energy_delta", "health_delta", "premium_delta", "observation_json",
         ])
         for decision in decisions.iterator():
             writer.writerow([
                 decision.pk, decision.created_at.isoformat(), decision.schema_version,
                 decision.profile_id, decision.role, decision.action, decision.target_id,
-                decision.success, decision.ore_delta, decision.energy_delta,
+                decision.success, decision.ore_delta, decision.energy_delta, decision.health_delta, decision.premium_delta,
                 json.dumps(decision.observation, sort_keys=True),
             ])
         return response

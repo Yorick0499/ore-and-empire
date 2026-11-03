@@ -104,6 +104,14 @@ class PlayerProfile(models.Model):
         ],
     )
 
+    class Meta:
+        constraints = [
+            models.CheckConstraint(condition=models.Q(current_energy__gte=0) & models.Q(current_energy__lte=models.F("max_energy")), name="profile_energy_bounds"),
+            models.CheckConstraint(condition=models.Q(current_health__lte=models.F("life")), name="profile_health_bounds"),
+            models.CheckConstraint(condition=models.Q(ore_balance__gte=0), name="profile_ore_nonnegative"),
+            models.CheckConstraint(condition=models.Q(life__gte=1) & models.Q(max_energy__gte=1), name="profile_resource_caps_positive"),
+        ]
+
     # actions time
     action_end_time = models.DateTimeField(null=True, blank=True)
 
@@ -211,6 +219,8 @@ class BotDecision(models.Model):
     success = models.BooleanField()
     ore_delta = models.IntegerField()
     energy_delta = models.IntegerField()
+    health_delta = models.IntegerField(default=0)
+    premium_delta = models.IntegerField(default=0)
 
     class Meta:
         ordering = ["-created_at", "-pk"]

@@ -418,6 +418,7 @@ class BossTests(TestCase):
     def test_defeat_charges_energy_without_reward_and_still_cools_down(self):
         self.profile.inventory.all().delete()
         self.profile.life = 20
+        self.profile.current_health = 20
         self.profile.save()
         attempt = game.execute_boss(self.profile, "crawler_nest")
         self.assertFalse(attempt.won)
@@ -726,7 +727,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 1)
+        self.assertEqual(decision.schema_version, 2)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

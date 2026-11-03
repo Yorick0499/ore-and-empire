@@ -69,3 +69,37 @@ purchases, currency entries and market facts are read-only there.
 The local launcher serializes bot rounds and HTTP requests. These checks do not
 establish production concurrency readiness on SQLite; PostgreSQL load/locking tests
 remain a separate milestone.
+
+## Autonomous policies and observation schema 2
+Hunter, trader and miner are preferences rather than exclusive abilities. All roles
+can mine and claim, fight safe unlocked encounters, gain XP/levels, equip gear,
+train, join camps and complete their promotion objectives. The controller estimates
+incoming damage without relying on critical hits. An injured/exhausted bot buys a
+useful recovery drink when affordable, runs an errand while recovering, or waits.
+It uses the same elapsed-time recovery and domain services as a human.
+
+Shard income comes from claimed errands. The policy can spend it on healing,
+energy or an equippable weapon improvement. Policies receive immutable observations
+and may only act on the targets offered by the controller. Inventory is capped at
+six items, NPC/market purchases check real balances, and the baseline price ceiling
+is 120% of NPC value. Ordinary trading transfers ore rather than creating it.
+
+The launcher runs one bounded action per bot per round; the manual command also
+supports `--rounds` and a continuous `--loop`. Use only one scheduler for a world.
+No gameplay catch-up is simulated while the process is stopped. Resource recovery
+still accounts for offline elapsed time. These are deterministic rule-based
+policies, with no model API or external AI credentials.
+
+Decision schema 2 includes current health, shards, offered hunt/habitat, quest and
+shop targets, and persisted health/shard deltas. Non-rest decisions are recorded in
+full. Repeated rest is sampled every five minutes rather than filling the database
+with identical five-second waits. SQLite and PostgreSQL also enforce nonnegative
+ore and bounded health/energy at the database level.
+
+Validation: 105 Django tests, including an accelerated 240-round/three-role
+simulation (720 ticks) that reaches levels, completed errands, camp promotions,
+real shard rewards and shop spending without runtime grants. Tests cover forged
+policy targets, resource recovery, event boundaries, reward snapshots, ownership,
+replay prevention, rollback, admin access and rankings. Browser checks covered real
+admin grants/edits, a timed errand and its reward, consumable effects, and all five
+new screens at 320/390/768/1280px, including a long player name.

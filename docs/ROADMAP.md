@@ -53,7 +53,7 @@ and a browser-flow smoke test. Push completed milestones to the development
 branch; do not merge into main automatically.
 
 ## Verified in this milestone
-- 82 Django tests passed.
+- 105 Django tests passed.
 - Dependency checks, Django system checks and migration drift checks passed.
 - Real Chromium smoke: registration, NPC purchase, equipment, hunt XP, timed
   mining and reward claim, logout; desktop and 390px layouts checked.
@@ -81,3 +81,15 @@ branch; do not merge into main automatically.
 - GUI: seven screens checked at 320/390/768/1280px with a long username;
   no document overflow or overflowing heading/button/stat text detected.
 - 88 distinct image files decoded and verified; repeated wiki models share files.
+
+## Autonomous RPG economy and operator tools — implemented
+- Persistent combat injuries; shared capped health/energy recovery for humans/bots.
+- 11 timed errands, single active activity, immutable reward snapshots and one-time claims.
+- Seasonal/holiday/random/manual events with non-stacking resource modifiers.
+- Earned magic shards, append-only ledger, four illustrated shop products and replay-safe purchases.
+- Global, per-camp and camp-team standings with population filters.
+- Explicit local administrator provisioning; superuser game-master tools, audit, and editable content.
+- Full autonomous rule policies with safe hunt selection, training, errands, camp quests,
+  equipment and shard spending; bounded or continuous standalone scheduler.
+- 720 accelerated bot ticks verified without economy grants; 105 tests pass.
+- New screens checked in four viewport widths; all 92 distinct artwork files decode.

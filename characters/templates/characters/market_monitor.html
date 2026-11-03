@@ -7,9 +7,9 @@
 {% for row in bot_summary %}<tr><td>{{ row.role }}</td><td>{{ row.action }}</td><td>{{ row.success|yesno:"Sukces,Porażka" }}</td><td>{{ row.count }}</td><td>{{ row.ore_delta }}</td></tr>
 {% empty %}<tr><td colspan="5">Brak zapisanych decyzji.</td></tr>{% endfor %}
 </tbody></table>
-<h3>Ostatnie 50 decyzji</h3>
-<table><thead><tr><th>Czas</th><th>Bot ID</th><th>Rola</th><th>Akcja</th><th>Wynik</th><th>Ruda</th><th>Energia</th></tr></thead><tbody>
-{% for decision in decisions %}<tr><td>{{ decision.created_at|date:'Y-m-d H:i:s' }}</td><td>{{ decision.profile_id }}</td><td>{{ decision.role }}</td><td>{{ decision.action }}</td><td>{{ decision.success|yesno:"Sukces,Porażka" }}</td><td>{{ decision.ore_delta }}</td><td>{{ decision.energy_delta }}</td></tr>
-{% empty %}<tr><td colspan="7">Uruchom kolonię, aby zebrać dane.</td></tr>{% endfor %}
+<h3>Ostatnie 50 decyzji</h3><p class="requirements">Odpoczynek jest zapisywany przy przejściu w stan oczekiwania, potem co 5 minut. Pozostałe akcje mają pełną historię.</p>
+<table><thead><tr><th>Czas</th><th>Bot ID</th><th>Rola</th><th>Akcja</th><th>Wynik</th><th>Ruda</th><th>Energia</th><th>Zdrowie</th><th>Odłamki</th></tr></thead><tbody>
+{% for decision in decisions %}<tr><td>{{ decision.created_at|date:'Y-m-d H:i:s' }}</td><td>{{ decision.profile_id }}</td><td>{{ decision.role }}</td><td>{{ decision.action }}</td><td>{{ decision.success|yesno:"Sukces,Porażka" }}</td><td>{{ decision.ore_delta }}</td><td>{{ decision.energy_delta }}</td><td>{{ decision.health_delta }}</td><td>{{ decision.premium_delta }}</td></tr>
+{% empty %}<tr><td colspan="9">Uruchom kolonię, aby zebrać dane.</td></tr>{% endfor %}
 </tbody></table></section>
 {% endblock %}
