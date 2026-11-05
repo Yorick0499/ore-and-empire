@@ -566,7 +566,7 @@ class LocalWorldTests(TestCase):
             call_command("run_colony", bots=1, stdout=StringIO())
         tick.assert_called_once()
         self.assertEqual(tick.call_args.args[0].pk, self.bot.pk)
-        self.assertEqual(setup.call_count, 4)
+        self.assertEqual([call.args[0] for call in setup.call_args_list], ["migrate", "seed_world", "seed_adventures", "seed_story", "run_bots"])
         server.__exit__.assert_called_once()
 
     def test_no_bot_mode_never_ticks(self):
@@ -587,7 +587,7 @@ class LocalWorldTests(TestCase):
         ) as tick:
             call_command("run_colony", bots=0, stdout=StringIO())
         tick.assert_not_called()
-        self.assertEqual(setup.call_count, 3)
+        self.assertEqual([call.args[0] for call in setup.call_args_list], ["migrate", "seed_world", "seed_adventures", "seed_story"])
 
     def test_busy_port_does_not_initialize_or_modify_world(self):
         with patch(
@@ -727,7 +727,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 3)
+        self.assertEqual(decision.schema_version, 4)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

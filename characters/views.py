@@ -561,3 +561,36 @@ def colony_life_view(request):
     for resident in residents:
         resident.scheduler_active = bool(resident.bot_last_tick and now - resident.bot_last_tick < timedelta(seconds=90))
     return render(request, 'characters/colony_life.html', {'residents': residents, 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
+
+
+@login_required
+def story_view(request):
+    from .models import StoryQuest, StoryRun
+    from .story_quests import (accept_story, activate_story, claim_story, choose_story,
+                              travel_story, available, progress_for, ready)
+    profile = request.user.playerprofile
+    refresh_player(profile)
+    if request.method == 'POST':
+        target = positive_id(request.POST.get('target'))
+        action = request.POST.get('action')
+        services = {'accept': accept_story, 'start': activate_story, 'claim': claim_story}
+        if action in services:
+            success = services[action](profile, target)
+        elif action == 'talk':
+            success = choose_story(profile, target, request.POST.get('goal'), request.POST.get('option'))
+        elif action == 'travel':
+            success = travel_story(profile, target, request.POST.get('goal'))
+        else:
+            success = False
+        report_action(request, bool(success))
+        return redirect('story_page')
+    run = profile.story_runs.exclude(status='claimed').first()
+    goals = []
+    if run:
+        for goal in run.snapshot['objectives']:
+            done = progress_for(profile, run, goal)
+            total = 1 if goal['kind'] == 'wait' else goal.get('count', 1)
+            goals.append({'goal': goal, 'done': done, 'total': total, 'complete': done >= total, 'choice': run.choices.get(goal['id'])})
+    accepted_ids = profile.story_runs.values_list('quest_id', flat=True)
+    quests = [q for q in StoryQuest.objects.filter(enabled=True).exclude(pk__in=accepted_ids) if available(profile, q)] if not run else []
+    return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': profile.story_runs.filter(status='claimed')[:50]})

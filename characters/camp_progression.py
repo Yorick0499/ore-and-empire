@@ -127,6 +127,9 @@ def promote_in_camp(profile, rank_key):
 def record_camp_event(profile, event):
     """Called inside the successful domain action transaction; never from forms."""
     from .models import CampQuest
+    from .story_quests import record_story_event
+    kind, _, target = event.partition(":")
+    record_story_event(profile, kind, target)
     for quest in CampQuest.objects.select_for_update().filter(profile=profile, promoted_at__isnull=True):
         rank = BY_RANK.get(quest.rank_key)
         if not rank or not available_rank(profile, rank):

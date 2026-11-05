@@ -57,6 +57,8 @@ class Observation:
     upgrade_gain: int = 0
     ore_reserve: int = 0
     disposal_id: int | None = None
+    story_action: str = ""
+    story_target: int | None = None
 
 
 class Policy(Protocol):
@@ -98,6 +100,8 @@ class BaselinePolicy:
                 return "buy", o.offer_id
             if o.blueprint_id:
                 return "stock", o.blueprint_id
+        if o.story_action and o.story_target:
+            return o.story_action, o.story_target
         if o.boss_key and o.energy >= 25:
             return "boss", None
         if (o.needs_ore or o.quest_mine) and o.energy >= 10:
@@ -175,10 +179,12 @@ def tick_bot(profile, policy=None):
     profile.bot_last_tick = timezone.now()
     profile.save(update_fields=["bot_last_tick"])
     game.refresh_player(profile)
+    from .story_quests import bot_story_plan, accept_story, activate_story, claim_story, choose_story, travel_story
+    story = bot_story_plan(profile)
     inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped), None)
     damage = equipped.blueprint.damage if equipped else 0
-    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped]
+    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.blueprint_id not in story.item_ids]
     item = spare[0] if spare else None
     equipment = max((item for item in spare if item.blueprint.required_strength <= profile.strength and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
     stock = ItemBluePrint.objects.filter(base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
@@ -203,11 +209,21 @@ def tick_bot(profile, policy=None):
                    key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and profile.bot_role != "trader" else None
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
+    # Delivery stock is bought through the ordinary services and reserved from sale/equip.
+    delivery_needed = False
+    if story.missing_items and len(inventory) < 6:
+        needed = ItemBluePrint.objects.filter(pk__in=story.missing_items).order_by('base_value', 'pk').first()
+        if needed:
+            delivery_needed = True
+            if needed.base_value > 0 and needed.base_value <= profile.ore_balance:
+                stock, offer, upgrade = needed, None, None
+                story = type(story)('stock', needed.pk, story.goal, story.option, story.events, story.item_ids, story.missing_items)
     rank = None
     rank_action = ""
-    quest_mine = needs_ore = False
-    hunt_goals = []
-    boss_goals = []
+    quest_mine = any(kind == 'mine' for kind, _ in story.events)
+    needs_ore = delivery_needed and not story.action
+    hunt_goals = [key for kind, key in story.events if kind == 'hunt']
+    boss_goals = [key for kind, key in story.events if kind == 'boss']
     training = "strength"
     training_needed = profile.skill_points > 0 and profile.strength < 15 + profile.level * 4
     quest = profile.camp_quests.filter(promoted_at__isnull=True).first()
@@ -215,7 +231,7 @@ def tick_bot(profile, policy=None):
         rank = next((r for r in RANKS if r.key == quest.rank_key and available_rank(profile, r)), None)
         if rank:
             if quest_complete(quest, rank):
-                needs_ore = profile.ore_balance < rank.cost
+                needs_ore = needs_ore or profile.ore_balance < rank.cost
                 if getattr(profile, rank.attribute) < rank.attribute_value:
                     training, training_needed = rank.attribute, True
                 elif profile.level >= rank.level and not needs_ore:
@@ -232,6 +248,9 @@ def tick_bot(profile, policy=None):
         rank = next((r for r in RANKS if available_rank(profile, r)), None)
         if rank:
             rank_action = "accept"
+    story_training = next((key for kind, key in story.events if kind == 'train'), None)
+    if story_training:
+        training, training_needed = story_training, True
     hunt_options = []
     for location in LOCATIONS:
         if location.route != "hunt_page" or not location.accessible(profile):
@@ -275,12 +294,20 @@ def tick_bot(profile, policy=None):
         upgrade_gain=upgrade[3] if upgrade else 0,
         ore_reserve=UPGRADE_ORE_RESERVE if equipped and profile.bot_role != "trader" else 0,
         disposal_id=disposal.pk if disposal else None,
+        story_action=story.action, story_target=story.target,
     )
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False)
         return "rejected", False
-    if action == "claim" and obs.reward_ready:
+    story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
+    if action in story_services and action == story.action and target == story.target:
+        success = bool(story_services[action](profile, target))
+    elif action == 'story_talk' and action == story.action and target == story.target:
+        success = choose_story(profile, target, story.goal, story.option)
+    elif action == 'story_travel' and action == story.action and target == story.target:
+        success = travel_story(profile, target, story.goal)
+    elif action == "claim" and obs.reward_ready:
         success = game.claim_ore_reward(profile)
     elif action == "mine":
         success = game.start_mining(profile, 15)

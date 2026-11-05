@@ -5,6 +5,9 @@ from django.utils import timezone
 from .models import PlayerProfile, BotDecision, TavernTopic, TavernMessage
 
 ACTION_NAMES = {
+    'story_accept': 'przyjął zadanie fabularne', 'story_start': 'rozpoczął zadanie fabularne',
+    'story_claim': 'zakończył zadanie fabularne', 'story_talk': 'odbył rozmowę w ramach zadania',
+    'story_travel': 'wyruszył w podróż fabularną',
     'mine': 'rozpoczął zmianę w kopalni', 'claim': 'odebrał wydobytą rudę',
     'hunt': 'wrócił z polowania', 'boss': 'podjął wyprawę na bossa',
     'train': 'trenował u nauczyciela', 'equip': 'zmienił oręż',
