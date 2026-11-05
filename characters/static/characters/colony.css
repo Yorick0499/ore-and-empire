@@ -318,3 +318,7 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .location-filters{display:grid;gap:.6rem}.location-filters input,.location-filters select{max-width:100%;min-width:0;width:100%;box-sizing:border-box}
 .colony-panel time{overflow-wrap:anywhere}.status-panel ol{padding-left:1.4rem}
 @media(min-width:700px){.location-filters{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}}
+
+.world-clock{display:flex;flex-wrap:wrap;gap:.45rem 1.2rem;padding:.7rem max(1rem,3vw);background:#171c1b;border-bottom:1px solid #76643a;font-size:.9rem;color:#d6d1ba;overflow-wrap:anywhere}.world-clock strong{color:#f4d98e}.world-clock a{color:#e7c478}
+.time-night .colony-header,.time-dusk .colony-header{background-blend-mode:multiply;background-color:#263148}.time-dawn .colony-header{background-color:#492b21;background-blend-mode:soft-light}.season-winter .world-clock{border-color:#8cabb3}.season-autumn .world-clock{border-color:#aa7743}.season-spring .world-clock{border-color:#78935b}
+@media(max-width:600px){.world-clock{display:grid;gap:.3rem}}

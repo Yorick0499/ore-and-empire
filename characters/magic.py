@@ -118,13 +118,14 @@ def offers(profile):
 def survival_health(profile,monster,plan,mana=None):
     """Conservative deterministic forecast: no critical hits, actual mana/scroll budget."""
     health=monster['life'];mana=profile.current_mana if mana is None else mana;casts=0;incoming=0
-    base=max(1,monster['strength']-profile.effective_protection(monster.get('damage_type','weapon')))
+    protection=min(profile.effective_protection('weapon'),profile.effective_protection('magic')) if monster.get('boss_key')=='sleeper_sanctum' else profile.effective_protection(monster.get('damage_type','weapon'))
+    base=max(1,monster.get('forecast_strength',monster['strength'])-protection)
     while health>0:
         casting=mana>=plan.cost and (not plan.scroll or casts<plan.quantity)
         if casting:
             spell=plan.spell;mana-=plan.cost;casts+=1
             damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
-        else:damage=max(1,profile.strength+profile.equipment_stats['strength_bonus']-monster.get('weapon_prot',0))
+        else:damage=max(1,profile.strength+profile.equipment_stats['strength_bonus']-monster.get('forecast_protection',monster.get('weapon_prot',0)))
         health-=damage
         if health<=0:break
         if casting and spell.stagger_every and casts%spell.stagger_every==0:continue

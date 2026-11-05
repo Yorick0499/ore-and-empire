@@ -200,11 +200,15 @@ class BaselinePolicyV12(BaselinePolicyV11):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV12):
+class BaselinePolicyV13(BaselinePolicyV12):
     def choose(self,o):
         if o.market_action and not o.busy and not o.adventure_ready and not o.reward_ready:
             return o.market_action,o.market_target
         return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV13):
+    pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -230,8 +234,8 @@ def choose_upgrade(stock, offers, damage, ore):
 
 
 def health_needed(profile, monster, damage):
-    rounds = math.ceil(monster["life"] / max(1, damage - monster["weapon_prot"]))
-    incoming = max(1, monster["strength"] - profile.effective_protection(monster.get("damage_type", "weapon")))
+    rounds = math.ceil(monster["life"] / max(1, damage - monster.get("forecast_protection",monster["weapon_prot"])))
+    incoming = max(1, monster.get("forecast_strength",monster["strength"]) - min(profile.effective_protection("weapon"),profile.effective_protection("magic")) if monster.get("boss_key")=="sleeper_sanctum" else monster.get("forecast_strength",monster["strength"]) - profile.effective_protection(monster.get("damage_type", "weapon")))
     return (rounds - 1) * incoming + 10
 
 
@@ -264,17 +268,19 @@ def tick_bot(profile, policy=None):
     game.refresh_player(profile)
     from .story_quests import bot_story_plan, accept_story, activate_story, claim_story, choose_story, travel_story
     story = bot_story_plan(profile)
-    combat_equipment = profile.bot_role != "trader" or any(kind in {"hunt", "boss"} for kind, _ in story.events)
+    from .finale import finale_ready
+    final_goal = finale_ready(profile) and not hasattr(profile, "campaign_completion")
+    combat_equipment = final_goal or profile.bot_role != "trader" or any(kind in {"hunt", "boss"} for kind, _ in story.events)
     from .magic import combat_plan
     profile._bot_magic_plan=combat_plan(profile)
-    inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
+    inventory = list(profile.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.blueprint.damage if equipped else 0
     from .models import CraftRecipe
     from .crafting import valid_recipe,interested
     reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True) if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
     spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials]
-    item = spare[0] if spare else None
+    item = next((i for i in spare if i.blueprint.tradeable), None)
     equipment = max((item for item in spare if item.blueprint.kind == "weapon" and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
     if not equipment:
         worn = next((i.blueprint.weapon_prot for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
@@ -302,7 +308,7 @@ def tick_bot(profile, policy=None):
         stock = offer = upgrade = None
     # Sell obsolete weapons through the same NPC service as a human player.
     # Keep stronger future gear, listed goods and the trader's merchandise.
-    disposal = min((i for i in spare if i.blueprint.kind == "weapon" and i.blueprint.damage < damage),
+    disposal = min((i for i in spare if i.blueprint.tradeable and i.blueprint.kind == "weapon" and i.blueprint.damage < damage),
                    key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and combat_equipment else None
     if len(inventory) >= 5:
         disposal = next((i for i in spare if i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable), disposal)
@@ -323,6 +329,7 @@ def tick_bot(profile, policy=None):
     needs_ore = delivery_needed and not story.action
     hunt_goals = [key for kind, key in story.events if kind == 'hunt']
     boss_goals = [key for kind, key in story.events if kind == 'boss']
+    if final_goal:boss_goals.append('sleeper_sanctum')
     training = "strength"
     training_needed = profile.skill_points > 0 and profile.strength < 15 + profile.level * 4
     quest = profile.camp_quests.filter(promoted_at__isnull=True).first()
@@ -354,6 +361,9 @@ def tick_bot(profile, policy=None):
     story_training = next((key for kind, key in story.events if kind == 'train'), None)
     if story_training:
         training, training_needed = story_training, True
+    if final_goal and health_at_rest(profile,game.BOSSES["sleeper_sanctum"].monster,profile.strength+damage) > profile.max_health:
+        training, training_needed = "strength", True
+        needs_ore = needs_ore or bool(profile.skill_points and profile.ore_balance < 10)
     hunt_options = []
     for location in LOCATIONS:
         if location.route != "hunt_page" or not location.accessible(profile):
@@ -373,7 +383,7 @@ def tick_bot(profile, policy=None):
     # Rest toward a reachable story fight instead of spending each recovered point
     # on lower-value fallback hunts forever. Impossible-at-full-health fights still
     # permit training/leveling/gear upgrades rather than causing permanent rest.
-    story_fights = []
+    story_fights = [(game.BOSSES["sleeper_sanctum"].monster,25)] if final_goal else []
     for kind, key in story.events:
         if kind == 'hunt' and any(loc.accessible(profile) and key in loc.monsters for loc in LOCATIONS):
             story_fights.append((game.BESTIARY[key], 15))
@@ -450,7 +460,7 @@ def tick_bot(profile, policy=None):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-13" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-14" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)

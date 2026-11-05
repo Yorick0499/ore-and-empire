@@ -104,7 +104,8 @@ def progress_for(profile, run, goal):
     if kind == 'wait':
         return int(timezone.now() >= run.activated_at + timedelta(seconds=goal['seconds']))
     if kind == 'item':
-        return min(goal.get('count', 1), profile.inventory.filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False).count())
+        from django.db.models import Sum
+        return min(goal.get('count', 1), profile.inventory.filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False).aggregate(total=Sum('quantity'))['total'] or 0)
     if kind == 'talk':
         return int(goal['id'] in run.choices)
     return run.progress.get(goal['id'], 0)
@@ -181,18 +182,31 @@ def claim_story(profile, run_id):
     run = owned_run(profile, run_id)
     if not run or not ready(profile, run): return False
     # Lock and recheck the exact physical items before consuming any or granting rewards.
-    deliveries = []
+    deliveries = {}
     for goal in run.snapshot['objectives']:
         if goal['kind'] != 'item': continue
-        items = list(profile.inventory.select_for_update().filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False).exclude(pk__in=deliveries).order_by('pk')[:goal.get('count', 1)])
-        if len(items) < goal.get('count', 1): return False
-        deliveries.extend(i.pk for i in items)
+        needed = goal.get('count', 1)
+        items = profile.inventory.select_for_update().filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False).order_by('pk')
+        for item in items:
+            used = min(needed, item.quantity - deliveries.get(item.pk, 0))
+            if used > 0:
+                deliveries[item.pk] = deliveries.get(item.pk, 0) + used
+                needed -= used
+            if not needed:break
+        if needed:return False
     rewards = run.snapshot['rewards']
     for item in rewards.get('items', []):
         blueprint = ItemBluePrint.objects.get(pk=item['blueprint'])
         for _ in range(item.get('count', 1)):
             OwnedItem.objects.create(owner=profile, blueprint=blueprint)
-    OwnedItem.objects.filter(pk__in=deliveries, owner=profile).delete()
+    from .market_policy import record_market_event
+    for item in profile.inventory.select_for_update().filter(pk__in=deliveries):
+        count = deliveries[item.pk]
+        record_market_event(profile,item,"consumption",quantity=count,reason="story_delivery")
+        if count == item.quantity:item.delete()
+        else:
+            item.quantity -= count
+            item.save(update_fields=['quantity'])
     profile.ore_balance += rewards.get('ore', 0)
     profile.experience += rewards.get('experience', 0)
     profile.save(update_fields=['ore_balance', 'experience'])

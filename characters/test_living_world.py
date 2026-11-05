@@ -47,7 +47,7 @@ class LivingWorldTests(TestCase):
         self.assertTrue(claim_adventure(self.profile, run.pk))
         self.assertFalse(claim_adventure(self.profile, run.pk))
         self.profile.refresh_from_db()
-        self.assertEqual((self.profile.ore_balance, self.profile.experience, self.profile.premium_balance), (62, 80, 1))
+        self.assertEqual((self.profile.ore_balance, self.profile.experience, self.profile.premium_balance), (50+run.ore_reward, run.experience_reward, 1))
         self.assertEqual(PremiumEntry.objects.get().amount, 1)
 
     def test_unclaimed_mining_blocks_quest_and_unfinished_quest_blocks_boss(self):
@@ -112,7 +112,9 @@ class LivingWorldTests(TestCase):
         self.assertEqual(self.profile.premium_balance, 3)
         with patch("characters.world_events.timezone.now", return_value=now + timedelta(hours=1)):
             run = start_adventure(self.profile, self.quest.pk)
-        self.assertEqual((run.ore_reward, run.experience_reward, run.premium_reward), (12, 80, 1))
+        from .world_events import reward_snapshot
+        with patch("characters.world_events.timezone.now", return_value=now+timedelta(hours=1)):
+            self.assertEqual((run.ore_reward, run.experience_reward, run.premium_reward), reward_snapshot(12,80,1)[:3])
 
     def test_calendar_restarts_preserve_admin_edits_and_winter_crosses_year(self):
         now = datetime(2026, 12, 25, tzinfo=dt_timezone.utc)

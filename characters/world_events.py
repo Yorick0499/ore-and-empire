@@ -13,11 +13,13 @@ def active_events(now=None):
 
 def reward_snapshot(ore, experience, premium=0):
     events = list(active_events())
+    from .world_clock import clock_state
+    clock = clock_state()
     return (
-        ore * max([100, *(event.ore_percent for event in events)]) // 100,
-        experience * max([100, *(event.experience_percent for event in events)]) // 100,
+        ore * max([clock["ore"], *(event.ore_percent for event in events)]) // 100,
+        experience * max([clock["experience"], *(event.experience_percent for event in events)]) // 100,
         premium + max([0, *(event.premium_bonus for event in events)]) if premium else 0,
-        [event.name for event in events],
+        [clock["name"] + " — rytm kolonii", *[event.name for event in events]],
     )
 
 
@@ -34,6 +36,18 @@ def ensure_world_events(now=None):
             ("spring", "Przebudzenie lasu", "seasonal", datetime(year, 3, 20, tzinfo=utc), datetime(year, 3, 28, tzinfo=utc), 100, 130, 1),
         ):
             WorldEvent.objects.get_or_create(key=prefix+f"{key}-{year}", defaults=dict(name=name, kind=kind, starts_at=start, ends_at=end, ore_percent=ore, experience_percent=experience, premium_bonus=premium, description="Premie do nagród za polowania, wydobycie i wyprawy. Odłamki bonusowe dotyczą wypraw czasowych."))
+    seasonal_names = (
+        "Szlaki pod szronem", "Warty przy zimowych ogniskach", "Roztopy na trakcie",
+        "Wiosenne zbiory ziół", "Przeprawy przez wezbrane strumienie", "Letnie karawany",
+        "Długie patrole lata", "Zbiory na polach ryżowych", "Jesienne transporty rudy",
+        "Zapasy przed chłodem", "Mgły nad doliną", "Pierwsze zimowe warty",
+    )
+    for year in (now.year-1, now.year, now.year+1):
+        for month, name in enumerate(seasonal_names, 1):
+            WorldEvent.objects.get_or_create(key=prefix+f"season-window-{year}-{month}",defaults=dict(
+                name=name,kind="seasonal",starts_at=datetime(year,month,5,tzinfo=utc),ends_at=datetime(year,month,9,tzinfo=utc),
+                ore_percent=115 if month%2 else 110,experience_percent=110 if month%2 else 115,
+                description="Sezonowe prace mieszkańców. Premie nie sumują się: obowiązuje najwyższa dla danego zasobu. Wszystkie szlaki pozostają dostępne."))
     # A deterministic daily draw survives restarts and concurrent initialization.
     day = now.date()
     draw = int(hashlib.sha256(("ore-empire-events-v1:" + day.isoformat()).encode()).hexdigest()[:8], 16)

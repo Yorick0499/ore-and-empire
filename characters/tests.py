@@ -205,7 +205,8 @@ class ColonyTests(TestCase):
         with patch("characters.game_logic.random.randint", return_value=20):
             self.assertTrue(game.claim_ore_reward(self.a))
         self.assertFalse(game.claim_ore_reward(self.a))
-        self.assertEqual(self.a.ore_balance, 70)
+        from .world_events import reward_snapshot
+        self.assertEqual(self.a.ore_balance, 50+reward_snapshot(20,0)[0])
 
     def test_unknown_hunt_and_busy_hunt_cost_no_energy(self):
         self.assertFalse(game.execute_hunt(self.a, "unknown"))
@@ -216,7 +217,8 @@ class ColonyTests(TestCase):
     def test_beginner_can_win_and_gain_experience(self):
         log = game.execute_hunt(self.a, "young_scavenger")
         self.assertIsInstance(log, list)
-        self.assertEqual(self.a.experience, 30)
+        from .world_events import reward_snapshot
+        self.assertEqual(self.a.experience, reward_snapshot(0,30)[1])
         self.assertEqual(self.a.current_energy, 85)
 
     def test_training_is_allowlisted_and_charges_once(self):
@@ -380,6 +382,7 @@ class BossTests(TestCase):
     def test_victory_records_report_and_awards_server_rewards(self):
         from .models import BossAttempt
 
+        from .world_events import reward_snapshot
         attempt = game.execute_boss(self.profile, "crawler_nest")
         self.assertTrue(attempt.won)
         self.profile.refresh_from_db()
@@ -389,17 +392,18 @@ class BossTests(TestCase):
                 self.profile.ore_balance,
                 self.profile.current_energy,
             ),
-            (300, 110, 75),
+            (reward_snapshot(0,300)[1], 50+reward_snapshot(60,0)[0], 75),
         )
         self.assertEqual(BossAttempt.objects.count(), 1)
-        self.assertIn("Nagroda: 300 PD i 60 bryłek rudy.", attempt.combat_log)
+        self.assertIn(f"Nagroda: {reward_snapshot(0,300)[1]} PD i {reward_snapshot(60,0)[0]} bryłek rudy.", attempt.combat_log)
 
     def test_cooldown_prevents_repeat_rewards_and_costs(self):
+        from .world_events import reward_snapshot
         game.execute_boss(self.profile, "crawler_nest")
         self.assertFalse(game.execute_boss(self.profile, "crawler_nest"))
         self.profile.refresh_from_db()
         self.assertEqual(
-            (self.profile.experience, self.profile.current_energy), (300, 75)
+            (self.profile.experience, self.profile.current_energy), (reward_snapshot(0,300)[1], 75)
         )
 
     def test_cooldown_expires_at_boundary(self):
@@ -732,7 +736,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 13)
+        self.assertEqual(decision.schema_version, 14)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

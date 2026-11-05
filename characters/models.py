@@ -187,6 +187,15 @@ class PlayerProfile(models.Model):
         return rank.name if rank and rank.camp == self.camp else "Bez rangi"
 
     @property
+    def display_name(self):
+        names = ("Brann", "Kord", "Mira", "Hagen ze Sztolni", "Ruda", "Silas z Traktu", "Nela", "Jarven", "Falk", "Toran", "Dagna", "Orrik", "Bora", "Velin", "Gerta", "Arvid", "Tessa", "Kurt", "Nordin", "Wolmar")
+        return names[(self.pk-1)%len(names)] if self.is_bot else self.user.username
+
+    @property
+    def training_cost(self):
+        return 10-self.camp_perks["training_level"]
+
+    @property
     def required_exp(self):
         n = self.level + 1
         return 250 * n * (n + 1)
@@ -832,3 +841,16 @@ class JournalNotice(models.Model):
     class Meta:
         ordering = ["-created_at", "-pk"]
         constraints = [models.UniqueConstraint(fields=["profile", "key"], name="unique_private_notice")]
+
+
+class CampaignCompletion(models.Model):
+    profile = models.OneToOneField(PlayerProfile, on_delete=models.PROTECT, related_name="campaign_completion")
+    battle = models.OneToOneField(BossAttempt, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(default=timezone.now)
+    snapshot = models.JSONField(default=dict)
+
+class EditionConclusion(models.Model):
+    world = models.OneToOneField(World, on_delete=models.PROTECT, related_name="conclusion")
+    operator = models.ForeignKey("auth.User", on_delete=models.PROTECT)
+    created_at = models.DateTimeField(default=timezone.now)
+    snapshot = models.JSONField(default=dict)

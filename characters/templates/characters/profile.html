@@ -1,9 +1,10 @@
 <aside class="sidebar" aria-label="Karta postaci">
-  <div class="sidebar-header"><span class="eyebrow">Dziennik skazańca</span><h2>{{ profile.user.username }}</h2><p>{{ profile.get_camp_display }} · {{ profile.guild_name }}</p></div>
+  <div class="sidebar-header"><span class="eyebrow">Dziennik skazańca</span><h2>{{ profile.display_name }}</h2><p>{{ profile.get_camp_display }} · {{ profile.guild_name }}</p></div>
   <div class="nav-section">
     <h3 class="nav-category">Postać</h3>
     <div class="stat-item">Poziom <span class="val">{{ profile.level }}</span></div>
     <div class="stat-item">Doświadczenie <span class="val">{{ profile.experience }} PD</span></div>
+    <p class="requirements">Następny poziom przy {{ profile.required_exp }} PD.</p>
     <h3 class="nav-category">Zasoby</h3>
     <div class="stat-item">Bryłki rudy <span class="gold-val">{{ profile.ore_balance }}</span></div>
     <label for="character-energy" class="stat-item">Energia <span>{{ profile.current_energy }}/{{ profile.max_energy }}</span></label>
