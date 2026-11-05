@@ -132,6 +132,8 @@ def record_camp_event(profile, event):
     record_story_event(profile, kind, target)
     from .camp_guilds import record_guild_event
     record_guild_event(profile,kind,target)
+    from .challenges import record_personal_event
+    record_personal_event(profile,kind)
     for quest in CampQuest.objects.select_for_update().filter(profile=profile, promoted_at__isnull=True):
         rank = BY_RANK.get(quest.rank_key)
         if not rank or not available_rank(profile, rank):

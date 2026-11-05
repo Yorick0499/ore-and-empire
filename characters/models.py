@@ -743,3 +743,40 @@ class CampRaidReward(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['raid','profile'],name='one_camp_raid_reward')]
+
+
+class PersonalChallenge(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT,related_name='challenges')
+    cadence=models.CharField(max_length=8)
+    period=models.DateField()
+    camp=models.CharField(max_length=20)
+    kind=models.CharField(max_length=12)
+    required=models.PositiveIntegerField()
+    progress=models.PositiveIntegerField(default=0)
+    ore=models.PositiveIntegerField()
+    experience=models.PositiveIntegerField()
+    premium=models.PositiveIntegerField()
+    reputation=models.PositiveIntegerField()
+    claimed_at=models.DateTimeField(null=True,blank=True)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','cadence','period'],name='one_personal_challenge_period')]
+
+
+class CampReputation(models.Model):
+    @property
+    def camp_name(self):return dict(PlayerProfile.CAMP_LIST).get(self.camp,self.camp)
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    camp=models.CharField(max_length=20)
+    value=models.PositiveIntegerField(default=0)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','camp'],name='one_reputation_per_camp')]
+
+
+class PlayerAchievement(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT,related_name='achievements')
+    key=models.CharField(max_length=30)
+    progress=models.PositiveIntegerField(default=0)
+    completed_at=models.DateTimeField(null=True,blank=True)
+    claimed_at=models.DateTimeField(null=True,blank=True)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','key'],name='one_player_achievement')]

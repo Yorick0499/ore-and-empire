@@ -88,6 +88,8 @@ def claim_camp_raid(profile,raid_id):
     profile.ore_balance+=reward.ore;profile.experience+=reward.experience
     from .economy import change_premium
     change_premium(profile,reward.premium,'Wkład w wyprawę obozową',f'camp-raid:{raid.pk}:{profile.pk}')
+    from .challenges import record_personal_event
+    record_personal_event(profile,'raid')
     check_level_up(profile);profile.save();return True
 
 

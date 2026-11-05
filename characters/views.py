@@ -758,3 +758,14 @@ def characters_view(request):
         request.session['active_character']=selected.pk
         return redirect('locations_page')
     return render(request,'characters/characters.html',{'profile':profile,'characters':request.user.characters.select_related('world').all()})
+
+
+@login_required
+def challenges_view(request):
+    from .challenges import cards,accept_challenge,claim_challenge,claim_achievement
+    profile=request.user.playerprofile;refresh_player(profile)
+    if request.method=='POST':
+        action=request.POST.get('action')
+        result=accept_challenge(profile,request.POST.get('cadence')) if action=='accept' else claim_challenge(profile,positive_id(request.POST.get('challenge'))) if action=='claim' else claim_achievement(profile,request.POST.get('key')) if action=='achievement' else False
+        report_action(request,bool(result));return redirect('challenges_page')
+    return render(request,'characters/challenges.html',{'profile':profile,**cards(profile)})
