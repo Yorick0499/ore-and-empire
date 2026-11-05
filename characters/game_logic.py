@@ -271,6 +271,8 @@ def list_item_on_market(seller_profile, owned_item, price):
     owned_item.is_market_listed = True
     owned_item.market_price = price
     owned_item.save()
+    from .market_policy import record_market_event
+    record_market_event(seller_profile,owned_item,"listing",price)
     return True
 
 
@@ -291,7 +293,10 @@ def buy_item_on_market(buyer_profile, owned_item):
         seller=current_owner,
         buyer=buyer_profile,
         price=owned_item.market_price,
+        quantity=owned_item.quantity,
     )
+    from .market_policy import record_market_event
+    record_market_event(buyer_profile,owned_item,"sale",owned_item.market_price)
     buyer_profile.ore_balance = buyer_profile.ore_balance - owned_item.market_price
     current_owner.ore_balance = current_owner.ore_balance + owned_item.market_price
     owned_item.owner = buyer_profile
@@ -305,11 +310,13 @@ def buy_item_on_market(buyer_profile, owned_item):
 
 
 @player_action
-def delist_item_from_market(seller_profile, owned_item):
+def delist_item_from_market(seller_profile, owned_item, reason="manual"):
     if owned_item.owner != seller_profile:
         return False
     if not owned_item.is_market_listed:
         return False
+    from .market_policy import record_market_event
+    record_market_event(seller_profile,owned_item,"cancellation",owned_item.market_price,reason=reason)
     owned_item.listed_at = None
     owned_item.is_market_listed = False
     owned_item.market_price = None
@@ -499,6 +506,8 @@ def use_item(profile, item):
     if health: profile.health_updated_at = timezone.now()
     if energy: profile.energy_updated_at = timezone.now()
     profile.save()
+    from .market_policy import record_market_event
+    record_market_event(profile,item,"consumption",quantity=1)
     if item.quantity == 1: item.delete()
     else:
         item.quantity -= 1

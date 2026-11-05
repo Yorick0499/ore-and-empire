@@ -2,9 +2,12 @@
 {% load static gothic_media %}
 {% block shell_class %}game-layout{% endblock %}
 {% block content %}
+
+
 {% include 'characters/profile.html' %}
 <div class="main-content">
         <div class="guide-frame">
+<details class="colony-panel"><summary>Twoje oferty i zmiana ceny</summary>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.blueprint.name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} UTC{% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}</details>
             <h2>Plac Targowy Starego Obozu</h2>
             <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
 
@@ -16,7 +19,7 @@
                         {% for item in market_all_items %}
                             <div class="item-card">
                                 <div class="item-info">
-                                    <h4>{{ item.blueprint.name }}</h4>
+                                    <h4>{{ item.blueprint.name }} ×{{ item.quantity }}</h4>
                                     <div class="item-stats">
                                         <span>Obrażenia: {{ item.blueprint.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
@@ -53,7 +56,7 @@
                         {% for item in player_inventory %}
                             <div class="item-card">
                                 <div class="item-info">
-                                    <h4>{{ item.blueprint.name }}</h4>
+                                    <h4>{{ item.blueprint.name }} ×{{ item.quantity }}</h4>
                                     <div class="item-stats">
                                         <span>Obrażenia: {{ item.blueprint.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
@@ -63,7 +66,7 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="list">
                                     <input type="hidden" name="sell_item_id" value="{{ item.id }}">
-                                    <input type="number" name="item_price" class="gothic-input" placeholder="Cena" required min="1">
+                                    <input type="number" name="item_price" class="gothic-input" placeholder="Cena całego stosu" required min="1">
                                     <button type="submit" class="gothic-btn btn-sell">Wystaw</button>
                                 </form>
                             </div>

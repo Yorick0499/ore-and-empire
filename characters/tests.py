@@ -305,7 +305,7 @@ class ColonyTests(TestCase):
         self.assertEqual(tick_bot(bot), ("list", True))
         surplus.refresh_from_db()
         self.assertTrue(surplus.is_market_listed)
-        self.assertEqual(surplus.market_price, 22)
+        self.assertEqual(surplus.market_price, 21)  # 105% aktualnej referencji zamiast dawnego 110%
 
     def test_bot_policy_cannot_target_human_inventory(self):
         self.b.is_bot = True
@@ -732,7 +732,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 12)
+        self.assertEqual(decision.schema_version, 13)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

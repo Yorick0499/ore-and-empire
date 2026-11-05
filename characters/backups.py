@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_marketevent':['id','profile_id','item_id','blueprint_id','action','price','quantity','reason'],
     'characters_craftrecipe':['id','key','name','discipline','skill','level','fee','ingredients','output_id','quantity','enabled'],
     'characters_craftrecord':['id','profile_id','recipe_id','request_key','snapshot'],
     'characters_personalchallenge':['id','profile_id','cadence','period','camp','kind','required','progress','ore','experience','premium','reputation','claimed_at'],
@@ -30,7 +31,7 @@ STABLE = {
     'characters_adventurerun': ['id','profile_id','template_id','claimed_at'],
     'characters_economicentry': ['id','profile_id','resource','amount','balance_after','category','reference'],
     'characters_premiumentry': ['id','profile_id','amount','balance_after','reference'],
-    'characters_markettrade': ['id','seller_id','buyer_id','price','blueprint_id'],
+    'characters_markettrade': ['id','seller_id','buyer_id','price','blueprint_id','quantity'],
     'auth_user': ['id','username','password','is_superuser','is_active','is_staff'],
 }
 

@@ -111,6 +111,13 @@ def market_view(request):
             )
             report_action(request, buy_item_on_market(profile, owned_item))
             return redirect(request.get_full_path())
+        if action == "reprice":
+            from .market_policy import reprice_listing
+            item=get_object_or_404(OwnedItem,pk=positive_id(request.POST.get('item')),owner=profile,is_market_listed=True)
+            try:price=int(request.POST.get('price'));expected=int(request.POST.get('expected'))
+            except (TypeError,ValueError):price=0;expected=0
+            report_action(request,reprice_listing(profile,item,price,expected))
+            return redirect(request.get_full_path())
         if action == "delist":
             sell_item_id = request.POST.get("delist_item_id")
             sell_item = get_object_or_404(
@@ -123,13 +130,14 @@ def market_view(request):
     market_all_items = OwnedItem.objects.filter(is_market_listed=True,owner__world=current_world()).select_related(
         "owner__user", "blueprint"
     )
-    player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False)
     return render(
         request,
         "characters/market.html",
         {
             "profile": profile,
             "market_all_items": market_all_items,
+            "my_offers":market_all_items.filter(owner=profile),
             "player_inventory": player_inventory,
         },
     )
@@ -155,7 +163,7 @@ def inventory_view(request):
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, unequip_item(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False)
     equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True, equipped_slot="weapon").first()
     return render(
         request,
@@ -186,7 +194,7 @@ def shop_view(request):
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, sell_item_from_npc(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False)
     from django.core.paginator import Paginator
     merchant_inventory = ItemBluePrint.objects.filter(merchant=True, min_level__lte=profile.level, required_camp__in=["",profile.camp], min_camp_tier__lte=profile.camp_tier).order_by("kind","base_value","pk")
     return render(
@@ -350,6 +358,8 @@ def market_monitor_view(request):
                 ]
             )
         return response
+    from .market_policy import market_effectiveness
+    effectiveness=market_effectiveness(current_world())
     summary = trades.aggregate(
         count=Count("id"), volume=Sum("price"), average=Avg("price")
     )
@@ -357,7 +367,7 @@ def market_monitor_view(request):
         request,
         "characters/market_monitor.html",
         {
-            "summary": summary, "trades": trades[:100],
+            "summary": summary, "effectiveness":effectiveness,"trades": trades[:100],
             "bot_summary": decisions.values("role", "action", "success")
                 .annotate(count=Count("id"), ore_delta=Sum("ore_delta"))
                 .order_by("role", "action", "success"),
