@@ -303,14 +303,14 @@ def market_monitor_view(request):
         writer.writerow([
             "decision_id", "timestamp_utc", "schema_version", "profile_id",
             "role", "action", "target_id", "success", "ore_delta",
-            "energy_delta", "health_delta", "premium_delta", "observation_json",
+            "energy_delta", "health_delta", "premium_delta", "observation_json", "policy_version", "reason", "experience_delta",
         ])
         for decision in decisions.iterator():
             writer.writerow([
                 decision.pk, decision.created_at.isoformat(), decision.schema_version,
                 decision.profile_id, decision.role, decision.action, decision.target_id,
                 decision.success, decision.ore_delta, decision.energy_delta, decision.health_delta, decision.premium_delta,
-                json.dumps(decision.observation, sort_keys=True),
+                json.dumps(decision.observation, sort_keys=True), decision.policy_version, decision.reason, decision.experience_delta,
             ])
         return response
     trades = MarketTrade.objects.select_related(
@@ -641,3 +641,24 @@ def economy_balance_view(request):
     from .economy_simulation import rates
     data=summary()
     return render(request,'characters/economy_balance.html',{'balance':data,'rates':rates()})
+
+
+@login_required
+def world_monitor_view(request):
+    if not request.user.is_superuser:raise PermissionDenied('Raport świata wymaga administratora.')
+    from .world_monitor import world_report
+    from .bot_telemetry import replay_decision
+    from .models import BotDecision
+    import json
+    try:days=int(request.GET.get('days',7))
+    except (TypeError,ValueError):days=7
+    report=world_report(days)
+    if request.GET.get('format')=='json':
+        response=HttpResponse(json.dumps(report,default=str,ensure_ascii=False),content_type='application/json')
+        response['Content-Disposition']='attachment; filename="world-report-schema-1.json"'
+        return response
+    replay=None
+    if request.GET.get('decision'):
+        fact=get_object_or_404(BotDecision,pk=positive_id(request.GET.get('decision')))
+        replay={'id':fact.pk,**replay_decision(fact)}
+    return render(request,'characters/world_monitor.html',{'report':report,'replay':replay})

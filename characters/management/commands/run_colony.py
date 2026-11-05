@@ -21,8 +21,11 @@ class Command(BaseCommand):
         parser.add_argument("--port", type=int, default=8000)
         parser.add_argument("--bots", type=int, default=6)
         parser.add_argument("--interval", type=float, default=5)
+        parser.add_argument("--history-days",type=int,default=30,help="Retain raw bot decisions for this many complete UTC days; daily aggregates remain.")
 
     def handle(self, *args, **options):
+        if not 1 <= options["history_days"] <= 3650:
+            raise CommandError("--history-days must be 1-3650")
         if not 0 <= options["bots"] <= 20:
             raise CommandError("--bots must be 0-20")
         if not 1 <= options["port"] <= 65535:
@@ -78,6 +81,10 @@ class Command(BaseCommand):
                         from characters.world_events import ensure_world_events
                         if event_day != timezone.now().date():
                             ensure_world_events()
+                            try:
+                                call_command("archive_bot_history",days=options["history_days"],stdout=self.stdout)
+                            except Exception as exc:
+                                self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
                             event_day = timezone.now().date()
                         profiles = PlayerProfile.objects.filter(
                             is_bot=True, user__is_active=True
