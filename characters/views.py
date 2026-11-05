@@ -662,3 +662,22 @@ def world_monitor_view(request):
         fact=get_object_or_404(BotDecision,pk=positive_id(request.GET.get('decision')))
         replay={'id':fact.pk,**replay_decision(fact)}
     return render(request,'characters/world_monitor.html',{'report':report,'replay':replay})
+
+
+@login_required
+def magic_view(request):
+    from .magic import SCHOOLS,BY_CODE,offers,combat_plan,learn_circle,prepare_magic,purchase_magic,circle_cap
+    profile=request.user.playerprofile
+    refresh_player(profile)
+    if request.method=='POST':
+        action=request.POST.get('action')
+        if action=='learn':result=learn_circle(profile)
+        elif action=='buy':result=purchase_magic(profile,positive_id(request.POST.get('blueprint')))
+        elif action=='prepare':result=prepare_magic(profile,positive_id(request.POST.get('item')))
+        elif action=='clear':result=prepare_magic(profile,None)
+        else:result=False
+        (messages.success if result else messages.error)(request,'Wiedza i wyposażenie zapisane.' if result else 'Nie spełniasz wymagań: sprawdź krąg, szkołę, poziom, zasoby i trwające zadania.')
+        return redirect('magic_page')
+    inventory=[{'item':item,'spell':BY_CODE[item.blueprint.catalog_key][0]} for item in profile.inventory.filter(is_market_listed=False,blueprint__catalog_key__in=BY_CODE).select_related('blueprint')]
+    next_circle=profile.magic_skill+1
+    return render(request,'characters/magic.html',{'profile':profile,'school':SCHOOLS.get(profile.camp,('','Bez szkoły — dostępne zwoje'))[1],'plan':combat_plan(profile),'circle_cap':circle_cap(profile),'next_circle':next_circle,'circle_lp':5*next_circle,'circle_ore':50*next_circle,'circle_level':next_circle*2,'can_learn':not profile.is_busy and next_circle<=circle_cap(profile) and profile.level>=next_circle*2 and profile.skill_points>=5*next_circle and profile.ore_balance>=50*next_circle,'inventory':inventory,'offers':offers(profile)})

@@ -21,8 +21,10 @@ def allowed(profile, blueprint):
 def sync_health(profile):
     if hasattr(profile, '_gear_stats_cache'): del profile._gear_stats_cache
     profile.equipment_health = profile.equipment_stats['life_bonus']
+    profile.equipment_mana = profile.equipment_stats['mana_bonus']
+    profile.current_mana = min(profile.current_mana,profile.max_mana)
     profile.current_health = min(profile.current_health, profile.max_health)
-    profile.save(update_fields=['equipment_health','current_health'])
+    profile.save(update_fields=['equipment_health','current_health','equipment_mana','current_mana'])
 
 
 def weapon_for(profile):

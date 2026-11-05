@@ -36,7 +36,15 @@ def recover_energy(profile):
         profile.health_updated_at += timedelta(seconds=health_points * ENERGY_INTERVAL_SECONDS)
         if profile.current_health == profile.max_health:
             profile.health_updated_at = now
-    profile.save(update_fields=["current_energy", "energy_updated_at", "current_health", "health_updated_at"])
+    mana_elapsed=max(0,int((now-profile.mana_updated_at).total_seconds()))
+    mana_points=mana_elapsed//30
+    if profile.current_mana>=profile.max_mana:
+        profile.current_mana=profile.max_mana;profile.mana_updated_at=now
+    elif mana_points:
+        profile.current_mana=min(profile.max_mana,profile.current_mana+mana_points)
+        profile.mana_updated_at+=timedelta(seconds=mana_points*30)
+        if profile.current_mana==profile.max_mana:profile.mana_updated_at=now
+    profile.save(update_fields=["current_energy", "energy_updated_at", "current_health", "health_updated_at", "current_mana", "mana_updated_at"])
 
 
 def player_action(fn):
@@ -128,13 +136,15 @@ class CombatResult:
     won: bool
     log: list
     remaining_health: int
+    remaining_mana: int | None = None
+    spell_casts: int = 0
 
     def __iter__(self):
         yield self.won
         yield self.log
 
 
-def simulate_combat(profile, monster_key, *, monster=None):
+def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
     monster = BESTIARY[monster_key] if monster is None else monster
     hunt_result = None
 
@@ -145,11 +155,22 @@ def simulate_combat(profile, monster_key, *, monster=None):
     from .equipment import combat_values
     base_damage, critical_skill, damage_type = combat_values(profile)
 
+    mana=profile.current_mana
+    casts=0
     while temp_hero_life > 0 and temp_monster_life > 0:
         # hero turn
-        critical_chance = random.randint(1, 100)
-        hero_damage = base_damage * (2 if critical_chance <= critical_skill else 1)
-        hero_damage = max(1, hero_damage - monster.get(damage_type + '_prot', monster['weapon_prot'] if damage_type == 'arrow' else 0))
+        casting=bool(magic_plan and mana>=magic_plan.cost and (not magic_plan.scroll or casts<magic_plan.quantity))
+        if casting:
+            spell=magic_plan.spell;mana-=magic_plan.cost;casts+=1
+            hero_damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
+            combat_log.append(f"{spell.name}: koszt {magic_plan.cost} many.")
+        else:
+            # Magical focus falls back to fists; no free ranged attacks/ammunition.
+            physical=profile.strength+profile.equipment_stats['strength_bonus'] if magic_plan else base_damage
+            critical_chance=random.randint(1,100)
+            hero_damage=physical*(2 if not magic_plan and critical_chance<=critical_skill else 1)
+            kind='weapon' if magic_plan else damage_type
+            hero_damage=max(1,hero_damage-monster.get(kind+'_prot',monster['weapon_prot'] if kind=='arrow' else 0))
         temp_monster_life = temp_monster_life - hero_damage
 
         combat_log.append(f"{profile.user} zadaje {hero_damage} obrażeń.")
@@ -162,6 +183,11 @@ def simulate_combat(profile, monster_key, *, monster=None):
         # monster turn
         monster_damage = max(1, monster["strength"] - profile.effective_protection(monster.get("damage_type", "weapon")))
 
+        if casting:
+            if spell.stagger_every and casts%spell.stagger_every==0:
+                monster_damage=0;combat_log.append('Przeciwnik traci turę pod wpływem zaklęcia.')
+            elif spell.mitigation:
+                monster_damage=max(1,monster_damage*(100-spell.mitigation)//100)
         temp_hero_life = temp_hero_life - monster_damage
 
         combat_log.append(f"{monster['nazwa']} zadaje {monster_damage} obrażeń")
@@ -178,7 +204,7 @@ def simulate_combat(profile, monster_key, *, monster=None):
     if temp_monster_life <= 0:
         hunt_result = True
 
-    return CombatResult(hunt_result, combat_log, max(1, temp_hero_life))
+    return CombatResult(hunt_result, combat_log, max(1, temp_hero_life),mana,casts)
 
 
 @player_action
@@ -197,11 +223,15 @@ def execute_hunt(profile, monster_key, location_key="forest", request_key=None):
     if profile.current_energy < 15 or profile.current_health < 10:
         return False
     from .equipment import consume_ammo
-    if not consume_ammo(profile): return False
+    from .magic import combat_plan,apply_combat_magic
+    plan=combat_plan(profile)
+    if profile.prepared_magic_id and (not plan or profile.current_mana<plan.cost):return False
+    if not plan and not consume_ammo(profile): return False
     profile.current_energy = profile.current_energy - 15
     before_exp = profile.experience
 
-    result = simulate_combat(profile, monster_key)
+    result = simulate_combat(profile, monster_key, magic_plan=plan)
+    if isinstance(result,CombatResult):apply_combat_magic(profile,plan,result)
     win, log = result
     profile.current_health = getattr(result, "remaining_health", profile.current_health)
     profile.health_updated_at = timezone.now()
@@ -220,7 +250,7 @@ def execute_hunt(profile, monster_key, location_key="forest", request_key=None):
             "Ledwo uszedłeś z życiem. Miałeś jednak dużo szczęścia - uratowali cię myśliwi polujący w tych terenach."
         )
     profile.save()
-    save_battle(profile, request_key, monster_key, location_key, win, log, profile.experience - before_exp)
+    save_battle(profile, request_key, monster_key, location_key, win, log, profile.experience - before_exp, details={"magic":plan.spell.key if plan else None,"casts":getattr(result,"spell_casts",0),"mana_after":profile.current_mana})
     return log
 
 
@@ -228,7 +258,7 @@ def execute_hunt(profile, monster_key, location_key="forest", request_key=None):
 def list_item_on_market(seller_profile, owned_item, price):
     if owned_item.owner != seller_profile or not owned_item.blueprint.tradeable:
         return False
-    if owned_item.is_equipped:
+    if owned_item.is_equipped or seller_profile.prepared_magic_id==owned_item.pk:
         return False
     if owned_item.is_market_listed:
         return False
@@ -338,7 +368,7 @@ def buy_item_from_npc(profile, item):
 def sell_item_from_npc(profile, item):
     if item.owner != profile or not item.blueprint.tradeable:
         return False
-    if item.is_equipped:
+    if item.is_equipped or profile.prepared_magic_id==item.pk:
         return False
     if item.is_market_listed:
         return False
@@ -397,8 +427,12 @@ def execute_boss(profile, boss_key, request_key=None):
     if last and now < last.created_at + timedelta(minutes=boss.cooldown_minutes):
         return False
     from .equipment import consume_ammo
-    if not consume_ammo(profile): return False
-    result = simulate_combat(profile, boss_key, monster=boss.monster)
+    from .magic import combat_plan,apply_combat_magic
+    plan=combat_plan(profile)
+    if profile.prepared_magic_id and (not plan or profile.current_mana<plan.cost):return False
+    if not plan and not consume_ammo(profile): return False
+    result = simulate_combat(profile, boss_key, monster=boss.monster, magic_plan=plan)
+    if isinstance(result,CombatResult):apply_combat_magic(profile,plan,result)
     won, combat_log = result
     profile.current_health = getattr(result, "remaining_health", profile.current_health)
     profile.health_updated_at = now
@@ -430,7 +464,7 @@ def execute_boss(profile, boss_key, request_key=None):
         combat_log=combat_log,
     )
 
-    save_battle(profile, request_key, boss_key, boss_key, won, combat_log, experience, ore, attempt)
+    save_battle(profile, request_key, boss_key, boss_key, won, combat_log, experience, ore, attempt, details={"magic":plan.spell.key if plan else None,"casts":getattr(result,"spell_casts",0),"mana_after":profile.current_mana})
     return attempt
 
 

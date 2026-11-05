@@ -84,6 +84,10 @@ class PlayerProfile(models.Model):
     # ore balance
     ore_balance = models.IntegerField(default=50)
 
+    equipment_mana = models.PositiveIntegerField(default=0)
+    current_mana = models.PositiveIntegerField(default=10)
+    mana_updated_at = models.DateTimeField(default=timezone.now)
+    prepared_magic = models.ForeignKey("OwnedItem",null=True,blank=True,on_delete=models.SET_NULL,related_name="prepared_by")
     equipment_health = models.PositiveIntegerField(default=0)
     premium_balance = models.PositiveIntegerField(default=0)
     current_health = models.PositiveIntegerField(default=50)
@@ -110,6 +114,7 @@ class PlayerProfile(models.Model):
         constraints = [
             models.CheckConstraint(condition=models.Q(current_energy__gte=0) & models.Q(current_energy__lte=models.F("max_energy")), name="profile_energy_bounds"),
             models.CheckConstraint(condition=models.Q(current_health__lte=models.F("life") + models.F("equipment_health")), name="profile_health_bounds"),
+            models.CheckConstraint(condition=models.Q(current_mana__lte=models.F("mana") + models.F("equipment_mana")), name="profile_mana_bounds"),
             models.CheckConstraint(condition=models.Q(ore_balance__gte=0), name="profile_ore_nonnegative"),
             models.CheckConstraint(condition=models.Q(life__gte=1) & models.Q(max_energy__gte=1), name="profile_resource_caps_positive"),
         ]
@@ -120,6 +125,10 @@ class PlayerProfile(models.Model):
     def refresh_from_db(self,*args,**kwargs):
         super().refresh_from_db(*args,**kwargs)
         if hasattr(self,'_gear_stats_cache'): del self._gear_stats_cache
+
+    @property
+    def max_mana(self):
+        return self.mana + self.equipment_mana
 
     @property
     def max_health(self):
@@ -194,9 +203,9 @@ class ItemBluePrint(models.Model):
     art_key = models.CharField(max_length=100, blank=True)
 
     def save(self,*args,**kwargs):
-        old_bonus=type(self).objects.filter(pk=self.pk).values_list('life_bonus',flat=True).first() if self.pk else None
+        old_bonus=type(self).objects.filter(pk=self.pk).values_list('life_bonus','mana_bonus').first() if self.pk else None
         super().save(*args,**kwargs)
-        if old_bonus is not None and old_bonus != self.life_bonus:
+        if old_bonus is not None and old_bonus != (self.life_bonus,self.mana_bonus):
             from .equipment import sync_health
             for profile in PlayerProfile.objects.filter(inventory__blueprint=self,inventory__is_equipped=True).distinct():
                 sync_health(profile)
@@ -217,6 +226,11 @@ class ItemBluePrint(models.Model):
     @property
     def weapon_name(self):
         return {'onehand':'Jednoręczna','twohand':'Dwuręczna','bow':'Łuk','crossbow':'Kusza'}.get(self.weapon_type,self.weapon_type)
+
+    @property
+    def magic_supported(self):
+        from .magic import BY_CODE
+        return self.catalog_key in BY_CODE
 
     @property
     def equippable(self):
@@ -539,6 +553,7 @@ class LootTable(models.Model):
 
 
 class BattleRecord(models.Model):
+    combat_details = models.JSONField(default=dict)
     profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT, related_name='battles')
     request_key = models.UUIDField()
     monster_key = models.CharField(max_length=60)

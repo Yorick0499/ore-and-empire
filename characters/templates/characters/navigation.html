@@ -6,6 +6,7 @@
     <a href="{% url 'locations_page' %}" {% if current == 'locations_page' %}aria-current="page"{% endif %}>Kolonia</a>
     <a href="{% url 'mine_page' %}" {% if current == 'mine_page' %}aria-current="page"{% endif %}>Kopalnia</a>
     <a href="{% url 'hunt_page' %}" {% if current == 'hunt_page' or current == 'boss_page' %}aria-current="page"{% endif %}>Polowanie</a>
+    <a href="{% url 'magic_page' %}" {% if current == 'magic_page' %}aria-current="page"{% endif %}>Magia</a>
     <a href="{% url 'camp_page' %}" {% if current == 'camp_page' %}aria-current="page"{% endif %}>Obóz i zadania</a>
     <a href="{% url 'story_page' %}">Dziennik fabuły</a>
     <a href="{% url 'adventures_page' %}" {% if current == 'adventures_page' %}aria-current="page"{% endif %}>Wyprawy</a>
