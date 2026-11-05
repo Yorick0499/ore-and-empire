@@ -65,7 +65,7 @@ class CampaignTests(TestCase):
                         completed.add(bot.pk)
             if len(completed) == 3: break
         status = {b.pk: list(b.story_runs.exclude(status='claimed').values('quest__key', 'progress', 'status')) for b in bots}
-        self.assertEqual(len(completed), 3, (status, actions))
+        self.assertEqual(len(completed), 3, (status, actions, list(PlayerProfile.objects.filter(is_bot=True).values('id','guild','level','strength','mana','current_mana','current_health','life','prepared_magic_id','skill_points')), list(BotDecision.objects.values('profile_id','reason','observation')[:1])))
         for bot in bots:
             bot.refresh_from_db()
             self.assertGreaterEqual(bot.level, 30)

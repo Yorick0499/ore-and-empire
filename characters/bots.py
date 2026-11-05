@@ -62,6 +62,11 @@ class Observation:
     story_recover: bool = False
     consume_id: int | None = None
     experience: int = 0
+    magic_action: str = ""
+    magic_target: int | None = None
+    mana: int = 0
+    magic_ready: bool = False
+    magic_focused: bool = False
 
 
 class Policy(Protocol):
@@ -148,7 +153,11 @@ class BaselinePolicyV7:
 
 
 class BaselinePolicy(BaselinePolicyV7):
-    pass
+    def choose(self,observation):
+        o=observation
+        if not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and not o.consume_id and not o.product_urgent:
+            if o.magic_action:return o.magic_action,o.magic_target
+        return super().choose(o)
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -179,7 +188,17 @@ def health_needed(profile, monster, damage):
     return (rounds - 1) * incoming + 10
 
 
+def health_at_rest(profile,monster,damage):
+    from .magic import combat_plan,survival_health
+    plan=profile._bot_magic_plan if hasattr(profile,'_bot_magic_plan') else combat_plan(profile)
+    return survival_health(profile,monster,plan,mana=profile.max_mana) if plan else health_needed(profile,monster,damage)
+
+
 def safe_to_hunt(profile, monster, damage):
+    from .magic import combat_plan,survival_health
+    plan=profile._bot_magic_plan if hasattr(profile,'_bot_magic_plan') else combat_plan(profile)
+    if profile.prepared_magic_id:
+        return bool(plan and profile.current_mana>=plan.cost and profile.current_health>=survival_health(profile,monster,plan))
     return profile.current_health >= health_needed(profile, monster, damage)
 
 
@@ -197,10 +216,12 @@ def tick_bot(profile, policy=None):
     from .story_quests import bot_story_plan, accept_story, activate_story, claim_story, choose_story, travel_story
     story = bot_story_plan(profile)
     combat_equipment = profile.bot_role != "trader" or any(kind in {"hunt", "boss"} for kind, _ in story.events)
+    from .magic import combat_plan
+    profile._bot_magic_plan=combat_plan(profile)
     inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.blueprint.damage if equipped else 0
-    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.blueprint_id not in story.item_ids]
+    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids]
     item = spare[0] if spare else None
     equipment = max((item for item in spare if item.blueprint.kind == "weapon" and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
     if not equipment:
@@ -270,7 +291,11 @@ def tick_bot(profile, policy=None):
                 elif kind == "boss": boss_goals.append(key)
                 elif kind == "train": training, training_needed = key, True
     elif profile.camp != "NONE" and profile.bot_turn >= 2:
-        rank = next((r for r in RANKS if available_rank(profile, r)), None)
+        candidates=[r for r in RANKS if available_rank(profile,r)]
+        from .magic import MAGE_RANKS
+        wants_magic=profile.bot_role!='trader' and profile.pk%2==0
+        rank=next((r for r in candidates if r.key in MAGE_RANKS),None) if wants_magic else None
+        rank=rank or next(iter(candidates),None)
         if rank:
             rank_action = "accept"
     story_training = next((key for kind, key in story.events if kind == 'train'), None)
@@ -304,13 +329,17 @@ def tick_bot(profile, policy=None):
     story_recover = bool(story_fights) and not any(
         safe_to_hunt(profile, monster, profile.strength + damage) and profile.current_energy >= energy
         for monster, energy in story_fights
-    ) and any(health_needed(profile, monster, profile.strength + damage) <= profile.max_health for monster, _ in story_fights)
+    ) and any(health_at_rest(profile, monster, profile.strength + damage) <= profile.max_health for monster, _ in story_fights)
     products = StoreProduct.objects.filter(enabled=True, level__lte=profile.level, price__lte=profile.premium_balance).select_related("blueprint").order_by("price", "pk")
     product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.max_health // 2)) or (p.kind == "energy" and profile.current_energy < 15 and energy_refills_left)), None)
     urgent = product is not None
     if not product and len(inventory) < 6:
         product = next((p for p in products if p.kind == "weapon" and p.blueprint and p.blueprint.required_strength <= profile.strength and p.blueprint.damage > damage and not any(i.blueprint_id == p.blueprint_id for i in inventory)), None)
     camp_target = (profile.pk - 1) % 3 + 1
+    from .magic import bot_magic_plan,combat_plan
+    target_monster=next((game.BESTIARY[key] for key in hunt_goals if key in game.BESTIARY),None)
+    magic_action,magic_target=bot_magic_plan(profile,inventory,target_monster)
+    active_magic=combat_plan(profile)
     obs = Observation(
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -334,14 +363,18 @@ def tick_bot(profile, policy=None):
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
+        magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-7" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-8" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
         return "rejected", False
     story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
-    if action in story_services and action == story.action and target == story.target:
+    from .magic import learn_circle,prepare_magic,purchase_magic
+    if action==obs.magic_action and target==obs.magic_target and action in {'learn_circle','prepare_magic','buy_magic','clear_magic'}:
+        success=bool(learn_circle(profile) if action=='learn_circle' else prepare_magic(profile,None) if action=='clear_magic' else prepare_magic(profile,target) if action=='prepare_magic' else purchase_magic(profile,target))
+    elif action in story_services and action == story.action and target == story.target:
         success = bool(story_services[action](profile, target))
     elif action == 'story_talk' and action == story.action and target == story.target:
         success = choose_story(profile, target, story.goal, story.option)

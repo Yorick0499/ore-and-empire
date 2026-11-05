@@ -29,6 +29,8 @@ class ProfileAdmin(admin.ModelAdmin):
             obj.energy_updated_at = timezone.now()
         if "current_health" in form.changed_data:
             obj.health_updated_at = timezone.now()
+        if "current_mana" in form.changed_data:
+            obj.mana_updated_at=timezone.now()
         from .economic_ledger import balances, record_changes
         before = balances([obj.pk])
         super().save_model(request, obj, form, change)

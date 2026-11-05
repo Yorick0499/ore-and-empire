@@ -12,9 +12,9 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
-    'characters_playerprofile': ['id','user_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild'],
-    'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price'],
-    'characters_storyrun': ['id','profile_id','quest_id','status','progress','reward_snapshot','claimed_at'],
+    'characters_playerprofile': ['id','user_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','current_mana','equipment_mana','prepared_magic_id'],
+    'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at'],
+    'characters_storyrun': ['id','profile_id','quest_id','status','progress','snapshot','choices','claimed_at'],
     'characters_adventurerun': ['id','profile_id','template_id','claimed_at'],
     'characters_economicentry': ['id','profile_id','resource','amount','balance_after','category','reference'],
     'characters_premiumentry': ['id','profile_id','amount','balance_after','reference'],

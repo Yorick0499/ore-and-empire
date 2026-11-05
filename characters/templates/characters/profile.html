@@ -9,6 +9,7 @@
     <label for="character-energy" class="stat-item">Energia <span>{{ profile.current_energy }}/{{ profile.max_energy }}</span></label>
     <meter id="character-energy" value="{{ profile.current_energy }}" max="{{ profile.max_energy }}">{{ profile.current_energy }}</meter>
     <div class="stat-item">Zdrowie <span class="val">{{ profile.current_health }}/{{ profile.max_health }}</span></div>
+    <div class="stat-item">Mana <span class="val">{{ profile.current_mana }}/{{ profile.max_mana }}</span></div>
     <div class="stat-item">Magiczne odłamki <span class="gold-val">{{ profile.premium_balance }}</span></div>
     <h3 class="nav-category">Atrybuty</h3>
     <div class="stat-item">Siła <span class="val">{{ profile.strength }}</span></div>

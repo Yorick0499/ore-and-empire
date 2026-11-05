@@ -20,7 +20,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
     register_view,
-    item_catalog_view, economy_balance_view, world_monitor_view,
+    item_catalog_view, economy_balance_view, world_monitor_view, magic_view,
     tavern_view, colony_life_view, story_view,
     bestiary_view,
     camp_view,
@@ -41,6 +41,7 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("magia/", magic_view, name="magic_page"),
     path("zarzadca/swiat/", world_monitor_view, name="world_monitor"),
     path("zarzadca/gospodarka/", economy_balance_view, name="economy_balance"),
     path("przedmioty/", item_catalog_view, name="item_catalog"),

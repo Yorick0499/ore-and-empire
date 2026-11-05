@@ -66,3 +66,7 @@ BESTIARY = {
               weapon_prot=armour, exp_reward=experience, source=source)
     for key, name, level, life, strength, armour, experience, source in CREATURES
 }
+
+# Browser adaptation resistances, separate from original Gothic statistics.
+for key,fire,magic in [('fire_golem',90,10),('ice_golem',0,50),('stone_golem',15,15),('fire_demon',60,30),('demon',40,30),('demon_lord',50,40),('skeleton_mage',10,20),('temple_guardian',20,25)]:
+    BESTIARY[key].update(fire_prot=fire,magic_prot=magic)

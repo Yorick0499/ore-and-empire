@@ -12,7 +12,7 @@ from .game_logic import recover_energy
 class ProfileStatsForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ["level", "experience", "skill_points", "strength", "dexterity", "mana", "life", "current_health", "weapon_prot", "ore_balance", "current_energy", "max_energy", "camp", "guild", "arrow_prot", "fire_prot", "magic_prot", "onehand_skill", "twohand_skill", "bow_skill", "crossbow_skill", "lockpick_skill", "pickpock_skill", "magic_skill", "sneaking", "acrobatics"]
+        fields = ["level", "experience", "skill_points", "strength", "dexterity", "mana", "current_mana", "life", "current_health", "weapon_prot", "ore_balance", "current_energy", "max_energy", "camp", "guild", "arrow_prot", "fire_prot", "magic_prot", "onehand_skill", "twohand_skill", "bow_skill", "crossbow_skill", "lockpick_skill", "pickpock_skill", "magic_skill", "sneaking", "acrobatics"]
         labels = {"level": "Poziom", "experience": "Doświadczenie", "skill_points": "Punkty nauki", "strength": "Siła", "dexterity": "Zręczność", "mana": "Mana", "life": "Maksymalne zdrowie", "current_health": "Aktualne zdrowie", "weapon_prot": "Pancerz", "ore_balance": "Ruda", "current_energy": "Aktualna energia", "max_energy": "Maksymalna energia", "camp": "Obóz", "guild": "Kod rangi (NONE lub kod z drabinki)"}
 
     def clean(self):
@@ -27,6 +27,8 @@ class ProfileStatsForm(forms.ModelForm):
             self.add_error("current_health", "Zdrowie przekracza maksimum.")
         if data.get("current_energy", 0) > data.get("max_energy", 0):
             self.add_error("current_energy", "Energia przekracza maksimum.")
+        if data.get("current_mana",0)>data.get("mana",0)+self.instance.equipment_mana:
+            self.add_error("current_mana","Mana przekracza maksimum.")
         rank = BY_RANK.get(data.get("guild"))
         if data.get("guild") != "NONE" and (not rank or rank.camp != data.get("camp")):
             self.add_error("guild", "Ranga musi należeć do wybranego obozu.")
@@ -46,8 +48,10 @@ def administer_player(actor, profile_id, action, payload):
     details = {}
     if action == "restore":
         profile.current_energy = profile.max_energy
+        profile.current_mana = profile.max_mana
+        profile.mana_updated_at = timezone.now()
         profile.current_health = profile.max_health
-        profile.energy_updated_at = profile.health_updated_at = timezone.now()
+        profile.energy_updated_at = profile.health_updated_at = profile.mana_updated_at = timezone.now()
         profile.save()
     elif action == "item":
         try:
@@ -75,7 +79,7 @@ def administer_player(actor, profile_id, action, payload):
         if not form.is_valid():
             return False, " ".join(f"{field}: {', '.join(errors)}" for field, errors in form.errors.items())
         profile = form.save(commit=False)
-        profile.energy_updated_at = profile.health_updated_at = timezone.now()
+        profile.energy_updated_at = profile.health_updated_at = profile.mana_updated_at = timezone.now()
         profile.save()
         details = {"before": before, "after": form.cleaned_data}
     else:

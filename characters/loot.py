@@ -12,7 +12,7 @@ def battle_request(profile, key, monster, location):
     return prior, key, not prior or (prior.monster_key == monster and prior.location_key == location)
 
 
-def save_battle(profile, key, monster, location, won, log, experience=0, ore=0, attempt=None):
+def save_battle(profile, key, monster, location, won, log, experience=0, ore=0, attempt=None, details=None):
     table = LootTable.objects.filter(key=monster, enabled=True).first()
     loot = []
     if won and table:
@@ -34,4 +34,4 @@ def save_battle(profile, key, monster, location, won, log, experience=0, ore=0, 
     if attempt:
         attempt.combat_log = log
         attempt.save(update_fields=['combat_log'])
-    return BattleRecord.objects.create(profile=profile,request_key=key,monster_key=monster,location_key=location,won=won,combat_log=log,experience=experience,ore=ore,loot=loot,loot_version=table.version if table else 0,boss_attempt=attempt)
+    return BattleRecord.objects.create(profile=profile,request_key=key,monster_key=monster,location_key=location,won=won,combat_log=log,experience=experience,ore=ore,loot=loot,loot_version=table.version if table else 0,boss_attempt=attempt,combat_details=details or {})
