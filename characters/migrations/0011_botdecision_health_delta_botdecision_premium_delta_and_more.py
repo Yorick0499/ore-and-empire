@@ -4,6 +4,18 @@ from django.conf import settings
 from django.db import migrations, models
 
 
+def normalize_resources(apps, schema_editor):
+    """Prepare legacy rows before adding constraints; valid values are untouched."""
+    profiles = apps.get_model('characters', 'PlayerProfile').objects.using(schema_editor.connection.alias)
+    profiles.filter(life__lt=1).update(life=1)
+    profiles.filter(max_energy__lt=1).update(max_energy=1)
+    profiles.filter(current_energy__lt=0).update(current_energy=0)
+    profiles.filter(current_energy__gt=models.F('max_energy')).update(current_energy=models.F('max_energy'))
+    profiles.filter(current_health__lt=0).update(current_health=0)
+    profiles.filter(current_health__gt=models.F('life')).update(current_health=models.F('life'))
+    profiles.filter(ore_balance__lt=0).update(ore_balance=0)
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -12,6 +24,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(normalize_resources, migrations.RunPython.noop),
         migrations.AddField(
             model_name='botdecision',
             name='health_delta',
