@@ -50,6 +50,18 @@ def inspect_database(path, specification=None):
             columns=[f for f in fields if f in available]
             if specification and columns!=fields: raise ValueError('Missing restore columns')
             rows=db.execute('SELECT '+','.join(columns)+' FROM '+table+' ORDER BY id').fetchall()
+            if table=='characters_storyrun' and 'snapshot' in columns:
+                # Text-only narrative migrations may relabel a quest, never change its contract.
+                snapshot_index=columns.index('snapshot');normalized=[]
+                for row in rows:
+                    values=list(row);snapshot=json.loads(values[snapshot_index])
+                    for field in ('title','description','narrative_version'):snapshot.pop(field,None)
+                    for goal in snapshot.get('objectives',[]):
+                        goal.pop('label',None)
+                        if 'options' in goal:goal['options']=sorted(goal['options'])
+                    values[snapshot_index]=json.dumps(snapshot,sort_keys=True,ensure_ascii=False)
+                    normalized.append(values)
+                rows=normalized
             facts[table]={'columns':columns,'count':len(rows),'digest':hashlib.sha256(json.dumps(rows,ensure_ascii=False,default=str).encode()).hexdigest()}
         return facts
 
