@@ -27,13 +27,13 @@ def recover_energy(profile):
             profile.energy_updated_at = now
     elapsed_health = max(0, int((now - profile.health_updated_at).total_seconds()))
     health_points = elapsed_health // ENERGY_INTERVAL_SECONDS
-    if profile.current_health >= profile.life:
-        profile.current_health = profile.life
+    if profile.current_health >= profile.max_health:
+        profile.current_health = profile.max_health
         profile.health_updated_at = now
     elif health_points:
-        profile.current_health = min(profile.life, profile.current_health + health_points)
+        profile.current_health = min(profile.max_health, profile.current_health + health_points)
         profile.health_updated_at += timedelta(seconds=health_points * ENERGY_INTERVAL_SECONDS)
-        if profile.current_health == profile.life:
+        if profile.current_health == profile.max_health:
             profile.health_updated_at = now
     profile.save(update_fields=["current_energy", "energy_updated_at", "current_health", "health_updated_at"])
 
@@ -62,6 +62,7 @@ def player_action(fn):
                 .order_by("pk")
             )
             profile.refresh_from_db()
+            if hasattr(profile, '_gear_stats_cache'): del profile._gear_stats_cache
             recover_energy(profile)
             for arg in args:
                 if isinstance(arg, OwnedItem):
@@ -136,21 +137,14 @@ def simulate_combat(profile, monster_key, *, monster=None):
     temp_monster_life = monster["life"]
 
     combat_log = []
-    equipped_item = profile.inventory.filter(is_equipped=True).first()
-    weapon_damage = None
-    if equipped_item:
-        weapon_damage = equipped_item.blueprint.damage
-    else:
-        weapon_damage = 0
+    from .equipment import combat_values
+    base_damage, critical_skill, damage_type = combat_values(profile)
 
     while temp_hero_life > 0 and temp_monster_life > 0:
         # hero turn
         critical_chance = random.randint(1, 100)
-        if critical_chance <= profile.onehand_skill:
-            hero_damage = 2 * (profile.strength + weapon_damage)
-        else:
-            hero_damage = profile.strength + weapon_damage
-        hero_damage = max(1, hero_damage - monster["weapon_prot"])
+        hero_damage = base_damage * (2 if critical_chance <= critical_skill else 1)
+        hero_damage = max(1, hero_damage - monster.get(damage_type + '_prot', monster['weapon_prot'] if damage_type == 'arrow' else 0))
         temp_monster_life = temp_monster_life - hero_damage
 
         combat_log.append(f"{profile.user} zadaje {hero_damage} obrażeń.")
@@ -161,7 +155,7 @@ def simulate_combat(profile, monster_key, *, monster=None):
             break
 
         # monster turn
-        monster_damage = max(1, monster["strength"] - profile.weapon_prot)
+        monster_damage = max(1, monster["strength"] - profile.effective_protection(monster.get("damage_type", "weapon")))
 
         temp_hero_life = temp_hero_life - monster_damage
 
@@ -183,8 +177,12 @@ def simulate_combat(profile, monster_key, *, monster=None):
 
 
 @player_action
-def execute_hunt(profile, monster_key, location_key="forest"):
+def execute_hunt(profile, monster_key, location_key="forest", request_key=None):
     from .locations import BY_KEY
+    from .loot import battle_request, save_battle
+    prior, request_key, valid = battle_request(profile, request_key, monster_key, location_key)
+    if not valid: return False
+    if prior: return prior.combat_log
 
     location = BY_KEY.get(location_key)
     if location is None or not location.accessible(profile) or monster_key not in location.monsters:
@@ -193,7 +191,10 @@ def execute_hunt(profile, monster_key, location_key="forest"):
         return False
     if profile.current_energy < 15 or profile.current_health < 10:
         return False
+    from .equipment import consume_ammo
+    if not consume_ammo(profile): return False
     profile.current_energy = profile.current_energy - 15
+    before_exp = profile.experience
 
     result = simulate_combat(profile, monster_key)
     win, log = result
@@ -214,12 +215,13 @@ def execute_hunt(profile, monster_key, location_key="forest"):
             "Ledwo uszedłeś z życiem. Miałeś jednak dużo szczęścia - uratowali cię myśliwi polujący w tych terenach."
         )
     profile.save()
+    save_battle(profile, request_key, monster_key, location_key, win, log, profile.experience - before_exp)
     return log
 
 
 @player_action
 def list_item_on_market(seller_profile, owned_item, price):
-    if owned_item.owner != seller_profile:
+    if owned_item.owner != seller_profile or not owned_item.blueprint.tradeable:
         return False
     if owned_item.is_equipped:
         return False
@@ -281,11 +283,18 @@ def equip_item(profile, owned_item):
         return False
     if owned_item.is_market_listed:
         return False
-    if owned_item.blueprint.required_strength > profile.strength:
+    from .equipment import allowed, sync_health
+    bp = owned_item.blueprint
+    if not bp.equippable or not allowed(profile, bp) or bp.required_strength > profile.strength or bp.required_dexterity > profile.dexterity:
         return False
-    profile.inventory.filter(is_equipped=True).update(is_equipped=False)
+    slot = {'weapon':'weapon','armor':'armor','amulet':'amulet'}.get(bp.kind)
+    if bp.kind == 'ring':
+        slot = next((slot for slot in ('ring1','ring2') if not profile.inventory.filter(is_equipped=True,equipped_slot=slot).exists()), 'ring1')
+    profile.inventory.filter(is_equipped=True, equipped_slot=slot).update(is_equipped=False, equipped_slot='')
     owned_item.is_equipped = True
+    owned_item.equipped_slot = slot
     owned_item.save()
+    sync_health(profile)
     return True
 
 
@@ -299,30 +308,33 @@ def unequip_item(profile, owned_item):
         return False
     owned_item.is_equipped = False
     owned_item.save()
+    from .equipment import sync_health
+    sync_health(profile)
     return True
 
 
 @player_action
 def buy_item_from_npc(profile, item):
-    if item.base_value < 0:
+    from .equipment import allowed, add_item
+    if not item.merchant or not allowed(profile, item) or item.base_value < 0:
         return False
     if profile.ore_balance < item.base_value:
         return False
     profile.ore_balance = profile.ore_balance - item.base_value
-    OwnedItem.objects.create(owner=profile, blueprint=item)
+    add_item(profile, item)
     profile.save()
     return True
 
 
 @player_action
 def sell_item_from_npc(profile, item):
-    if item.owner != profile:
+    if item.owner != profile or not item.blueprint.tradeable:
         return False
     if item.is_equipped:
         return False
     if item.is_market_listed:
         return False
-    profile.ore_balance = profile.ore_balance + int(item.blueprint.base_value * 0.5)
+    profile.ore_balance = profile.ore_balance + int(item.blueprint.base_value * 0.5) * item.quantity
     item.delete()
     profile.save()
     return True
@@ -358,7 +370,11 @@ def train_attribute(profile, attribute_name):
 
 
 @player_action
-def execute_boss(profile, boss_key):
+def execute_boss(profile, boss_key, request_key=None):
+    from .loot import battle_request, save_battle
+    prior, request_key, valid = battle_request(profile, request_key, boss_key, boss_key)
+    if not valid: return False
+    if prior: return prior.boss_attempt if prior.boss_attempt_id else False
     from .locations import BY_KEY
     location = BY_KEY.get(boss_key)
     if location is None or not location.accessible(profile):
@@ -372,6 +388,8 @@ def execute_boss(profile, boss_key):
     last = BossAttempt.objects.filter(profile=profile, boss_key=boss_key).first()
     if last and now < last.created_at + timedelta(minutes=boss.cooldown_minutes):
         return False
+    from .equipment import consume_ammo
+    if not consume_ammo(profile): return False
     result = simulate_combat(profile, boss_key, monster=boss.monster)
     won, combat_log = result
     profile.current_health = getattr(result, "remaining_health", profile.current_health)
@@ -394,7 +412,7 @@ def execute_boss(profile, boss_key):
             "Wycofujesz się bez łupu. Przygotuj lepszy oręż przed kolejną próbą."
         )
     profile.save()
-    return BossAttempt.objects.create(
+    attempt = BossAttempt.objects.create(
         profile=profile,
         boss_key=boss_key,
         created_at=now,
@@ -404,6 +422,9 @@ def execute_boss(profile, boss_key):
         combat_log=combat_log,
     )
 
+    save_battle(profile, request_key, boss_key, boss_key, won, combat_log, experience, ore, attempt)
+    return attempt
+
 
 @player_action
 def choose_camp(profile, camp):
@@ -411,4 +432,23 @@ def choose_camp(profile, camp):
         return False
     profile.camp = camp
     profile.save(update_fields=["camp"])
+    return True
+
+
+@player_action
+def use_item(profile, item):
+    if item.owner != profile or item.is_market_listed or item.is_equipped or item.blueprint.kind != 'consumable': return False
+    bp = item.blueprint
+    health = min(bp.heal_amount, profile.max_health - profile.current_health)
+    energy = min(bp.energy_amount, profile.max_energy - profile.current_energy)
+    if health <= 0 and energy <= 0: return False
+    profile.current_health += health
+    profile.current_energy += energy
+    if health: profile.health_updated_at = timezone.now()
+    if energy: profile.energy_updated_at = timezone.now()
+    profile.save()
+    if item.quantity == 1: item.delete()
+    else:
+        item.quantity -= 1
+        item.save(update_fields=['quantity'])
     return True

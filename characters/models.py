@@ -84,6 +84,7 @@ class PlayerProfile(models.Model):
     # ore balance
     ore_balance = models.IntegerField(default=50)
 
+    equipment_health = models.PositiveIntegerField(default=0)
     premium_balance = models.PositiveIntegerField(default=0)
     current_health = models.PositiveIntegerField(default=50)
     health_updated_at = models.DateTimeField(default=timezone.now)
@@ -108,13 +109,27 @@ class PlayerProfile(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(condition=models.Q(current_energy__gte=0) & models.Q(current_energy__lte=models.F("max_energy")), name="profile_energy_bounds"),
-            models.CheckConstraint(condition=models.Q(current_health__lte=models.F("life")), name="profile_health_bounds"),
+            models.CheckConstraint(condition=models.Q(current_health__lte=models.F("life") + models.F("equipment_health")), name="profile_health_bounds"),
             models.CheckConstraint(condition=models.Q(ore_balance__gte=0), name="profile_ore_nonnegative"),
             models.CheckConstraint(condition=models.Q(life__gte=1) & models.Q(max_energy__gte=1), name="profile_resource_caps_positive"),
         ]
 
     # actions time
     action_end_time = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def max_health(self):
+        return self.life + self.equipment_health
+
+    @property
+    def equipment_stats(self):
+        from .equipment import stats_for
+        if not hasattr(self, '_gear_stats_cache'):
+            self._gear_stats_cache = stats_for(self)
+        return self._gear_stats_cache
+
+    def effective_protection(self, kind='weapon'):
+        return getattr(self, kind + '_prot') + self.equipment_stats[kind + '_prot']
 
     @property
     def camp_tier(self):
@@ -143,10 +158,52 @@ class PlayerProfile(models.Model):
 
 
 class ItemBluePrint(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=120)
     damage = models.IntegerField(default=0)
     required_strength = models.IntegerField(default=0)
     base_value = models.IntegerField(default=0)
+
+    catalog_key = models.SlugField(max_length=100, unique=True, null=True, blank=True)
+    kind = models.CharField(max_length=15, default='weapon', choices=[(k,k) for k in ('weapon','armor','ring','amulet','consumable','material','ammo','rune','scroll','quest','misc')])
+    weapon_type = models.CharField(max_length=12, default='onehand', choices=[(k,k) for k in ('onehand','twohand','bow','crossbow')])
+    damage_type = models.CharField(max_length=8, default='weapon', choices=[(k,k) for k in ('weapon','arrow','fire','magic')])
+    required_dexterity = models.PositiveIntegerField(default=0)
+    min_level = models.PositiveIntegerField(default=0)
+    required_camp = models.CharField(max_length=20, blank=True)
+    min_camp_tier = models.PositiveSmallIntegerField(default=0)
+    weapon_prot = models.PositiveIntegerField(default=0)
+    arrow_prot = models.PositiveIntegerField(default=0)
+    fire_prot = models.PositiveIntegerField(default=0)
+    magic_prot = models.PositiveIntegerField(default=0)
+    strength_bonus = models.PositiveIntegerField(default=0)
+    dexterity_bonus = models.PositiveIntegerField(default=0)
+    mana_bonus = models.PositiveIntegerField(default=0)
+    life_bonus = models.PositiveIntegerField(default=0)
+    heal_amount = models.PositiveIntegerField(default=0)
+    energy_amount = models.PositiveIntegerField(default=0)
+    stackable = models.BooleanField(default=False)
+    merchant = models.BooleanField(default=True)
+    tradeable = models.BooleanField(default=True)
+    source_game = models.CharField(max_length=20, default='adaptation')
+    source_url = models.URLField(blank=True)
+    original_stats = models.JSONField(default=dict, blank=True)
+    art_key = models.CharField(max_length=100, blank=True)
+
+    @property
+    def kind_name(self):
+        return {'weapon':'Broń','armor':'Pancerz','ring':'Pierścień','amulet':'Amulet','consumable':'Pożywienie / mikstura','material':'Materiał / trofeum','ammo':'Amunicja','rune':'Runa','scroll':'Zwój','quest':'Przedmiot fabularny','misc':'Pozostałe'}.get(self.kind,self.kind)
+
+    @property
+    def damage_name(self):
+        return {'weapon':'broń','arrow':'pociski','fire':'ogień','magic':'magia'}.get(self.damage_type,self.damage_type)
+
+    @property
+    def weapon_name(self):
+        return {'onehand':'Jednoręczna','twohand':'Dwuręczna','bow':'Łuk','crossbow':'Kusza'}.get(self.weapon_type,self.weapon_type)
+
+    @property
+    def equippable(self):
+        return self.kind in {'weapon','armor','ring','amulet'}
 
 
 class OwnedItem(models.Model):
@@ -154,9 +211,27 @@ class OwnedItem(models.Model):
     owner = models.ForeignKey(
         PlayerProfile, on_delete=models.CASCADE, related_name="inventory"
     )
+    quantity = models.PositiveIntegerField(default=1)
+    equipped_slot = models.CharField(max_length=10, blank=True)
     is_equipped = models.BooleanField(default=False)
     is_market_listed = models.BooleanField(default=False)
     market_price = models.IntegerField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.is_equipped:
+            self.equipped_slot = ''
+        elif not self.equipped_slot:
+            self.equipped_slot = {'ring': 'ring1', 'amulet': 'amulet', 'armor': 'armor'}.get(self.blueprint.kind, 'weapon')
+        if kwargs.get('update_fields') and ('is_equipped' in kwargs['update_fields'] or 'equipped_slot' in kwargs['update_fields']):
+            kwargs['update_fields'] = list(set(kwargs['update_fields']) | {'equipped_slot'})
+        super().save(*args, **kwargs)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(condition=models.Q(quantity__gte=1), name='owned_quantity_positive'),
+            models.UniqueConstraint(fields=['owner','equipped_slot'], condition=models.Q(is_equipped=True), name='one_equipment_per_slot'),
+            models.CheckConstraint(condition=(models.Q(is_equipped=False, equipped_slot='') | (models.Q(is_equipped=True) & models.Q(equipped_slot__in=['weapon','armor','amulet','ring1','ring2']))), name='equipment_slot_consistent'),
+        ]
 
 
 @receiver(post_save, sender=User)
@@ -407,3 +482,41 @@ class StoryRun(models.Model):
             models.UniqueConstraint(fields=['profile', 'quest'], name='unique_story_run'),
             models.UniqueConstraint(fields=['profile'], condition=~models.Q(status='claimed'), name='one_open_story_run'),
         ]
+
+
+class LootTable(models.Model):
+    key = models.CharField(max_length=60, unique=True)
+    version = models.PositiveIntegerField(default=1)
+    entries = models.JSONField(default=list)
+    enabled = models.BooleanField(default=True)
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        entries = self.entries
+        valid = isinstance(entries,list) and len(entries) <= 20
+        if valid:
+            for e in entries:
+                if not isinstance(e,dict) or type(e.get('weight')) is not int or not 1 <= e['weight'] <= 10000 or type(e.get('blueprint')) is not int or not ItemBluePrint.objects.filter(pk=e['blueprint']).exists() or not 1 <= e.get('min',1) <= e.get('max',1) <= 100:
+                    valid = False
+                    break
+        if not valid or sum(e['weight'] for e in entries) > 10000:
+            raise ValidationError('Niepoprawna tabela łupu; wagi muszą sumować się do najwyżej 10000.')
+
+
+class BattleRecord(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT, related_name='battles')
+    request_key = models.UUIDField()
+    monster_key = models.CharField(max_length=60)
+    location_key = models.CharField(max_length=60)
+    created_at = models.DateTimeField(default=timezone.now, db_index=True)
+    won = models.BooleanField()
+    combat_log = models.JSONField(default=list)
+    experience = models.PositiveIntegerField(default=0)
+    ore = models.PositiveIntegerField(default=0)
+    loot = models.JSONField(default=list)
+    loot_version = models.PositiveIntegerField(default=0)
+    boss_attempt = models.OneToOneField(BossAttempt, null=True, blank=True, on_delete=models.PROTECT)
+
+    class Meta:
+        ordering = ['-created_at','-pk']
+        constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='one_battle_request')]

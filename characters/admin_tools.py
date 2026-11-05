@@ -23,7 +23,7 @@ class ProfileStatsForm(forms.ModelForm):
         for field in ("life", "max_energy"):
             if data.get(field, 1) < 1:
                 self.add_error(field, "Maksimum musi być dodatnie.")
-        if data.get("current_health", 0) > data.get("life", 0):
+        if data.get("current_health", 0) > data.get("life", 0) + self.instance.equipment_health:
             self.add_error("current_health", "Zdrowie przekracza maksimum.")
         if data.get("current_energy", 0) > data.get("max_energy", 0):
             self.add_error("current_energy", "Energia przekracza maksimum.")
@@ -44,7 +44,7 @@ def administer_player(actor, profile_id, action, payload):
     details = {}
     if action == "restore":
         profile.current_energy = profile.max_energy
-        profile.current_health = profile.life
+        profile.current_health = profile.max_health
         profile.energy_updated_at = profile.health_updated_at = timezone.now()
         profile.save()
     elif action == "item":

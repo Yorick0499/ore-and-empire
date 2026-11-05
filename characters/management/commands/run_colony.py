@@ -41,6 +41,7 @@ class Command(BaseCommand):
         with server:
             call_command("migrate", interactive=False, stdout=self.stdout)
             call_command("seed_world", stdout=self.stdout)
+            call_command("seed_equipment", stdout=self.stdout)
             call_command("seed_adventures", stdout=self.stdout)
             call_command("seed_story", stdout=self.stdout)
             if options["setup_admin"]:

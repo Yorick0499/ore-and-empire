@@ -1,3 +1,4 @@
+from uuid import uuid4
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -15,6 +16,7 @@ from .game_logic import (
     buy_item_from_npc,
     delist_item_from_market,
     equip_item,
+    use_item,
     execute_hunt,
     sell_item_from_npc,
     start_mining,
@@ -57,7 +59,7 @@ def hunt_view(request):
         if monster not in available:
             messages.error(request, "Nie ma tutaj takiego przeciwnika.")
             return redirect(request.get_full_path())
-        combat_log = execute_hunt(profile, monster, location.key)
+        combat_log = execute_hunt(profile, monster, location.key, request.POST.get("request_key"))
         if combat_log is False:
             messages.error(request, "Potrzebujesz 15 energii i co najmniej 10 zdrowia. Zakończ też trwające zadanie.")
             combat_log = None
@@ -69,6 +71,7 @@ def hunt_view(request):
         {
             "profile": profile,
             "combat_log": combat_log,
+            "request_key": uuid4(),
             "BESTIARY": available,
             "location": location,
         },
@@ -136,6 +139,10 @@ def inventory_view(request):
     refresh_player(profile)
     if request.method == "POST":
         action = request.POST.get("action")
+        if action == "use":
+            item = get_object_or_404(OwnedItem, pk=positive_id(request.POST.get("item_id")), owner=profile)
+            report_action(request, use_item(profile,item))
+            return redirect(request.get_full_path())
         if action == "equip":
             item_id = request.POST.get("item_id")
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
@@ -147,7 +154,7 @@ def inventory_view(request):
             report_action(request, unequip_item(profile, item))
             return redirect(request.get_full_path())
     player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
-    equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True).first()
+    equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True, equipped_slot="weapon").first()
     return render(
         request,
         "characters/inventory.html",
@@ -155,6 +162,8 @@ def inventory_view(request):
             "profile": profile,
             "player_inventory": player_inventory,
             "equipped_weapon": equipped_weapon,
+            "equipped_items": profile.inventory.filter(is_equipped=True).select_related("blueprint"),
+            "battles": profile.battles.all()[:10],
         },
     )
 
@@ -176,7 +185,7 @@ def shop_view(request):
             report_action(request, sell_item_from_npc(profile, item))
             return redirect(request.get_full_path())
     player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
-    merchant_inventory = ItemBluePrint.objects.all()
+    merchant_inventory = ItemBluePrint.objects.filter(merchant=True, min_level__lte=profile.level, required_camp__in=["",profile.camp], min_camp_tier__lte=profile.camp_tier).order_by("kind","base_value","pk")
     return render(
         request,
         "characters/shop.html",
@@ -367,7 +376,7 @@ def boss_view(request):
     location = current_location(request, profile, "crawler_nest", "boss_page")
     boss = BOSSES[location.key]
     if request.method == "POST":
-        attempt = execute_boss(profile, boss.key)
+        attempt = execute_boss(profile, boss.key, request.POST.get("request_key"))
         if attempt is False:
             messages.error(
                 request,
@@ -388,6 +397,7 @@ def boss_view(request):
             "profile": profile,
             "location": location,
             "boss": boss,
+            "request_key": uuid4(),
             "last_attempt": last,
             "next_attempt": next_attempt if waiting else None,
             "can_fight": not waiting

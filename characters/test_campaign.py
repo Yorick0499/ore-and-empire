@@ -45,6 +45,7 @@ class CampaignTests(TestCase):
         self.assertEqual(StoryQuest.objects.count(), 41)
 
     def test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self):
+        call_command('seed_equipment', stdout=StringIO())
         # Simulated elapsed time grants only the ordinary capped resource recovery.
         # No combat mocks, forced progress, stat/XP grants or injected quest outcomes.
         call_command('run_bots', create=3, create_only=True, stdout=StringIO())

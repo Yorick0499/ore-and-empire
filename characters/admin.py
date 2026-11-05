@@ -215,3 +215,16 @@ class StoryQuestAdmin(admin.ModelAdmin):
 class StoryRunAdmin(ReadOnlyAdmin):
     list_display = ('profile', 'quest', 'status', 'accepted_at', 'claimed_at')
     list_filter = ('status',)
+
+
+from .models import BattleRecord, LootTable
+
+
+@admin.register(BattleRecord)
+class BattleRecordAdmin(ReadOnlyAdmin):
+    list_display = ('created_at','profile','monster_key','won','loot_version')
+
+
+@admin.register(LootTable)
+class LootTableAdmin(admin.ModelAdmin):
+    list_display = ('key','version','enabled')
