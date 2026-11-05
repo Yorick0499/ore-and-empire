@@ -8,8 +8,8 @@
 23 materiały/trofea i 41 pozostałych. To szeroki katalog kodów, a nie twierdzenie,
 że każdy wpis jest unikalnym, dostępnym graczowi przedmiotem.
 
-**242 rekordy** mają zweryfikowane statystyki lub efekty z tabel Gothicpedii.
-Dotyczy to przede wszystkim wyposażenia i części mikstur. Reszta ma potwierdzoną
+**470 rekordów** mają zweryfikowane statystyki lub efekty z tabel Gothicpedii.
+Pierwsza wersja miała 242 rekordy z tabel wyposażenia i efektów. Wersja 2 dodała 228 cen/efektów z infoboksów dopasowanych po dokładnym kodzie G1 i walucie rudy. Część tych wpisów ma tylko cenę, nie komplet parametrów działania. Reszta ma potwierdzoną
 nazwę/kod i oznaczenie braku kompletnych statystyk. Nie wymyślamy ceny oryginału,
 effektów run czy działania kluczy. Niezweryfikowane rekordy nie trafiają do
 zwykłego sklepu (wyjątek: amunicja z jawną ceną adaptacji). Runy i zwoje pozostają

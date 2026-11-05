@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 
@@ -117,6 +117,10 @@ class PlayerProfile(models.Model):
     # actions time
     action_end_time = models.DateTimeField(null=True, blank=True)
 
+    def refresh_from_db(self,*args,**kwargs):
+        super().refresh_from_db(*args,**kwargs)
+        if hasattr(self,'_gear_stats_cache'): del self._gear_stats_cache
+
     @property
     def max_health(self):
         return self.life + self.equipment_health
@@ -189,6 +193,14 @@ class ItemBluePrint(models.Model):
     original_stats = models.JSONField(default=dict, blank=True)
     art_key = models.CharField(max_length=100, blank=True)
 
+    def save(self,*args,**kwargs):
+        old_bonus=type(self).objects.filter(pk=self.pk).values_list('life_bonus',flat=True).first() if self.pk else None
+        super().save(*args,**kwargs)
+        if old_bonus is not None and old_bonus != self.life_bonus:
+            from .equipment import sync_health
+            for profile in PlayerProfile.objects.filter(inventory__blueprint=self,inventory__is_equipped=True).distinct():
+                sync_health(profile)
+
     @property
     def original_rows(self):
         names = {'damage':'Obrażenia','requirement':'Wymagany atrybut broni','reach':'Zasięg','cut_damage':'Obrażenia sieczne','blunt_damage':'Obrażenia obuchowe','value':'Cena G1','base_value':'Cena G1','availability':'Najwcześniejszy rozdział G1','weapon_prot':'Ochrona przed bronią','arrow_prot':'Ochrona przed pociskami','fire_prot':'Ochrona przed ogniem','magic_prot':'Ochrona przed magią','life_bonus':'Bonus życia','mana_bonus':'Bonus many','strength_bonus':'Bonus siły','dexterity_bonus':'Bonus zręczności','effect':'Efekt G1','browser_price':'Cena adaptacji (nie G1)'}
@@ -222,7 +234,13 @@ class OwnedItem(models.Model):
     is_market_listed = models.BooleanField(default=False)
     market_price = models.IntegerField(null=True, blank=True)
 
+    @property
+    def slot_name(self):
+        return {'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II'}.get(self.equipped_slot,'Plecak')
+
     def save(self, *args, **kwargs):
+        previous = type(self).objects.filter(pk=self.pk).values('owner_id','is_equipped').first() if self.pk else None
+        was_equipped = bool(previous and previous['is_equipped'])
         if not self.is_equipped:
             self.equipped_slot = ''
         elif not self.equipped_slot:
@@ -230,6 +248,11 @@ class OwnedItem(models.Model):
         if kwargs.get('update_fields') and ('is_equipped' in kwargs['update_fields'] or 'equipped_slot' in kwargs['update_fields']):
             kwargs['update_fields'] = list(set(kwargs['update_fields']) | {'equipped_slot'})
         super().save(*args, **kwargs)
+        if self.is_equipped or was_equipped:
+            from .equipment import sync_health
+            ids={self.owner_id}
+            if was_equipped: ids.add(previous['owner_id'])
+            for profile in PlayerProfile.objects.filter(pk__in=ids): sync_health(profile)
 
     class Meta:
         constraints = [
@@ -242,7 +265,9 @@ class OwnedItem(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        PlayerProfile.objects.create(user=instance)
+        profile = PlayerProfile.objects.create(user=instance)
+        from .economic_ledger import record_opening
+        record_opening(profile)
 
 
 class MarketTrade(models.Model):
@@ -537,3 +562,33 @@ class ContentPack(models.Model):
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['key','game','version'],name='unique_content_pack_version')]
+
+
+class EconomicEntry(models.Model):
+    profile = models.ForeignKey(PlayerProfile,on_delete=models.PROTECT,related_name='economic_entries')
+    resource = models.CharField(max_length=8,choices=[('ore','Ruda'),('shards','Odłamki')])
+    amount = models.IntegerField()
+    balance_after = models.PositiveIntegerField()
+    category = models.CharField(max_length=10,choices=[(x,x) for x in ('opening','source','sink','transfer','admin')])
+    operation = models.CharField(max_length=50)
+    reference = models.UUIDField()
+    created_at = models.DateTimeField(default=timezone.now,db_index=True)
+
+    class Meta:
+        ordering = ['-created_at','-pk']
+        constraints = [models.UniqueConstraint(fields=['profile','resource','reference'],name='unique_economic_reference'),models.CheckConstraint(condition=~models.Q(amount=0),name='economic_nonzero')]
+
+
+class EnergyRefill(models.Model):
+    profile = models.ForeignKey(PlayerProfile,on_delete=models.PROTECT,related_name='energy_refills')
+    created_at = models.DateTimeField(default=timezone.now,db_index=True)
+    reference = models.CharField(max_length=100,unique=True)
+
+
+@receiver(post_delete,sender=OwnedItem)
+def equipped_item_removed(sender,instance,**kwargs):
+    if instance.is_equipped:
+        profile=PlayerProfile.objects.filter(pk=instance.owner_id).first()
+        if profile:
+            from .equipment import sync_health
+            sync_health(profile)

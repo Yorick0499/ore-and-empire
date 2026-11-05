@@ -245,3 +245,7 @@ button, .colony-button, .gothic-btn { max-width: 100%; line-height: 1.45; }
 
 .story-goal { border-top: 1px solid #736044; margin: 1.2rem 0; padding-top: .8rem; overflow-wrap: anywhere; }
 .story-goal select { max-width: 100%; width: 100%; white-space: normal; }
+
+.economy-table { max-width: 100%; }
+.economy-table table { min-width: 660px; width: 100%; border-collapse: collapse; }
+.economy-table th, .economy-table td { padding: .6rem; text-align: left; border-bottom: 1px solid #736044; }

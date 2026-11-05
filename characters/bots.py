@@ -202,7 +202,9 @@ def tick_bot(profile, policy=None):
         worn = next((i.blueprint.weapon_prot for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
         from .equipment import allowed
         equipment = max((i for i in spare if i.blueprint.kind == 'armor' and i.blueprint.weapon_prot > worn and allowed(profile,i.blueprint)), key=lambda i:i.blueprint.weapon_prot, default=None)
-    consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15))), None)
+    from .economic_ledger import refills_remaining
+    energy_refills_left = refills_remaining(profile)
+    consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
     stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=['onehand','twohand'], min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
@@ -299,7 +301,7 @@ def tick_bot(profile, policy=None):
         for monster, energy in story_fights
     ) and any(health_needed(profile, monster, profile.strength + damage) <= profile.max_health for monster, _ in story_fights)
     products = StoreProduct.objects.filter(enabled=True, level__lte=profile.level, price__lte=profile.premium_balance).select_related("blueprint").order_by("price", "pk")
-    product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.max_health // 2)) or (p.kind == "energy" and profile.current_energy < 15)), None)
+    product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.max_health // 2)) or (p.kind == "energy" and profile.current_energy < 15 and energy_refills_left)), None)
     urgent = product is not None
     if not product and len(inventory) < 6:
         product = next((p for p in products if p.kind == "weapon" and p.blueprint and p.blueprint.required_strength <= profile.strength and p.blueprint.damage > damage and not any(i.blueprint_id == p.blueprint_id for i in inventory)), None)

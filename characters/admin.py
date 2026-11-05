@@ -29,7 +29,10 @@ class ProfileAdmin(admin.ModelAdmin):
             obj.energy_updated_at = timezone.now()
         if "current_health" in form.changed_data:
             obj.health_updated_at = timezone.now()
+        from .economic_ledger import balances, record_changes
+        before = balances([obj.pk])
         super().save_model(request, obj, form, change)
+        record_changes(before, "django_admin_stats", "admin")
         AdminAction.objects.create(actor=request.user, profile=obj, action="django_stats", details={"fields": form.changed_data})
 
 
@@ -232,3 +235,8 @@ class LootTableAdmin(admin.ModelAdmin):
 
 from .models import ContentPack
 admin.site.register(ContentPack, ReadOnlyAdmin)
+
+
+from .models import EconomicEntry, EnergyRefill
+admin.site.register(EconomicEntry, ReadOnlyAdmin)
+admin.site.register(EnergyRefill, ReadOnlyAdmin)

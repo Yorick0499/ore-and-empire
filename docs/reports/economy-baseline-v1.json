@@ -1,0 +1,451 @@
+{
+  "schema": 1,
+  "model": "repeatable-budget-v1",
+  "assumptions": {
+    "bot_activity": "24h, 2/3 highest-XP eligible adventures and 1/3 mining",
+    "human_activity": "courier, two 30-minute sessions/day",
+    "events": "none or continuous +25% ore/+10% XP/+1 shard stress envelope, not calendar forecast",
+    "ore_per_mine": "deterministic mean 17.5; live game draws integer 10..25",
+    "energy": "100 cap; 1/min; refill25 for3 shards, at most5 per UTC day",
+    "sinks": "10 ore per earned learning point; one NPC milestone purchase at levels3/8/15",
+    "excluded": "combat, one-time campaign, loot liquidation, crafting, LLM policies and endogenous market prices; no claim of a full world simulation"
+  },
+  "quest_rates": [
+    {
+      "key": "courier",
+      "seconds": 45,
+      "energy": 5,
+      "ore": 12,
+      "pd_per_second": 1.7778,
+      "pd_per_energy": 16.0,
+      "shards_per_hour": 80.0,
+      "shards_per_energy": 0.2,
+      "event_shards_per_energy": 0.4
+    },
+    {
+      "key": "herbs",
+      "seconds": 60,
+      "energy": 6,
+      "ore": 16,
+      "pd_per_second": 1.6667,
+      "pd_per_energy": 16.6667,
+      "shards_per_hour": 60.0,
+      "shards_per_energy": 0.1667,
+      "event_shards_per_energy": 0.3333
+    },
+    {
+      "key": "rice",
+      "seconds": 90,
+      "energy": 8,
+      "ore": 22,
+      "pd_per_second": 1.5556,
+      "pd_per_energy": 17.5,
+      "shards_per_hour": 40.0,
+      "shards_per_energy": 0.125,
+      "event_shards_per_energy": 0.25
+    },
+    {
+      "key": "caravan",
+      "seconds": 120,
+      "energy": 10,
+      "ore": 30,
+      "pd_per_second": 1.5833,
+      "pd_per_energy": 19.0,
+      "shards_per_hour": 60.0,
+      "shards_per_energy": 0.2,
+      "event_shards_per_energy": 0.3
+    },
+    {
+      "key": "almanac",
+      "seconds": 150,
+      "energy": 10,
+      "ore": 35,
+      "pd_per_second": 1.5333,
+      "pd_per_energy": 23.0,
+      "shards_per_hour": 48.0,
+      "shards_per_energy": 0.2,
+      "event_shards_per_energy": 0.3
+    },
+    {
+      "key": "ore_sample",
+      "seconds": 180,
+      "energy": 12,
+      "ore": 45,
+      "pd_per_second": 1.6667,
+      "pd_per_energy": 25.0,
+      "shards_per_hour": 40.0,
+      "shards_per_energy": 0.1667,
+      "event_shards_per_energy": 0.25
+    },
+    {
+      "key": "focus",
+      "seconds": 240,
+      "energy": 14,
+      "ore": 60,
+      "pd_per_second": 1.6667,
+      "pd_per_energy": 28.5714,
+      "shards_per_hour": 45.0,
+      "shards_per_energy": 0.2143,
+      "event_shards_per_energy": 0.2857
+    },
+    {
+      "key": "ruins",
+      "seconds": 300,
+      "energy": 16,
+      "ore": 80,
+      "pd_per_second": 1.8333,
+      "pd_per_energy": 34.375,
+      "shards_per_hour": 36.0,
+      "shards_per_energy": 0.1875,
+      "event_shards_per_energy": 0.25
+    },
+    {
+      "key": "orc_trail",
+      "seconds": 360,
+      "energy": 18,
+      "ore": 110,
+      "pd_per_second": 2.0833,
+      "pd_per_energy": 41.6667,
+      "shards_per_hour": 40.0,
+      "shards_per_energy": 0.2222,
+      "event_shards_per_energy": 0.2778
+    },
+    {
+      "key": "xardas",
+      "seconds": 420,
+      "energy": 20,
+      "ore": 140,
+      "pd_per_second": 2.2619,
+      "pd_per_energy": 47.5,
+      "shards_per_hour": 34.2857,
+      "shards_per_energy": 0.2,
+      "event_shards_per_energy": 0.25
+    },
+    {
+      "key": "temple",
+      "seconds": 480,
+      "energy": 22,
+      "ore": 180,
+      "pd_per_second": 2.5,
+      "pd_per_energy": 54.5455,
+      "shards_per_hour": 37.5,
+      "shards_per_energy": 0.2273,
+      "event_shards_per_energy": 0.2727
+    }
+  ],
+  "cases": [
+    {
+      "days": 10,
+      "population": 6,
+      "bots": 6,
+      "humans": 0,
+      "event_stress": false,
+      "totals": {
+        "ore": 489999.0,
+        "shards": 13200,
+        "experience": 3105040,
+        "adventures": 3208,
+        "mining_claims": 2898,
+        "refills": 200,
+        "npc_ore_sink": 25280
+      }
+    },
+    {
+      "days": 30,
+      "population": 6,
+      "bots": 6,
+      "humans": 0,
+      "event_stress": false,
+      "totals": {
+        "ore": 1597039.0,
+        "shards": 40440,
+        "experience": 9930640,
+        "adventures": 8896,
+        "mining_claims": 8658,
+        "refills": 600,
+        "npc_ore_sink": 42880
+      }
+    },
+    {
+      "days": 90,
+      "population": 6,
+      "bots": 6,
+      "humans": 0,
+      "event_stress": false,
+      "totals": {
+        "ore": 4940639.0,
+        "shards": 122140,
+        "experience": 30402640,
+        "adventures": 25956,
+        "mining_claims": 25938,
+        "refills": 1800,
+        "npc_ore_sink": 72480
+      }
+    },
+    {
+      "days": 10,
+      "population": 6,
+      "bots": 6,
+      "humans": 0,
+      "event_stress": true,
+      "totals": {
+        "ore": 622733.76,
+        "shards": 16412,
+        "experience": 3444980,
+        "adventures": 3176,
+        "mining_claims": 2898,
+        "refills": 200,
+        "npc_ore_sink": 26480
+      }
+    },
+    {
+      "days": 30,
+      "population": 6,
+      "bots": 6,
+      "humans": 0,
+      "event_stress": true,
+      "totals": {
+        "ore": 2010133.76,
+        "shards": 49340,
+        "experience": 10953140,
+        "adventures": 8864,
+        "mining_claims": 8658,
+        "refills": 600,
+        "npc_ore_sink": 44880
+      }
+    },
+    {
+      "days": 90,
+      "population": 6,
+      "bots": 6,
+      "humans": 0,
+      "event_stress": true,
+      "totals": {
+        "ore": 6195433.76,
+        "shards": 148100,
+        "experience": 33472340,
+        "adventures": 25924,
+        "mining_claims": 25938,
+        "refills": 1800,
+        "npc_ore_sink": 76080
+      }
+    },
+    {
+      "days": 10,
+      "population": 20,
+      "bots": 10,
+      "humans": 10,
+      "event_stress": false,
+      "totals": {
+        "ore": 912574.5,
+        "shards": 28730,
+        "experience": 5997020,
+        "adventures": 12654,
+        "mining_claims": 4347,
+        "refills": 820,
+        "npc_ore_sink": 61440
+      }
+    },
+    {
+      "days": 30,
+      "population": 20,
+      "bots": 10,
+      "humans": 10,
+      "event_stress": false,
+      "totals": {
+        "ore": 2979214.5,
+        "shards": 87610,
+        "experience": 19078620,
+        "adventures": 36818,
+        "mining_claims": 12987,
+        "refills": 2520,
+        "npc_ore_sink": 108240
+      }
+    },
+    {
+      "days": 90,
+      "population": 20,
+      "bots": 10,
+      "humans": 10,
+      "event_stress": false,
+      "totals": {
+        "ore": 9247114.5,
+        "shards": 264185,
+        "experience": 58312620,
+        "adventures": 109273,
+        "mining_claims": 38907,
+        "refills": 7620,
+        "npc_ore_sink": 179040
+      }
+    },
+    {
+      "days": 10,
+      "population": 20,
+      "bots": 10,
+      "humans": 10,
+      "event_stress": true,
+      "totals": {
+        "ore": 1156810.64,
+        "shards": 41391,
+        "experience": 6648235,
+        "adventures": 12598,
+        "mining_claims": 4347,
+        "refills": 820,
+        "npc_ore_sink": 69540
+      }
+    },
+    {
+      "days": 30,
+      "population": 20,
+      "bots": 10,
+      "humans": 10,
+      "event_stress": true,
+      "totals": {
+        "ore": 3755410.64,
+        "shards": 124435,
+        "experience": 21037995,
+        "adventures": 36762,
+        "mining_claims": 12987,
+        "refills": 2520,
+        "npc_ore_sink": 112740
+      }
+    },
+    {
+      "days": 90,
+      "population": 20,
+      "bots": 10,
+      "humans": 10,
+      "event_stress": true,
+      "totals": {
+        "ore": 11604185.64,
+        "shards": 373465,
+        "experience": 64195395,
+        "adventures": 109217,
+        "mining_claims": 38907,
+        "refills": 7620,
+        "npc_ore_sink": 187340
+      }
+    },
+    {
+      "days": 10,
+      "population": 50,
+      "bots": 10,
+      "humans": 40,
+      "event_stress": false,
+      "totals": {
+        "ore": 1115914.5,
+        "shards": 45620,
+        "experience": 7686620,
+        "adventures": 33774,
+        "mining_claims": 4347,
+        "refills": 2230,
+        "npc_ore_sink": 113040
+      }
+    },
+    {
+      "days": 30,
+      "population": 50,
+      "bots": 10,
+      "humans": 40,
+      "event_stress": false,
+      "totals": {
+        "ore": 3646114.5,
+        "shards": 138130,
+        "experience": 24178620,
+        "adventures": 100568,
+        "mining_claims": 12987,
+        "refills": 6930,
+        "npc_ore_sink": 207840
+      }
+    },
+    {
+      "days": 90,
+      "population": 50,
+      "bots": 10,
+      "humans": 40,
+      "event_stress": false,
+      "totals": {
+        "ore": 11390614.5,
+        "shards": 415505,
+        "experience": 73636620,
+        "adventures": 300823,
+        "mining_claims": 38907,
+        "refills": 21030,
+        "npc_ore_sink": 335640
+      }
+    },
+    {
+      "days": 10,
+      "population": 50,
+      "bots": 10,
+      "humans": 40,
+      "event_stress": true,
+      "totals": {
+        "ore": 1405510.64,
+        "shards": 79401,
+        "experience": 8506795,
+        "adventures": 33718,
+        "mining_claims": 4347,
+        "refills": 2230,
+        "npc_ore_sink": 139140
+      }
+    },
+    {
+      "days": 30,
+      "population": 50,
+      "bots": 10,
+      "humans": 40,
+      "event_stress": true,
+      "totals": {
+        "ore": 4610560.64,
+        "shards": 238705,
+        "experience": 26647995,
+        "adventures": 100512,
+        "mining_claims": 12987,
+        "refills": 6930,
+        "npc_ore_sink": 215340
+      }
+    },
+    {
+      "days": 90,
+      "population": 50,
+      "bots": 10,
+      "humans": 40,
+      "event_stress": true,
+      "totals": {
+        "ore": 14316335.64,
+        "shards": 716335,
+        "experience": 81051795,
+        "adventures": 300767,
+        "mining_claims": 38907,
+        "refills": 21030,
+        "npc_ore_sink": 349940
+      }
+    }
+  ],
+  "courier_event_refill_comparison_90d": {
+    "capped": {
+      "days": 90,
+      "ore": 411850.0,
+      "shards": 54986,
+      "experience": 2478784,
+      "level": 99,
+      "adventures": 28168,
+      "mining_claims": 0,
+      "refills": 450,
+      "npc_ore_sink": 10720
+    },
+    "uncapped": {
+      "days": 90,
+      "ore": 2267275.0,
+      "shards": 229124,
+      "experience": 13441384,
+      "level": 231,
+      "adventures": 152743,
+      "mining_claims": 0,
+      "refills": 25454,
+      "npc_ore_sink": 23920
+    }
+  },
+  "market": "Transfers do not mint currency. Use the live ledger/trade history for turnover and prices."
+}

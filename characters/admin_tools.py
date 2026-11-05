@@ -41,6 +41,8 @@ def administer_player(actor, profile_id, action, payload):
     if not profile:
         return False, "Nie znaleziono postaci."
     recover_energy(profile)
+    from .economic_ledger import balances, record_changes
+    before_balances = balances([profile.pk])
     details = {}
     if action == "restore":
         profile.current_energy = profile.max_energy
@@ -78,5 +80,6 @@ def administer_player(actor, profile_id, action, payload):
         details = {"before": before, "after": form.cleaned_data}
     else:
         return False, "Nieznana operacja."
+    record_changes(before_balances, "admin_" + action, "admin")
     AdminAction.objects.create(actor=actor, profile=profile, action=action, details=details)
     return True, "Zmiany zapisane w kronice administratora."

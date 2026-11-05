@@ -492,8 +492,10 @@ def itemshop_view(request):
     if request.method == "POST":
         report_action(request, purchase_product(profile, positive_id(request.POST.get("product")), request.POST.get("request_key")))
         return redirect("itemshop_page")
+    from .economic_ledger import refills_remaining
+    energy_left = refills_remaining(profile)
     products = [{"product": product, "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
-    return render(request, "characters/itemshop.html", {"profile": profile, "products": products, "entries": profile.premium_entries.all()[:15]})
+    return render(request, "characters/itemshop.html", {"energy_refills_left": energy_left,"profile": profile, "products": products, "entries": profile.premium_entries.all()[:15]})
 
 
 def events_view(request):
@@ -621,10 +623,19 @@ def item_catalog_view(request):
     from django.core.paginator import Paginator
     from django.db.models import Q
     from .models import ContentPack
-    items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').order_by('kind','name','catalog_key')
+    items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').exclude(catalog_key__startswith='g1-bab-armor-').order_by('kind','name','catalog_key')
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
     if query:items=items.filter(Q(name__icontains=query)|Q(catalog_key__icontains=query))
     if kind in {c[0] for c in ItemBluePrint._meta.get_field('kind').choices}:items=items.filter(kind=kind)
     if request.GET.get('verified')=='1':items=items.filter(original_stats__verified=True)
-    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game='GOTHIC_I'),'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
+    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game='GOTHIC_I').order_by('-version')[:1],'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
+
+
+@login_required
+@user_passes_test(lambda user:user.is_active and user.is_superuser)
+def economy_balance_view(request):
+    from .economic_ledger import summary
+    from .economy_simulation import rates
+    data=summary()
+    return render(request,'characters/economy_balance.html',{'balance':data,'rates':rates()})
