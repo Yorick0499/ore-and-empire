@@ -5,6 +5,7 @@ from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.test import TestCase
+from django.db.models import Q
 from django.utils import timezone
 from .models import PlayerProfile, WorldEvent, PremiumEntry, StorePurchase, BotDecision
 from .bots import tick_bot
@@ -43,8 +44,14 @@ class AutonomousBotTests(TestCase):
             self.assertGreater(actions[action], 0, (action, actions))
         self.assertTrue(StorePurchase.objects.exists())
         self.assertTrue(PremiumEntry.objects.filter(amount__lt=0).exists())
-        # Every shard source comes from a real completed adventure in this simulation.
-        self.assertFalse(PremiumEntry.objects.filter(amount__gt=0).exclude(reference__startswith="adventure:").exists())
+        # Wszystkie odłamki pochodzą z rozliczonych działań, nigdy z nadania polityki.
+        allowed=Q(reference__startswith="adventure:")|Q(reference__startswith="challenge:")|Q(reference__startswith="achievement:")|Q(reference__startswith="camp-raid:")
+        self.assertFalse(PremiumEntry.objects.filter(amount__gt=0).exclude(allowed).exists())
+        from .models import PersonalChallenge,PlayerAchievement
+        for entry in PremiumEntry.objects.filter(reference__startswith="challenge:"):
+            self.assertTrue(PersonalChallenge.objects.filter(pk=int(entry.reference.split(":")[1]),profile=entry.profile,claimed_at__isnull=False,premium=entry.amount).exists())
+        for entry in PremiumEntry.objects.filter(reference__startswith="achievement:"):
+            self.assertTrue(PlayerAchievement.objects.filter(pk=int(entry.reference.split(":")[1]),profile=entry.profile,claimed_at__isnull=False).exists())
         self.assertFalse(BotDecision.objects.filter(success=False).exists())
 
     def test_injured_exhausted_bot_waits_and_recovers_on_next_tick(self):
