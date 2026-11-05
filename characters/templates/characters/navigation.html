@@ -1,32 +1,38 @@
 <header class="colony-header">
-  <a class="wordmark" href="{% url 'locations_page' %}">Ore <span>&amp;</span> Empire<small>Kroniki Kolonii</small></a>
+  <div class="masthead"><a class="wordmark" href="{% url 'locations_page' %}">Ore <span>&amp;</span> Empire<small>Kroniki Kolonii</small></a><div class="server-identity"><span class="eyebrow">Twój świat pod barierą</span><strong>{{ server_world.name }}</strong><span>Edycja {{ server_world.edition }} · {{ server_world.bot_count }} botów</span></div></div>
   <nav class="colony-toolbar" aria-label="Nawigacja kolonii">
-    {% if user.is_authenticated %}
-    {% with current=request.resolver_match.url_name %}
+  {% if user.is_authenticated %}{% with current=request.resolver_match.url_name %}
     <a href="{% url 'locations_page' %}" {% if current == 'locations_page' %}aria-current="page"{% endif %}>Kolonia</a>
-    <a href="{% url 'mine_page' %}" {% if current == 'mine_page' %}aria-current="page"{% endif %}>Kopalnia</a>
-    <a href="{% url 'hunt_page' %}" {% if current == 'hunt_page' or current == 'boss_page' %}aria-current="page"{% endif %}>Polowanie</a>
-    <a href="{% url 'magic_page' %}" {% if current == 'magic_page' %}aria-current="page"{% endif %}>Magia</a>
-    <a href="{% url 'camp_page' %}" {% if current == 'camp_page' %}aria-current="page"{% endif %}>Obóz i zadania</a>
     <a href="{% url 'camp_guild' %}" {% if current == 'camp_guild' %}aria-current="page"{% endif %}>Wspólnota obozu</a>
-    <a href="{% url 'story_page' %}">Dziennik fabuły</a>
-    <a href="{% url 'adventures_page' %}" {% if current == 'adventures_page' %}aria-current="page"{% endif %}>Wyprawy</a>
-    <a href="{% url 'tavern_page' %}">Karczma</a>
-    <a href="{% url 'colony_life' %}">Życie kolonii</a>
-    <a href="{% url 'events_page' %}" {% if current == 'events_page' %}aria-current="page"{% endif %}>Eventy</a>
-    <a href="{% url 'rankings_page' %}" {% if current == 'rankings_page' %}aria-current="page"{% endif %}>Rankingi</a>
-    <a href="{% url 'itemshop_page' %}" {% if current == 'itemshop_page' %}aria-current="page"{% endif %}>Sklep odłamków</a>
-    <a href="{% url 'bestiary_page' %}" {% if current == 'bestiary_page' %}aria-current="page"{% endif %}>Bestiariusz</a>
-    <a href="{% url 'market_page' %}" {% if current == 'market_page' %}aria-current="page"{% endif %}>Targ</a>
-    <a href="{% url 'item_catalog' %}">Katalog przedmiotów</a>
-    <a href="{% url 'inventory_page' %}" {% if current == 'inventory_page' %}aria-current="page"{% endif %}>Ekwipunek</a>
-    <a href="{% url 'shop_page' %}" {% if current == 'shop_page' %}aria-current="page"{% endif %}>Kupiec</a>
-    <a href="{% url 'train_page' %}" {% if current == 'train_page' %}aria-current="page"{% endif %}>Nauczyciel</a>
+    <a href="{% url 'story_page' %}" {% if current == 'story_page' %}aria-current="page"{% endif %}>Dziennik fabuły</a>
+    <details class="nav-group"><summary>Droga postaci</summary><div>
+      <a href="{% url 'mine_page' %}" {% if current == 'mine_page' %}aria-current="page"{% endif %}>Kopalnia</a>
+      <a href="{% url 'hunt_page' %}" {% if current == 'hunt_page' or current == 'boss_page' %}aria-current="page"{% endif %}>Polowanie</a>
+      <a href="{% url 'adventures_page' %}" {% if current == 'adventures_page' %}aria-current="page"{% endif %}>Wyprawy</a>
+      <a href="{% url 'camp_page' %}" {% if current == 'camp_page' %}aria-current="page"{% endif %}>Obóz i zadania</a>
+      <a href="{% url 'magic_page' %}" {% if current == 'magic_page' %}aria-current="page"{% endif %}>Magia</a>
+      <a href="{% url 'train_page' %}" {% if current == 'train_page' %}aria-current="page"{% endif %}>Nauczyciel</a>
+      <a href="{% url 'challenges_page' %}">Wyzwania i osiągnięcia</a>
+      <a href="{% url 'characters_page' %}">Twoje postacie</a>
+    </div></details>
+    <details class="nav-group"><summary>Handel i ekwipunek</summary><div>
+      <a href="{% url 'inventory_page' %}" {% if current == 'inventory_page' %}aria-current="page"{% endif %}>Ekwipunek</a>
+      <a href="{% url 'market_page' %}" {% if current == 'market_page' %}aria-current="page"{% endif %}>Targ</a>
+      <a href="{% url 'shop_page' %}" {% if current == 'shop_page' %}aria-current="page"{% endif %}>Kupiec</a>
+      <a href="{% url 'itemshop_page' %}" {% if current == 'itemshop_page' %}aria-current="page"{% endif %}>Sklep odłamków</a>
+      <a href="{% url 'item_catalog' %}">Katalog przedmiotów</a>
+    </div></details>
+    <details class="nav-group"><summary>Wieści i wiedza</summary><div>
+      <a href="{% url 'tavern_page' %}">Karczma</a><a href="{% url 'colony_life' %}">Życie kolonii</a>
+      <a href="{% url 'events_page' %}" {% if current == 'events_page' %}aria-current="page"{% endif %}>Eventy</a>
+      <a href="{% url 'rankings_page' %}" {% if current == 'rankings_page' %}aria-current="page"{% endif %}>Rankingi</a>
+      <a href="{% url 'bestiary_page' %}" {% if current == 'bestiary_page' %}aria-current="page"{% endif %}>Bestiariusz</a>
+      {% if user.is_staff %}<a href="{% url 'market_monitor' %}" {% if current == 'market_monitor' %}aria-current="page"{% endif %}>Stan rynku</a>{% endif %}
+    </div></details>
     {% if user.is_superuser %}<a href="{% url 'game_master' %}" {% if current == 'game_master' %}aria-current="page"{% endif %}>Zarządca</a>{% endif %}
-    {% if user.is_staff %}<a href="{% url 'market_monitor' %}" {% if current == 'market_monitor' %}aria-current="page"{% endif %}>Stan rynku</a>{% endif %}
-    {% endwith %}
     <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button>Wyloguj</button></form>
-    {% else %}<a href="{% url 'login' %}">Logowanie</a><a href="{% url 'register' %}">Dołącz do kolonii</a>{% endif %}
+  {% endwith %}{% else %}<a href="{% url 'login' %}">Logowanie</a><a href="{% url 'register' %}">Dołącz do kolonii</a>{% endif %}
   </nav>
 </header>
+{% if world_needs_setup %}<aside class="setup-notice"><a href="{% url 'world_setup' %}">Nadaj światu nazwę i skonfiguruj administratora</a></aside>{% endif %}
 {% if messages %}<div class="colony-messages" role="status">{% for message in messages %}<div class="colony-message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}

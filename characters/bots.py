@@ -72,6 +72,8 @@ class Observation:
     camp_upgrade_level: int = 0
     raid_action: str = ""
     raid_target: int | None = None
+    personal_action: str = ""
+    personal_target: int | None = None
 
 
 class Policy(Protocol):
@@ -172,10 +174,17 @@ class BaselinePolicyV9(BaselinePolicyV8):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV9):
+class BaselinePolicyV10(BaselinePolicyV9):
     def choose(self,o):
         if o.raid_action and not o.busy and not o.adventure_ready and not o.reward_ready and not o.product_urgent:
             return o.raid_action,o.raid_target
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV10):
+    def choose(self,o):
+        if o.personal_action and not o.busy and not o.adventure_ready and not o.reward_ready:
+            return o.personal_action,o.personal_target
         return super().choose(o)
 
 
@@ -382,6 +391,8 @@ def tick_bot(profile, policy=None):
             if not raid:raid_action='raid_rally'
             elif raid_status['can_attack'] and profile.current_health>=min(profile.max_health,(raid.attack+10)*3+10) and (not profile.prepared_magic_id or (active_magic and profile.current_mana>=active_magic.cost)):
                 raid_action='raid_strike';raid_target=raid.pk
+    from .challenges import bot_personal_plan
+    personal_action,personal_target=bot_personal_plan(profile)
     obs = Observation(
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -405,11 +416,12 @@ def tick_bot(profile, policy=None):
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
+        personal_action=personal_action,personal_target=personal_target,
         raid_action=raid_action,raid_target=raid_target,
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-10" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-11" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
@@ -418,7 +430,10 @@ def tick_bot(profile, policy=None):
     from .magic import learn_circle,prepare_magic,purchase_magic
     from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
     from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
-    if action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
+    from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
+    if action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
+        success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
+    elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
         success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
     elif action=='camp_donate' and obs.camp_action==action and target is None:
         success=donate_to_camp(profile,10,uuid4())

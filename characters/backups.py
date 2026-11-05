@@ -12,6 +12,9 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_personalchallenge':['id','profile_id','cadence','period','camp','kind','required','progress','ore','experience','premium','reputation','claimed_at'],
+    'characters_campreputation':['id','profile_id','camp','value'],
+    'characters_playerachievement':['id','profile_id','key','progress','completed_at','claimed_at'],
     'characters_world':['id','name','edition','universe','rules_version','status','is_current','bot_count'],
     'characters_campraid':['id','guild_id','day','name','maximum_health','health','attack','protection','minimum_level','completed_at'],
     'characters_campraidstrike':['id','raid_id','profile_id','request_key','damage','health_cost','mana_cost','casts','log'],
