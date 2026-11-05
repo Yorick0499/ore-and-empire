@@ -11,11 +11,14 @@ def current_world():
 
 def profile_for(user):
     world=current_world()
+    cached=getattr(user,"_server_profile",None)
+    if cached is not None and cached.world_id==world.pk:return cached
     profile=PlayerProfile.objects.filter(user=user,world=world).first()
     if not profile:
         profile=PlayerProfile.objects.create(user=user,world=world)
         from .economic_ledger import record_opening
         record_opening(profile)
+    user._server_profile=profile
     return profile
 
 
