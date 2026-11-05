@@ -678,3 +678,45 @@ class CampContribution(models.Model):
     class Meta:
         ordering=['-created_at','-pk']
         constraints=[models.UniqueConstraint(fields=['profile','source'],name='one_camp_contribution_request')]
+
+
+class CampRaid(models.Model):
+    guild = models.ForeignKey(CampGuild,on_delete=models.PROTECT,related_name='raids')
+    day = models.DateField()
+    name = models.CharField(max_length=120)
+    art_key = models.CharField(max_length=60)
+    maximum_health = models.PositiveIntegerField()
+    health = models.PositiveIntegerField()
+    attack = models.PositiveIntegerField()
+    protection = models.PositiveIntegerField()
+    minimum_level = models.PositiveSmallIntegerField(default=3)
+    completed_at = models.DateTimeField(null=True,blank=True)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['guild','day'],name='one_camp_raid_per_day'),models.CheckConstraint(condition=models.Q(health__lte=models.F('maximum_health'),maximum_health__gte=1),name='camp_raid_health_bounds')]
+
+
+class CampRaidStrike(models.Model):
+    raid = models.ForeignKey(CampRaid,on_delete=models.PROTECT,related_name='strikes')
+    profile = models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    request_key = models.UUIDField()
+    damage = models.PositiveIntegerField()
+    health_cost = models.PositiveIntegerField()
+    mana_cost = models.PositiveIntegerField(default=0)
+    casts = models.PositiveIntegerField(default=0)
+    log = models.JSONField(default=list)
+    created_at = models.DateTimeField(default=timezone.now,db_index=True)
+    class Meta:
+        ordering=['-created_at','-pk']
+        constraints=[models.UniqueConstraint(fields=['profile','request_key'],name='one_camp_raid_strike_request')]
+        indexes=[models.Index(fields=['raid','profile','-created_at'])]
+
+
+class CampRaidReward(models.Model):
+    raid = models.ForeignKey(CampRaid,on_delete=models.PROTECT)
+    profile = models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    ore = models.PositiveIntegerField(default=10)
+    experience = models.PositiveIntegerField(default=50)
+    premium = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['raid','profile'],name='one_camp_raid_reward')]

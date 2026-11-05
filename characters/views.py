@@ -686,13 +686,17 @@ def magic_view(request):
 @login_required
 def camp_guild_view(request):
     from .camp_guilds import guild_cards,donate_to_camp,upgrade_camp
+    from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid,raid_card
     profile=request.user.playerprofile
     refresh_player(profile)
     if request.method=='POST':
         try:amount=int(request.POST.get('amount',0));expected=int(request.POST.get('expected_level',-1))
         except (TypeError,ValueError):amount=0;expected=-1
         action=request.POST.get('action')
-        result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
+        if action=='rally':result=rally_camp_raid(profile)
+        elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
+        elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
+        else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
         (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
         return redirect('camp_guild')
-    return render(request,'characters/camp_guild.html',{'profile':profile,'card':guild_cards(profile),'request_key':uuid4()})
+    return render(request,'characters/camp_guild.html',{'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
