@@ -8,7 +8,10 @@ from django.db import migrations, models
 
 def fill_health(apps, schema_editor):
     Profile = apps.get_model("characters", "PlayerProfile")
-    Profile.objects.update(current_health=models.F("life"))
+    profiles = Profile.objects.using(schema_editor.connection.alias)
+    # Legacy saves predate positive life caps; health is a positive field.
+    profiles.filter(life__lt=1).update(life=1)
+    profiles.update(current_health=models.F("life"))
 
 
 class Migration(migrations.Migration):
