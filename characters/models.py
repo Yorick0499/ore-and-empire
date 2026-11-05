@@ -73,6 +73,8 @@ class PlayerProfile(models.Model):
     skill_points = models.IntegerField(default=0)
 
     # attributes
+    smithing_skill = models.PositiveSmallIntegerField(default=0)
+    alchemy_skill = models.PositiveSmallIntegerField(default=0)
     strength = models.IntegerField(default=10)
     dexterity = models.IntegerField(default=10)
     mana = models.IntegerField(default=10)
@@ -780,3 +782,26 @@ class PlayerAchievement(models.Model):
     claimed_at=models.DateTimeField(null=True,blank=True)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['profile','key'],name='one_player_achievement')]
+
+
+class CraftRecipe(models.Model):
+    key=models.SlugField(unique=True)
+    name=models.CharField(max_length=100)
+    discipline=models.CharField(max_length=12,choices=[('smithing','Kowalstwo'),('alchemy','Alchemia')])
+    skill=models.PositiveSmallIntegerField(default=1)
+    level=models.PositiveSmallIntegerField(default=0)
+    fee=models.PositiveIntegerField()
+    ingredients=models.JSONField()
+    output=models.ForeignKey(ItemBluePrint,on_delete=models.PROTECT)
+    quantity=models.PositiveSmallIntegerField(default=1)
+    enabled=models.BooleanField(default=True)
+
+
+class CraftRecord(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT,related_name='crafts')
+    recipe=models.ForeignKey(CraftRecipe,on_delete=models.PROTECT)
+    request_key=models.UUIDField()
+    snapshot=models.JSONField()
+    created_at=models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','request_key'],name='one_craft_request')]

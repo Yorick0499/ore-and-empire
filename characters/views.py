@@ -730,7 +730,7 @@ def world_control_view(request):
     from django.contrib.auth import logout
     world=current_world()
     configuring=request.method=='POST' and request.POST.get('action')=='configure'
-    config_form=WorldSettingsForm(request.POST if configuring else None,initial={'name':world.name,'bot_count':world.bot_count})
+    config_form=WorldSettingsForm(request.POST if configuring else None,auto_id='config_%s',initial={'name':world.name,'bot_count':world.bot_count})
     if configuring and config_form.is_valid():
         from django.core.management import call_command
         from io import StringIO
@@ -738,7 +738,7 @@ def world_control_view(request):
             world.name=config_form.cleaned_data['name'];world.bot_count=config_form.cleaned_data['bot_count'];world.configured=True;world.save()
             if world.bot_count:call_command('run_bots',create=world.bot_count,create_only=True,limit=world.bot_count,stdout=StringIO())
         messages.success(request,'Zapisano nazwę i liczbę aktywnych botów bez resetu.');return redirect('world_control')
-    form=WorldResetForm(request.POST if request.method=='POST' and not configuring else None,initial={'name':world.name,'bot_count':world.bot_count,'expected_world':world.pk})
+    form=WorldResetForm(request.POST if request.method=='POST' and not configuring else None,auto_id='reset_%s',initial={'name':world.name,'bot_count':world.bot_count,'expected_world':world.pk})
     if request.method=='POST' and not configuring and form.is_valid():
         values=dict(form.cleaned_data);values.pop('acknowledge')
         try:fresh,backup=reset_world(request.user,**values)
@@ -769,3 +769,14 @@ def challenges_view(request):
         result=accept_challenge(profile,request.POST.get('cadence')) if action=='accept' else claim_challenge(profile,positive_id(request.POST.get('challenge'))) if action=='claim' else claim_achievement(profile,request.POST.get('key')) if action=='achievement' else False
         report_action(request,bool(result));return redirect('challenges_page')
     return render(request,'characters/challenges.html',{'profile':profile,**cards(profile)})
+
+
+@login_required
+def crafting_view(request):
+    from .crafting import recipe_cards,learn_craft,buy_craft_material,craft_item
+    profile=request.user.playerprofile;refresh_player(profile)
+    if request.method=='POST':
+        action=request.POST.get('action')
+        result=learn_craft(profile,request.POST.get('discipline')) if action=='learn' else buy_craft_material(profile,positive_id(request.POST.get('blueprint'))) if action=='material' else craft_item(profile,positive_id(request.POST.get('recipe')),request.POST.get('request_key')) if action=='craft' else False
+        report_action(request,bool(result));return redirect('crafting_page')
+    return render(request,'characters/crafting.html',{'profile':profile,'cards':recipe_cards(profile),'request_key':uuid4(),'history':profile.crafts.select_related('recipe').order_by('-pk')[:20]})

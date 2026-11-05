@@ -74,6 +74,8 @@ class Observation:
     raid_target: int | None = None
     personal_action: str = ""
     personal_target: int | None = None
+    craft_action: str = ""
+    craft_target: int | None = None
 
 
 class Policy(Protocol):
@@ -181,10 +183,17 @@ class BaselinePolicyV10(BaselinePolicyV9):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV10):
+class BaselinePolicyV11(BaselinePolicyV10):
     def choose(self,o):
         if o.personal_action and not o.busy and not o.adventure_ready and not o.reward_ready:
             return o.personal_action,o.personal_target
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV11):
+    def choose(self,o):
+        if o.craft_action and not o.busy and not o.adventure_ready and not o.reward_ready:
+            return o.craft_action,o.craft_target
         return super().choose(o)
 
 
@@ -251,7 +260,10 @@ def tick_bot(profile, policy=None):
     inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.blueprint.damage if equipped else 0
-    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids]
+    from .models import CraftRecipe
+    from .crafting import valid_recipe,interested
+    reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True) if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
+    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials]
     item = spare[0] if spare else None
     equipment = max((item for item in spare if item.blueprint.kind == "weapon" and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
     if not equipment:
@@ -393,6 +405,8 @@ def tick_bot(profile, policy=None):
                 raid_action='raid_strike';raid_target=raid.pk
     from .challenges import bot_personal_plan
     personal_action,personal_target=bot_personal_plan(profile)
+    from .crafting import bot_craft_plan
+    craft_action,craft_target=bot_craft_plan(profile)
     obs = Observation(
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -416,12 +430,13 @@ def tick_bot(profile, policy=None):
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
+        craft_action=craft_action,craft_target=craft_target,
         personal_action=personal_action,personal_target=personal_target,
         raid_action=raid_action,raid_target=raid_target,
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-11" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-12" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
@@ -431,7 +446,10 @@ def tick_bot(profile, policy=None):
     from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
     from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
     from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
-    if action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
+    from .crafting import learn_craft,buy_craft_material,craft_item
+    if action==obs.craft_action and target==obs.craft_target and action in {'craft_learn','craft_material','craft'}:
+        success=bool(learn_craft(profile,('smithing','alchemy')[target-1]) if action=='craft_learn' else buy_craft_material(profile,target) if action=='craft_material' else craft_item(profile,target,uuid4()))
+    elif action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
         success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
     elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
         success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
