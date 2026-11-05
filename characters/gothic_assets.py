@@ -1,4 +1,5 @@
 """Curated Gothic I pages; the importer selects the first game illustration."""
+import json
 from pathlib import Path
 from .bestiary import BESTIARY
 from .locations import LOCATIONS
@@ -10,3 +11,8 @@ ASSET_PAGES.update({location.key: location.wiki for location in LOCATIONS})
 ASSET_PAGES.update({"rice_spirit": "Ryżówka", "healing_essence": "Esencja lecznicza", "battle_staff": "Pałka z kolcami", "rune_sword": "Miecz runiczny"})
 ASSET_PAGES.update({"crawler_queen": "Królowa pełzaczy", "sleeper": "Śniący"})
 ASSET_ALIASES = {"sleeper_sanctum_boss": "sleeper", "crawler_nest_boss": "crawler_queen", "swamp_den_boss": "swampshark"}
+
+ASSET_SELECTIONS = json.loads((Path(__file__).resolve().parent / "data/asset-selections.json").read_text())
+ASSET_PAGES.update({'item_rusty_sword': 'Zardzewiały miecz', 'item_short_bow': 'Krótki łuk', 'item_digger_trousers': 'Lekkie spodnie kopacza', 'item_iron_ring': 'Pierścień żelaznej skóry', 'item_vitality_amulet': 'Amulet witalności', 'item_god_hammer': 'Boski młot', 'item_wolf_skin': 'Skóra wilka', 'item_arrow': 'Strzała', 'item_bolt': 'Bełt', 'item_healing': 'Esencja uzdrawiająca'})
+
+ASSET_PAGES['healing_essence'] = 'Esencja uzdrawiająca'

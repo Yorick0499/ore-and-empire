@@ -566,7 +566,7 @@ class LocalWorldTests(TestCase):
             call_command("run_colony", bots=1, stdout=StringIO())
         tick.assert_called_once()
         self.assertEqual(tick.call_args.args[0].pk, self.bot.pk)
-        self.assertEqual([call.args[0] for call in setup.call_args_list], ["migrate", "seed_world", "seed_equipment", "seed_adventures", "seed_story", "run_bots"])
+        self.assertEqual([call.args[0] for call in setup.call_args_list], ["migrate", "seed_world", "seed_equipment", "seed_catalog", "seed_adventures", "seed_story", "run_bots"])
         server.__exit__.assert_called_once()
 
     def test_no_bot_mode_never_ticks(self):
@@ -587,7 +587,7 @@ class LocalWorldTests(TestCase):
         ) as tick:
             call_command("run_colony", bots=0, stdout=StringIO())
         tick.assert_not_called()
-        self.assertEqual([call.args[0] for call in setup.call_args_list], ["migrate", "seed_world", "seed_equipment", "seed_adventures", "seed_story"])
+        self.assertEqual([call.args[0] for call in setup.call_args_list], ["migrate", "seed_world", "seed_equipment", "seed_catalog", "seed_adventures", "seed_story"])
 
     def test_busy_port_does_not_initialize_or_modify_world(self):
         with patch(
@@ -701,13 +701,18 @@ class GothicInterfaceTests(TestCase):
             (root / "characters/art").mkdir(parents=True)
             manifest = root / "characters/gothicpedia.json"
             manifest.write_text("{}")
-            responses = [(b'{"query":{"pages":{"1":{"original":{"source":"https://static.wikia.nocookie.net/gothic/shadow.png"}}}}}', "application/json"), (b"image-fixture", "image/png")]
+            from PIL import Image
+            import io
+            buffer = io.BytesIO()
+            Image.new('RGB',(16,16)).save(buffer,format='PNG')
+            image_bytes = buffer.getvalue()
+            responses = [(b'{"query":{"pages":{"1":{"imageinfo":[{"url":"https://static.wikia.nocookie.net/gothic/shadow.png"}]}}}}', "application/json"), (image_bytes, "image/png")]
             with patch("characters.management.commands.import_gothicpedia.MANIFEST_PATH", manifest), patch("characters.management.commands.import_gothicpedia.ASSET_ROOT", root / "characters"), patch("characters.management.commands.import_gothicpedia.read_remote", side_effect=responses):
                 call_command("import_gothicpedia", only=["shadowbeast"], stdout=StringIO())
             asset = json.loads(manifest.read_text())["shadowbeast"]
             self.assertEqual(asset["title"], "Cieniostwór")
             self.assertIn("gothic.fandom.com/pl/wiki/", asset["source"])
-            self.assertEqual((root / asset["path"]).read_bytes(), b"image-fixture")
+            self.assertEqual((root / asset["path"]).read_bytes(), image_bytes)
 
 
 class BotTelemetryTests(TestCase):

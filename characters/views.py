@@ -185,6 +185,7 @@ def shop_view(request):
             report_action(request, sell_item_from_npc(profile, item))
             return redirect(request.get_full_path())
     player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
+    from django.core.paginator import Paginator
     merchant_inventory = ItemBluePrint.objects.filter(merchant=True, min_level__lte=profile.level, required_camp__in=["",profile.camp], min_camp_tier__lte=profile.camp_tier).order_by("kind","base_value","pk")
     return render(
         request,
@@ -192,7 +193,7 @@ def shop_view(request):
         {
             "profile": profile,
             "player_inventory": player_inventory,
-            "shop_items": merchant_inventory,
+            "shop_items": Paginator(merchant_inventory,30).get_page(request.GET.get("page")),
         },
     )
 
@@ -613,3 +614,17 @@ def story_view(request):
     chapter = run.snapshot['chapter'] if run else max((r.snapshot['chapter'] for r in history), default=1)
     chapter_rows = [{'number': number, 'name': name, 'art': art, 'current': number == chapter} for number, name, art in CHAPTERS]
     return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})
+
+
+@login_required
+def item_catalog_view(request):
+    from django.core.paginator import Paginator
+    from django.db.models import Q
+    from .models import ContentPack
+    items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').order_by('kind','name','catalog_key')
+    query=request.GET.get('q','').strip()[:100]
+    kind=request.GET.get('kind','')
+    if query:items=items.filter(Q(name__icontains=query)|Q(catalog_key__icontains=query))
+    if kind in {c[0] for c in ItemBluePrint._meta.get_field('kind').choices}:items=items.filter(kind=kind)
+    if request.GET.get('verified')=='1':items=items.filter(original_stats__verified=True)
+    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game='GOTHIC_I'),'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})

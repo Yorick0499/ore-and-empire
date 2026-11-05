@@ -20,6 +20,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
     register_view,
+    item_catalog_view,
     tavern_view, colony_life_view, story_view,
     bestiary_view,
     camp_view,
@@ -40,6 +41,7 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("przedmioty/", item_catalog_view, name="item_catalog"),
     path("fabula/", story_view, name="story_page"),
     path("karczma/", tavern_view, name="tavern_page"),
     path("zycie-kolonii/", colony_life_view, name="colony_life"),

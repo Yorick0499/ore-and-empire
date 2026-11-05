@@ -12,8 +12,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for key, name, description, level, duration, energy, ore, experience, premium in ADVENTURES:
             AdventureTemplate.objects.get_or_create(key=key, defaults=dict(name=name, description=description, level=level, duration_seconds=duration, energy_cost=energy, ore_reward=ore, experience_reward=experience, premium_reward=premium))
-        blade, _ = ItemBluePrint.objects.get_or_create(name="Miecz runiczny", defaults=dict(damage=42, required_strength=30, base_value=320))
-        staff, _ = ItemBluePrint.objects.get_or_create(name="Pałka z kolcami", defaults=dict(damage=22, required_strength=15, base_value=90))
+        blade = ItemBluePrint.objects.filter(name="Miecz runiczny").order_by("pk").first() or ItemBluePrint.objects.create(name="Miecz runiczny",damage=42,required_strength=30,base_value=320)
+        staff = ItemBluePrint.objects.filter(name="Pałka z kolcami").order_by("pk").first() or ItemBluePrint.objects.create(name="Pałka z kolcami",damage=22,required_strength=15,base_value=90)
         for key, name, description, kind, price, level, effect, blueprint, art in (
             ("rice_spirit", "Ryżówka", "Łyk mocnego napoju: odnawia do 25 energii.", "energy", 3, 0, 25, None, "rice_spirit"),
             ("healing_essence", "Esencja lecznicza", "Od razu odnawia do 60 punktów zdrowia.", "health", 2, 0, 60, None, "healing_essence"),

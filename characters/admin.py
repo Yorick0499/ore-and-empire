@@ -228,3 +228,7 @@ class BattleRecordAdmin(ReadOnlyAdmin):
 @admin.register(LootTable)
 class LootTableAdmin(admin.ModelAdmin):
     list_display = ('key','version','enabled')
+
+
+from .models import ContentPack
+admin.site.register(ContentPack, ReadOnlyAdmin)

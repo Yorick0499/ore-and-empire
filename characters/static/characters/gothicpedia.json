@@ -3,693 +3,2193 @@
     "title": "Cieniostwór",
     "path": "characters/art/shadowbeast.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Cieniostw%C3%B3r",
-    "original": "https://static.wikia.nocookie.net/gothic/images/8/8a/Cieniostw%C3%B3r_%28Gothic%29.png/revision/latest?cb=20230725171346&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/8/8a/Cieniostw%C3%B3r_%28Gothic%29.png/revision/latest?cb=20230725171346&path-prefix=pl",
+    "sha256": "2cf289f1ad1432475e8dd2bb9a5684e56e05e5512fe06d329ae15325e1746f6e",
+    "width": 1027,
+    "height": 1061,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Cieniostwór_(Gothic).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "scavenger": {
     "title": "Ścierwojad",
     "path": "characters/art/scavenger.webp",
     "source": "https://gothic.fandom.com/pl/wiki/%C5%9Acierwojad",
-    "original": "https://static.wikia.nocookie.net/gothic/images/1/1e/M%C5%82ody_%C5%9Bcierwojad_%28G1%29_%28by_Kubar906%29.png/revision/latest?cb=20230709103937&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/1/1e/M%C5%82ody_%C5%9Bcierwojad_%28G1%29_%28by_Kubar906%29.png/revision/latest?cb=20230709103937&path-prefix=pl",
+    "sha256": "4d9620c7a14eb4275708baa1751dd17403afe9fb4ead99933024fdc400cb5ca0",
+    "width": 992,
+    "height": 968,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Młody_ścierwojad_(G1)_(by_Kubar906).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "molerat": {
     "title": "Kretoszczur",
     "path": "characters/art/molerat.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Kretoszczur",
-    "original": "https://static.wikia.nocookie.net/gothic/images/b/b7/Kretoszczur_G.png/revision/latest?cb=20230725190207&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/b/b7/Kretoszczur_G.png/revision/latest?cb=20230725190207&path-prefix=pl",
+    "sha256": "33764b5fca1f6a648c62debe20370f052c4df3f5f32b8d63ac8f4c0fc8f05cc6",
+    "width": 940,
+    "height": 689,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Kretoszczur_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "old_camp": {
     "title": "Stary Obóz",
     "path": "characters/art/old_camp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stary_Ob%C3%B3z",
-    "original": "https://static.wikia.nocookie.net/gothic/images/7/7a/Zamek_w_G%C3%B3rniczej_Dolinie_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20231231200631&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/7a/Zamek_w_G%C3%B3rniczej_Dolinie_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20231231200631&path-prefix=pl",
+    "sha256": "6ee4284131d27700bebf39e2be55e2634b9066ac323ea7aed898822236f5c5f7",
+    "width": 1920,
+    "height": 1080,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Zamek_w_Górniczej_Dolinie_(Gothic_I)_(by_SpY).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "new_camp": {
     "title": "Nowy Obóz",
     "path": "characters/art/new_camp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Nowy_Ob%C3%B3z",
-    "original": "https://static.wikia.nocookie.net/gothic/images/e/ec/Nowy_Ob%C3%B3z_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230501133105&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/e/ec/Nowy_Ob%C3%B3z_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230501133105&path-prefix=pl",
+    "sha256": "b935177a0bad8a8bd647a94311a6e4b81a06b8b6e0b98f01aa9f23a1e795a651",
+    "width": 1920,
+    "height": 1080,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Nowy_Obóz_(by_Wojciech_Wawrzyńczak).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "swamp_camp": {
     "title": "Obóz Bractwa",
     "path": "characters/art/swamp_camp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_Bractwa",
-    "original": "https://static.wikia.nocookie.net/gothic/images/9/91/Ob%C3%B3z_Bractwa_G.png/revision/latest?cb=20231231201024&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/91/Ob%C3%B3z_Bractwa_G.png/revision/latest?cb=20231231201024&path-prefix=pl",
+    "sha256": "2b8ccc3be8d0a0a84db0f40cc5f97bb11cad3f3479f59ca071a5ff1582c19b00",
+    "width": 1920,
+    "height": 1080,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Obóz_Bractwa_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "old_mine": {
     "title": "Stara Kopalnia",
     "path": "characters/art/old_mine.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stara_Kopalnia",
-    "original": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest?cb=20250106115318&path-prefix=pl"
+    "original": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest?cb=20250106115318&path-prefix=pl",
+    "sha256": "6db392d912640c95385e4698da5150f69f18a81ca073e0193b2209ec0110ee06",
+    "width": 1920,
+    "height": 1080,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Stara_Kopalnia_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "meatbug": {
     "title": "Chrząszcz",
     "path": "characters/art/meatbug.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Chrz%C4%85szcz",
     "original": "https://static.wikia.nocookie.net/gothic/images/6/6b/Chrz%C4%85szcz_G1.png/revision/latest?cb=20211201113620&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/6/6b/Chrz%C4%85szcz_G1.png/revision/latest?cb=20211201113620&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/6b/Chrz%C4%85szcz_G1.png/revision/latest?cb=20211201113620&path-prefix=pl",
+    "sha256": "2d856974937ef8153ca8c6d09bd69815de5839e06b1e2dbe0260705b82923868",
+    "width": 607,
+    "height": 461,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Chrząszcz_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "young_scavenger": {
     "title": "Młody ścierwojad",
     "path": "characters/art/young_scavenger.webp",
     "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_%C5%9Bcierwojad",
     "original": "https://static.wikia.nocookie.net/gothic/images/4/44/M%C5%82ody_%C5%9Bcierwojad_G.png/revision/latest?cb=20230725170236&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/44/M%C5%82ody_%C5%9Bcierwojad_G.png/revision/latest/scale-to-width-down/640?cb=20230725170236&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/44/M%C5%82ody_%C5%9Bcierwojad_G.png/revision/latest/scale-to-width-down/640?cb=20230725170236&path-prefix=pl",
+    "sha256": "5b20309c2e2dbc898cc82ac3fe7d085b711b9663a4c7a24fb1649947164d74da",
+    "width": 640,
+    "height": 649,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Młody_ścierwojad_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "young_molerat": {
     "title": "Młody kretoszczur",
     "path": "characters/art/young_molerat.webp",
     "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_kretoszczur",
     "original": "https://static.wikia.nocookie.net/gothic/images/5/57/Kretoszczur_GI_%28by_Wedkarski%29.png/revision/latest?cb=20230725181021&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/5/57/Kretoszczur_GI_%28by_Wedkarski%29.png/revision/latest/scale-to-width-down/640?cb=20230725181021&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/57/Kretoszczur_GI_%28by_Wedkarski%29.png/revision/latest/scale-to-width-down/640?cb=20230725181021&path-prefix=pl",
+    "sha256": "6f00ca08d4ab754d2817671479438ede6cd4bb8f022b0d07236bc3bb81278090",
+    "width": 640,
+    "height": 475,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Kretoszczur_GI_(by_Wedkarski).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "goblin": {
     "title": "Goblin",
     "path": "characters/art/goblin.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Goblin",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/a1/Goblin_G1_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230725145020&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/a/a1/Goblin_G1_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230725145020&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a1/Goblin_G1_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20230725145020&path-prefix=pl",
+    "sha256": "de87e313ae8b19efc19e236f647e7fe3e8954c59423105b2ee45b6b1af200352",
+    "width": 710,
+    "height": 832,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Goblin_G1_(by_Wojciech_Wawrzyńczak).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "bloodfly": {
     "title": "Krwiopijca",
     "path": "characters/art/bloodfly.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Krwiopijca",
     "original": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest?cb=20230805120552&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230805120552&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230805120552&path-prefix=pl",
+    "sha256": "c543a2256ca9d4d16ebab8d9ab5be36f3dfc8d783023a77fa48206c2fa8aa17d",
+    "width": 640,
+    "height": 583,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Krwiopijca_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "wolf": {
     "title": "Wilk",
     "path": "characters/art/wolf.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wilk",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/db/Wilk_%28GI%29.png/revision/latest?cb=20230725140616&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/db/Wilk_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725140616&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/db/Wilk_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725140616&path-prefix=pl",
+    "sha256": "af7b12f9b6fb48a2d90065a506712f0e8767827dc0cd6b959aba4c1a7e4a585b",
+    "width": 640,
+    "height": 619,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Wilk_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "black_goblin": {
     "title": "Czarny goblin",
     "path": "characters/art/black_goblin.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Czarny_goblin",
     "original": "https://static.wikia.nocookie.net/gothic/images/1/17/Czarny_goblin_%28G1%29.png/revision/latest?cb=20230725144506&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/1/17/Czarny_goblin_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725144506&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/17/Czarny_goblin_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725144506&path-prefix=pl",
+    "sha256": "3093a99c9ce3ee2bb3afabcc9b1757f22cfec603a3dd80eb2e63b46b2266d485",
+    "width": 640,
+    "height": 772,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Czarny_goblin_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "aggressive_bloodfly": {
     "title": "Agresywny krwiopijca",
     "path": "characters/art/bloodfly.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Agresywny_krwiopijca",
     "original": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest?cb=20230805120552&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230805120552&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/53/Krwiopijca_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230805120552&path-prefix=pl",
+    "sha256": "c543a2256ca9d4d16ebab8d9ab5be36f3dfc8d783023a77fa48206c2fa8aa17d",
+    "width": 640,
+    "height": 583,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Krwiopijca_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "lizard": {
     "title": "Jaszczur",
     "path": "characters/art/lizard.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Jaszczur",
     "original": "https://static.wikia.nocookie.net/gothic/images/6/61/Jaszczur_%28GI%29.png/revision/latest?cb=20230725174937&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/6/61/Jaszczur_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725174937&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/61/Jaszczur_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725174937&path-prefix=pl",
+    "sha256": "32a95908e4d69800afa1274f9f7994264c8cc10d4600f484fe331d339b2f4ada",
+    "width": 640,
+    "height": 443,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Jaszczur_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "lurker": {
     "title": "Topielec",
     "path": "characters/art/lurker.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Topielec",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/38/Topielec_%28GI%29.png/revision/latest?cb=20240726112853&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/38/Topielec_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240726112853&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/38/Topielec_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240726112853&path-prefix=pl",
+    "sha256": "53507d905cb8d2b1c7af5c05da1e940752b884a5114960f3947beaa4581e641b",
+    "width": 640,
+    "height": 608,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Topielec_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "minecrawler": {
     "title": "Pełzacz",
     "path": "characters/art/minecrawler.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Pe%C5%82zacz",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d9/Pe%C5%82zacz_%28Gothic_I%29.PNG/revision/latest?cb=20240814102954&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Pe%C5%82zacz_%28Gothic_I%29.PNG/revision/latest/scale-to-width-down/640?cb=20240814102954&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Pe%C5%82zacz_%28Gothic_I%29.PNG/revision/latest/scale-to-width-down/640?cb=20240814102954&path-prefix=pl",
+    "sha256": "254deea3e4be094030f23e9ea2495460d4b8463f76a56b626540189187a7eeac",
+    "width": 640,
+    "height": 581,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Pełzacz_(Gothic_I).PNG",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "goblin_warrior": {
     "title": "Goblin wojownik",
     "path": "characters/art/goblin_warrior.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Goblin_wojownik",
     "original": "https://static.wikia.nocookie.net/gothic/images/2/2a/Goblin_wojownik_%28Gothic_I%29_%28by_Ossowwski%29.png/revision/latest?cb=20230725144706&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/2/2a/Goblin_wojownik_%28Gothic_I%29_%28by_Ossowwski%29.png/revision/latest/scale-to-width-down/640?cb=20230725144706&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/2a/Goblin_wojownik_%28Gothic_I%29_%28by_Ossowwski%29.png/revision/latest/scale-to-width-down/640?cb=20230725144706&path-prefix=pl",
+    "sha256": "d2c7883dcf7dcb438ae7f35681176bc4d09b924c82e1cce8b9aa4d58864615b5",
+    "width": 640,
+    "height": 709,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Goblin_wojownik_(Gothic_I)_(by_Ossowwski).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "biter": {
     "title": "Kąsacz",
     "path": "characters/art/biter.webp",
     "source": "https://gothic.fandom.com/pl/wiki/K%C4%85sacz",
     "original": "https://static.wikia.nocookie.net/gothic/images/8/84/K%C4%85sacz_G1.png/revision/latest?cb=20230725152142&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/8/84/K%C4%85sacz_G1.png/revision/latest/scale-to-width-down/640?cb=20230725152142&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/84/K%C4%85sacz_G1.png/revision/latest/scale-to-width-down/640?cb=20230725152142&path-prefix=pl",
+    "sha256": "43722c606840e20338929728ce954afd08578ef78cdfd24e2d178bfb33315739",
+    "width": 640,
+    "height": 582,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Kąsacz_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "dam_lurker": {
     "title": "Topielec spod tamy",
     "path": "characters/art/dam_lurker.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Topielec_spod_tamy",
     "original": "https://static.wikia.nocookie.net/gothic/images/e/e5/Topielec_pod_tam%C4%85.png/revision/latest?cb=20240901204849&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/e/e5/Topielec_pod_tam%C4%85.png/revision/latest/scale-to-width-down/640?cb=20240901204849&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/e/e5/Topielec_pod_tam%C4%85.png/revision/latest/scale-to-width-down/640?cb=20240901204849&path-prefix=pl",
+    "sha256": "6c045db345fdf0e4d657844391d81d84b6113d5d3780ae3b5c65c6856d67d1ea",
+    "width": 640,
+    "height": 742,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Topielec_pod_tamą.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "snapper": {
     "title": "Zębacz",
     "path": "characters/art/snapper.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Z%C4%99bacz",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/95/Z%C4%99bacz_%28GI%29.png/revision/latest?cb=20230819104446&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/95/Z%C4%99bacz_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230819104446&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/95/Z%C4%99bacz_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230819104446&path-prefix=pl",
+    "sha256": "5ed7e29aae4ea105e650916d22521ca448e301951604340a7daafe6d787753e9",
+    "width": 640,
+    "height": 502,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Zębacz_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_dog": {
     "title": "Orkowy pies",
     "path": "characters/art/orc_dog.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Orkowy_pies",
     "original": "https://static.wikia.nocookie.net/gothic/images/8/83/Orkowy_pies_%28G1%29.png/revision/latest?cb=20230725151620&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/8/83/Orkowy_pies_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725151620&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/83/Orkowy_pies_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725151620&path-prefix=pl",
+    "sha256": "483c154a694882f01df08f9654751245ecc2fda1fb385809e87ada0f1ea5a656",
+    "width": 640,
+    "height": 739,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Orkowy_pies_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "skeleton_scout": {
     "title": "Szkielet zwiadowca",
     "path": "characters/art/skeleton_scout.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Szkielet_zwiadowca",
     "original": "https://static.wikia.nocookie.net/gothic/images/4/42/Szkielet_zwiadowca_%28siekacz%29_%28G1%29.png/revision/latest?cb=20240825191330&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/42/Szkielet_zwiadowca_%28siekacz%29_%28G1%29.png/revision/latest?cb=20240825191330&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/42/Szkielet_zwiadowca_%28siekacz%29_%28G1%29.png/revision/latest?cb=20240825191330&path-prefix=pl",
+    "sha256": "0fab5ed484c6eba4eb87eb006d63f440a482107f9f0db686184fc5d4abe24a9f",
+    "width": 479,
+    "height": 1029,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Szkielet_zwiadowca_(siekacz)_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "skeleton": {
     "title": "Szkielet",
     "path": "characters/art/skeleton.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Szkielet",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/bf/Szkielet_%28zardzewia%C5%82y_miecz%29_%28G1%29.png/revision/latest?cb=20240825192619&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/bf/Szkielet_%28zardzewia%C5%82y_miecz%29_%28G1%29.png/revision/latest?cb=20240825192619&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bf/Szkielet_%28zardzewia%C5%82y_miecz%29_%28G1%29.png/revision/latest?cb=20240825192619&path-prefix=pl",
+    "sha256": "e03a2f4890ce316de1929a4aec07480f8d73e1bc0a60fcfac09c778f3ce6acfa",
+    "width": 458,
+    "height": 1052,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Szkielet_(zardzewiały_miecz)_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "zombie": {
     "title": "Zombie",
     "path": "characters/art/zombie.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Zombie",
     "original": "https://static.wikia.nocookie.net/gothic/images/0/03/G1_zombie.png/revision/latest?cb=20221213140855&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/0/03/G1_zombie.png/revision/latest?cb=20221213140855&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/03/G1_zombie.png/revision/latest?cb=20221213140855&path-prefix=pl",
+    "sha256": "f99fcfee5d1536ae0de16fd3e7d4dade365fd9a661561165548ae24d7268c9d8",
+    "width": 331,
+    "height": 768,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_zombie.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_scout": {
     "title": "Zwiadowcy orków",
     "path": "characters/art/orc_scout.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Zwiadowcy_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/e/e0/Ork_zwiadowca_G.png/revision/latest?cb=20240628114327&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/e/e0/Ork_zwiadowca_G.png/revision/latest/scale-to-width-down/640?cb=20240628114327&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/e/e0/Ork_zwiadowca_G.png/revision/latest/scale-to-width-down/640?cb=20240628114327&path-prefix=pl",
+    "sha256": "e4c1a328666946279cbb05bec6889f9e407787d7ee87ebe51def428b86eea7b7",
+    "width": 640,
+    "height": 1052,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork_zwiadowca_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "harpy": {
     "title": "Harpia",
     "path": "characters/art/harpy.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Harpia",
     "original": "https://static.wikia.nocookie.net/gothic/images/1/1a/Harpia_G.png/revision/latest?cb=20230805120813&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/1/1a/Harpia_G.png/revision/latest/scale-to-width-down/640?cb=20230805120813&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/1a/Harpia_G.png/revision/latest/scale-to-width-down/640?cb=20230805120813&path-prefix=pl",
+    "sha256": "6fb5a69193f7c04ae8b5000c6470062c6555b1561e48ff19d8c6a1b5d147a663",
+    "width": 640,
+    "height": 664,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Harpia_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "skeleton_warrior": {
     "title": "Szkielet wojownik",
     "path": "characters/art/skeleton_warrior.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Szkielet_wojownik",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/33/Szkielet_wojownik_%28wyszczerbiony_top%C3%B3r%29_%28G1%29.png/revision/latest?cb=20240825191344&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/33/Szkielet_wojownik_%28wyszczerbiony_top%C3%B3r%29_%28G1%29.png/revision/latest?cb=20240825191344&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/33/Szkielet_wojownik_%28wyszczerbiony_top%C3%B3r%29_%28G1%29.png/revision/latest?cb=20240825191344&path-prefix=pl",
+    "sha256": "2bf88fb94e469489668fc56d3fb574afc31910cf09b07d76d507d64aa674f9ab",
+    "width": 518,
+    "height": 1063,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Szkielet_wojownik_(wyszczerbiony_topór)_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "skeleton_mage": {
     "title": "Szkielet mag",
     "path": "characters/art/skeleton_mage.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Szkielet_mag",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d5/Szkielet_mag_%28zwyk%C5%82y%29_%28G1%29.png/revision/latest?cb=20240901211811&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d5/Szkielet_mag_%28zwyk%C5%82y%29_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240901211811&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d5/Szkielet_mag_%28zwyk%C5%82y%29_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240901211811&path-prefix=pl",
+    "sha256": "5fbf9d5a0c1b820c9e5084621bacd2e87b70d1458b6ed783ffd20b48a0f7f6dc",
+    "width": 640,
+    "height": 358,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Szkielet_mag_(zwykły)_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "fog_mage": {
     "title": "Szkielet maga z Wieży Mgieł",
     "path": "characters/art/fog_mage.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82",
     "original": "https://static.wikia.nocookie.net/gothic/images/c/ca/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82_%28G1%29.png/revision/latest?cb=20240825191315&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/c/ca/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240825191315&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/ca/Szkielet_maga_z_Wie%C5%BCy_Mgie%C5%82_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240825191315&path-prefix=pl",
+    "sha256": "7593999eb5a65c3e3633fb1beadad15d945f601fd31dd85e03a7244be852f827",
+    "width": 640,
+    "height": 396,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Szkielet_maga_z_Wieży_Mgieł_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "razor": {
     "title": "Brzytwiak",
     "path": "characters/art/razor.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Brzytwiak",
     "original": "https://static.wikia.nocookie.net/gothic/images/1/10/Brzytwa_%28GI%29.png/revision/latest?cb=20230725151719&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/1/10/Brzytwa_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725151719&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/10/Brzytwa_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230725151719&path-prefix=pl",
+    "sha256": "3c9ef6f4b3b17190ba0436ac7b913f804dc38d5da808fdae6796031ae48bac69",
+    "width": 640,
+    "height": 554,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Brzytwa_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "minecrawler_warrior": {
     "title": "Pełzacz wojownik",
     "path": "characters/art/minecrawler_warrior.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Pe%C5%82zacz_wojownik",
     "original": "https://static.wikia.nocookie.net/gothic/images/4/4b/Pe%C5%82zacz_wojownik_%28Gothic_I%29_%28by_BagiennySzopen%29.png/revision/latest?cb=20240815210611&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/4b/Pe%C5%82zacz_wojownik_%28Gothic_I%29_%28by_BagiennySzopen%29.png/revision/latest/scale-to-width-down/640?cb=20240815210611&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/4b/Pe%C5%82zacz_wojownik_%28Gothic_I%29_%28by_BagiennySzopen%29.png/revision/latest/scale-to-width-down/640?cb=20240815210611&path-prefix=pl",
+    "sha256": "91c22ed5758899c8ab14e9d80fa6a519b47ce4ec3e34a312a71b156afcb2353c",
+    "width": 640,
+    "height": 659,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Pełzacz_wojownik_(Gothic_I)_(by_BagiennySzopen).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc": {
     "title": "Ork",
     "path": "characters/art/orc.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ork",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/32/G1_Ork_typ_1.png/revision/latest?cb=20240628115254&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/32/G1_Ork_typ_1.png/revision/latest?cb=20240628115254&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/32/G1_Ork_typ_1.png/revision/latest?cb=20240628115254&path-prefix=pl",
+    "sha256": "6e7b58da721d8d61d11613ecf3f3589a794020484459fde869fef14048a109a6",
+    "width": 681,
+    "height": 1032,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Ork_typ_1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_hunter": {
     "title": "Myśliwi orków",
     "path": "characters/art/orc_hunter.webp",
     "source": "https://gothic.fandom.com/pl/wiki/My%C5%9Bliwi_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/1/19/Ork-my%C5%9Bliwy_G1.png/revision/latest?cb=20170419173256&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/1/19/Ork-my%C5%9Bliwy_G1.png/revision/latest?cb=20170419173256&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/19/Ork-my%C5%9Bliwy_G1.png/revision/latest?cb=20170419173256&path-prefix=pl",
+    "sha256": "60ded733fd4dc07ae3be055e4807bf134036ddfdd2a7735f5b35c0a48e4fb714",
+    "width": 589,
+    "height": 1015,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork-myśliwy_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_soldier": {
     "title": "Żołnierze orków",
     "path": "characters/art/orc_soldier.webp",
     "source": "https://gothic.fandom.com/pl/wiki/%C5%BBo%C5%82nierze_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/8/88/Ork-%C5%BCo%C5%82nierz_G1.png/revision/latest?cb=20170419173005&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/8/88/Ork-%C5%BCo%C5%82nierz_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173005&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/88/Ork-%C5%BCo%C5%82nierz_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173005&path-prefix=pl",
+    "sha256": "0cd202ea8cb7d5f974271331b8d47669d3f19738711d5eb23d1fc72b79f91d0f",
+    "width": 640,
+    "height": 906,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork-żołnierz_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_warrior": {
     "title": "Wojownicy orków",
     "path": "characters/art/orc_warrior.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wojownicy_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/8/83/Ork-wojownik_G1.png/revision/latest?cb=20170419173334&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/8/83/Ork-wojownik_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173334&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/83/Ork-wojownik_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173334&path-prefix=pl",
+    "sha256": "fe1c604489b2909b3a576b666fb20e5e5952a318f6b1fe436b92c1e43075ac1f",
+    "width": 640,
+    "height": 893,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork-wojownik_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "fire_lizard": {
     "title": "Ognisty jaszczur",
     "path": "characters/art/fire_lizard.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ognisty_jaszczur",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/90/Ognisty_jaszczur_%28GI%29.png/revision/latest?cb=20240827212714&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/90/Ognisty_jaszczur_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240827212714&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/90/Ognisty_jaszczur_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240827212714&path-prefix=pl",
+    "sha256": "c9228edba4a5427627a2a993e254ed3781848e0d22dfe0581b971b75b1d6631a",
+    "width": 640,
+    "height": 675,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ognisty_jaszczur_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "bridge_golem": {
     "title": "Golem mostowy",
     "path": "characters/art/bridge_golem.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Golem_mostowy",
     "original": "https://static.wikia.nocookie.net/gothic/images/6/6d/Golem_mostowy_G1.png/revision/latest?cb=20240818200252&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/6/6d/Golem_mostowy_G1.png/revision/latest/scale-to-width-down/640?cb=20240818200252&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/6d/Golem_mostowy_G1.png/revision/latest/scale-to-width-down/640?cb=20240818200252&path-prefix=pl",
+    "sha256": "ba71c2e703c58d327b6ded0ec6ed825b0ea7945c6efc2b5da7ab8da9d6f17af1",
+    "width": 640,
+    "height": 641,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Golem_mostowy_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "swampshark": {
     "title": "Wąż błotny",
     "path": "characters/art/swampshark.webp",
     "source": "https://gothic.fandom.com/pl/wiki/W%C4%85%C5%BC_b%C5%82otny",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest?cb=20240806120934&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest/scale-to-width-down/640?cb=20240806120934&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest/scale-to-width-down/640?cb=20240806120934&path-prefix=pl",
+    "sha256": "93d32637332cf384626db53936f3092d669da04bf015046ad2b86b4e2976bd24",
+    "width": 640,
+    "height": 880,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Wąż_błotny.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "wounded_swampshark": {
     "title": "Ranny wąż błotny",
     "path": "characters/art/swampshark.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ranny_w%C4%85%C5%BC_b%C5%82otny",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest?cb=20240806120934&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest/scale-to-width-down/640?cb=20240806120934&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/3b/G1_W%C4%85%C5%BC_b%C5%82otny.png/revision/latest/scale-to-width-down/640?cb=20240806120934&path-prefix=pl",
+    "sha256": "93d32637332cf384626db53936f3092d669da04bf015046ad2b86b4e2976bd24",
+    "width": 640,
+    "height": 880,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Wąż_błotny.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_guard": {
     "title": "Strażnicy orków",
     "path": "characters/art/orc_guard.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stra%C5%BCnicy_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d8/Ork-stra%C5%BCnik_G1.png/revision/latest?cb=20240703144733&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d8/Ork-stra%C5%BCnik_G1.png/revision/latest/scale-to-width-down/640?cb=20240703144733&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d8/Ork-stra%C5%BCnik_G1.png/revision/latest/scale-to-width-down/640?cb=20240703144733&path-prefix=pl",
+    "sha256": "a068d687b867a5d0e2fa66693173c09b59f45058d8f300ba2635447b46875fcc",
+    "width": 640,
+    "height": 806,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork-strażnik_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_shaman": {
     "title": "Szamani orków",
     "path": "characters/art/orc_shaman.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Szamani_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/fc/Szaman_orkowy_G.png/revision/latest?cb=20240709125953&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/fc/Szaman_orkowy_G.png/revision/latest/scale-to-width-down/640?cb=20240709125953&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fc/Szaman_orkowy_G.png/revision/latest/scale-to-width-down/640?cb=20240709125953&path-prefix=pl",
+    "sha256": "0b360f226651131edb0a356461fa775efd7cbffd468e98d6ddbb8fa80dde2324",
+    "width": 640,
+    "height": 1060,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Szaman_orkowy_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "young_troll": {
     "title": "Młody troll",
     "path": "characters/art/young_troll.webp",
     "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_troll",
     "original": "https://static.wikia.nocookie.net/gothic/images/2/2b/Mlody_troll_%28G1%29.png/revision/latest?cb=20230725223601&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/2/2b/Mlody_troll_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725223601&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/2b/Mlody_troll_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230725223601&path-prefix=pl",
+    "sha256": "95175ed78cf0aff0bf64578e2b007f984f895647a30162f6ce8d79366d3c51e0",
+    "width": 640,
+    "height": 603,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Mlody_troll_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "stone_golem": {
     "title": "Kamienny golem",
     "path": "characters/art/stone_golem.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Kamienny_golem",
     "original": "https://static.wikia.nocookie.net/gothic/images/5/50/Kamienny_golem_G1.png/revision/latest?cb=20240817210457&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/5/50/Kamienny_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210457&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/50/Kamienny_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210457&path-prefix=pl",
+    "sha256": "ebabcbcaa7a3fd28816a99505401b0fd93a131aff2276c4fc0fc337ef42d69eb",
+    "width": 640,
+    "height": 684,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Kamienny_golem_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "fire_golem": {
     "title": "Ognisty golem",
     "path": "characters/art/fire_golem.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ognisty_golem",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/f1/Ognisty_golem_G1.png/revision/latest?cb=20240817210513&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/f1/Ognisty_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210513&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/f1/Ognisty_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210513&path-prefix=pl",
+    "sha256": "688973be20205074cf31aef53055589a1f1d1a6e41b21409030ec6c5ee000fa8",
+    "width": 640,
+    "height": 689,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ognisty_golem_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "ice_golem": {
     "title": "Lodowy golem",
     "path": "characters/art/ice_golem.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Lodowy_golem",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9f/Lodowy_golem_G1.png/revision/latest?cb=20240817210528&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9f/Lodowy_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210528&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9f/Lodowy_golem_G1.png/revision/latest/scale-to-width-down/640?cb=20240817210528&path-prefix=pl",
+    "sha256": "eeada2da98d7c921b15ead81c0cd7d6c6d2f02e8cfaf3acd389b0753daeaaa66",
+    "width": 640,
+    "height": 739,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Lodowy_golem_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_veteran": {
     "title": "Wiarusi orków",
     "path": "characters/art/orc_veteran.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wiarusi_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/4/4d/Ork-wiarus_G1.png/revision/latest?cb=20170419173128&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/4d/Ork-wiarus_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173128&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/4d/Ork-wiarus_G1.png/revision/latest/scale-to-width-down/640?cb=20170419173128&path-prefix=pl",
+    "sha256": "9b16ac6d5aad2c26f2de318db59f1033be0bd164f5f28dfea52cd8209680a415",
+    "width": 640,
+    "height": 912,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork-wiarus_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "troll": {
     "title": "Troll",
     "path": "characters/art/troll.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Troll",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/a4/Troll_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20121117143400&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/a/a4/Troll_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20121117143400&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a4/Troll_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20121117143400&path-prefix=pl",
+    "sha256": "83f87938e3098e18e95c0b3c4f1bb611438c016aff29cfae6bacd6c16c0a7b9d",
+    "width": 640,
+    "height": 609,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Troll_(Gothic_I)_(by_SpY).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "demon": {
     "title": "Pomniejszy demon",
     "path": "characters/art/demon.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Pomniejszy_demon",
     "original": "https://static.wikia.nocookie.net/gothic/images/c/c9/Pomniejszy_demon_%28G1%29.png/revision/latest?cb=20240901204712&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/c/c9/Pomniejszy_demon_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240901204712&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/c9/Pomniejszy_demon_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20240901204712&path-prefix=pl",
+    "sha256": "4f9cc3b2def2830edc251efbf02601ed4d2c704cdcd9c37ad12b06a95cd317d4",
+    "width": 640,
+    "height": 722,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Pomniejszy_demon_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "fire_demon": {
     "title": "Demon ognia",
     "path": "characters/art/fire_demon.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Demon_ognia",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d6/Demon_ognia_%28GI%29.png/revision/latest?cb=20240901204448&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d6/Demon_ognia_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240901204448&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d6/Demon_ognia_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20240901204448&path-prefix=pl",
+    "sha256": "214519ec4b6fae503543d78fcfb5bbf6c8fab00f514695a367cb5cd756122989",
+    "width": 640,
+    "height": 767,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Demon_ognia_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "temple_crawler": {
     "title": "Świątynny pełzacz",
     "path": "characters/art/temple_crawler.webp",
     "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%85tynny_pe%C5%82zacz",
     "original": "https://static.wikia.nocookie.net/gothic/images/2/20/%C5%9Awi%C4%85tynny_pe%C5%82zacz_G1.png/revision/latest?cb=20240816105729&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/2/20/%C5%9Awi%C4%85tynny_pe%C5%82zacz_G1.png/revision/latest/scale-to-width-down/640?cb=20240816105729&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/20/%C5%9Awi%C4%85tynny_pe%C5%82zacz_G1.png/revision/latest/scale-to-width-down/640?cb=20240816105729&path-prefix=pl",
+    "sha256": "13ce1f931cee4e4a0333cf5e89c14fbb1ca090f8b6dae6b4aac3074b71982793",
+    "width": 640,
+    "height": 617,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Świątynny_pełzacz_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "temple_guardian": {
     "title": "Opiekunowie świątyni",
     "path": "characters/art/temple_guardian.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Opiekunowie_%C5%9Bwi%C4%85tyni",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest?cb=20240608222528&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest/scale-to-width-down/640?cb=20240608222528&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest/scale-to-width-down/640?cb=20240608222528&path-prefix=pl",
+    "sha256": "e526d97d4296aa778a2c6c404a3e07f3239c23c0bc024e6cce193f171d148757",
+    "width": 640,
+    "height": 1002,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Opiekun_świątyni_(GI)_(by_Jao98).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "undead_orc": {
     "title": "Starsi opiekunowie świątyni",
     "path": "characters/art/temple_guardian.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Starsi_opiekunowie_%C5%9Bwi%C4%85tyni",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest?cb=20240608222528&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest/scale-to-width-down/640?cb=20240608222528&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bd/Opiekun_%C5%9Bwi%C4%85tyni_%28GI%29_%28by_Jao98%29.png/revision/latest/scale-to-width-down/640?cb=20240608222528&path-prefix=pl",
+    "sha256": "e526d97d4296aa778a2c6c404a3e07f3239c23c0bc024e6cce193f171d148757",
+    "width": 640,
+    "height": 1002,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Opiekun_świątyni_(GI)_(by_Jao98).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "demon_lord": {
     "title": "Książę demonów",
     "path": "characters/art/demon_lord.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%85%C5%BC%C4%99_demon%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/2/2e/Ksi%C4%85%C5%BCe_Demon%C3%B3w_GI.png/revision/latest?cb=20240901204552&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/2/2e/Ksi%C4%85%C5%BCe_Demon%C3%B3w_GI.png/revision/latest/scale-to-width-down/640?cb=20240901204552&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/2e/Ksi%C4%85%C5%BCe_Demon%C3%B3w_GI.png/revision/latest/scale-to-width-down/640?cb=20240901204552&path-prefix=pl",
+    "sha256": "71e074f3826a617ad429f0fe7b759599d56e0de37f3c29a6b8b1cc0b00b69e2c",
+    "width": 640,
+    "height": 822,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Książe_Demonów_GI.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "overseer": {
     "title": "Nadzorca",
     "path": "characters/art/overseer.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Nadzorca",
     "original": "https://static.wikia.nocookie.net/gothic/images/6/67/Nadzorca_%28GI%29.png/revision/latest?cb=20230722152657&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/6/67/Nadzorca_%28GI%29.png/revision/latest?cb=20230722152657&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/67/Nadzorca_%28GI%29.png/revision/latest?cb=20230722152657&path-prefix=pl",
+    "sha256": "4de52951e479503c80884bc1ad9dc18e6598be098c862f68be71d9497c9317eb",
+    "width": 389,
+    "height": 1000,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Nadzorca_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "exchange": {
     "title": "Plac wymian",
     "path": "characters/art/exchange.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Plac_wymian",
     "original": "https://static.wikia.nocookie.net/gothic/images/7/7e/Plac_wymian_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20241222202406&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/7/7e/Plac_wymian_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20241222202406&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/7e/Plac_wymian_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20241222202406&path-prefix=pl",
+    "sha256": "7348d911eea7316a426d6e6d055a84e553d3c1d7b8b664095896ef1cbf2ae0ee",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Plac_wymian_(Gothic_I)_(by_SpY).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "forest": {
     "title": "Most do Starego Obozu",
     "path": "characters/art/forest.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Most_do_Starego_Obozu",
     "original": "https://static.wikia.nocookie.net/gothic/images/7/75/Most_do_Starego_Obozu_G.png/revision/latest?cb=20250711095620&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/7/75/Most_do_Starego_Obozu_G.png/revision/latest/scale-to-width-down/640?cb=20250711095620&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/75/Most_do_Starego_Obozu_G.png/revision/latest/scale-to-width-down/640?cb=20250711095620&path-prefix=pl",
+    "sha256": "3cad8ccfb073ea48c74e26f1553084b51472356c5a2a31fec6dcb358a6c09e9d",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Most_do_Starego_Obozu_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "abandoned_mine": {
     "title": "Opuszczona kopalnia",
     "path": "characters/art/abandoned_mine.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Opuszczona_kopalnia",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/fd/Opuszczona_kopalnia_1_%28G1%29.png/revision/latest?cb=20231231202117&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/fd/Opuszczona_kopalnia_1_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231231202117&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fd/Opuszczona_kopalnia_1_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231231202117&path-prefix=pl",
+    "sha256": "45091fa4bb67d5cd1e4afed97bcae17e750296ebbf40cdab2070dc9079c58a21",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Opuszczona_kopalnia_1_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "cavalorn": {
     "title": "Chata Cavalorna",
     "path": "characters/art/cavalorn.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Chata_Cavalorna",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9d/Chata_Cavalorna_G.png/revision/latest?cb=20250725205753&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9d/Chata_Cavalorna_G.png/revision/latest/scale-to-width-down/640?cb=20250725205753&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9d/Chata_Cavalorna_G.png/revision/latest/scale-to-width-down/640?cb=20250725205753&path-prefix=pl",
+    "sha256": "949473c98b55d28b97a0feef1860b05d2042475ab7784484660b0c03bab41189",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Chata_Cavalorna_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "rice_fields": {
     "title": "Pola ryżowe w Nowym Obozie",
     "path": "characters/art/rice_fields.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Pola_ry%C5%BCowe_w_Nowym_Obozie",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/a2/Pola_ry%C5%BCowe_%28GI%29.png/revision/latest?cb=20230718190536&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/a/a2/Pola_ry%C5%BCowe_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230718190536&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a2/Pola_ry%C5%BCowe_%28GI%29.png/revision/latest/scale-to-width-down/640?cb=20230718190536&path-prefix=pl",
+    "sha256": "6b8666febe5c69c027c561e91dcfb385cc6bfa505185267a3965d3648f20d53d",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Pola_ryżowe_(GI).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "lake_tavern": {
     "title": "Karczma na jeziorze",
     "path": "characters/art/lake_tavern.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Karczma_na_jeziorze",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9d/Karczma_na_jeziorze_%28Gothic_I%29_%28dzie%C5%84%29_%28by_SpY%29.png/revision/latest?cb=20241009105231&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9d/Karczma_na_jeziorze_%28Gothic_I%29_%28dzie%C5%84%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20241009105231&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9d/Karczma_na_jeziorze_%28Gothic_I%29_%28dzie%C5%84%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20241009105231&path-prefix=pl",
+    "sha256": "ccee0834a9a6553dfcf3589ccced143eb22b09dc64177f590ec6cf88cb08a5ef",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Karczma_na_jeziorze_(Gothic_I)_(dzień)_(by_SpY).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "free_mine": {
     "title": "Wolna Kopalnia",
     "path": "characters/art/free_mine.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wolna_Kopalnia",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest?cb=20250206142851&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest/scale-to-width-down/640?cb=20250206142851&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest/scale-to-width-down/640?cb=20250206142851&path-prefix=pl",
+    "sha256": "cc63aa419e7f82080d7a296b65427c87389002e0926a181eed9a680b217dcee4",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Wolna_kopalnia_1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "aidan": {
     "title": "Obóz Aidana",
     "path": "characters/art/aidan.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_Aidana",
     "original": "https://static.wikia.nocookie.net/gothic/images/1/1e/Chata_Aidana_%28G1%29.png/revision/latest?cb=20231123202707&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/1/1e/Chata_Aidana_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231123202707&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/1/1e/Chata_Aidana_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231123202707&path-prefix=pl",
+    "sha256": "43f3cadf632463ca915b5c4160a0cb04516adf7eeb5325b91eae30c76ff2238d",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Chata_Aidana_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "swamp": {
     "title": "Bagno koło Obozu Bractwa",
     "path": "characters/art/swamp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Bagno_ko%C5%82o_Obozu_Bractwa",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest?cb=20231222103447&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl",
+    "sha256": "815750953450d32da931f70578d2a4d6127a9f6ef1cfdb8b13ee03c0dbbd536b",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Bagno_koło_Obozu_Bractwa_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "almanac_cave": {
     "title": "Jaskinia z almanachem",
     "path": "characters/art/almanac_cave.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Jaskinia_z_almanachem",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/b2/Jaskinia_czarnych_goblin%C3%B3w.png/revision/latest?cb=20250221192922&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Jaskinia_czarnych_goblin%C3%B3w.png/revision/latest/scale-to-width-down/640?cb=20250221192922&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Jaskinia_czarnych_goblin%C3%B3w.png/revision/latest/scale-to-width-down/640?cb=20250221192922&path-prefix=pl",
+    "sha256": "c823945d8fe0b37a53228e756b43dfd0deaa5d2ebf5ae4571fb289cfad6eb284",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Jaskinia_czarnych_goblinów.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "crawler_tunnels": {
     "title": "Stara Kopalnia",
     "path": "characters/art/old_mine.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stara_Kopalnia",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest?cb=20250106115318&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20250106115318&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/ab/Stara_Kopalnia_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20250106115318&path-prefix=pl",
+    "sha256": "6db392d912640c95385e4698da5150f69f18a81ca073e0193b2209ec0110ee06",
+    "width": 1920,
+    "height": 1080,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Stara_Kopalnia_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "crawler_nest": {
     "title": "Gniazdo pełzaczy (lokacja)",
     "path": "characters/art/crawler_nest.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Gniazdo_pe%C5%82zaczy_%28lokacja%29",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/92/G1_Stara_Kopalnia_brama_oddzielaj%C4%85ca_gniazdo.png/revision/latest?cb=20250106120355&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/92/G1_Stara_Kopalnia_brama_oddzielaj%C4%85ca_gniazdo.png/revision/latest/scale-to-width-down/640?cb=20250106120355&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/92/G1_Stara_Kopalnia_brama_oddzielaj%C4%85ca_gniazdo.png/revision/latest/scale-to-width-down/640?cb=20250106120355&path-prefix=pl",
+    "sha256": "60a66f403fa90c6b401adc76863519b797d69c77222c68495c97eda9881f6769",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Stara_Kopalnia_brama_oddzielająca_gniazdo.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_cemetery": {
     "title": "Cmentarzysko orków (lokacja)",
     "path": "characters/art/orc_cemetery.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Cmentarzysko_ork%C3%B3w_%28lokacja%29",
     "original": "https://static.wikia.nocookie.net/gothic/images/0/0c/Cmentarzysko_Ork%C3%B3w_%28wej%C5%9Bcie%29.png/revision/latest?cb=20180224132703&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/0/0c/Cmentarzysko_Ork%C3%B3w_%28wej%C5%9Bcie%29.png/revision/latest/scale-to-width-down/640?cb=20180224132703&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/0c/Cmentarzysko_Ork%C3%B3w_%28wej%C5%9Bcie%29.png/revision/latest/scale-to-width-down/640?cb=20180224132703&path-prefix=pl",
+    "sha256": "cd60228b7cd007d401d51e3e6a0aced0d1f2aeae70c6383f086220536ccdde7c",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Cmentarzysko_Orków_(wejście).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "dam": {
     "title": "Tama w Nowym Obozie",
     "path": "characters/art/dam.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Tama_w_Nowym_Obozie",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9e/Tama_w_Nowym_Obozie_G.png/revision/latest?cb=20250817104520&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9e/Tama_w_Nowym_Obozie_G.png/revision/latest/scale-to-width-down/640?cb=20250817104520&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9e/Tama_w_Nowym_Obozie_G.png/revision/latest/scale-to-width-down/640?cb=20250817104520&path-prefix=pl",
+    "sha256": "332c39c4e33f93227eaa1f58991fe564b9c2a3778868b7459c24997857755261",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Tama_w_Nowym_Obozie_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "eastern_forest": {
     "title": "Wschodni las w Górniczej Dolinie",
     "path": "characters/art/eastern_forest.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wschodni_las_w_G%C3%B3rniczej_Dolinie",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/35/Wschodni_las_w_GD_G.png/revision/latest?cb=20250807133755&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/35/Wschodni_las_w_GD_G.png/revision/latest/scale-to-width-down/640?cb=20250807133755&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/35/Wschodni_las_w_GD_G.png/revision/latest/scale-to-width-down/640?cb=20250807133755&path-prefix=pl",
+    "sha256": "7d792ffd4f396c014ebd6609ef47909cd2d2e860ab66a4235ae18cbe9be3afe2",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Wschodni_las_w_GD_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "swamp_den": {
     "title": "Bagno koło Obozu Bractwa",
     "path": "characters/art/swamp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Bagno_ko%C5%82o_Obozu_Bractwa",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest?cb=20231222103447&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl",
+    "sha256": "815750953450d32da931f70578d2a4d6127a9f6ef1cfdb8b13ee03c0dbbd536b",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Bagno_koło_Obozu_Bractwa_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "swamp_depths": {
     "title": "Bagno koło Obozu Bractwa",
     "path": "characters/art/swamp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Bagno_ko%C5%82o_Obozu_Bractwa",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest?cb=20231222103447&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9b/Bagno_ko%C5%82o_Obozu_Bractwa_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20231222103447&path-prefix=pl",
+    "sha256": "815750953450d32da931f70578d2a4d6127a9f6ef1cfdb8b13ee03c0dbbd536b",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Bagno_koło_Obozu_Bractwa_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "stone_circle": {
     "title": "Kamienne kręgi",
     "path": "characters/art/stone_circle.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Kamienne_kr%C4%99gi",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest?cb=20241110165449&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20241110165449&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20241110165449&path-prefix=pl",
+    "sha256": "3310a1da772d09f56fb9903f50b457e6bd8e57a2f36090b3229ac7640455e4ec",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Krypta_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "fog_tower": {
     "title": "Wieża Mgieł",
     "path": "characters/art/fog_tower.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wie%C5%BCa_Mgie%C5%82",
     "original": "https://static.wikia.nocookie.net/gothic/images/3/39/Wie%C5%BCa_mgie%C5%82_%28by_Ossowski21%29.png/revision/latest?cb=20231205200946&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/3/39/Wie%C5%BCa_mgie%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20231205200946&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/3/39/Wie%C5%BCa_mgie%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20231205200946&path-prefix=pl",
+    "sha256": "894d97cd8697f8c94320a84c878aed0e5ca3790efcb1b553345ecbacedc7c45c",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Wieża_mgieł_(by_Ossowski21).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "fog_beach": {
     "title": "Plaża przy Wieży Mgieł",
     "path": "characters/art/fog_beach.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Pla%C5%BCa_przy_Wie%C5%BCy_Mgie%C5%82",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/bc/Pla%C5%BCa_og%C3%B3%C5%82_%28by_Ossowski21%29.png/revision/latest?cb=20240816143151&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/bc/Pla%C5%BCa_og%C3%B3%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20240816143151&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/bc/Pla%C5%BCa_og%C3%B3%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20240816143151&path-prefix=pl",
+    "sha256": "fbc409382d8e6f1d7a9641654ee18d8aa35a3b26cd21f2735a974450473acc97",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Plaża_ogół_(by_Ossowski21).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "quentin_camp": {
     "title": "Obóz Quentina",
     "path": "characters/art/quentin_camp.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_Quentina",
     "original": "https://static.wikia.nocookie.net/gothic/images/8/87/Ob%C3%B3z_Quentina_G1_%28by_Wedkarski%29.png/revision/latest?cb=20230501134207&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/8/87/Ob%C3%B3z_Quentina_G1_%28by_Wedkarski%29.png/revision/latest/scale-to-width-down/640?cb=20230501134207&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/87/Ob%C3%B3z_Quentina_G1_%28by_Wedkarski%29.png/revision/latest/scale-to-width-down/640?cb=20230501134207&path-prefix=pl",
+    "sha256": "5d6cf0b9ac755229f75ba60bbaa476e1d2bc172b30e13de9193f6dd09b7ef957",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Obóz_Quentina_G1_(by_Wedkarski).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "free_mine_depths": {
     "title": "Wolna Kopalnia",
     "path": "characters/art/free_mine.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wolna_Kopalnia",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest?cb=20250206142851&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest/scale-to-width-down/640?cb=20250206142851&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/Wolna_kopalnia_1.png/revision/latest/scale-to-width-down/640?cb=20250206142851&path-prefix=pl",
+    "sha256": "cc63aa419e7f82080d7a296b65427c87389002e0926a181eed9a680b217dcee4",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Wolna_kopalnia_1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "old_monastery": {
     "title": "Stary klasztor",
     "path": "characters/art/old_monastery.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stary_klasztor",
     "original": "https://static.wikia.nocookie.net/gothic/images/c/c1/Klasztor_mnich%C3%B3w_widok_og%C3%B3lny_G.png/revision/latest?cb=20241101171452&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/c/c1/Klasztor_mnich%C3%B3w_widok_og%C3%B3lny_G.png/revision/latest/scale-to-width-down/640?cb=20241101171452&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/c1/Klasztor_mnich%C3%B3w_widok_og%C3%B3lny_G.png/revision/latest/scale-to-width-down/640?cb=20241101171452&path-prefix=pl",
+    "sha256": "e629afe1d587a89e650c5d1e2257353366626e9f3aff855d29ccd2d8498a16da",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Klasztor_mnichów_widok_ogólny_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "northern_forest": {
     "title": "Północny las w Górniczej Dolinie",
     "path": "characters/art/northern_forest.webp",
     "source": "https://gothic.fandom.com/pl/wiki/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/fa/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie_1_%28G1%29.png/revision/latest?cb=20230501110135&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie_1_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230501110135&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fa/P%C3%B3%C5%82nocny_las_w_G%C3%B3rniczej_Dolinie_1_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20230501110135&path-prefix=pl",
+    "sha256": "91b1837cac4a28a966567d2da9dedc27f066131241ea20adc0fc6ebe22f2d379",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Północny_las_w_Górniczej_Dolinie_1_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "mountain_fortress": {
     "title": "Górska forteca",
     "path": "characters/art/mountain_fortress.webp",
     "source": "https://gothic.fandom.com/pl/wiki/G%C3%B3rska_forteca",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/b0/Twierdza_g1_ogo%C5%82_%28by_Ossowski21%29.png/revision/latest?cb=20241111141144&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/b0/Twierdza_g1_ogo%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20241111141144&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/b0/Twierdza_g1_ogo%C5%82_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20241111141144&path-prefix=pl",
+    "sha256": "4bd80bdbe7db67058677fdf53715015cf6bdfce2c84f4c948658f9bb75000a17",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Twierdza_g1_ogoł_(by_Ossowski21).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_lands": {
     "title": "Ziemie orków",
     "path": "characters/art/orc_lands.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ziemie_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/a2/G1_Ziemie_ork%C3%B3w_00_ko%C5%82o_skrzy%C5%BCowania.png/revision/latest?cb=20221214114454&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/a/a2/G1_Ziemie_ork%C3%B3w_00_ko%C5%82o_skrzy%C5%BCowania.png/revision/latest/scale-to-width-down/640?cb=20221214114454&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/a2/G1_Ziemie_ork%C3%B3w_00_ko%C5%82o_skrzy%C5%BCowania.png/revision/latest/scale-to-width-down/640?cb=20221214114454&path-prefix=pl",
+    "sha256": "95b2eb0c79424e1f729bcb3826af4332530e49e63c2e10ffc5ce1fb27f81f0de",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Ziemie_orków_00_koło_skrzyżowania.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "old_citadel": {
     "title": "Stara cytadela",
     "path": "characters/art/old_citadel.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Stara_cytadela",
     "original": "https://static.wikia.nocookie.net/gothic/images/e/e0/Stara_cytadela_%281%29.png/revision/latest?cb=20241213173715&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/e/e0/Stara_cytadela_%281%29.png/revision/latest/scale-to-width-down/640?cb=20241213173715&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/e/e0/Stara_cytadela_%281%29.png/revision/latest/scale-to-width-down/640?cb=20241213173715&path-prefix=pl",
+    "sha256": "5f6ded760576a31fe42d476fbd2eb9780cfb859f629c8e5a7de6194b80ea93d0",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Stara_cytadela_(1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "xardas_tower": {
     "title": "Wieża Xardasa w Górniczej Dolinie",
     "path": "characters/art/xardas_tower.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Wie%C5%BCa_Xardasa_w_G%C3%B3rniczej_Dolinie",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d6/Wie%C5%BCa_Xardasa_w_Dolinie_%28Gothic%29.png/revision/latest?cb=20250217125150&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d6/Wie%C5%BCa_Xardasa_w_Dolinie_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20250217125150&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d6/Wie%C5%BCa_Xardasa_w_Dolinie_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20250217125150&path-prefix=pl",
+    "sha256": "212ef79a82d438d4a57b2bd0044866bf2b33c5996504925d6892b4bf48906355",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Wieża_Xardasa_w_Dolinie_(Gothic).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "sunken_tower": {
     "title": "Zatopiona wieża Xardasa",
     "path": "characters/art/sunken_tower.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Zatopiona_wie%C5%BCa_Xardasa",
     "original": "https://static.wikia.nocookie.net/gothic/images/5/51/Zatopiona_wie%C5%BCa_widok_og%C3%B3lny_G.png/revision/latest?cb=20241220181702&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/5/51/Zatopiona_wie%C5%BCa_widok_og%C3%B3lny_G.png/revision/latest/scale-to-width-down/640?cb=20241220181702&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/51/Zatopiona_wie%C5%BCa_widok_og%C3%B3lny_G.png/revision/latest/scale-to-width-down/640?cb=20241220181702&path-prefix=pl",
+    "sha256": "f15d1dec08935796f20555a1eed8c09d6dc6111fc348ae443f6794a6aaf120fc",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Zatopiona_wieża_widok_ogólny_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_city": {
     "title": "Miasto orków",
     "path": "characters/art/orc_city.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Miasto_ork%C3%B3w",
     "original": "https://static.wikia.nocookie.net/gothic/images/f/fb/Miasto_ork%C3%B3w_G1.png/revision/latest?cb=20250406165302&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/f/fb/Miasto_ork%C3%B3w_G1.png/revision/latest/scale-to-width-down/640?cb=20250406165302&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/fb/Miasto_ork%C3%B3w_G1.png/revision/latest/scale-to-width-down/640?cb=20250406165302&path-prefix=pl",
+    "sha256": "bde5d5f9021322071c77c556e6a9dafa3979f7392dbb603eafdcac529d27542f",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Miasto_orków_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "troll_canyon": {
     "title": "Kanion trolli",
     "path": "characters/art/troll_canyon.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Kanion_trolli",
     "original": "https://static.wikia.nocookie.net/gothic/images/4/48/Kanion_og%C3%B3lny_widok_2_%28by_Ossowski21%29.png/revision/latest?cb=20230807200449&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/48/Kanion_og%C3%B3lny_widok_2_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20230807200449&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/48/Kanion_og%C3%B3lny_widok_2_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20230807200449&path-prefix=pl",
+    "sha256": "b787234663d18d7c2f3b9e12134526afbffce3eb315c531b8e94e89ddec3a390",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Kanion_ogólny_widok_2_(by_Ossowski21).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "sleeper_temple": {
     "title": "Świątynia Śniącego",
     "path": "characters/art/sleeper_temple.webp",
     "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%85tynia_%C5%9Ani%C4%85cego",
     "original": "https://static.wikia.nocookie.net/gothic/images/7/7f/%C5%9Awi%C4%85tynia_wej%C5%9Bcie_G1.png/revision/latest?cb=20161008103739&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/7/7f/%C5%9Awi%C4%85tynia_wej%C5%9Bcie_G1.png/revision/latest/scale-to-width-down/640?cb=20161008103739&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/7f/%C5%9Awi%C4%85tynia_wej%C5%9Bcie_G1.png/revision/latest/scale-to-width-down/640?cb=20161008103739&path-prefix=pl",
+    "sha256": "dbfae5c5bb615f02dfd733b1fb2b12e764014196bf380825792a36f1646e2aa5",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Świątynia_wejście_G1.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "overseer_crypt": {
     "title": "Krypta Nadzorcy",
     "path": "characters/art/stone_circle.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Krypta_Nadzorcy",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest?cb=20241110165449&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20241110165449&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/d9/Krypta_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20241110165449&path-prefix=pl",
+    "sha256": "3310a1da772d09f56fb9903f50b457e6bd8e57a2f36090b3229ac7640455e4ec",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Krypta_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "crawler_queen": {
     "title": "Królowa pełzaczy",
     "path": "characters/art/crawler_queen.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Kr%C3%B3lowa_pe%C5%82zaczy",
     "original": "https://static.wikia.nocookie.net/gothic/images/a/ac/G1_Kr%C3%B3lowa_pe%C5%82zaczy.png/revision/latest?cb=20240901204504&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/a/ac/G1_Kr%C3%B3lowa_pe%C5%82zaczy.png/revision/latest/scale-to-width-down/640?cb=20240901204504&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/a/ac/G1_Kr%C3%B3lowa_pe%C5%82zaczy.png/revision/latest/scale-to-width-down/640?cb=20240901204504&path-prefix=pl",
+    "sha256": "d53e46ff22ed08d408f111d5c9dd559d4268fa7afc17707a5558da467e4d95c8",
+    "width": 640,
+    "height": 763,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Królowa_pełzaczy.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "sleeper": {
     "title": "Śniący",
     "path": "characters/art/sleeper.webp",
     "source": "https://gothic.fandom.com/pl/wiki/%C5%9Ani%C4%85cy",
     "original": "https://static.wikia.nocookie.net/gothic/images/6/66/%C5%9Ani%C4%85cy_%28Gothic%29.png/revision/latest?cb=20230828180826&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/6/66/%C5%9Ani%C4%85cy_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20230828180826&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/6/66/%C5%9Ani%C4%85cy_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20230828180826&path-prefix=pl",
+    "sha256": "df952cd2895dcb2793a405d225605439837a2f144ed175b7135f62a2ccd8c561",
+    "width": 640,
+    "height": 512,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Śniący_(Gothic).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "sleeper_sanctum": {
     "title": "Portal w świątyni Śniącego",
     "path": "characters/art/sleeper_sanctum.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego",
     "original": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest?cb=20260514190302&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20260514190302&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/b/b2/Portal_w_%C5%9Bwi%C4%85tyni_%C5%9Ani%C4%85cego_%28Gothic_I%29_%28by_SpY%29.png/revision/latest/scale-to-width-down/640?cb=20260514190302&path-prefix=pl",
+    "sha256": "e4bb67d6a75f0489d63062fad9b5ac32cebaddb06b94c0cb17fd333dd78a76a4",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Portal_w_świątyni_Śniącego_(Gothic_I)_(by_SpY).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "old_castle": {
     "title": "Zamek w Górniczej Dolinie",
     "path": "characters/art/old_castle.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Zamek_w_G%C3%B3rniczej_Dolinie",
     "original": "https://static.wikia.nocookie.net/gothic/images/9/92/Zamek_w_GD_%28G1%29_og%C3%B3lny_widok_dzie%C5%84_%28by_Ossowski21%29.png/revision/latest?cb=20231116145929&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/9/92/Zamek_w_GD_%28G1%29_og%C3%B3lny_widok_dzie%C5%84_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20231116145929&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/92/Zamek_w_GD_%28G1%29_og%C3%B3lny_widok_dzie%C5%84_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20231116145929&path-prefix=pl",
+    "sha256": "a3d1e831f9ead300214c5d6bf3e84b0b0e5ed2001da130f09228242eb535bca7",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Zamek_w_GD_(G1)_ogólny_widok_dzień_(by_Ossowski21).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "water_mages": {
     "title": "Siedziba magów wody w Nowym Obozie",
     "path": "characters/art/water_mages.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Siedziba_mag%C3%B3w_wody_w_Nowym_Obozie",
     "original": "https://static.wikia.nocookie.net/gothic/images/4/42/G1_Siedziba_mag%C3%B3w_wody_przej%C5%9Bcie.png/revision/latest?cb=20241009105251&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/42/G1_Siedziba_mag%C3%B3w_wody_przej%C5%9Bcie.png/revision/latest/scale-to-width-down/640?cb=20241009105251&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/42/G1_Siedziba_mag%C3%B3w_wody_przej%C5%9Bcie.png/revision/latest/scale-to-width-down/640?cb=20241009105251&path-prefix=pl",
+    "sha256": "ccf0517f6c1d79b3b277246aad6a125623a3c8c4142cbc113c43c1041b45a5e7",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "G1_Siedziba_magów_wody_przejście.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "brotherhood_temple": {
     "title": "Świątynia w Obozie Bractwa",
     "path": "characters/art/brotherhood_temple.webp",
     "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%85tynia_w_Obozie_Bractwa",
     "original": "https://static.wikia.nocookie.net/gothic/images/5/58/%C5%9Awi%C4%85tynia_w_obozie_Bractwa.png/revision/latest?cb=20241029162234&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/5/58/%C5%9Awi%C4%85tynia_w_obozie_Bractwa.png/revision/latest/scale-to-width-down/640?cb=20241029162234&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/58/%C5%9Awi%C4%85tynia_w_obozie_Bractwa.png/revision/latest/scale-to-width-down/640?cb=20241029162234&path-prefix=pl",
+    "sha256": "655317ba3bd0531e08522db95ee75d673c466b197eb4a8473780d7fb251c8991",
+    "width": 640,
+    "height": 360,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Świątynia_w_obozie_Bractwa.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "orc_slave": {
     "title": "Orkowie niewolnicy",
     "path": "characters/art/orc_slave.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Orkowie_niewolnicy",
     "original": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/70/Ork-niewolnik_G.png/revision/latest?cb=20240608175008&path-prefix=pl",
+    "sha256": "c0b45104c8374a0760fa0e9fcb25cb1e2114e53ec5fa665bfa57b66990878753",
+    "width": 601,
+    "height": 1033,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ork-niewolnik_G.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "rice_spirit": {
     "title": "Ryżówka",
     "path": "characters/art/rice_spirit.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Ry%C5%BC%C3%B3wka",
     "original": "https://static.wikia.nocookie.net/gothic/images/2/20/Ry%C5%BC%C3%B3wka_GI.png/revision/latest?cb=20201001031141&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/2/20/Ry%C5%BC%C3%B3wka_GI.png/revision/latest?cb=20201001031141&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/2/20/Ry%C5%BC%C3%B3wka_GI.png/revision/latest?cb=20201001031141&path-prefix=pl",
+    "sha256": "fc538c4c9c547e09bf9e9a3699605fd0d675edb87f48fa10911d62139265a2b7",
+    "width": 297,
+    "height": 901,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Ryżówka_GI.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "healing_essence": {
-    "title": "Esencja lecznicza",
-    "path": "characters/art/healing_essence.webp",
-    "source": "https://gothic.fandom.com/pl/wiki/Esencja_lecznicza",
-    "original": "https://static.wikia.nocookie.net/gothic/images/4/49/Esencja_lecznicza_%28G2%29.png/revision/latest?cb=20170422145520&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/4/49/Esencja_lecznicza_%28G2%29.png/revision/latest?cb=20170422145520&path-prefix=pl"
+    "title": "Esencja uzdrawiająca",
+    "path": "characters/art/packs/gothic_i/63ba556219aa39bbf47f0abec7872196205ecc399e0824a97461175c99dab758.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Esencja_uzdrawiaj%C4%85ca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/0/00/Esencja_uzdrawiaj%C4%85ca_%28G1%29.png/revision/latest?cb=20240224112208&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/00/Esencja_uzdrawiaj%C4%85ca_%28G1%29.png/revision/latest?cb=20240224112208&path-prefix=pl",
+    "selected_file": "Esencja_uzdrawiająca_(G1).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "sha256": "63ba556219aa39bbf47f0abec7872196205ecc399e0824a97461175c99dab758",
+    "width": 560,
+    "height": 919,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "battle_staff": {
     "title": "Pałka z kolcami",
     "path": "characters/art/battle_staff.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka_z_kolcami",
     "original": "https://static.wikia.nocookie.net/gothic/images/8/8e/Pa%C5%82ka_Namiba.png/revision/latest?cb=20201001031128&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/8/8e/Pa%C5%82ka_Namiba.png/revision/latest/scale-to-width-down/640?cb=20201001031128&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/8/8e/Pa%C5%82ka_Namiba.png/revision/latest/scale-to-width-down/640?cb=20201001031128&path-prefix=pl",
+    "sha256": "9fb096371b47be9dadb3483cac094bf4de2eaab24aa43391af6bc764071c4cda",
+    "width": 640,
+    "height": 699,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Pałka_Namiba.png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   },
   "rune_sword": {
     "title": "Miecz runiczny",
     "path": "characters/art/rune_sword.webp",
     "source": "https://gothic.fandom.com/pl/wiki/Miecz_runiczny",
     "original": "https://static.wikia.nocookie.net/gothic/images/d/df/Miecz_%C5%9Bmierci_%28G1%29.png/revision/latest?cb=20171127185515&path-prefix=pl",
-    "download": "https://static.wikia.nocookie.net/gothic/images/d/df/Miecz_%C5%9Bmierci_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20171127185515&path-prefix=pl"
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/df/Miecz_%C5%9Bmierci_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20171127185515&path-prefix=pl",
+    "sha256": "3cba5cfb69069375b29bf67f18ccd6f47cca2a50068e81459c69af0c0efc7b78",
+    "width": 640,
+    "height": 538,
+    "mime": "image/webp",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "illustration",
+    "selected_file": "Miecz_śmierci_(G1).png",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_rusty_sword": {
+    "title": "Zardzewiały miecz",
+    "path": "characters/art/packs/gothic_i/51a1f2752ed69cf006294cd7cc715d5fe7e7c32ac2917b5410f18a545033cfa1.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Zardzewia%C5%82y_miecz",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/75/Zardzewia%C5%82y_miecz_%28Gothic%29.png/revision/latest?cb=20250323052612&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/75/Zardzewia%C5%82y_miecz_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20250323052612&path-prefix=pl",
+    "selected_file": "Zardzewiały miecz (Gothic).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "51a1f2752ed69cf006294cd7cc715d5fe7e7c32ac2917b5410f18a545033cfa1",
+    "width": 640,
+    "height": 472,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_short_bow": {
+    "title": "Krótki łuk",
+    "path": "characters/art/packs/gothic_i/b337ace641ec1d9bd8277ae38e7a3e944c09e6afa0df221b5e71bceea76113ca.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Kr%C3%B3tki_%C5%82uk",
+    "original": "https://static.wikia.nocookie.net/gothic/images/0/09/Kr%C3%B3tki_%C5%82uk_%28Gothic_I%29_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20130221074805&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/09/Kr%C3%B3tki_%C5%82uk_%28Gothic_I%29_%28by_Wojciech_Wawrzy%C5%84czak%29.png/revision/latest?cb=20130221074805&path-prefix=pl",
+    "selected_file": "Krótki łuk (Gothic I) (by Wojciech Wawrzyńczak).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "b337ace641ec1d9bd8277ae38e7a3e944c09e6afa0df221b5e71bceea76113ca",
+    "width": 521,
+    "height": 436,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_digger_trousers": {
+    "title": "Lekkie spodnie kopacza",
+    "path": "characters/art/packs/gothic_i/0d06e5ef03c88da77cae731dc691f9f5b0f42e9fc0974c389bf46e334e44c12d.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Lekkie_spodnie_kopacza",
+    "original": "https://static.wikia.nocookie.net/gothic/images/4/4b/Lekkie_spodnie_kopacza_%28by_Ossowski21%29.png/revision/latest?cb=20230811214433&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/4/4b/Lekkie_spodnie_kopacza_%28by_Ossowski21%29.png/revision/latest?cb=20230811214433&path-prefix=pl",
+    "selected_file": "Lekkie spodnie kopacza (by Ossowski21).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "0d06e5ef03c88da77cae731dc691f9f5b0f42e9fc0974c389bf46e334e44c12d",
+    "width": 375,
+    "height": 1080,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_iron_ring": {
+    "title": "Pierścień żelaznej skóry",
+    "path": "characters/art/packs/gothic_i/505766f3452fc07479868a5c7025ae2a65447a5d5a14f64a458268edd63637d9.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_%C5%BCelaznej_sk%C3%B3ry",
+    "original": "https://static.wikia.nocookie.net/gothic/images/c/c2/Pier%C5%9Bcie%C5%84_1_GI.png/revision/latest?cb=20201114022111&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/c/c2/Pier%C5%9Bcie%C5%84_1_GI.png/revision/latest?cb=20201114022111&path-prefix=pl",
+    "selected_file": "Pierścień_1_GI.png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "505766f3452fc07479868a5c7025ae2a65447a5d5a14f64a458268edd63637d9",
+    "width": 346,
+    "height": 352,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_vitality_amulet": {
+    "title": "Amulet witalności",
+    "path": "characters/art/packs/gothic_i/38e0bc758d68f207160fdfbb5063902433211839f15baa5ca66560b8c58812a5.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Amulet_witalno%C5%9Bci",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9c/Amulet_2_G1.png/revision/latest?cb=20121213224548&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9c/Amulet_2_G1.png/revision/latest/scale-to-width-down/640?cb=20121213224548&path-prefix=pl",
+    "selected_file": "Amulet 2 G1.png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "38e0bc758d68f207160fdfbb5063902433211839f15baa5ca66560b8c58812a5",
+    "width": 640,
+    "height": 640,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_god_hammer": {
+    "title": "Boski młot",
+    "path": "characters/art/packs/gothic_i/69959f8e370d6ca014031521ccdc6aa567e5c78eadc5e4bb45a65b7b219c98b7.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Boski_m%C5%82ot",
+    "original": "https://static.wikia.nocookie.net/gothic/images/d/db/Boski_m%C5%82ot_%28Gothic%29.png/revision/latest?cb=20120617161038&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/d/db/Boski_m%C5%82ot_%28Gothic%29.png/revision/latest/scale-to-width-down/640?cb=20120617161038&path-prefix=pl",
+    "selected_file": "Boski młot (Gothic).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "69959f8e370d6ca014031521ccdc6aa567e5c78eadc5e4bb45a65b7b219c98b7",
+    "width": 640,
+    "height": 579,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_wolf_skin": {
+    "title": "Skóra wilka",
+    "path": "characters/art/packs/gothic_i/6afce476cb8fb66962603a6958385348552f33ed825b8b5479822340bceac1ea.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_wilka",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/f6/Sk%C3%B3ra_wilka_%28G1%29.png/revision/latest?cb=20171204202138&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/f6/Sk%C3%B3ra_wilka_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20171204202138&path-prefix=pl",
+    "selected_file": "Skóra wilka (G1).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "6afce476cb8fb66962603a6958385348552f33ed825b8b5479822340bceac1ea",
+    "width": 640,
+    "height": 451,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_arrow": {
+    "title": "Strzała",
+    "path": "characters/art/packs/gothic_i/c3dfb76709322f0b224400462401342c96eb25f6f057e4620d0a15b035fcf278.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Strza%C5%82a",
+    "original": "https://static.wikia.nocookie.net/gothic/images/5/5f/Strza%C5%82a_%28G1%29.png/revision/latest?cb=20170303205925&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/5/5f/Strza%C5%82a_%28G1%29.png/revision/latest/scale-to-width-down/640?cb=20170303205925&path-prefix=pl",
+    "selected_file": "Strzała_(G1).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "c3dfb76709322f0b224400462401342c96eb25f6f057e4620d0a15b035fcf278",
+    "width": 640,
+    "height": 502,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_bolt": {
+    "title": "Bełt",
+    "path": "characters/art/packs/gothic_i/a22901de5215c095c6ea4cb96ee03d77282cee0bf0caceb8b9874772306bb1c9.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Be%C5%82t",
+    "original": "https://static.wikia.nocookie.net/gothic/images/f/f9/Be%C5%82t_%28G1%29.png/revision/latest?cb=20170303200056&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/f/f9/Be%C5%82t_%28G1%29.png/revision/latest?cb=20170303200056&path-prefix=pl",
+    "selected_file": "Bełt_(G1).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "a22901de5215c095c6ea4cb96ee03d77282cee0bf0caceb8b9874772306bb1c9",
+    "width": 383,
+    "height": 331,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "item_healing": {
+    "title": "Esencja uzdrawiająca",
+    "path": "characters/art/packs/gothic_i/63ba556219aa39bbf47f0abec7872196205ecc399e0824a97461175c99dab758.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Esencja_uzdrawiaj%C4%85ca",
+    "original": "https://static.wikia.nocookie.net/gothic/images/0/00/Esencja_uzdrawiaj%C4%85ca_%28G1%29.png/revision/latest?cb=20240224112208&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/0/00/Esencja_uzdrawiaj%C4%85ca_%28G1%29.png/revision/latest?cb=20240224112208&path-prefix=pl",
+    "selected_file": "Esencja_uzdrawiająca_(G1).png",
+    "game": "GOTHIC_I",
+    "pack_version": 1,
+    "type": "item",
+    "sha256": "63ba556219aa39bbf47f0abec7872196205ecc399e0824a97461175c99dab758",
+    "width": 560,
+    "height": 919,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   }
 }
