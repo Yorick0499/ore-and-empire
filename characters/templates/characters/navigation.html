@@ -27,7 +27,7 @@
     <details class="nav-group"><summary>Wieści i wiedza</summary><div>
       <a href="{% url 'tavern_page' %}">Karczma</a><a href="{% url 'colony_life' %}">Życie kolonii</a>
       <a href="{% url 'events_page' %}" {% if current == 'events_page' %}aria-current="page"{% endif %}>Eventy</a>
-      <a href="{% url 'rankings_page' %}" {% if current == 'rankings_page' %}aria-current="page"{% endif %}>Rankingi</a>
+      <a href="{% url 'hall_page' %}">Sala chwały</a><a href="{% url 'rankings_page' %}" {% if current == 'rankings_page' %}aria-current="page"{% endif %}>Rankingi</a>
       <a href="{% url 'bestiary_page' %}" {% if current == 'bestiary_page' %}aria-current="page"{% endif %}>Bestiariusz</a>
       {% if user.is_staff %}<a href="{% url 'market_monitor' %}" {% if current == 'market_monitor' %}aria-current="page"{% endif %}>Stan rynku</a>{% endif %}
     </div></details>
@@ -36,5 +36,6 @@
   {% endwith %}{% else %}<a href="{% url 'login' %}">Logowanie</a><a href="{% url 'register' %}">Dołącz do kolonii</a>{% endif %}
   </nav>
 </header>
+<aside class="world-clock" aria-label="Rytm świata"><strong>{{ world_clock.season_name }} · {{ world_clock.name }}</strong><span>{{ world_clock.description }}</span><span>Ruda +{{ world_clock.ore|add:'-100' }}% · PD +{{ world_clock.experience|add:'-100' }}% · <a href="{% url 'events_page' %}">Kalendarz i zasady</a></span><span data-world-phase-end="{{ world_clock.ends_at|date:'c' }}" data-server-now="{{ world_clock.now|date:'c' }}">{{ world_clock.next_name }} o {{ world_clock.ends_at|date:'H:i:s' }} UTC</span></aside>
 {% if world_needs_setup %}<aside class="setup-notice"><a href="{% url 'world_setup' %}">Nadaj światu nazwę i skonfiguruj administratora</a></aside>{% endif %}
 {% if messages %}<div class="colony-messages" role="status">{% for message in messages %}<div class="colony-message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}

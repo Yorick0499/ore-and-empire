@@ -12,6 +12,8 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    "characters_campaigncompletion":["id","profile_id","battle_id","snapshot"],
+    "characters_editionconclusion":["id","world_id","operator_id","snapshot"],
     "characters_journalnotice": ["id","profile_id","key","title","destination","read_at"],
     'characters_marketevent':['id','profile_id','item_id','blueprint_id','action','price','quantity','reason'],
     'characters_craftrecipe':['id','key','name','discipline','skill','level','fee','ingredients','output_id','quantity','enabled'],

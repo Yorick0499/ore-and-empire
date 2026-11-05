@@ -40,9 +40,10 @@ from characters.views import (
 )
 
 
-from characters.views import journal_view, battle_detail_view
+from characters.views import journal_view, battle_detail_view, hall_view
 
 urlpatterns = [
+    path("sala-chwaly/", hall_view, name="hall_page"),
     path("dziennik/", journal_view, name="journal_page"),
     path("dziennik/walka/<int:battle_id>/", battle_detail_view, name="battle_detail"),
     path("rzemioslo/",crafting_view,name="crafting_page"),

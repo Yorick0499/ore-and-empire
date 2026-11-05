@@ -5,7 +5,7 @@ from django.utils import timezone
 from .models import BotDecision
 
 
-def record_decision(profile, observation, action, target, success, policy_version="baseline-13"):
+def record_decision(profile, observation, action, target, success, policy_version="baseline-14"):
     now = timezone.now()
     if action == "wait":
         last = BotDecision.objects.filter(profile=profile).first()
@@ -14,7 +14,7 @@ def record_decision(profile, observation, action, target, success, policy_versio
     profile.refresh_from_db()
     BotDecision.objects.create(
         profile=profile,
-        schema_version=13,
+        schema_version=14,
         policy_version=policy_version,
         reason=decision_reason(observation,action,success),
         experience_delta=profile.experience - observation.experience,
@@ -44,11 +44,11 @@ def decision_reason(observation,action,success):
 
 def replay_decision(decision):
     from dataclasses import fields
-    from .bots import Observation,BaselinePolicyV7,BaselinePolicyV8,BaselinePolicyV9,BaselinePolicyV10,BaselinePolicyV11,BaselinePolicyV12,BaselinePolicy
-    if decision.policy_version not in {'baseline-7','baseline-8','baseline-9','baseline-10','baseline-11','baseline-12','baseline-13'}:return {'supported':False,'reason':'Policy implementation unavailable'}
+    from .bots import Observation,BaselinePolicyV7,BaselinePolicyV8,BaselinePolicyV9,BaselinePolicyV10,BaselinePolicyV11,BaselinePolicyV12,BaselinePolicyV13,BaselinePolicy
+    if decision.policy_version not in {'baseline-7','baseline-8','baseline-9','baseline-10','baseline-11','baseline-12','baseline-13','baseline-14'}:return {'supported':False,'reason':'Policy implementation unavailable'}
     try:
         allowed={field.name for field in fields(Observation)}
         observation=Observation(**{k:v for k,v in decision.observation.items() if k in allowed})
-        action,target={'baseline-7':BaselinePolicyV7(),'baseline-8':BaselinePolicyV8(),'baseline-9':BaselinePolicyV9(),'baseline-10':BaselinePolicyV10(),'baseline-11':BaselinePolicyV11(),'baseline-12':BaselinePolicyV12(),'baseline-13':BaselinePolicy()}[decision.policy_version].choose(observation)
+        action,target={'baseline-7':BaselinePolicyV7(),'baseline-8':BaselinePolicyV8(),'baseline-9':BaselinePolicyV9(),'baseline-10':BaselinePolicyV10(),'baseline-11':BaselinePolicyV11(),'baseline-12':BaselinePolicyV12(),'baseline-13':BaselinePolicyV13(),'baseline-14':BaselinePolicy()}[decision.policy_version].choose(observation)
         return {'supported':True,'action':action,'target':target,'matches':(action,target)==(decision.action,decision.target_id)}
     except (TypeError,ValueError):return {'supported':False,'reason':'Incomplete historical observation'}

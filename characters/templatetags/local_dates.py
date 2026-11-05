@@ -13,7 +13,7 @@ def local_date(value):
 @register.filter
 def monster_name(key):
     from characters.bestiary import BESTIARY
-    return BESTIARY.get(key, {}).get('name', key)
+    return BESTIARY.get(key, {}).get('nazwa', key)
 
 @register.filter
 def operation_name(key):

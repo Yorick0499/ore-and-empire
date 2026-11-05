@@ -29,4 +29,5 @@ def playable(profile):
 
 def world_context(request):
     world=current_world()
-    return {'server_world':world,'world_needs_setup':not world.configured}
+    from .world_clock import clock_state
+    return {'world_clock':clock_state(),'server_world':world,'world_needs_setup':not world.configured}

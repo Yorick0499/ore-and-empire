@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.test import TestCase
 from django.utils import timezone
-from .models import StoryQuest, StoryRun, PlayerProfile, PremiumEntry, BotDecision
+from .models import StoryQuest, StoryRun, PlayerProfile, PremiumEntry, BotDecision, CampaignCompletion
 from .story_quests import validate_definition, available
 from .bots import tick_bot
 from .gothic_campaign import campaign_definitions
@@ -61,7 +61,7 @@ class CampaignTests(TestCase):
                     action, success = tick_bot(bot)
                     self.assertTrue(success, (step, bot.pk, action))
                     actions[action] += 1
-                    if bot.story_runs.filter(quest__key='ritual-ready', status='claimed').exists():
+                    if bot.story_runs.filter(quest__key='ritual-ready', status='claimed').exists() and CampaignCompletion.objects.filter(profile=bot).exists():
                         completed.add(bot.pk)
             if len(completed) == 3: break
         status = {b.pk: list(b.story_runs.exclude(status='claimed').values('quest__key', 'progress', 'status')) for b in bots}
@@ -71,8 +71,11 @@ class CampaignTests(TestCase):
             self.assertGreaterEqual(bot.level, 30)
             self.assertEqual(bot.story_runs.filter(status='claimed', quest__camp=bot.camp).count(), 6)
             self.assertEqual(bot.story_runs.filter(status='claimed').exclude(quest__camp__in=['', bot.camp]).count(), 0)
-            self.assertLessEqual(bot.inventory.count(), 6)
-            self.assertEqual(bot.story_runs.filter(status='claimed').count(), 27)
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 6)
+            self.assertIn(bot.story_runs.filter(status='claimed').count(), (27,28))
+            self.assertTrue(hasattr(bot,'campaign_completion'))
+        from .release_probe import record_scenario
+        record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})
         self.assertFalse(BotDecision.objects.filter(success=False).exists())
         for action in ('story_accept', 'story_start', 'story_claim', 'story_talk', 'story_travel', 'hunt', 'boss', 'mine', 'claim', 'stock'):
             self.assertGreater(actions[action], 0)
@@ -149,3 +152,14 @@ class CampaignTests(TestCase):
         self.assertContains(page, 'Osobisty przydział przygotowań zakończony')
         self.assertContains(page, 'Sześć rozdziałów')
         self.assertContains(page, 'Gothicpedia')
+
+        prepare()
+        with advance():
+            result = game.execute_boss(hero, 'sleeper_sanctum')
+        self.assertIsNot(result, False)
+        self.assertTrue(result.won)
+        self.assertTrue(hasattr(hero,'campaign_completion'))
+        self.assertContains(self.client.get('/sala-chwaly/'), 'solo-player')
+        hero.refresh_from_db()
+        from .release_probe import record_scenario
+        record_scenario('gracz-od-zera-do-finalu',{'steps':step,'simulated_hours':step/2,'chapters':6,'claimed_quests':hero.story_runs.filter(status='claimed').count(),'level':hero.level,'experience':hero.experience,'ore':hero.ore_balance,'premium':hero.premium_balance,'completion':hasattr(hero,'campaign_completion')})

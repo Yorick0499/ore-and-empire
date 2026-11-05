@@ -1,3 +1,7 @@
+## Pierwsza pełna wersja lokalna
+
+Uruchom `python play.py --bots 6 --port 8001`, otwórz `http://127.0.0.1:8001/` i zarejestruj zwykłą postać. [Przewodnik całej pętli gry](docs/FIRST_PLAYABLE.md) opisuje drogę od pierwszej zmiany do finału sześciu rozdziałów i sali chwały. [Pory dnia i roku](docs/WORLD_CLOCK.md) wyjaśniają czterogodzinną dobę i sezonowe wydarzenia. Publiczny hosting pozostaje osobnym etapem.
+
 # Ore & Empire: Colony Chronicles
 
 **Ore & Empire** is a local-first text browser RPG inspired by *Gothic*, with a bot-populated colony and optional multiplayer over LAN or public hosting.

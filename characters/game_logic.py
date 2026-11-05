@@ -160,12 +160,26 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
 
     mana=profile.current_mana
     casts=0
+    turn = 0
+    previous_stage = 0
     while temp_hero_life > 0 and temp_monster_life > 0:
+        turn += 1
+        protection = monster["weapon_prot"]
+        strength = monster["strength"]
+        incoming_type = monster.get("damage_type", "weapon")
+        if monster.get("boss_key"):
+            from .bosses import encounter_round
+            stage, protection, strength, incoming_type, warnings = encounter_round(monster, temp_monster_life, turn)
+            if stage != previous_stage:
+                combat_log.append(f"Faza {stage}: {monster['nazwa']}.")
+                previous_stage = stage
+            combat_log.extend(warnings)
         # hero turn
         casting=bool(magic_plan and mana>=magic_plan.cost and (not magic_plan.scroll or casts<magic_plan.quantity))
         if casting:
             spell=magic_plan.spell;mana-=magic_plan.cost;casts+=1
             hero_damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
+            if monster.get("boss_key")=="crawler_nest" and spell.damage_type=="fire":hero_damage=hero_damage*120//100
             combat_log.append(f"{spell.name}: koszt {magic_plan.cost} many.")
         else:
             # Magical focus falls back to fists; no free ranged attacks/ammunition.
@@ -173,7 +187,7 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
             critical_chance=random.randint(1,100)
             hero_damage=physical*(2 if not magic_plan and critical_chance<=critical_skill else 1)
             kind='weapon' if magic_plan else damage_type
-            hero_damage=max(1,hero_damage-monster.get(kind+'_prot',monster['weapon_prot'] if kind=='arrow' else 0))
+            hero_damage=max(1,hero_damage-(protection if monster.get('boss_key') and kind in ('weapon','arrow') else monster.get(kind+'_prot',monster['weapon_prot'] if kind=='arrow' else 0)))
         temp_monster_life = temp_monster_life - hero_damage
 
         combat_log.append(f"{profile.user} zadaje {hero_damage} obrażeń.")
@@ -184,7 +198,7 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
             break
 
         # monster turn
-        monster_damage = max(1, monster["strength"] - profile.effective_protection(monster.get("damage_type", "weapon")))
+        monster_damage = max(1, strength - profile.effective_protection(incoming_type))
 
         if casting:
             if spell.stagger_every and casts%spell.stagger_every==0:
@@ -401,21 +415,21 @@ def check_level_up(profile):
 
 
 @player_action
-def train_attribute(profile, attribute_name):
+def train_attribute(profile, attribute_name, count=1):
     if attribute_name not in {"strength", "dexterity", "mana"}:
         return False
-    if profile.skill_points < 1:
+    if type(count) is not int or not 1 <= count <= 10 or profile.skill_points < count:
         return False
     cost=10-profile.camp_perks["training_level"]
-    if profile.ore_balance < cost:
+    if profile.ore_balance < cost * count:
         return False
     current_value = getattr(profile, attribute_name)
-    setattr(profile, attribute_name, current_value + 1)
-    profile.ore_balance = profile.ore_balance - cost
-    profile.skill_points = profile.skill_points - 1
+    setattr(profile, attribute_name, current_value + count)
+    profile.ore_balance = profile.ore_balance - cost * count
+    profile.skill_points = profile.skill_points - count
     profile.save()
     from .camp_progression import record_camp_event
-    record_camp_event(profile, "train:" + attribute_name)
+    for _ in range(count):record_camp_event(profile, "train:" + attribute_name)
     return True
 
 
@@ -432,6 +446,8 @@ def execute_boss(profile, boss_key, request_key=None):
     boss = BOSSES.get(boss_key)
     if boss is None or profile.level < boss.level or profile.is_busy:
         return False
+    from .finale import finale_ready
+    if boss_key == "sleeper_sanctum" and not finale_ready(profile):return False
     if profile.current_energy < boss.energy_cost or profile.current_health < 10:
         return False
     now = timezone.now()
@@ -477,6 +493,9 @@ def execute_boss(profile, boss_key, request_key=None):
     )
 
     save_battle(profile, request_key, boss_key, boss_key, won, combat_log, experience, ore, attempt, details={"magic":plan.spell.key if plan else None,"casts":getattr(result,"spell_casts",0),"mana_after":profile.current_mana})
+    if won and boss_key == "sleeper_sanctum":
+        from .finale import record_completion
+        record_completion(profile, attempt)
     return attempt
 
 

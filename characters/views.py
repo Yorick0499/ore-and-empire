@@ -163,7 +163,7 @@ def inventory_view(request):
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, unequip_item(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False, is_market_listed=False)
     equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True, equipped_slot="weapon").first()
     return render(
         request,
@@ -214,16 +214,10 @@ def train_view(request):
     refresh_player(profile)
     location = current_location(request, profile, "new_camp", "train_page")
     if request.method == "POST":
-        attribute_name = request.POST.get("attribute")
-        if attribute_name == "strength":
-            report_action(request, train_attribute(profile, attribute_name))
-            return redirect(request.get_full_path())
-        if attribute_name == "dexterity":
-            report_action(request, train_attribute(profile, attribute_name))
-            return redirect(request.get_full_path())
-        if attribute_name == "mana":
-            report_action(request, train_attribute(profile, attribute_name))
-            return redirect(request.get_full_path())
+        try:count=int(request.POST.get("count",1))
+        except (TypeError,ValueError):count=0
+        report_action(request, train_attribute(profile,request.POST.get("attribute"),count))
+        return redirect(request.get_full_path())
     return render(request, "characters/train.html", {"profile": profile, "location": location, "attributes": [("strength", "Siła", profile.strength), ("dexterity", "Zręczność", profile.dexterity), ("mana", "Mana", profile.mana)]})
 
 
@@ -399,6 +393,8 @@ def boss_view(request):
     refresh_player(profile)
     location = current_location(request, profile, "crawler_nest", "boss_page")
     boss = BOSSES[location.key]
+    from .bosses import MECHANICS
+    from .finale import finale_ready
     if request.method == "POST":
         attempt = execute_boss(profile, boss.key, request.POST.get("request_key"))
         if attempt is False:
@@ -421,10 +417,12 @@ def boss_view(request):
             "profile": profile,
             "location": location,
             "boss": boss,
+            "mechanics": MECHANICS[boss.key],
+            "finale_gate": boss.key == "sleeper_sanctum" and not finale_ready(profile),
             "request_key": uuid4(),
             "last_attempt": last,
             "next_attempt": next_attempt if waiting else None,
-            "can_fight": not waiting
+            "can_fight": (boss.key != "sleeper_sanctum" or finale_ready(profile)) and not waiting
             and not profile.is_busy
             and profile.current_energy >= boss.energy_cost
             and profile.current_health >= 10,
@@ -830,3 +828,19 @@ def battle_detail_view(request, battle_id):
     from .models import BattleRecord
     battle = get_object_or_404(BattleRecord,pk=battle_id,profile=request.user.playerprofile)
     return render(request,"characters/battle_detail.html",{"battle":battle})
+
+
+@login_required
+def hall_view(request):
+    from .models import CampaignCompletion, EditionConclusion
+    from .finale import conclude_edition
+    from django.core.exceptions import ValidationError
+    world = current_world()
+    if request.method == "POST":
+        if not request.user.is_superuser:raise PermissionDenied
+        try:
+            conclude_edition(request.user,positive_id(request.POST.get("world")),request.POST.get("confirmation"))
+            messages.success(request,"Zapisano podsumowanie edycji. Gra pozostaje otwarta.")
+        except ValidationError as exc:messages.error(request," ".join(exc.messages))
+        return redirect("hall_page")
+    return render(request,"characters/hall.html",{"finishers":CampaignCompletion.objects.filter(profile__world=world).order_by("created_at","pk"),"conclusion":EditionConclusion.objects.filter(world=world).first()})
