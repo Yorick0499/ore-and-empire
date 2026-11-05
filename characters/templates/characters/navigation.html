@@ -23,6 +23,7 @@
       <a href="{% url 'itemshop_page' %}" {% if current == 'itemshop_page' %}aria-current="page"{% endif %}>Sklep odłamków</a>
       <a href="{% url 'item_catalog' %}">Katalog przedmiotów</a>
     </div></details>
+    <a href="{% url 'journal_page' %}">Kronika <span aria-label="Nieprzeczytane powiadomienia">({{ unread_notices|default:0 }})</span></a>
     <details class="nav-group"><summary>Wieści i wiedza</summary><div>
       <a href="{% url 'tavern_page' %}">Karczma</a><a href="{% url 'colony_life' %}">Życie kolonii</a>
       <a href="{% url 'events_page' %}" {% if current == 'events_page' %}aria-current="page"{% endif %}>Eventy</a>

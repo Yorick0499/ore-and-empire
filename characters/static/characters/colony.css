@@ -312,3 +312,9 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
 
 .danger-button { border-color:#d17a5c; background:linear-gradient(#70352b,#3b1917); color:#ffe1ce; }
+
+/* Long names and filter controls must fit narrow colony panels. */
+.colony-panel,.main-content,.server-identity,.masthead>*{min-width:0;overflow-wrap:anywhere}
+.location-filters{display:grid;gap:.6rem}.location-filters input,.location-filters select{max-width:100%;min-width:0;width:100%;box-sizing:border-box}
+.colony-panel time{overflow-wrap:anywhere}.status-panel ol{padding-left:1.4rem}
+@media(min-width:700px){.location-filters{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}}

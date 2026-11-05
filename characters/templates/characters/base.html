@@ -6,12 +6,13 @@
   <meta name="theme-color" content="#141619">
   <title>{% block title %}Ore &amp; Empire — Kolonia{% endblock %} · {{ server_world.name }}</title>
   <link rel="preload" href="{% static 'characters/fonts/GothicII.ttf' %}" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="{% static 'characters/colony.css' %}?v=gothicpedia-2">
+  <link rel="stylesheet" href="{% static 'characters/colony.css' %}?v=gothicpedia-3">
 </head>
 <body class="colony-page">
 <a class="skip-link" href="#main-content">Przejdź do treści</a>
 {% include 'characters/navigation.html' %}
 <main id="main-content" class="{% block shell_class %}colony-shell{% endblock %}">{% block content %}{% endblock %}</main>
 <footer class="colony-footer">Ore &amp; Empire <span aria-hidden="true">◆</span> Kroniki Górniczej Doliny · Projekt fanowski<br><a href="{% url 'credits_page' %}">Grafiki i czcionka — źródła</a></footer>
+<script src="{% static 'characters/local-dates.js' %}" defer></script>
 </body>
 </html>

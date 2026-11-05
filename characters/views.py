@@ -283,6 +283,17 @@ def locations_view(request):
     cards = [
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS
     ]
+    availability = request.GET.get("availability", "all")
+    activity = request.GET.get("activity", "all")
+    try:
+        max_level = max(0, min(1000, int(request.GET.get("level", 1000))))
+    except (ValueError, TypeError):
+        max_level = 1000
+    edition = request.GET.get("edition", str(profile.world.edition))
+    cards = [card for card in cards if card["location"].level <= max_level
+             and (availability == "all" or card["unlocked"] == (availability == "open"))
+             and (activity == "all" or card["location"].route == activity)
+             and edition == str(profile.world.edition)]
     return render(
         request,
         "characters/locations.html",
@@ -790,3 +801,32 @@ def crafting_view(request):
         result=learn_craft(profile,request.POST.get('discipline')) if action=='learn' else buy_craft_material(profile,positive_id(request.POST.get('blueprint'))) if action=='material' else craft_item(profile,positive_id(request.POST.get('recipe')),request.POST.get('request_key')) if action=='craft' else False
         report_action(request,bool(result));return redirect('crafting_page')
     return render(request,'characters/crafting.html',{'profile':profile,'cards':recipe_cards(profile),'request_key':uuid4(),'history':profile.crafts.select_related('recipe').order_by('-pk')[:20]})
+
+
+@login_required
+def journal_view(request):
+    from django.core.paginator import Paginator
+    from .models import JournalNotice, BattleRecord, EconomicEntry
+    from .journal import sync_notices
+    profile = request.user.playerprofile
+    sync_notices(profile)
+    if request.method == "POST":
+        from django.utils import timezone
+        JournalNotice.objects.filter(profile=profile, read_at__isnull=True).update(read_at=timezone.now())
+        return redirect("journal_page")
+    kind = request.GET.get("kind", "battles")
+    if kind not in ("battles", "rewards", "notices"):
+        kind = "battles"
+    sources = {"battles": BattleRecord.objects.filter(profile=profile),
+               "rewards": EconomicEntry.objects.filter(profile=profile).order_by("-created_at", "-pk"),
+               "notices": JournalNotice.objects.filter(profile=profile)}
+    page = Paginator(sources[kind], 20).get_page(request.GET.get("page"))
+    return render(request, "characters/journal.html", {"profile":profile,"page":page,"kind":kind})
+
+
+@login_required
+def battle_detail_view(request, battle_id):
+    from django.shortcuts import get_object_or_404
+    from .models import BattleRecord
+    battle = get_object_or_404(BattleRecord,pk=battle_id,profile=request.user.playerprofile)
+    return render(request,"characters/battle_detail.html",{"battle":battle})

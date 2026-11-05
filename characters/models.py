@@ -819,3 +819,16 @@ class MarketEvent(models.Model):
     created_at=models.DateTimeField(default=timezone.now,db_index=True)
     class Meta:
         ordering=['-created_at','-pk']
+
+
+class JournalNotice(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name="notices")
+    key = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
+    destination = models.CharField(max_length=40)
+    created_at = models.DateTimeField(default=timezone.now)
+    read_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at", "-pk"]
+        constraints = [models.UniqueConstraint(fields=["profile", "key"], name="unique_private_notice")]
