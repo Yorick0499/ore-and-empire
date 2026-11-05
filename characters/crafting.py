@@ -44,7 +44,9 @@ def craft_item(profile,recipe_id,request_key):
             count=min(remaining,item.quantity);plan.append((item,count));remaining-=count
             if not remaining:break
         if remaining:return False
+    from .market_policy import record_market_event
     for item,count in plan:
+        record_market_event(profile,item,"craft_input",quantity=count)
         if item.quantity==count:item.delete()
         else:item.quantity-=count;item.save(update_fields=['quantity'])
     from .equipment import add_item

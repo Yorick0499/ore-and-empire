@@ -76,6 +76,9 @@ class Observation:
     personal_target: int | None = None
     craft_action: str = ""
     craft_target: int | None = None
+    market_action: str = ""
+    market_target: int | None = None
+    market_price: int = 0
 
 
 class Policy(Protocol):
@@ -190,10 +193,17 @@ class BaselinePolicyV11(BaselinePolicyV10):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV11):
+class BaselinePolicyV12(BaselinePolicyV11):
     def choose(self,o):
         if o.craft_action and not o.busy and not o.adventure_ready and not o.reward_ready:
             return o.craft_action,o.craft_target
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV12):
+    def choose(self,o):
+        if o.market_action and not o.busy and not o.adventure_ready and not o.reward_ready:
+            return o.market_action,o.market_target
         return super().choose(o)
 
 
@@ -285,6 +295,7 @@ def tick_bot(profile, policy=None):
         stock = upgrade[1] if upgrade and upgrade[0] == "stock" else None
         offer = upgrade[1] if upgrade and upgrade[0] == "buy" else None
     else:
+        if equipped:offers=offers.filter(blueprint__damage__gt=damage)
         stock = stock.order_by("base_value", "pk").first()
         offer = offers.order_by("market_price", "pk").first()
     if len(inventory) >= 6:
@@ -407,6 +418,8 @@ def tick_bot(profile, policy=None):
     personal_action,personal_target=bot_personal_plan(profile)
     from .crafting import bot_craft_plan
     craft_action,craft_target=bot_craft_plan(profile)
+    from .market_policy import bot_market_plan
+    market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials)
     obs = Observation(
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -430,13 +443,14 @@ def tick_bot(profile, policy=None):
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
+        market_action=market_action,market_target=market_target,market_price=market_price,
         craft_action=craft_action,craft_target=craft_target,
         personal_action=personal_action,personal_target=personal_target,
         raid_action=raid_action,raid_target=raid_target,
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-12" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-13" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
@@ -447,7 +461,11 @@ def tick_bot(profile, policy=None):
     from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
     from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
     from .crafting import learn_craft,buy_craft_material,craft_item
-    if action==obs.craft_action and target==obs.craft_target and action in {'craft_learn','craft_material','craft'}:
+    from .market_policy import reprice_listing,observe_legacy_listing
+    if action==obs.market_action and target==obs.market_target and action in {'market_observe','market_reprice','market_cancel','market_sell','market_buy'}:
+        market_item=OwnedItem.objects.filter(pk=target).first()
+        success=bool(market_item and (observe_legacy_listing(profile,market_item) if action=='market_observe' else reprice_listing(profile,market_item,obs.market_price,market_item.market_price) if action=='market_reprice' else game.delist_item_from_market(profile,market_item,'stale') if action=='market_cancel' else game.sell_item_from_npc(profile,market_item) if action=='market_sell' else game.buy_item_on_market(profile,market_item)))
+    elif action==obs.craft_action and target==obs.craft_target and action in {'craft_learn','craft_material','craft'}:
         success=bool(learn_craft(profile,('smithing','alchemy')[target-1]) if action=='craft_learn' else buy_craft_material(profile,target) if action=='craft_material' else craft_item(profile,target,uuid4()))
     elif action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
         success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
@@ -492,7 +510,8 @@ def tick_bot(profile, policy=None):
     elif action == "shop" and product and target == product.pk:
         success = bool(purchase_product(profile, product.pk, uuid4()))
     elif action == "list" and item and target == item.pk:
-        price = max(1, min(game.MAX_MARKET_PRICE, item.blueprint.base_value * 110 // 100))
+        from .market_policy import listing_price
+        price = listing_price(profile,item)
         success = game.list_item_on_market(profile, item, price)
     elif action == "buy" and offer and target == offer.pk:
         success = game.buy_item_on_market(profile, offer)

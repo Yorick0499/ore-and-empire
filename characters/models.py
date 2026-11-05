@@ -316,6 +316,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 class MarketTrade(models.Model):
+    quantity = models.PositiveIntegerField(null=True,blank=True)
     """Append-only trade facts; item ownership may change after the transaction."""
 
     blueprint = models.ForeignKey(ItemBluePrint, on_delete=models.PROTECT)
@@ -805,3 +806,16 @@ class CraftRecord(models.Model):
     created_at=models.DateTimeField(default=timezone.now)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['profile','request_key'],name='one_craft_request')]
+
+
+class MarketEvent(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    item=models.ForeignKey(OwnedItem,null=True,blank=True,on_delete=models.SET_NULL)
+    blueprint=models.ForeignKey(ItemBluePrint,on_delete=models.PROTECT)
+    action=models.CharField(max_length=20)
+    price=models.PositiveIntegerField(default=0)
+    quantity=models.PositiveIntegerField(default=1)
+    reason=models.CharField(max_length=40,blank=True)
+    created_at=models.DateTimeField(default=timezone.now,db_index=True)
+    class Meta:
+        ordering=['-created_at','-pk']

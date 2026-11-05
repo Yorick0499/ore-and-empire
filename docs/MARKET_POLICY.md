@@ -1,0 +1,11 @@
+# Rynek z rzeczywistym popytem
+
+Rejestr MarketEvent zapisuje wystawienie, przecenę, wycofanie, sprzedaż oraz zużycie w leczeniu i recepturach. Transakcja przechowuje liczbę jednostek stosu; dawnym transakcjom nie przypisujemy wymyślonych ilości. Cena referencyjna to mediana jednostkowa ostatnich 20 wiarygodnych transakcji danego przedmiotu i świata, ograniczona do 60–140% wartości NPC. Bez historii używa ceny NPC. Nowa cena oferty to 105% referencji razy ilość stosu, z ogólnym limitem ceny. Wszystkie ceny w formularzach oznaczają cały stos.
+
+Baseline-13 obniża cenę po dobie, najwyżej raz na 24h, o 15%, nie poniżej połowy wartości NPC. Po trzech dobach wycofuje niesprzedany towar i sprzedaje zbędne, niezarezerwowane zapasy NPC, odzyskując miejsce w plecaku. Stare oferty bez daty dostają osobny zapis pierwszej obserwacji; `listed_at` pozostaje nieznane, a oczekiwanie liczy się od tej obserwacji. Nie fałszujemy dawnych dat. Wycofanie/przecena używają zwykłych serwisów z kontrolą właściciela i starej ceny, nie bezpośredniej zmiany portfela.
+
+Zakupy konsumpcyjne wynikają z rzeczywistych obrażeń lub brakujących składników potrzebnej receptury. Polityka zachowuje 20 rudy rezerwy i ogranicza liczbę kupowanych jednostek. Nie kupuje kolejnej mikstury, gdy już ją ma, ani nie krąży bez potrzeby tą samą bronią między uzbrojonymi kupcami. Zwykły zakup ulepszenia wojownika nadal porównuje przyrost obrażeń i cenę. Produkty rzemiosła i zużywane surowce tworzą popyt, nie tylko większy obrót. Starsze wersje polityk są nadal odtwarzalne.
+
+Raport rynku rozdziela obrót bot–bot od ilości zużytych w leczeniu/rzemiośle, wystawień, przecen i anulowań. Obrót nie jest emisją ani dowodem zdrowej gospodarki. `simulate_market` porównuje przez 30 dni stałe 110% ze strategią reagującą na zaleganie przy jawnych założeniach (jeden towar, NPC 100, kupujący płaci do 80); osobny scenariusz nie ma popytu. Jest to odtwarzalny test reakcji i uwalniania zapasu, nie pełna prognoza endogenicznych cen świata. Polityka nie ma funkcji tworzenia waluty; każda sprzedaż/zakup przechodzi przez prawdziwe rozliczenie.
+
+Testy obejmują zdarzenia, starą cenę, medianę i limity cen jednostkowych, rzeczywistą potrzebę leczenia, budżet, rollback historii oraz wielodniowe porównanie i obsługę nieznanego wieku starych ofert. Backup i reset uwzględniają fakty rynku.

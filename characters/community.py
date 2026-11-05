@@ -5,6 +5,9 @@ from django.utils import timezone
 from .models import PlayerProfile, BotDecision, TavernTopic, TavernMessage
 
 ACTION_NAMES = {
+    'craft':'wytworzył przedmiot z materiałów','craft_material':'kupił materiały warsztatowe','craft_learn':'uczył się rzemiosła',
+    'market_buy':'kupił potrzebne zapasy na targu','market_reprice':'obniżył cenę zalegającej oferty','market_cancel':'wycofał niesprzedany towar','market_sell':'upłynnił niesprzedane zapasy',
+    'raid_strike':'wsparł wspólną wyprawę obozu','camp_donate':'wpłacił rudę do wspólnego skarbca','challenge_claim':'rozliczył osobisty przydział',
     'consume': 'zużył zapasy z plecaka',
     'story_accept': 'przyjął zadanie fabularne', 'story_start': 'rozpoczął zadanie fabularne',
     'story_claim': 'zakończył zadanie fabularne', 'story_talk': 'odbył rozmowę w ramach zadania',
