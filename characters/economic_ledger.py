@@ -1,12 +1,13 @@
 """Currency movement facts: transfers and operator edits are not minted rewards."""
 from uuid import uuid4
+from .world_clock import POLISH_TIME
 from datetime import datetime,time,timedelta,timezone as utc
 from django.db.models import Sum,Avg,Count,Min
 from django.utils import timezone
 from .models import EconomicEntry,PlayerProfile,MarketTrade,EnergyRefill,ItemBluePrint
 
 RESOURCE_FIELDS={'ore':'ore_balance','shards':'premium_balance'}
-REFILLS_PER_UTC_DAY=5
+REFILLS_PER_DAY=5
 
 
 def balances(ids):
@@ -32,8 +33,8 @@ def record_opening(profile):
 
 def refills_remaining(profile,now=None):
     now=now or timezone.now()
-    start=datetime.combine(now.astimezone(utc.utc).date(),time(),tzinfo=utc.utc)
-    return max(0,REFILLS_PER_UTC_DAY-EnergyRefill.objects.filter(profile=profile,created_at__gte=start,created_at__lt=start+timedelta(days=1)).count())
+    start=datetime.combine(now.astimezone(POLISH_TIME).date(),time(),tzinfo=POLISH_TIME)
+    return max(0,REFILLS_PER_DAY-EnergyRefill.objects.filter(profile=profile,created_at__gte=start,created_at__lt=start+timedelta(days=1)).count())
 
 
 def summary():
@@ -53,4 +54,4 @@ def summary():
     for item in ItemBluePrint.objects.filter(merchant=True,kind='weapon').order_by('base_value','pk')[:30]:
         market=averages.get(item.pk,{})
         prices.append({'name':item.name,'npc':item.base_value,'g1':item.original_stats.get('value'),'market_average':round(market['average'],2) if market else None,'trades':market.get('count',0)})
-    return {'resources':totals,'market_turnover':trades.aggregate(total=Sum('price'))['total'] or 0,'since':since.isoformat() if since else None,'prices':prices,'refills_per_utc_day':REFILLS_PER_UTC_DAY,'entries':EconomicEntry.objects.count()}
+    return {'resources':totals,'market_turnover':trades.aggregate(total=Sum('price'))['total'] or 0,'since':since.isoformat() if since else None,'prices':prices,'refills_per_day':REFILLS_PER_DAY,'entries':EconomicEntry.objects.count()}

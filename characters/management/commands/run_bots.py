@@ -1,3 +1,4 @@
+from characters.world_clock import polish_day
 import time
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
@@ -57,9 +58,9 @@ class Command(BaseCommand):
         round_number = 0
         try:
             while options["loop"] or round_number < options["rounds"]:
-                if event_day != timezone.now().date():
+                if event_day != polish_day():
                     ensure_world_events()
-                    event_day = timezone.now().date()
+                    event_day = polish_day()
                 from characters.worlds import current_world
                 profiles = PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).order_by("pk")[: options["limit"]]
                 for profile in profiles:

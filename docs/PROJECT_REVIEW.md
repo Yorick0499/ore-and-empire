@@ -1,5 +1,7 @@
 # Development review — 2026-11-03
 
+> Dokument historyczny. Aktualny stan i instrukcje: [przewodnik gry](GAME_GUIDE.md) oraz [indeks dokumentacji](INDEX.md). Dawne liczby testów i plany odnoszą się do opisanej wersji.
+
 ## Architecture and current scope
 Django 6 monolith, server-rendered Polish templates, SQLite, shared domain services
 in `characters/game_logic.py`. `play.py` bootstraps the local world; `run_colony`

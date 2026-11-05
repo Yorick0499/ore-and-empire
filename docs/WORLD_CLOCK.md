@@ -1,20 +1,34 @@
-# Pory dnia i roku
+# Rzeczywisty czas polski i rytm świata
 
-Doba trwa cztery godziny rzeczywiste: sześć odcinków po 40 minut, wspólny zegar UTC, wynikający z czasu Unix. Restart ani odświeżanie nie przesuwa cyklu; klient nie ustala nagrody. Granice przedziałów są lewostronnie domknięte, prawostronnie otwarte. Pasek świata pokazuje porę, sezon, opis aktywności, premie i termin kolejnej zmiany. Po zmianie prosi o odświeżenie, nie przeładowuje formularzy samodzielnie.
+Świat działa **1:1 z prawdziwym czasem** w `Europe/Warsaw`. Nie ma przyspieszonej doby. Python `zoneinfo` korzysta z bazy reguł strefy: automatycznie CET zimą i CEST latem, bez ręcznego dodawania godziny. Baza nadal przechowuje świadome daty UTC; interfejs i granice kalendarza używają Polski. Serwer/OS musi mieć aktualne dane stref czasowych.
 
-| Pora | Ruda | PD |
-|---|---:|---:|
-| Świt | +5% | +10% |
-| Poranek | +10% | +5% |
-| Południe | +5% | +10% |
-| Popołudnie | +10% | +5% |
-| Zmierzch | +10% | +5% |
-| Noc | +5% | +10% |
+## Sześć pór dnia
 
-Nie ma zmniejszania nagród, gorszej regeneracji, zamykania lokacji ani blokad fabuły. Dla bazowych 100 rudy i 100 PD suma premii wynosi 15 w każdej porze, choć zasoby mają różną użyteczność; nie jest to dowód pełnej równoważności ekonomicznej buildów. Maksymalna zmiana pojedynczego zasobu między porami to 5 punktów procentowych. Wydobycie nie daje PD, a typowe polowanie nie daje rudy, więc pory łagodnie sprzyjają różnym zajęciom. Handel, koszty treningu i odłamki nie są mnożone.
+Wschód/zachód słońca i zmierzch cywilny są liczone biblioteką [Astral 3.2](https://sffjunkie.github.io/astral/package.html) dla Warszawy (52.2297 N, 21.0122 E). To wspólny punkt odniesienia serwera: lokalna długość dnia w innych częściach Polski może różnić się o kilkanaście–kilkadziesiąt minut. Brak geolokalizacji gracza i zewnętrznych zapytań pogodowych.
 
-Eventy i zegar stosują maksimum dla każdego zasobu, nigdy iloczyn. Zlecenie czasowe utrwala premię przy starcie i zachowuje ją po powrocie; zmiana pory nie odbiera nagrody. Wydobycie wylicza premię przy odbiorze, walka przy rozpoczęciu. Stałe jednorazowe nagrody questów fabularnych, osiągnięć i wypraw obozowych pozostają według swoich zapisanych reguł.
+| Pora | Granice | Ruda | PD |
+|---|---|---:|---:|
+| Świt | świt cywilny (Słońce −6°) → wschód | +5% | +10% |
+| Poranek | wschód → godzinę przed południem słonecznym | +10% | +5% |
+| Południe | godzina przed → godzina po południu słonecznym | +5% | +10% |
+| Popołudnie | godzina po południu → zachód | +10% | +5% |
+| Zmierzch | zachód → koniec zmierzchu cywilnego | +10% | +5% |
+| Noc | koniec zmierzchu → kolejny świt cywilny | +5% | +10% |
 
-Pory roku kalendarza serwera: XII–II zima, III–V wiosna, VI–VIII lato, IX–XI jesień. Poza dotychczasowymi świętami jest 12 czterodniowych wydarzeń miesięcznych (od 5. dnia 00:00 do 9. dnia 00:00 UTC): szron, zimowe ogniska, roztopy, zioła, wezbrane strumienie, letnie karawany, patrole, ryżowe zbiory, transporty rudy, zapasy, mgły i pierwsze zimowe warty. Premie wynoszą odpowiednio 115/110% lub 110/115%, bez dodatkowej emisji premium. Sezon, nagłówek i opis świata zmieniają klimat, bez wymogu gry o konkretnej godzinie.
+Pory mają rzeczywistą, sezonowo zmienną długość. Granice są lewostronnie domknięte, prawostronnie otwarte. Jesienią i zimą noc zaczyna się wcześniej. Powtórzona godzina jesiennej zmiany czasu nie tworzy dodatkowej pory ani dodatkowego resetu. Pominięta godzina wiosną nie blokuje licznika; terminy zawierają offset, a licznik mierzy rzeczywisty upływ sekund.
 
-Testy sprawdzają wszystkie granice pór, zmianę roku, wszystkie sezony, deduplikację kalendarza, niesumowanie premii oraz odbiór niezmienionej nagrody po zmianie pory. Wszystkie zegary i nagrody obowiązują identycznie ludzi i boty.
+Pasek świata pokazuje aktualną porę, sezon i godzinę kolejnej zmiany z CET/CEST. Przy przekroczeniu granicy prosi o odświeżenie zamiast przeładowywać formularze. Następna akcja zawsze używa rzeczywistego czasu serwera. Podgląd nagrody walki obejmuje premię eventu i pory dnia.
+
+## Pory roku i kalendarz
+
+Sezony meteorologiczne według **polskiej daty**: 1 marca–1 czerwca wiosna, 1 czerwca–1 września lato, 1 września–1 grudnia jesień, 1 grudnia–1 marca zima. Nie są to zmienne momenty równonocy i przesileń astronomicznych. Wszystkie domyślne wydarzenia, wyzwania, cele obozu i dobowe limity rozgrywki również używają polskiego kalendarza. [Pełna lista eventów](EVENTS.md).
+
+Migracja 0030 przesuwa wyłącznie rozpoznane dawne domyślne terminy UTC. Ręcznie zmienione daty, bonusy, wyłączenia, odebrane nagrody i snapshoty trwających wypraw pozostają. Stare osobiste kontrakty zachowują datę okresu: niewykonany poprzedni cel nie postępuje, gotową nagrodę można odebrać. W pobliżu wdrożenia granica okresu może wypaść inaczej niż w poprzedniej wersji UTC; nie ma retroaktywnego przeliczania nagród.
+
+## Balans
+
+Nie ma zamykania lokacji ani zmniejszania regeneracji. Maksymalna różnica między porami to pięć punktów procentowych dla zasobu, premie eventów stosują maksimum zamiast mnożenia. Handel, ceny i odłamki nie są mnożone przez porę. Przy 100 bazowej rudy i 100 PD każda pora daje łącznie 15 dodatkowych jednostek; nie oznacza to identycznej użyteczności obu zasobów. Czasy akcji i cooldowny to rzeczywiste sekundy, nie godziny zegara ściennego.
+
+## Testy i diagnostyka
+
+Testy obejmują lokalną północ przy innej dacie UTC, zmianę pory roku, poniedziałek tygodnia, wszystkie granice słoneczne, zmianę CET/CEST w marcu i październiku, doby 23/25 h, niezmienność snapshotów oraz ochronę niestandardowych eventów. Raporty techniczne retencji i agregacji telemetrii pozostają w UTC i są tak opisane — nie są resetami rozgrywki.

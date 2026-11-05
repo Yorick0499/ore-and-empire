@@ -7,7 +7,7 @@
 {% include 'characters/profile.html' %}
 <div class="main-content">
         <div class="guide-frame">
-<details class="colony-panel"><summary>Twoje oferty i zmiana ceny</summary>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.blueprint.name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} UTC{% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}</details>
+<details class="colony-panel"><summary>Twoje oferty i zmiana ceny</summary>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.blueprint.name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}</details>
             <h2>Plac Targowy Starego Obozu</h2>
             <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
 

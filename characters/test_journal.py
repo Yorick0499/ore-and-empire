@@ -43,7 +43,7 @@ class JournalTests(TestCase):
         self.assertEqual(self.client.get(reverse('locations_page'),{'edition':999}).context['cards'],[])
         self.assertContains(response,'filter-access')
         self.assertIn('datetime=',str(local_date(timezone.now())))
-        self.assertIn('UTC',str(local_date(timezone.now())))
+        self.assertIn('Czas polski',str(local_date(timezone.now())))
     def test_anonymous_journal_requires_login(self):
         self.client.logout()
         self.assertEqual(self.client.get(reverse('journal_page')).status_code,302)

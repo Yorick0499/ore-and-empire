@@ -4,16 +4,17 @@ from unittest.mock import patch
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from .world_clock import clock_state,PHASES,PHASE_SECONDS
+from .world_clock import clock_state,PHASES,phase_boundaries,POLISH_TIME
 from .world_events import ensure_world_events,reward_snapshot
 from .models import WorldEvent,AdventureTemplate
 from .economy import start_adventure,claim_adventure
 
 class WorldClockTests(TestCase):
     def test_boundaries_all_phases_seasons_and_restart_determinism(self):
-        base=datetime(2026,1,1,tzinfo=utc.utc)
+        base=datetime(2026,1,1,tzinfo=POLISH_TIME)
+        bounds=phase_boundaries(base.date())
         for i,(key,name,ore,xp,_) in enumerate(PHASES):
-            when=base+timedelta(seconds=i*PHASE_SECONDS)
+            when=bounds[i] if i<5 else bounds[-1]
             state=clock_state(when)
             self.assertEqual((state['key'],state['ore'],state['experience']),(key,ore,xp))
             self.assertEqual(clock_state(when),state)
@@ -23,8 +24,7 @@ class WorldClockTests(TestCase):
             self.assertEqual(clock_state(base.replace(month=month))['season'],season)
     def test_all_rewards_are_bounded_and_strongest_wins_without_extra_premium(self):
         base=datetime(2026,1,1,tzinfo=utc.utc)
-        for i in range(6):
-            now=base+timedelta(seconds=i*PHASE_SECONDS)
+        for now in phase_boundaries(base.date()):
             with patch('django.utils.timezone.now',return_value=now):
                 ore,xp,premium,names=reward_snapshot(100,100,1)
                 self.assertEqual(ore+xp,215);self.assertEqual(premium,1)

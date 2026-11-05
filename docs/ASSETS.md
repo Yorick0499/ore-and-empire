@@ -42,4 +42,4 @@ The bundled manifest now covers all creatures and main destinations listed in
 [WORLD.md](WORLD.md), plus boss portraits. Duplicate source images share a local
 file. The importer selects the first creature infobox to avoid accidentally
 choosing sequel artwork. Original CDN URLs and thumbnail download URLs are kept
-separately. Existing README screenshots predate this expansion.
+separately. Current README screenshots show the expanded local Gothicpedia assets and the latest Polish-time interface; see [SCREENSHOTS.md](SCREENSHOTS.md).

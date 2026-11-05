@@ -1,6 +1,6 @@
 # Asynchroniczne wyprawy obozowe
 
-Każdy obóz może ogłosić jedną wyprawę dziennie UTC na ekranie wspólnoty. To oddzielny cel gildii, nie ponownie przeżywany indywidualny finał Bezimiennego. Stary Obóz zabezpiecza boczny szyb przed matką pełzaczy, Nowy odpiera orkowego zwiadowcę przy zaporze, Bractwo walczy z wężem z rozlewiska. Ilustracje pochodzą z istniejącej lokalnej paczki Gothicpedii. Bossowie solo i mechanika zakończenia edycji pozostają odpowiednio #6/#29.
+Każdy obóz może ogłosić jedną wyprawę dziennie czasu polskiego na ekranie wspólnoty. To oddzielny cel gildii, nie ponownie przeżywany indywidualny finał Bezimiennego. Stary Obóz zabezpiecza boczny szyb przed matką pełzaczy, Nowy odpiera orkowego zwiadowcę przy zaporze, Bractwo walczy z wężem z rozlewiska. Ilustracje pochodzą z istniejącej lokalnej paczki Gothicpedii. Bossowie solo, osobisty finał i sala chwały są wdrożone (#6/#29); zobacz [FIRST_PLAYABLE.md](FIRST_PLAYABLE.md).
 
 HP i statystyki zamrażają się przy ogłoszeniu: 500 + 100×poziom obozu HP, atak 10 + 2×poziom, pancerz 4 + 2×poziom. Minimalny poziom uczestnika 3. Każdy wypad to do 3 rund, koszt 20 energii i rzeczywiste zdrowie/mana/zwoje lub jedna sztuka amunicji jak w polowaniach. Przygotowany czar bez zasobów jest odrzucany. Po wyczerpaniu czaru postać broni się pięściami, zgodnie z regułami magii. Cooldown własnego wypadu wynosi 60 s; inni członkowie mogą w tym czasie działać. Nie ma drużyny, przycisku gotowości ani wymagania jednoczesnego połączenia.
 

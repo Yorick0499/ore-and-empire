@@ -27,7 +27,7 @@ transakcji nie jest ceną zero. Nie są publikowane tożsamości kont.
 ## Jawna decyzja o kupowanej regeneracji
 
 Zachowujemy zdobywanie odłamków w grze, cenę Ryżówki 3 odłamki i efekt 25 energii.
-Nowa reguła: **najwyżej 5 napojowych odnowień energii na postać na dobę UTC**, razem
+Nowa reguła: **najwyżej 5 napojowych odnowień energii na postać na dobę czasu polskiego**, razem
 z plecaka i sklepu odłamków. Limit nie obejmuje naturalnej regeneracji 1/min,
 napojów zdrowia ani resetu zasobów przez administratora. Jest wyświetlany w sklepie,
 sprawdzany po stronie serwera i uwzględniany przez politykę botów. Zmiana ma
@@ -67,7 +67,7 @@ nie są dowodem zbalansowania wszystkich polityk ani prognozą ceny danego itemu
   twierdzić, że podaż waluty stabilizuje się w długim terminie.
 - Przekazywanie miecza między kupcami zwiększa obrót, ale nie tworzy rudy ani
   rzeczywistego popytu. Do tego potrzebne są zużywane materiały/rzemiosło (#22)
-  oraz sensowniejszy handel botów (#23). Te zadania nadal pozostają otwarte.
+  oraz sensowniejszy handel botów (#23). Oba zakresy są wdrożone; pozostała inflacja nadal wymaga pomiarów.
 
 Wynik tego ticketu to mierzalny rejestr, jawna reguła regeneracji i reprodukowalny
 punkt odniesienia. Pozostała inflacja i przyszłe receptury wymagają kolejnych

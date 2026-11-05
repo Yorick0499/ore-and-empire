@@ -5,3 +5,5 @@ Punkt odniesienia: Gothicpedia, https://gothic.fandom.com/pl/wiki/Gothic_i_Arcan
 Nagłówek pokazuje nazwę serwera i edycję. Długą listę stron podzielono na trzy natywne menu details/summary: działają myszą, klawiaturą i bez JS. Podstawowe przejścia do kolonii, wspólnoty i fabuły są stale widoczne. Na telefonie menu rozwija się w przepływie strony, nie zasłania panelu. Formularze mają czytelne błędy, fokus i kontrast. Motyw zachowuje czcionkę Gothic dla nazwy i nagłówków, a teksty pozostają w czytelnym szeryfie.
 
 Osobny ticket #25 rozszerza funkcjonalność dziennika, lokalne daty, filtry i powiadomienia. Ten etap dotyczy wyglądu i nawigacji.
+
+Pasek rytmu świata pokazuje polską datę kalendarza, sezon i słoneczną porę dnia Warszawy. Zmierzch i noc przyciemniają wyłącznie tło nagłówka. Wszystkie bieżące screeny i ich warunki: [SCREENSHOTS.md](SCREENSHOTS.md).

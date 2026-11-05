@@ -41,8 +41,7 @@ NEW_CAMP/tier 2/level 8 and the Brotherhood temple SWAMP_CAMP/tier 2/level 8.
 
 Strength now contributes to each ordinary combat hit, with critical hits doubling
 strength plus weapon damage before armour. Previously strength training did not
-improve ordinary attacks. Combat values remain provisional. Mage promotion paths
-are available, while a dedicated spell-combat system remains future work.
+improve ordinary attacks. Combat values remain provisional. Mage promotion paths and spell combat are available; see [MAGIC.md](MAGIC.md).
 
 Validation includes every promotion through actual domain services, parent/camp
 and branch restrictions, single active quest, abandonment, forged POST progress,

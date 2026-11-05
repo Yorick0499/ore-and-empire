@@ -1,5 +1,7 @@
 # Aktualizacja starszych zapisów (#41)
 
+> Dokument historyczny. Aktualny stan i instrukcje: [przewodnik gry](GAME_GUIDE.md) oraz [indeks dokumentacji](INDEX.md). Dawne liczby testów i plany odnoszą się do opisanej wersji.
+
 ## Przyczyna
 
 Migracja 0011 dodawała ograniczenia energii, zdrowia, rudy i limitów bez

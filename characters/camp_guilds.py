@@ -1,3 +1,4 @@
+from .world_clock import POLISH_TIME
 """An existing camp is the guild; rank, membership and shared progress are separate."""
 from uuid import UUID,uuid4
 from datetime import timezone as utc
@@ -15,7 +16,7 @@ def level_for(experience):return min(10,1+experience//100)
 
 
 def current_project(guild,now=None):
-    now=now or timezone.now();day=now.astimezone(utc.utc).date()
+    now=now or timezone.now();day=now.astimezone(POLISH_TIME).date()
     title,objectives=PROJECTS[(day.toordinal()+CAMPS.index(guild.camp))%len(PROJECTS)]
     # Fixed small targets allow a solo player and a few bots to cooperate; no high-level gate.
     project,_=CampProject.objects.get_or_create(guild=guild,day=day,defaults={'title':title,'objectives':objectives})
@@ -77,7 +78,7 @@ def upgrade_camp(profile,key,expected_level):
 def guild_cards(profile):
     guild=CampGuild.objects.filter(camp=profile.camp,world_id=profile.world_id).first()
     if not guild:return None
-    day=timezone.now().astimezone(utc.utc).date()
+    day=timezone.now().astimezone(POLISH_TIME).date()
     project=CampProject.objects.filter(guild=guild,day=day).first()
     index=(day.toordinal()+CAMPS.index(guild.camp))%len(PROJECTS)
     title,objectives=PROJECTS[index] if not project else (project.title,project.objectives)

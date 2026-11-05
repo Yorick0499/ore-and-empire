@@ -1,5 +1,7 @@
 # Pierwsza pełna pętla gry lokalnej
 
+Aktualny czas: Europe/Warsaw, rzeczywiste wschody/zachody Warszawy i automatyczne CET/CEST. [Pełny podręcznik](GAME_GUIDE.md) · [Kalendarz wydarzeń](EVENTS.md).
+
 Uruchom `python play.py --bots 6 --port 8001` w środowisku z requirements.txt. Otwórz `http://127.0.0.1:8001/`. Nowa instalacja: `/inicjalizacja/` prosi o nazwę serwera, liczbę botów oraz własny login i hasło administratora. Do zwykłej gry zarejestruj osobne konto bez uprawnień. Istniejący zapis i hasła pozostają; aktualizacja nie wymaga resetu.
 
 1. Otwórz fabułę, przyjmij i rozpocznij rozmowę z kopaczem.
@@ -33,4 +35,6 @@ Raport zawiera liczbę kroków, poziomy, salda, akcje botów, ukończenia i wyni
 
 To wersja lokalna z jednym serializującym launcherem i SQLite. PostgreSQL, wieloprocesowy scheduler oraz publiczny hosting nadal wymagają #19/#24. Nie łącz `play.py` z niezależnym `run_bots --loop` na tym samym zapisie.
 
-Raport sesji: [przejście i próby nadużyć](reports/pierwsza-pelna-edycja-2026-11-05.json). Obejmuje także mieszaną sesję, w której zwykły gracz kupuje rzeczywistą ofertę bota i zdobywa poziom podczas równoległych tur trzech mieszkańców. Oddzielna kontrolowana macierz porównuje wojownika, łucznika i maga przeciw trzem bossom; te syntetyczne buildy są oznaczone osobno i nie stanowią przebiegu postaci od zera.
+Historyczny raport pierwszej wersji (przyspieszony zegar świata sprzed synchronizacji z Polską): [przejście i próby nadużyć](reports/pierwsza-pelna-edycja-2026-11-05.json). Obejmuje także mieszaną sesję, w której zwykły gracz kupuje rzeczywistą ofertę bota i zdobywa poziom podczas równoległych tur trzech mieszkańców. Oddzielna kontrolowana macierz porównuje wojownika, łucznika i maga przeciw trzem bossom; te syntetyczne buildy są oznaczone osobno i nie stanowią przebiegu postaci od zera.
+
+Aktualny raport po synchronizacji z Polską: [22 scenariusze](reports/czas-polski-2026-11-06.json), w tym CET/CEST, lokalna północ, kalendarz i dobowe limity.
