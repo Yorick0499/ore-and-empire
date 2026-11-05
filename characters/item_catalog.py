@@ -20,6 +20,8 @@ def validate_pack(raw):
     for item in items:
         key=item.get('key');kind=item.get('kind')
         if not isinstance(key,str) or not key or len(key)>100 or key in seen or not isinstance(item.get('name'),str) or not 1<=len(item['name'])<=120 or item.get('game')!=data['game']: raise ValueError('Invalid/duplicate item identity')
+        prefix = 'g1-' if data['game']=='GOTHIC_I' else 'g2nk-'
+        if not key.startswith(prefix): raise ValueError('Catalog key belongs to a different game')
         seen.add(key)
         if kind not in {c[0] for c in ItemBluePrint._meta.get_field('kind').choices}: raise ValueError('Invalid kind')
         source=urlsplit(item.get('source',''))
@@ -49,6 +51,7 @@ def install_catalog(raw):
             # Attach a source identity to a legacy item without changing its balance.
             blueprint=ItemBluePrint.objects.filter(name=item['name'],catalog_key__isnull=True).order_by('pk').first()
         if blueprint:
+            if blueprint.source_game not in {'adaptation',data['game']}: raise ValueError('Cannot overwrite another game catalog')
             blueprint.catalog_key=item['key'];blueprint.source_url=item['source'];blueprint.source_game=data['game'];blueprint.original_stats=item['original_stats']
             if item.get('art_key'): blueprint.art_key=item['art_key']
             blueprint.save(update_fields=['catalog_key','source_url','source_game','original_stats','art_key'])

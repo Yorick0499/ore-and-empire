@@ -54,6 +54,13 @@ class ItemPackTests(TestCase):
         self.assertContains(self.client.get('/przedmioty/',{'kind':'rune'}),'nie można jej jeszcze używać')
         self.assertLessEqual(len(self.client.get('/sklep/').context['shop_items']),30)
 
+    def test_other_game_cannot_reuse_gothic_one_keys(self):
+        data=json.loads(PACK_PATH.read_bytes())
+        data['game']='GOTHIC_II_NK'
+        for item in data['items']:item['game']='GOTHIC_II_NK'
+        with self.assertRaises(ValueError):install_catalog(json.dumps(data).encode())
+        self.assertFalse(ItemBluePrint.objects.exists())
+
     def test_unverified_statistics_cannot_silently_create_shop_stock(self):
         data=json.loads(PACK_PATH.read_bytes())
         unknown=next(i for i in data['items'] if not i['original_stats'].get('verified') and i['kind']!='ammo')
