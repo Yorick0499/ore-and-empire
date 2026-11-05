@@ -32,3 +32,5 @@ Finał postaci nie oznacza odegrania roli Bezimiennego: jest udziałem mieszkań
 Raport zawiera liczbę kroków, poziomy, salda, akcje botów, ukończenia i wynik testów nadużyć. Zegar/losowy loot mogą zmieniać dokładny przebieg; raport jest wynikiem danego uruchomienia, nie gwarancją czasu przejścia dla każdego stylu gry. Symulowane godziny nie są czasem aktywnego klikania. GUI jest dodatkowo sprawdzane ręcznie w przeglądarce.
 
 To wersja lokalna z jednym serializującym launcherem i SQLite. PostgreSQL, wieloprocesowy scheduler oraz publiczny hosting nadal wymagają #19/#24. Nie łącz `play.py` z niezależnym `run_bots --loop` na tym samym zapisie.
+
+Raport sesji: [przejście i próby nadużyć](reports/pierwsza-pelna-edycja-2026-11-05.json). Obejmuje także mieszaną sesję, w której zwykły gracz kupuje rzeczywistą ofertę bota i zdobywa poziom podczas równoległych tur trzech mieszkańców. Oddzielna kontrolowana macierz porównuje wojownika, łucznika i maga przeciw trzem bossom; te syntetyczne buildy są oznaczone osobno i nie stanowią przebiegu postaci od zera.

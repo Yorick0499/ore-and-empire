@@ -43,3 +43,10 @@ class WorldClockTests(TestCase):
         with patch('django.utils.timezone.now',return_value=now+timedelta(hours=5)):
             self.assertTrue(claim_adventure(p,run.pk));self.assertFalse(claim_adventure(p,run.pk))
         run.refresh_from_db();self.assertEqual((run.ore_reward,run.experience_reward,run.premium_reward),snapshot)
+
+    def test_hunt_preview_includes_current_clock_and_event_bonus(self):
+        p=User.objects.create_user('preview').playerprofile
+        self.client.force_login(p.user)
+        response=self.client.get('/polowanie/?location=exchange')
+        self.assertEqual(response.context['BESTIARY']['young_scavenger']['current_reward'],reward_snapshot(0,30)[1])
+        self.assertContains(response,'Następny poziom przy')

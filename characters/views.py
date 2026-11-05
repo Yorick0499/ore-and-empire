@@ -54,7 +54,9 @@ def hunt_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
     location = current_location(request, profile, "forest", "hunt_page")
-    available = {key: BESTIARY[key] for key in location.monsters}
+    from .world_events import reward_snapshot
+    xp_percent = reward_snapshot(0,100)[1]
+    available = {key: {**BESTIARY[key], "current_reward":BESTIARY[key]["exp_reward"]*xp_percent//100} for key in location.monsters}
     combat_log = request.session.pop("combat_log", None)
     if request.method == "POST":
         monster = request.POST.get("monster_key")
@@ -393,6 +395,8 @@ def boss_view(request):
     refresh_player(profile)
     location = current_location(request, profile, "crawler_nest", "boss_page")
     boss = BOSSES[location.key]
+    from .world_events import reward_snapshot
+    current_ore,current_xp,_,_ = reward_snapshot(boss.ore,boss.experience)
     from .bosses import MECHANICS
     from .finale import finale_ready
     if request.method == "POST":
@@ -418,6 +422,7 @@ def boss_view(request):
             "location": location,
             "boss": boss,
             "mechanics": MECHANICS[boss.key],
+            "current_ore":current_ore,"current_xp":current_xp,
             "finale_gate": boss.key == "sleeper_sanctum" and not finale_ready(profile),
             "request_key": uuid4(),
             "last_attempt": last,

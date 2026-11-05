@@ -13,7 +13,7 @@ def record_completion(profile, attempt):
     if not attempt.won or attempt.profile_id != profile.pk or attempt.boss_key != "sleeper_sanctum" or not finale_ready(profile):
         return False
     row, _ = CampaignCompletion.objects.get_or_create(profile=profile, defaults={"battle":attempt,"snapshot":{
-        "name":profile.user.username,"camp":profile.camp,"level":profile.level,"experience":profile.experience,
+        "name":profile.display_name,"camp":profile.camp,"level":profile.level,"experience":profile.experience,
         "bot":profile.is_bot,"world_name":profile.world.name,"edition":profile.world.edition,
         "rules_version":profile.world.rules_version,"finale_version":1}})
     return row
@@ -30,7 +30,9 @@ def conclude_edition(operator, world_id, confirmation):
     if existing:return existing
     if not CampaignCompletion.objects.filter(profile__world=world,profile__is_bot=False).exists():
         raise ValidationError("Najpierw przynajmniej jeden gracz musi ukończyć finał.")
-    rankings = list(PlayerProfile.objects.filter(world=world).order_by("-experience","pk").values("id","user__username","camp","level","experience","is_bot"))
-    result = EditionConclusion.objects.create(world=world,operator=operator,snapshot={"name":world.name,"edition":world.edition,"rules_version":world.rules_version,"rankings":rankings,"finishers":list(CampaignCompletion.objects.filter(profile__world=world).values_list("profile_id",flat=True))})
+    population = PlayerProfile.objects.filter(world=world,user__is_active=True,user__is_staff=False).select_related("user").order_by("-level","-experience","pk")
+    rankings = [{"id":p.pk,"name":p.display_name,"camp":p.camp,"level":p.level,"experience":p.experience,"is_bot":p.is_bot} for p in population]
+    camp_rankings = sorted([{"name":label,"experience":sum(p["experience"] for p in rankings if p["camp"]==camp),"residents":sum(p["camp"]==camp for p in rankings)} for camp,label in PlayerProfile.CAMP_LIST if camp!="NONE"],key=lambda row:-row["experience"])
+    result = EditionConclusion.objects.create(world=world,operator=operator,snapshot={"name":world.name,"edition":world.edition,"rules_version":world.rules_version,"rankings":rankings,"camp_rankings":camp_rankings,"finishers":list(CampaignCompletion.objects.filter(profile__world=world).values_list("profile_id",flat=True))})
     AdminAction.objects.create(actor=operator,profile=operator.playerprofile,action="conclude_edition",details={"world":world.pk,"edition":world.edition,"rules_version":world.rules_version})
     return result
