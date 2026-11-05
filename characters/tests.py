@@ -727,7 +727,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 4)
+        self.assertEqual(decision.schema_version, 5)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

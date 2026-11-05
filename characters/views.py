@@ -566,6 +566,8 @@ def colony_life_view(request):
 @login_required
 def story_view(request):
     from .models import StoryQuest, StoryRun
+    from django.utils import timezone
+    from .gothic_campaign import CHAPTERS
     from .story_quests import (accept_story, activate_story, claim_story, choose_story,
                               travel_story, available, progress_for, ready)
     profile = request.user.playerprofile
@@ -590,7 +592,14 @@ def story_view(request):
         for goal in run.snapshot['objectives']:
             done = progress_for(profile, run, goal)
             total = 1 if goal['kind'] == 'wait' else goal.get('count', 1)
-            goals.append({'goal': goal, 'done': done, 'total': total, 'complete': done >= total, 'choice': run.choices.get(goal['id'])})
+            ends_at = run.activated_at + timezone.timedelta(seconds=goal['seconds']) if goal['kind'] == 'wait' and run.activated_at else None
+            goals.append({'goal': goal, 'done': done, 'total': total, 'complete': done >= total,
+                          'choice': goal.get('options', {}).get(run.choices.get(goal['id'])), 'ends_at': ends_at})
     accepted_ids = profile.story_runs.values_list('quest_id', flat=True)
     quests = [q for q in StoryQuest.objects.filter(enabled=True).exclude(pk__in=accepted_ids) if available(profile, q)] if not run else []
-    return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': profile.story_runs.filter(status='claimed')[:50]})
+    history = list(profile.story_runs.filter(status='claimed')[:50])
+    for entry in history:
+        entry.decision_labels = [g.get('options', {}).get(entry.choices[g['id']], entry.choices[g['id']]) for g in entry.snapshot['objectives'] if g['id'] in entry.choices]
+    chapter = run.snapshot['chapter'] if run else max((r.snapshot['chapter'] for r in history), default=1)
+    chapter_rows = [{'number': number, 'name': name, 'art': art, 'current': number == chapter} for number, name, art in CHAPTERS]
+    return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})

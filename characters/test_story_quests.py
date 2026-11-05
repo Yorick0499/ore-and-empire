@@ -198,8 +198,8 @@ class StoryQuestTests(TestCase):
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=step)):
                 _, success = tick_bot(self.profile)
                 self.assertTrue(success, step)
-            if self.profile.story_runs.filter(status='claimed').count() == 3: break
-        self.assertEqual(self.profile.story_runs.filter(status='claimed').count(), 3)
+            if self.profile.story_runs.filter(status='claimed', quest__key__startswith='prologue-').count() == 3: break
+        self.assertEqual(self.profile.story_runs.filter(status='claimed', quest__key__startswith='prologue-').count(), 3)
         self.assertFalse(PremiumEntry.objects.exclude(reference__startswith='story:').exists())
 
     def test_alternative_predecessors_merge_camp_branches_without_crossing_them(self):

@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from characters.models import StoryQuest
+from characters.models import StoryQuest, ItemBluePrint
+from characters.gothic_campaign import campaign_definitions
 
 
 PROLOGUE = [
@@ -21,9 +22,14 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self, *args, **options):
-        for entry in PROLOGUE:
+        rusty = ItemBluePrint.objects.filter(name='Zardzewiały miecz').first()
+        if not rusty:
+            from django.core.management import call_command
+            call_command('seed_world', stdout=self.stdout)
+            rusty = ItemBluePrint.objects.get(name='Zardzewiały miecz')
+        for entry in PROLOGUE + campaign_definitions(rusty.pk):
             data = dict(entry)
             key = data.pop('key')
             quest, _ = StoryQuest.objects.get_or_create(key=key, defaults=data)
             quest.full_clean()
-        self.stdout.write('Story prologue ready; existing definitions and progress retained.')
+        self.stdout.write('Story campaign ready; existing definitions and progress retained.')
