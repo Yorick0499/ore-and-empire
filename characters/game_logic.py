@@ -119,7 +119,7 @@ def claim_ore_reward(profile):
     if profile.action_end_time > timezone.now():
         return False
     from .world_events import reward_snapshot
-    ore_reward = reward_snapshot(random.randint(10, 25), 0)[0]
+    ore_reward = reward_snapshot(random.randint(10, 25), 0)[0]+profile.camp_perks["supply_level"]
     profile.ore_balance = profile.ore_balance + ore_reward
     profile.action_end_time = None
     profile.save()
@@ -395,11 +395,12 @@ def train_attribute(profile, attribute_name):
         return False
     if profile.skill_points < 1:
         return False
-    if profile.ore_balance < 10:
+    cost=10-profile.camp_perks["training_level"]
+    if profile.ore_balance < cost:
         return False
     current_value = getattr(profile, attribute_name)
     setattr(profile, attribute_name, current_value + 1)
-    profile.ore_balance = profile.ore_balance - 10
+    profile.ore_balance = profile.ore_balance - cost
     profile.skill_points = profile.skill_points - 1
     profile.save()
     from .camp_progression import record_camp_event

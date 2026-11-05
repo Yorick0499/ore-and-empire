@@ -681,3 +681,18 @@ def magic_view(request):
     inventory=[{'item':item,'spell':BY_CODE[item.blueprint.catalog_key][0]} for item in profile.inventory.filter(is_market_listed=False,blueprint__catalog_key__in=BY_CODE).select_related('blueprint')]
     next_circle=profile.magic_skill+1
     return render(request,'characters/magic.html',{'profile':profile,'school':SCHOOLS.get(profile.camp,('','Bez szkoły — dostępne zwoje'))[1],'plan':combat_plan(profile),'circle_cap':circle_cap(profile),'next_circle':next_circle,'circle_lp':5*next_circle,'circle_ore':50*next_circle,'circle_level':next_circle*2,'can_learn':not profile.is_busy and next_circle<=circle_cap(profile) and profile.level>=next_circle*2 and profile.skill_points>=5*next_circle and profile.ore_balance>=50*next_circle,'inventory':inventory,'offers':offers(profile)})
+
+
+@login_required
+def camp_guild_view(request):
+    from .camp_guilds import guild_cards,donate_to_camp,upgrade_camp
+    profile=request.user.playerprofile
+    refresh_player(profile)
+    if request.method=='POST':
+        try:amount=int(request.POST.get('amount',0));expected=int(request.POST.get('expected_level',-1))
+        except (TypeError,ValueError):amount=0;expected=-1
+        action=request.POST.get('action')
+        result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
+        (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
+        return redirect('camp_guild')
+    return render(request,'characters/camp_guild.html',{'profile':profile,'card':guild_cards(profile),'request_key':uuid4()})

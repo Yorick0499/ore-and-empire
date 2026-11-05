@@ -125,6 +125,7 @@ class PlayerProfile(models.Model):
     def refresh_from_db(self,*args,**kwargs):
         super().refresh_from_db(*args,**kwargs)
         if hasattr(self,'_gear_stats_cache'): del self._gear_stats_cache
+        if hasattr(self,'_camp_perks'): del self._camp_perks
 
     @property
     def max_mana(self):
@@ -141,8 +142,14 @@ class PlayerProfile(models.Model):
             self._gear_stats_cache = stats_for(self)
         return self._gear_stats_cache
 
+    @property
+    def camp_perks(self):
+        if not hasattr(self,'_camp_perks'):
+            self._camp_perks=(CampGuild.objects.filter(camp=self.camp).values('training_level','supply_level','defense_level').first() if self.camp!='NONE' else None) or dict(training_level=0,supply_level=0,defense_level=0)
+        return self._camp_perks
+
     def effective_protection(self, kind='weapon'):
-        return getattr(self, kind + '_prot') + self.equipment_stats[kind + '_prot']
+        return getattr(self, kind + '_prot') + self.equipment_stats[kind + '_prot'] + (self.camp_perks['defense_level'] if kind in {'weapon','arrow'} else 0)
 
     @property
     def camp_tier(self):
@@ -627,3 +634,47 @@ class BotDailySummary(models.Model):
     class Meta:
         constraints=[models.UniqueConstraint(fields=['day','profile'],name='unique_bot_daily_summary')]
         indexes=[models.Index(fields=['day','profile'])]
+
+
+class CampGuild(models.Model):
+    camp = models.CharField(max_length=20,unique=True,choices=PlayerProfile.CAMP_LIST[1:])
+    experience = models.PositiveIntegerField(default=0)
+    level = models.PositiveSmallIntegerField(default=1)
+    treasury = models.PositiveIntegerField(default=0)
+    training_level = models.PositiveSmallIntegerField(default=0)
+    supply_level = models.PositiveSmallIntegerField(default=0)
+    defense_level = models.PositiveSmallIntegerField(default=0)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(camp__in=['OLD_CAMP','NEW_CAMP','SWAMP_CAMP']),name='valid_camp_guild'),models.CheckConstraint(condition=models.Q(training_level__lte=3,supply_level__lte=3,defense_level__lte=3,level__gte=1,level__lte=10),name='camp_guild_upgrade_bounds')]
+    @property
+    def name(self):return dict(PlayerProfile.CAMP_LIST)[self.camp]
+
+
+class CampProject(models.Model):
+    guild = models.ForeignKey(CampGuild,on_delete=models.PROTECT,related_name='projects')
+    day = models.DateField()
+    title = models.CharField(max_length=120)
+    objectives = models.JSONField()
+    progress = models.JSONField(default=dict)
+    experience_reward = models.PositiveIntegerField(default=30)
+    treasury_reward = models.PositiveIntegerField(default=50)
+    completed_at = models.DateTimeField(null=True,blank=True)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['guild','day'],name='one_camp_project_per_day')]
+
+
+class CampContribution(models.Model):
+    guild = models.ForeignKey(CampGuild,on_delete=models.PROTECT)
+    profile = models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    project = models.ForeignKey(CampProject,null=True,blank=True,on_delete=models.PROTECT)
+    source = models.UUIDField()
+    kind = models.CharField(max_length=30)
+    amount = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(default=timezone.now,db_index=True)
+    @property
+    def kind_name(self):
+        return {'mine':'Zmiana w kopalni','hunt':'Ochrona szlaków','donation':'Wpłata rudy','upgrade:training':'Rozwój szkoły','upgrade:supply':'Rozwój magazynu','upgrade:defense':'Rozwój wart'}.get(self.kind,self.kind)
+
+    class Meta:
+        ordering=['-created_at','-pk']
+        constraints=[models.UniqueConstraint(fields=['profile','source'],name='one_camp_contribution_request')]
