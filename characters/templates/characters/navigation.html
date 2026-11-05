@@ -8,6 +8,8 @@
     <a href="{% url 'hunt_page' %}" {% if current == 'hunt_page' or current == 'boss_page' %}aria-current="page"{% endif %}>Polowanie</a>
     <a href="{% url 'camp_page' %}" {% if current == 'camp_page' %}aria-current="page"{% endif %}>Obóz i zadania</a>
     <a href="{% url 'adventures_page' %}" {% if current == 'adventures_page' %}aria-current="page"{% endif %}>Wyprawy</a>
+    <a href="{% url 'tavern_page' %}">Karczma</a>
+    <a href="{% url 'colony_life' %}">Życie kolonii</a>
     <a href="{% url 'events_page' %}" {% if current == 'events_page' %}aria-current="page"{% endif %}>Eventy</a>
     <a href="{% url 'rankings_page' %}" {% if current == 'rankings_page' %}aria-current="page"{% endif %}>Rankingi</a>
     <a href="{% url 'itemshop_page' %}" {% if current == 'itemshop_page' %}aria-current="page"{% endif %}>Sklep odłamków</a>

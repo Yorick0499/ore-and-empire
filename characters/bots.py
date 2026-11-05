@@ -139,6 +139,8 @@ def tick_bot(profile, policy=None):
     profile = type(profile).objects.select_for_update().get(pk=profile.pk)
     if not profile.is_bot:
         raise ValueError("Only designated bot profiles may run bot policies")
+    profile.bot_last_tick = timezone.now()
+    profile.save(update_fields=["bot_last_tick"])
     game.refresh_player(profile)
     inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped), None)
@@ -268,4 +270,6 @@ def tick_bot(profile, policy=None):
         profile.bot_turn += 1
         profile.save(update_fields=["bot_turn"])
     record_decision(profile, obs, action, target, success)
+    from .community import bot_conversation
+    bot_conversation(profile)
     return action, success

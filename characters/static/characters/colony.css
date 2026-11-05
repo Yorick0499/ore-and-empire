@@ -237,3 +237,8 @@ button, .colony-button, .gothic-btn { max-width: 100%; line-height: 1.45; }
 @media (max-width: 500px) { .admin-stats { grid-template-columns: 1fr; } }
 .inline-form > div { min-width: 0; max-width: 100%; }
 .inline-form select { width: 100%; }
+
+/* Persistent tavern conversations, including long names and unbroken text. */
+.tavern-welcome .gothic-art { max-height: 320px; }
+.tavern-message, .message-body { overflow-wrap: anywhere; min-width: 0; }
+.colony-panel textarea { display: block; box-sizing: border-box; width: 100%; max-width: 100%; margin: .6rem 0 1rem; padding: .8rem; background: #15191c; color: #e8dec9; border: 1px solid #736044; font: inherit; }

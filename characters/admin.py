@@ -175,3 +175,24 @@ class StoreProductAdmin(admin.ModelAdmin):
     form = ProductForm
     list_display = ("name", "kind", "price", "level", "enabled")
     list_filter = ("kind", "enabled")
+
+
+from .models import TavernTopic, TavernMessage
+
+
+@admin.register(TavernTopic)
+class TavernTopicAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'updated_at', 'locked')
+    list_filter = ('locked',)
+    readonly_fields = ('author', 'title', 'created_at', 'updated_at')
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(TavernMessage)
+class TavernMessageAdmin(ReadOnlyAdmin):
+    list_display = ('created_at', 'author', 'topic')
+
+    def has_delete_permission(self, request, obj=None):
+        return request.user.is_superuser

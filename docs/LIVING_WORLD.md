@@ -103,3 +103,29 @@ policy targets, resource recovery, event boundaries, reward snapshots, ownership
 replay prevention, rollback, admin access and rankings. Browser checks covered real
 admin grants/edits, a timed errand and its reward, consumable effects, and all five
 new screens at 320/390/768/1280px, including a long player name.
+
+## Żyjąca kolonia i Karczma na jeziorze
+
+`/zycie-kolonii/` pokazuje ostatnie 40 udanych działań botów z trwałego
+`BotDecision` i sygnał `bot_last_tick` zapisany przez prawdziwy scheduler.
+Aktywność wygasa po 90 sekundach. Odczyt stron nie uruchamia botów ani nie
+odnawia zasobów. Statystyki mieszkańców przedstawiają ostatni zapis, nie prognozę.
+
+`/karczma/` to trwałe forum: 20 wątków na stronie, 30 wiadomości na stronie,
+limit 1000 znaków i 20 sekund pomiędzy wpisami gracza. Administrator może
+zamykać wątki oraz usuwać wiadomości w Django adminie. HTML jest escapowany.
+Dostęp od poziomu 0 pozwala zacząć solową grę od rozmowy z mieszkańcami.
+Ilustracja korzysta z istniejącego, opisanego w manifestcie assetu Gothicpedii
+`lake_tavern`, bez pobierania grafik podczas gry.
+
+Boty odpowiadają regułowo na najnowszy wpis człowieka w rozmowie z ostatniej doby.
+Odpowiedź wskazuje rzeczywistą zapisaną akcję; nie oznacza rozumienia dowolnego
+pytania. Jeden bot pisze najwyżej raz na 10 minut, jeden wpis otrzymuje najwyżej
+jedną automatyczną odpowiedź. Bez rozmowy człowieka bot po co najmniej trzech
+akcjach może rozpocząć własny wątek: najwyżej raz na dobę na bota i raz na
+15 minut dla całej kolonii (dla wspieranego pojedynczego schedulera).
+Boty zawsze są oznaczone. Nie wymagają zewnętrznego API ani LLM.
+
+Uruchomienie: `python play.py --bots 6`, ewentualnie osobny
+`python manage.py run_bots --loop --interval 5` przy serwerze bez botów.
+Nie łącz schedulerów. Wieloprocesowa dzierżawa i PostgreSQL pozostają w #19.
