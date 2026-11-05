@@ -362,3 +362,48 @@ class TavernMessage(models.Model):
 
     class Meta:
         ordering = ['created_at', 'pk']
+
+
+class StoryQuest(models.Model):
+    """Editable next-acceptance definition; accepted runs retain a full snapshot."""
+    key = models.SlugField(unique=True)
+    version = models.PositiveIntegerField(default=1)
+    title = models.CharField(max_length=120)
+    description = models.TextField()
+    chapter = models.PositiveSmallIntegerField(default=1)
+    level = models.PositiveIntegerField(default=0)
+    camp = models.CharField(max_length=20, blank=True, choices=PlayerProfile.CAMP_LIST)
+    universe = models.CharField(max_length=30, default='GOTHIC_I')
+    prerequisites = models.JSONField(default=list, blank=True)
+    any_prerequisites = models.JSONField(default=list, blank=True)
+    required_choices = models.JSONField(default=dict, blank=True)
+    objectives = models.JSONField(default=list)
+    rewards = models.JSONField(default=dict)
+    energy_cost = models.PositiveIntegerField(default=0)
+    enabled = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['chapter', 'level', 'pk']
+
+    def clean(self):
+        from .story_quests import validate_definition
+        validate_definition(self)
+
+
+class StoryRun(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name='story_runs')
+    quest = models.ForeignKey(StoryQuest, on_delete=models.PROTECT)
+    snapshot = models.JSONField()
+    status = models.CharField(max_length=10, choices=[('accepted', 'Przyjęte'), ('active', 'W toku'), ('ready', 'Gotowe'), ('claimed', 'Zakończone')], default='accepted')
+    progress = models.JSONField(default=dict)
+    choices = models.JSONField(default=dict)
+    accepted_at = models.DateTimeField(default=timezone.now)
+    activated_at = models.DateTimeField(null=True, blank=True)
+    claimed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-accepted_at', '-pk']
+        constraints = [
+            models.UniqueConstraint(fields=['profile', 'quest'], name='unique_story_run'),
+            models.UniqueConstraint(fields=['profile'], condition=~models.Q(status='claimed'), name='one_open_story_run'),
+        ]

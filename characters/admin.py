@@ -196,3 +196,22 @@ class TavernMessageAdmin(ReadOnlyAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return request.user.is_superuser
+
+
+from .models import StoryQuest, StoryRun
+
+
+@admin.register(StoryQuest)
+class StoryQuestAdmin(admin.ModelAdmin):
+    list_display = ('key', 'title', 'version', 'chapter', 'level', 'camp', 'enabled')
+    list_filter = ('chapter', 'camp', 'enabled', 'universe')
+    search_fields = ('key', 'title')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ('key',) if obj else ()
+
+
+@admin.register(StoryRun)
+class StoryRunAdmin(ReadOnlyAdmin):
+    list_display = ('profile', 'quest', 'status', 'accepted_at', 'claimed_at')
+    list_filter = ('status',)

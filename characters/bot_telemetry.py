@@ -14,7 +14,7 @@ def record_decision(profile, observation, action, target, success):
     profile.refresh_from_db()
     BotDecision.objects.create(
         profile=profile,
-        schema_version=3,
+        schema_version=4,
         created_at=now,
         role=observation.role,
         observation=asdict(observation),
