@@ -6,4 +6,4 @@ Powiadomienia powstają z zakończonych, nieodebranych wypraw, ostatnich 50 sprz
 
 Lokacje można filtrować według dostępności, maksymalnego wymaganego poziomu, aktywności i aktualnej edycji. Filtr nie omija walidacji serwisów rozgrywki. Archiwalne światy nie udostępniają tu grywalnych lokacji.
 
-Daty w kronice, wyprawach i kalendarzu mają semantyczny znacznik `time`, lokalny format przeglądarki oraz jawny czas serwera UTC. Bez JavaScript pozostaje UTC. Timery odtwarzają czas z zapisanego terminu, a odbiór i tak waliduje serwer.
+Daty w kronice, wyprawach i kalendarzu mają semantyczny znacznik `time`, lokalny format przeglądarki oraz jawny czas polski z CET/CEST i offsetem. Bez JavaScript pozostaje czytelny czas polski. Timery odtwarzają czas z zapisanego terminu, a odbiór i tak waliduje serwer.

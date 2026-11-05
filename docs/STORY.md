@@ -2,7 +2,7 @@
 
 `/fabula/` przedstawia jednorazowe zadania, aktywny cel i trwałą historię decyzji.
 `python manage.py seed_story` dodaje brakujące definicje; lokalny launcher robi to
-przy starcie. Prolog zawiera trzy zadania. Pełna kampania jest osobnym etapem #20.
+przy starcie. Prolog zawiera trzy zadania; pełna kampania ma 41 definicji w sześciu rozdziałach, osobisty finał i salę chwały.
 
 ## Definicja i zapis postaci
 
@@ -40,9 +40,7 @@ odłamków powstają w tej samej transakcji co zakończenie questa. Powtórzony 
 nie wypłaca drugi raz. Błąd ledgeru cofa także zużycie dostaw. Nagrody fabularne
 są stałe; premie eventowe nie mnożą jednorazowych nagród.
 
-Uniwersum jest obecnie sprawdzane względem serwerowej stałej `GOTHIC_I`.
-To bramka treści, nie zaimplementowany model wielu edycji: #15 musi zastąpić ją
-przynależnością postaci do świata. POST nie może wybierać uniwersum.
+Uniwersum jest sprawdzane względem świata postaci. Instalacja ma jeden aktywny świat Gothic I; POST nie może wybierać cudzej edycji. Fundament kont/postaci/światów jest wdrożony (#15); transfery i równolegle grywalne edycje pozostają w #30/#34.
 
 ## Boty
 
@@ -50,7 +48,7 @@ przynależnością postaci do świata. POST nie może wybierać uniwersum.
 Boty przyjmują, rozpoczynają, podróżują, rozmawiają, zdobywają dostawy i odbierają
 nagrody. Zaległe cele walki/wydobycia wpływają na wybór zwykłych akcji. Przedmioty
 dostawy są rezerwowane przed automatyczną sprzedażą/założeniem. Bot wybiera pierwszą
-odpowiedź z definicji; nie jest to model rozumiejący dialogi. Obserwacje wersji 4
+odpowiedź z definicji; nie jest to model rozumiejący dialogi. Początkowe obserwacje wersji 4
 zapisują dozwoloną akcję fabularną i ID celu. Wersje historyczne pozostają czytelne.
 
 ## Kampania Gothic I (#20)
@@ -63,12 +61,12 @@ Pozostałe obozy mają oddzielne ścieżki, niedostępne dla tej postaci.
 
 | Rozdział | Zawartość | Definicje |
 | --- | --- | ---: |
-| 1. Obcy pod barierą | Prolog, praca, karczma, dostawa, deklaracja przy ognisku | 7 |
-| 2. Ludzie i obozy | Trzy łańcuchy po 6 zadań: Diego/Thorus, Lares/Lee, Lester/Cor Kalom | 18 |
-| 3. Niepokój w kopalniach | Tunele, królowa pełzaczy i ślady almanachu | 3 |
-| 4. Ślady ogniskowania | Kamienny krąg, Wieża Mgieł, głębie kopalni, las i forteca | 5 |
-| 5. Ostrzeżenie Xardasa | Cytadela, wieża nekromanty i rozpoznanie miasta orków | 3 |
-| 6. Przed przebudzeniem | Dostawy, świątynia, gotowość rytuału i dwa alternatywne epilogi | 5 |
+| 1. Miejsce przy ognisku | Prolog, praca, karczma, dostawa, deklaracja przy ognisku | 7 |
+| 2. Obóz to ludzie | Trzy łańcuchy po 6 zadań: Diego/Thorus, Lares/Lee, Lester/Cor Kalom | 18 |
+| 3. Zmiany pod ziemią | Tunele, królowa pełzaczy i ślady almanachu | 3 |
+| 4. Patrole i wspólne badania | Kamienny krąg, Wieża Mgieł, głębie kopalni, las i forteca | 5 |
+| 5. Sieć ostrzeżeń | Cytadela, wieża nekromanty i rozpoznanie miasta orków | 3 |
+| 6. Zabezpieczyć dolinę | Dostawy, świątynia, gotowość rytuału i dwa alternatywne epilogi | 5 |
 
 Teksty są autorską adaptacją dla gry przeglądarkowej. Grafiki rozdziałów korzystają
 z istniejących lokalnych assetów Gothicpedii z manifestu i pokazują odnośniki do
@@ -81,16 +79,17 @@ Nagrody PD/rudy są jawnym, wstępnym balansem jednorazowej kampanii: nie są
 powtarzalną emisją i wymagają porównania z gospodarką w #12.
 
 `ritual-ready` oznacza osobiste przygotowanie do finału, nie zakończenie świata,
-automatyczny reset, pokonanie Śniącego ani uruchomienie II edycji. Warunki zwycięstwa
-całego serwera i panel przejścia nadal należą do #29/#35.
+automatyczny reset, pokonanie Śniącego ani uruchomienie II edycji. Osobisty finał i zapis końcowych rankingów operatora są wdrożone (#29). Przejście do II edycji nadal należy do #35.
 
 Bot z aktywnym celem bojowym, również kupiec, wybiera poprawę oręża i odpoczynek
 potrzebny do wykonalnej walki fabularnej. Nie zużywa bez końca odzyskanego zdrowia
 na łatwiejsze polowania. Gdy przeciwnik przekracza możliwości nawet przy pełnym
-zdrowiu, nadal może trenować i zdobywać poziomy. Obserwacje wersji 5 zapisują
+zdrowiu, nadal może trenować i zdobywać poziomy. Początkowe obserwacje wersji 5 zapisują
 potrzebę odpoczynku fabularnego. Boty nie otrzymują dotacji ani wymuszonych wyników.
 
 Testy przeprowadzają wszystkie trzy role przez pełną ścieżkę od nowego konta,
 a osobny test przechodzi całość graczem przez formularze i wspólne serwisy gry,
 z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
 wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.
+
+Aktualna polityka i obserwacje mają wersję 14. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).

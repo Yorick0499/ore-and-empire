@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone as dt_timezone
 import hashlib
 from django.utils import timezone
 from .models import WorldEvent
+from .world_clock import POLISH_TIME
 
 
 def active_events(now=None):
@@ -24,16 +25,16 @@ def reward_snapshot(ore, experience, premium=0):
 
 
 def ensure_world_events(now=None):
-    now = now or timezone.now()
+    now = (now or timezone.now()).astimezone(POLISH_TIME)
     from .worlds import current_world
     world=current_world()
     prefix="" if world.pk==1 else f"world-{world.pk}-"
-    utc = dt_timezone.utc
+    zone = POLISH_TIME
     for year in (now.year - 1, now.year, now.year + 1):
         for key, name, kind, start, end, ore, experience, premium in (
-            ("miners", "Święto Kopaczy", "seasonal", datetime(year, 10, 25, tzinfo=utc), datetime(year, 11, 8, tzinfo=utc), 125, 110, 1),
-            ("winter", "Zimowe ogniska kolonii", "holiday", datetime(year, 12, 20, tzinfo=utc), datetime(year + 1, 1, 6, tzinfo=utc), 110, 125, 1),
-            ("spring", "Przebudzenie lasu", "seasonal", datetime(year, 3, 20, tzinfo=utc), datetime(year, 3, 28, tzinfo=utc), 100, 130, 1),
+            ("miners", "Święto Kopaczy", "seasonal", datetime(year, 10, 25, tzinfo=zone), datetime(year, 11, 8, tzinfo=zone), 125, 110, 1),
+            ("winter", "Zimowe ogniska kolonii", "holiday", datetime(year, 12, 20, tzinfo=zone), datetime(year + 1, 1, 6, tzinfo=zone), 110, 125, 1),
+            ("spring", "Przebudzenie lasu", "seasonal", datetime(year, 3, 20, tzinfo=zone), datetime(year, 3, 28, tzinfo=zone), 100, 130, 1),
         ):
             WorldEvent.objects.get_or_create(key=prefix+f"{key}-{year}", defaults=dict(name=name, kind=kind, starts_at=start, ends_at=end, ore_percent=ore, experience_percent=experience, premium_bonus=premium, description="Premie do nagród za polowania, wydobycie i wyprawy. Odłamki bonusowe dotyczą wypraw czasowych."))
     seasonal_names = (
@@ -45,12 +46,12 @@ def ensure_world_events(now=None):
     for year in (now.year-1, now.year, now.year+1):
         for month, name in enumerate(seasonal_names, 1):
             WorldEvent.objects.get_or_create(key=prefix+f"season-window-{year}-{month}",defaults=dict(
-                name=name,kind="seasonal",starts_at=datetime(year,month,5,tzinfo=utc),ends_at=datetime(year,month,9,tzinfo=utc),
+                name=name,kind="seasonal",starts_at=datetime(year,month,5,tzinfo=zone),ends_at=datetime(year,month,9,tzinfo=zone),
                 ore_percent=115 if month%2 else 110,experience_percent=110 if month%2 else 115,
                 description="Sezonowe prace mieszkańców. Premie nie sumują się: obowiązuje najwyższa dla danego zasobu. Wszystkie szlaki pozostają dostępne."))
     # A deterministic daily draw survives restarts and concurrent initialization.
     day = now.date()
     draw = int(hashlib.sha256(("ore-empire-events-v1:" + day.isoformat()).encode()).hexdigest()[:8], 16)
     if draw % 4 == 0:
-        start = datetime(day.year, day.month, day.day, draw % 20, tzinfo=utc)
-        WorldEvent.objects.get_or_create(key=prefix+"random-" + day.isoformat(), defaults=dict(name="Szczęśliwa żyła rudy", kind="random", starts_at=start, ends_at=start + timedelta(hours=4), ore_percent=150, experience_percent=100, description="Kopacze odkryli bogate złoże. Przez cztery godziny nagrody w rudzie są większe."))
+        start = datetime(day.year, day.month, day.day, draw % 20, tzinfo=zone)
+        WorldEvent.objects.get_or_create(key=prefix+"random-" + day.isoformat(), defaults=dict(name="Szczęśliwa żyła rudy", kind="random", starts_at=start, ends_at=start.astimezone(dt_timezone.utc) + timedelta(hours=4), ore_percent=150, experience_percent=100, description="Kopacze odkryli bogate złoże. Przez cztery godziny nagrody w rudzie są większe."))

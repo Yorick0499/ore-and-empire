@@ -200,7 +200,16 @@ class StoryQuestTests(TestCase):
                 self.assertTrue(success, step)
             if self.profile.story_runs.filter(status='claimed', quest__key__startswith='prologue-').count() == 3: break
         self.assertEqual(self.profile.story_runs.filter(status='claimed', quest__key__startswith='prologue-').count(), 3)
-        self.assertFalse(PremiumEntry.objects.exclude(reference__startswith='story:').exists())
+        # The prologue can cross a Polish day/week boundary: legitimately completed
+        # personal challenges/achievements remain valid income, never policy grants.
+        from .models import PersonalChallenge,PlayerAchievement
+        for entry in PremiumEntry.objects.exclude(reference__startswith='story:'):
+            if entry.reference.startswith('challenge:'):
+                self.assertTrue(PersonalChallenge.objects.filter(pk=int(entry.reference.split(':')[1]),profile=entry.profile,claimed_at__isnull=False,premium=entry.amount).exists())
+            else:
+                self.assertTrue(entry.reference.startswith('achievement:'))
+                self.assertTrue(PlayerAchievement.objects.filter(pk=int(entry.reference.split(':')[1]),profile=entry.profile,claimed_at__isnull=False).exists())
+                self.assertEqual(entry.amount,1)
 
     def test_alternative_predecessors_merge_camp_branches_without_crossing_them(self):
         first = self.quest()

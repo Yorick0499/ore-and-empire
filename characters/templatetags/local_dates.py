@@ -1,4 +1,5 @@
 from datetime import timezone
+from characters.world_clock import POLISH_TIME
 from django import template
 from django.utils.html import format_html
 register = template.Library()
@@ -7,8 +8,10 @@ register = template.Library()
 def local_date(value):
     if not value:
         return "—"
-    utc = value.astimezone(timezone.utc)
-    return format_html('<time datetime="{}" data-local-date title="Czas serwera: {} UTC">{} UTC</time>', utc.isoformat(), utc.strftime("%Y-%m-%d %H:%M:%S"), utc.strftime("%Y-%m-%d %H:%M:%S"))
+    local = value.astimezone(POLISH_TIME)
+    label = local.strftime("%Y-%m-%d %H:%M:%S %Z (%z)")
+    return format_html('<time datetime="{}" data-local-date title="Czas polski: {}">{}</time>', local.isoformat(), label, label)
+
 
 @register.filter
 def monster_name(key):

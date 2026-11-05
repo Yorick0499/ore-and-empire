@@ -9,3 +9,5 @@ Zakupy konsumpcyjne wynikają z rzeczywistych obrażeń lub brakujących składn
 Raport rynku rozdziela obrót bot–bot od ilości zużytych w leczeniu/rzemiośle, wystawień, przecen i anulowań. Obrót nie jest emisją ani dowodem zdrowej gospodarki. `simulate_market` porównuje przez 30 dni stałe 110% ze strategią reagującą na zaleganie przy jawnych założeniach (jeden towar, NPC 100, kupujący płaci do 80); osobny scenariusz nie ma popytu. Jest to odtwarzalny test reakcji i uwalniania zapasu, nie pełna prognoza endogenicznych cen świata. Polityka nie ma funkcji tworzenia waluty; każda sprzedaż/zakup przechodzi przez prawdziwe rozliczenie.
 
 Testy obejmują zdarzenia, starą cenę, medianę i limity cen jednostkowych, rzeczywistą potrzebę leczenia, budżet, rollback historii oraz wielodniowe porównanie i obsługę nieznanego wieku starych ofert. Backup i reset uwzględniają fakty rynku.
+
+Aktualna polityka to baseline-14; reguły popytu wprowadzono w baseline-13. Pory dnia nie zmieniają cen ani warunków transakcji.

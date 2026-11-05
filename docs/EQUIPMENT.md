@@ -10,7 +10,7 @@ zręczności i własnej umiejętności. Umiejętność (0–100) to procent szan
 podwojenie uderzenia przed ochroną. Typ obrażeń wybiera ochronę broń/pocisk/ogień/
 magia. Łuk i kusza zużywają odpowiednio jedną strzałę lub bełt na całą walkę —
 jest to jawna adaptacja przeglądarkowa, nie koszt każdej animacji z oryginału.
-Brak amunicji odrzuca akcję przed kosztem energii. Magia run pozostaje w #16.
+Brak amunicji odrzuca akcję przed kosztem energii. Magia run i zwojów działa; pełne zasady opisuje [MAGIC.md](MAGIC.md).
 
 `seed_equipment` dodaje brakujące podstawy wyposażenia, amunicję, materiały i
 wersjonowane tabele łupów. To autorski balans; nie tabela dropów z oryginału.

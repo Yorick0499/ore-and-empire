@@ -1,7 +1,7 @@
 # Gothic I world catalog
 
 The browser adaptation now includes 53 repeatable creature types and quest
-variants, plus the minecrawler queen and the Sleeper as boss expeditions. The
+variants, plus the minecrawler queen, ancient swampshark and echo of the Sleeper as three boss expeditions. The
 roster includes wildlife, goblins, minecrawlers, undead, golems, demons and orc
 combat classes. Summoned duplicates share species entries; named human NPCs and
 cosmetic weapon/animation variants do not become separate monster species.
@@ -32,10 +32,7 @@ request an arbitrary late-game enemy. Monster levels are recommendations; locati
 entry levels are requirements. The combat stats, entry levels, rewards and boss
 adaptations are original provisional balance, not a transcription of Gothic I.
 
-Validation: 82 Django tests; catalog/habitat/image completeness; every location's
-GET/POST level boundary; bestiary search/escaping; existing economy and boss tests;
-migration consistency and static collection. Further progression work is tracked
-in the camp milestone.
+Validation covers catalog/habitat/image completeness, every location's GET/POST level boundary, bestiary search/escaping, economy and boss regression tests, migration consistency and static collection. Current CI and release reports are linked from [INDEX.md](INDEX.md). The complete table is in [GAME_CONTENT.md](GAME_CONTENT.md).
 
 Camp interiors add rank requirements alongside level and allegiance: Old Camp
 castle (tier 1), Water Mages headquarters and Brotherhood temple (tier 2).

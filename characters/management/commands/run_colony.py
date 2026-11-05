@@ -1,3 +1,4 @@
+from characters.world_clock import polish_day
 """Single-process local world: HTTP requests and bot rounds never overlap."""
 
 import time
@@ -85,13 +86,13 @@ class Command(BaseCommand):
                     if time.monotonic() >= next_round:
                         from django.utils import timezone
                         from characters.world_events import ensure_world_events
-                        if event_day != timezone.now().date():
+                        if event_day != polish_day():
                             ensure_world_events()
                             try:
                                 call_command("archive_bot_history",days=options["history_days"],stdout=self.stdout)
                             except Exception as exc:
                                 self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
-                            event_day = timezone.now().date()
+                            event_day = polish_day()
                         profiles = PlayerProfile.objects.filter(
                             is_bot=True, user__is_active=True,world=current_world()
                         ).order_by("pk")[: current_world().bot_count]

@@ -1,95 +1,35 @@
-# Playable Colony roadmap
+# Bieżąca roadmapa
 
-Product direction: local-first single-player with a bot-populated world. Preserve
-optional human multiplayer over LAN or public hosting; public deployment is not
-a prerequisite for enjoying the game locally.
+Stan: 6 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
 
-Development branch: `feature/playable-colony`. Preserve the existing dark brown,
-aged gold Gothic-inspired UI. New mechanics must share the same domain services
-for humans and bots. Balance values are original provisional game design, not
-claims about Gothic canon. The full creature roster and 41 main destinations have attributed local Gothicpedia artwork.
+## Wdrożone
 
-## 1. Multiplayer foundations — implemented
-- Account registration, login/logout, per-account profiles, protected game views.
-- Server-side validation, atomic economy operations and regression tests.
-- Passive energy recovery, mining, hunting, trading and training as a repeatable loop.
+- Lokalny launcher, trwałe konto i postać, jeden aktywny nazwany świat, 0–20 botów.
+- Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
+- 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
+- Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
+- Jedenaście wypraw czasowych, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze.
+- Boty baseline-14, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
+- Karczma, kroniki, powiadomienia, rankingi, sala chwały i jednorazowe podsumowanie operatora.
+- Czas polski 1:1, słoneczne pory dnia Warszawy, sezony meteorologiczne i kalendarz eventów.
+- Administrator, inicjalizacja i kontrolowany reset z zachowaniem kont administratorów, prywatne kopie oraz próby odtwarzania.
+- 520 rekordów paczki G1, 110 lokalnych obrazów z przypisanymi źródłami i gotycki motyw.
 
-## 2. Colony and progression (#4, #5, #8) — initial implementation
-- Dedicated location directory, major colony destinations, explicit unlock rules.
-- Server-side gates as well as visible requirements; camp membership.
-- Repeatable development-world initialization with starter merchant stock.
+## Następne fundamenty
 
-## 3. Bot and market observability foundation — implemented
-- Immutable trade records, staff-only market overview and CSV export.
-- Bounded management-command bot ticks, using ordinary game services.
-- Clearly distinguish baseline rule-based bots from future AI/LLM policies.
+1. **#19:** PostgreSQL, prawdziwa współbieżność, dzierżawa i wyłączność schedulera.
+2. **#24:** publiczny hosting, nadzór procesu, ograniczenia logowań i profil produkcyjny. Obecny launcher jest lokalny/LAN.
+3. Dalsze strojenie gospodarki na podstawie pomiarów. Rosnący obrót nie dowodzi stabilnej podaży waluty.
 
-## 4. Solo boss expeditions (#6) — implemented
-- Two level-gated encounters with independent per-player cooldowns.
-- Energy cost on each valid attempt, rewards only on victory, durable reports.
-- Atomic attempts; replay, defeat, access and rollback regression tests.
+## Gothic II: Noc Kruka
 
-## 5. Local living world — implemented
-- `python play.py`: local initialization, HTTP server and periodic bot rounds.
-- Loopback by default, explicit LAN binding, preserved save data on restart.
-- Hunter, trader and miner roles with ordinary resources and shared game rules.
-- Bot and HTTP actions are serialized in the local launcher for SQLite.
-- Manual ticks remain available for tests and future production schedulers.
+Osobiste ukończenie ani zapis końcowego rankingu nie przenosi do Gothic II i nie czyści świata.
 
-## Later milestones
-- Boss expansion: party raids, unique mechanics, loot tables and balance telemetry.
-- Quests, loot tables, camp/guild ranks, equipment types, persistent combat reports.
-- AI policies: observation/action interface, budget limits, deterministic replay,
-  local-model support, optional provider credentials and rate limits; never allow policies direct database writes.
-- Market monitoring: listing/cancellation events, volume, spread, inflation and
-  money sources/sinks; PostgreSQL concurrency testing before public multiplayer.
-- ML: collect versioned data first, build leakage-free chronological baselines,
-  evaluate forecasts out of sample before using models in bot decisions.
-- Deployment: production settings, backups, abuse controls and load tests.
+- #30: reguły i jednorazowy transfer dorobku.
+- #31: świeży start nowych postaci i balans weteranów.
+- #32: Khorinis, gildie, potwory, przedmioty i zadania NK.
+- #33: konto premium i osobne uprawnienie do Jarkendaru; saldo odłamków nie daje obecnie takiego dostępu.
+- #34: izolacja wielu grywalnych edycji.
+- #35: kontrolowany start II edycji i archiwizacja I.
 
-## Release checks
-Run migrations, Django checks, migration drift detection, the full test suite,
-and a browser-flow smoke test. Push completed milestones to the development
-branch; do not merge into main automatically.
-
-## Verified in this milestone
-- 105 Django tests passed.
-- Dependency checks, Django system checks and migration drift checks passed.
-- Real Chromium smoke: registration, NPC purchase, equipment, hunt XP, timed
-  mining and reward claim, logout; desktop and 390px layouts checked.
-- Fresh local-world smoke: initialization, automatic offers, graceful shutdown,
-  unchanged save/settings after restart and human-only mode.
-- No production concurrency claim: PostgreSQL and load tests remain outstanding.
-
-## Decision telemetry — November 2026
-- Every completed bot tick saves a schema-v1 observation, allowlisted action,
-  outcome, ore delta and energy delta in the same database transaction.
-- Rejected targets are recorded; unexpected exceptions roll back the action.
-- Staff market monitor shows action/role/outcome totals, recent decisions and
-  complete CSV export without usernames. Wait ticks are included.
-- History begins at migration 0008; this is not historical reconstruction.
-- Storage grows with each tick. Retention/archival is a future operational task.
-- Ore deltas include transfers and are not a money-supply metric.
-
-## Expanded world and camp promotion — implemented
-- 53 repeatable creature types/variants, queen and Sleeper expeditions, 41 main destinations.
-- Searchable paginated bestiary, per-location rosters, level and camp/rank gates.
-- 18 camp ranks with original promotion quests and permanent branch choices.
-- Successful action events update accepted quests inside domain transactions.
-- Combat strength now contributes to ordinary hits, so training affects encounters.
-- Browser: actual mining, hunt objectives, two promotions and castle unlock verified.
-- GUI: seven screens checked at 320/390/768/1280px with a long username;
-  no document overflow or overflowing heading/button/stat text detected.
-- 88 distinct image files decoded and verified; repeated wiki models share files.
-
-## Autonomous RPG economy and operator tools — implemented
-- Persistent combat injuries; shared capped health/energy recovery for humans/bots.
-- 11 timed errands, single active activity, immutable reward snapshots and one-time claims.
-- Seasonal/holiday/random/manual events with non-stacking resource modifiers.
-- Earned magic shards, append-only ledger, four illustrated shop products and replay-safe purchases.
-- Global, per-camp and camp-team standings with population filters.
-- Explicit local administrator provisioning; superuser game-master tools, audit, and editable content.
-- Full autonomous rule policies with safe hunt selection, training, errands, camp quests,
-  equipment and shard spending; bounded or continuous standalone scheduler.
-- 720 accelerated bot ticks verified without economy grants; 105 tests pass.
-- New screens checked in four viewport widths; all 92 distinct artwork files decode.
+Opcjonalnie #28: polityki LLM z limitami i porównaniem do botów regułowych. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.

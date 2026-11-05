@@ -56,7 +56,7 @@ class EconomyLedgerTests(TestCase):
         self.assertEqual(data['resources']['shards']['source'],0)
         self.assertEqual(data['resources']['shards']['reconciliation_gap'],0)
 
-    def test_refill_limit_is_shared_replay_safe_and_resets_at_utc_midnight(self):
+    def test_refill_limit_is_shared_replay_safe_and_resets_at_polish_midnight(self):
         admin=User.objects.create_superuser('gm',password='test-only')
         administer_player(admin,self.buyer.pk,'premium',{'amount':30})
         self.buyer.refresh_from_db()
@@ -64,7 +64,7 @@ class EconomyLedgerTests(TestCase):
         potion=ItemBluePrint.objects.create(name='Backpack energy',kind='consumable',energy_amount=25,stackable=True)
         stack=OwnedItem.objects.create(owner=self.buyer,blueprint=potion,quantity=3)
         keys=[]
-        now=timezone.now().replace(hour=12)
+        now=timezone.now()
         with patch('django.utils.timezone.now',return_value=now):
             for _ in range(3):
                 self.buyer.current_energy=0;self.buyer.save()

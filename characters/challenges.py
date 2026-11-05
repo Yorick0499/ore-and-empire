@@ -1,4 +1,5 @@
-"""Bounded personal goals; UTC periods, immutable rewards, shared rules for bots."""
+from .world_clock import POLISH_TIME
+"""Bounded personal goals; Polish calendar periods, immutable rewards, shared rules for bots."""
 from datetime import timedelta,timezone as utc
 from django.utils import timezone
 from .models import PersonalChallenge,PlayerAchievement,CampReputation
@@ -8,7 +9,7 @@ ACHIEVEMENTS={'miner':('Dziesięć zmian','mine',10),'hunter':('Strażnik szlak�
 
 
 def period_for(cadence,now=None):
-    day=(now or timezone.now()).astimezone(utc.utc).date()
+    day=(now or timezone.now()).astimezone(POLISH_TIME).date()
     return day if cadence=='daily' else day-timedelta(days=day.weekday())
 
 

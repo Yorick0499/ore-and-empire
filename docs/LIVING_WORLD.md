@@ -1,152 +1,37 @@
-# Living colony: timed quests, events, shards and administration
+# Żyjąca kolonia — gracze i boty
 
-## Activities and recovery
-Migration 0010 preserves existing characters and initializes current health from
-their former maximum life. Both energy and health recover by one point per elapsed
-minute, with caps and fractional time preserved. Recovery also works across restarts.
-Combat persists wounds; defeat leaves one health. Hunting and boss expeditions need
-at least ten health. Mining and timed errands remain possible while recovering.
+Aktualna wersja używa polityki **baseline-14** i obserwacji schema 14. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
 
-The seeded pool has 11 repeatable timed errands (45–480 seconds, level 0–25).
-The local launcher initializes missing definitions without replacing admin edits.
-One pending errand per player, including a finished but unclaimed errand. Mining
-and errands are mutually exclusive. Errands block fighting until claimed; training,
-trading and drinking are still possible. The server enforces completion time,
-ownership, level and energy. Rewards are snapshots at start and can be claimed once.
-There is no forced waiting on the page; close the browser and return later.
+`python play.py --bots 6 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 
-## Event calendar
-Three recurring schedules are created for adjacent years: spring (March 20–27),
-miners' harvest (October 25–November 7), and winter holidays (December 20–January 5).
-A reproducible daily random draw can add a four-hour ore discovery event. Restarting
-does not reroll it. Times are UTC. Operators can add manual events, adjust dates and
-bonuses, disable events, and expand the errand pool through Django administration.
-Initialization never overwrites those edits. The running launcher refreshes the
-calendar when the date changes.
+## Co robi mieszkaniec
 
-Hunting XP, mining ore, boss ore/XP and errand rewards receive event modifiers.
-For each resource only the highest active modifier applies, rather than multiplying
-every overlapping event. Bonus shards apply to timed errands. Errand bonuses are
-preserved even if an event ends before collection.
+- Wybiera obóz, przyjmuje próby awansu i przechodzi kampanię swojej ścieżki.
+- Kopie, odbiera pracę, poluje w dostępnych lokacjach, walczy z bossami i zdobywa rzeczywiste PD.
+- Kupuje i zakłada lepszy oręż/pancerz, sprzedaje zbędne zapasy, zachowuje materiały dostaw i receptur.
+- Uczy się i wydaje zdobyte PN; część mieszkańców rozwija magię. Przygotowuje się do osobistego finału.
+- Odpoczywa, regeneruje HP/energię/manę, kupuje potrzebne leczenie lub odnowienie w granicach wspólnych limitów.
+- Przyjmuje wyzwania, odbiera ukończone nagrody i osiągnięcia, wspiera projekty/skarbiec/wyprawy obozu.
+- Handluje według potrzeb i ceny jednostkowej; przecenia i wycofuje zalegające oferty, odzyskuje miejsce w zapasie.
 
-## Magic shards and item shop
-Magic shards are the game's premium-style currency, earned through errands and
-their event bonuses. There is no real-money checkout. Every award, purchase and
-operator grant has an immutable ledger row with a reference and resulting balance.
-The shop starts with rice spirit (energy), healing essence (health), a spiked club
-and a rune sword. Effects are immediate or create a real inventory item. Empty
-resource deficits reject potion purchases without charging. Weapon level gates,
-current prices and balances are checked on the server. Purchase request tokens
-prevent duplicate charges from submitting the same form again.
+Bot nie może nadawać sobie waluty, XP, ekwipunku ani dowolnych ID celów. Kontroler tworzy allowlistę dozwolonych akcji i wywołuje te same transakcyjne serwisy co człowiek. Czas polski, eventy, koszty i wymagania są wspólne. Zwycięstwo bota w finale nie zamyka serwera.
 
-Shop effects and combat values are this browser adaptation's original balance.
-All four shop illustrations are attributed in the local Gothicpedia manifest.
+Sześć przedmiotów to limit roboczego zapasu polityki, nie ogólny limit plecaka każdego gracza. Niezbywalne trofea fabularne nie zajmują tego roboczego limitu. Handel przenosi rudę; nie emituje jej samym przekazaniem przedmiotu.
 
-## Rankings
-Global characters sort by level, then experience, then a stable player ID.
-Camp standings sum their members' experience; member counts and average level are
-also visible. Filters support humans, bots or both, and individual camp members.
-Inactive accounts and staff/operator characters are excluded from standings.
-Results are paginated; money and purchased items do not directly decide position.
+## Jak zobaczyć, że boty grają
 
-## Operator access
-Run `python play.py --setup-admin` on the installation you want to administer,
-or `python manage.py create_game_admin` after migrations. The explicit command
-creates `colony-admin` with a random password and saves it with mode 0600 in
-`.admin-access.json`. That file and the database are ignored by Git. No shared
-password, superuser migration or operator credentials are shipped in the repository.
-Repeating setup reuses the verified account; it never converts an existing human
-account or silently changes its password. Use Django `changepassword` to rotate it.
+`/zycie-kolonii/` pokazuje imiona, role, ostatni heartbeat i ostatnie 40 udanych działań. Aktywność wygasa po 90 sekundach. Sam odczyt nie odgrywa tury ani nie tworzy losowej transakcji. Monitor zarządcy pokazuje powody odpoczynku/odrzucenia i przepływy; czytaj go razem z realnym zużyciem przedmiotów, nie samym obrotem bot–bot.
 
-Sign in normally, then open `/zarzadca/`: restore health/energy, give 1–20 items,
-grant shards or edit attributes, resources, level, experience and allegiance.
-Only active superusers can mutate through this panel; ordinary staff can still
-read market monitoring. Every successful game-master operation and its audit log
-commit together. Premium grants also use the shard ledger. `/admin/` provides
-account management and editable event, quest and shop definitions. Completed runs,
-purchases, currency entries and market facts are read-only there.
+`/karczma/` to trwałe forum: 20 wątków i 30 wiadomości na stronie, do 1000 znaków, 20 sekund między wpisami gracza. HTML jest escapowany. Administrator może zamykać wątki i usuwać wpisy.
 
-The local launcher serializes bot rounds and HTTP requests. These checks do not
-establish production concurrency readiness on SQLite; PostgreSQL load/locking tests
-remain a separate milestone.
+Bot odpowiada regułowo na świeży wpis człowieka, odwołując się do zapisanej akcji. Nie udaje rozumienia dowolnych pytań. Limit: raz na 10 minut na bota, najwyżej jedna automatyczna odpowiedź na wpis. Samodzielny wątek wymaga co najmniej trzech akcji; najwyżej jeden na dobę na bota i jeden na 15 minut w kolonii przy wspieranym pojedynczym schedulerze. Boty są jawnie oznaczone.
 
-## Autonomous policies and observation schema 2
-Hunter, trader and miner are preferences rather than exclusive abilities. All roles
-can mine and claim, fight safe unlocked encounters, gain XP/levels, equip gear,
-train, join camps and complete their promotion objectives. The controller estimates
-incoming damage without relying on critical hits. An injured/exhausted bot buys a
-useful recovery drink when affordable, runs an errand while recovering, or waits.
-It uses the same elapsed-time recovery and domain services as a human.
+## Treść i uprawnienia
 
-Shard income comes from claimed errands. The policy can spend it on healing,
-energy or an equippable weapon improvement. Policies receive immutable observations
-and may only act on the targets offered by the controller. Inventory is capped at
-six items, NPC/market purchases check real balances, and the baseline price ceiling
-is 120% of NPC value. Ordinary trading transfers ore rather than creating it.
+[Instrukcja całej gry](GAME_GUIDE.md) opisuje zasoby, wyprawy, premie, odłamki i rankingi. [EVENTS.md](EVENTS.md) wymienia pełny domyślny kalendarz, [WORLD_CLOCK.md](WORLD_CLOCK.md) wyjaśnia czas polski i CET/CEST. [MARKET_POLICY.md](MARKET_POLICY.md), [MAGIC.md](MAGIC.md), [CRAFTING.md](CRAFTING.md) opisują poszczególne decyzje i limity.
 
-The launcher runs one bounded action per bot per round; the manual command also
-supports `--rounds` and a continuous `--loop`. Use only one scheduler for a world.
-No gameplay catch-up is simulated while the process is stopped. Resource recovery
-still accounts for offline elapsed time. These are deterministic rule-based
-policies, with no model API or external AI credentials.
+Konta techniczne `colony-bot-N` nie mają używalnych haseł. Administrator tworzony jest lokalnie, bez wspólnych danych dostępu w repozytorium. [Zarządzanie światem](WORLD_MANAGEMENT.md), [backup](BACKUPS.md) i [monitoring](WORLD_MONITOR.md) zawierają procedury operatora.
 
-Decision schema 2 includes current health, shards, offered hunt/habitat, quest and
-shop targets, and persisted health/shard deltas. Non-rest decisions are recorded in
-full. Repeated rest is sampled every five minutes rather than filling the database
-with identical five-second waits. SQLite and PostgreSQL also enforce nonnegative
-ore and bounded health/energy at the database level.
+## Walidacja
 
-Validation: 105 Django tests, including an accelerated 240-round/three-role
-simulation (720 ticks) that reaches levels, completed errands, camp promotions,
-real shard rewards and shop spending without runtime grants. Tests cover forged
-policy targets, resource recovery, event boundaries, reward snapshots, ownership,
-replay prevention, rollback, admin access and rankings. Browser checks covered real
-admin grants/edits, a timed errand and its reward, consumable effects, and all five
-new screens at 320/390/768/1280px, including a long player name.
-
-## Żyjąca kolonia i Karczma na jeziorze
-
-`/zycie-kolonii/` pokazuje ostatnie 40 udanych działań botów z trwałego
-`BotDecision` i sygnał `bot_last_tick` zapisany przez prawdziwy scheduler.
-Aktywność wygasa po 90 sekundach. Odczyt stron nie uruchamia botów ani nie
-odnawia zasobów. Statystyki mieszkańców przedstawiają ostatni zapis, nie prognozę.
-
-`/karczma/` to trwałe forum: 20 wątków na stronie, 30 wiadomości na stronie,
-limit 1000 znaków i 20 sekund pomiędzy wpisami gracza. Administrator może
-zamykać wątki oraz usuwać wiadomości w Django adminie. HTML jest escapowany.
-Dostęp od poziomu 0 pozwala zacząć solową grę od rozmowy z mieszkańcami.
-Ilustracja korzysta z istniejącego, opisanego w manifestcie assetu Gothicpedii
-`lake_tavern`, bez pobierania grafik podczas gry.
-
-Boty odpowiadają regułowo na najnowszy wpis człowieka w rozmowie z ostatniej doby.
-Odpowiedź wskazuje rzeczywistą zapisaną akcję; nie oznacza rozumienia dowolnego
-pytania. Jeden bot pisze najwyżej raz na 10 minut, jeden wpis otrzymuje najwyżej
-jedną automatyczną odpowiedź. Bez rozmowy człowieka bot po co najmniej trzech
-akcjach może rozpocząć własny wątek: najwyżej raz na dobę na bota i raz na
-15 minut dla całej kolonii (dla wspieranego pojedynczego schedulera).
-Boty zawsze są oznaczone. Nie wymagają zewnętrznego API ani LLM.
-
-Uruchomienie: `python play.py --bots 6`, ewentualnie osobny
-`python manage.py run_bots --loop --interval 5` przy serwerze bez botów.
-Nie łącz schedulerów. Wieloprocesowa dzierżawa i PostgreSQL pozostają w #19.
-
-## Weapon progression policy (issue #13, decision schema 3)
-
-Armed hunters/miners evaluate NPC and market weapon upgrades together. Eligible
-upgrades add at least 3 damage (or 10% of current weapon damage, rounded up), cost
-at most 40 ore per extra damage, and leave 20 ore for two ordinary training payments.
-The policy picks the lowest price per added damage, then the larger improvement,
-lower price and stable action/item ID. These are explicit baseline tuning values,
-not a claim that the wider economy is balanced (#12).
-
-An eligible upgrade takes precedence over training and repeatable hunting. Owned
-improvements are equipped first. Obsolete unlisted weapons with strictly lower
-damage are sold through the ordinary NPC service at its normal half-value price;
-stronger future equipment, equal-damage spares and trader merchandise are retained.
-Busy activities, ready rewards and urgent recovery still take precedence. Backpack
-capacity, strength requirements, ownership and market price ceilings still apply.
-
-Schema 3 adds the selected upgrade action/ID, cost, damage gain, ore reserve and
-obsolete item ID to immutable observations. Existing schema 1/2 records remain
-readable; only newly recorded decisions use schema 3. Trader strategy and its
-long-term demand/turnover problems remain tracked separately in #23.
+Pełna symulacja przechodzi kampanię zwykłym graczem i trzema obozami botów bez nadawania zasobów. Mieszana sesja potwierdza zdobywanie poziomu i rzeczywisty zakup od bota. Oddzielne testy sprawdzają odrzucone polityki, koszty, regenerację, retry, rollback i uprawnienia. Historyczne schematy 7–13 są odtwarzalne; wyniku dawnych losowych walk nie udajemy jako deterministycznego replayu.

@@ -16,7 +16,7 @@
 
 Każdy zwój kosztuje 1 many/rzut i jedną sztukę na **rzeczywiste rzucenie**, bez wymogu szkoły/kręgu. Runa jest wielokrotnego użytku, wymaga kręgu i szkoły obozu. Zwoje w stosie pozwalają na kilka rzutów, do wyczerpania stosu/many. Pierwszy rzut musi być opłacalny przed rozpoczęciem walki; po wyczerpaniu zapasu postać broni się pięściami do końca starcia, bez darmowej amunicji. Przed kolejną walką można wrócić do broni na ekranie magii. Zużyty ostatni zwój czyści przygotowanie. Przedmiot przygotowany nie może być wystawiony/sprzedany bez wcześniejszego wyłączenia go. Cudzy, wystawiony albo niedozwolony przedmiot jest odrzucany także przez serwis walki.
 
-Nauka kolejnego kręgu N kosztuje 5×N PN i 50×N rudy, wymaga poziomu 2×N. Wtajemniczeni obozowi (ranga od tier 1) mogą nauczyć się dwóch kręgów, Mag Ognia/Wody lub Guru czterech, arcyrangi sześciu. Dostęp do run jest ograniczony także rangą i obozem; samo ustawienie `magic_skill` nie usuwa blokady szkoły/rangi. Maksymalną manę rozwija istniejący trening (1 PN i 10 rudy za punkt). Zwiększenie maksimum ani założenie biżuterii nie leczy/nie odnawia many. Zdjęcie lub usunięcie sprzętu przycina aktualną manę do nowego maksimum.
+Nauka kolejnego kręgu N kosztuje 5×N PN i 50×N rudy, wymaga poziomu 2×N. Wtajemniczeni obozowi (ranga od tier 1) mogą nauczyć się dwóch kręgów, Mag Ognia/Wody lub Guru czterech, arcyrangi sześciu. Dostęp do run jest ograniczony także rangą i obozem; samo ustawienie `magic_skill` nie usuwa blokady szkoły/rangi. Maksymalną manę rozwija istniejący trening (1 PN i 10 rudy za punkt, pomniejszone o zniżkę szkoły obozowej). Zwiększenie maksimum ani założenie biżuterii nie leczy/nie odnawia many. Zdjęcie lub usunięcie sprzętu przycina aktualną manę do nowego maksimum.
 
 Bieżąca mana regeneruje się o 1 co 30 s z zachowaniem reszty czasu; odnowa nie bankuje czasu ponad maksimum. Migracja inicjalizuje ją do istniejącego maksimum (raz przy wprowadzeniu zasobu), zachowuje statystyki bazowe, wylicza bonus noszonego wyposażenia. Panel god-mode odnawia również manę i pozwala ją edytować z kontrolą maksimum.
 
@@ -24,7 +24,7 @@ Walka odejmuje ochronę `fire_prot`/`magic_prot`; minimum obrażeń to 1. Golemy
 
 ## Boty i odtwarzanie
 
-Polityka `baseline-8`, obserwacja schema 8, wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
+Magiczny mechanizm wprowadzony w `baseline-8` (obecnie polityka i schema 14) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
 
 ## Kontrola grywalności
 
