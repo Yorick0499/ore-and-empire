@@ -249,3 +249,64 @@ button, .colony-button, .gothic-btn { max-width: 100%; line-height: 1.45; }
 .economy-table { max-width: 100%; }
 .economy-table table { min-width: 660px; width: 100%; border-collapse: collapse; }
 .economy-table th, .economy-table td { padding: .6rem; text-align: left; border-bottom: 1px solid #736044; }
+
+/* Autorski motyw kolonii: inspiracja ciemnymi panelami, złotem i bordowymi
+   akcentami Gothicpedii. Ilustracje z lokalnej, opisanej paczki źródłowej. */
+:root { --gold:#ccb375; --text:#e3dfd2; --muted:#b7af9b; --panel:#171715; --border:#655439; --ink:#090b0c; }
+body.colony-page { background:linear-gradient(#080a0cd9,#090b0cf5 620px),url('art/xardas_tower.webp') center top/cover fixed; }
+.colony-header { display:block; padding:0; border-bottom:1px solid #b19658; background:linear-gradient(90deg,#100b0bcc,#28120a66,#07182188),url('art/old_camp.webp') center 44%/cover; }
+.masthead { min-height:180px; max-width:1420px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:32px; padding:34px 38px; background:linear-gradient(90deg,#100a09aa,transparent 65%); }
+.wordmark { font-size:clamp(34px,4.5vw,57px); color:#e8cf94; white-space:normal; }
+.wordmark small { font-size:11px; letter-spacing:5px; color:#d0bea0; }
+.server-identity { display:flex; flex-direction:column; text-align:right; padding:16px 24px; border-left:2px solid #bea365; background:#0a0c10b8; max-width:45%; overflow-wrap:anywhere; }
+.server-identity strong { font:27px/1.3 Gothic,Georgia,serif; color:#f3e7cd; }
+.server-identity>span:last-child { color:#c0b69e; font-size:14px; margin-top:5px; }
+.server-identity .eyebrow { margin:0 0 8px; font-size:10px; }
+.colony-toolbar { max-width:1420px; margin:auto; padding:7px 26px; gap:2px; justify-content:flex-start; border-top:1px solid #a5844e77; background:#0b0c0eea; font-size:15px; }
+.colony-toolbar>a,.nav-group>summary { padding:10px 13px; cursor:pointer; color:#d7c79e; }
+.colony-toolbar form { margin-left:auto; }
+.nav-group { position:relative; }
+.nav-group>summary { list-style:revert; white-space:nowrap; }
+.nav-group>div { position:absolute; z-index:90; top:100%; left:0; width:240px; max-width:85vw; padding:9px; background:#111315; border:1px solid #8d744b; box-shadow:0 15px 35px #000c; }
+.nav-group>div>a { display:block; padding:8px 12px; }
+.nav-group[open]>summary { color:#ffe0a0; background:#5f261f66; }
+.colony-shell { margin-top:28px; padding:32px; background:#0e1011ed; border-top:3px solid #a48e55; box-shadow:0 18px 60px #0009; }
+.colony-panel,.guide-frame,.sidebar { border:1px solid #665940; background:linear-gradient(125deg,#ffffff03,transparent 55%),#171918; box-shadow:inset 0 1px #e6d3a911,0 6px 22px #0007; }
+.colony-panel { padding:26px; margin:22px 0; }
+h1 { color:#ecd8a4; letter-spacing:.5px; }
+h2 { color:#f0e6cb; font-size:27px; }
+.colony-panel>h2,.section-heading { border-bottom:3px solid #642b24; width:fit-content; padding-bottom:8px; margin-bottom:22px; }
+h3 { color:#ceb57b; }
+button,.colony-button,.gothic-btn,.nav-link-btn { background:linear-gradient(#483322,#2b2119); border-color:#a28a54; color:#ead09a; box-shadow:inset 0 1px #e7d5a644,0 2px 8px #0008; }
+button:hover:not(:disabled),.colony-button:hover { background:linear-gradient(#6c4830,#453021); }
+input,select,textarea { border-color:#776341; background:#0a0d0e; color:#f0e7d6; max-width:100%; }
+form p { margin-bottom:18px; }
+form .helptext { display:block; font-size:14px; margin-top:6px; }
+.errorlist { color:#ffc7b4; padding:10px 12px 10px 30px; border-left:3px solid #bb5d43; background:#55231b66; }
+.setup-notice { padding:10px 24px; text-align:center; background:#362217; border-bottom:1px solid #806945; }
+.valley-hero { background:linear-gradient(90deg,#080a0de8,#10151666),url('art/old_camp.webp') center/cover; min-height:320px; border:1px solid #a38b58; }
+.gothic-art { background-color:#0b0e10; }
+.colony-footer { border-top:1px solid #6d5738; background:#0b0c0e; }
+@media(max-width:900px) {
+  .masthead { padding:26px 22px; min-height:155px; }
+  .colony-toolbar { padding:7px 12px; }
+  .colony-toolbar form { margin-left:0; }
+  .colony-shell { margin:18px 16px 40px; padding:22px; }
+}
+@media(max-width:540px) {
+  .masthead { min-height:170px; align-items:flex-start; flex-direction:column; gap:16px; padding:24px 18px; }
+  .wordmark { font-size:35px; }
+  .server-identity { max-width:100%; text-align:left; padding:8px 14px; }
+  .server-identity strong { font-size:22px; }
+  .server-identity .eyebrow { display:none; }
+  .colony-toolbar { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:3px; font-size:14px; }
+  .colony-toolbar>a,.nav-group>summary { padding:9px 8px; white-space:normal; overflow-wrap:anywhere; }
+  .nav-group>div { position:static; width:auto; max-width:none; padding:3px; box-shadow:none; }
+  .nav-group { min-width:0; }
+  .colony-toolbar form { align-self:start; margin:0; }
+  .colony-shell { margin:14px 10px 30px; padding:18px 14px; }
+  .colony-panel { padding:18px 14px; }
+  h2 { font-size:24px; }
+  .valley-hero { padding:30px 20px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
