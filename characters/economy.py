@@ -69,7 +69,7 @@ def purchase_product(profile, product_id, request_key):
         profile.current_energy += effect
         profile.energy_updated_at = timezone.now()
     elif product.kind == "health":
-        effect = min(product.effect, profile.life - profile.current_health)
+        effect = min(product.effect, profile.max_health - profile.current_health)
         if effect <= 0:
             return False
         profile.current_health += effect

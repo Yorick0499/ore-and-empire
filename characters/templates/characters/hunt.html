@@ -39,7 +39,7 @@
                         </div>
 
                         <form method="POST">
-                            {% csrf_token %}
+                            {% csrf_token %}<input type="hidden" name="request_key" value="{{ request_key }}">
                             <input type="hidden" name="monster_key" value="{{ key }}">
 
                             {% if profile.current_energy >= 15 and profile.current_health >= 10 and not profile.is_busy %}

@@ -60,6 +60,7 @@ class Observation:
     story_action: str = ""
     story_target: int | None = None
     story_recover: bool = False
+    consume_id: int | None = None
 
 
 class Policy(Protocol):
@@ -75,6 +76,8 @@ class BaselinePolicy:
             return "claim", None
         if o.busy:
             return "wait", None
+        if o.consume_id:
+            return "consume", o.consume_id
         if o.product_urgent and o.product_id:
             return "shop", o.product_id
         if o.health < 10:
@@ -167,7 +170,7 @@ def choose_upgrade(stock, offers, damage, ore):
 
 def health_needed(profile, monster, damage):
     rounds = math.ceil(monster["life"] / max(1, damage - monster["weapon_prot"]))
-    incoming = max(1, monster["strength"] - profile.weapon_prot)
+    incoming = max(1, monster["strength"] - profile.effective_protection(monster.get("damage_type", "weapon")))
     return (rounds - 1) * incoming + 10
 
 
@@ -190,15 +193,20 @@ def tick_bot(profile, policy=None):
     story = bot_story_plan(profile)
     combat_equipment = profile.bot_role != "trader" or any(kind in {"hunt", "boss"} for kind, _ in story.events)
     inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
-    equipped = next((item for item in inventory if item.is_equipped), None)
+    equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.blueprint.damage if equipped else 0
     spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.blueprint_id not in story.item_ids]
     item = spare[0] if spare else None
-    equipment = max((item for item in spare if item.blueprint.required_strength <= profile.strength and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
-    stock = ItemBluePrint.objects.filter(base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    equipment = max((item for item in spare if item.blueprint.kind == "weapon" and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
+    if not equipment:
+        worn = next((i.blueprint.weapon_prot for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
+        from .equipment import allowed
+        equipment = max((i for i in spare if i.blueprint.kind == 'armor' and i.blueprint.weapon_prot > worn and allowed(profile,i.blueprint)), key=lambda i:i.blueprint.weapon_prot, default=None)
+    consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15))), None)
+    stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=['onehand','twohand'], min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(is_market_listed=True, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
     if combat_equipment:
         offers = offers.filter(blueprint__damage__gt=damage)
     upgrade = None
@@ -213,8 +221,10 @@ def tick_bot(profile, policy=None):
         stock = offer = upgrade = None
     # Sell obsolete weapons through the same NPC service as a human player.
     # Keep stronger future gear, listed goods and the trader's merchandise.
-    disposal = min((i for i in spare if i.blueprint.damage < damage),
+    disposal = min((i for i in spare if i.blueprint.kind == "weapon" and i.blueprint.damage < damage),
                    key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and combat_equipment else None
+    if len(inventory) >= 5:
+        disposal = next((i for i in spare if i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable), disposal)
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
     # Delivery stock is bought through the ordinary services and reserved from sale/equip.
@@ -287,9 +297,9 @@ def tick_bot(profile, policy=None):
     story_recover = bool(story_fights) and not any(
         safe_to_hunt(profile, monster, profile.strength + damage) and profile.current_energy >= energy
         for monster, energy in story_fights
-    ) and any(health_needed(profile, monster, profile.strength + damage) <= profile.life for monster, _ in story_fights)
+    ) and any(health_needed(profile, monster, profile.strength + damage) <= profile.max_health for monster, _ in story_fights)
     products = StoreProduct.objects.filter(enabled=True, level__lte=profile.level, price__lte=profile.premium_balance).select_related("blueprint").order_by("price", "pk")
-    product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.life // 2)) or (p.kind == "energy" and profile.current_energy < 15)), None)
+    product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.max_health // 2)) or (p.kind == "energy" and profile.current_energy < 15)), None)
     urgent = product is not None
     if not product and len(inventory) < 6:
         product = next((p for p in products if p.kind == "weapon" and p.blueprint and p.blueprint.required_strength <= profile.strength and p.blueprint.damage > damage and not any(i.blueprint_id == p.blueprint_id for i in inventory)), None)
@@ -300,7 +310,7 @@ def tick_bot(profile, policy=None):
         offer_id=offer.pk if offer else None, inventory_id=item.pk if item else None,
         blueprint_id=stock.pk if stock else None, equip_id=equipment.pk if equipment else None,
         armed=equipped is not None, role=profile.bot_role, skill_points=profile.skill_points,
-        strength=profile.strength, health=profile.current_health, max_health=profile.life,
+        strength=profile.strength, health=profile.current_health, max_health=profile.max_health,
         premium=profile.premium_balance, turn=profile.bot_turn, camp=profile.camp,
         camp_target=camp_target, rank_target=RANKS.index(rank) + 1 if rank else None,
         rank_action=rank_action, needs_ore=needs_ore, training=training,
@@ -316,6 +326,7 @@ def tick_bot(profile, policy=None):
         ore_reserve=UPGRADE_ORE_RESERVE if equipped and combat_equipment else 0,
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
+        consume_id=consumable.pk if consumable else None,
     )
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
@@ -334,6 +345,8 @@ def tick_bot(profile, policy=None):
         success = game.start_mining(profile, 15)
     elif action == "equip" and equipment and target == equipment.pk:
         success = game.equip_item(profile, equipment)
+    elif action == "consume" and consumable and target == consumable.pk:
+        success = game.use_item(profile, consumable)
     elif action == "sell" and disposal and target == disposal.pk:
         success = game.sell_item_from_npc(profile, disposal)
     elif action == "train" and obs.training_needed:
