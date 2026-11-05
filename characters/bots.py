@@ -70,6 +70,8 @@ class Observation:
     camp_action: str = ""
     camp_target_id: int | None = None
     camp_upgrade_level: int = 0
+    raid_action: str = ""
+    raid_target: int | None = None
 
 
 class Policy(Protocol):
@@ -163,10 +165,17 @@ class BaselinePolicyV8(BaselinePolicyV7):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV8):
+class BaselinePolicyV9(BaselinePolicyV8):
     def choose(self,o):
         if o.camp_action and not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and o.energy>=25 and not o.product_urgent:
             return o.camp_action,o.camp_target_id
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV9):
+    def choose(self,o):
+        if o.raid_action and not o.busy and not o.adventure_ready and not o.reward_ready and not o.product_urgent:
+            return o.raid_action,o.raid_target
         return super().choose(o)
 
 
@@ -360,6 +369,17 @@ def tick_bot(profile, policy=None):
                 camp_action="camp_upgrade";camp_target_id=list(UPGRADES).index(camp_upgrade["key"])+1;camp_upgrade_level=camp_upgrade["level"]
             elif profile.ore_balance>=250 and card["guild"].treasury<100:
                 camp_action="camp_donate"
+    from .camp_raids import raid_card
+    raid_action="";raid_target=None
+    if profile.camp!="NONE" and profile.level>=3:
+        raid_status=raid_card(profile)
+        pending=next(iter(raid_status['rewards']),None)
+        if pending:raid_action='raid_claim';raid_target=pending.pk
+        elif profile.bot_turn%13==0:
+            raid=raid_status['raid']
+            if not raid:raid_action='raid_rally'
+            elif raid_status['can_attack'] and profile.current_health>=min(profile.max_health,(raid.attack+10)*3+10) and (not profile.prepared_magic_id or (active_magic and profile.current_mana>=active_magic.cost)):
+                raid_action='raid_strike';raid_target=raid.pk
     obs = Observation(
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -383,10 +403,11 @@ def tick_bot(profile, policy=None):
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
+        raid_action=raid_action,raid_target=raid_target,
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-9" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-10" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
@@ -394,7 +415,10 @@ def tick_bot(profile, policy=None):
     story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
     from .magic import learn_circle,prepare_magic,purchase_magic
     from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
-    if action=='camp_donate' and obs.camp_action==action and target is None:
+    from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
+    if action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
+        success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
+    elif action=='camp_donate' and obs.camp_action==action and target is None:
         success=donate_to_camp(profile,10,uuid4())
     elif action=='camp_upgrade' and obs.camp_action==action and target==obs.camp_target_id:
         success=upgrade_camp(profile,list(UPGRADES)[target-1],obs.camp_upgrade_level)
