@@ -146,6 +146,6 @@ class CampaignTests(TestCase):
             self.assertEqual(run.status, 'claimed', run.snapshot['key'])
         self.assertTrue(hero.story_runs.filter(quest__key='ritual-ready', status='claimed').exists())
         page = self.client.get('/fabula/')
-        self.assertContains(page, 'Przygotowania do finału zakończone')
+        self.assertContains(page, 'Osobisty przydział przygotowań zakończony')
         self.assertContains(page, 'Sześć rozdziałów')
         self.assertContains(page, 'Gothicpedia')

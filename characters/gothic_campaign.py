@@ -103,7 +103,7 @@ def campaign_definitions(rusty_id):
         ('orc-threshold', 'U bram orkowego miasta', 'Wejście do miasta orków daje odpowiedź na część pytań Xardasa. Zabezpiecz podejście i pokonaj dwóch wojowników. Nikt nie powinien wyruszać do świątyni bez drogi odwrotu.', [visit('orc_city', 'Rozpoznaj podejście do miasta orków'), hunt('orc_warrior', 2)], 20, 31000, 750, 5),
         ('supply-route', 'Ostatnia droga zaopatrzenia', 'Przed wyprawą w głąb świątyni trzeba odnowić zapasy i sprawdzić północny szlak. Młody troll blokuje przejście w kanionie. Usuń zagrożenie i zaczekaj na ludzi niosących wyposażenie.', [visit('troll_canyon', 'Zabezpiecz kanion trolli'), hunt('young_troll'), wait(300, 'Zaczekaj na transport zapasów')], 23, 25000, 850, 6),
         ('temple-scout', 'Pierwsze kroki w świątyni', 'W świątyni Śniącego wszystko brzmi inaczej niż w kopalni. Pokonaj pełzacza świątynnego i zaznacz bezpieczne miejsce zbiórki. To rozpoznanie, nie obietnica łatwego zwycięstwa.', [visit('sleeper_temple', 'Wejdź do świątyni Śniącego'), hunt('temple_crawler')], 25, 40000, 1000, 6),
-        ('ritual-ready', 'Przed przebudzeniem', 'Wieści z krypty Nadzorcy dopełniają raport Xardasa. Przygotuj ostatnie notatki i zadeklaruj gotowość. Historia doprowadza cię do progu finału; o losie całego serwera rozstrzygnie osobny etap kampanii.', [visit('overseer_crypt', 'Zbadaj podejście do krypty Nadzorcy'), wait(300, 'Przygotuj plan ostatniej wyprawy'), talk('Zapisz ostateczną decyzję', stand='Wejdę do sanktuarium, gdy będę gotowy.', prepare='Najpierw zabezpieczę ludzi i drogę powrotu.')], 28, 30000, 1200, 6),
+        ('ritual-ready', 'Zabezpieczyć dolinę', 'Wieści z krypty Nadzorcy dopełniają raport Xardasa. Przygotuj ostatnie notatki i zadeklaruj gotowość. Historia doprowadza cię do progu finału; o losie całego serwera rozstrzygnie osobny etap kampanii.', [visit('overseer_crypt', 'Zbadaj podejście do krypty Nadzorcy'), wait(300, 'Przygotuj plan ostatniej wyprawy'), talk('Zapisz ostateczną decyzję', stand='Wejdę do sanktuarium, gdy będę gotowy.', prepare='Najpierw zabezpieczę ludzi i drogę powrotu.')], 28, 30000, 1200, 6),
     ]
     previous = None
     for key, title, text, objectives, level, xp, ore, chapter in finals:
@@ -113,14 +113,15 @@ def campaign_definitions(rusty_id):
         [talk('Podtrzymaj dawną obietnicę', keep='Nie zostawię towarzyszy bez ostrzeżenia.')], 1000, 100, previous=['ritual-ready', 'colony-oath'], chapter=6, required_choices={'colony-oath': {'conversation': 'community'}})
     add('oath-independence', 'Droga wybrana samodzielnie', 'Pierwsza deklaracja niezależności nabrała znaczenia dopiero po wszystkim, czego doświadczyłeś. Przy ostatnim ognisku zdecyduj, jak zachowasz własny głos, gdy obozy zaczną dzielić zasługi.',
         [talk('Podtrzymaj dawną decyzję', keep='Podejmę własną decyzję i poniosę jej cenę.')], 1000, 100, previous=['ritual-ready', 'colony-oath'], chapter=6, required_choices={'colony-oath': {'conversation': 'independence'}})
-    return result
+    from .story_narrative import resident_definitions
+    return resident_definitions(result)
 
 
 CHAPTERS = (
-    (1, 'Obcy pod barierą', 'exchange'),
-    (2, 'Ludzie i obozy', 'old_camp'),
-    (3, 'Niepokój w kopalniach', 'crawler_tunnels'),
-    (4, 'Ślady ogniskowania', 'stone_circle'),
-    (5, 'Ostrzeżenie Xardasa', 'xardas_tower'),
-    (6, 'Przed przebudzeniem', 'sleeper_temple'),
+    (1, 'Miejsce przy ognisku', 'exchange'),
+    (2, 'Obóz to ludzie', 'old_camp'),
+    (3, 'Zmiany pod ziemią', 'crawler_tunnels'),
+    (4, 'Patrole i wspólne badania', 'stone_circle'),
+    (5, 'Sieć ostrzeżeń', 'xardas_tower'),
+    (6, 'Zabezpieczyć dolinę', 'sleeper_temple'),
 )

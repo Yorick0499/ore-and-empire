@@ -32,4 +32,7 @@ class Command(BaseCommand):
             key = data.pop('key')
             quest, _ = StoryQuest.objects.get_or_create(key=key, defaults=data)
             quest.full_clean()
+        from django.apps import apps
+        from characters.story_narrative import apply_narrative
+        apply_narrative(apps)
         self.stdout.write('Story campaign ready; existing definitions and progress retained.')

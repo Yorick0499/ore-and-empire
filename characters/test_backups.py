@@ -51,3 +51,18 @@ class WorldBackupTests(SimpleTestCase):
             with self.assertRaisesMessage(ValueError,'checksum'):restore_drill(backup,root/'test.sqlite3',source)
             self.assertFalse((root/'test.sqlite3').exists())
             self.assertTrue(source.exists())
+
+    def test_story_text_upgrade_is_allowed_but_reward_changes_are_detected(self):
+        with TemporaryDirectory() as directory:
+            source=Path(directory)/'story.sqlite3'
+            snapshot={'version':1,'title':'Stary tekst','description':'Opis','rewards':{'ore':12},'objectives':[{'id':'talk','kind':'talk','label':'Etykieta','options':{'stand':'Dawna odpowiedź'}}]}
+            with sqlite3.connect(source) as db:
+                db.execute('CREATE TABLE characters_storyrun (id INTEGER PRIMARY KEY,snapshot TEXT)')
+                db.execute('INSERT INTO characters_storyrun VALUES (1,?)',(json.dumps(snapshot),))
+            before=inspect_database(source)
+            snapshot['title']='Nowy tekst';snapshot['narrative_version']=2;snapshot['objectives'][0]['options']['stand']='Nowa odpowiedź'
+            with sqlite3.connect(source) as db:db.execute('UPDATE characters_storyrun SET snapshot=?',(json.dumps(snapshot),))
+            self.assertEqual(inspect_database(source),before)
+            snapshot['rewards']['ore']=999
+            with sqlite3.connect(source) as db:db.execute('UPDATE characters_storyrun SET snapshot=?',(json.dumps(snapshot),))
+            self.assertNotEqual(inspect_database(source),before)

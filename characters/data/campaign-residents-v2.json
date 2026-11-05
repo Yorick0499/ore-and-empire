@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "narrative_version": 2,
+  "entries": [
+    {
+      "key": "colony-shares",
+      "before": {
+        "title": "Ruda nie bierze się z powietrza",
+        "description": "Starszy kopacz pokazuje ci rozliczenie dostaw. Dwie ukończone zmiany wystarczą, by udowodnić, że twoja pierwsza bryłka nie była przypadkiem. Każdy obóz potrzebuje ludzi, na których można polegać."
+      },
+      "after": {
+        "title": "Ruda dla wspólnej zmiany",
+        "description": "Obozowe magazyny prowadzą rozliczenie pracy wszystkich mieszkańców. Ukończ dwie własne zmiany i przekaż urobek zgodnie z umową. Nie musisz być wybrańcem, żeby ludzie mogli na tobie polegać."
+      },
+      "options": []
+    },
+    {
+      "key": "colony-oath",
+      "before": {
+        "title": "Własne miejsce pod barierą",
+        "description": "Przy nocnym ognisku słyszysz trzy różne opowieści o wolności. Zdecyduj, czy szukasz w kolonii wspólnoty, czy przede wszystkim własnej drogi. Wybór zostanie w dzienniku; obóz wybierasz osobno."
+      },
+      "after": {
+        "title": "Miejsce przy wspólnym ogniu",
+        "description": "Przy nocnym ognisku rozmawiacie o obowiązkach mieszkańców kolonii. Wybierz, jak chcesz współpracować z innymi, zachowując własny głos. Wybór zapisuje twój stosunek do wspólnoty; nie zmienia przynależności ani osobistej rangi."
+      },
+      "options": []
+    },
+    {
+      "key": "queen-report",
+      "before": {
+        "title": "Serce gniazda",
+        "description": "Raporty prowadzą do gniazda królowej. Wyprawa jest prawdziwą walką — przygotuj zdrowie, energię i broń. Po zwycięstwie oddaj relację, zanim po dolinie rozejdą się pogłoski."
+      },
+      "after": {
+        "title": "Patrol bocznego gniazda",
+        "description": "Kopacze zgłosili odrębne boczne gniazdo pełzaczy. Weź udział w jego zabezpieczeniu i przekaż raport magazynierom. To jedna z wielu prac ochronnych w kolonii, nie jedyne legendarne zwycięstwo nad królową. Wspólna wyprawa twojego obozu ma własny cel i wspólny postęp."
+      },
+      "options": []
+    },
+    {
+      "key": "lost-almanac",
+      "before": {
+        "title": "Ślady po almanachu",
+        "description": "W jaskini z almanachem znaleziono resztki obozowiska. Czarne gobliny bronią wejścia. Zabezpiecz miejsce, by uczeni mogli odczytać ocalałe zapiski."
+      },
+      "after": {
+        "title": "Droga dla kopistów",
+        "description": "Almanach jest już badany przez uczonych; obozy potrzebują bezpiecznej drogi dla kopistów i posłańców. Odpędź czarne gobliny od jaskini i sprawdź miejsce przekazania odpisów. Zabezpieczasz fragment wspólnej pracy, nie zdobywasz na wyłączność jedynego almanachu."
+      },
+      "options": []
+    },
+    {
+      "key": "focus-circle",
+      "before": {
+        "title": "Kamienie, które odpowiadają",
+        "description": "Saturas każe porównać znaki z almanachu z kamiennym kręgiem. Nie obiecuje wyjścia spod bariery. Najpierw trzeba oczyścić krąg z nieumarłego strażnika i opisać układ run."
+      },
+      "after": {
+        "title": "Zmiana przy kamiennym kręgu",
+        "description": "Badacze zbierają obserwacje od kolejnych patroli. Obejmij swoją zmianę przy kamiennym kręgu, usuń nieumarłego z wyznaczonego sektora i dopisz wynik pomiarów. Nikt nie rozwiąże zagadki sam, a twój obóz nadal pozostaje twoją wspólnotą."
+      },
+      "options": []
+    },
+    {
+      "key": "fog-watch",
+      "before": {
+        "title": "Echo Wieży Mgieł",
+        "description": "W zapiskach powtarza się znak podobny do śladów znalezionych przy Wieży Mgieł. Udaj się tam i pokonaj dwóch nieumarłych, aby badacze mogli sprawdzić wybrzeże."
+      },
+      "after": {
+        "title": "Warta przy Wieży Mgieł",
+        "description": "Do kolonii napływają sprzeczne relacje z wybrzeża. Wyrusz na patrol w rejon Wieży Mgieł i odeprzyj nieumarłych, by kolejna ekipa mogła uzupełnić mapę zagrożeń. Twój raport dołączy do pozostałych, bez przypisywania ci wyłącznej roli odkrywcy."
+      },
+      "options": []
+    },
+    {
+      "key": "free-depths",
+      "before": {
+        "title": "W porzuconych chodnikach",
+        "description": "Stare mapy wskazują przejście w głębi Wolnej Kopalni. Wojownik pełzaczy blokuje chodnik. Zbadaj drogę i sprawdź, czy da się przenieść tędy ciężki transport."
+      },
+      "after": {
+        "title": "Chodnik dla transportu",
+        "description": "Wspólne brygady planują przeniesienie ciężkich zapasów przez Wolną Kopalnię. Sprawdź przydzielony chodnik i usuń pełzacza wojownika. Pracujesz jako mieszkaniec swojego obozu; wstęp do tego sektora nie wymaga wyrzeczenia się dawnych towarzyszy."
+      },
+      "options": []
+    },
+    {
+      "key": "shadow-trail",
+      "before": {
+        "title": "Nocny trop",
+        "description": "Na północnym trakcie giną zwierzęta juczne. Cieniostwór nie pozwoli przenieść wyposażenia do kolejnego miejsca badań. Przygotuj się do jednej wymagającej walki."
+      },
+      "after": {
+        "title": "Ochrona nocnego transportu",
+        "description": "Przy północnym trakcie giną zwierzęta juczne. Dołącz do zabezpieczenia dostaw i odpędź cieniostwora z wyznaczonej trasy. Inni mieszkańcy pilnują ładunków i ognisk; po powrocie wpisz wyniki swojej służby."
+      },
+      "options": []
+    },
+    {
+      "key": "fortress-focus",
+      "before": {
+        "title": "Strażnik nad przepaścią",
+        "description": "Przy górskiej fortecy zachował się ślad dawnego układu ogniskującego. Golem na moście nie rozróżnia badaczy i rabusiów. Pokonaj strażnika i opisz miejsce."
+      },
+      "after": {
+        "title": "Eskorta ekipy pomiarowej",
+        "description": "Ekipa obozowych badaczy potrzebuje osłony przy górskiej fortecy. Zabezpiecz most przed kamiennym strażnikiem i opisz drogę odwrotu. Pomiar jest wspólnym przedsięwzięciem, nie samotną wyprawą po wyjątkowy kamień ogniskujący."
+      },
+      "options": []
+    },
+    {
+      "key": "citadel-record",
+      "before": {
+        "title": "Rachunek starej cytadeli",
+        "description": "Układ znaków w cytadeli przeczy prostym obietnicom zniszczenia bariery. Usuń kamiennego golema i porównaj obserwacje. Wiedza kosztuje więcej niż kilka rozbitych skał."
+      },
+      "after": {
+        "title": "Odpisy z cytadeli",
+        "description": "Magowie porównują raporty wielu patroli ze starej cytadeli. Oczyść wyznaczony sektor z golema i przekaż obserwacje kopistom. Służba w terenie nie zmienia twojego obozu; wiedza jest potrzebna całej kolonii."
+      },
+      "options": []
+    },
+    {
+      "key": "xardas-warning",
+      "before": {
+        "title": "Nekromanta nie składa obietnic",
+        "description": "Xardas przyjmuje cię w swojej wieży. Wysłuchuje raportu o ogniskowaniu i ostrzega, że siła działająca pod doliną nie jest zwykłym błędem magów. Zaczekaj na jego analizę."
+      },
+      "after": {
+        "title": "Ostrzeżenie przekazane obozom",
+        "description": "Do obozów dotarła analiza przypisywana Xardasowi. Jako jeden z posłańców sprawdź punkt odbioru przy wieży, zaczekaj na odpis i zdecyduj, jak przekażesz ostrzeżenie swoim ludziom. Nie zostajesz jedynym powiernikiem nekromanty ani wybranym zbawcą."
+      },
+      "options": []
+    },
+    {
+      "key": "orc-threshold",
+      "before": {
+        "title": "U bram orkowego miasta",
+        "description": "Wejście do miasta orków daje odpowiedź na część pytań Xardasa. Zabezpiecz podejście i pokonaj dwóch wojowników. Nikt nie powinien wyruszać do świątyni bez drogi odwrotu."
+      },
+      "after": {
+        "title": "Zwiad przed orkową granicą",
+        "description": "Rada wysyła kilka patroli pod granicę orkowych ziem. Sprawdź przydzielone podejście i odeprzyj wojowników zagrażających zwiadowcom. Zgromadzone meldunki posłużą wspólnym decyzjom; nikt nie nakazuje ci opuszczać własnego obozu."
+      },
+      "options": []
+    },
+    {
+      "key": "supply-route",
+      "before": {
+        "title": "Ostatnia droga zaopatrzenia",
+        "description": "Przed wyprawą w głąb świątyni trzeba odnowić zapasy i sprawdzić północny szlak. Młody troll blokuje przejście w kanionie. Usuń zagrożenie i zaczekaj na ludzi niosących wyposażenie."
+      },
+      "after": {
+        "title": "Zmiana na szlaku zaopatrzenia",
+        "description": "Mieszkańcy kompletują zapasy dla brygad ochronnych. Dopilnuj przejścia przez kanion trolli, usuń młodego trolla z trasy i zaczekaj na transport. Twój wysiłek jest częścią łańcucha dostaw, a nie osobistą misją ratowania całego świata."
+      },
+      "options": []
+    },
+    {
+      "key": "temple-scout",
+      "before": {
+        "title": "Pierwsze kroki w świątyni",
+        "description": "W świątyni Śniącego wszystko brzmi inaczej niż w kopalni. Pokonaj pełzacza świątynnego i zaznacz bezpieczne miejsce zbiórki. To rozpoznanie, nie obietnica łatwego zwycięstwa."
+      },
+      "after": {
+        "title": "Sektor zwiadowczy przy świątyni",
+        "description": "Obozy uzgadniają wspólne rozpoznanie obrzeży świątyni Śniącego. Zabezpiecz przydzielony sektor przed pełzaczem i zaznacz punkt zbiórki. To zadanie jednego ze zwiadowców; samo jego wykonanie nie oznacza pokonania Śniącego ani zakończenia serwera."
+      },
+      "options": []
+    },
+    {
+      "key": "ritual-ready",
+      "before": {
+        "title": "Przed przebudzeniem",
+        "description": "Wieści z krypty Nadzorcy dopełniają raport Xardasa. Przygotuj ostatnie notatki i zadeklaruj gotowość. Historia doprowadza cię do progu finału; o losie całego serwera rozstrzygnie osobny etap kampanii."
+      },
+      "after": {
+        "title": "Gotowość obozowej załogi",
+        "description": "Zbierz końcowe meldunki z podejścia do krypty, sprawdź plan odwrotu i zgłoś swoją gotowość dowódcom obozu. Kończysz osobisty przydział w zbiorowych przygotowaniach. Wspólne wyprawy rozwijają obóz osobno, a o finale kolonii zdecyduje przyszły etap całego świata — nie powtarzana przez każdą postać historia Bezimiennego."
+      },
+      "options": [
+        {
+          "goal": "conversation",
+          "key": "stand",
+          "before": "Wejdę do sanktuarium, gdy będę gotowy.",
+          "after": "Wesprę wyprawę mojego obozu, gdy nadejdzie wspólny sygnał."
+        },
+        {
+          "goal": "conversation",
+          "key": "prepare",
+          "before": "Najpierw zabezpieczę ludzi i drogę powrotu.",
+          "after": "Dopilnuję ludzi i drogi powrotu."
+        }
+      ]
+    },
+    {
+      "key": "oath-community",
+      "before": {
+        "title": "Ludzie przy tym samym ogniu",
+        "description": "Po przygotowaniach do finału wracasz do słów wypowiedzianych przy pierwszym ognisku. Nie wszyscy wyjdą z kolonii tą samą drogą, lecz twoje zobowiązanie wobec ludzi pozostaje zapisane."
+      },
+      "after": {
+        "title": "Ludzie przy tym samym ogniu",
+        "description": "Wracasz na swoje miejsce przy obozowym ognisku. Podsumuj przydział i przypomnij, komu obiecałeś pomoc. Inni mieszkańcy mają własne meldunki i obowiązki; przynależność do obozu pozostaje trwałym punktem wspólnej historii."
+      },
+      "options": []
+    },
+    {
+      "key": "oath-independence",
+      "before": {
+        "title": "Droga wybrana samodzielnie",
+        "description": "Pierwsza deklaracja niezależności nabrała znaczenia dopiero po wszystkim, czego doświadczyłeś. Przy ostatnim ognisku zdecyduj, jak zachowasz własny głos, gdy obozy zaczną dzielić zasługi."
+      },
+      "after": {
+        "title": "Własny głos we wspólnocie",
+        "description": "Niezależność nie musi oznaczać opuszczenia ludzi, z którymi dzielisz los. Podsumuj własną służbę i zachowaj prawo do odmiennej oceny planów. Pozostajesz członkiem swojego obozu, nie samotnym wybrańcem stojącym ponad kolonią."
+      },
+      "options": []
+    }
+  ]
+}
