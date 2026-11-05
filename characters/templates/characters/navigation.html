@@ -16,6 +16,7 @@
     <a href="{% url 'itemshop_page' %}" {% if current == 'itemshop_page' %}aria-current="page"{% endif %}>Sklep odłamków</a>
     <a href="{% url 'bestiary_page' %}" {% if current == 'bestiary_page' %}aria-current="page"{% endif %}>Bestiariusz</a>
     <a href="{% url 'market_page' %}" {% if current == 'market_page' %}aria-current="page"{% endif %}>Targ</a>
+    <a href="{% url 'item_catalog' %}">Katalog przedmiotów</a>
     <a href="{% url 'inventory_page' %}" {% if current == 'inventory_page' %}aria-current="page"{% endif %}>Ekwipunek</a>
     <a href="{% url 'shop_page' %}" {% if current == 'shop_page' %}aria-current="page"{% endif %}>Kupiec</a>
     <a href="{% url 'train_page' %}" {% if current == 'train_page' %}aria-current="page"{% endif %}>Nauczyciel</a>

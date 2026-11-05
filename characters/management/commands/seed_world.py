@@ -14,9 +14,11 @@ class Command(BaseCommand):
             ("Miecz strażnika", 35, 30, 240),
             ("Ostrze najemnika", 50, 45, 500),
         ]:
-            ItemBluePrint.objects.get_or_create(
+            if ItemBluePrint.objects.filter(name=name).exists():
+                continue
+            ItemBluePrint.objects.create(
                 name=name,
-                defaults={
+                **{
                     "damage": damage,
                     "required_strength": strength,
                     "base_value": value,

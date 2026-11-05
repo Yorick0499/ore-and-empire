@@ -190,6 +190,11 @@ class ItemBluePrint(models.Model):
     art_key = models.CharField(max_length=100, blank=True)
 
     @property
+    def original_rows(self):
+        names = {'damage':'Obrażenia','requirement':'Wymagany atrybut broni','reach':'Zasięg','cut_damage':'Obrażenia sieczne','blunt_damage':'Obrażenia obuchowe','value':'Cena G1','base_value':'Cena G1','availability':'Najwcześniejszy rozdział G1','weapon_prot':'Ochrona przed bronią','arrow_prot':'Ochrona przed pociskami','fire_prot':'Ochrona przed ogniem','magic_prot':'Ochrona przed magią','life_bonus':'Bonus życia','mana_bonus':'Bonus many','strength_bonus':'Bonus siły','dexterity_bonus':'Bonus zręczności','effect':'Efekt G1','browser_price':'Cena adaptacji (nie G1)'}
+        return [(label,self.original_stats[key]) for key,label in names.items() if key in self.original_stats]
+
+    @property
     def kind_name(self):
         return {'weapon':'Broń','armor':'Pancerz','ring':'Pierścień','amulet':'Amulet','consumable':'Pożywienie / mikstura','material':'Materiał / trofeum','ammo':'Amunicja','rune':'Runa','scroll':'Zwój','quest':'Przedmiot fabularny','misc':'Pozostałe'}.get(self.kind,self.kind)
 
@@ -520,3 +525,15 @@ class BattleRecord(models.Model):
     class Meta:
         ordering = ['-created_at','-pk']
         constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='one_battle_request')]
+
+
+class ContentPack(models.Model):
+    key = models.SlugField()
+    game = models.CharField(max_length=30)
+    version = models.PositiveIntegerField()
+    sha256 = models.CharField(max_length=64)
+    item_count = models.PositiveIntegerField()
+    installed_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['key','game','version'],name='unique_content_pack_version')]

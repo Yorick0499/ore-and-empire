@@ -1,0 +1,332 @@
+{
+  "shadowbeast": {
+    "GOTHIC_I": "Cieniostwór_(Gothic).png"
+  },
+  "scavenger": {
+    "GOTHIC_I": "Młody_ścierwojad_(G1)_(by_Kubar906).png"
+  },
+  "molerat": {
+    "GOTHIC_I": "Kretoszczur_G.png"
+  },
+  "old_camp": {
+    "GOTHIC_I": "Zamek_w_Górniczej_Dolinie_(Gothic_I)_(by_SpY).png"
+  },
+  "new_camp": {
+    "GOTHIC_I": "Nowy_Obóz_(by_Wojciech_Wawrzyńczak).png"
+  },
+  "swamp_camp": {
+    "GOTHIC_I": "Obóz_Bractwa_G.png"
+  },
+  "old_mine": {
+    "GOTHIC_I": "Stara_Kopalnia_(G1).png"
+  },
+  "meatbug": {
+    "GOTHIC_I": "Chrząszcz_G1.png"
+  },
+  "young_scavenger": {
+    "GOTHIC_I": "Młody_ścierwojad_G.png"
+  },
+  "young_molerat": {
+    "GOTHIC_I": "Kretoszczur_GI_(by_Wedkarski).png"
+  },
+  "goblin": {
+    "GOTHIC_I": "Goblin_G1_(by_Wojciech_Wawrzyńczak).png"
+  },
+  "bloodfly": {
+    "GOTHIC_I": "Krwiopijca_(GI).png"
+  },
+  "wolf": {
+    "GOTHIC_I": "Wilk_(GI).png"
+  },
+  "black_goblin": {
+    "GOTHIC_I": "Czarny_goblin_(G1).png"
+  },
+  "aggressive_bloodfly": {
+    "GOTHIC_I": "Krwiopijca_(GI).png"
+  },
+  "lizard": {
+    "GOTHIC_I": "Jaszczur_(GI).png"
+  },
+  "lurker": {
+    "GOTHIC_I": "Topielec_(GI).png"
+  },
+  "minecrawler": {
+    "GOTHIC_I": "Pełzacz_(Gothic_I).PNG"
+  },
+  "goblin_warrior": {
+    "GOTHIC_I": "Goblin_wojownik_(Gothic_I)_(by_Ossowwski).png"
+  },
+  "biter": {
+    "GOTHIC_I": "Kąsacz_G1.png"
+  },
+  "dam_lurker": {
+    "GOTHIC_I": "Topielec_pod_tamą.png"
+  },
+  "snapper": {
+    "GOTHIC_I": "Zębacz_(GI).png"
+  },
+  "orc_dog": {
+    "GOTHIC_I": "Orkowy_pies_(G1).png"
+  },
+  "skeleton_scout": {
+    "GOTHIC_I": "Szkielet_zwiadowca_(siekacz)_(G1).png"
+  },
+  "skeleton": {
+    "GOTHIC_I": "Szkielet_(zardzewiały_miecz)_(G1).png"
+  },
+  "zombie": {
+    "GOTHIC_I": "G1_zombie.png"
+  },
+  "orc_scout": {
+    "GOTHIC_I": "Ork_zwiadowca_G.png"
+  },
+  "harpy": {
+    "GOTHIC_I": "Harpia_G.png"
+  },
+  "skeleton_warrior": {
+    "GOTHIC_I": "Szkielet_wojownik_(wyszczerbiony_topór)_(G1).png"
+  },
+  "skeleton_mage": {
+    "GOTHIC_I": "Szkielet_mag_(zwykły)_(G1).png"
+  },
+  "fog_mage": {
+    "GOTHIC_I": "Szkielet_maga_z_Wieży_Mgieł_(G1).png"
+  },
+  "razor": {
+    "GOTHIC_I": "Brzytwa_(GI).png"
+  },
+  "minecrawler_warrior": {
+    "GOTHIC_I": "Pełzacz_wojownik_(Gothic_I)_(by_BagiennySzopen).png"
+  },
+  "orc": {
+    "GOTHIC_I": "G1_Ork_typ_1.png"
+  },
+  "orc_hunter": {
+    "GOTHIC_I": "Ork-myśliwy_G1.png"
+  },
+  "orc_soldier": {
+    "GOTHIC_I": "Ork-żołnierz_G1.png"
+  },
+  "orc_warrior": {
+    "GOTHIC_I": "Ork-wojownik_G1.png"
+  },
+  "fire_lizard": {
+    "GOTHIC_I": "Ognisty_jaszczur_(GI).png"
+  },
+  "bridge_golem": {
+    "GOTHIC_I": "Golem_mostowy_G1.png"
+  },
+  "swampshark": {
+    "GOTHIC_I": "G1_Wąż_błotny.png"
+  },
+  "wounded_swampshark": {
+    "GOTHIC_I": "G1_Wąż_błotny.png"
+  },
+  "orc_guard": {
+    "GOTHIC_I": "Ork-strażnik_G1.png"
+  },
+  "orc_shaman": {
+    "GOTHIC_I": "Szaman_orkowy_G.png"
+  },
+  "young_troll": {
+    "GOTHIC_I": "Mlody_troll_(G1).png"
+  },
+  "stone_golem": {
+    "GOTHIC_I": "Kamienny_golem_G1.png"
+  },
+  "fire_golem": {
+    "GOTHIC_I": "Ognisty_golem_G1.png"
+  },
+  "ice_golem": {
+    "GOTHIC_I": "Lodowy_golem_G1.png"
+  },
+  "orc_veteran": {
+    "GOTHIC_I": "Ork-wiarus_G1.png"
+  },
+  "troll": {
+    "GOTHIC_I": "Troll_(Gothic_I)_(by_SpY).png"
+  },
+  "demon": {
+    "GOTHIC_I": "Pomniejszy_demon_(G1).png"
+  },
+  "fire_demon": {
+    "GOTHIC_I": "Demon_ognia_(GI).png"
+  },
+  "temple_crawler": {
+    "GOTHIC_I": "Świątynny_pełzacz_G1.png"
+  },
+  "temple_guardian": {
+    "GOTHIC_I": "Opiekun_świątyni_(GI)_(by_Jao98).png"
+  },
+  "undead_orc": {
+    "GOTHIC_I": "Opiekun_świątyni_(GI)_(by_Jao98).png"
+  },
+  "demon_lord": {
+    "GOTHIC_I": "Książe_Demonów_GI.png"
+  },
+  "overseer": {
+    "GOTHIC_I": "Nadzorca_(GI).png"
+  },
+  "exchange": {
+    "GOTHIC_I": "Plac_wymian_(Gothic_I)_(by_SpY).png"
+  },
+  "forest": {
+    "GOTHIC_I": "Most_do_Starego_Obozu_G.png"
+  },
+  "abandoned_mine": {
+    "GOTHIC_I": "Opuszczona_kopalnia_1_(G1).png"
+  },
+  "cavalorn": {
+    "GOTHIC_I": "Chata_Cavalorna_G.png"
+  },
+  "rice_fields": {
+    "GOTHIC_I": "Pola_ryżowe_(GI).png"
+  },
+  "lake_tavern": {
+    "GOTHIC_I": "Karczma_na_jeziorze_(Gothic_I)_(dzień)_(by_SpY).png"
+  },
+  "free_mine": {
+    "GOTHIC_I": "Wolna_kopalnia_1.png"
+  },
+  "aidan": {
+    "GOTHIC_I": "Chata_Aidana_(G1).png"
+  },
+  "swamp": {
+    "GOTHIC_I": "Bagno_koło_Obozu_Bractwa_(G1).png"
+  },
+  "almanac_cave": {
+    "GOTHIC_I": "Jaskinia_czarnych_goblinów.png"
+  },
+  "crawler_tunnels": {
+    "GOTHIC_I": "Stara_Kopalnia_(G1).png"
+  },
+  "crawler_nest": {
+    "GOTHIC_I": "G1_Stara_Kopalnia_brama_oddzielająca_gniazdo.png"
+  },
+  "orc_cemetery": {
+    "GOTHIC_I": "Cmentarzysko_Orków_(wejście).png"
+  },
+  "dam": {
+    "GOTHIC_I": "Tama_w_Nowym_Obozie_G.png"
+  },
+  "eastern_forest": {
+    "GOTHIC_I": "Wschodni_las_w_GD_G.png"
+  },
+  "swamp_den": {
+    "GOTHIC_I": "Bagno_koło_Obozu_Bractwa_(G1).png"
+  },
+  "swamp_depths": {
+    "GOTHIC_I": "Bagno_koło_Obozu_Bractwa_(G1).png"
+  },
+  "stone_circle": {
+    "GOTHIC_I": "Krypta_(G1).png"
+  },
+  "fog_tower": {
+    "GOTHIC_I": "Wieża_mgieł_(by_Ossowski21).png"
+  },
+  "fog_beach": {
+    "GOTHIC_I": "Plaża_ogół_(by_Ossowski21).png"
+  },
+  "quentin_camp": {
+    "GOTHIC_I": "Obóz_Quentina_G1_(by_Wedkarski).png"
+  },
+  "free_mine_depths": {
+    "GOTHIC_I": "Wolna_kopalnia_1.png"
+  },
+  "old_monastery": {
+    "GOTHIC_I": "Klasztor_mnichów_widok_ogólny_G.png"
+  },
+  "northern_forest": {
+    "GOTHIC_I": "Północny_las_w_Górniczej_Dolinie_1_(G1).png"
+  },
+  "mountain_fortress": {
+    "GOTHIC_I": "Twierdza_g1_ogoł_(by_Ossowski21).png"
+  },
+  "orc_lands": {
+    "GOTHIC_I": "G1_Ziemie_orków_00_koło_skrzyżowania.png"
+  },
+  "old_citadel": {
+    "GOTHIC_I": "Stara_cytadela_(1).png"
+  },
+  "xardas_tower": {
+    "GOTHIC_I": "Wieża_Xardasa_w_Dolinie_(Gothic).png"
+  },
+  "sunken_tower": {
+    "GOTHIC_I": "Zatopiona_wieża_widok_ogólny_G.png"
+  },
+  "orc_city": {
+    "GOTHIC_I": "Miasto_orków_G1.png"
+  },
+  "troll_canyon": {
+    "GOTHIC_I": "Kanion_ogólny_widok_2_(by_Ossowski21).png"
+  },
+  "sleeper_temple": {
+    "GOTHIC_I": "Świątynia_wejście_G1.png"
+  },
+  "overseer_crypt": {
+    "GOTHIC_I": "Krypta_(G1).png"
+  },
+  "crawler_queen": {
+    "GOTHIC_I": "G1_Królowa_pełzaczy.png"
+  },
+  "sleeper": {
+    "GOTHIC_I": "Śniący_(Gothic).png"
+  },
+  "sleeper_sanctum": {
+    "GOTHIC_I": "Portal_w_świątyni_Śniącego_(Gothic_I)_(by_SpY).png"
+  },
+  "old_castle": {
+    "GOTHIC_I": "Zamek_w_GD_(G1)_ogólny_widok_dzień_(by_Ossowski21).png"
+  },
+  "water_mages": {
+    "GOTHIC_I": "G1_Siedziba_magów_wody_przejście.png"
+  },
+  "brotherhood_temple": {
+    "GOTHIC_I": "Świątynia_w_obozie_Bractwa.png"
+  },
+  "orc_slave": {
+    "GOTHIC_I": "Ork-niewolnik_G.png"
+  },
+  "rice_spirit": {
+    "GOTHIC_I": "Ryżówka_GI.png"
+  },
+  "healing_essence": {
+    "GOTHIC_I": "Esencja_uzdrawiająca_(G1).png"
+  },
+  "battle_staff": {
+    "GOTHIC_I": "Pałka_Namiba.png"
+  },
+  "rune_sword": {
+    "GOTHIC_I": "Miecz_śmierci_(G1).png"
+  },
+  "item_rusty_sword": {
+    "GOTHIC_I": "Zardzewiały miecz (Gothic).png"
+  },
+  "item_short_bow": {
+    "GOTHIC_I": "Krótki łuk (Gothic I) (by Wojciech Wawrzyńczak).png"
+  },
+  "item_digger_trousers": {
+    "GOTHIC_I": "Lekkie spodnie kopacza (by Ossowski21).png"
+  },
+  "item_iron_ring": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_vitality_amulet": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_god_hammer": {
+    "GOTHIC_I": "Boski młot (Gothic).png"
+  },
+  "item_wolf_skin": {
+    "GOTHIC_I": "Skóra wilka (G1).png"
+  },
+  "item_arrow": {
+    "GOTHIC_I": "Strzała_(G1).png"
+  },
+  "item_bolt": {
+    "GOTHIC_I": "Bełt_(G1).png"
+  },
+  "item_healing": {
+    "GOTHIC_I": "Esencja_uzdrawiająca_(G1).png"
+  }
+}
