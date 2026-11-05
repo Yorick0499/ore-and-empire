@@ -1,0 +1,10 @@
+{% extends 'characters/base.html' %}{% load local_dates %}{% block content %}
+<section class="colony-panel"><h1>Twoja kronika</h1><p>Zapisy i powiadomienia tej postaci są prywatne.</p>
+<nav aria-label="Rodzaj wpisów"><a href="?kind=battles">Walki</a> · <a href="?kind=rewards">Nagrody i rozliczenia</a> · <a href="?kind=notices">Powiadomienia</a></nav>
+{% if kind == 'notices' %}<form method="post">{% csrf_token %}<button>Oznacz powiadomienia jako przeczytane</button></form>{% endif %}
+{% for row in page %}<article class="status-panel">
+<p>{{ row.created_at|local_date }}</p>
+{% if kind == 'battles' %}<h2><a href="{% url 'battle_detail' row.pk %}">{{ row.monster_key|monster_name }} · {% if row.won %}Zwycięstwo{% else %}Porażka{% endif %}</a></h2><p>{{ row.experience }} PD · {{ row.ore }} rudy</p>
+{% elif kind == 'rewards' %}<p>{{ row.operation|operation_name }} · {{ row.amount }} {{ row.resource|resource_name }} · saldo po operacji: {{ row.balance_after }}</p>
+{% else %}<p>{% if not row.read_at %}<strong>Nowe: </strong>{% endif %}{{ row.title }}</p><a href="{% url row.destination %}">Przejdź</a>{% endif %}</article>{% empty %}<p>Brak wpisów w tej części kroniki.</p>{% endfor %}
+<nav aria-label="Strony kroniki">{% if page.has_previous %}<a href="?kind={{ kind }}&amp;page={{ page.previous_page_number }}">Poprzednia</a>{% endif %} Strona {{ page.number }} z {{ page.paginator.num_pages }} {% if page.has_next %}<a href="?kind={{ kind }}&amp;page={{ page.next_page_number }}">Następna</a>{% endif %}</nav></section>{% endblock %}
