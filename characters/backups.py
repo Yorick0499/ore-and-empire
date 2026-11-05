@@ -78,7 +78,7 @@ def create_backup(source, root, keep=7):
 def backups(root):
     import re
     root=Path(root)
-    return sorted((p for p in root.glob('world-*') if re.fullmatch(r'world-\d{8}T\d{6}-[a-f0-9]{8}',p.name) and not p.is_symlink() and (p/'manifest.json').is_file() and (p/'world.sqlite3').is_file()),key=lambda p:(p.stat().st_mtime_ns,p.name),reverse=True)
+    return sorted((p for p in root.glob('world-*') if re.fullmatch(r'world-\d{8}T\d{6}-[a-f0-9]{8}',p.name) and not p.is_symlink() and (p/'manifest.json').is_file() and (p/'world.sqlite3').is_file()),key=lambda p:((p/'manifest.json').stat().st_mtime_ns,p.name),reverse=True)
 
 
 def restore_drill(backup, target, live):

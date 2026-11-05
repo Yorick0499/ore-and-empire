@@ -32,7 +32,11 @@ class WorldBackupTests(SimpleTestCase):
             with self.assertRaises(ValueError):restore_drill(first,source,source)
             with self.assertRaises(ValueError):restore_drill(first,restored,source)
             foreign=dest/'world-not-ours';foreign.mkdir()
-            create_backup(source,dest,2);create_backup(source,dest,2)
+            second=create_backup(source,dest,2)
+            # Creating verification.json touches the old directory, not its creation manifest.
+            os.utime(first,ns=(first.stat().st_atime_ns,second.stat().st_mtime_ns+10_000_000_000))
+            self.assertEqual(backup_status(dest)['name'],second.name)
+            create_backup(source,dest,2)
             self.assertFalse(first.exists());self.assertTrue(foreign.exists())
             self.assertEqual(backup_status(dest)['count'],2)
 
