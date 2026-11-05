@@ -80,7 +80,7 @@ WSGI_APPLICATION = "ore_empire.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": os.environ.get("ORE_DATABASE_PATH", BASE_DIR / "db.sqlite3"),
     }
 }
 
