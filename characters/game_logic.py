@@ -234,6 +234,7 @@ def list_item_on_market(seller_profile, owned_item, price):
         return False
     if type(price) is not int or not 1 <= price <= MAX_MARKET_PRICE:
         return False
+    owned_item.listed_at = timezone.now()
     owned_item.is_market_listed = True
     owned_item.market_price = price
     owned_item.save()
@@ -261,6 +262,7 @@ def buy_item_on_market(buyer_profile, owned_item):
     current_owner.ore_balance = current_owner.ore_balance + owned_item.market_price
     owned_item.owner = buyer_profile
     owned_item.market_price = None
+    owned_item.listed_at = None
     owned_item.is_market_listed = False
     owned_item.save()
     buyer_profile.save()
@@ -274,6 +276,7 @@ def delist_item_from_market(seller_profile, owned_item):
         return False
     if not owned_item.is_market_listed:
         return False
+    owned_item.listed_at = None
     owned_item.is_market_listed = False
     owned_item.market_price = None
     owned_item.save()

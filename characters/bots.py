@@ -61,13 +61,14 @@ class Observation:
     story_target: int | None = None
     story_recover: bool = False
     consume_id: int | None = None
+    experience: int = 0
 
 
 class Policy(Protocol):
     def choose(self, observation: Observation) -> tuple[str, int | None]: ...
 
 
-class BaselinePolicy:
+class BaselinePolicyV7:
     def choose(self, observation):
         o = observation
         if o.adventure_ready:
@@ -144,6 +145,10 @@ class BaselinePolicy:
         if o.energy >= 10:
             return "mine", None
         return "wait", None
+
+
+class BaselinePolicy(BaselinePolicyV7):
+    pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -307,7 +312,7 @@ def tick_bot(profile, policy=None):
         product = next((p for p in products if p.kind == "weapon" and p.blueprint and p.blueprint.required_strength <= profile.strength and p.blueprint.damage > damage and not any(i.blueprint_id == p.blueprint_id for i in inventory)), None)
     camp_target = (profile.pk - 1) % 3 + 1
     obs = Observation(
-        energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy,
+        energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
         offer_id=offer.pk if offer else None, inventory_id=item.pk if item else None,
         blueprint_id=stock.pk if stock else None, equip_id=equipment.pk if equipment else None,
@@ -330,9 +335,10 @@ def tick_bot(profile, policy=None):
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
     )
+    policy_version = "baseline-7" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
-        record_decision(profile, obs, "rejected", None, False)
+        record_decision(profile, obs, "rejected", None, False, policy_version)
         return "rejected", False
     story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
     if action in story_services and action == story.action and target == story.target:
@@ -377,13 +383,13 @@ def tick_bot(profile, policy=None):
     elif action == "wait":
         success = True
     else:
-        record_decision(profile, obs, "rejected", None, False)
+        record_decision(profile, obs, "rejected", None, False, policy_version)
         return "rejected", False
     if success and action != "wait":
         profile.refresh_from_db()
         profile.bot_turn += 1
         profile.save(update_fields=["bot_turn"])
-    record_decision(profile, obs, action, target, success)
+    record_decision(profile, obs, action, target, success, policy_version)
     from .community import bot_conversation
     bot_conversation(profile)
     return action, success

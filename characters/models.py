@@ -224,6 +224,7 @@ class ItemBluePrint(models.Model):
 
 
 class OwnedItem(models.Model):
+    listed_at = models.DateTimeField(null=True,blank=True,db_index=True)
     blueprint = models.ForeignKey(ItemBluePrint, on_delete=models.CASCADE)
     owner = models.ForeignKey(
         PlayerProfile, on_delete=models.CASCADE, related_name="inventory"
@@ -318,6 +319,9 @@ class BotDecision(models.Model):
     profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT)
     created_at = models.DateTimeField(default=timezone.now, db_index=True)
     schema_version = models.PositiveSmallIntegerField(default=1)
+    policy_version = models.CharField(max_length=40,default="legacy-unknown")
+    reason = models.CharField(max_length=40,default="legacy-unspecified")
+    experience_delta = models.IntegerField(default=0)
     role = models.CharField(max_length=10)
     observation = models.JSONField()
     action = models.CharField(max_length=20)
@@ -330,6 +334,7 @@ class BotDecision(models.Model):
 
     class Meta:
         ordering = ["-created_at", "-pk"]
+        indexes = [models.Index(fields=["profile","-created_at","-id"])]
 
 
 class CampQuest(models.Model):
@@ -592,3 +597,18 @@ def equipped_item_removed(sender,instance,**kwargs):
         if profile:
             from .equipment import sync_health
             sync_health(profile)
+
+
+class BotDailySummary(models.Model):
+    day = models.DateField()
+    profile = models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    decisions = models.PositiveIntegerField(default=0)
+    successes = models.PositiveIntegerField(default=0)
+    experience_delta = models.BigIntegerField(default=0)
+    ore_delta = models.BigIntegerField(default=0)
+    premium_delta = models.BigIntegerField(default=0)
+    actions = models.JSONField(default=dict)
+    schema_version = models.PositiveSmallIntegerField(default=1)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['day','profile'],name='unique_bot_daily_summary')]
+        indexes=[models.Index(fields=['day','profile'])]
