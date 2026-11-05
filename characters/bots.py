@@ -227,6 +227,8 @@ def tick_bot(profile, policy=None):
     from .locations import LOCATIONS
     from .economy import start_adventure, claim_adventure, purchase_product
     profile = type(profile).objects.select_for_update().get(pk=profile.pk)
+    from .worlds import playable
+    if not playable(profile):return "wait",False
     if not profile.is_bot:
         raise ValueError("Only designated bot profiles may run bot policies")
     profile.bot_last_tick = timezone.now()
@@ -253,7 +255,7 @@ def tick_bot(profile, policy=None):
     stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=['onehand','twohand'], min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
     if combat_equipment:
         offers = offers.filter(blueprint__damage__gt=damage)
     upgrade = None

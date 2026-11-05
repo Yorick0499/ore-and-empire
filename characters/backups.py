@@ -12,13 +12,14 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_world':['id','name','edition','universe','rules_version','status','is_current','bot_count'],
     'characters_campraid':['id','guild_id','day','name','maximum_health','health','attack','protection','minimum_level','completed_at'],
     'characters_campraidstrike':['id','raid_id','profile_id','request_key','damage','health_cost','mana_cost','casts','log'],
     'characters_campraidreward':['id','raid_id','profile_id','ore','experience','premium'],
-    'characters_campguild':['id','camp','experience','level','treasury','training_level','supply_level','defense_level'],
+    'characters_campguild':['id','world_id','camp','experience','level','treasury','training_level','supply_level','defense_level'],
     'characters_campproject':['id','guild_id','day','title','objectives','progress','experience_reward','treasury_reward','completed_at'],
     'characters_campcontribution':['id','guild_id','profile_id','project_id','source','kind','amount'],
-    'characters_playerprofile': ['id','user_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','current_mana','equipment_mana','prepared_magic_id'],
+    'characters_playerprofile': ['id','user_id','world_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','current_mana','equipment_mana','prepared_magic_id'],
     'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at'],
     'characters_storyrun': ['id','profile_id','quest_id','status','progress','snapshot','choices','claimed_at'],
     'characters_adventurerun': ['id','profile_id','template_id','claimed_at'],

@@ -37,15 +37,17 @@ def refills_remaining(profile,now=None):
 
 
 def summary():
+    from .worlds import current_world
+    world=current_world()
     totals={resource:{category:0 for category in ('opening','source','sink','transfer','admin')} for resource in RESOURCE_FIELDS}
-    for row in EconomicEntry.objects.values('resource','category').annotate(total=Sum('amount')):
+    for row in EconomicEntry.objects.filter(profile__world=world).values('resource','category').annotate(total=Sum('amount')):
         totals[row['resource']][row['category']]=row['total']
     for resource,field in RESOURCE_FIELDS.items():
-        actual=PlayerProfile.objects.aggregate(total=Sum(field))['total'] or 0
+        actual=PlayerProfile.objects.filter(world=world).aggregate(total=Sum(field))['total'] or 0
         totals[resource]['actual_balance']=actual
         totals[resource]['reconciliation_gap']=actual-sum(totals[resource][c] for c in ('opening','source','sink','transfer','admin'))
-    since=EconomicEntry.objects.aggregate(first=Min('created_at'))['first']
-    trades=MarketTrade.objects.filter(created_at__gte=since) if since else MarketTrade.objects.none()
+    since=EconomicEntry.objects.filter(profile__world=world).aggregate(first=Min('created_at'))['first']
+    trades=MarketTrade.objects.filter(seller__world=world,created_at__gte=since) if since else MarketTrade.objects.none()
     averages={r['blueprint_id']:r for r in trades.filter(blueprint__kind='weapon').values('blueprint_id').annotate(average=Avg('price'),count=Count('pk'))}
     prices=[]
     for item in ItemBluePrint.objects.filter(merchant=True,kind='weapon').order_by('base_value','pk')[:30]:

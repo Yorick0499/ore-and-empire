@@ -1,3 +1,5 @@
+from django.views.decorators.debug import sensitive_post_parameters
+from .worlds import current_world
 from uuid import uuid4
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
@@ -118,7 +120,7 @@ def market_view(request):
                 return redirect(request.get_full_path())
             report_action(request, delist_item_from_market(profile, sell_item))
             return redirect(request.get_full_path())
-    market_all_items = OwnedItem.objects.filter(is_market_listed=True).select_related(
+    market_all_items = OwnedItem.objects.filter(is_market_listed=True,owner__world=current_world()).select_related(
         "owner__user", "blueprint"
     )
     player_inventory = OwnedItem.objects.filter(owner=profile, is_market_listed=False)
@@ -280,7 +282,7 @@ def locations_view(request):
             "profile": profile,
             "cards": cards,
             "population": PlayerProfile.objects.filter(
-                is_bot=True, user__is_active=True
+                world=current_world(),is_bot=True, user__is_active=True
             )
             .values("bot_role")
             .annotate(total=Count("pk")),
@@ -292,7 +294,7 @@ def locations_view(request):
 def market_monitor_view(request):
     from .models import BotDecision
 
-    decisions = BotDecision.objects.all()
+    decisions = BotDecision.objects.filter(profile__world=current_world())
     if request.GET.get("format") == "bots-csv":
         import csv
         import json
@@ -313,7 +315,7 @@ def market_monitor_view(request):
                 json.dumps(decision.observation, sort_keys=True), decision.policy_version, decision.reason, decision.experience_delta,
             ])
         return response
-    trades = MarketTrade.objects.select_related(
+    trades = MarketTrade.objects.filter(seller__world=current_world()).select_related(
         "blueprint", "seller__user", "buyer__user"
     )
     if request.GET.get("format") == "csv":
@@ -502,7 +504,7 @@ def events_view(request):
     from django.utils import timezone
     from .models import WorldEvent
     from .world_events import active_events
-    return render(request, "characters/events.html", {"active": active_events(), "upcoming": WorldEvent.objects.filter(enabled=True, starts_at__gt=timezone.now())[:6]})
+    return render(request, "characters/events.html", {"active": active_events(), "upcoming": WorldEvent.objects.filter(world=current_world(),enabled=True, starts_at__gt=timezone.now())[:6]})
 
 
 @login_required
@@ -514,7 +516,7 @@ def rankings_view(request):
     camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"]
     if population not in populations or camp not in {"", *(key for key, _ in camps)}:
         raise Http404("Nieznany ranking")
-    profiles = PlayerProfile.objects.filter(user__is_active=True, user__is_staff=False).select_related("user")
+    profiles = PlayerProfile.objects.filter(world=current_world(),user__is_active=True, user__is_staff=False).select_related("user")
     if population != "all":
         profiles = profiles.filter(is_bot=population == "bots")
     totals = {row["camp"]: row for row in profiles.values("camp").annotate(players=Count("pk"), experience=Sum("experience"), average=Avg("level"))}
@@ -533,9 +535,9 @@ def game_master_view(request):
     from django.conf import settings
     if not request.user.is_superuser:
         raise PermissionDenied("Panel zarządcy wymaga konta administratora.")
-    profiles = PlayerProfile.objects.select_related("user").order_by("user__username")
+    profiles = PlayerProfile.objects.filter(world=current_world()).select_related("user").order_by("user__username")
     selected = request.POST.get("profile") if request.method == "POST" else request.GET.get("profile")
-    target = get_object_or_404(PlayerProfile, pk=positive_id(selected)) if selected else profiles.first()
+    target = get_object_or_404(PlayerProfile, world=current_world(),pk=positive_id(selected)) if selected else profiles.first()
     if request.method == "POST":
         success, message = administer_player(request.user, target.pk, request.POST.get("action"), request.POST)
         (messages.success if success else messages.error)(request, message)
@@ -554,14 +556,14 @@ def tavern_view(request):
     from .community import post_message
     from .models import TavernTopic
     topic_id = request.GET.get('topic')
-    topic = get_object_or_404(TavernTopic, pk=positive_id(topic_id)) if topic_id else None
+    topic = get_object_or_404(TavernTopic,author__world=current_world(), pk=positive_id(topic_id)) if topic_id else None
     if request.method == 'POST':
         try:
             posted = post_message(request.user.playerprofile, request.POST.get('body'), topic_id=topic.pk if topic else None, title=request.POST.get('title'))
             return redirect(f'{request.path}?topic={posted.pk}')
         except ValueError as exc:
             messages.error(request, str(exc))
-    topics = Paginator(TavernTopic.objects.select_related('author__user').all(), 20).get_page(request.GET.get('page'))
+    topics = Paginator(TavernTopic.objects.filter(author__world=current_world()).select_related('author__user'), 20).get_page(request.GET.get('page'))
     entries = Paginator(topic.messages.select_related('author__user').all(), 30).get_page(request.GET.get('messages')) if topic else None
     return render(request, 'characters/tavern.html', {'topic': topic, 'topics': topics, 'entries': entries})
 
@@ -572,7 +574,7 @@ def colony_life_view(request):
     from django.utils import timezone
     from .community import activity_rows
     now = timezone.now()
-    residents = list(PlayerProfile.objects.filter(is_bot=True, user__is_active=True).select_related('user').order_by('pk')[:100])
+    residents = list(PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).select_related('user').order_by('pk')[:100])
     for resident in residents:
         resident.scheduler_active = bool(resident.bot_last_tick and now - resident.bot_last_tick < timedelta(seconds=90))
     return render(request, 'characters/colony_life.html', {'residents': residents, 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
@@ -659,7 +661,7 @@ def world_monitor_view(request):
         return response
     replay=None
     if request.GET.get('decision'):
-        fact=get_object_or_404(BotDecision,pk=positive_id(request.GET.get('decision')))
+        fact=get_object_or_404(BotDecision,profile__world=current_world(),pk=positive_id(request.GET.get('decision')))
         replay={'id':fact.pk,**replay_decision(fact)}
     return render(request,'characters/world_monitor.html',{'report':report,'replay':replay})
 
@@ -700,3 +702,59 @@ def camp_guild_view(request):
         (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
         return redirect('camp_guild')
     return render(request,'characters/camp_guild.html',{'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
+
+
+@sensitive_post_parameters("password")
+def world_setup_view(request):
+    from django.contrib.auth.models import User
+    from .world_management import WorldSetupForm,initialize_world
+    from django.core.exceptions import ValidationError
+    if request.META.get('REMOTE_ADDR') not in {'127.0.0.1','::1'}:raise PermissionDenied('Pierwszą inicjalizację uruchom lokalnie.')
+    if User.objects.filter(is_superuser=True).exists():
+        if request.user.is_authenticated and request.user.is_superuser:return redirect('world_control')
+        return redirect('login')
+    form=WorldSetupForm(request.POST or None)
+    if request.method=='POST' and form.is_valid():
+        try:admin=initialize_world(**form.cleaned_data)
+        except ValidationError as exc:form.add_error(None,exc)
+        else:login(request,admin);return redirect('world_control')
+    return render(request,'characters/world_setup.html',{'form':form})
+
+
+@login_required
+@sensitive_post_parameters("password")
+def world_control_view(request):
+    if not request.user.is_active or not request.user.is_superuser:raise PermissionDenied('Tylko administrator może zarządzać światem.')
+    from .world_management import WorldResetForm,WorldSettingsForm,reset_world
+    from django.core.exceptions import ValidationError
+    from django.contrib.auth import logout
+    world=current_world()
+    configuring=request.method=='POST' and request.POST.get('action')=='configure'
+    config_form=WorldSettingsForm(request.POST if configuring else None,initial={'name':world.name,'bot_count':world.bot_count})
+    if configuring and config_form.is_valid():
+        from django.core.management import call_command
+        from io import StringIO
+        with transaction.atomic():
+            world.name=config_form.cleaned_data['name'];world.bot_count=config_form.cleaned_data['bot_count'];world.configured=True;world.save()
+            if world.bot_count:call_command('run_bots',create=world.bot_count,create_only=True,limit=world.bot_count,stdout=StringIO())
+        messages.success(request,'Zapisano nazwę i liczbę aktywnych botów bez resetu.');return redirect('world_control')
+    form=WorldResetForm(request.POST if request.method=='POST' and not configuring else None,initial={'name':world.name,'bot_count':world.bot_count,'expected_world':world.pk})
+    if request.method=='POST' and not configuring and form.is_valid():
+        values=dict(form.cleaned_data);values.pop('acknowledge')
+        try:fresh,backup=reset_world(request.user,**values)
+        except (ValidationError,PermissionDenied) as exc:form.add_error(None,str(exc))
+        except OSError:form.add_error(None,'Nie udało się utworzyć kopii. Świat nie został wyczyszczony.')
+        else:
+            logout(request);messages.success(request,'Nowy świat utworzony. Zaloguj się tym samym kontem administratora.');return redirect('login')
+    return render(request,'characters/world_control.html',{'world':world,'form':form,'config_form':config_form})
+
+
+@login_required
+def characters_view(request):
+    from .worlds import profile_for
+    profile=profile_for(request.user)
+    if request.method=='POST':
+        selected=get_object_or_404(PlayerProfile,pk=positive_id(request.POST.get('profile')),user=request.user,world=current_world())
+        request.session['active_character']=selected.pk
+        return redirect('locations_page')
+    return render(request,'characters/characters.html',{'profile':profile,'characters':request.user.characters.select_related('world').all()})

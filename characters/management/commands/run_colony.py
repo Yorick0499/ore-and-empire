@@ -48,14 +48,19 @@ class Command(BaseCommand):
             call_command("seed_catalog", stdout=self.stdout)
             call_command("seed_adventures", stdout=self.stdout)
             call_command("seed_story", stdout=self.stdout)
+            from characters.worlds import current_world
+            world=current_world()
+            if not world.configured:
+                world.bot_count=options["bots"];world.save(update_fields=["bot_count"])
+            active_bots=world.bot_count
             if options["setup_admin"]:
                 call_command("create_game_admin", stdout=self.stdout)
-            if options["bots"]:
+            if active_bots:
                 call_command(
                     "run_bots",
-                    create=options["bots"],
+                    create=active_bots,
                     create_only=True,
-                    limit=options["bots"],
+                    limit=active_bots,
                     stdout=self.stdout,
                 )
             self.stdout.write(
@@ -87,8 +92,8 @@ class Command(BaseCommand):
                                 self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
                             event_day = timezone.now().date()
                         profiles = PlayerProfile.objects.filter(
-                            is_bot=True, user__is_active=True
-                        ).order_by("pk")[: options["bots"]]
+                            is_bot=True, user__is_active=True,world=current_world()
+                        ).order_by("pk")[: current_world().bot_count]
                         for profile in profiles:
                             try:
                                 action, success = tick_bot(profile)

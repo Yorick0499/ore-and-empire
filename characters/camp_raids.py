@@ -18,7 +18,7 @@ def phase(raid):
 @player_action
 def rally_camp_raid(profile):
     if profile.camp not in CAMPS:return False
-    guild=CampGuild.objects.select_for_update().get(camp=profile.camp)
+    guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
     name,art=ENCOUNTERS[profile.camp];health=500+guild.level*100
     raid,_=CampRaid.objects.get_or_create(guild=guild,day=timezone.now().astimezone(utc.utc).date(),defaults={'name':name,'art_key':art,'health':health,'maximum_health':health,'attack':10+guild.level*2,'protection':4+guild.level*2})
     return raid
@@ -59,7 +59,7 @@ def strike_camp_raid(profile,raid_id,request_key):
     prior=CampRaidStrike.objects.filter(profile=profile,request_key=key).first()
     if prior:return prior if prior.raid_id==raid_id and prior.raid.guild.camp==profile.camp else False
     if profile.camp not in CAMPS:return False
-    guild=CampGuild.objects.select_for_update().get(camp=profile.camp)
+    guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
     raid=CampRaid.objects.select_for_update().filter(pk=raid_id,guild=guild,day=timezone.now().astimezone(utc.utc).date()).first()
     if not raid or raid.completed_at or profile.level<raid.minimum_level or profile.is_busy or profile.current_energy<20 or profile.current_health<10:return False
     last=CampRaidStrike.objects.filter(raid=raid,profile=profile).first()
@@ -81,7 +81,7 @@ def strike_camp_raid(profile,raid_id,request_key):
 
 @player_action
 def claim_camp_raid(profile,raid_id):
-    raid=CampRaid.objects.filter(pk=raid_id,guild__camp=profile.camp,completed_at__isnull=False).first()
+    raid=CampRaid.objects.filter(pk=raid_id,guild__camp=profile.camp,guild__world_id=profile.world_id,completed_at__isnull=False).first()
     if not raid or not raid.strikes.filter(profile=profile,damage__gt=0).exists():return False
     if CampRaidReward.objects.filter(raid=raid,profile=profile).exists():return True
     reward=CampRaidReward.objects.create(raid=raid,profile=profile)
@@ -92,8 +92,8 @@ def claim_camp_raid(profile,raid_id):
 
 
 def raid_card(profile):
-    raid=CampRaid.objects.filter(guild__camp=profile.camp,day=timezone.now().astimezone(utc.utc).date()).first()
-    rewards=CampRaid.objects.filter(guild__camp=profile.camp,completed_at__isnull=False,strikes__profile=profile).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
+    raid=CampRaid.objects.filter(guild__camp=profile.camp,guild__world_id=profile.world_id,day=timezone.now().astimezone(utc.utc).date()).first()
+    rewards=CampRaid.objects.filter(guild__camp=profile.camp,guild__world_id=profile.world_id,completed_at__isnull=False,strikes__profile=profile).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
     if not raid:return {'raid':None,'rewards':rewards}
     last=raid.strikes.filter(profile=profile).first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)

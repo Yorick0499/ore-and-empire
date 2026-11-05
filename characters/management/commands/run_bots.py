@@ -60,7 +60,8 @@ class Command(BaseCommand):
                 if event_day != timezone.now().date():
                     ensure_world_events()
                     event_day = timezone.now().date()
-                profiles = PlayerProfile.objects.filter(is_bot=True, user__is_active=True).order_by("pk")[: options["limit"]]
+                from characters.worlds import current_world
+                profiles = PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).order_by("pk")[: options["limit"]]
                 for profile in profiles:
                     try:
                         action, success = tick_bot(profile)
