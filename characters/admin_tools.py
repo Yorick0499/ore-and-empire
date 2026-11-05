@@ -40,7 +40,7 @@ def administer_player(actor, profile_id, action, payload):
     if not actor.is_active or not actor.is_superuser:
         return False, "Brak uprawnień administratora."
     profile = PlayerProfile.objects.select_for_update().filter(pk=profile_id).first()
-    if not profile:
+    if not profile or not profile.world.is_current or profile.world.status!="active":
         return False, "Nie znaleziono postaci."
     recover_energy(profile)
     from .economic_ledger import balances, record_changes

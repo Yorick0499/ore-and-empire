@@ -74,7 +74,7 @@ def validate_definition(quest):
 
 
 def available(profile, quest):
-    if not quest.enabled or quest.universe != UNIVERSE or profile.level < quest.level or (quest.camp and profile.camp != quest.camp):
+    if not quest.enabled or quest.universe != profile.world.universe or profile.level < quest.level or (quest.camp and profile.camp != quest.camp):
         return False
     completed = {run.snapshot['key']: run for run in profile.story_runs.filter(status='claimed')}
     if quest.any_prerequisites and not any(key in completed for key in quest.any_prerequisites):

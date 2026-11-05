@@ -7,7 +7,8 @@ from .models import WorldEvent
 
 def active_events(now=None):
     now = now or timezone.now()
-    return WorldEvent.objects.filter(enabled=True, starts_at__lte=now, ends_at__gt=now)
+    from .worlds import current_world
+    return WorldEvent.objects.filter(world=current_world(),enabled=True, starts_at__lte=now, ends_at__gt=now)
 
 
 def reward_snapshot(ore, experience, premium=0):
@@ -22,6 +23,9 @@ def reward_snapshot(ore, experience, premium=0):
 
 def ensure_world_events(now=None):
     now = now or timezone.now()
+    from .worlds import current_world
+    world=current_world()
+    prefix="" if world.pk==1 else f"world-{world.pk}-"
     utc = dt_timezone.utc
     for year in (now.year - 1, now.year, now.year + 1):
         for key, name, kind, start, end, ore, experience, premium in (
@@ -29,10 +33,10 @@ def ensure_world_events(now=None):
             ("winter", "Zimowe ogniska kolonii", "holiday", datetime(year, 12, 20, tzinfo=utc), datetime(year + 1, 1, 6, tzinfo=utc), 110, 125, 1),
             ("spring", "Przebudzenie lasu", "seasonal", datetime(year, 3, 20, tzinfo=utc), datetime(year, 3, 28, tzinfo=utc), 100, 130, 1),
         ):
-            WorldEvent.objects.get_or_create(key=f"{key}-{year}", defaults=dict(name=name, kind=kind, starts_at=start, ends_at=end, ore_percent=ore, experience_percent=experience, premium_bonus=premium, description="Premie do nagród za polowania, wydobycie i wyprawy. Odłamki bonusowe dotyczą wypraw czasowych."))
+            WorldEvent.objects.get_or_create(key=prefix+f"{key}-{year}", defaults=dict(name=name, kind=kind, starts_at=start, ends_at=end, ore_percent=ore, experience_percent=experience, premium_bonus=premium, description="Premie do nagród za polowania, wydobycie i wyprawy. Odłamki bonusowe dotyczą wypraw czasowych."))
     # A deterministic daily draw survives restarts and concurrent initialization.
     day = now.date()
     draw = int(hashlib.sha256(("ore-empire-events-v1:" + day.isoformat()).encode()).hexdigest()[:8], 16)
     if draw % 4 == 0:
         start = datetime(day.year, day.month, day.day, draw % 20, tzinfo=utc)
-        WorldEvent.objects.get_or_create(key="random-" + day.isoformat(), defaults=dict(name="Szczęśliwa żyła rudy", kind="random", starts_at=start, ends_at=start + timedelta(hours=4), ore_percent=150, experience_percent=100, description="Kopacze odkryli bogate złoże. Przez cztery godziny nagrody w rudzie są większe."))
+        WorldEvent.objects.get_or_create(key=prefix+"random-" + day.isoformat(), defaults=dict(name="Szczęśliwa żyła rudy", kind="random", starts_at=start, ends_at=start + timedelta(hours=4), ore_percent=150, experience_percent=100, description="Kopacze odkryli bogate złoże. Przez cztery godziny nagrody w rudzie są większe."))

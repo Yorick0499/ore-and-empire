@@ -22,13 +22,16 @@ ACTION_NAMES = {
 
 
 def activity_rows(limit=40):
-    facts = BotDecision.objects.filter(success=True, action__in=ACTION_NAMES, profile__user__is_active=True).select_related('profile__user')[:limit]
+    from .worlds import current_world
+    facts = BotDecision.objects.filter(profile__world=current_world(),success=True, action__in=ACTION_NAMES, profile__user__is_active=True).select_related('profile__user')[:limit]
     return [{'fact': fact, 'text': ACTION_NAMES[fact.action]} for fact in facts]
 
 
 @transaction.atomic
 def post_message(profile, body, *, topic_id=None, title=None):
     profile = PlayerProfile.objects.select_for_update().get(pk=profile.pk)
+    from .worlds import playable
+    if not playable(profile):raise ValueError("Postać należy do innego świata.")
     if profile.is_bot:
         raise ValueError('Boty rozmawiają przez scheduler.')
     body = (body or '').strip()
@@ -40,7 +43,7 @@ def post_message(profile, body, *, topic_id=None, title=None):
     if topic_id is None:
         topic = TavernTopic.objects.create(author=profile, title=title)
     else:
-        topic = TavernTopic.objects.select_for_update().filter(pk=topic_id, locked=False).first()
+        topic = TavernTopic.objects.select_for_update().filter(pk=topic_id,author__world_id=profile.world_id, locked=False).first()
         if topic is None:
             raise ValueError('Wątek nie istnieje lub został zamknięty.')
     message = TavernMessage.objects.create(topic=topic, author=profile, body=body)
@@ -55,14 +58,14 @@ def bot_conversation(profile):
     now = timezone.now()
     if profile.tavern_messages.filter(created_at__gt=now - timedelta(minutes=10)).exists():
         return
-    topic = TavernTopic.objects.select_for_update().filter(locked=False, messages__author__is_bot=False, messages__created_at__gte=now - timedelta(days=1)).order_by('-updated_at').first()
+    topic = TavernTopic.objects.select_for_update().filter(author__world_id=profile.world_id,locked=False, messages__author__is_bot=False, messages__created_at__gte=now - timedelta(days=1)).order_by('-updated_at').first()
     if not topic:
         fact = BotDecision.objects.filter(profile=profile, success=True, action__in=ACTION_NAMES).first()
         if not fact or profile.bot_turn < 3:
             return
         if TavernTopic.objects.filter(author=profile, created_at__gt=now - timedelta(days=1)).exists():
             return
-        if TavernTopic.objects.filter(author__is_bot=True, created_at__gt=now - timedelta(minutes=15)).exists():
+        if TavernTopic.objects.filter(author__world_id=profile.world_id,author__is_bot=True, created_at__gt=now - timedelta(minutes=15)).exists():
             return
         topic = TavernTopic.objects.create(author=profile, title=f'Wieści ze szlaku: {profile.user.username}'[:100])
         TavernMessage.objects.create(topic=topic, author=profile, decision=fact, body=f'Wpadłem na chwilę do karczmy. Mój ostatni zapis: {ACTION_NAMES[fact.action]} ({fact.created_at:%d.%m %H:%M} UTC). Co słychać na waszych szlakach?')

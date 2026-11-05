@@ -10,31 +10,33 @@ from .models import BotDecision,BotDailySummary,PlayerProfile,EconomicEntry,Mark
 
 
 def world_report(days=7,now=None):
+    from .worlds import current_world
+    world=current_world()
     now=now or timezone.now();days=max(1,min(int(days),90))
     start=datetime.combine(now.astimezone(utc.utc).date()-timedelta(days=days-1),time(),tzinfo=utc.utc)
-    raw=BotDecision.objects.filter(created_at__gte=start)
-    archived=BotDailySummary.objects.filter(day__gte=start.date())
+    raw=BotDecision.objects.filter(profile__world=world,created_at__gte=start)
+    archived=BotDailySummary.objects.filter(profile__world=world,day__gte=start.date())
     aggregate=raw.aggregate(decisions=Count('pk'),experience=Sum('experience_delta'),ore=Sum('ore_delta'),shards=Sum('premium_delta'))
     saved=archived.aggregate(decisions=Sum('decisions'),experience=Sum('experience_delta'),ore=Sum('ore_delta'),shards=Sum('premium_delta'))
     totals={k:(aggregate[k] or 0)+(saved[k] or 0) for k in aggregate}
     hours=max((now-start).total_seconds()/3600,1/3600)
     totals['xp_per_hour']=round(totals['experience']/hours,2)
     # Single aggregate query for latest decisions, then bounded latest-fact lookup.
-    latest_ids=PlayerProfile.objects.filter(is_bot=True).annotate(latest=Subquery(BotDecision.objects.filter(profile_id=OuterRef('pk')).order_by('-created_at','-pk').values('pk')[:1])).values_list('latest',flat=True)
+    latest_ids=PlayerProfile.objects.filter(world=world,is_bot=True).annotate(latest=Subquery(BotDecision.objects.filter(profile_id=OuterRef('pk')).order_by('-created_at','-pk').values('pk')[:1])).values_list('latest',flat=True)
     latest={row.profile_id:row for row in BotDecision.objects.filter(id__in=latest_ids)}
     residents=[];states={'active':0,'resting':0,'blocked':0,'offline':0}
-    for p in PlayerProfile.objects.filter(is_bot=True,user__is_active=True).select_related('user'):
+    for p in PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).select_related('user'):
         last=latest.get(p.pk)
         state='offline' if not p.bot_last_tick or now-p.bot_last_tick>timedelta(seconds=90) else 'blocked' if last and not last.success else 'resting' if last and last.action=='wait' else 'active'
         states[state]+=1
         residents.append({'id':p.pk,'name':p.user.username,'level':p.level,'guild':p.guild_name,'state':state,'reason':last.reason if last else 'no_history','policy':last.policy_version if last else 'unknown'})
-    flows=list(EconomicEntry.objects.filter(created_at__gte=start).values('profile__is_bot','category','resource').annotate(amount=Sum('amount')).order_by('profile__is_bot','category','resource'))
-    prices=list(MarketTrade.objects.filter(created_at__gte=start).values('blueprint_id','blueprint__name','seller__is_bot','buyer__is_bot').annotate(count=Count('pk'),volume=Sum('price'),average=Avg('price')).order_by('-volume')[:40])
-    offers=OwnedItem.objects.filter(is_market_listed=True)
+    flows=list(EconomicEntry.objects.filter(profile__world=world,created_at__gte=start).values('profile__is_bot','category','resource').annotate(amount=Sum('amount')).order_by('profile__is_bot','category','resource'))
+    prices=list(MarketTrade.objects.filter(seller__world=world,created_at__gte=start).values('blueprint_id','blueprint__name','seller__is_bot','buyer__is_bot').annotate(count=Count('pk'),volume=Sum('price'),average=Avg('price')).order_by('-volume')[:40])
+    offers=OwnedItem.objects.filter(owner__world=world,is_market_listed=True)
     # Existing items have no listing timestamp; report age of latest trade separately, never invent offer age.
     return {'schema':1,'days':days,'since':start.isoformat(),'until':now.isoformat(),'states':states,'residents':residents,'totals':totals,
-        'levels':list(PlayerProfile.objects.filter(is_bot=True).values('level','guild').annotate(count=Count('pk')).order_by('level','guild')),
-        'battles':list(BattleRecord.objects.filter(created_at__gte=start).values('profile__is_bot','won').annotate(count=Count('pk'))),
+        'levels':list(PlayerProfile.objects.filter(world=world,is_bot=True).values('level','guild').annotate(count=Count('pk')).order_by('level','guild')),
+        'battles':list(BattleRecord.objects.filter(profile__world=world,created_at__gte=start).values('profile__is_bot','won').annotate(count=Count('pk'))),
         'actions':list(raw.values('action','success').annotate(count=Count('pk')).order_by('action','success')),
         'daily':list(archived.values('day','profile_id','decisions','successes','experience_delta','actions').order_by('-day')[:100]),
         'flows':flows,'prices':prices,'offers':{'count':offers.count(),'value':offers.aggregate(total=Sum('market_price'))['total'] or 0,'stale_7d':offers.filter(listed_at__lt=now-timedelta(days=7)).count(),'unknown_age':offers.filter(listed_at__isnull=True).count()},

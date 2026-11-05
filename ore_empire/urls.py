@@ -20,7 +20,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
     register_view,
-    item_catalog_view, economy_balance_view, world_monitor_view, magic_view, camp_guild_view,
+    item_catalog_view, economy_balance_view, world_monitor_view, magic_view, camp_guild_view,world_setup_view,world_control_view,characters_view,
     tavern_view, colony_life_view, story_view,
     bestiary_view,
     camp_view,
@@ -41,6 +41,9 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("inicjalizacja/",world_setup_view,name="world_setup"),
+    path("zarzadca/swiat/reset/",world_control_view,name="world_control"),
+    path("postacie/",characters_view,name="characters_page"),
     path("wspolnota/", camp_guild_view, name="camp_guild"),
     path("magia/", magic_view, name="magic_page"),
     path("zarzadca/swiat/", world_monitor_view, name="world_monitor"),

@@ -56,6 +56,9 @@ def player_action(fn):
     @wraps(fn)
     def wrapped(profile, *args, **kwargs):
         with transaction.atomic():
+            from .worlds import playable
+            profile.refresh_from_db()
+            if not playable(profile):return False
             ids = {profile.pk}
             if fn.__name__ == "buy_item_on_market" and args:
                 owner_id = (
@@ -274,6 +277,7 @@ def list_item_on_market(seller_profile, owned_item, price):
 @player_action
 def buy_item_on_market(buyer_profile, owned_item):
     current_owner = owned_item.owner
+    if current_owner.world_id!=buyer_profile.world_id:return False
     if not owned_item.is_market_listed:
         return False
     if owned_item.owner == buyer_profile:

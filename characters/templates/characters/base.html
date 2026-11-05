@@ -8,7 +8,7 @@
   <link rel="preload" href="{% static 'characters/fonts/GothicII.ttf' %}" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="{% static 'characters/colony.css' %}?v=economy-1">
 </head>
-<body class="colony-page">
+<body class="colony-page"><div class="server-banner">{{ server_world.name }} · edycja {{ server_world.edition }}{% if world_needs_setup %} · <a href="{% url 'world_setup' %}">Konfiguracja świata</a>{% endif %}</div>
 <a class="skip-link" href="#main-content">Przejdź do treści</a>
 {% include 'characters/navigation.html' %}
 <main id="main-content" class="{% block shell_class %}colony-shell{% endblock %}">{% block content %}{% endblock %}</main>
