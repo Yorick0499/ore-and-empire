@@ -1,0 +1,2 @@
+{% extends 'characters/base.html' %}{% block title %}Ore &amp; Empire — Logowanie{% endblock %}
+{% block content %}<section class="colony-panel"><h1>Powrót do kolonii</h1><p>Twoja ruda, twoje decyzje, twoja historia.</p><form method="post">{% csrf_token %}{{ form.as_p }}<input type="hidden" name="next" value="{{ next }}"><button>Wejdź do kolonii</button></form><p>Nowy skazaniec? <a href="{% url 'register' %}">Utwórz postać</a>.</p></section>{% endblock %}

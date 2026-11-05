@@ -1,0 +1,13 @@
+{% extends 'characters/base.html' %}{% load gothic_media %}
+{% block title %}Ore &amp; Empire — Bestiariusz{% endblock %}
+{% block content %}
+<span class="eyebrow">Notatki myśliwych</span><h1>Bestiariusz kolonii</h1>
+<p>{{ total }} rodzaje i warianty stworzeń z Gothic I. Królową pełzaczy i Śniącego znajdziesz w wyprawach na bossów. Poziomy i statystyki są balansem tej gry przeglądarkowej.</p>
+<form class="inline-form" method="get"><div><label for="creature-search">Nazwa stworzenia</label><input id="creature-search" name="q" value="{{ query }}" maxlength="100" type="search"></div><button>Szukaj</button></form>
+<div class="colony-panel monster-list">
+{% for entry in page %}<article class="monster-card">
+{% gothic_art entry.key %}<div class="monster-info"><h3>{{ entry.monster.nazwa }}</h3><p class="requirements">Zalecany poziom {{ entry.monster.level }} · {{ entry.monster.exp_reward }} PD</p><div class="monster-stats"><span>Życie: {{ entry.monster.life }}</span><span>Siła: {{ entry.monster.strength }}</span><span>Pancerz: {{ entry.monster.weapon_prot }}</span></div><p>Występowanie: {% for habitat in entry.habitats %}<a href="{% url 'locations_page' %}#location-{{ habitat.key }}">{{ habitat.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p></div>
+</article>{% empty %}<p>Nie znaleziono stworzeń o tej nazwie.</p>{% endfor %}
+</div>
+<nav class="pagination" aria-label="Strony bestiariusza">{% if page.has_previous %}<a class="colony-button" href="?q={{ query|urlencode }}&amp;page={{ page.previous_page_number }}">Poprzednia</a>{% endif %}<span>Strona {{ page.number }} z {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="colony-button" href="?q={{ query|urlencode }}&amp;page={{ page.next_page_number }}">Następna</a>{% endif %}</nav>
+{% endblock %}

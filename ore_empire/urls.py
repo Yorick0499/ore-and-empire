@@ -17,6 +17,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
+from characters.views import (
+    register_view,
+    bestiary_view,
+    camp_view,
+    adventures_view, itemshop_view, events_view, rankings_view, game_master_view,
+    credits_view,
+    locations_view,
+    market_monitor_view,
+    boss_view,
+)
 from characters.views import (
     hunt_view,
     inventory_view,
@@ -28,6 +39,20 @@ from characters.views import (
 
 
 urlpatterns = [
+    path("zarzadca/", game_master_view, name="game_master"),
+    path("zadania/", adventures_view, name="adventures_page"),
+    path("sklep-odlamkow/", itemshop_view, name="itemshop_page"),
+    path("wydarzenia/", events_view, name="events_page"),
+    path("rankingi/", rankings_view, name="rankings_page"),
+    path("oboz/", camp_view, name="camp_page"),
+    path("bestiariusz/", bestiary_view, name="bestiary_page"),
+    path("zrodla/", credits_view, name="credits_page"),
+    path("", locations_view, name="locations_page"),
+    path("konto/rejestracja/", register_view, name="register"),
+    path("konto/logowanie/", auth_views.LoginView.as_view(), name="login"),
+    path("konto/wylogowanie/", auth_views.LogoutView.as_view(), name="logout"),
+    path("rynek/monitor/", market_monitor_view, name="market_monitor"),
+    path("wyprawa/", boss_view, name="boss_page"),
     path("admin/", admin.site.urls),
     path("kopalnia/", mine_view, name="mine_page"),
     path("polowanie/", hunt_view, name="hunt_page"),

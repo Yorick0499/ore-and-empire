@@ -219,3 +219,10 @@ __marimo__/
 
 # context
 context/
+
+# Local research, browser checks and generated static output
+work/
+staticfiles/
+
+# Local administrator access; never distribute credentials with the game.
+.admin-access.json

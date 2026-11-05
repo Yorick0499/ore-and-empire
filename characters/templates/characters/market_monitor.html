@@ -1,0 +1,15 @@
+{% extends 'characters/base.html' %}{% block content %}<h1>Kronika targowiska</h1><p>Transakcje graczy i botów od wprowadzenia rejestru. Tylko handel między graczami; obroty nie oznaczają nowo utworzonej rudy.</p><section class="colony-panel"><p>Transakcje: {{ summary.count }} · Obrót: {{ summary.volume|default_if_none:0 }} rudy · Średnia cena: {{ summary.average|default_if_none:0|floatformat:2 }}</p><a href="?format=csv">Eksport danych CSV</a></section><div class="colony-panel colony-scroll"><table><thead><tr><th>Czas</th><th>Przedmiot</th><th>Sprzedawca</th><th>Kupujący</th><th>Cena</th></tr></thead><tbody>{% for trade in trades %}<tr><td>{{ trade.created_at|date:'Y-m-d H:i:s' }}</td><td>{{ trade.blueprint.name }}</td><td>{{ trade.seller.user.username }}{% if trade.seller.is_bot %} [bot]{% endif %}</td><td>{{ trade.buyer.user.username }}{% if trade.buyer.is_bot %} [bot]{% endif %}</td><td>{{ trade.price }}</td></tr>{% empty %}<tr><td colspan="5">Brak zakończonych transakcji.</td></tr>{% endfor %}</tbody></table><p>Ostatnie 100 transakcji. Eksport obejmuje całą historię.</p></div>
+<section class="colony-panel colony-scroll">
+<h2>Decyzje botów</h2>
+<p>Zapis od wdrożenia rejestru. Zmiana rudy obejmuje koszty i nagrody akcji, także handel; nie jest miarą emisji rudy.</p>
+<p><a href="?format=bots-csv">Eksport decyzji CSV</a></p>
+<table><thead><tr><th>Rola</th><th>Akcja</th><th>Wynik</th><th>Liczba</th><th>Zmiana rudy</th></tr></thead><tbody>
+{% for row in bot_summary %}<tr><td>{{ row.role }}</td><td>{{ row.action }}</td><td>{{ row.success|yesno:"Sukces,Porażka" }}</td><td>{{ row.count }}</td><td>{{ row.ore_delta }}</td></tr>
+{% empty %}<tr><td colspan="5">Brak zapisanych decyzji.</td></tr>{% endfor %}
+</tbody></table>
+<h3>Ostatnie 50 decyzji</h3><p class="requirements">Odpoczynek jest zapisywany przy przejściu w stan oczekiwania, potem co 5 minut. Pozostałe akcje mają pełną historię.</p>
+<table><thead><tr><th>Czas</th><th>Bot ID</th><th>Rola</th><th>Akcja</th><th>Wynik</th><th>Ruda</th><th>Energia</th><th>Zdrowie</th><th>Odłamki</th></tr></thead><tbody>
+{% for decision in decisions %}<tr><td>{{ decision.created_at|date:'Y-m-d H:i:s' }}</td><td>{{ decision.profile_id }}</td><td>{{ decision.role }}</td><td>{{ decision.action }}</td><td>{{ decision.success|yesno:"Sukces,Porażka" }}</td><td>{{ decision.ore_delta }}</td><td>{{ decision.energy_delta }}</td><td>{{ decision.health_delta }}</td><td>{{ decision.premium_delta }}</td></tr>
+{% empty %}<tr><td colspan="9">Uruchom kolonię, aby zebrać dane.</td></tr>{% endfor %}
+</tbody></table></section>
+{% endblock %}

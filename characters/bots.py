@@ -1,0 +1,271 @@
+"""Autonomous local players. Policies see immutable data and an action allowlist.
+
+No policy receives ORM objects, resource grants or an administrator capability.
+One tick performs one ordinary player action, or rests for real-time recovery.
+"""
+from dataclasses import dataclass
+import math
+from typing import Protocol
+from uuid import uuid4
+from django.db import transaction
+from django.db.models import F
+from django.utils import timezone
+from .bot_telemetry import record_decision
+from .models import OwnedItem, ItemBluePrint, AdventureTemplate, StoreProduct, BossAttempt
+from . import game_logic as game
+
+
+@dataclass(frozen=True)
+class Observation:
+    energy: int
+    ore: int
+    busy: bool
+    reward_ready: bool
+    offer_id: int | None
+    inventory_id: int | None
+    blueprint_id: int | None
+    equip_id: int | None
+    armed: bool
+    role: str = "hunter"
+    skill_points: int = 0
+    strength: int = 10
+    health: int = 50
+    max_health: int = 50
+    premium: int = 0
+    turn: int = 0
+    camp: str = "NONE"
+    camp_target: int = 1
+    rank_target: int | None = None
+    rank_action: str = ""
+    needs_ore: bool = False
+    training: str = "strength"
+    training_needed: bool = False
+    quest_mine: bool = False
+    quest_hunt: bool = False
+    boss_key: str | None = None
+    hunt_key: str | None = None
+    hunt_location: str | None = None
+    adventure_id: int | None = None
+    adventure_ready: bool = False
+    template_id: int | None = None
+    product_id: int | None = None
+    product_urgent: bool = False
+
+
+class Policy(Protocol):
+    def choose(self, observation: Observation) -> tuple[str, int | None]: ...
+
+
+class BaselinePolicy:
+    def choose(self, observation):
+        o = observation
+        if o.adventure_ready:
+            return "adventure_claim", o.adventure_id
+        if o.reward_ready:
+            return "claim", None
+        if o.busy:
+            return "wait", None
+        if o.product_urgent and o.product_id:
+            return "shop", o.product_id
+        if o.health < 10:
+            return ("adventure", o.template_id) if o.template_id else ("wait", None)
+        # Preserve distinct starting jobs, then every role learns the full loop.
+        if o.role == "miner" and o.turn == 0:
+            return ("mine", None) if o.energy >= 10 else ("wait", None)
+        if o.role == "trader" and o.turn <= 1 and o.inventory_id:
+            return "list", o.inventory_id
+        if o.turn >= 2 and o.camp == "NONE":
+            return "camp", o.camp_target
+        if o.rank_action and o.rank_target:
+            return o.rank_action, o.rank_target
+        if o.training_needed and o.skill_points > 0 and o.ore >= 10:
+            return "train", None
+        if o.equip_id:
+            return "equip", o.equip_id
+        if not o.armed:
+            if o.offer_id:
+                return "buy", o.offer_id
+            if o.blueprint_id:
+                return "stock", o.blueprint_id
+        if o.boss_key and o.energy >= 25:
+            return "boss", None
+        if (o.needs_ore or o.quest_mine) and o.energy >= 10:
+            return "mine", None
+        if o.quest_hunt and o.hunt_key and o.energy >= 15:
+            return "hunt", None
+        if o.product_id and not o.product_urgent:
+            return "shop", o.product_id
+        if o.role == "trader":
+            if o.inventory_id:
+                return "list", o.inventory_id
+            if o.offer_id:
+                return "buy", o.offer_id
+            if o.template_id and o.turn % 4 == 3:
+                return "adventure", o.template_id
+            if o.blueprint_id:
+                return "stock", o.blueprint_id
+        if o.template_id and (o.turn % 5 == 4 or o.health < o.max_health // 2):
+            return "adventure", o.template_id
+        if o.ore < 50 and o.energy >= 10:
+            return "mine", None
+        if o.role == "miner" and o.turn % 4 == 0 and o.energy >= 10:
+            return "mine", None
+        if o.armed and o.hunt_key and o.energy >= 15:
+            return "hunt", None
+        if o.inventory_id:
+            return "list", o.inventory_id
+        if o.template_id:
+            return "adventure", o.template_id
+        if o.offer_id:
+            return "buy", o.offer_id
+        if o.blueprint_id:
+            return "stock", o.blueprint_id
+        if o.energy >= 10:
+            return "mine", None
+        return "wait", None
+
+
+def safe_to_hunt(profile, monster, damage):
+    rounds = math.ceil(monster["life"] / max(1, damage - monster["weapon_prot"]))
+    incoming = max(1, monster["strength"] - profile.weapon_prot)
+    return profile.current_health - (rounds - 1) * incoming >= 10
+
+
+@transaction.atomic
+def tick_bot(profile, policy=None):
+    from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
+    from .locations import LOCATIONS
+    from .economy import start_adventure, claim_adventure, purchase_product
+    profile = type(profile).objects.select_for_update().get(pk=profile.pk)
+    if not profile.is_bot:
+        raise ValueError("Only designated bot profiles may run bot policies")
+    game.refresh_player(profile)
+    inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
+    equipped = next((item for item in inventory if item.is_equipped), None)
+    damage = equipped.blueprint.damage if equipped else 0
+    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped]
+    item = spare[0] if spare else None
+    equipment = max((item for item in spare if item.blueprint.required_strength <= profile.strength and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
+    stock = ItemBluePrint.objects.filter(base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    if profile.bot_role != "trader":
+        stock = stock.filter(damage__gt=damage)
+    stock = stock.order_by("base_value", "pk").first()
+    offers = OwnedItem.objects.filter(is_market_listed=True, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
+    if profile.bot_role != "trader":
+        offers = offers.filter(blueprint__damage__gt=damage)
+    offer = offers.order_by("market_price", "pk").first()
+    if len(inventory) >= 6:
+        stock = offer = None
+    run = profile.adventures.filter(claimed_at__isnull=True).first()
+    template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
+    rank = None
+    rank_action = ""
+    quest_mine = needs_ore = False
+    hunt_goals = []
+    boss_goals = []
+    training = "strength"
+    training_needed = profile.skill_points > 0 and profile.strength < 15 + profile.level * 4
+    quest = profile.camp_quests.filter(promoted_at__isnull=True).first()
+    if quest:
+        rank = next((r for r in RANKS if r.key == quest.rank_key and available_rank(profile, r)), None)
+        if rank:
+            if quest_complete(quest, rank):
+                needs_ore = profile.ore_balance < rank.cost
+                if getattr(profile, rank.attribute) < rank.attribute_value:
+                    training, training_needed = rank.attribute, True
+                elif profile.level >= rank.level and not needs_ore:
+                    rank_action = "promote"
+            for goal in rank.objectives:
+                if quest.progress.get(goal.event, 0) >= goal.count:
+                    continue
+                kind, _, key = goal.event.partition(":")
+                if kind == "mine": quest_mine = True
+                elif kind == "hunt": hunt_goals.append(key)
+                elif kind == "boss": boss_goals.append(key)
+                elif kind == "train": training, training_needed = key, True
+    elif profile.camp != "NONE" and profile.bot_turn >= 2:
+        rank = next((r for r in RANKS if available_rank(profile, r)), None)
+        if rank:
+            rank_action = "accept"
+    hunt_options = []
+    for location in LOCATIONS:
+        if location.route != "hunt_page" or not location.accessible(profile):
+            continue
+        for key in location.monsters:
+            monster = game.BESTIARY[key]
+            if safe_to_hunt(profile, monster, profile.strength + damage):
+                hunt_options.append((key in hunt_goals, monster["exp_reward"], key, location.key))
+    hunt = max(hunt_options, default=None)
+    boss_key = None
+    for key in boss_goals:
+        boss = game.BOSSES[key]
+        last = BossAttempt.objects.filter(profile=profile, boss_key=key).first()
+        if profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, profile.strength + damage):
+            boss_key = key
+            break
+    products = StoreProduct.objects.filter(enabled=True, level__lte=profile.level, price__lte=profile.premium_balance).select_related("blueprint").order_by("price", "pk")
+    product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.life // 2)) or (p.kind == "energy" and profile.current_energy < 15)), None)
+    urgent = product is not None
+    if not product and len(inventory) < 6:
+        product = next((p for p in products if p.kind == "weapon" and p.blueprint and p.blueprint.required_strength <= profile.strength and p.blueprint.damage > damage and not any(i.blueprint_id == p.blueprint_id for i in inventory)), None)
+    camp_target = (profile.pk - 1) % 3 + 1
+    obs = Observation(
+        energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy,
+        reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
+        offer_id=offer.pk if offer else None, inventory_id=item.pk if item else None,
+        blueprint_id=stock.pk if stock else None, equip_id=equipment.pk if equipment else None,
+        armed=equipped is not None, role=profile.bot_role, skill_points=profile.skill_points,
+        strength=profile.strength, health=profile.current_health, max_health=profile.life,
+        premium=profile.premium_balance, turn=profile.bot_turn, camp=profile.camp,
+        camp_target=camp_target, rank_target=RANKS.index(rank) + 1 if rank else None,
+        rank_action=rank_action, needs_ore=needs_ore, training=training,
+        training_needed=training_needed, quest_mine=quest_mine,
+        quest_hunt=bool(hunt and hunt[0]), boss_key=boss_key, hunt_key=hunt[2] if hunt else None, hunt_location=hunt[3] if hunt else None,
+        adventure_id=run.pk if run else None, adventure_ready=bool(run and timezone.now() >= run.ends_at),
+        template_id=template.pk if template else None, product_id=product.pk if product else None,
+        product_urgent=urgent,
+    )
+    action, target = (policy or BaselinePolicy()).choose(obs)
+    if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
+        record_decision(profile, obs, "rejected", None, False)
+        return "rejected", False
+    if action == "claim" and obs.reward_ready:
+        success = game.claim_ore_reward(profile)
+    elif action == "mine":
+        success = game.start_mining(profile, 15)
+    elif action == "equip" and equipment and target == equipment.pk:
+        success = game.equip_item(profile, equipment)
+    elif action == "train" and obs.training_needed:
+        success = game.train_attribute(profile, training)
+    elif action == "hunt" and hunt and target is None:
+        success = game.execute_hunt(profile, hunt[2], hunt[3]) is not False
+    elif action == "boss" and boss_key and target is None:
+        success = game.execute_boss(profile, boss_key) is not False
+    elif action == "camp" and target == camp_target:
+        success = game.choose_camp(profile, ("OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP")[camp_target - 1])
+    elif action in ("accept", "promote") and action == rank_action and rank and target == obs.rank_target:
+        success = (accept_camp_quest if action == "accept" else promote_in_camp)(profile, rank.key)
+    elif action == "adventure" and template and target == template.pk:
+        success = bool(start_adventure(profile, template.pk))
+    elif action == "adventure_claim" and run and target == run.pk:
+        success = claim_adventure(profile, run.pk)
+    elif action == "shop" and product and target == product.pk:
+        success = bool(purchase_product(profile, product.pk, uuid4()))
+    elif action == "list" and item and target == item.pk:
+        price = max(1, min(game.MAX_MARKET_PRICE, item.blueprint.base_value * 110 // 100))
+        success = game.list_item_on_market(profile, item, price)
+    elif action == "buy" and offer and target == offer.pk:
+        success = game.buy_item_on_market(profile, offer)
+    elif action == "stock" and stock and target == stock.pk:
+        success = game.buy_item_from_npc(profile, stock)
+    elif action == "wait":
+        success = True
+    else:
+        record_decision(profile, obs, "rejected", None, False)
+        return "rejected", False
+    if success and action != "wait":
+        profile.refresh_from_db()
+        profile.bot_turn += 1
+        profile.save(update_fields=["bot_turn"])
+    record_decision(profile, obs, action, target, success)
+    return action, success

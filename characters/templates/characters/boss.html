@@ -1,0 +1,8 @@
+{% extends 'characters/base.html' %}{% load gothic_media %}{% block title %}Ore &amp; Empire — {{ boss.name }}{% endblock %}
+{% block content %}<h1>{{ location.name }}</h1><p>{{ location.description }}</p>
+<section class="colony-panel"><h2>{{ boss.name }}</h2>{% with art_key=boss.key|add:"_boss" %}{% gothic_art art_key %}{% endwith %}<p>Wymagany poziom: {{ boss.level }} · Życie: {{ boss.life }} · Siła: {{ boss.strength }} · Pancerz: {{ boss.protection }}</p><p>Nagroda za zwycięstwo: {{ boss.experience }} PD i {{ boss.ore }} bryłek rudy.</p><p>Koszt próby: {{ boss.energy_cost }} energii. Kolejna próba po {{ boss.cooldown_minutes }} minutach, także po porażce.</p><p>Twoja energia: {{ profile.current_energy }}/{{ profile.max_energy }}. Przed wyprawą załóż broń i zakończ pracę w kopalni.</p>
+{% if next_attempt %}<p>Kolejna próba: <time datetime="{{ next_attempt|date:'c' }}">{{ next_attempt|date:'Y-m-d H:i:s' }} UTC</time>.</p>{% endif %}
+{% if can_fight %}<form method="post">{% csrf_token %}<button>Rozpocznij wyprawę ({{ boss.energy_cost }} energii)</button></form>{% else %}<p>Nie możesz teraz rozpocząć wyprawy.</p>{% endif %}
+</section>
+{% if last_attempt %}<section class="colony-panel"><h2>Ostatnia wyprawa — {% if last_attempt.won %}Zwycięstwo{% else %}Porażka{% endif %}</h2><p>{{ last_attempt.created_at|date:'Y-m-d H:i:s' }} UTC · PD: {{ last_attempt.experience_reward }} · Ruda: {{ last_attempt.ore_reward }}</p><details open><summary>Raport walki</summary>{% for line in last_attempt.combat_log %}<p>{{ line }}</p>{% endfor %}</details></section>{% endif %}
+<p><a href="{% url 'locations_page' %}">Powrót do kolonii</a></p>{% endblock %}
