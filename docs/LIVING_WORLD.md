@@ -129,3 +129,24 @@ Boty zawsze są oznaczone. Nie wymagają zewnętrznego API ani LLM.
 Uruchomienie: `python play.py --bots 6`, ewentualnie osobny
 `python manage.py run_bots --loop --interval 5` przy serwerze bez botów.
 Nie łącz schedulerów. Wieloprocesowa dzierżawa i PostgreSQL pozostają w #19.
+
+## Weapon progression policy (issue #13, decision schema 3)
+
+Armed hunters/miners evaluate NPC and market weapon upgrades together. Eligible
+upgrades add at least 3 damage (or 10% of current weapon damage, rounded up), cost
+at most 40 ore per extra damage, and leave 20 ore for two ordinary training payments.
+The policy picks the lowest price per added damage, then the larger improvement,
+lower price and stable action/item ID. These are explicit baseline tuning values,
+not a claim that the wider economy is balanced (#12).
+
+An eligible upgrade takes precedence over training and repeatable hunting. Owned
+improvements are equipped first. Obsolete unlisted weapons with strictly lower
+damage are sold through the ordinary NPC service at its normal half-value price;
+stronger future equipment, equal-damage spares and trader merchandise are retained.
+Busy activities, ready rewards and urgent recovery still take precedence. Backpack
+capacity, strength requirements, ownership and market price ceilings still apply.
+
+Schema 3 adds the selected upgrade action/ID, cost, damage gain, ore reserve and
+obsolete item ID to immutable observations. Existing schema 1/2 records remain
+readable; only newly recorded decisions use schema 3. Trader strategy and its
+long-term demand/turnover problems remain tracked separately in #23.

@@ -5,6 +5,7 @@ One tick performs one ordinary player action, or rests for real-time recovery.
 """
 from dataclasses import dataclass
 import math
+from fractions import Fraction
 from typing import Protocol
 from uuid import uuid4
 from django.db import transaction
@@ -50,6 +51,12 @@ class Observation:
     template_id: int | None = None
     product_id: int | None = None
     product_urgent: bool = False
+    upgrade_action: str = ""
+    upgrade_id: int | None = None
+    upgrade_cost: int = 0
+    upgrade_gain: int = 0
+    ore_reserve: int = 0
+    disposal_id: int | None = None
 
 
 class Policy(Protocol):
@@ -78,10 +85,14 @@ class BaselinePolicy:
             return "camp", o.camp_target
         if o.rank_action and o.rank_target:
             return o.rank_action, o.rank_target
-        if o.training_needed and o.skill_points > 0 and o.ore >= 10:
-            return "train", None
         if o.equip_id:
             return "equip", o.equip_id
+        if o.disposal_id:
+            return "sell", o.disposal_id
+        if o.upgrade_action and o.upgrade_id:
+            return o.upgrade_action, o.upgrade_id
+        if o.training_needed and o.skill_points > 0 and o.ore >= 10:
+            return "train", None
         if not o.armed:
             if o.offer_id:
                 return "buy", o.offer_id
@@ -125,6 +136,28 @@ class BaselinePolicy:
         return "wait", None
 
 
+# Armed residents keep two training payments and reject marginal/expensive swaps.
+UPGRADE_ORE_RESERVE = 20
+MAX_ORE_PER_DAMAGE = 40
+
+
+def choose_upgrade(stock, offers, damage, ore):
+    candidates = []
+    minimum_gain = max(3, math.ceil(damage / 10))
+    for action, entries in (("stock", stock), ("buy", offers)):
+        for entry in entries:
+            weapon = entry if action == "stock" else entry.blueprint
+            price = entry.base_value if action == "stock" else entry.market_price
+            gain = weapon.damage - damage
+            if (gain >= minimum_gain and 0 < price <= ore - UPGRADE_ORE_RESERVE
+                    and price <= gain * MAX_ORE_PER_DAMAGE):
+                candidates.append((Fraction(price, gain), -gain, price, action, entry.pk, entry))
+    if not candidates:
+        return None
+    choice = min(candidates, key=lambda c: c[:5])
+    return choice[3], choice[5], choice[2], -choice[1]
+
+
 def safe_to_hunt(profile, monster, damage):
     rounds = math.ceil(monster["life"] / max(1, damage - monster["weapon_prot"]))
     incoming = max(1, monster["strength"] - profile.weapon_prot)
@@ -151,13 +184,23 @@ def tick_bot(profile, policy=None):
     stock = ItemBluePrint.objects.filter(base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if profile.bot_role != "trader":
         stock = stock.filter(damage__gt=damage)
-    stock = stock.order_by("base_value", "pk").first()
     offers = OwnedItem.objects.filter(is_market_listed=True, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
     if profile.bot_role != "trader":
         offers = offers.filter(blueprint__damage__gt=damage)
-    offer = offers.order_by("market_price", "pk").first()
+    upgrade = None
+    if equipped and profile.bot_role != "trader":
+        upgrade = choose_upgrade(stock, offers, damage, profile.ore_balance)
+        stock = upgrade[1] if upgrade and upgrade[0] == "stock" else None
+        offer = upgrade[1] if upgrade and upgrade[0] == "buy" else None
+    else:
+        stock = stock.order_by("base_value", "pk").first()
+        offer = offers.order_by("market_price", "pk").first()
     if len(inventory) >= 6:
-        stock = offer = None
+        stock = offer = upgrade = None
+    # Sell obsolete weapons through the same NPC service as a human player.
+    # Keep stronger future gear, listed goods and the trader's merchandise.
+    disposal = min((i for i in spare if i.blueprint.damage < damage),
+                   key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and profile.bot_role != "trader" else None
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
     rank = None
@@ -226,6 +269,12 @@ def tick_bot(profile, policy=None):
         adventure_id=run.pk if run else None, adventure_ready=bool(run and timezone.now() >= run.ends_at),
         template_id=template.pk if template else None, product_id=product.pk if product else None,
         product_urgent=urgent,
+        upgrade_action=upgrade[0] if upgrade else "",
+        upgrade_id=upgrade[1].pk if upgrade else None,
+        upgrade_cost=upgrade[2] if upgrade else 0,
+        upgrade_gain=upgrade[3] if upgrade else 0,
+        ore_reserve=UPGRADE_ORE_RESERVE if equipped and profile.bot_role != "trader" else 0,
+        disposal_id=disposal.pk if disposal else None,
     )
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
@@ -237,6 +286,8 @@ def tick_bot(profile, policy=None):
         success = game.start_mining(profile, 15)
     elif action == "equip" and equipment and target == equipment.pk:
         success = game.equip_item(profile, equipment)
+    elif action == "sell" and disposal and target == disposal.pk:
+        success = game.sell_item_from_npc(profile, disposal)
     elif action == "train" and obs.training_needed:
         success = game.train_attribute(profile, training)
     elif action == "hunt" and hunt and target is None:

@@ -9,6 +9,7 @@ ACTION_NAMES = {
     'hunt': 'wrócił z polowania', 'boss': 'podjął wyprawę na bossa',
     'train': 'trenował u nauczyciela', 'equip': 'zmienił oręż',
     'buy': 'kupił przedmiot na targu', 'stock': 'zaopatrzył się u kupca',
+    'sell': 'sprzedał stary oręż kupcowi',
     'list': 'wystawił przedmiot na targu', 'camp': 'dołączył do obozu',
     'accept': 'przyjął próbę obozową', 'promote': 'awansował w obozie',
     'adventure': 'wyruszył na zlecenie', 'adventure_claim': 'odebrał zapłatę za zlecenie',
