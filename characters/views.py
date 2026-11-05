@@ -529,6 +529,8 @@ def rankings_view(request):
 def game_master_view(request):
     from .admin_tools import ProfileStatsForm, administer_player
     from .models import AdminAction
+    from .backups import backup_status
+    from django.conf import settings
     if not request.user.is_superuser:
         raise PermissionDenied("Panel zarządcy wymaga konta administratora.")
     profiles = PlayerProfile.objects.select_related("user").order_by("user__username")
@@ -538,7 +540,7 @@ def game_master_view(request):
         success, message = administer_player(request.user, target.pk, request.POST.get("action"), request.POST)
         (messages.success if success else messages.error)(request, message)
         return redirect(reverse_url("game_master") + "?profile=" + str(target.pk))
-    return render(request, "characters/game_master.html", {"profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.select_related("actor", "profile__user")[:30]})
+    return render(request, "characters/game_master.html", {"backup_status": backup_status(settings.BASE_DIR / "backups"), "profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.select_related("actor", "profile__user")[:30]})
 
 
 def reverse_url(name):

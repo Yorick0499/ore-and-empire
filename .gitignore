@@ -226,3 +226,9 @@ staticfiles/
 
 # Local administrator access; never distribute credentials with the game.
 .admin-access.json
+
+# Private world backups and restore drills
+backups/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
