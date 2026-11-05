@@ -16,6 +16,7 @@
       <a href="{% url 'characters_page' %}">Twoje postacie</a>
     </div></details>
     <details class="nav-group"><summary>Handel i ekwipunek</summary><div>
+      <a href="{% url 'crafting_page' %}">Kuźnia i alchemia</a>
       <a href="{% url 'inventory_page' %}" {% if current == 'inventory_page' %}aria-current="page"{% endif %}>Ekwipunek</a>
       <a href="{% url 'market_page' %}" {% if current == 'market_page' %}aria-current="page"{% endif %}>Targ</a>
       <a href="{% url 'shop_page' %}" {% if current == 'shop_page' %}aria-current="page"{% endif %}>Kupiec</a>

@@ -46,7 +46,7 @@ def seed_clean_world():
     output=StringIO()
     world=current_world()
     for camp in ('OLD_CAMP','NEW_CAMP','SWAMP_CAMP'):CampGuild.objects.get_or_create(world=world,camp=camp)
-    for command in ('seed_world','seed_equipment','seed_catalog','seed_adventures','seed_story'):call_command(command,stdout=output)
+    for command in ('seed_world','seed_equipment','seed_catalog','seed_crafting','seed_adventures','seed_story'):call_command(command,stdout=output)
 
 
 @transaction.atomic

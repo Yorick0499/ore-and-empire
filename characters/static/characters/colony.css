@@ -310,3 +310,5 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
   .valley-hero { padding:30px 20px; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+
+.danger-button { border-color:#d17a5c; background:linear-gradient(#70352b,#3b1917); color:#ffe1ce; }

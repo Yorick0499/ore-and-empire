@@ -46,6 +46,7 @@ class Command(BaseCommand):
             call_command("seed_world", stdout=self.stdout)
             call_command("seed_equipment", stdout=self.stdout)
             call_command("seed_catalog", stdout=self.stdout)
+            call_command("seed_crafting", stdout=self.stdout)
             call_command("seed_adventures", stdout=self.stdout)
             call_command("seed_story", stdout=self.stdout)
             from characters.worlds import current_world
