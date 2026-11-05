@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "game": "GOTHIC_I",
-  "version": 1,
+  "version": 2,
   "retrieved": "2026-11-05",
   "sources": [
     "https://gothic.fandom.com/pl/wiki/Bronie_w_Gothic",
@@ -17,14 +17,16 @@
       "name": "Stary miecz",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_miecz",
       "original_stats": {
         "code": "altesschwert",
-        "verified": false
+        "verified": true,
+        "value": 12,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 12,
       "stackable": false
     },
     {
@@ -61,14 +63,16 @@
       "name": "Stary miecz",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_miecz",
       "original_stats": {
         "code": "altesschwertvm",
-        "verified": false
+        "verified": true,
+        "value": 12,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 12,
       "stackable": false
     },
     {
@@ -174,14 +178,16 @@
       "name": "Astronomia",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Astronomia",
       "original_stats": {
         "code": "astronomie",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -219,14 +225,16 @@
       "name": "Wygnaniec",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Wygnaniec",
       "original_stats": {
         "code": "bannklinge",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -263,10 +271,12 @@
       "name": "List Cronosa do magów ognia",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/List_Cronosa_do_mag%C3%B3w_ognia",
       "original_stats": {
         "code": "cronos_brief",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -304,14 +314,16 @@
       "name": "Gniew Demonów",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Gniew_Demon%C3%B3w",
       "original_stats": {
         "code": "daemonenstreich",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -401,14 +413,16 @@
       "name": "Klucz do lochów",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_loch%C3%B3w",
       "original_stats": {
         "code": "dungeonkey",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -494,14 +508,16 @@
       "name": "Arcanum Żywiołów",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Arcanum_%C5%BBywio%C5%82%C3%B3w",
       "original_stats": {
         "code": "elementare_arcanei",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -509,10 +525,12 @@
       "name": "List",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/List",
       "original_stats": {
         "code": "fakescroll",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -599,14 +617,16 @@
       "name": "Zeichenglumpsche ascii",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zeichenglumpsche_ascii",
       "original_stats": {
         "code": "fonttestbook",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -643,14 +663,16 @@
       "name": "Tajniki magii",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Tajniki_magii",
       "original_stats": {
         "code": "geheimnisse_der_zauberei",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -704,14 +726,16 @@
       "name": "Dar od bogów",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Dar_od_bog%C3%B3w",
       "original_stats": {
         "code": "goettergabe",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -904,14 +928,17 @@
       "name": "Napój uzdrawiający dla Y'Beriona",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_uzdrawiaj%C4%85cy_dla_Y%27Beriona",
       "original_stats": {
         "code": "healthwater",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Brak"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": true
     },
     {
@@ -995,12 +1022,14 @@
       "name": "Strzała",
       "kind": "ammo",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Strza%C5%82a",
       "original_stats": {
         "code": "itamarrow",
-        "verified": false,
+        "verified": true,
         "ammo_type": "arrow",
-        "browser_price": 1
+        "browser_price": 1,
+        "value": 1,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": true,
       "tradeable": true,
@@ -1013,16 +1042,18 @@
       "name": "Bełt",
       "kind": "ammo",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Be%C5%82t",
       "original_stats": {
         "code": "itambolt",
-        "verified": false,
+        "verified": true,
         "ammo_type": "bolt",
-        "browser_price": 2
+        "browser_price": 2,
+        "value": 1,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": true,
       "tradeable": true,
-      "base_value": 2,
+      "base_value": 1,
       "stackable": true,
       "art_key": "item_bolt"
     },
@@ -1031,14 +1062,16 @@
       "name": "Ledengary mithril robe",
       "kind": "armor",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ledengary_mithril_robe",
       "original_stats": {
         "code": "itarrobemithril",
-        "verified": false
+        "verified": true,
+        "value": 1098,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1098,
       "stackable": false
     },
     {
@@ -1046,14 +1079,17 @@
       "name": "Tchnienie śmierci",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Tchnienie_%C5%9Bmierci",
       "original_stats": {
         "code": "itarrunebreathofdeath",
-        "verified": false
+        "verified": true,
+        "value": 1500,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Cel zostaje owiany potężnym wiatrem śmierci; który wysysa energię życiową"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 1500,
       "stackable": false
     },
     {
@@ -1076,14 +1112,17 @@
       "name": "Urok",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Urok",
       "original_stats": {
         "code": "itarrunecharm",
-        "verified": false
+        "verified": true,
+        "value": 700,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Cel zaklęcia traktuje maga przyjaźnie"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 700,
       "stackable": false
     },
     {
@@ -1091,14 +1130,17 @@
       "name": "Kontrola",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kontrola",
       "original_stats": {
         "code": "itarrunecontrol",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Bohater przejmuje kontrolę nad celem"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -1106,14 +1148,17 @@
       "name": "Śmierć ożywieńcom",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amier%C4%87_o%C5%BCywie%C5%84com",
       "original_stats": {
         "code": "itarrunedestroyundead",
-        "verified": false
+        "verified": true,
+        "value": 1100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Natychmiastowo niszczy ożywieńca będącego celem"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 1100,
       "stackable": false
     },
     {
@@ -1121,14 +1166,17 @@
       "name": "Kula ognia",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kula_ognia",
       "original_stats": {
         "code": "itarrunefireball",
-        "verified": false
+        "verified": true,
+        "value": 700,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje obrażenia i podpala wroga"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 700,
       "stackable": false
     },
     {
@@ -1136,14 +1184,17 @@
       "name": "Ognisty pocisk",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognisty_pocisk",
       "original_stats": {
         "code": "itarrunefirebolt",
-        "verified": false
+        "verified": true,
+        "value": 300,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje celowi niewielkie obrażenia od ognia"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 300,
       "stackable": false
     },
     {
@@ -1151,14 +1202,17 @@
       "name": "Deszcz ognia",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Deszcz_ognia",
       "original_stats": {
         "code": "itarrunefirerain",
-        "verified": false
+        "verified": true,
+        "value": 1300,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Na wszystkich przeciwników wokół spada deszcz ognia"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 1300,
       "stackable": false
     },
     {
@@ -1166,14 +1220,17 @@
       "name": "Ognista burza",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognista_burza",
       "original_stats": {
         "code": "itarrunefirestorm",
-        "verified": false
+        "verified": true,
+        "value": 1100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje obrażenia celowi zaklęcia oraz wszystkim w jego otoczeniu"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 1100,
       "stackable": false
     },
     {
@@ -1181,14 +1238,17 @@
       "name": "Uzdrowienie",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uzdrowienie",
       "original_stats": {
         "code": "itarruneheal",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Uleczenie samego siebie, 10 punktów życia / 1 punkt many"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": false
     },
     {
@@ -1196,14 +1256,17 @@
       "name": "Bryła lodu",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82a_lodu",
       "original_stats": {
         "code": "itarruneicecube",
-        "verified": false
+        "verified": true,
+        "value": 700,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Unieruchamia przeciwnika na 10 sekund i zadaje średnie obrażenia"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 700,
       "stackable": false
     },
     {
@@ -1211,14 +1274,17 @@
       "name": "Lodowa fala",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_fala",
       "original_stats": {
         "code": "itarruneicewave",
-        "verified": false
+        "verified": true,
+        "value": 1100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Unieruchamia wszystkich wokół"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 1100,
       "stackable": false
     },
     {
@@ -1226,14 +1292,17 @@
       "name": "Światło",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiat%C5%82o",
       "original_stats": {
         "code": "itarrunelight",
-        "verified": false
+        "verified": true,
+        "value": 300,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Nad głową bohatera pojawia się kula oświetlająca otoczenie"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 300,
       "stackable": false
     },
     {
@@ -1241,14 +1310,17 @@
       "name": "Pirokineza",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pirokineza",
       "original_stats": {
         "code": "itarrunepyrokinesis",
-        "verified": false
+        "verified": true,
+        "value": 700,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zapala od środka i paraliżuje cel zaklęcia"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 700,
       "stackable": false
     },
     {
@@ -1256,14 +1328,17 @@
       "name": "Sen",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sen",
       "original_stats": {
         "code": "itarrunesleep",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Usypia cel zaklęcia na 30 sekund"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": false
     },
     {
@@ -1271,14 +1346,17 @@
       "name": "Uderzenie burzy",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_burzy",
       "original_stats": {
         "code": "itarrunestormfist",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Odrzuca na dużą odległość i zadaje średnie obrażenia"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -1286,14 +1364,17 @@
       "name": "Telekineza",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Telekineza",
       "original_stats": {
         "code": "itarrunetelekinesis",
-        "verified": false
+        "verified": true,
+        "value": 700,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Namierzony przedmiot jest przyciągany do maga"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 700,
       "stackable": false
     },
     {
@@ -1301,10 +1382,13 @@
       "name": "Teleportacja do magów ognia",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_ognia",
       "original_stats": {
         "code": "itarruneteleport1",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi na piętro świątyni magów ognia w Starym Obozie"
       },
       "merchant": false,
       "tradeable": false,
@@ -1316,10 +1400,13 @@
       "name": "Teleportacja do magów wody",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_wody",
       "original_stats": {
         "code": "itarruneteleport2",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi do jaskini w siedzibie magów wody w Nowym Obozie"
       },
       "merchant": false,
       "tradeable": false,
@@ -1331,10 +1418,13 @@
       "name": "Teleportacja do Nekromanty",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_Nekromanty",
       "original_stats": {
         "code": "itarruneteleport3",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi na piętro wieży Xardasa"
       },
       "merchant": false,
       "tradeable": false,
@@ -1346,10 +1436,13 @@
       "name": "Teleportacja do obozu na bagnie",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_obozu_na_bagnie",
       "original_stats": {
         "code": "itarruneteleport5",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi na plac świątynny w Obozie Bractwa"
       },
       "merchant": false,
       "tradeable": false,
@@ -1361,14 +1454,17 @@
       "name": "Piorun kulisty",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Piorun_kulisty",
       "original_stats": {
         "code": "itarrunethunderball",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje średnie obrażenia i na chwilę paraliżuje cel"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -1376,14 +1472,17 @@
       "name": "Sopel lodu",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sopel_lodu",
       "original_stats": {
         "code": "itarrunethunderbolt",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje niewielkie obrażenia od magii"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": false
     },
     {
@@ -1391,14 +1490,17 @@
       "name": "Uderzenie wiatru",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_wiatru",
       "original_stats": {
         "code": "itarrunewindfist",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje niewielkie obrażenia od wiatru i odrzuca na małą odległość"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": false
     },
     {
@@ -1406,14 +1508,17 @@
       "name": "Armia ciemności",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Armia_ciemno%C5%9Bci",
       "original_stats": {
         "code": "itarscrollarmyofdarkness",
-        "verified": false
+        "verified": true,
+        "value": 666,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przyzywa armię ożywieńców składającą się z 6 szkieletów i 3 szkieletów wojowników"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 666,
       "stackable": false
     },
     {
@@ -1421,14 +1526,17 @@
       "name": "Gniew",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Gniew",
       "original_stats": {
         "code": "itarscrollberzerk",
-        "verified": false
+        "verified": true,
+        "value": 200,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Cel atakuje najbliższą postać"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 200,
       "stackable": false
     },
     {
@@ -1451,14 +1559,17 @@
       "name": "Urok",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Urok",
       "original_stats": {
         "code": "itarscrollcharm",
-        "verified": false
+        "verified": true,
+        "value": 70,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Cel zaklęcia traktuje maga przyjaźnie"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 70,
       "stackable": false
     },
     {
@@ -1466,14 +1577,17 @@
       "name": "Kontrola",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kontrola",
       "original_stats": {
         "code": "itarscrollcontrol",
-        "verified": false
+        "verified": true,
+        "value": 90,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Bohater przejmuje kontrolę nad celem"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 90,
       "stackable": false
     },
     {
@@ -1481,14 +1595,17 @@
       "name": "Śmierć ożywieńcom",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amier%C4%87_o%C5%BCywie%C5%84com",
       "original_stats": {
         "code": "itarscrolldestroyundead",
-        "verified": false
+        "verified": true,
+        "value": 110,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Natychmiastowo niszczy ożywieńca będącego celem"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 110,
       "stackable": false
     },
     {
@@ -1496,14 +1613,17 @@
       "name": "Strach",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Strach",
       "original_stats": {
         "code": "itarscrollfear",
-        "verified": false
+        "verified": true,
+        "value": 250,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Straszy cel wokół bohatera; który następnie ucieka w popłochu"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 250,
       "stackable": false
     },
     {
@@ -1511,14 +1631,17 @@
       "name": "Kula ognia",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kula_ognia",
       "original_stats": {
         "code": "itarscrollfireball",
-        "verified": false
+        "verified": true,
+        "value": 70,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje obrażenia i podpala wroga"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 70,
       "stackable": false
     },
     {
@@ -1526,14 +1649,17 @@
       "name": "Ognisty pocisk",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognisty_pocisk",
       "original_stats": {
         "code": "itarscrollfirebolt",
-        "verified": false
+        "verified": true,
+        "value": 30,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje celowi niewielkie obrażenia od ognia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 30,
       "stackable": false
     },
     {
@@ -1541,14 +1667,17 @@
       "name": "Deszcz ognia",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Deszcz_ognia",
       "original_stats": {
         "code": "itarscrollfirerain",
-        "verified": false
+        "verified": true,
+        "value": 130,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Na wszystkich przeciwników wokół spada deszcz ognia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 130,
       "stackable": false
     },
     {
@@ -1556,14 +1685,17 @@
       "name": "Ognista burza",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognista_burza",
       "original_stats": {
         "code": "itarscrollfirestorm",
-        "verified": false
+        "verified": true,
+        "value": 110,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje obrażenia celowi zaklęcia oraz wszystkim w jego otoczeniu"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 110,
       "stackable": false
     },
     {
@@ -1571,14 +1703,17 @@
       "name": "Uzdrowienie",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uzdrowienie",
       "original_stats": {
         "code": "itarscrollheal",
-        "verified": false
+        "verified": true,
+        "value": 50,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Uleczenie samego siebie, 10 punktów życia / 1 punkt many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 50,
       "stackable": false
     },
     {
@@ -1586,14 +1721,17 @@
       "name": "Bryła lodu",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82a_lodu",
       "original_stats": {
         "code": "itarscrollicecube",
-        "verified": false
+        "verified": true,
+        "value": 70,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Unieruchamia przeciwnika na 10 sekund i zadaje średnie obrażenia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 70,
       "stackable": false
     },
     {
@@ -1601,14 +1739,17 @@
       "name": "Lodowa fala",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_fala",
       "original_stats": {
         "code": "itarscrollicewave",
-        "verified": false
+        "verified": true,
+        "value": 110,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Unieruchamia wszystkich wokół"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 110,
       "stackable": false
     },
     {
@@ -1616,14 +1757,17 @@
       "name": "Światło",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiat%C5%82o",
       "original_stats": {
         "code": "itarscrolllight",
-        "verified": false
+        "verified": true,
+        "value": 5,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Nad głową bohatera pojawia się kula oświetlająca otoczenie"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 5,
       "stackable": false
     },
     {
@@ -1631,14 +1775,17 @@
       "name": "Pirokineza",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pirokineza",
       "original_stats": {
         "code": "itarscrollpyrokinesis",
-        "verified": false
+        "verified": true,
+        "value": 70,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zapala od środka i paraliżuje cel zaklęcia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 70,
       "stackable": false
     },
     {
@@ -1646,14 +1793,17 @@
       "name": "Zmniejszenie potwora",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zmniejszenie_potwora",
       "original_stats": {
         "code": "itarscrollshrink",
-        "verified": false
+        "verified": true,
+        "value": 1000,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Kilkakrotnie zmniejsza potwora i pogarsza jego statystyki"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1000,
       "stackable": false
     },
     {
@@ -1661,14 +1811,17 @@
       "name": "Sen",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sen",
       "original_stats": {
         "code": "itarscrollsleep",
-        "verified": false
+        "verified": true,
+        "value": 50,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Usypia cel zaklęcia na 30 sekund"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 50,
       "stackable": false
     },
     {
@@ -1676,14 +1829,17 @@
       "name": "Uderzenie burzy",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_burzy",
       "original_stats": {
         "code": "itarscrollstormfist",
-        "verified": false
+        "verified": true,
+        "value": 90,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Odrzuca na dużą odległość i zadaje średnie obrażenia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 90,
       "stackable": false
     },
     {
@@ -1691,14 +1847,17 @@
       "name": "Przyzwanie demona",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_demona",
       "original_stats": {
         "code": "itarscrollsummondemon",
-        "verified": false
+        "verified": true,
+        "value": 550,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przyzywa demona; który walczy po stronie bohatera"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 550,
       "stackable": false
     },
     {
@@ -1706,14 +1865,17 @@
       "name": "Przyzwanie golema",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_golema",
       "original_stats": {
         "code": "itarscrollsummongolem",
-        "verified": false
+        "verified": true,
+        "value": 450,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Pojawia się kamienny golem; który pomaga w walce"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 450,
       "stackable": false
     },
     {
@@ -1721,14 +1883,17 @@
       "name": "Przyzwanie szkieletów",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_szkielet%C3%B3w",
       "original_stats": {
         "code": "itarscrollsummonskeletons",
-        "verified": false
+        "verified": true,
+        "value": 350,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywołuje dwa szkielety i jednego wojownika; które pomagają w walce"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 350,
       "stackable": false
     },
     {
@@ -1736,14 +1901,17 @@
       "name": "Telekineza",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Telekineza",
       "original_stats": {
         "code": "itarscrolltelekinesis",
-        "verified": false
+        "verified": true,
+        "value": 70,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Namierzony przedmiot jest przyciągany do maga"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 70,
       "stackable": false
     },
     {
@@ -1751,10 +1919,13 @@
       "name": "Teleportacja do magów ognia",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_ognia",
       "original_stats": {
         "code": "itarscrollteleport1",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi na piętro świątyni magów ognia w Starym Obozie"
       },
       "merchant": false,
       "tradeable": true,
@@ -1766,10 +1937,13 @@
       "name": "Teleportacja do magów wody",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_wody",
       "original_stats": {
         "code": "itarscrollteleport2",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi do jaskini w siedzibie magów wody w Nowym Obozie"
       },
       "merchant": false,
       "tradeable": true,
@@ -1781,10 +1955,13 @@
       "name": "Teleportacja do Nekromanty",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_Nekromanty",
       "original_stats": {
         "code": "itarscrollteleport3",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi na piętro wieży Xardasa"
       },
       "merchant": false,
       "tradeable": true,
@@ -1796,10 +1973,13 @@
       "name": "Orkowe zaklęcie teleportacji",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Orkowe_zakl%C4%99cie_teleportacji",
       "original_stats": {
         "code": "itarscrollteleport4",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Teleportuje na drugą stronę ściany lub bramy"
       },
       "merchant": false,
       "tradeable": true,
@@ -1811,10 +1991,13 @@
       "name": "Teleportacja do obozu na bagnie",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_obozu_na_bagnie",
       "original_stats": {
         "code": "itarscrollteleport5",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przenosi na plac świątynny w Obozie Bractwa"
       },
       "merchant": false,
       "tradeable": true,
@@ -1826,14 +2009,17 @@
       "name": "Piorun kulisty",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Piorun_kulisty",
       "original_stats": {
         "code": "itarscrollthunderball",
-        "verified": false
+        "verified": true,
+        "value": 90,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje średnie obrażenia i na chwilę paraliżuje cel"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 90,
       "stackable": false
     },
     {
@@ -1841,14 +2027,17 @@
       "name": "Sopel lodu",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sopel_lodu",
       "original_stats": {
         "code": "itarscrollthunderbolt",
-        "verified": false
+        "verified": true,
+        "value": 50,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje niewielkie obrażenia od magii"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 50,
       "stackable": false
     },
     {
@@ -1856,14 +2045,17 @@
       "name": "Przemiana w krwiopijcę",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_krwiopijc%C4%99",
       "original_stats": {
         "code": "itarscrolltrfbloodfly",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w krwiopijcę"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -1871,14 +2063,17 @@
       "name": "Przemiana w pełzacza",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_pe%C5%82zacza",
       "original_stats": {
         "code": "itarscrolltrfcrawler",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w pełzacza"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -1886,14 +2081,17 @@
       "name": "Przemiana w topielca",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_topielca",
       "original_stats": {
         "code": "itarscrolltrflurker",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w topielca"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -1901,14 +2099,17 @@
       "name": "Przemiana w chrząszcza",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_chrz%C4%85szcza",
       "original_stats": {
         "code": "itarscrolltrfmeatbug",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w chrząszcza"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -1916,14 +2117,17 @@
       "name": "Przemiana w kretoszczura",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_kretoszczura",
       "original_stats": {
         "code": "itarscrolltrfmolerat",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w kretoszczura"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -1931,14 +2135,17 @@
       "name": "Przemiana w orkowego psa",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_orkowego_psa",
       "original_stats": {
         "code": "itarscrolltrforcdog",
-        "verified": false
+        "verified": true,
+        "value": 200,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w orkowego psa"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 200,
       "stackable": false
     },
     {
@@ -1946,14 +2153,17 @@
       "name": "Przemiana w ścierwojada",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_%C5%9Bcierwojada",
       "original_stats": {
         "code": "itarscrolltrfscavenger",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w ścierwojada"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -1961,14 +2171,17 @@
       "name": "Przemiana w cieniostwora",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_cieniostwora",
       "original_stats": {
         "code": "itarscrolltrfshadowbeast",
-        "verified": false
+        "verified": true,
+        "value": 200,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w cieniostwora"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 200,
       "stackable": false
     },
     {
@@ -1976,14 +2189,17 @@
       "name": "Przemiana w zębacza",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_z%C4%99bacza",
       "original_stats": {
         "code": "itarscrolltrfsnapper",
-        "verified": false
+        "verified": true,
+        "value": 150,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w zębacza"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 150,
       "stackable": false
     },
     {
@@ -1991,14 +2207,17 @@
       "name": "Przemiana w jaszczura",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_jaszczura",
       "original_stats": {
         "code": "itarscrolltrfwaran",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w jaszczura"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -2006,14 +2225,17 @@
       "name": "Przemiana w wilka",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_wilka",
       "original_stats": {
         "code": "itarscrolltrfwolf",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przemienia bohatera w wilka"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -2021,14 +2243,17 @@
       "name": "Uderzenie wiatru",
       "kind": "scroll",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_wiatru",
       "original_stats": {
         "code": "itarscrollwindfist",
-        "verified": false
+        "verified": true,
+        "value": 50,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Zadaje niewielkie obrażenia od wiatru i odrzuca na małą odległość"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 50,
       "stackable": false
     },
     {
@@ -2036,14 +2261,16 @@
       "name": "Skrzydła krwiopijcy",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Skrzyd%C5%82a_krwiopijcy",
       "original_stats": {
         "code": "itat_bloodfly_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": true
     },
     {
@@ -2051,14 +2278,16 @@
       "name": "Żądło krwiopijcy",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BB%C4%85d%C5%82o_krwiopijcy",
       "original_stats": {
         "code": "itat_bloodfly_02",
-        "verified": false
+        "verified": true,
+        "value": 25,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 25,
       "stackable": true
     },
     {
@@ -2066,14 +2295,16 @@
       "name": "Pazury",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury",
       "original_stats": {
         "code": "itat_claws_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": true
     },
     {
@@ -2081,14 +2312,16 @@
       "name": "Wnętrzności pełzacza",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Wn%C4%99trzno%C5%9Bci_pe%C5%82zacza",
       "original_stats": {
         "code": "itat_crawler_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": true
     },
     {
@@ -2111,14 +2344,16 @@
       "name": "Jajo pełzacza",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Jajo_pe%C5%82zacza",
       "original_stats": {
         "code": "itat_crawlerqueen",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": true
     },
     {
@@ -2126,14 +2361,16 @@
       "name": "Szpony topielca spod tamy",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpony_topielca_spod_tamy",
       "original_stats": {
         "code": "itat_damlurker_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": true
     },
     {
@@ -2141,14 +2378,16 @@
       "name": "Serce ognistego golema",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_ognistego_golema",
       "original_stats": {
         "code": "itat_firegolem_01",
-        "verified": false
+        "verified": true,
+        "value": 1000,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1000,
       "stackable": true
     },
     {
@@ -2156,14 +2395,16 @@
       "name": "Serce lodowego golema",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_lodowego_golema",
       "original_stats": {
         "code": "itat_icegolem_01",
-        "verified": false
+        "verified": true,
+        "value": 1000,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1000,
       "stackable": true
     },
     {
@@ -2171,14 +2412,16 @@
       "name": "Fragment lodowego golema",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Fragment_lodowego_golema",
       "original_stats": {
         "code": "itat_icegolem_02",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": true
     },
     {
@@ -2186,14 +2429,16 @@
       "name": "Pazury topielca",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury_topielca",
       "original_stats": {
         "code": "itat_lurker_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": true
     },
     {
@@ -2201,14 +2446,16 @@
       "name": "Skóra topielca",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_topielca",
       "original_stats": {
         "code": "itat_lurker_02",
-        "verified": false
+        "verified": true,
+        "value": 25,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 25,
       "stackable": true
     },
     {
@@ -2216,29 +2463,35 @@
       "name": "Mięso chrząszcza",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mi%C4%99so_chrz%C4%85szcza",
       "original_stats": {
         "code": "itat_meatbug_01",
-        "verified": false
+        "verified": true,
+        "value": 2,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 4 punkty życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 2,
+      "stackable": true,
+      "heal_amount": 4
     },
     {
       "key": "g1-itat-shadow-01",
       "name": "Skóra cieniostwora",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_cieniostwora",
       "original_stats": {
         "code": "itat_shadow_01",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": true
     },
     {
@@ -2246,14 +2499,16 @@
       "name": "Róg cieniostwora",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/R%C3%B3g_cieniostwora",
       "original_stats": {
         "code": "itat_shadow_02",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": true
     },
     {
@@ -2261,14 +2516,16 @@
       "name": "Serce kamiennego golema",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_kamiennego_golema",
       "original_stats": {
         "code": "itat_stonegolem_01",
-        "verified": false
+        "verified": true,
+        "value": 1000,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1000,
       "stackable": true
     },
     {
@@ -2276,14 +2533,16 @@
       "name": "Skóra błotnego węża",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_b%C5%82otnego_w%C4%99%C5%BCa",
       "original_stats": {
         "code": "itat_swampshark_01",
-        "verified": false
+        "verified": true,
+        "value": 200,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 200,
       "stackable": true
     },
     {
@@ -2291,14 +2550,16 @@
       "name": "Kły błotnego węża",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82y_b%C5%82otnego_w%C4%99%C5%BCa",
       "original_stats": {
         "code": "itat_swampshark_02",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": true
     },
     {
@@ -2306,14 +2567,16 @@
       "name": "Kły",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82y",
       "original_stats": {
         "code": "itat_teeth_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": true
     },
     {
@@ -2321,14 +2584,16 @@
       "name": "Skóra trolla",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_trolla",
       "original_stats": {
         "code": "itat_troll_01",
-        "verified": false
+        "verified": true,
+        "value": 300,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 300,
       "stackable": true
     },
     {
@@ -2336,14 +2601,16 @@
       "name": "Kieł trolla",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kie%C5%82_trolla",
       "original_stats": {
         "code": "itat_troll_02",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": true
     },
     {
@@ -2351,14 +2618,16 @@
       "name": "Język ognia",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/J%C4%99zyk_ognistego_jaszczura",
       "original_stats": {
         "code": "itat_waran_01",
-        "verified": false
+        "verified": true,
+        "value": 500,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 500,
       "stackable": true
     },
     {
@@ -2366,14 +2635,16 @@
       "name": "Skóra wilka",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_wilka",
       "original_stats": {
         "code": "itat_wolf_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": true,
       "art_key": "item_wolf_skin"
     },
@@ -2382,14 +2653,16 @@
       "name": "Skóra orkowego psa",
       "kind": "material",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_orkowego_psa",
       "original_stats": {
         "code": "itat_wolf_02",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": true
     },
     {
@@ -2397,59 +2670,74 @@
       "name": "Szynka",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Szynka",
       "original_stats": {
         "code": "itfo_mutton_01",
-        "verified": false
+        "verified": true,
+        "value": 12,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 18 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 12,
+      "stackable": true,
+      "heal_amount": 18
     },
     {
       "key": "g1-itfo-om-beer-01",
       "name": "Mocne piwo",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mocne_piwo",
       "original_stats": {
         "code": "itfo_om_beer_01",
-        "verified": false
+        "verified": true,
+        "value": 30,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 6 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 30,
+      "stackable": true,
+      "heal_amount": 6
     },
     {
       "key": "g1-itfo-plants-berrys-01",
       "name": "Jagody",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Jagody",
       "original_stats": {
         "code": "itfo_plants_berrys_01",
-        "verified": false
+        "verified": true,
+        "value": 5,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 10 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 5,
+      "stackable": true,
+      "heal_amount": 10
     },
     {
       "key": "g1-itfo-plants-bloodwood-01",
       "name": "Nasienie czerwonego buka",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Nasienie_czerwonego_buka",
       "original_stats": {
         "code": "itfo_plants_bloodwood_01",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 5 punktów many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": true
     },
     {
@@ -2457,15 +2745,19 @@
       "name": "Ogniocierń",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ogniocier%C5%84",
       "original_stats": {
         "code": "itfo_plants_flameberry_01",
-        "verified": false
+        "verified": true,
+        "value": 6,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 12 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 6,
+      "stackable": true,
+      "heal_amount": 12
     },
     {
       "key": "g1-itfo-plants-herb-01",
@@ -2517,44 +2809,55 @@
       "name": "Górski mech",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/G%C3%B3rski_mech",
       "original_stats": {
         "code": "itfo_plants_mountainmoos_01",
-        "verified": false
+        "verified": true,
+        "value": 9,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 18 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 9,
+      "stackable": true,
+      "heal_amount": 18
     },
     {
       "key": "g1-itfo-plants-mountainmoos-02",
       "name": "Mech nagrobny",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mech_nagrobny",
       "original_stats": {
         "code": "itfo_plants_mountainmoos_02",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 20 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 10,
+      "stackable": true,
+      "heal_amount": 20
     },
     {
       "key": "g1-itfo-plants-mushroom-01",
       "name": "Piekielnik",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Piekielnik",
       "original_stats": {
         "code": "itfo_plants_mushroom_01",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Odnawia 6 punktów życia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": true
     },
     {
@@ -2562,14 +2865,17 @@
       "name": "Gorzki chleb",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Gorzki_chleb",
       "original_stats": {
         "code": "itfo_plants_mushroom_02",
-        "verified": false
+        "verified": true,
+        "value": 9,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Odnawia 15 punktów życia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 9,
       "stackable": true
     },
     {
@@ -2577,74 +2883,93 @@
       "name": "Psianka",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Psianka",
       "original_stats": {
         "code": "itfo_plants_nightshadow_01",
-        "verified": false
+        "verified": true,
+        "value": 11,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 22 punkty życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 11,
+      "stackable": true,
+      "heal_amount": 22
     },
     {
       "key": "g1-itfo-plants-nightshadow-02",
       "name": "Kocianka",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kocianka",
       "original_stats": {
         "code": "itfo_plants_nightshadow_02",
-        "verified": false
+        "verified": true,
+        "value": 12,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 24 punkty życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 12,
+      "stackable": true,
+      "heal_amount": 24
     },
     {
       "key": "g1-itfo-plants-orcherb-01",
       "name": "Orkowe ziele",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Orkowe_ziele",
       "original_stats": {
         "code": "itfo_plants_orcherb_01",
-        "verified": false
+        "verified": true,
+        "value": 13,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 26 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 13,
+      "stackable": true,
+      "heal_amount": 26
     },
     {
       "key": "g1-itfo-plants-orcherb-02",
       "name": "Liść dębu",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Li%C5%9B%C4%87_d%C4%99bu",
       "original_stats": {
         "code": "itfo_plants_orcherb_02",
-        "verified": false
+        "verified": true,
+        "value": 14,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 28 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 14,
+      "stackable": true,
+      "heal_amount": 28
     },
     {
       "key": "g1-itfo-plants-ravenherb-01",
       "name": "Krucze ziele",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Krucze_ziele",
       "original_stats": {
         "code": "itfo_plants_ravenherb_01",
-        "verified": false
+        "verified": true,
+        "value": 12,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 15 punktów many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 12,
       "stackable": true
     },
     {
@@ -2652,14 +2977,17 @@
       "name": "Czarne ziele",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Czarne_ziele",
       "original_stats": {
         "code": "itfo_plants_ravenherb_02",
-        "verified": false
+        "verified": true,
+        "value": 17,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 20 punktów many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 17,
       "stackable": true
     },
     {
@@ -2667,29 +2995,36 @@
       "name": "Serafis",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Serafis",
       "original_stats": {
         "code": "itfo_plants_seraphis_01",
-        "verified": false
+        "verified": true,
+        "value": 7,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 14 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 7,
+      "stackable": true,
+      "heal_amount": 14
     },
     {
       "key": "g1-itfo-plants-stoneroot-01",
       "name": "Twardzień",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Twardzie%C5%84",
       "original_stats": {
         "code": "itfo_plants_stoneroot_01",
-        "verified": false
+        "verified": true,
+        "value": 20,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 25 punktów many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 20,
       "stackable": true
     },
     {
@@ -2697,14 +3032,17 @@
       "name": "Dragrot",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Dragrot",
       "original_stats": {
         "code": "itfo_plants_stoneroot_02",
-        "verified": false
+        "verified": true,
+        "value": 23,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 30 punktów many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 23,
       "stackable": true
     },
     {
@@ -2712,14 +3050,17 @@
       "name": "Nasienie wysokiego dębu",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Nasienie_wysokiego_d%C4%99bu",
       "original_stats": {
         "code": "itfo_plants_towerwood_01",
-        "verified": false
+        "verified": true,
+        "value": 8,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 10 punktów many"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 8,
       "stackable": true
     },
     {
@@ -2727,14 +3068,17 @@
       "name": "Trolest",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Trolest",
       "original_stats": {
         "code": "itfo_plants_trollberrys_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Odbiera 20 punktów życia"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": true
     },
     {
@@ -2742,15 +3086,19 @@
       "name": "Velais",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Velais",
       "original_stats": {
         "code": "itfo_plants_velayis_01",
-        "verified": false
+        "verified": true,
+        "value": 8,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 16 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 8,
+      "stackable": true,
+      "heal_amount": 16
     },
     {
       "key": "g1-itfo-potion-dex-01",
@@ -3164,220 +3512,278 @@
       "name": "Woda",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Woda",
       "original_stats": {
         "code": "itfo_potion_water_01",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 5 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 3,
+      "stackable": true,
+      "heal_amount": 5
     },
     {
       "key": "g1-itfo-wineberrys-01",
       "name": "Winogrona",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Winogrona",
       "original_stats": {
         "code": "itfo_wineberrys_01",
-        "verified": false
+        "verified": true,
+        "value": 6,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 8 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 6,
+      "stackable": true,
+      "heal_amount": 8
     },
     {
       "key": "g1-itfoapple",
       "name": "Jabłko",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Jab%C5%82ko",
       "original_stats": {
         "code": "itfoapple",
-        "verified": false
+        "verified": true,
+        "value": 4,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 8 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 4,
+      "stackable": true,
+      "heal_amount": 8
     },
     {
       "key": "g1-itfobeer",
       "name": "Piwo",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Piwo",
       "original_stats": {
         "code": "itfobeer",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 3 punkty życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 10,
+      "stackable": true,
+      "heal_amount": 3
     },
     {
       "key": "g1-itfobooze",
       "name": "Ryżówka",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ry%C5%BC%C3%B3wka",
       "original_stats": {
         "code": "itfobooze",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 3 punkty życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 15,
+      "stackable": true,
+      "heal_amount": 3
     },
     {
       "key": "g1-itfocheese",
       "name": "Ser",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ser",
       "original_stats": {
         "code": "itfocheese",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 15 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 10,
+      "stackable": true,
+      "heal_amount": 15
     },
     {
       "key": "g1-itfocrawlersoup",
       "name": "Zupa z pełzacza",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zupa_z_pe%C5%82zacza",
       "original_stats": {
         "code": "itfocrawlersoup",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 15 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 10,
+      "stackable": true,
+      "heal_amount": 15
     },
     {
       "key": "g1-itfoloaf",
       "name": "Chleb",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Chleb",
       "original_stats": {
         "code": "itfoloaf",
-        "verified": false
+        "verified": true,
+        "value": 8,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 12 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 8,
+      "stackable": true,
+      "heal_amount": 12
     },
     {
       "key": "g1-itfomeatbugragout",
       "name": "Potrawka z chrząszcza",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Potrawka_z_chrz%C4%85szcza",
       "original_stats": {
         "code": "itfomeatbugragout",
-        "verified": false
+        "verified": true,
+        "value": 4,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 9 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 4,
+      "stackable": true,
+      "heal_amount": 9
     },
     {
       "key": "g1-itfomutton",
       "name": "Smażone mięso",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sma%C5%BCone_mi%C4%99so",
       "original_stats": {
         "code": "itfomutton",
-        "verified": false
+        "verified": true,
+        "value": 8,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 15 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 8,
+      "stackable": true,
+      "heal_amount": 15
     },
     {
       "key": "g1-itfomuttonraw",
       "name": "Surowe mięso",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Surowe_mi%C4%99so",
       "original_stats": {
         "code": "itfomuttonraw",
-        "verified": false
+        "verified": true,
+        "value": 5,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 10 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 5,
+      "stackable": true,
+      "heal_amount": 10
     },
     {
       "key": "g1-itforice",
       "name": "Ryż",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ry%C5%BC",
       "original_stats": {
         "code": "itforice",
-        "verified": false
+        "verified": true,
+        "value": 5,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 10 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 5,
+      "stackable": true,
+      "heal_amount": 10
     },
     {
       "key": "g1-itfosoup",
       "name": "Zupa korzenna",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zupa_korzenna",
       "original_stats": {
         "code": "itfosoup",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 7 punktów życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 3,
+      "stackable": true,
+      "heal_amount": 7
     },
     {
       "key": "g1-itfowine",
       "name": "Wino",
       "kind": "consumable",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Wino",
       "original_stats": {
         "code": "itfowine",
-        "verified": false
+        "verified": true,
+        "value": 13,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Przywraca 3 punkty życia"
       },
-      "merchant": false,
+      "merchant": true,
       "tradeable": true,
-      "base_value": 0,
-      "stackable": true
+      "base_value": 13,
+      "stackable": true,
+      "heal_amount": 3
     },
     {
       "key": "g1-itke-berg-01",
       "name": "Klucz do skrzyni w górskiej fortecy",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_w_g%C3%B3rskiej_fortecy",
       "original_stats": {
         "code": "itke_berg_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3389,14 +3795,16 @@
       "name": "Klucz z jaskini pod starym klasztorem",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_z_jaskini_pod_starym_klasztorem",
       "original_stats": {
         "code": "itke_focus4",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -3404,14 +3812,16 @@
       "name": "Klucz Nadzorcy",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Nadzorcy",
       "original_stats": {
         "code": "itke_focus5",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -3419,14 +3829,16 @@
       "name": "Klucz do Wolnej Kopalni",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_Wolnej_Kopalni",
       "original_stats": {
         "code": "itke_freemine",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -3434,10 +3846,12 @@
       "name": "Klucz Gomeza",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Gomeza",
       "original_stats": {
         "code": "itke_gomez_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3449,10 +3863,12 @@
       "name": "Żelazny klucz",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BBelazny_klucz",
       "original_stats": {
         "code": "itke_ob_smith_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3464,10 +3880,12 @@
       "name": "Klucz do skrzyni Santino",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_Santino",
       "original_stats": {
         "code": "itke_om_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3479,10 +3897,12 @@
       "name": "Klucz do skrzyni Aarona",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_Aarona",
       "original_stats": {
         "code": "itke_om_02",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3494,10 +3914,12 @@
       "name": "Klucz do skrzyń w składowisku Ulberta",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzy%C5%84_w_sk%C5%82adowisku_Ulberta",
       "original_stats": {
         "code": "itke_om_03",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3509,10 +3931,12 @@
       "name": "Klucz do skrzyni Alberto",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_Alberto",
       "original_stats": {
         "code": "itke_om_04",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3524,10 +3948,12 @@
       "name": "Klucz do laboratorium",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_laboratorium",
       "original_stats": {
         "code": "itke_psi_kalom_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3539,10 +3965,12 @@
       "name": "Klucz do składowiska",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_sk%C5%82adowiska",
       "original_stats": {
         "code": "itke_storage_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3554,14 +3982,16 @@
       "name": "Klucz do skrzyń w zatopionej wieży",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzy%C5%84_w_zatopionej_wie%C5%BCy",
       "original_stats": {
         "code": "itke_sunkentower",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -3569,14 +3999,16 @@
       "name": "Klucz Cavalorna",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Cavalorna",
       "original_stats": {
         "code": "itkecavalorn01",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -3599,14 +4031,16 @@
       "name": "Wytrych",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Wytrych",
       "original_stats": {
         "code": "itkelockpick",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -3614,10 +4048,12 @@
       "name": "Klucz Ryżowego Księcia",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Ry%C5%BCowego_Ksi%C4%99cia",
       "original_stats": {
         "code": "itkey_rb_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -3629,14 +4065,16 @@
       "name": "Pochodnia",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
       "original_stats": {
         "code": "itlstorch",
-        "verified": false
+        "verified": true,
+        "value": 2,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 2,
       "stackable": false
     },
     {
@@ -3644,14 +4082,16 @@
       "name": "Wypalona pochodnia",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
       "original_stats": {
         "code": "itlstorchburned",
-        "verified": false
+        "verified": true,
+        "value": 2,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 2,
       "stackable": false
     },
     {
@@ -3659,14 +4099,16 @@
       "name": "Płonąca pochodnia",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
       "original_stats": {
         "code": "itlstorchburning",
-        "verified": false
+        "verified": true,
+        "value": 2,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 2,
       "stackable": false
     },
     {
@@ -3674,14 +4116,16 @@
       "name": "Pochodnia do ziania ogniem",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
       "original_stats": {
         "code": "itlstorchfirespit",
-        "verified": false
+        "verified": true,
+        "value": 2,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 2,
       "stackable": false
     },
     {
@@ -3689,14 +4133,16 @@
       "name": "Czysty alkohol",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Czysty_alkohol",
       "original_stats": {
         "code": "itmi_alchemy_alcohol_01",
-        "verified": false
+        "verified": true,
+        "value": 18,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 18,
       "stackable": false
     },
     {
@@ -3704,14 +4150,16 @@
       "name": "Sadło kretoszczura",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sad%C5%82o_kretoszczura",
       "original_stats": {
         "code": "itmi_alchemy_moleratlubric_01",
-        "verified": false
+        "verified": true,
+        "value": 5,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 5,
       "stackable": false
     },
     {
@@ -3719,14 +4167,16 @@
       "name": "Rtęć",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Rt%C4%99%C4%87",
       "original_stats": {
         "code": "itmi_alchemy_quicksilver_01",
-        "verified": false
+        "verified": true,
+        "value": 25,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 25,
       "stackable": false
     },
     {
@@ -3734,14 +4184,16 @@
       "name": "Sól",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/S%C3%B3l",
       "original_stats": {
         "code": "itmi_alchemy_salt_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -3749,14 +4201,16 @@
       "name": "Siarka",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Siarka",
       "original_stats": {
         "code": "itmi_alchemy_sulphur_01",
-        "verified": false
+        "verified": true,
+        "value": 20,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 20,
       "stackable": false
     },
     {
@@ -3764,14 +4218,16 @@
       "name": "Olej syrianiczny",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Olej_syrianiczny",
       "original_stats": {
         "code": "itmi_alchemy_syrianoil_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -3779,14 +4235,16 @@
       "name": "Znak Bractwa",
       "kind": "amulet",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Znak_Bractwa",
       "original_stats": {
         "code": "itmi_amulet_psi_01",
-        "verified": false
+        "verified": true,
+        "value": 5,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 5,
       "stackable": false
     },
     {
@@ -3817,14 +4275,17 @@
       "name": "Bagienne ziele",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Bagienne_ziele",
       "original_stats": {
         "code": "itmi_plants_swampherb_01",
-        "verified": false
+        "verified": true,
+        "value": 8,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Brak (nie można spożywać bezpośrednio)"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 8,
       "stackable": false
     },
     {
@@ -3832,14 +4293,16 @@
       "name": "Amfora",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Amfora",
       "original_stats": {
         "code": "itmi_stuff_amphore_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -3862,14 +4325,16 @@
       "name": "Świecznik",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiecznik",
       "original_stats": {
         "code": "itmi_stuff_candel_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -3877,14 +4342,16 @@
       "name": "Kubek",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kubek",
       "original_stats": {
         "code": "itmi_stuff_cup_01",
-        "verified": false
+        "verified": true,
+        "value": 4,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 4,
       "stackable": false
     },
     {
@@ -3892,14 +4359,16 @@
       "name": "Puchar",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Puchar",
       "original_stats": {
         "code": "itmi_stuff_cup_02",
-        "verified": false
+        "verified": true,
+        "value": 50,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 50,
       "stackable": false
     },
     {
@@ -3907,10 +4376,12 @@
       "name": "Koło zębate",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ko%C5%82o_z%C4%99bate",
       "original_stats": {
         "code": "itmi_stuff_gearwheel_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
@@ -3922,14 +4393,16 @@
       "name": "Posążek",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pos%C4%85%C5%BCek",
       "original_stats": {
         "code": "itmi_stuff_idol_ogront_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -3937,10 +4410,12 @@
       "name": "Posążek Śniącego",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Pos%C4%85%C5%BCek_%C5%9Ani%C4%85cego",
       "original_stats": {
         "code": "itmi_stuff_idol_sleeper_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
@@ -3952,14 +4427,16 @@
       "name": "Dzban",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Dzban",
       "original_stats": {
         "code": "itmi_stuff_mug_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -4012,14 +4489,16 @@
       "name": "Fajka",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Fajka",
       "original_stats": {
         "code": "itmi_stuff_pipe_01",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -4027,14 +4506,16 @@
       "name": "Talerz",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Talerz",
       "original_stats": {
         "code": "itmi_stuff_plate_01",
-        "verified": false
+        "verified": true,
+        "value": 4,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 4,
       "stackable": false
     },
     {
@@ -4042,14 +4523,16 @@
       "name": "Sztućce",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sztu%C4%87ce",
       "original_stats": {
         "code": "itmi_stuff_silverware_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -4057,14 +4540,16 @@
       "name": "Róg",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/R%C3%B3g",
       "original_stats": {
         "code": "itmialarmhorn",
-        "verified": false
+        "verified": true,
+        "value": 9,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 9,
       "stackable": false
     },
     {
@@ -4072,14 +4557,16 @@
       "name": "Szczotka",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Szczotka",
       "original_stats": {
         "code": "itmibrush",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -4087,14 +4574,16 @@
       "name": "Kolba",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Kolba",
       "original_stats": {
         "code": "itmiflask",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -4102,14 +4591,16 @@
       "name": "Młotek",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82otek",
       "original_stats": {
         "code": "itmihammer",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -4117,14 +4608,16 @@
       "name": "Zielony nowicjusz",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zielony_nowicjusz",
       "original_stats": {
         "code": "itmijoint_1",
-        "verified": false
+        "verified": true,
+        "value": 8,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 8,
       "stackable": false
     },
     {
@@ -4132,14 +4625,16 @@
       "name": "Mrok północy",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mrok_p%C3%B3%C5%82nocy",
       "original_stats": {
         "code": "itmijoint_2",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -4147,14 +4642,16 @@
       "name": "Zew nocy",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zew_nocy",
       "original_stats": {
         "code": "itmijoint_3",
-        "verified": false
+        "verified": true,
+        "value": 20,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 20,
       "stackable": false
     },
     {
@@ -4162,14 +4659,16 @@
       "name": "Lutnia",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Lutnia",
       "original_stats": {
         "code": "itmilute",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -4177,14 +4676,16 @@
       "name": "Bryłka rudy",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82ka_rudy",
       "original_stats": {
         "code": "itminugget",
-        "verified": false
+        "verified": true,
+        "value": 1,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1,
       "stackable": false
     },
     {
@@ -4192,14 +4693,16 @@
       "name": "Drewniana łyżka",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81y%C5%BCka",
       "original_stats": {
         "code": "itmiscoop",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -4207,14 +4710,16 @@
       "name": "Rozdrabniacz",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Rozdrabniacz",
       "original_stats": {
         "code": "itmistomper",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -4222,14 +4727,16 @@
       "name": "Ostrze",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze",
       "original_stats": {
         "code": "itmiswordblade",
-        "verified": false
+        "verified": true,
+        "value": 80,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 80,
       "stackable": false
     },
     {
@@ -4237,14 +4744,16 @@
       "name": "Rozgrzane ostrze",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Rozgrzane_ostrze",
       "original_stats": {
         "code": "itmiswordbladehot",
-        "verified": false
+        "verified": true,
+        "value": 64,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 64,
       "stackable": false
     },
     {
@@ -4252,14 +4761,16 @@
       "name": "Stal",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Surowa_stal",
       "original_stats": {
         "code": "itmiswordraw",
-        "verified": false
+        "verified": true,
+        "value": 40,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 40,
       "stackable": false
     },
     {
@@ -4282,14 +4793,16 @@
       "name": "Liść palmowy",
       "kind": "misc",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Li%C5%9B%C4%87_palmowy",
       "original_stats": {
         "code": "itmiwedel",
-        "verified": false
+        "verified": true,
+        "value": 3,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 3,
       "stackable": false
     },
     {
@@ -7548,10 +8061,12 @@
       "name": "Strona z dziennika",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Strona_z_dziennika",
       "original_stats": {
         "code": "itwr_troll_01",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -7563,14 +8078,16 @@
       "name": "Akt własności",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Akt_w%C5%82asno%C5%9Bci",
       "original_stats": {
         "code": "itwr_urkunde_01",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -7578,14 +8095,16 @@
       "name": "Book of Tales",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Book_of_Tales",
       "original_stats": {
         "code": "itwrbookoftales",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -7608,14 +8127,16 @@
       "name": "Mapa od Saturasa",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_od_Saturasa",
       "original_stats": {
         "code": "itwrfocimap",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -7623,14 +8144,16 @@
       "name": "Mapa od Y'Beriona",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_od_Y%27Beriona",
       "original_stats": {
         "code": "itwrfocusmappsi",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -7653,14 +8176,16 @@
       "name": "Map of Test Level",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Map_of_Test_Level",
       "original_stats": {
         "code": "itwrlevelmap",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -7668,14 +8193,16 @@
       "name": "Plan Nowego Obozu",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Plan_Nowego_Obozu",
       "original_stats": {
         "code": "itwrncmap",
-        "verified": false
+        "verified": true,
+        "value": 40,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 40,
       "stackable": false
     },
     {
@@ -7683,14 +8210,16 @@
       "name": "Plan Starego Obozu",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Plan_Starego_Obozu",
       "original_stats": {
         "code": "itwrocmap",
-        "verified": false
+        "verified": true,
+        "value": 40,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 40,
       "stackable": false
     },
     {
@@ -7698,14 +8227,16 @@
       "name": "Mapa do Starej Kopalni",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_do_Starej_Kopalni",
       "original_stats": {
         "code": "itwrommap",
-        "verified": false
+        "verified": true,
+        "value": 30,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 30,
       "stackable": false
     },
     {
@@ -7713,14 +8244,16 @@
       "name": "Szkic",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Szkic",
       "original_stats": {
         "code": "itwrpinup",
-        "verified": false
+        "verified": true,
+        "value": 60,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 60,
       "stackable": false
     },
     {
@@ -7728,14 +8261,16 @@
       "name": "Plan obozu na bagnie",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Plan_obozu_na_bagnie",
       "original_stats": {
         "code": "itwrpsimap",
-        "verified": false
+        "verified": true,
+        "value": 40,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 40,
       "stackable": false
     },
     {
@@ -7743,14 +8278,16 @@
       "name": "Szkic świątyni",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Szkic_%C5%9Bwi%C4%85tyni",
       "original_stats": {
         "code": "itwrtemplemap",
-        "verified": false
+        "verified": true,
+        "value": 30,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 30,
       "stackable": false
     },
     {
@@ -7758,14 +8295,16 @@
       "name": "Mapa kolonii",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_kolonii",
       "original_stats": {
         "code": "itwrworldmap",
-        "verified": false
+        "verified": true,
+        "value": 50,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 50,
       "stackable": false
     },
     {
@@ -7773,14 +8312,16 @@
       "name": "Mapa kolonii (uzupełniona)",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_kolonii_%28uzupe%C5%82niona%29",
       "original_stats": {
         "code": "itwrworldmap_orc",
-        "verified": false
+        "verified": true,
+        "value": 250,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 250,
       "stackable": false
     },
     {
@@ -7817,14 +8358,16 @@
       "name": "Łowy i zwierzyna",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81owy_i_zwierzyna",
       "original_stats": {
         "code": "jagd_und_beute",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -7861,14 +8404,16 @@
       "name": "Receptura Cor Kaloma",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Receptura_Cor_Kaloma",
       "original_stats": {
         "code": "kalomsrecipe",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -7876,14 +8421,16 @@
       "name": "Sztuka walki",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Sztuka_walki",
       "original_stats": {
         "code": "kampfkunst",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -7943,14 +8490,16 @@
       "name": "Amulet kuriera magów wody",
       "kind": "amulet",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_kuriera_mag%C3%B3w_wody",
       "original_stats": {
         "code": "kdw_amulett",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -8186,14 +8735,16 @@
       "name": "Schicke Lester nach Hause",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Schicke_Lester_nach_Hause",
       "original_stats": {
         "code": "lester_bugfixbook",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -8201,14 +8752,16 @@
       "name": "Ostrze Światła",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze_%C5%9Awiat%C5%82a",
       "original_stats": {
         "code": "lichtbringer",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -8216,14 +8769,16 @@
       "name": "Zwinge Baal Lukor in den Followmode",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Zwinge_Baal_Lukor_in_den_Followmode",
       "original_stats": {
         "code": "lukor_bugfixbook",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -8254,14 +8809,16 @@
       "name": "Wszechpotężna sztuka",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Wszechpot%C4%99%C5%BCna_sztuka",
       "original_stats": {
         "code": "machtvolle_kunst",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -8292,14 +8849,16 @@
       "name": "Poezja myrtańska",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Poezja_myrta%C5%84ska",
       "original_stats": {
         "code": "myrtanas_lyrik",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -8307,14 +8866,16 @@
       "name": "Przedziwny miecz",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Uriziel",
       "original_stats": {
         "code": "mythrilklinge",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -8828,14 +9389,17 @@
       "name": "Bagienne ziele dla kopaczy",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Bagienne_ziele_dla_kopaczy",
       "original_stats": {
         "code": "recruitjoint",
-        "verified": false
+        "verified": true,
+        "value": 1,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Brak"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1,
       "stackable": false
     },
     {
@@ -9583,14 +10147,16 @@
       "name": "Przekaz energii",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przekaz_energii",
       "original_stats": {
         "code": "scroll4milten",
-        "verified": false
+        "verified": true,
+        "value": 15,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 15,
       "stackable": false
     },
     {
@@ -9731,14 +10297,16 @@
       "name": "Przygotowany Zew Nocy",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Przygotowany_Zew_Nocy",
       "original_stats": {
         "code": "specialjoint",
-        "verified": false
+        "verified": true,
+        "value": 200,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 200,
       "stackable": false
     },
     {
@@ -9746,14 +10314,17 @@
       "name": "Magiczna woda",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczna_woda",
       "original_stats": {
         "code": "specialwater",
-        "verified": false
+        "verified": true,
+        "value": 10,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Brak"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 10,
       "stackable": false
     },
     {
@@ -9963,14 +10534,16 @@
       "name": "Dziennik niewolnika",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Dziennik_niewolnika",
       "original_stats": {
         "code": "tagebuchot",
-        "verified": false
+        "verified": true,
+        "value": 100,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 100,
       "stackable": false
     },
     {
@@ -9978,10 +10551,12 @@
       "name": "Lista od Iana",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_od_Iana",
       "original_stats": {
         "code": "thelist",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -9993,10 +10568,12 @@
       "name": "Lista od Iana (poszerzona)",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_od_Iana_%28poszerzona%29",
       "original_stats": {
         "code": "thelistnc",
-        "verified": false
+        "verified": true,
+        "value": 0,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
@@ -10234,14 +10811,16 @@
       "name": "Ulu-Mulu",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ulu-Mulu",
       "original_stats": {
         "code": "ulumulu",
-        "verified": false
+        "verified": true,
+        "value": 1000,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 1000,
       "stackable": false
     },
     {
@@ -10249,14 +10828,17 @@
       "name": "Fala Śmierci Uriziela",
       "kind": "rune",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Fala_%C5%9Amierci_Uriziela",
       "original_stats": {
         "code": "urizielrune",
-        "verified": false
+        "verified": true,
+        "value": 10000,
+        "verification": "exact G1 code and ore-valued item infobox",
+        "effect": "Od maga promieniuje pierścień magicznej energii; który dotkliwie rani wszystko; co stanie na jego drodze"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 10000,
       "stackable": false
     },
     {
@@ -10332,14 +10914,16 @@
       "name": "Rozcinacz Światów",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Rozcinacz_%C5%9Awiat%C3%B3w",
       "original_stats": {
         "code": "weltenspalter",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     },
     {
@@ -10402,14 +10986,16 @@
       "name": "XP Map",
       "kind": "quest",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/XP_Map",
       "original_stats": {
         "code": "xp_map",
-        "verified": false
+        "verified": true,
+        "value": 1000,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": false,
-      "base_value": 0,
+      "base_value": 1000,
       "stackable": false
     },
     {
@@ -10417,14 +11003,16 @@
       "name": "Ostrze Czasu",
       "kind": "weapon",
       "game": "GOTHIC_I",
-      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze_Czasu",
       "original_stats": {
         "code": "zeitenklinge",
-        "verified": false
+        "verified": true,
+        "value": 900,
+        "verification": "exact G1 code and ore-valued item infobox"
       },
       "merchant": false,
       "tradeable": true,
-      "base_value": 0,
+      "base_value": 900,
       "stackable": false
     }
   ]

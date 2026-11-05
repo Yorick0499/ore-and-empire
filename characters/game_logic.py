@@ -5,6 +5,7 @@ from functools import wraps
 from django.utils import timezone
 from datetime import timedelta
 import random
+from uuid import uuid4
 from dataclasses import dataclass
 
 
@@ -75,7 +76,11 @@ def player_action(fn):
                     # A listing changed owner while locks were being acquired.
                     if fn.__name__ == "buy_item_on_market" and arg.owner_id not in ids:
                         return False
-            return fn(profile, *args, **kwargs)
+            from .economic_ledger import balances, record_changes
+            before = balances(ids)
+            result = fn(profile, *args, **kwargs)
+            record_changes(before, fn.__name__)
+            return result
 
     return wrapped
 
@@ -442,6 +447,11 @@ def use_item(profile, item):
     health = min(bp.heal_amount, profile.max_health - profile.current_health)
     energy = min(bp.energy_amount, profile.max_energy - profile.current_energy)
     if health <= 0 and energy <= 0: return False
+    if energy:
+        from .economic_ledger import refills_remaining
+        from .models import EnergyRefill
+        if not refills_remaining(profile): return False
+        EnergyRefill.objects.create(profile=profile, reference='item:' + str(uuid4()))
     profile.current_health += health
     profile.current_energy += energy
     if health: profile.health_updated_at = timezone.now()

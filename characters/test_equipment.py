@@ -136,3 +136,21 @@ class EquipmentTests(TestCase):
         self.assertEqual(first.pk,second.pk)
         self.assertEqual((self.hero.experience,self.hero.ore_balance,self.hero.current_energy),before)
         self.assertEqual(BattleRecord.objects.count(),1)
+
+    def test_admin_item_removal_clears_cached_health_bonus(self):
+        amulet=self.item('amulet',life_bonus=30)
+        self.assertTrue(game.equip_item(self.hero,amulet))
+        self.hero.current_health=75;self.hero.save()
+        amulet.delete()
+        self.hero.refresh_from_db()
+        self.assertEqual((self.hero.equipment_health,self.hero.current_health),(0,50))
+
+    def test_admin_blueprint_edit_and_owner_transfer_recompute_health(self):
+        amulet=self.item('amulet',life_bonus=30)
+        game.equip_item(self.hero,amulet)
+        amulet.blueprint.life_bonus=40;amulet.blueprint.save()
+        self.hero.refresh_from_db();self.assertEqual(self.hero.max_health,90)
+        other=User.objects.create_user('receiver').playerprofile
+        amulet.owner=other;amulet.save()
+        self.hero.refresh_from_db();other.refresh_from_db()
+        self.assertEqual((self.hero.max_health,other.max_health),(50,90))

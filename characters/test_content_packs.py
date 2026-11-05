@@ -32,6 +32,20 @@ class ItemPackTests(TestCase):
         call_command('seed_adventures',stdout=io.StringIO())
         self.assertEqual(ContentPack.objects.count(),1)
 
+    def test_version_two_updates_reference_without_repricing_owned_items(self):
+        data=json.loads(PACK_PATH.read_bytes())
+        scroll=next(i for i in data['items'] if i['original_stats']['code'].lower()=='itarscrollfireball')
+        self.assertEqual(scroll['original_stats']['value'],70)
+        rune=next(i for i in data['items'] if i['original_stats']['code'].lower()=='itarrunefireball')
+        self.assertEqual(rune['original_stats']['value'],700)
+        old=copy.deepcopy(data);old['version']=1;old['items']=[copy.deepcopy(scroll)]
+        old['items'][0]['base_value']=999
+        install_catalog(json.dumps(old).encode())
+        install_catalog(PACK_PATH.read_bytes())
+        item=ItemBluePrint.objects.get(catalog_key=scroll['key'])
+        self.assertEqual(item.base_value,999)
+        self.assertEqual(item.original_stats['value'],70)
+
     def test_invalid_or_mutated_same_version_pack_rolls_back(self):
         raw=PACK_PATH.read_bytes();data=json.loads(raw)
         bad=copy.deepcopy(data);bad['items'][-1]['damage']=-1
@@ -49,7 +63,7 @@ class ItemPackTests(TestCase):
         self.assertContains(response,'520')
         self.assertLessEqual(len(response.context['items']),24)
         verified=self.client.get('/przedmioty/',{'verified':'1'})
-        self.assertEqual(verified.context['items'].paginator.count,242)
+        self.assertEqual(verified.context['items'].paginator.count,470)
         self.assertContains(self.client.get('/przedmioty/',{'q':'Uriziel'}),'Uriziel')
         self.assertContains(self.client.get('/przedmioty/',{'kind':'rune'}),'nie można jej jeszcze używać')
         self.assertLessEqual(len(self.client.get('/sklep/').context['shop_items']),30)

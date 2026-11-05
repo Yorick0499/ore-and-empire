@@ -63,6 +63,8 @@ def purchase_product(profile, product_id, request_key):
             return False
         effect = 0
     elif product.kind == "energy":
+        from .economic_ledger import refills_remaining
+        if not refills_remaining(profile): return False
         effect = min(product.effect, profile.max_energy - profile.current_energy)
         if effect <= 0:
             return False
@@ -77,6 +79,9 @@ def purchase_product(profile, product_id, request_key):
     else:
         return False
     purchase = StorePurchase.objects.create(profile=profile, product=product, request_key=request_key, price=product.price, effect=effect)
+    if product.kind == "energy":
+        from .models import EnergyRefill
+        EnergyRefill.objects.create(profile=profile,reference=f"purchase:{purchase.pk}")
     change_premium(profile, -product.price, "Zakup: " + product.name, f"purchase:{purchase.pk}")
     if product.kind == "weapon":
         OwnedItem.objects.create(owner=profile, blueprint=product.blueprint)
