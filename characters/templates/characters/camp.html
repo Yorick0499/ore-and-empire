@@ -6,7 +6,7 @@
 <p>Poziom {{ profile.level }} · Ruda {{ profile.ore_balance }} · Siła {{ profile.strength }} · Zręczność {{ profile.dexterity }} · Mana {{ profile.mana }}</p>
 {% if profile.camp == 'NONE' %}<p>Najpierw <a href="{% url 'locations_page' %}">wybierz obóz w kolonii</a>. Poniżej możesz porównać ścieżki.</p>{% endif %}
 <p>Wybór obozu i awans na jedną z gałęzi są stałe. Możesz mieć jedno aktywne zadanie awansu. Postęp liczy się od przyjęcia zadania; porażki i wcześniejsze osiągnięcia się nie zaliczają. Porzucenie usuwa postęp zadania.</p>
-<p class="requirements">Hierarchie i zadania są adaptacją na potrzeby Ore &amp; Empire. Ścieżki magów odblokowują rangi; system zaklęć pozostaje osobnym etapem.</p>
+<p class="requirements">Hierarchie i zadania są adaptacją na potrzeby Ore &amp; Empire. Ścieżki magów odblokowują dostęp do kręgów i run. <a href="{% url 'magic_page' %}">Poznaj magię</a>. <a href="{% url 'camp_guild' %}">Wspólny rozwój obozu</a> jest odrębny od twojej rangi.</p>
 </section>
 <nav class="camp-tabs" aria-label="Hierarchie obozów">{% for key, name in camps %}<a class="colony-button" href="?camp={{ key }}" {% if selected == key %}aria-current="page"{% endif %}>{{ name }}</a>{% endfor %}</nav>
 <h2 class="section-heading">{{ camp_name }}</h2>

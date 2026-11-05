@@ -67,6 +67,9 @@ class Observation:
     mana: int = 0
     magic_ready: bool = False
     magic_focused: bool = False
+    camp_action: str = ""
+    camp_target_id: int | None = None
+    camp_upgrade_level: int = 0
 
 
 class Policy(Protocol):
@@ -152,11 +155,18 @@ class BaselinePolicyV7:
         return "wait", None
 
 
-class BaselinePolicy(BaselinePolicyV7):
+class BaselinePolicyV8(BaselinePolicyV7):
     def choose(self,observation):
         o=observation
         if not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and not o.consume_id and not o.product_urgent:
             if o.magic_action:return o.magic_action,o.magic_target
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV8):
+    def choose(self,o):
+        if o.camp_action and not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and o.energy>=25 and not o.product_urgent:
+            return o.camp_action,o.camp_target_id
         return super().choose(o)
 
 
@@ -340,6 +350,16 @@ def tick_bot(profile, policy=None):
     target_monster=next((game.BESTIARY[key] for key in hunt_goals if key in game.BESTIARY),None)
     magic_action,magic_target=bot_magic_plan(profile,inventory,target_monster)
     active_magic=combat_plan(profile)
+    from .camp_guilds import guild_cards,UPGRADES
+    camp_action="";camp_target_id=None;camp_upgrade_level=0
+    if profile.camp!="NONE" and profile.bot_turn%17==0:
+        card=guild_cards(profile)
+        if card:
+            camp_upgrade=next((row for row in card["upgrades"] if row["can_buy"]),None)
+            if camp_upgrade:
+                camp_action="camp_upgrade";camp_target_id=list(UPGRADES).index(camp_upgrade["key"])+1;camp_upgrade_level=camp_upgrade["level"]
+            elif profile.ore_balance>=250 and card["guild"].treasury<100:
+                camp_action="camp_donate"
     obs = Observation(
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -363,16 +383,22 @@ def tick_bot(profile, policy=None):
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,
         consume_id=consumable.pk if consumable else None,
+        camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-8" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-9" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
         return "rejected", False
     story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
     from .magic import learn_circle,prepare_magic,purchase_magic
-    if action==obs.magic_action and target==obs.magic_target and action in {'learn_circle','prepare_magic','buy_magic','clear_magic'}:
+    from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
+    if action=='camp_donate' and obs.camp_action==action and target is None:
+        success=donate_to_camp(profile,10,uuid4())
+    elif action=='camp_upgrade' and obs.camp_action==action and target==obs.camp_target_id:
+        success=upgrade_camp(profile,list(UPGRADES)[target-1],obs.camp_upgrade_level)
+    elif action==obs.magic_action and target==obs.magic_target and action in {'learn_circle','prepare_magic','buy_magic','clear_magic'}:
         success=bool(learn_circle(profile) if action=='learn_circle' else prepare_magic(profile,None) if action=='clear_magic' else prepare_magic(profile,target) if action=='prepare_magic' else purchase_magic(profile,target))
     elif action in story_services and action == story.action and target == story.target:
         success = bool(story_services[action](profile, target))
