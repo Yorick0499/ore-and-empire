@@ -39,7 +39,7 @@ LOCATIONS = (
     Location("abandoned_mine", "Opuszczona kopalnia", "Zarośnięte wejście i opuszczone wyrobiska.", 1, monsters=("meatbug", "molerat", "goblin"), wiki="Opuszczona kopalnia"),
     Location("cavalorn", "Chata Cavalorna", "Polana myśliwego. Wilki i gobliny schodzą do pobliskich jaskiń.", 2, monsters=("goblin", "wolf"), wiki="Chata Cavalorna"),
     Location("rice_fields", "Pola ryżowe", "Pola Nowego Obozu. Drobne bestie zagrażają zbiorom.", 2, monsters=("molerat", "bloodfly"), wiki="Pola ryżowe w Nowym Obozie"),
-    Location("lake_tavern", "Karczma na jeziorze", "Kupcy spotykają się na wodzie pod ochroną szkodników.", 2, route="market_page", wiki="Karczma na jeziorze"),
+    Location("lake_tavern", "Karczma na jeziorze", "Kupcy spotykają się na wodzie pod ochroną szkodników.", 0, route="tavern_page", wiki="Karczma na jeziorze"),
     Location("free_mine", "Wolna Kopalnia", "Złoża dostępne dla ludzi Nowego Obozu.", 3, camps=("NEW_CAMP",), route="mine_page", wiki="Wolna Kopalnia"),
     Location("aidan", "Obóz Aidana", "Myśliwski trakt pośród drzew i skał.", 3, monsters=("wolf", "scavenger", "black_goblin"), wiki="Obóz Aidana"),
     Location("swamp", "Bagno koło Obozu Bractwa", "Rój krwiopijców i topielce na zalanych ścieżkach.", 4, monsters=("bloodfly", "aggressive_bloodfly", "lurker", "lizard"), wiki="Bagno koło Obozu Bractwa"),

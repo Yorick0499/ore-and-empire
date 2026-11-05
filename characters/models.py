@@ -88,6 +88,7 @@ class PlayerProfile(models.Model):
     current_health = models.PositiveIntegerField(default=50)
     health_updated_at = models.DateTimeField(default=timezone.now)
     bot_turn = models.PositiveIntegerField(default=0)
+    bot_last_tick = models.DateTimeField(null=True, blank=True, db_index=True)
 
     # energy_points
     current_energy = models.IntegerField(default=100)
@@ -338,3 +339,26 @@ class AdminAction(models.Model):
 
     class Meta:
         ordering = ["-created_at", "-pk"]
+
+
+class TavernTopic(models.Model):
+    author = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT)
+    title = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now, db_index=True)
+    locked = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-updated_at', '-pk']
+
+
+class TavernMessage(models.Model):
+    topic = models.ForeignKey(TavernTopic, on_delete=models.CASCADE, related_name='messages')
+    author = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT, related_name='tavern_messages')
+    body = models.TextField(max_length=1000)
+    created_at = models.DateTimeField(default=timezone.now)
+    reply_to = models.OneToOneField('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='bot_response')
+    decision = models.ForeignKey(BotDecision, null=True, blank=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        ordering = ['created_at', 'pk']

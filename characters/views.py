@@ -531,3 +531,33 @@ def game_master_view(request):
 def reverse_url(name):
     from django.urls import reverse
     return reverse(name)
+
+
+@login_required
+def tavern_view(request):
+    from django.core.paginator import Paginator
+    from .community import post_message
+    from .models import TavernTopic
+    topic_id = request.GET.get('topic')
+    topic = get_object_or_404(TavernTopic, pk=positive_id(topic_id)) if topic_id else None
+    if request.method == 'POST':
+        try:
+            posted = post_message(request.user.playerprofile, request.POST.get('body'), topic_id=topic.pk if topic else None, title=request.POST.get('title'))
+            return redirect(f'{request.path}?topic={posted.pk}')
+        except ValueError as exc:
+            messages.error(request, str(exc))
+    topics = Paginator(TavernTopic.objects.select_related('author__user').all(), 20).get_page(request.GET.get('page'))
+    entries = Paginator(topic.messages.select_related('author__user').all(), 30).get_page(request.GET.get('messages')) if topic else None
+    return render(request, 'characters/tavern.html', {'topic': topic, 'topics': topics, 'entries': entries})
+
+
+@login_required
+def colony_life_view(request):
+    from datetime import timedelta
+    from django.utils import timezone
+    from .community import activity_rows
+    now = timezone.now()
+    residents = list(PlayerProfile.objects.filter(is_bot=True, user__is_active=True).select_related('user').order_by('pk')[:100])
+    for resident in residents:
+        resident.scheduler_active = bool(resident.bot_last_tick and now - resident.bot_last_tick < timedelta(seconds=90))
+    return render(request, 'characters/colony_life.html', {'residents': residents, 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
