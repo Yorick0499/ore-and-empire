@@ -52,3 +52,45 @@ nagrody. Zaległe cele walki/wydobycia wpływają na wybór zwykłych akcji. Prz
 dostawy są rezerwowane przed automatyczną sprzedażą/założeniem. Bot wybiera pierwszą
 odpowiedź z definicji; nie jest to model rozumiejący dialogi. Obserwacje wersji 4
 zapisują dozwoloną akcję fabularną i ID celu. Wersje historyczne pozostają czytelne.
+
+## Kampania Gothic I (#20)
+
+Katalog zawiera **41 jednorazowych definicji**: 3 prologu i **38 nowych questów**.
+Postać przechodzi prolog, cztery wspólne zadania, sześć zadań swojego obozu i
+czternaście wspólnych zadań końcowych: 27 ukończonych zadań do gotowości finałowej.
+Następnie może ukończyć jeden z dwóch epilogów, zależnie od decyzji przy ognisku.
+Pozostałe obozy mają oddzielne ścieżki, niedostępne dla tej postaci.
+
+| Rozdział | Zawartość | Definicje |
+| --- | --- | ---: |
+| 1. Obcy pod barierą | Prolog, praca, karczma, dostawa, deklaracja przy ognisku | 7 |
+| 2. Ludzie i obozy | Trzy łańcuchy po 6 zadań: Diego/Thorus, Lares/Lee, Lester/Cor Kalom | 18 |
+| 3. Niepokój w kopalniach | Tunele, królowa pełzaczy i ślady almanachu | 3 |
+| 4. Ślady ogniskowania | Kamienny krąg, Wieża Mgieł, głębie kopalni, las i forteca | 5 |
+| 5. Ostrzeżenie Xardasa | Cytadela, wieża nekromanty i rozpoznanie miasta orków | 3 |
+| 6. Przed przebudzeniem | Dostawy, świątynia, gotowość rytuału i dwa alternatywne epilogi | 5 |
+
+Teksty są autorską adaptacją dla gry przeglądarkowej. Grafiki rozdziałów korzystają
+z istniejących lokalnych assetów Gothicpedii z manifestu i pokazują odnośniki do
+źródeł. Seeder używa get_or_create, zachowując edycje admina i zapisane wersje.
+
+Wymagania poziomowe rosną od 0 do 28; nagrody i walki prowadzą do poziomu co
+najmniej 30 przed wejściem do sanktuarium. Cele wymagają istniejących lokacji,
+wygranych walk i faktycznych dostaw. Awans obozowy nadal wymaga własnych prób.
+Nagrody PD/rudy są jawnym, wstępnym balansem jednorazowej kampanii: nie są
+powtarzalną emisją i wymagają porównania z gospodarką w #12.
+
+`ritual-ready` oznacza osobiste przygotowanie do finału, nie zakończenie świata,
+automatyczny reset, pokonanie Śniącego ani uruchomienie II edycji. Warunki zwycięstwa
+całego serwera i panel przejścia nadal należą do #29/#35.
+
+Bot z aktywnym celem bojowym, również kupiec, wybiera poprawę oręża i odpoczynek
+potrzebny do wykonalnej walki fabularnej. Nie zużywa bez końca odzyskanego zdrowia
+na łatwiejsze polowania. Gdy przeciwnik przekracza możliwości nawet przy pełnym
+zdrowiu, nadal może trenować i zdobywać poziomy. Obserwacje wersji 5 zapisują
+potrzebę odpoczynku fabularnego. Boty nie otrzymują dotacji ani wymuszonych wyników.
+
+Testy przeprowadzają wszystkie trzy role przez pełną ścieżkę od nowego konta,
+a osobny test przechodzi całość graczem przez formularze i wspólne serwisy gry,
+z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
+wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.

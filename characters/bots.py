@@ -59,6 +59,7 @@ class Observation:
     disposal_id: int | None = None
     story_action: str = ""
     story_target: int | None = None
+    story_recover: bool = False
 
 
 class Policy(Protocol):
@@ -102,6 +103,8 @@ class BaselinePolicy:
                 return "stock", o.blueprint_id
         if o.story_action and o.story_target:
             return o.story_action, o.story_target
+        if o.story_recover:
+            return "wait", None
         if o.boss_key and o.energy >= 25:
             return "boss", None
         if (o.needs_ore or o.quest_mine) and o.energy >= 10:
@@ -162,10 +165,14 @@ def choose_upgrade(stock, offers, damage, ore):
     return choice[3], choice[5], choice[2], -choice[1]
 
 
-def safe_to_hunt(profile, monster, damage):
+def health_needed(profile, monster, damage):
     rounds = math.ceil(monster["life"] / max(1, damage - monster["weapon_prot"]))
     incoming = max(1, monster["strength"] - profile.weapon_prot)
-    return profile.current_health - (rounds - 1) * incoming >= 10
+    return (rounds - 1) * incoming + 10
+
+
+def safe_to_hunt(profile, monster, damage):
+    return profile.current_health >= health_needed(profile, monster, damage)
 
 
 @transaction.atomic
@@ -181,6 +188,7 @@ def tick_bot(profile, policy=None):
     game.refresh_player(profile)
     from .story_quests import bot_story_plan, accept_story, activate_story, claim_story, choose_story, travel_story
     story = bot_story_plan(profile)
+    combat_equipment = profile.bot_role != "trader" or any(kind in {"hunt", "boss"} for kind, _ in story.events)
     inventory = list(profile.inventory.select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped), None)
     damage = equipped.blueprint.damage if equipped else 0
@@ -188,13 +196,13 @@ def tick_bot(profile, policy=None):
     item = spare[0] if spare else None
     equipment = max((item for item in spare if item.blueprint.required_strength <= profile.strength and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
     stock = ItemBluePrint.objects.filter(base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
-    if profile.bot_role != "trader":
+    if combat_equipment:
         stock = stock.filter(damage__gt=damage)
     offers = OwnedItem.objects.filter(is_market_listed=True, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
-    if profile.bot_role != "trader":
+    if combat_equipment:
         offers = offers.filter(blueprint__damage__gt=damage)
     upgrade = None
-    if equipped and profile.bot_role != "trader":
+    if equipped and combat_equipment:
         upgrade = choose_upgrade(stock, offers, damage, profile.ore_balance)
         stock = upgrade[1] if upgrade and upgrade[0] == "stock" else None
         offer = upgrade[1] if upgrade and upgrade[0] == "buy" else None
@@ -206,7 +214,7 @@ def tick_bot(profile, policy=None):
     # Sell obsolete weapons through the same NPC service as a human player.
     # Keep stronger future gear, listed goods and the trader's merchandise.
     disposal = min((i for i in spare if i.blueprint.damage < damage),
-                   key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and profile.bot_role != "trader" else None
+                   key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and combat_equipment else None
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
     # Delivery stock is bought through the ordinary services and reserved from sale/equip.
@@ -267,6 +275,19 @@ def tick_bot(profile, policy=None):
         if profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, profile.strength + damage):
             boss_key = key
             break
+    # Rest toward a reachable story fight instead of spending each recovered point
+    # on lower-value fallback hunts forever. Impossible-at-full-health fights still
+    # permit training/leveling/gear upgrades rather than causing permanent rest.
+    story_fights = []
+    for kind, key in story.events:
+        if kind == 'hunt' and any(loc.accessible(profile) and key in loc.monsters for loc in LOCATIONS):
+            story_fights.append((game.BESTIARY[key], 15))
+        elif kind == 'boss' and profile.level >= game.BOSSES[key].level:
+            story_fights.append((game.BOSSES[key].monster, 25))
+    story_recover = bool(story_fights) and not any(
+        safe_to_hunt(profile, monster, profile.strength + damage) and profile.current_energy >= energy
+        for monster, energy in story_fights
+    ) and any(health_needed(profile, monster, profile.strength + damage) <= profile.life for monster, _ in story_fights)
     products = StoreProduct.objects.filter(enabled=True, level__lte=profile.level, price__lte=profile.premium_balance).select_related("blueprint").order_by("price", "pk")
     product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.life // 2)) or (p.kind == "energy" and profile.current_energy < 15)), None)
     urgent = product is not None
@@ -292,9 +313,9 @@ def tick_bot(profile, policy=None):
         upgrade_id=upgrade[1].pk if upgrade else None,
         upgrade_cost=upgrade[2] if upgrade else 0,
         upgrade_gain=upgrade[3] if upgrade else 0,
-        ore_reserve=UPGRADE_ORE_RESERVE if equipped and profile.bot_role != "trader" else 0,
+        ore_reserve=UPGRADE_ORE_RESERVE if equipped and combat_equipment else 0,
         disposal_id=disposal.pk if disposal else None,
-        story_action=story.action, story_target=story.target,
+        story_action=story.action, story_target=story.target, story_recover=story_recover,
     )
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
