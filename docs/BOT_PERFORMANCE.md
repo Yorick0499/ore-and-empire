@@ -8,11 +8,13 @@ Lokalny launcher `play.py` obsługuje HTTP i boty jednym procesem; nie uruchamia
 
 Minimalny odstęp to maksimum z 0,2 sekundy, `--interval / liczba_botów` oraz czterokrotności średniego kosztu ostatnich tur. Dla 100 mieszkańców pełny obieg wynosi co najmniej około 20 sekund plus czas samych akcji i obsługi HTTP. Dla sześciu zachowana jest częstotliwość zbliżona do dawnego obiegu. Dłuższe tury automatycznie spowalniają kolejkę: cel to około 20% czasu na boty, **nie twardy limit CPU**. Nie ma LLM, płatnego API, treningu modeli ani obliczeń na GPU.
 
-Polityka **baseline-15 / schema 15** wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–14 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.
+Polityka **baseline-16 / schema 16** wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–15 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.
 
 Szczegółowe decyzje pozostają ograniczane retencją (`--history-days`, domyślnie 30 pełnych dni UTC) z zachowaniem agregatów. Powtarzane czekanie nie zapisuje nowej decyzji częściej niż co pięć minut. Backup obejmuje przedmioty z poziomami ulepszeń, prace kuźni, postęp i historię wart.
 
 ## Odtwarzalny pomiar
+
+Po audycie transakcji i prognoz przygotowano [osobny pomiar baseline-16](reports/audyt-stu-botow-2026-11-06.json). Poprzednie raporty i wartości liczbowe niżej zachowano jako wyniki baseline-15; nie nadpisujemy historycznych pomiarów.
 
 ```bash
 python scripts/benchmark_bots.py --seconds 60 --report /tmp/sto-botow.json

@@ -83,6 +83,8 @@ class Observation:
     forge_target: int | None = None
     forge_level: int = 0
     patrol_depth: int | None = None
+    ammo_id: int | None = None
+    ammo_blocked: bool = False
 
 
 class Policy(Protocol):
@@ -215,13 +217,20 @@ class BaselinePolicyV14(BaselinePolicyV13):
     pass
 
 
-class BaselinePolicy(BaselinePolicyV14):
+class BaselinePolicyV15(BaselinePolicyV14):
     def choose(self,o):
         if (o.forge_action or o.patrol_depth) and not o.busy and not o.adventure_ready and not o.reward_ready:
             if o.consume_id:return 'consume',o.consume_id
             if o.equip_id:return 'equip',o.equip_id
             if o.forge_action:return o.forge_action,o.forge_target
             if o.patrol_depth and o.energy>=20:return 'patrol',o.patrol_depth
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV15):
+    def choose(self,o):
+        if o.ammo_id and not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and not o.consume_id and not o.product_urgent:
+            return 'ammo',o.ammo_id
         return super().choose(o)
 
 
@@ -290,19 +299,26 @@ def tick_bot(profile, policy=None):
     inventory = list(profile.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.effective_stats['damage'] if equipped else 0
+    from .equipment import combat_values,allowed
+    combat_damage=combat_values(profile)[0]
+    ammo_blocked=False;ammo_stock=None;ammo_kind=None
+    if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'}:
+        ammo_kind='arrow' if equipped.blueprint.weapon_type=='bow' else 'bolt'
+        ammo_blocked=not profile.prepared_magic_id and not any(i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind and not i.is_market_listed for i in inventory)
+        if ammo_blocked:
+            choices=ItemBluePrint.objects.filter(kind='ammo',merchant=True,original_stats__ammo_type=ammo_kind,base_value__gte=0,base_value__lte=profile.ore_balance).order_by('base_value','pk')
+            ammo_stock=next((bp for bp in choices if allowed(profile,bp)),None)
     from .models import CraftRecipe
     from .crafting import valid_recipe,interested
     reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True) if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
+    reserved_materials.update(i.blueprint_id for i in inventory if ammo_kind and i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind)
     spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials and item.blueprint.catalog_key!='rune-dust']
     item = next((i for i in spare if i.blueprint.tradeable), None)
-    from .equipment import allowed
     equipment = max((item for item in spare if item.blueprint.kind == "weapon" and allowed(profile,item.blueprint) and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.effective_stats['damage'] > damage), key=lambda item: item.effective_stats['damage'], default=None)
     if not equipment:
         worn = next((i.effective_stats['weapon_prot'] for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
-        from .equipment import allowed
         equipment = max((i for i in spare if i.blueprint.kind == 'armor' and i.effective_stats['weapon_prot'] > worn and allowed(profile,i.blueprint)), key=lambda i:i.effective_stats['weapon_prot'], default=None)
     if not equipment:
-        from .equipment import allowed
         for kind in ('ring','amulet'):
             worn=[i for i in inventory if i.is_equipped and i.blueprint.kind==kind]
             candidate=max((i for i in spare if i.blueprint.kind==kind and allowed(profile,i.blueprint)),key=lambda i:sum(i.effective_stats.values()),default=None)
@@ -383,7 +399,7 @@ def tick_bot(profile, policy=None):
     story_training = next((key for kind, key in story.events if kind == 'train'), None)
     if story_training:
         training, training_needed = story_training, True
-    if final_goal and health_at_rest(profile,game.BOSSES["sleeper_sanctum"].monster,profile.strength+damage) > profile.max_health:
+    if final_goal and health_at_rest(profile,game.BOSSES["sleeper_sanctum"].monster,combat_damage) > profile.max_health:
         training, training_needed = "strength", True
         needs_ore = needs_ore or bool(profile.skill_points and profile.ore_balance < 10)
     hunt_options = []
@@ -392,16 +408,18 @@ def tick_bot(profile, policy=None):
             continue
         for key in location.monsters:
             monster = game.BESTIARY[key]
-            if safe_to_hunt(profile, monster, profile.strength + damage):
+            if safe_to_hunt(profile, monster, combat_damage):
                 hunt_options.append((key in hunt_goals, monster["exp_reward"], key, location.key))
     hunt = max(hunt_options, default=None)
     boss_key = None
     for key in boss_goals:
         boss = game.BOSSES[key]
         last = BossAttempt.objects.filter(profile=profile, boss_key=key).first()
-        if profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, profile.strength + damage):
+        if profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, combat_damage):
             boss_key = key
             break
+    if ammo_blocked:
+        hunt=None;boss_key=None
     # Rest toward a reachable story fight instead of spending each recovered point
     # on lower-value fallback hunts forever. Impossible-at-full-health fights still
     # permit training/leveling/gear upgrades rather than causing permanent rest.
@@ -411,10 +429,10 @@ def tick_bot(profile, policy=None):
             story_fights.append((game.BESTIARY[key], 15))
         elif kind == 'boss' and profile.level >= game.BOSSES[key].level:
             story_fights.append((game.BOSSES[key].monster, 25))
-    story_recover = bool(story_fights) and not any(
-        safe_to_hunt(profile, monster, profile.strength + damage) and profile.current_energy >= energy
+    story_recover = not ammo_blocked and bool(story_fights) and not any(
+        safe_to_hunt(profile, monster, combat_damage) and profile.current_energy >= energy
         for monster, energy in story_fights
-    ) and any(health_at_rest(profile, monster, profile.strength + damage) <= profile.max_health for monster, _ in story_fights)
+    ) and any(health_at_rest(profile, monster, combat_damage) <= profile.max_health for monster, _ in story_fights)
     products = StoreProduct.objects.filter(enabled=True, level__lte=profile.level, price__lte=profile.premium_balance).select_related("blueprint").order_by("price", "pk")
     product = next((p for p in products if (p.kind == "health" and profile.current_health < max(10, profile.max_health // 2)) or (p.kind == "energy" and profile.current_energy < 15 and energy_refills_left)), None)
     urgent = product is not None
@@ -465,10 +483,9 @@ def tick_bot(profile, policy=None):
         from .frontier import enemy,COOLDOWN
         from .models import FrontierProgress
         progress=FrontierProgress.objects.filter(profile=profile).first()
-        if not progress or not progress.last_attempt_at or timezone.now()>=progress.last_attempt_at+COOLDOWN:
+        if not ammo_blocked and (not progress or not progress.last_attempt_at or timezone.now()>=progress.last_attempt_at+COOLDOWN):
             # Farm an easier unlocked challenge when the next guardian is unsafe.
-            from .equipment import combat_values
-            base_damage=combat_values(profile)[0]
+            base_damage=combat_damage
             for depth in range(progress.unlocked if progress else 1,0,-1):
                 foe=enemy(depth)
                 if safe_to_hunt(profile,foe,base_damage):patrol_depth=depth;break
@@ -476,6 +493,7 @@ def tick_bot(profile, policy=None):
         excess=next((i for i in spare if (i.blueprint.catalog_key or '').startswith('colony-loot-') and i.quantity==1 and (not equipment or i.pk!=equipment.pk)),None)
         if excess:forge_action='salvage';forge_target=excess.pk
     obs = Observation(
+        ammo_id=ammo_stock.pk if ammo_stock else None,ammo_blocked=ammo_blocked,
         forge_action=forge_action,forge_target=forge_target,forge_level=forge_level,patrol_depth=patrol_depth,
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
@@ -506,7 +524,7 @@ def tick_bot(profile, policy=None):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-15" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-16" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
@@ -518,7 +536,9 @@ def tick_bot(profile, policy=None):
     from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
     from .crafting import learn_craft,buy_craft_material,craft_item
     from .market_policy import reprice_listing,observe_legacy_listing
-    if action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
+    if action=='ammo' and ammo_stock and target==obs.ammo_id:
+        success=game.buy_item_from_npc(profile,ammo_stock)
+    elif action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
         from .enhancements import improve_item,salvage_item
         success=bool(improve_item(profile,target,obs.forge_level,uuid4()) if action=='improve' else salvage_item(profile,target,uuid4()))
     elif action=='patrol' and target==obs.patrol_depth:

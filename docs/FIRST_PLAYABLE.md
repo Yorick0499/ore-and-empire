@@ -17,7 +17,7 @@ Uruchom `python play.py --bots 6 --port 8001` w środowisku z requirements.txt. 
 
 Boty mają stałe imiona mieszkańców w publicznych ekranach, a oznaczenie „bot” pozostaje jawne. Wykonują rzeczywiste akcje, ponoszą koszty, regenerują się, rozwijają obozy i potrafią ukończyć finał. Nie generujemy fikcyjnych transakcji ani rozmów podszywających się pod ludzi. „Życie kolonii”, rynek i kronika wspólnoty pokazują ich faktyczne działania. Konto techniczne `colony-bot-N` pozostaje dostępne administratorowi.
 
-Polityka baseline-15 uwzględnia przygotowanie do finału i konserwatywne prognozy silnych ataków. Trofea fabularne nie zajmują miękkiego limitu zakupów roboczego zapasu polityki; dodatkowe łupy mogą go przekroczyć i są porządkowane przez odzysk pyłu. Trofea nadal istnieją w plecaku na tych samych zasadach dla ludzi i botów.
+Polityka baseline-16 uwzględnia przygotowanie do finału i konserwatywne prognozy silnych ataków. Trofea fabularne nie zajmują miękkiego limitu zakupów roboczego zapasu polityki; dodatkowe łupy mogą go przekroczyć i są porządkowane przez odzysk pyłu. Trofea nadal istnieją w plecaku na tych samych zasadach dla ludzi i botów.
 
 ## Bossowie i finał
 

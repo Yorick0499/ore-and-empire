@@ -132,7 +132,7 @@ def market_view(request):
     market_all_items = OwnedItem.objects.filter(is_market_listed=True,owner__world=current_world()).select_related(
         "owner__user", "blueprint"
     )
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False).select_related('blueprint')
     return render(
         request,
         "characters/market.html",
@@ -206,7 +206,7 @@ def shop_view(request):
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, sell_item_from_npc(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False).select_related('blueprint')
     from django.core.paginator import Paginator
     merchant_inventory = ItemBluePrint.objects.filter(merchant=True, min_level__lte=profile.level, required_camp__in=["",profile.camp], min_camp_tier__lte=profile.camp_tier).order_by("kind","base_value","pk")
     return render(

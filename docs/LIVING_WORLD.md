@@ -1,6 +1,6 @@
 # Żyjąca kolonia — gracze i boty
 
-Aktualna wersja używa polityki **baseline-15** i obserwacji schema 15. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+Aktualna wersja używa polityki **baseline-16** i obserwacji schema 16. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
 
 `python play.py --bots 6 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 
@@ -34,7 +34,9 @@ Konta techniczne `colony-bot-N` nie mają używalnych haseł. Administrator twor
 
 ## Walidacja
 
-Pełna symulacja przechodzi kampanię zwykłym graczem i trzema obozami botów bez nadawania zasobów. Mieszana sesja potwierdza zdobywanie poziomu i rzeczywisty zakup od bota. Oddzielne testy sprawdzają odrzucone polityki, koszty, regenerację, retry, rollback i uprawnienia. Historyczne schematy 7–14 są odtwarzalne; wyniku dawnych losowych walk nie udajemy jako deterministycznego replayu.
+Baseline-16 uzupełnia strzały lub bełty do własnej broni i rezerwuje je przed wyprzedażą. Brak dostępnej amunicji wyklucza walkę fizyczną z planu; bot nadal może pracować i wykonywać inne działania. Prognozy uwzględniają zręczność broni dystansowej oraz bonusy sprzętu. [Audyt i regresje](BUG_AUDIT.md).
+
+Pełna symulacja przechodzi kampanię zwykłym graczem i trzema obozami botów bez nadawania zasobów. Mieszana sesja potwierdza zdobywanie poziomu i rzeczywisty zakup od bota. Oddzielne testy sprawdzają odrzucone polityki, koszty, regenerację, retry, rollback i uprawnienia. Historyczne schematy 7–15 są odtwarzalne; wyniku dawnych losowych walk nie udajemy jako deterministycznego replayu.
 
 ## Dopracowanie pełnej edycji
 
