@@ -15,7 +15,7 @@ from .worlds import current_world,profile_for
 
 class WorldSetupForm(forms.Form):
     name=forms.CharField(label='Nazwa świata / serwera',max_length=80)
-    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=20,initial=6)
+    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=100,initial=6)
     username=UsernameField(label='Login administratora',max_length=150,validators=[UnicodeUsernameValidator()])
     password=forms.CharField(label='Hasło administratora',widget=forms.PasswordInput)
     def clean(self):
@@ -29,12 +29,12 @@ class WorldSetupForm(forms.Form):
 
 class WorldSettingsForm(forms.Form):
     name=forms.CharField(label='Nazwa świata / serwera',max_length=80)
-    bot_count=forms.IntegerField(label='Aktywne boty',min_value=0,max_value=20)
+    bot_count=forms.IntegerField(label='Aktywne boty',min_value=0,max_value=100)
 
 
 class WorldResetForm(forms.Form):
     name=forms.CharField(label='Nazwa nowego świata / serwera',max_length=80)
-    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=20,initial=6)
+    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=100,initial=6)
     password=forms.CharField(label='Twoje obecne hasło administratora',widget=forms.PasswordInput)
     confirmation=forms.CharField(label='Przepisz obecną nazwę świata')
     expected_world=forms.IntegerField(widget=forms.HiddenInput)
@@ -71,7 +71,7 @@ def reset_world(actor,*,name,bot_count,password,confirmation,expected_world):
     world=current_world()
     if not actor.is_active or not actor.is_superuser or not actor.check_password(password):raise PermissionDenied('Podaj poprawne hasło administratora.')
     if confirmation!=world.name or expected_world!=world.pk:raise ValidationError('Nazwa potwierdzenia lub wersja świata nie zgadza się. Odśwież formularz.')
-    if not name.strip() or len(name)>80 or type(bot_count)is not int or not 0<=bot_count<=20:raise ValidationError('Niepoprawna nazwa lub liczba botów.')
+    if not name.strip() or len(name)>80 or type(bot_count)is not int or not 0<=bot_count<=100:raise ValidationError('Niepoprawna nazwa lub liczba botów.')
     if connection.vendor!='sqlite':raise ValidationError('Reset dostępny dla lokalnego SQLite; procedura PostgreSQL wymaga osobnego wdrożenia.')
     backup=create_backup(settings.DATABASES['default']['NAME'],settings.BASE_DIR/'backups')
     with transaction.atomic():

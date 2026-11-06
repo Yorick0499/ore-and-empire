@@ -31,6 +31,15 @@ def save_battle(profile, key, monster, location, won, log, experience=0, ore=0, 
                 loot.append({'blueprint':blueprint.pk,'name':blueprint.name,'quantity':quantity})
                 log.append(f"Łup: {blueprint.name} ×{quantity}.")
                 break
+    if won:
+        from .gear_loot import award_gear,GEAR_VERSION
+        from .bestiary import BESTIARY
+        from .bosses import BOSSES
+        level = BOSSES[monster].level if monster in BOSSES else BESTIARY.get(monster,{}).get('level',0)
+        extra=award_gear(profile,level,boss=monster in BOSSES)
+        loot.extend(extra)
+        log.extend(f"Łup: {drop['name']} ×{drop['quantity']}." for drop in extra)
+        details={**(details or {}),'gear_loot_version':GEAR_VERSION}
     if attempt:
         attempt.combat_log = log
         attempt.save(update_fields=['combat_log'])

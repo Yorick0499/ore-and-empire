@@ -151,6 +151,14 @@ def inventory_view(request):
     refresh_player(profile)
     if request.method == "POST":
         action = request.POST.get("action")
+        if action in {"improve","salvage"}:
+            from .enhancements import improve_item,salvage_item
+            item_id=positive_id(request.POST.get('item_id'))
+            try:expected=int(request.POST.get('expected_level','-1'))
+            except (TypeError,ValueError):expected=-1
+            result=improve_item(profile,item_id,expected,request.POST.get('request_key')) if action=='improve' else salvage_item(profile,item_id,request.POST.get('request_key'))
+            report_action(request,result)
+            return redirect('inventory_page')
         if action == "use":
             item = get_object_or_404(OwnedItem, pk=positive_id(request.POST.get("item_id")), owner=profile)
             report_action(request, use_item(profile,item))
@@ -165,7 +173,7 @@ def inventory_view(request):
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, unequip_item(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False, is_market_listed=False)
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False, is_market_listed=False).select_related("blueprint")
     equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True, equipped_slot="weapon").first()
     return render(
         request,
@@ -174,6 +182,8 @@ def inventory_view(request):
             "profile": profile,
             "player_inventory": player_inventory,
             "equipped_weapon": equipped_weapon,
+            "request_key":uuid4(),
+            "dust_count":profile.inventory.filter(blueprint__catalog_key="rune-dust",is_market_listed=False).aggregate(total=Sum("quantity"))["total"] or 0,
             "equipped_items": profile.inventory.filter(is_equipped=True).select_related("blueprint"),
             "battles": profile.battles.all()[:10],
         },
@@ -849,3 +859,21 @@ def hall_view(request):
         except ValidationError as exc:messages.error(request," ".join(exc.messages))
         return redirect("hall_page")
     return render(request,"characters/hall.html",{"finishers":CampaignCompletion.objects.filter(profile__world=world).order_by("created_at","pk"),"conclusion":EditionConclusion.objects.filter(world=world).first()})
+
+
+@login_required
+def frontier_view(request):
+    from .frontier import patrol,board,season_key,enemy,COOLDOWN
+    from .models import CampaignCompletion,FrontierProgress
+    profile=request.user.playerprofile
+    refresh_player(profile)
+    if request.method=='POST':
+        depth=positive_id(request.POST.get('depth'))
+        report_action(request,patrol(profile,depth,request.POST.get('request_key')))
+        return redirect('frontier_page')
+    progress=FrontierProgress.objects.filter(profile=profile).first()
+    depth=progress.unlocked if progress else 1
+    rows=list(board(profile.world))
+    names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[r['profile_id'] for r in rows]).select_related('user')}
+    for row in rows:row['name']=names[row['profile_id']]
+    return render(request,'characters/frontier.html',{'profile':profile,'ready':CampaignCompletion.objects.filter(profile=profile).exists(),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})

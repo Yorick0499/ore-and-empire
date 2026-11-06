@@ -79,6 +79,10 @@ class Observation:
     market_action: str = ""
     market_target: int | None = None
     market_price: int = 0
+    forge_action: str = ""
+    forge_target: int | None = None
+    forge_level: int = 0
+    patrol_depth: int | None = None
 
 
 class Policy(Protocol):
@@ -207,8 +211,18 @@ class BaselinePolicyV13(BaselinePolicyV12):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV13):
+class BaselinePolicyV14(BaselinePolicyV13):
     pass
+
+
+class BaselinePolicy(BaselinePolicyV14):
+    def choose(self,o):
+        if (o.forge_action or o.patrol_depth) and not o.busy and not o.adventure_ready and not o.reward_ready:
+            if o.consume_id:return 'consume',o.consume_id
+            if o.equip_id:return 'equip',o.equip_id
+            if o.forge_action:return o.forge_action,o.forge_target
+            if o.patrol_depth and o.energy>=20:return 'patrol',o.patrol_depth
+        return super().choose(o)
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -275,17 +289,25 @@ def tick_bot(profile, policy=None):
     profile._bot_magic_plan=combat_plan(profile)
     inventory = list(profile.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).select_related("blueprint").order_by("pk"))
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
-    damage = equipped.blueprint.damage if equipped else 0
+    damage = equipped.effective_stats['damage'] if equipped else 0
     from .models import CraftRecipe
     from .crafting import valid_recipe,interested
     reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True) if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
-    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials]
+    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials and item.blueprint.catalog_key!='rune-dust']
     item = next((i for i in spare if i.blueprint.tradeable), None)
-    equipment = max((item for item in spare if item.blueprint.kind == "weapon" and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.blueprint.damage > damage), key=lambda item: item.blueprint.damage, default=None)
+    from .equipment import allowed
+    equipment = max((item for item in spare if item.blueprint.kind == "weapon" and allowed(profile,item.blueprint) and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.effective_stats['damage'] > damage), key=lambda item: item.effective_stats['damage'], default=None)
     if not equipment:
-        worn = next((i.blueprint.weapon_prot for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
+        worn = next((i.effective_stats['weapon_prot'] for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
         from .equipment import allowed
-        equipment = max((i for i in spare if i.blueprint.kind == 'armor' and i.blueprint.weapon_prot > worn and allowed(profile,i.blueprint)), key=lambda i:i.blueprint.weapon_prot, default=None)
+        equipment = max((i for i in spare if i.blueprint.kind == 'armor' and i.effective_stats['weapon_prot'] > worn and allowed(profile,i.blueprint)), key=lambda i:i.effective_stats['weapon_prot'], default=None)
+    if not equipment:
+        from .equipment import allowed
+        for kind in ('ring','amulet'):
+            worn=[i for i in inventory if i.is_equipped and i.blueprint.kind==kind]
+            candidate=max((i for i in spare if i.blueprint.kind==kind and allowed(profile,i.blueprint)),key=lambda i:sum(i.effective_stats.values()),default=None)
+            if candidate and len(worn)<(2 if kind=='ring' else 1):
+                equipment=candidate;break
     from .economic_ledger import refills_remaining
     energy_refills_left = refills_remaining(profile)
     consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
@@ -429,8 +451,32 @@ def tick_bot(profile, policy=None):
     from .crafting import bot_craft_plan
     craft_action,craft_target=bot_craft_plan(profile)
     from .market_policy import bot_market_plan
-    market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials)
+    market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'})
+    forge_action='';forge_target=None;forge_level=0;patrol_depth=None
+    if hasattr(profile,'campaign_completion') and not profile.is_busy:
+        from .enhancements import upgrade_cost
+        dust=sum(i.quantity for i in inventory if i.blueprint.catalog_key=='rune-dust' and not i.is_market_listed)
+        for worn in (i for i in inventory if i.is_equipped):
+            cost=upgrade_cost(worn)
+            if cost and profile.ore_balance>=cost['ore']+20 and dust>=cost['dust']:
+                forge_action='improve';forge_target=worn.pk;forge_level=worn.upgrade_level;break
+        obsolete=next((i for i in spare if (i.blueprint.catalog_key or '').startswith('colony-loot-') and i.quantity==1 and (i.blueprint.kind!='weapon' or i.effective_stats['damage']<=damage)),None)
+        if not forge_action and obsolete:forge_action='salvage';forge_target=obsolete.pk
+        from .frontier import enemy,COOLDOWN
+        from .models import FrontierProgress
+        progress=FrontierProgress.objects.filter(profile=profile).first()
+        if not progress or not progress.last_attempt_at or timezone.now()>=progress.last_attempt_at+COOLDOWN:
+            # Farm an easier unlocked challenge when the next guardian is unsafe.
+            from .equipment import combat_values
+            base_damage=combat_values(profile)[0]
+            for depth in range(progress.unlocked if progress else 1,0,-1):
+                foe=enemy(depth)
+                if safe_to_hunt(profile,foe,base_damage):patrol_depth=depth;break
+    if not forge_action and len(inventory)>=8 and not profile.is_busy:
+        excess=next((i for i in spare if (i.blueprint.catalog_key or '').startswith('colony-loot-') and i.quantity==1 and (not equipment or i.pk!=equipment.pk)),None)
+        if excess:forge_action='salvage';forge_target=excess.pk
     obs = Observation(
+        forge_action=forge_action,forge_target=forge_target,forge_level=forge_level,patrol_depth=patrol_depth,
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
         offer_id=offer.pk if offer else None, inventory_id=item.pk if item else None,
@@ -460,7 +506,7 @@ def tick_bot(profile, policy=None):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-14" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-15" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)
@@ -472,7 +518,13 @@ def tick_bot(profile, policy=None):
     from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
     from .crafting import learn_craft,buy_craft_material,craft_item
     from .market_policy import reprice_listing,observe_legacy_listing
-    if action==obs.market_action and target==obs.market_target and action in {'market_observe','market_reprice','market_cancel','market_sell','market_buy'}:
+    if action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
+        from .enhancements import improve_item,salvage_item
+        success=bool(improve_item(profile,target,obs.forge_level,uuid4()) if action=='improve' else salvage_item(profile,target,uuid4()))
+    elif action=='patrol' and target==obs.patrol_depth:
+        from .frontier import patrol
+        success=bool(patrol(profile,target,uuid4()))
+    elif action==obs.market_action and target==obs.market_target and action in {'market_observe','market_reprice','market_cancel','market_sell','market_buy'}:
         market_item=OwnedItem.objects.filter(pk=target).first()
         success=bool(market_item and (observe_legacy_listing(profile,market_item) if action=='market_observe' else reprice_listing(profile,market_item,obs.market_price,market_item.market_price) if action=='market_reprice' else game.delist_item_from_market(profile,market_item,'stale') if action=='market_cancel' else game.sell_item_from_npc(profile,market_item) if action=='market_sell' else game.buy_item_on_market(profile,market_item)))
     elif action==obs.craft_action and target==obs.craft_target and action in {'craft_learn','craft_material','craft'}:

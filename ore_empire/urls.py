@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
-    register_view,
+    frontier_view, register_view,
     item_catalog_view, economy_balance_view, world_monitor_view, magic_view, camp_guild_view,world_setup_view,world_control_view,characters_view,challenges_view,crafting_view,
     tavern_view, colony_life_view, story_view,
     bestiary_view,
@@ -43,6 +43,7 @@ from characters.views import (
 from characters.views import journal_view, battle_detail_view, hall_view
 
 urlpatterns = [
+    path("warty/",frontier_view,name="frontier_page"),
     path("sala-chwaly/", hall_view, name="hall_page"),
     path("dziennik/", journal_view, name="journal_page"),
     path("dziennik/walka/<int:battle_id>/", battle_detail_view, name="battle_detail"),

@@ -25,7 +25,7 @@ class WorldMonitorTests(TestCase):
         observation=self.observation();self.profile.experience=12;self.profile.save()
         record_decision(self.profile,observation,'wait',None,True)
         fact=BotDecision.objects.get()
-        self.assertEqual((fact.experience_delta,fact.reason,fact.policy_version),(12,'energy_recovery','baseline-14'))
+        self.assertEqual((fact.experience_delta,fact.reason,fact.policy_version),(12,'energy_recovery','baseline-15'))
         before=self.profile.current_energy
         self.assertTrue(replay_decision(fact)['matches'])
         self.profile.refresh_from_db();self.assertEqual(before,self.profile.current_energy)

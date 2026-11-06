@@ -21,7 +21,7 @@ class World(models.Model):
     bot_count = models.PositiveSmallIntegerField(default=6)
     created_at = models.DateTimeField(default=timezone.now)
     class Meta:
-        constraints=[models.UniqueConstraint(fields=['is_current'],condition=models.Q(is_current=True),name='one_current_world'),models.CheckConstraint(condition=models.Q(bot_count__lte=20),name='world_bot_count_bounds')]
+        constraints=[models.UniqueConstraint(fields=['is_current'],condition=models.Q(is_current=True),name='one_current_world'),models.CheckConstraint(condition=models.Q(bot_count__lte=100),name='world_bot_count_bounds')]
 
 
 class PlayerProfile(models.Model):
@@ -189,7 +189,15 @@ class PlayerProfile(models.Model):
     @property
     def display_name(self):
         names = ("Brann", "Kord", "Mira", "Hagen ze Sztolni", "Ruda", "Silas z Traktu", "Nela", "Jarven", "Falk", "Toran", "Dagna", "Orrik", "Bora", "Velin", "Gerta", "Arvid", "Tessa", "Kurt", "Nordin", "Wolmar")
-        return names[(self.pk-1)%len(names)] if self.is_bot else self.user.username
+        if not self.is_bot:
+            return self.user.username
+        name=names[(self.pk-1)%len(names)]
+        group=(self.pk-1)//len(names)
+        if group:
+            name += " z " + ("Kopalni", "Przełęczy", "Bagien", "Kanionu", "Warty")[(group-1)%5]
+            if self.pk>120:
+                name += f" {((self.pk-1)//120)+1}"
+        return name
 
     @property
     def training_cost(self):
@@ -283,6 +291,22 @@ class OwnedItem(models.Model):
         PlayerProfile, on_delete=models.CASCADE, related_name="inventory"
     )
     quantity = models.PositiveIntegerField(default=1)
+    upgrade_level = models.PositiveSmallIntegerField(default=0)
+
+    @property
+    def effective_stats(self):
+        from .enhancements import effective_stats
+        return effective_stats(self)
+
+    @property
+    def upgrade_cost(self):
+        from .enhancements import upgrade_cost
+        return upgrade_cost(self)
+
+    @property
+    def display_name(self):
+        return self.blueprint.name + (f" +{self.upgrade_level}" if self.upgrade_level else "")
+
     equipped_slot = models.CharField(max_length=10, blank=True)
     is_equipped = models.BooleanField(default=False)
     is_market_listed = models.BooleanField(default=False)
@@ -311,6 +335,7 @@ class OwnedItem(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(condition=models.Q(quantity__gte=1), name='owned_quantity_positive'),
+            models.CheckConstraint(condition=models.Q(upgrade_level__lte=10) & (models.Q(upgrade_level=0) | models.Q(quantity=1)), name='owned_upgrade_bounds'),
             models.UniqueConstraint(fields=['owner','equipped_slot'], condition=models.Q(is_equipped=True), name='one_equipment_per_slot'),
             models.CheckConstraint(condition=(models.Q(is_equipped=False, equipped_slot='') | (models.Q(is_equipped=True) & models.Q(equipped_slot__in=['weapon','armor','amulet','ring1','ring2']))), name='equipment_slot_consistent'),
         ]
@@ -854,3 +879,36 @@ class EditionConclusion(models.Model):
     operator = models.ForeignKey("auth.User", on_delete=models.PROTECT)
     created_at = models.DateTimeField(default=timezone.now)
     snapshot = models.JSONField(default=dict)
+
+
+class EquipmentWork(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name='equipment_work')
+    request_key = models.UUIDField()
+    item_id_snapshot = models.PositiveIntegerField()
+    action = models.CharField(max_length=12)
+    snapshot = models.JSONField(default=dict)
+    created_at = models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='equipment_work_request')]
+
+
+class FrontierProgress(models.Model):
+    profile = models.OneToOneField(PlayerProfile, on_delete=models.CASCADE, related_name='frontier')
+    unlocked = models.PositiveIntegerField(default=1)
+    wins = models.PositiveIntegerField(default=0)
+    last_attempt_at = models.DateTimeField(null=True, blank=True)
+
+
+class FrontierRecord(models.Model):
+    profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name='patrols')
+    request_key = models.UUIDField()
+    depth = models.PositiveIntegerField()
+    season = models.CharField(max_length=7, db_index=True)
+    won = models.BooleanField(default=False)
+    points = models.PositiveIntegerField(default=0)
+    snapshot = models.JSONField(default=dict)
+    created_at = models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='frontier_request')]
+        ordering = ['-created_at','-pk']
+        indexes = [models.Index(fields=['profile','season'], name='frontier_profile_season')]

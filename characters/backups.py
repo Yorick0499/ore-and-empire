@@ -12,6 +12,9 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_equipmentwork':['id','profile_id','request_key','item_id_snapshot','action','snapshot'],
+    'characters_frontierprogress':['id','profile_id','unlocked','wins','last_attempt_at'],
+    'characters_frontierrecord':['id','profile_id','request_key','depth','season','won','points','snapshot'],
     "characters_campaigncompletion":["id","profile_id","battle_id","snapshot"],
     "characters_editionconclusion":["id","world_id","operator_id","snapshot"],
     "characters_journalnotice": ["id","profile_id","key","title","destination","read_at"],
@@ -29,7 +32,7 @@ STABLE = {
     'characters_campproject':['id','guild_id','day','title','objectives','progress','experience_reward','treasury_reward','completed_at'],
     'characters_campcontribution':['id','guild_id','profile_id','project_id','source','kind','amount'],
     'characters_playerprofile': ['id','user_id','world_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','smithing_skill','alchemy_skill','current_mana','equipment_mana','prepared_magic_id'],
-    'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at'],
+    'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at','upgrade_level'],
     'characters_storyrun': ['id','profile_id','quest_id','status','progress','snapshot','choices','claimed_at'],
     'characters_adventurerun': ['id','profile_id','template_id','claimed_at'],
     'characters_economicentry': ['id','profile_id','resource','amount','balance_after','category','reference'],

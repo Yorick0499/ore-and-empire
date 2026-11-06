@@ -7,8 +7,9 @@ BONUSES = ('weapon_prot','arrow_prot','fire_prot','magic_prot','strength_bonus',
 def stats_for(profile):
     totals = dict.fromkeys(BONUSES, 0)
     for item in profile.inventory.filter(is_equipped=True).select_related('blueprint'):
+        effective = item.effective_stats
         for key in totals:
-            totals[key] += getattr(item.blueprint, key)
+            totals[key] += effective[key]
     return totals
 
 
@@ -33,11 +34,12 @@ def weapon_for(profile):
 
 
 def combat_values(profile):
-    weapon = weapon_for(profile)
+    owned = profile.inventory.filter(is_equipped=True, equipped_slot='weapon').select_related('blueprint').first()
+    weapon = owned.blueprint if owned else None
     bonuses = profile.equipment_stats
     ranged = weapon and weapon.weapon_type in {'bow','crossbow'}
     attribute = profile.dexterity + bonuses['dexterity_bonus'] if ranged else profile.strength + bonuses['strength_bonus']
-    damage = attribute + (weapon.damage if weapon else 0)
+    damage = attribute + (owned.effective_stats['damage'] if owned else 0)
     skill = getattr(profile, (weapon.weapon_type if weapon else 'onehand') + '_skill')
     return damage, min(100, skill), weapon.damage_type if weapon else 'weapon'
 

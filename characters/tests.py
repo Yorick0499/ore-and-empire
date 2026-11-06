@@ -329,7 +329,7 @@ class ColonyTests(TestCase):
         self.assertFalse(user.playerprofile.is_bot)
 
     def test_bot_command_bounds(self):
-        for options in [{"create": 21}, {"limit": 0}, {"create": -1}]:
+        for options in [{"create": 101}, {"limit": 0}, {"create": -1}]:
             with self.assertRaises(CommandError):
                 call_command("run_bots", stdout=StringIO(), **options)
 
@@ -562,7 +562,7 @@ class LocalWorldTests(TestCase):
             "characters.management.commands.run_colony.call_command"
         ) as setup, patch(
             "characters.management.commands.run_colony.time.monotonic",
-            side_effect=[0, 6, 6],
+            return_value=6,
         ), patch(
             "characters.management.commands.run_colony.tick_bot",
             return_value=("mine", True),
@@ -585,7 +585,7 @@ class LocalWorldTests(TestCase):
             "characters.management.commands.run_colony.call_command"
         ) as setup, patch(
             "characters.management.commands.run_colony.time.monotonic",
-            side_effect=[0, 6, 6],
+            return_value=6,
         ), patch(
             "characters.management.commands.run_colony.tick_bot"
         ) as tick:
@@ -604,7 +604,7 @@ class LocalWorldTests(TestCase):
 
     def test_invalid_local_server_options(self):
         for options in [
-            {"bots": 21},
+            {"bots": 101},
             {"bots": -1},
             {"port": 0},
             {"interval": 0},
@@ -621,13 +621,17 @@ class LocalWorldTests(TestCase):
         other.save()
         server = MagicMock()
         server.__enter__.return_value = server
-        server.handle_request.side_effect = [None, KeyboardInterrupt]
+        clock=[0]
+        def serve():
+            clock[0]+=10
+            if clock[0]>20:raise KeyboardInterrupt
+        server.handle_request.side_effect=serve
         errors = StringIO()
         with patch(
             "characters.management.commands.run_colony.make_server", return_value=server
         ), patch("characters.management.commands.run_colony.call_command"), patch(
             "characters.management.commands.run_colony.time.monotonic",
-            side_effect=[0, 6, 6],
+            side_effect=lambda:clock[0],
         ), patch(
             "characters.management.commands.run_colony.tick_bot",
             side_effect=[ValueError("bad policy"), ("wait", True)],
@@ -736,7 +740,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 14)
+        self.assertEqual(decision.schema_version, 15)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision
