@@ -44,7 +44,8 @@ def claim_challenge(profile,challenge_id):
     # Ready goals remain claimable after the boundary; unfinished old goals stop progressing.
     profile.ore_balance+=challenge.ore;profile.experience+=challenge.experience
     from .economy import change_premium
-    change_premium(profile,challenge.premium,'Wyzwanie osobiste',f'challenge:{challenge.pk}')
+    if challenge.premium:
+        change_premium(profile,challenge.premium,'Wyzwanie osobiste',f'challenge:{challenge.pk}')
     if challenge.camp in {'OLD_CAMP','NEW_CAMP','SWAMP_CAMP'}:
         rep,_=CampReputation.objects.select_for_update().get_or_create(profile=profile,camp=challenge.camp)
         rep.value+=challenge.reputation;rep.save(update_fields=['value'])

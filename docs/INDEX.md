@@ -27,6 +27,8 @@ Dane logowania, `.admin-access.json`, `.env`, bazy i backupy są prywatne. Nie d
 
 ## Raporty
 
+- [Audyt błędów](BUG_AUDIT.md) — odtworzone problemy, poprawki i testy nadużyć.
+
 - [Pełna kampania i dalsza gra po finale](reports/lupy-endgame-2026-11-06.json).
 - [100 nowych botów](reports/sto-botow-2026-11-06.json) oraz [100 rozwiniętych botów](reports/sto-botow-endgame-2026-11-06.json).
 

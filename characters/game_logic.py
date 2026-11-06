@@ -1,6 +1,7 @@
-from characters.models import OwnedItem, PlayerProfile, MarketTrade, BossAttempt
+from characters.models import OwnedItem, ItemBluePrint, PlayerProfile, MarketTrade, BossAttempt
 from .bosses import BOSSES
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from functools import wraps
 from django.utils import timezone
 from datetime import timedelta
@@ -60,9 +61,12 @@ def player_action(fn):
             profile.refresh_from_db()
             if not playable(profile):return False
             ids = {profile.pk}
-            if fn.__name__ == "buy_item_on_market" and args:
+            # Named calls must obey the same locks and refresh rules as positional calls.
+            action_arguments = (*args, *kwargs.values())
+            market_item = args[0] if args else kwargs.get("owned_item")
+            if fn.__name__ == "buy_item_on_market" and isinstance(market_item, OwnedItem):
                 owner_id = (
-                    OwnedItem.objects.filter(pk=args[0].pk)
+                    OwnedItem.objects.filter(pk=market_item.pk)
                     .values_list("owner_id", flat=True)
                     .first()
                 )
@@ -76,16 +80,14 @@ def player_action(fn):
             profile.refresh_from_db()
             if hasattr(profile, '_gear_stats_cache'): del profile._gear_stats_cache
             recover_energy(profile)
-            for arg in args:
-                if isinstance(arg, OwnedItem):
-                    fresh = (
-                        OwnedItem.objects.select_for_update().filter(pk=arg.pk).first()
-                    )
-                    if fresh is None:
+            for arg in action_arguments:
+                if isinstance(arg, (OwnedItem, ItemBluePrint)):
+                    try:
+                        arg.refresh_from_db(from_queryset=type(arg).objects.select_for_update())
+                    except ObjectDoesNotExist:
                         return False
-                    arg.refresh_from_db()
                     # A listing changed owner while locks were being acquired.
-                    if fn.__name__ == "buy_item_on_market" and arg.owner_id not in ids:
+                    if fn.__name__ == "buy_item_on_market" and isinstance(arg, OwnedItem) and arg.owner_id not in ids:
                         return False
             from .economic_ledger import balances, record_changes
             before = balances(ids)

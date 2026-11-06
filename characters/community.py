@@ -5,6 +5,7 @@ from django.utils import timezone
 from .models import PlayerProfile, BotDecision, TavernTopic, TavernMessage
 
 ACTION_NAMES = {
+    'ammo':'uzupełnił amunicję u kupca',
     'improve':'ulepszył wyposażenie w kuźni', 'salvage':'odzyskał pył z łupów', 'patrol':'podjął wartę za Przełęczą',
     'craft':'wytworzył przedmiot z materiałów','craft_material':'kupił materiały warsztatowe','craft_learn':'uczył się rzemiosła',
     'market_buy':'kupił potrzebne zapasy na targu','market_reprice':'obniżył cenę zalegającej oferty','market_cancel':'wycofał niesprzedany towar','market_sell':'upłynnił niesprzedane zapasy',

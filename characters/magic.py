@@ -144,7 +144,7 @@ def bot_magic_plan(profile,inventory,target=None):
         from .equipment import combat_values
         import math
         damage,_,kind=combat_values(profile)
-        rounds=math.ceil(target['life']/max(1,damage-target.get(kind+'_prot',0)))
+        rounds=math.ceil(target['life']/max(1,damage-target.get(kind+'_prot',target.get('weapon_prot',0) if kind=='arrow' else 0)))
         physical=(rounds-1)*max(1,target['strength']-profile.effective_protection(target.get('damage_type','weapon')))+10
         best=min(usable,key=lambda item:survival_health(profile,target,MagicPlan(BY_CODE[item.blueprint.catalog_key][0],item.pk,False,item.quantity)))
         forecast=survival_health(profile,target,MagicPlan(BY_CODE[best.blueprint.catalog_key][0],best.pk,False,best.quantity))

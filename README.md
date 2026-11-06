@@ -70,6 +70,8 @@ Alternatywnie `python manage.py create_game_admin --username TWOJ_LOGIN` generuj
 
 ## Testowanie
 
+[Przegląd błędów i scenariusze regresji](docs/BUG_AUDIT.md) opisuje zabezpieczenia transakcji, amunicję botów, odbiór nagród i wyniki końcowej symulacji.
+
 ```bash
 python manage.py check
 python manage.py makemigrations --check --dry-run

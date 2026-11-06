@@ -10,7 +10,7 @@ Raport rynku rozdziela obrót bot–bot od ilości zużytych w leczeniu/rzemioś
 
 Testy obejmują zdarzenia, starą cenę, medianę i limity cen jednostkowych, rzeczywistą potrzebę leczenia, budżet, rollback historii oraz wielodniowe porównanie i obsługę nieznanego wieku starych ofert. Backup i reset uwzględniają fakty rynku.
 
-Aktualna polityka to baseline-15; reguły popytu wprowadzono w baseline-13. Pory dnia nie zmieniają cen ani warunków transakcji.
+Aktualna polityka to baseline-16; reguły popytu wprowadzono w baseline-13. Pory dnia nie zmieniają cen ani warunków transakcji.
 
 ## Dopracowanie pełnej edycji
 
