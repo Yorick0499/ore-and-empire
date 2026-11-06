@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "isolated_database": true,
+  "population": 100,
+  "fixture": "100 kontrolowanych buildów poziomu 30 po finale; nadane statystyki służą wyłącznie pomiarowi wydajności, nie walidacji przejścia",
+  "elapsed_seconds": 60.02,
+  "http_requests": 490,
+  "http_errors": 0,
+  "http_p50_ms": 6.29,
+  "http_p95_ms": 48.48,
+  "http_max_ms": 135.46,
+  "cpu_percent_one_core": 20.08,
+  "rss_peak_mib": 55.77,
+  "initial_tick_p50_ms": 42.66,
+  "initial_tick_p95_ms": 49.68,
+  "initial_queries_median": 106.0,
+  "initial_actions": {
+    "patrol": 100
+  },
+  "limits": [
+    "Pomiar na maszynie wykonującej test, nie na komputerze gracza.",
+    "Krótka próba lokalnego SQLite i ekranu logowania; nie zastępuje obciążenia publicznego serwera ani długiej symulacji gospodarki.",
+    "Cel adaptacyjnego harmonogramu około 20% czasu pracy nie jest twardym limitem CPU."
+  ],
+  "residents_ticked": 100,
+  "resident_turns": [
+    {
+      "bot_turn": 3,
+      "count": 57
+    },
+    {
+      "bot_turn": 4,
+      "count": 43
+    }
+  ],
+  "failed_decisions": 0
+}

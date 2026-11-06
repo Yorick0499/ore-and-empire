@@ -13,7 +13,7 @@ python -m pip install -r requirements.txt
 python play.py --bots 6 --port 8001
 ```
 
-Otwórz [grę lokalną](http://127.0.0.1:8001/). Nowa instalacja udostępnia `/inicjalizacja/`: wybierz nazwę serwera, 0–20 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; `--bots` służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.
+Otwórz [grę lokalną](http://127.0.0.1:8001/). Nowa instalacja udostępnia `/inicjalizacja/`: wybierz nazwę serwera, 0–100 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; `--bots` służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.
 
 Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Publiczny hosting i współbieżność PostgreSQL pozostają osobnym etapem.
 
@@ -28,19 +28,21 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 - Rzeczywisty **czas polski `Europe/Warsaw`**, automatyczne CET/CEST; świt i noc według Słońca dla Warszawy, pory roku meteorologiczne. 12 wydarzeń miesięcznych, trzy coroczne i losowe odkrycia; żadna pora nie blokuje gry.
 - Panel zarządcy, inicjalizacja/reset świata z zachowaniem administratorów, prywatne kopie i sprawdzane odtwarzanie.
 
+Pełna pętla po fabule: [łupy, ulepszenia +10 i 100 stopni wart](docs/LOOT_AND_ENDGAME.md). Świat nadal żyje po osobistym finale, z miesięcznym rankingiem wart. Limit mieszkańców podniesiono do 100; [pomiar i zasady wydajności](docs/BOT_PERFORMANCE.md).
+
 ## Aktualne ekrany
 
 Zrzuty pokazują osobny świat demonstracyjny i zwykłe konto testowe najnowszej wersji. Stan postaci na screenach nie jest obietnicą zasobów startowych. Grafiki Gothicpedii i czcionka są lokalne; [źródła](docs/ASSETS.md).
 
-![Kolonia i czas polski](docs/screenshots/colony.png)
+![Kolonia i czas polski](docs/screenshots/colony.jpg)
 
 | Polowanie | Wspólnota obozu |
 |---|---|
-| ![Polowanie](docs/screenshots/hunting.png) | ![Wspólnota](docs/screenshots/community.png) |
+| ![Polowanie](docs/screenshots/hunting.jpg) | ![Wspólnota](docs/screenshots/community.jpg) |
 
 | Kalendarz sezonów | Widok mobilny |
 |---|---|
-| ![Wydarzenia](docs/screenshots/events.png) | ![Telefon](docs/screenshots/mobile.png) |
+| ![Wydarzenia](docs/screenshots/events.jpg) | ![Telefon](docs/screenshots/mobile.jpg) |
 
 [Pozostałe aktualne ekrany](docs/SCREENSHOTS.md).
 

@@ -30,3 +30,7 @@ stos za 50% wartości. Materiały i amunicja łączą się wyłącznie we własn
 niewystawionym stosie. Przedmioty fabularne mogą mieć zakaz handlu. Boty nadal
 preferują walkę wręcz, zakładają zdobyte zbroje, używają zapasów i sprzedają
 nadmiar materiałów, rezerwując dostawy questowe. Obserwacje mają wersję 6.
+
+## Dopracowanie pełnej edycji
+
+Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. [Pula 35 łupów, odzysk pyłu, wszystkie koszty +1…+10](LOOT_AND_ENDGAME.md).

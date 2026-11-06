@@ -1,6 +1,6 @@
 # Świat, konto i kontrolowany reset
 
-Instalacja ma jeden aktualnie grywalny świat: nazwę serwera (1–80 znaków), numer edycji, uniwersum, wersję zasad, stan i 0–20 aktywnych botów. Konto i postać są osobnymi bytami: maksymalnie jedna postać konta na świat. `/postacie/` pokazuje postacie i pozwala wybrać własną w bieżącym świecie. Archiwalna postać pozostaje do odczytu; nie wykona akcji. Serwisy otrzymują profil z `world_id`, rynek nie pozwala przekazywać dóbr między światami, widoki/karczma/rankingi/wspólnoty/monitoring/kalendarz filtrują bieżący kontekst. Współistnienie wielu grywalnych edycji i transfery nadal wymagają #34/#30; model nie udaje gotowej II edycji.
+Instalacja ma jeden aktualnie grywalny świat: nazwę serwera (1–80 znaków), numer edycji, uniwersum, wersję zasad, stan i 0–100 aktywnych botów. Konto i postać są osobnymi bytami: maksymalnie jedna postać konta na świat. `/postacie/` pokazuje postacie i pozwala wybrać własną w bieżącym świecie. Archiwalna postać pozostaje do odczytu; nie wykona akcji. Serwisy otrzymują profil z `world_id`, rynek nie pozwala przekazywać dóbr między światami, widoki/karczma/rankingi/wspólnoty/monitoring/kalendarz filtrują bieżący kontekst. Współistnienie wielu grywalnych edycji i transfery nadal wymagają #34/#30; model nie udaje gotowej II edycji.
 
 Migracja przypisuje dotychczasowe profile, wspólnoty i eventy do I edycji, zachowując ID, portfele i historię. Dotychczasowe konta admina i ich hasła nie zmieniają się. Istniejące `user.playerprofile` rozwiązuje profil bieżącego świata dla zgodności serwisów; konto ma kolekcję `characters`.
 
@@ -15,3 +15,7 @@ To lokalny reset SQLite przy serializującym launcherze. Nie uruchamiaj równole
 ## Własny administrator i poufność
 
 Na istniejącej instalacji `python manage.py createsuperuser` tworzy nowe konto z loginem i hasłem podanymi interaktywnie. Nie zmienia dotychczasowych administratorów. Alternatywa: `python manage.py create_game_admin --username TWOJ_LOGIN`, z losowym hasłem wyłącznie w lokalnym `.admin-access.json` (0600, ignorowany przez Git). `python manage.py changepassword TWOJ_LOGIN` zmienia hasło lokalnie. Logowanie `/konto/logowanie/`, panel `/zarzadca/`, pełna administracja `/admin/`. Rzeczywistych danych dostępu nie umieszczaj w dokumentacji, commitach, PR-ach, issues ani screenach.
+
+## Dopracowanie pełnej edycji
+
+Limit 100 obejmuje inicjalizację, reset, konfigurację bez resetu, walidację modelu i komendy. Zwiększenie liczby w panelu tworzy brakujących mieszkańców; zmniejszenie nie kasuje ich postaci. Launcher odświeża populację co pięć sekund. [Jak ustawić 100 mieszkańców i jak rozkładamy ich pracę](BOT_PERFORMANCE.md).

@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "migration": "0031_lupy_ulepszenia_warty_i_populacja",
+  "theme": "pelna-edycja-3",
+  "fixture": "Kolonia nad Wisłą; 100 botów; syntetyczna postać demonstracyjna poziomu 30",
+  "files": [
+    {
+      "file": "boss.jpg",
+      "bytes": 74543,
+      "sha256": "3862ddd486e421e00cd5b030c2999c200e6143fac0e2ca0dffa0957ccac652b6",
+      "captured_at_utc": "2026-11-05T23:56:03.365458+00:00"
+    },
+    {
+      "file": "challenges.jpg",
+      "bytes": 92346,
+      "sha256": "83c4d333013df0b10a66c5ef458a4fe8d6dbe73473ce187b8a27b4c0070a18a8",
+      "captured_at_utc": "2026-11-05T23:56:05.690562+00:00"
+    },
+    {
+      "file": "colony.jpg",
+      "bytes": 108176,
+      "sha256": "acf821afe41db99fe9c35d5ee954a241de8108e9183988a0910ccbede9a81c47",
+      "captured_at_utc": "2026-11-05T23:56:02.859529+00:00"
+    },
+    {
+      "file": "community.jpg",
+      "bytes": 82092,
+      "sha256": "69f8bf768b236e8e6befd6f786b6c18e8b6d6059fbe208e7566ad72d385fb2d3",
+      "captured_at_utc": "2026-11-05T23:56:05.360559+00:00"
+    },
+    {
+      "file": "crafting.jpg",
+      "bytes": 80107,
+      "sha256": "c3de0f891bca82d8f4276411982467e6f635043080c19c82f98f360cc040e34b",
+      "captured_at_utc": "2026-11-05T23:56:04.554708+00:00"
+    },
+    {
+      "file": "events.jpg",
+      "bytes": 105088,
+      "sha256": "f44fc10cede94d6c83d5356e0d68f2e72c1417433fc6e6836a87d8477590e63a",
+      "captured_at_utc": "2026-11-05T23:56:05.531669+00:00"
+    },
+    {
+      "file": "frontier.jpg",
+      "bytes": 222117,
+      "sha256": "0bef0acef706e9b057d5917feb501894782b45b52ff46fdc85a737d904b69544",
+      "captured_at_utc": "2026-11-05T23:56:07.245402+00:00"
+    },
+    {
+      "file": "hall.jpg",
+      "bytes": 85580,
+      "sha256": "17997bdd9d054f059fd3ecf8d62ccd99c3119380fc28e7fafd5daffb3199db95",
+      "captured_at_utc": "2026-11-05T23:56:06.964099+00:00"
+    },
+    {
+      "file": "hunting.jpg",
+      "bytes": 95360,
+      "sha256": "5bc322d2b18741653be0670418cb9776c2e3500fcb82253cf086a805890fd8cf",
+      "captured_at_utc": "2026-11-05T23:56:03.040131+00:00"
+    },
+    {
+      "file": "inventory.jpg",
+      "bytes": 274408,
+      "sha256": "be181f3887e35a256d741baa7be5a70b2cecda76c755e3bec03b99c65bc2ba23",
+      "captured_at_utc": "2026-11-05T23:56:03.708812+00:00"
+    },
+    {
+      "file": "itemshop.jpg",
+      "bytes": 100167,
+      "sha256": "42308917d1d9792f912db457fd8317d32d8fc74f509669c89f4abba2156ebdf2",
+      "captured_at_utc": "2026-11-05T23:56:04.994843+00:00"
+    },
+    {
+      "file": "journal.jpg",
+      "bytes": 69610,
+      "sha256": "9239d52f0cb37bf3babe1284ee8a85439b57a6632cd301b62e3ecdd0aac3c826",
+      "captured_at_utc": "2026-11-05T23:56:06.820576+00:00"
+    },
+    {
+      "file": "living-world.jpg",
+      "bytes": 77717,
+      "sha256": "2515d05703bf60596307616b29228f163ec357450e71e369cb8f132c4ff27a2b",
+      "captured_at_utc": "2026-11-05T23:56:06.263569+00:00"
+    },
+    {
+      "file": "magic.jpg",
+      "bytes": 82640,
+      "sha256": "62860808acf180488039fbef22a462de2191cb3e967a8d33764d5d72fbe81f2f",
+      "captured_at_utc": "2026-11-05T23:56:04.798952+00:00"
+    },
+    {
+      "file": "market.jpg",
+      "bytes": 86190,
+      "sha256": "8f440e57a26a30e23cb54fcb12225459e6892b6b8a6e50b658c50a71ca229493",
+      "captured_at_utc": "2026-11-05T23:56:03.907541+00:00"
+    },
+    {
+      "file": "merchant.jpg",
+      "bytes": 85059,
+      "sha256": "0c49bee6f3fec8aeb7d84b5a83097dbbe60dcd55abf9c79af0f33b021847fb87",
+      "captured_at_utc": "2026-11-05T23:56:04.184342+00:00"
+    },
+    {
+      "file": "mining.jpg",
+      "bytes": 80658,
+      "sha256": "aeb00e66c41eaf24ad562ce6c92f57853d516c1d14c8a801f7e9c63699c2b3cc",
+      "captured_at_utc": "2026-11-05T23:56:03.205607+00:00"
+    },
+    {
+      "file": "mobile-equipment.jpg",
+      "bytes": 41363,
+      "sha256": "2ebb0e8afe1c92dbc5a6b3ad2577465b38c3af23933cfda444fea2da98a89124",
+      "captured_at_utc": "2026-11-06T00:02:02.673565+00:00"
+    },
+    {
+      "file": "mobile.jpg",
+      "bytes": 45969,
+      "sha256": "f1d2591ad8f2dc2e8b27df597064edcf07c37aea39b592de14d636e11f3fe7b1",
+      "captured_at_utc": "2026-11-06T00:02:02.279632+00:00"
+    },
+    {
+      "file": "rankings.jpg",
+      "bytes": 81934,
+      "sha256": "6c979ad5e284499f7090654ca08bd3144b83557b30cb15f60d08c0594e59a529",
+      "captured_at_utc": "2026-11-05T23:56:06.667574+00:00"
+    },
+    {
+      "file": "story.jpg",
+      "bytes": 99952,
+      "sha256": "c8df2c2c31fd447e59f19bbdc0ee1683d6114c1aae1f6799345c83f76317a7fe",
+      "captured_at_utc": "2026-11-05T23:56:05.169556+00:00"
+    },
+    {
+      "file": "tavern.jpg",
+      "bytes": 79414,
+      "sha256": "189e27ffc6fb4f857bf4681dd1e063c1f5a0bef2d797a319193797cd497ac6c1",
+      "captured_at_utc": "2026-11-05T23:56:05.846135+00:00"
+    },
+    {
+      "file": "training.jpg",
+      "bytes": 80345,
+      "sha256": "ee54fa9805631f0d0b6f23a319a6344ac319c2bac1caab5139f9ffbe5323049d",
+      "captured_at_utc": "2026-11-05T23:56:04.384947+00:00"
+    }
+  ]
+}
