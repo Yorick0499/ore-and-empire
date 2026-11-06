@@ -71,11 +71,24 @@ class CampaignTests(TestCase):
             self.assertGreaterEqual(bot.level, 30)
             self.assertEqual(bot.story_runs.filter(status='claimed', quest__camp=bot.camp).count(), 6)
             self.assertEqual(bot.story_runs.filter(status='claimed').exclude(quest__camp__in=['', bot.camp]).count(), 0)
-            self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 6)
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 12)
             self.assertIn(bot.story_runs.filter(status='claimed').count(), (27,28))
             self.assertTrue(hasattr(bot,'campaign_completion'))
         from .release_probe import record_scenario
         record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})
+        # Continue the same earned characters after the finale: no stat/material grants.
+        after=Counter()
+        for extra in range(60):
+            with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*(step+extra+1))):
+                for bot in bots:
+                    action,success=tick_bot(bot)
+                    self.assertTrue(success,(extra,bot.pk,action))
+                    after[action]+=1
+        for bot in bots:
+            self.assertTrue(bot.patrols.filter(won=True).exists(),(bot.pk,after))
+            self.assertTrue(bot.equipment_work.filter(action='improve').exists(),(bot.pk,after))
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind='quest',blueprint__tradeable=False).count(),12)
+        record_scenario('po-finale-dalsze-zycie',{'ticks_per_bot':60,'actions':dict(after),'characters':[{'camp':b.camp,'patrol_wins':b.patrols.filter(won=True).count(),'upgrades':b.equipment_work.filter(action='improve').count()} for b in bots]})
         self.assertFalse(BotDecision.objects.filter(success=False).exists())
         for action in ('story_accept', 'story_start', 'story_claim', 'story_talk', 'story_travel', 'hunt', 'boss', 'mine', 'claim', 'stock'):
             self.assertGreater(actions[action], 0)
@@ -84,6 +97,8 @@ class CampaignTests(TestCase):
     def test_human_can_play_whole_campaign_via_forms_and_ordinary_game_services(self):
         from . import game_logic as game
         from .models import ItemBluePrint, OwnedItem
+        from .world_management import seed_clean_world
+        seed_clean_world()
         hero = User.objects.create_user('solo-player').playerprofile
         game.choose_camp(hero, 'OLD_CAMP')
         self.client.force_login(hero.user)
@@ -96,6 +111,10 @@ class CampaignTests(TestCase):
         def post(action, target, **kwargs):
             with advance():
                 response = self.client.post('/fabula/', {'action': action, 'target': target, **kwargs})
+                if response.url.startswith('/konto/logowanie/'):
+                    # A long simulated campaign can outlive the ordinary 14-day login session.
+                    self.client.force_login(hero.user)
+                    response = self.client.post('/fabula/', {'action': action, 'target': target, **kwargs})
             self.assertEqual(response.status_code, 302)
         def mining_shift():
             with advance(): self.assertTrue(game.start_mining(hero, 15))
@@ -107,7 +126,7 @@ class CampaignTests(TestCase):
             for _ in range(hero.skill_points):
                 if hero.ore_balance < 30: mining_shift()
                 with advance(): self.assertTrue(game.train_attribute(hero, 'strength'))
-            best = ItemBluePrint.objects.filter(required_strength__lte=hero.strength, base_value__gt=0).order_by('-damage').first()
+            best = ItemBluePrint.objects.filter(merchant=True,kind='weapon',weapon_type__in=['onehand','twohand'],required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity,min_level__lte=hero.level,min_camp_tier__lte=hero.camp_tier,required_camp__in=['',hero.camp],base_value__gt=0).order_by('-damage').first()
             equipped = hero.inventory.filter(is_equipped=True).select_related('blueprint').first()
             if not equipped or equipped.blueprint.damage < best.damage:
                 while hero.ore_balance < best.base_value: mining_shift()
@@ -140,6 +159,7 @@ class CampaignTests(TestCase):
                             if kind == 'hunt':
                                 location = next(loc for loc in LOCATIONS if loc.accessible(hero) and goal['target'] in loc.monsters)
                                 self.assertIsNot(game.execute_hunt(hero, goal['target'], location.key), False)
+                                self.assertTrue(hero.battles.first().won,hero.battles.first().combat_log)
                             else:
                                 self.assertTrue(game.execute_boss(hero, goal['target']).won)
                 elif kind == 'wait':
@@ -159,7 +179,28 @@ class CampaignTests(TestCase):
         self.assertIsNot(result, False)
         self.assertTrue(result.won)
         self.assertTrue(hasattr(hero,'campaign_completion'))
-        self.assertContains(self.client.get('/sala-chwaly/'), 'solo-player')
+        with advance():
+            self.client.force_login(hero.user)
+            self.assertContains(self.client.get('/sala-chwaly/'), 'solo-player')
         hero.refresh_from_db()
         from .release_probe import record_scenario
         record_scenario('gracz-od-zera-do-finalu',{'steps':step,'simulated_hours':step/2,'chapters':6,'claimed_quests':hero.story_runs.filter(status='claimed').count(),'level':hero.level,'experience':hero.experience,'ore':hero.ore_balance,'premium':hero.premium_balance,'completion':hasattr(hero,'campaign_completion')})
+
+        # The same earned human character can spend drops and continue after the ending.
+        from uuid import uuid4
+        from .models import OwnedItem,FrontierProgress
+        weapon=hero.inventory.filter(is_equipped=True,equipped_slot='weapon').first()
+        self.assertIsNotNone(weapon)
+        with advance():
+            response=self.client.get('/ekwipunek/')
+            upgrade_key=response.context['request_key']
+            response=self.client.post('/ekwipunek/',{'action':'improve','item_id':weapon.pk,'expected_level':0,'request_key':upgrade_key})
+        self.assertEqual(response.status_code,302)
+        weapon.refresh_from_db();self.assertEqual(weapon.upgrade_level,1)
+        with advance():
+            key=uuid4()
+            response=self.client.post('/warty/',{'depth':1,'request_key':key,'ore':999999})
+        self.assertEqual(response.status_code,302)
+        self.assertTrue(hero.patrols.get(request_key=key).won)
+        self.assertEqual(FrontierProgress.objects.get(profile=hero).unlocked,2)
+        record_scenario('gracz-po-finale',{'upgraded_item':weapon.blueprint.name,'upgrade_level':weapon.upgrade_level,'patrol_wins':hero.patrols.filter(won=True).count(),'unlocked':2,'admin_grants':False})

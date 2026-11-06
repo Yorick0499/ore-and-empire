@@ -27,8 +27,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if not 1 <= options["history_days"] <= 3650:
             raise CommandError("--history-days must be 1-3650")
-        if not 0 <= options["bots"] <= 20:
-            raise CommandError("--bots must be 0-20")
+        if not 0 <= options["bots"] <= 100:
+            raise CommandError("--bots must be 0-100")
         if not 1 <= options["port"] <= 65535:
             raise CommandError("--port must be 1-65535")
         if not 1 <= options["interval"] <= 3600:
@@ -77,38 +77,35 @@ class Command(BaseCommand):
                 self.stdout.write(
                     "LAN mode: configure ALLOWED_HOSTS with your machine's LAN address. This server is for trusted local networks, not public hosting."
                 )
-            event_day = None
-            next_round = time.monotonic() + options["interval"]
-            server.timeout = min(1, options["interval"])
+            from characters.bot_scheduler import BotScheduler
+            scheduler=BotScheduler(options['interval'],clock=time.monotonic)
+            event_day=None
+            refresh_at=0
+            def run_one(pk):
+                profile=PlayerProfile.objects.select_related('user').filter(pk=pk,is_bot=True,user__is_active=True).first()
+                if not profile:return 'wait',False
+                try:
+                    action,success=tick_bot(profile)
+                except Exception as exc:
+                    self.stderr.write(f"{profile.user.username}: bot skipped ({type(exc).__name__})")
+                    return 'wait',False
+                if action!='wait':self.stdout.write(f"{profile.user.username}: {action} {'ok' if success else 'denied'}")
+                return action,success
             try:
                 while True:
-                    server.handle_request()
-                    if time.monotonic() >= next_round:
-                        from django.utils import timezone
+                    now=time.monotonic()
+                    if now>=refresh_at:
+                        world=current_world()
+                        scheduler.population(PlayerProfile.objects.filter(is_bot=True,user__is_active=True,world=world).order_by('pk').values_list('pk',flat=True)[:world.bot_count])
+                        refresh_at=now+5
                         from characters.world_events import ensure_world_events
-                        if event_day != polish_day():
+                        if event_day!=polish_day():
                             ensure_world_events()
-                            try:
-                                call_command("archive_bot_history",days=options["history_days"],stdout=self.stdout)
-                            except Exception as exc:
-                                self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
-                            event_day = polish_day()
-                        profiles = PlayerProfile.objects.filter(
-                            is_bot=True, user__is_active=True,world=current_world()
-                        ).order_by("pk")[: current_world().bot_count]
-                        for profile in profiles:
-                            try:
-                                action, success = tick_bot(profile)
-                            except Exception as exc:
-                                # A broken policy must not take down the local game.
-                                self.stderr.write(
-                                    f"{profile.user.username}: bot skipped ({type(exc).__name__})"
-                                )
-                                continue
-                            if action != "wait":
-                                self.stdout.write(
-                                    f"{profile.user.username}: {action} {'ok' if success else 'denied'}"
-                                )
-                        next_round = time.monotonic() + options["interval"]
+                            try:call_command('archive_bot_history',days=options['history_days'],stdout=self.stdout)
+                            except Exception as exc:self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
+                            event_day=polish_day()
+                    server.timeout=scheduler.timeout()
+                    server.handle_request()
+                    scheduler.step(run_one)
             except KeyboardInterrupt:
                 self.stdout.write("Colony stopped. Saved progress retained.")

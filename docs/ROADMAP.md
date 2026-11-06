@@ -4,12 +4,12 @@ Stan: 6 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 
 ## Wdrożone
 
-- Lokalny launcher, trwałe konto i postać, jeden aktywny nazwany świat, 0–20 botów.
+- Lokalny launcher, trwałe konto i postać, jeden aktywny nazwany świat, 0–100 botów.
 - Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
 - 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
 - Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
 - Jedenaście wypraw czasowych, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze.
-- Boty baseline-14, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
+- Boty baseline-15, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
 - Karczma, kroniki, powiadomienia, rankingi, sala chwały i jednorazowe podsumowanie operatora.
 - Czas polski 1:1, słoneczne pory dnia Warszawy, sezony meteorologiczne i kalendarz eventów.
 - Administrator, inicjalizacja i kontrolowany reset z zachowaniem kont administratorów, prywatne kopie oraz próby odtwarzania.
@@ -33,3 +33,7 @@ Osobiste ukończenie ani zapis końcowego rankingu nie przenosi do Gothic II i n
 - #35: kontrolowany start II edycji i archiwizacja I.
 
 Opcjonalnie #28: polityki LLM z limitami i porównaniem do botów regułowych. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
+
+## Dopracowanie pełnej edycji
+
+Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](https://github.com/Yorick0499/ore-and-empire/issues/66) i [#67](https://github.com/Yorick0499/ore-and-empire/issues/67): 35 wzorów dropu, ulepszenia +10, 100 powtarzalnych wart i miesięczny ranking, do 100 botów z harmonogramem. [Reguły endgame](LOOT_AND_ENDGAME.md) · [wydajność](BOT_PERFORMANCE.md).

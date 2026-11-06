@@ -4,6 +4,8 @@ Stan najnowszej wersji: 6 listopada 2026. [README](../README.md) zawiera instala
 
 ## Dla gracza
 
+- [Łupy, ulepszenia i endgame](LOOT_AND_ENDGAME.md)
+
 - [Instrukcja całej gry](GAME_GUIDE.md) — od nowej postaci do finału, wszystkie główne systemy.
 - [Katalog zawartości](GAME_CONTENT.md) — komplet lokacji, potworów, rang, fabuły, zleceń, receptur i zaklęć.
 - [Wszystkie wydarzenia](EVENTS.md), [czas polski i zmiana czasu](WORLD_CLOCK.md).
@@ -15,6 +17,8 @@ Stan najnowszej wersji: 6 listopada 2026. [README](../README.md) zawiera instala
 
 ## Dla operatora i programisty
 
+- [100 botów: harmonogram i pomiary](BOT_PERFORMANCE.md)
+
 - [Świat, administrator i reset](WORLD_MANAGEMENT.md), [backup i odtwarzanie](BACKUPS.md).
 - [Monitoring](WORLD_MONITOR.md), [gospodarka i granice modeli](ECONOMY.md), [paczki danych/przedmiotów](ITEM_PACKS.md).
 - [Bieżąca roadmapa](ROADMAP.md), [historyczny przegląd architektury](PROJECT_REVIEW.md), [historia migracji dawnych zapisów](LEGACY_SAVES.md).
@@ -22,6 +26,9 @@ Stan najnowszej wersji: 6 listopada 2026. [README](../README.md) zawiera instala
 Dane logowania, `.admin-access.json`, `.env`, bazy i backupy są prywatne. Nie dodawaj ich do GitHuba ani screenów. Repozytorium nie zawiera hasła do żadnego prywatnego serwera.
 
 ## Raporty
+
+- [Pełna kampania i dalsza gra po finale](reports/lupy-endgame-2026-11-06.json).
+- [100 nowych botów](reports/sto-botow-2026-11-06.json) oraz [100 rozwiniętych botów](reports/sto-botow-endgame-2026-11-06.json).
 
 `docs/reports/` zawiera jawne wyniki izolowanych testów i modeli, nie eksport prywatnego świata. Starsze raporty pozostają historycznym zapisem reguł, zegara i rewizji opisywanej w danym uruchomieniu; nie należy ich odczytywać jako aktualnej prognozy całej gospodarki.
 

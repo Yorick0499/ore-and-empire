@@ -277,3 +277,7 @@ Zwój kosztuje 1 many za faktyczny rzut i jedną sztukę; ograniczenia szkoły/k
 ## Przedmioty i grafiki
 
 Paczka Gothic I v2 zawiera 520 tożsamości kodowych, z potwierdzonymi cenami/statystykami/efektami w 470 rekordach. Nie każdy rekord jest aktywnym przedmiotem użytkowym. Pełne dane źródłowe: [gothic1-items.json](../characters/data/gothic1-items.json), opis wersji: [ITEM_PACKS.md](ITEM_PACKS.md), źródła 110 grafik lokalnych: [manifest](../characters/static/characters/gothicpedia.json). W grze użyj katalogu `/przedmioty/`; autorskie przedmioty/receptury są odrębne od danych G1.
+
+## Dopracowanie pełnej edycji
+
+Do katalogu Gothic I i dotychczasowych adaptacji dochodzi 35 wzorów wyposażenia z pięciu kręgów oraz pył magicznej rudy. [Komplet typów, nazw kręgów i statystyk](LOOT_AND_ENDGAME.md) opisuje też szanse dropu i 100 stopni Wart za Przełęczą. Miesięczny ranking wart działa niezależnie od globalnego rankingu doświadczenia.

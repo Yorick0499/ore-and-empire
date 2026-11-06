@@ -1,42 +1,45 @@
 # Aktualne zrzuty ekranów
 
-Wykonane 6 listopada 2026 z najnowszej wersji z czasem polskim. Osobna baza demonstracyjna „Kolonia nad Wisłą”, sześciu autonomicznych mieszkańców i zwykłe konto `WedrowiecDemo`. Profil ma przygotowane przykładowe statystyki poziomu 12, rangę Strażnika i wyposażenie, żeby pokazać ekrany; nie jest to stan nowej postaci ani zapis użytkownika.
+Wykonane ponownie 6 listopada 2026 dla pełnej edycji z łupami, ulepszeniami +10 i Wartami za Przełęczą (migracja 0031, motyw `pelna-edycja-3`). Osobny świat demonstracyjny „Kolonia nad Wisłą” ma **100 autonomicznych botów** i zwykłe konto `WedrowiecDemo`. Postać demonstracyjna ma przygotowany poziom 30 i dostęp do endgame, aby pokazać nowe ekrany; nie jest to zapis użytkownika ani dowód przejścia kampanii od zera. Ulepszenie +1, założenie pancerza oraz zwycięska warta zostały wykonane przez formularze gry.
 
-Desktop: viewport 1280×960. Telefon: 390×844. Kontrola 320/390 px nie wykazała poziomego przepełnienia. Pasek czasu pokazuje noc w Polsce, CET i rzeczywisty termin świtu Warszawy. Działa bez pobierania nowych grafik z sieci. Screeny nie przedstawiają formularzy haseł, panelu prywatnego administratora ani jego danych logowania.
-
-Każdy plik poniżej został ponownie zapisany w tej aktualizacji; stare screeny zastąpiono.
+Zapisano od nowa wszystkie 21 dotychczasowych ujęć i dodano warty oraz mobilny ekwipunek. Używamy rozszerzenia `.jpg` zgodnego z rzeczywistym formatem z przeglądarki; stare pliki pod mylącym `.png` usunięto. Ekwipunek i warty mają pełny zrzut strony, pozostałe ekrany są ujęciami widocznego okna. Mobilne ujęcia wykonano z viewportem 390×844; kontrola ekwipunku, wart i rynku obejmuje także 320 px. Zrzuty nie zawierają danych administratora ani formularzy haseł. Źródła ilustracji są zachowane lokalnie.
 
 ## Kolonia i eksploracja
 
-![Kolonia](screenshots/colony.png)
-![Polowanie](screenshots/hunting.png)
-![Kopalnia](screenshots/mining.png)
-![Boss solo](screenshots/boss.png)
+![Kolonia](screenshots/colony.jpg)
+![Polowanie](screenshots/hunting.jpg)
+![Kopalnia](screenshots/mining.jpg)
+![Boss solo](screenshots/boss.jpg)
 
 ## Ekwipunek i ekonomia
 
-![Ekwipunek](screenshots/inventory.png)
-![Targ mieszkańców](screenshots/market.png)
-![Kupiec NPC](screenshots/merchant.png)
-![Trening](screenshots/training.png)
-![Rzemiosło](screenshots/crafting.png)
-![Magia](screenshots/magic.png)
-![Sklep odłamków](screenshots/itemshop.png)
+![Ekwipunek](screenshots/inventory.jpg)
+![Targ mieszkańców](screenshots/market.jpg)
+![Kupiec NPC](screenshots/merchant.jpg)
+![Trening](screenshots/training.jpg)
+![Rzemiosło](screenshots/crafting.jpg)
+![Magia](screenshots/magic.jpg)
+![Sklep odłamków](screenshots/itemshop.jpg)
 
 ## Historia, wspólnota i kalendarz
 
-![Fabuła](screenshots/story.png)
-![Wspólnota obozu](screenshots/community.png)
-![Wydarzenia i czas polski](screenshots/events.png)
-![Wyzwania i osiągnięcia](screenshots/challenges.png)
-![Karczma](screenshots/tavern.png)
-![Życie kolonii](screenshots/living-world.png)
-![Rankingi](screenshots/rankings.png)
-![Prywatna kronika demo](screenshots/journal.png)
-![Sala chwały](screenshots/hall.png)
+![Fabuła](screenshots/story.jpg)
+![Wspólnota obozu](screenshots/community.jpg)
+![Wydarzenia i czas polski](screenshots/events.jpg)
+![Wyzwania i osiągnięcia](screenshots/challenges.jpg)
+![Karczma](screenshots/tavern.jpg)
+![Życie kolonii](screenshots/living-world.jpg)
+![Rankingi](screenshots/rankings.jpg)
+![Prywatna kronika demo](screenshots/journal.jpg)
+![Sala chwały](screenshots/hall.jpg)
+
+## Gra po finale
+
+![Warty za Przełęczą: wygrana, odblokowany stopień i ranking](screenshots/frontier.jpg)
 
 ## Telefon
 
-![Mobilna kolonia](screenshots/mobile.png)
+![Mobilna kolonia](screenshots/mobile.jpg)
+![Mobilny ekwipunek](screenshots/mobile-equipment.jpg)
 
 Źródła użytych ilustracji: [ASSETS.md](ASSETS.md), pełny lokalny [manifest](../characters/static/characters/gothicpedia.json). Nazwy, licencjonowanie treści wiki i prawa do obrazów gry nie są tym samym; zachowujemy przypisania źródeł.

@@ -22,7 +22,7 @@
 html { scroll-padding-top: 24px; }
 body.colony-page {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   background: radial-gradient(ellipse at 50% 0, #39404755, transparent 70%), #111417;
   color: var(--text);
@@ -322,3 +322,9 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .world-clock{display:flex;flex-wrap:wrap;gap:.45rem 1.2rem;padding:.7rem max(1rem,3vw);background:#171c1b;border-bottom:1px solid #76643a;font-size:.9rem;color:#d6d1ba;overflow-wrap:anywhere}.world-clock strong{color:#f4d98e}.world-clock a{color:#e7c478}
 .time-night .colony-header,.time-dusk .colony-header{background-blend-mode:multiply;background-color:#263148}.time-dawn .colony-header{background-color:#492b21;background-blend-mode:soft-light}.season-winter .world-clock{border-color:#8cabb3}.season-autumn .world-clock{border-color:#aa7743}.season-spring .world-clock{border-color:#78935b}
 @media(max-width:600px){.world-clock{display:grid;gap:.3rem}}
+
+/* Long upgrade costs and post-campaign scores remain usable on narrow screens. */
+.upgrade-form { margin: 12px 0; }
+.upgrade-form button { white-space: normal; overflow-wrap: anywhere; }
+.upgrade-stats { color: #edd591; border-left: 2px solid #a38b58; padding-left: .7rem; }
+.table-scroll { max-width: 100%; overflow-x: auto; }

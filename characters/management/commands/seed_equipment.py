@@ -10,6 +10,8 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self,*args,**options):
+        from characters.gear_loot import seed_gear
+        seed_gear()
         definitions = [
             ('queen-trophy','Odłamek pancerza królowej','quest',0,{'tradeable':False,'merchant':False,'stackable':True}),
             ('swamp-trophy','Kieł prastarego węża','quest',0,{'tradeable':False,'merchant':False,'stackable':True}),

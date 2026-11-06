@@ -10,4 +10,8 @@ Raport rynku rozdziela obrót bot–bot od ilości zużytych w leczeniu/rzemioś
 
 Testy obejmują zdarzenia, starą cenę, medianę i limity cen jednostkowych, rzeczywistą potrzebę leczenia, budżet, rollback historii oraz wielodniowe porównanie i obsługę nieznanego wieku starych ofert. Backup i reset uwzględniają fakty rynku.
 
-Aktualna polityka to baseline-14; reguły popytu wprowadzono w baseline-13. Pory dnia nie zmieniają cen ani warunków transakcji.
+Aktualna polityka to baseline-15; reguły popytu wprowadzono w baseline-13. Pory dnia nie zmieniają cen ani warunków transakcji.
+
+## Dopracowanie pełnej edycji
+
+Ulepszenie należy do egzemplarza i pozostaje przy zmianie właściciela; oferty pokazują dopisek oraz efektywne obrażenia i ochronę. NPC nadal płaci według bazowej wartości. Pył magicznej rudy jest zbywalny dla gracza, ale bot rezerwuje własny zapas do ulepszania zamiast automatycznej wyprzedaży. Rozbieranie zużywa zbędne łupy i jest alternatywą dla sprzedaży. [Szczegóły](LOOT_AND_ENDGAME.md).

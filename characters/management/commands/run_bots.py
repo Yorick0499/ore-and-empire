@@ -23,15 +23,15 @@ class Command(BaseCommand):
             "--create",
             type=int,
             default=0,
-            help="Create this many missing colony-bot-N accounts (max 20).",
+            help="Create this many missing colony-bot-N accounts (max 100).",
         )
         parser.add_argument(
             "--limit", type=int, default=20, help="Maximum bots to tick (1-100)."
         )
 
     def handle(self, *args, **options):
-        if not 0 <= options["create"] <= 20 or not 1 <= options["limit"] <= 100:
-            raise CommandError("--create must be 0-20 and --limit 1-100")
+        if not 0 <= options["create"] <= 100 or not 1 <= options["limit"] <= 100:
+            raise CommandError("--create must be 0-100 and --limit 1-100")
         if not 1 <= options["interval"] <= 3600 or not 1 <= options["rounds"] <= 100000:
             raise CommandError("--interval must be 1-3600; --rounds must be 1-100000")
         with transaction.atomic():

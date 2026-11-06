@@ -7,7 +7,7 @@
 {% include 'characters/profile.html' %}
 <div class="main-content">
         <div class="guide-frame">
-<details class="colony-panel"><summary>Twoje oferty i zmiana ceny</summary>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.blueprint.name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}</details>
+<details class="colony-panel"><summary>Twoje oferty i zmiana ceny</summary>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.display_name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}</details>
             <h2>Plac Targowy Starego Obozu</h2>
             <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
 
@@ -19,9 +19,10 @@
                         {% for item in market_all_items %}
                             <div class="item-card">
                                 <div class="item-info">
-                                    <h4>{{ item.blueprint.name }} ×{{ item.quantity }}</h4>
+                                    <h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
                                     <div class="item-stats">
-                                        <span>Obrażenia: {{ item.blueprint.damage }}</span>
+                                        <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
+                                        <span>Obrażenia: {{ item.effective_stats.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
                                         <span style="color: var(--gothic-gold);">Sprzedawca: {{ item.owner.display_name }}{% if item.owner.is_bot %} [bot · {{ item.owner.get_bot_role_display }}]{% endif %}</span>
                                     </div>
@@ -56,9 +57,10 @@
                         {% for item in player_inventory %}
                             <div class="item-card">
                                 <div class="item-info">
-                                    <h4>{{ item.blueprint.name }} ×{{ item.quantity }}</h4>
+                                    <h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
                                     <div class="item-stats">
-                                        <span>Obrażenia: {{ item.blueprint.damage }}</span>
+                                        <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
+                                        <span>Obrażenia: {{ item.effective_stats.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
                                     </div>
                                 </div>

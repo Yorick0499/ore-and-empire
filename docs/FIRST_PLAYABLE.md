@@ -17,7 +17,7 @@ Uruchom `python play.py --bots 6 --port 8001` w środowisku z requirements.txt. 
 
 Boty mają stałe imiona mieszkańców w publicznych ekranach, a oznaczenie „bot” pozostaje jawne. Wykonują rzeczywiste akcje, ponoszą koszty, regenerują się, rozwijają obozy i potrafią ukończyć finał. Nie generujemy fikcyjnych transakcji ani rozmów podszywających się pod ludzi. „Życie kolonii”, rynek i kronika wspólnoty pokazują ich faktyczne działania. Konto techniczne `colony-bot-N` pozostaje dostępne administratorowi.
 
-Polityka baseline-14 uwzględnia przygotowanie do finału i konserwatywne prognozy silnych ataków. Trofea fabularne nie zajmują limitu sześciu sztuk roboczego zapasu polityki; nadal istnieją w plecaku na tych samych zasadach dla ludzi i botów.
+Polityka baseline-15 uwzględnia przygotowanie do finału i konserwatywne prognozy silnych ataków. Trofea fabularne nie zajmują miękkiego limitu zakupów roboczego zapasu polityki; dodatkowe łupy mogą go przekroczyć i są porządkowane przez odzysk pyłu. Trofea nadal istnieją w plecaku na tych samych zasadach dla ludzi i botów.
 
 ## Bossowie i finał
 
@@ -38,3 +38,9 @@ To wersja lokalna z jednym serializującym launcherem i SQLite. PostgreSQL, wiel
 Historyczny raport pierwszej wersji (przyspieszony zegar świata sprzed synchronizacji z Polską): [przejście i próby nadużyć](reports/pierwsza-pelna-edycja-2026-11-05.json). Obejmuje także mieszaną sesję, w której zwykły gracz kupuje rzeczywistą ofertę bota i zdobywa poziom podczas równoległych tur trzech mieszkańców. Oddzielna kontrolowana macierz porównuje wojownika, łucznika i maga przeciw trzem bossom; te syntetyczne buildy są oznaczone osobno i nie stanowią przebiegu postaci od zera.
 
 Aktualny raport po synchronizacji z Polską: [22 scenariusze](reports/czas-polski-2026-11-06.json), w tym CET/CEST, lokalna północ, kalendarz i dobowe limity.
+
+## Dopracowanie pełnej edycji
+
+Po zwycięstwie finałowym przejdź do Wart za Przełęczą: odblokowuj 100 stopni, farm sprzęt i pył, ulepszaj oręż do +10 oraz walcz o nowy wynik każdego miesiąca. [Pełne reguły łupów i endgame](LOOT_AND_ENDGAME.md). Ten sam świat pozostaje w Gothic I; nie ma automatycznego transferu.
+
+Najnowszy [raport łupów i endgame](reports/lupy-endgame-2026-11-06.json) obejmuje dalszą grę tych samych postaci po finale, ulepszanie, powtarzalne warty oraz próby nadużyć. [Pomiary 100 botów](BOT_PERFORMANCE.md) są osobnymi testami wydajności.
