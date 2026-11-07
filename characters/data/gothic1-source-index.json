@@ -2411,7 +2411,8 @@
       "technical": false,
       "source": "https://gothic.fandom.com/pl/wiki/Legendary_Short_Sword_of_Burning",
       "art_key": "item_g1_itmw1hswordburning",
-      "image_match": "code-matched-infobox"
+      "image_match": "category-reference",
+      "reference_code": "itmw_1h_sword_old_01"
     },
     {
       "code": "itmw2horcaxe01",
@@ -2474,7 +2475,8 @@
       "technical": false,
       "source": "https://gothic.fandom.com/pl/wiki/Legendary_Heavy_Sword_of_Burning",
       "art_key": "item_g1_itmw2hswordburning",
-      "image_match": "code-matched-infobox"
+      "image_match": "category-reference",
+      "reference_code": "itmw_2h_sword_old_01"
     },
     {
       "code": "itmw_1h_axe_01",
@@ -3518,7 +3520,8 @@
       "technical": false,
       "source": "https://gothic.fandom.com/pl/wiki/Skaza%C5%84cy_%28ksi%C4%99ga%29",
       "art_key": "item_g1_itwrdieverurteilten",
-      "image_match": "code-matched-infobox"
+      "image_match": "category-reference",
+      "reference_code": "lehren_der_goetter1"
     },
     {
       "code": "itwrfocimap",
@@ -4049,7 +4052,8 @@
       "technical": false,
       "source": "https://gothic.fandom.com/pl/wiki/Bagienne_ziele_dla_kopaczy",
       "art_key": "item_g1_recruitjoint",
-      "image_match": "code-matched-infobox"
+      "image_match": "category-reference",
+      "reference_code": "itmijoint_1"
     },
     {
       "code": "rezepturen",
@@ -4418,7 +4422,8 @@
       "technical": false,
       "source": "https://gothic.fandom.com/pl/wiki/Magiczna_woda",
       "art_key": "item_g1_specialwater",
-      "image_match": "code-matched-infobox"
+      "image_match": "category-reference",
+      "reference_code": "itfo_potion_water_01"
     },
     {
       "code": "stab_des_lichts",

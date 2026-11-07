@@ -363,7 +363,7 @@
     "GOTHIC_I": "Siekiera_(G1).png"
   },
   "item_g1_itmw_1h_lightguardssword_03": {
-    "GOTHIC_I": "Kiepski miecz (Gothic II) (by SpY).png"
+    "GOTHIC_I": "Lekki miecz strażnika G1 ikona.png"
   },
   "item_g1_itmw_1h_mace_01": {
     "GOTHIC_I": "Pałka Namiba.png"
@@ -408,7 +408,7 @@
     "GOTHIC_I": "Młot kowalski (G1).png"
   },
   "item_g1_itmw_1h_sword_01": {
-    "GOTHIC_I": "Kiepski miecz (Gothic II) (by SpY).png"
+    "GOTHIC_I": "Lekki miecz strażnika G1 ikona.png"
   },
   "item_g1_itmw_1h_sword_02": {
     "GOTHIC_I": "Miecz Świstaka (by Cassidy005).png"
@@ -435,7 +435,7 @@
     "GOTHIC_I": "Miecz Blizny (Gothic).png"
   },
   "item_g1_itmw_1h_sword_broad_01": {
-    "GOTHIC_I": "Kiepski szeroki miecz (Gothic II).png"
+    "GOTHIC_I": "Miecz szeroki ikona G1.png"
   },
   "item_g1_itmw_1h_sword_broad_02": {
     "GOTHIC_I": "Wyrok_wojownika_(G1).png"
@@ -471,7 +471,7 @@
     "GOTHIC_I": "Chłopski_miecz_(by_Cassidy005).png"
   },
   "item_g1_itmw_1h_sword_short_03": {
-    "GOTHIC_I": "Krótki miecz (Gothic II).png"
+    "GOTHIC_I": "Język topielca G1 ikona.png"
   },
   "item_g1_itmw_1h_sword_short_04": {
     "GOTHIC_I": "Kłujący_cierń_(G1).png"
@@ -483,13 +483,13 @@
     "GOTHIC_I": "Młot orków (G1).png"
   },
   "item_g1_itmw_1h_warhammer_02": {
-    "GOTHIC_I": "Kruczy dziób (Gothic II).png"
+    "GOTHIC_I": "Młot wojenny (Gothic) (ikona).png"
   },
   "item_g1_itmw_1h_warhammer_03": {
     "GOTHIC_I": "Boski młot (Gothic).png"
   },
   "item_g1_itmw1hswordburning": {
-    "GOTHIC_I": "BrakPrzedmiotu.png"
+    "GOTHIC_I": "Zardzewiały miecz (Gothic).png"
   },
   "item_g1_jackalssword": {
     "GOTHIC_I": "Ząb kopacza (G1).png"
@@ -540,7 +540,7 @@
     "GOTHIC_I": "Topór Lee (by Cassidy005).png"
   },
   "item_g1_itmw_2h_axe_heavy_02": {
-    "GOTHIC_I": "Topór berserkera (Gothic II).png"
+    "GOTHIC_I": "Krzyk wojownika (Gothic) (ikona).png"
   },
   "item_g1_itmw_2h_axe_heavy_03": {
     "GOTHIC_I": "Zemsta_Gorna_(G1).png"
@@ -561,7 +561,7 @@
     "GOTHIC_I": "Zardzewiały topór.png"
   },
   "item_g1_itmw_2h_axe_old_02": {
-    "GOTHIC_I": "Halabarda (G2) (by Kubar906).png"
+    "GOTHIC_I": "Krwawy żniwiarz (ikonka) (G1).png"
   },
   "item_g1_itmw_2h_axe_old_03": {
     "GOTHIC_I": "Stary_sędzia_(G1).png"
@@ -609,10 +609,10 @@
     "GOTHIC_I": "Miecz_królewski_(G1).png"
   },
   "item_g1_itmw_2h_sword_light_05": {
-    "GOTHIC_I": "Miecz dwuręczny (Gothic II).png"
+    "GOTHIC_I": "Miecz_demonów_(ikonka)_(G1).png"
   },
   "item_g1_itmw_2h_sword_old_01": {
-    "GOTHIC_I": "Zardzewiały miecz dwuręczny g2 (by Ossowski21).png"
+    "GOTHIC_I": "Zardzewiały miecz oburęczny G1 ikona.png"
   },
   "item_g1_itmw2horcaxe01": {
     "GOTHIC_I": "Lekki orkowy topór (by Ossowski21).png"
@@ -624,7 +624,7 @@
     "GOTHIC_I": "Krush Agash (Gothic).png"
   },
   "item_g1_itmw2horcaxe04": {
-    "GOTHIC_I": "Ogromny orkowy topór (Gothic II).png"
+    "GOTHIC_I": "Krush BrokDar (Gothic) (ikona).png"
   },
   "item_g1_itmw2horcmace01": {
     "GOTHIC_I": "Krush Karrok (Gothic).png"
@@ -633,7 +633,7 @@
     "GOTHIC_I": "Krush Varrok (Gothic).png"
   },
   "item_g1_itmw2hswordburning": {
-    "GOTHIC_I": "BrakPrzedmiotu.png"
+    "GOTHIC_I": "Zardzewiały miecz oburęczny G1 ikona.png"
   },
   "item_g1_itrworcstaff": {
     "GOTHIC_I": "Grachtnakk_(Gothic_I)_(by_SpY).png"
@@ -654,7 +654,7 @@
     "GOTHIC_I": "Przedziwny miecz.png"
   },
   "item_g1_oriks_axt": {
-    "GOTHIC_I": "Topór berserkera (Gothic II).png"
+    "GOTHIC_I": "Krzyk wojownika (Gothic) (ikona).png"
   },
   "item_g1_roter_wind": {
     "GOTHIC_I": "Czerwony wiatr.png"
@@ -723,7 +723,7 @@
     "GOTHIC_I": "Pogromca_orków_(G1).png"
   },
   "item_g1_itrw_bow_war_03": {
-    "GOTHIC_I": "Łuk wojenny (G2) (by Kubar906).png"
+    "GOTHIC_I": "Gromowładny G1 ikona.png"
   },
   "item_g1_itrw_bow_war_04": {
     "GOTHIC_I": "Ognisty łuk GIINK.png"
@@ -738,7 +738,7 @@
     "GOTHIC_I": "Łuk Diego (by Cassidy005).png"
   },
   "item_g1_itrw_crossbow_01": {
-    "GOTHIC_I": "(Lekka)_Kusza_(G2).png"
+    "GOTHIC_I": "Lekka kusza ikona G1.png"
   },
   "item_g1_itrw_crossbow_02": {
     "GOTHIC_I": "Kusza_(G1).png"
@@ -1470,7 +1470,7 @@
     "GOTHIC_I": "G1 Book of Tales treść.png"
   },
   "item_g1_itwrdieverurteilten": {
-    "GOTHIC_I": "BrakPrzedmiotu.png"
+    "GOTHIC_I": "Mądrość bogów 1.png"
   },
   "item_g1_itwrfokusbuch": {
     "GOTHIC_I": "Almanach (księga).png"
@@ -1674,7 +1674,7 @@
     "GOTHIC_I": "Pazur topielca GII.png"
   },
   "item_g1_itat_firegolem_01": {
-    "GOTHIC_I": "Serce ognistego golema (Gothic II).png"
+    "GOTHIC_I": "Serce ognistego golema (Gothic, ikona).png"
   },
   "item_g1_itat_icegolem_01": {
     "GOTHIC_I": "Serce lodowego golema g1 (by Ossowski21).png"
@@ -1695,7 +1695,7 @@
     "GOTHIC_I": "Róg cieniostwora (G1).png"
   },
   "item_g1_itat_stonegolem_01": {
-    "GOTHIC_I": "Serce kamiennego golema (Gothic II).png"
+    "GOTHIC_I": "Serce kamiennego golema G1 ikona.png"
   },
   "item_g1_itat_swampshark_01": {
     "GOTHIC_I": "Skóra błotnego węża.png"
@@ -1707,7 +1707,7 @@
     "GOTHIC_I": "Kły (G1).png"
   },
   "item_g1_itat_troll_01": {
-    "GOTHIC_I": "Skóra Trolla (G2).png"
+    "GOTHIC_I": "Skóra trolla ikona G1.png"
   },
   "item_g1_itat_troll_02": {
     "GOTHIC_I": "Kieł trolla.png"
@@ -1755,7 +1755,7 @@
     "GOTHIC_I": "Przedziwny miecz.png"
   },
   "item_g1_recruitjoint": {
-    "GOTHIC_I": "BrakPrzedmiotu.png"
+    "GOTHIC_I": "Zew nocy.png"
   },
   "item_g1_scroll4milten": {
     "GOTHIC_I": "Przekaz energii.png"
@@ -1764,7 +1764,7 @@
     "GOTHIC_I": "Zew nocy.png"
   },
   "item_g1_specialwater": {
-    "GOTHIC_I": "BrakPrzedmiotu.png"
+    "GOTHIC_I": "Woda_(Gothic_I)_(by_SpY).png"
   },
   "item_g1_weltenspalter": {
     "GOTHIC_I": "Wygnaniec (G1).png"
@@ -1881,13 +1881,13 @@
     "GOTHIC_I": "Rozdrabniacz_(G1).png"
   },
   "item_g1_itmiswordblade": {
-    "GOTHIC_I": "Ostrze (G1, G2).png"
+    "GOTHIC_I": "Ostrze_(ikonka)_(G1).png"
   },
   "item_g1_itmiswordbladehot": {
-    "GOTHIC_I": "Rozgrzane ostrze (G1, G2).png"
+    "GOTHIC_I": "Rozgrzane_ostrze_(ikonka)_(G1).png"
   },
   "item_g1_itmiswordraw": {
-    "GOTHIC_I": "Surowa stal (Gothic II).png"
+    "GOTHIC_I": "Stal G1 ikona.png"
   },
   "item_g1_itmiswordrawhot": {
     "GOTHIC_I": "Rozgrzana stal ikona G1.png"

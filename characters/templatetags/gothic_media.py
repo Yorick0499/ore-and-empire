@@ -22,4 +22,5 @@ def gothic_item_art(item,compact=False):
     # Adaptation items use a clearly labelled category illustration from Gothicpedia.
     fallback={'armor':'item_digger_trousers','ring':'item_iron_ring','amulet':'item_vitality_amulet','consumable':'item_healing','ammo':'item_arrow','material':'item_g1_itminugget','rune':'item_g1_itarrunefireball','scroll':'item_g1_itarscrollfireball','quest':'item_g1_theriddle1','misc':'item_g1_itminugget'}
     key=item.art_key or ('item_short_bow' if item.kind=='weapon' and item.weapon_type=='bow' else 'item_g1_itrw_crossbow_01' if item.kind=='weapon' and item.weapon_type=='crossbow' else 'item_rusty_sword' if item.kind=='weapon' else fallback.get(item.kind,'item_g1_itminugget'))
-    return {'artwork':artwork(key),'compact':compact,'illustrative':not bool(item.art_key)}
+    asset=artwork(key)
+    return {'artwork':asset,'compact':compact,'illustrative':not bool(item.art_key) or bool(asset and 'category-reference' in asset.get('mapping',''))}

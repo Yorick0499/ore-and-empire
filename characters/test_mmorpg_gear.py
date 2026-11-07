@@ -1,5 +1,6 @@
 """Regression scenarios for the five equipment/MMORPG tickets."""
 import json
+import re
 from io import StringIO
 from unittest.mock import patch
 from uuid import uuid4
@@ -108,7 +109,8 @@ class CatalogArtworkTests(SimpleTestCase):
         for code in ('fireball','firebolt','firestorm'):
             self.assertNotEqual(assets['item_g1_itarrune'+code]['sha256'],assets['item_g1_itarscroll'+code]['sha256'])
         self.assertEqual(len({assets['item_g1_theriddle'+str(n)]['sha256'] for n in range(1,7)}),6)
-        self.assertTrue(all('warning' not in assets[i['art_key']]['selected_file'].lower() for i in items))
+        self.assertTrue(all(not re.search(r'warning|BrakPrzedmiotu|\bG[23]\b|Gothic II',assets[i['art_key']]['selected_file'],re.I) for i in items))
+        self.assertEqual(assets['item_g1_specialwater']['mapping'],'category-reference')
     def test_manifest_is_cached_per_file_revision(self):
         from .templatetags.gothic_media import artwork,_manifest
         _manifest.cache_clear()

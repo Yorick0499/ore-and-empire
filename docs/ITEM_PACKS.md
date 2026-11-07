@@ -28,7 +28,7 @@ SHA-256, format i wymiary oraz pochodzenie/prawa. `asset-selections.json` wskazu
 konkretny tytuł pliku dla gry. Importer nie wybiera pierwszego infoboksu ani obrazka
 strony. Brak jawnego wyboru dla G2 NK odrzuca import zamiast podmieniać grafikę G1.
 
-Manifest zawiera **632 przypisania grafik**, w tym 522 pozycje katalogowe korzystające z **389 różnych plików**. Obrazy są lokalne, sprawdzane hashami i dekoderem. Manifest jest buforowany według czasu modyfikacji i rozmiaru — karty przedmiotów nie odczytują wielokrotnie całego JSON-a. Ekwipunek i katalog pokazują do 24 kart na stronę.
+Manifest zawiera **632 przypisania grafik**, w tym 522 pozycje katalogowe korzystające z **388 różnych plików**. Obrazy są lokalne, sprawdzane hashami i dekoderem. Manifest jest buforowany według czasu modyfikacji i rozmiaru — karty przedmiotów nie odczytują wielokrotnie całego JSON-a. Ekwipunek i katalog pokazują do 24 kart na stronę.
 
 `import_gothicpedia --only item_rusty_sword --game GOTHIC_I` sprawdza host początkowy
 oraz każdy redirect **przed jego wykonaniem**. Dekodowanie Pillow sprawdza PNG/JPEG/
@@ -50,3 +50,5 @@ przypadkach. Przed publiczną dystrybucją należy sprawdzić prawa do konkretny
 plików. Aby je zastąpić, wskaż nowy jawny plik/źródło, importuj, zwiększ wersję
 paczki i uruchom walidację; zachowaj rejestr pochodzenia. Runtime gry korzysta
 wyłącznie z lokalnych plików, a nie połączeń do wiki.
+
+Pięć kodów bez obrazu w infoboksie (dwa płonące miecze, pismo „Skazańcy”, ziele dla kopaczy i magiczna woda) korzysta z jawnej ilustracji kategorii z innego wpisu G1. Manifest zapisuje `reference_code`; nie pokazujemy placeholderów „BrakPrzedmiotu” jako grafik gry. Jeżeli infoboks podaje render G2 i ikonę G1, wybieramy ikonę G1.
