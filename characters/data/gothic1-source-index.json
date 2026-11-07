@@ -1,0 +1,4712 @@
+{
+  "schema": 1,
+  "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic",
+  "revision": 585851,
+  "retrieved": "2026-11-07",
+  "item_count": 522,
+  "code_digest": "364ba08af5aaabddb920f751fb2ee94530bb8d9ac210d425863196888b7f9cde",
+  "retired_keys": {
+    "g1-altesschwertaltesschwertvm": "g1-altesschwert",
+    "g1-itkekey1itkekey2itkekey3itkekey4": "g1-itkekey1"
+  },
+  "items": [
+    {
+      "code": "altesschwert",
+      "name": "Stary miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_miecz",
+      "art_key": "item_g1_altesschwert",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "altesschwertvm",
+      "name": "Stary miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_miecz",
+      "art_key": "item_g1_altesschwertvm",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "amulett_der_erleuchtung",
+      "name": "Amulet oświecenia",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_o%C5%9Bwiecenia",
+      "art_key": "item_g1_amulett_der_erleuchtung",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "amulett_der_macht",
+      "name": "Amulet potęgi",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_pot%C4%99gi",
+      "art_key": "item_g1_amulett_der_macht",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "amulett_der_magie",
+      "name": "Amulet magii",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_magii",
+      "art_key": "item_g1_amulett_der_magie",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "artos_schwert",
+      "name": "Miecz Arto",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_Arto",
+      "art_key": "item_g1_artos_schwert",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "astronomie",
+      "name": "Astronomia",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Astronomia",
+      "art_key": "item_g1_astronomie",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "bab_armor_bikini",
+      "name": "Babka w bikini",
+      "kind": "misc",
+      "technical": true,
+      "source": "https://gothic.fandom.com/pl/wiki/Babka_w_bikini",
+      "art_key": "item_g1_bab_armor_bikini",
+      "image_match": "technical-category-reference"
+    },
+    {
+      "code": "bab_armor_nude",
+      "name": "Goła babka",
+      "kind": "misc",
+      "technical": true,
+      "source": "https://gothic.fandom.com/pl/wiki/Go%C5%82a_babka",
+      "art_key": "item_g1_bab_armor_nude",
+      "image_match": "technical-category-reference"
+    },
+    {
+      "code": "bannklinge",
+      "name": "Wygnaniec",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wygnaniec",
+      "art_key": "item_g1_bannklinge",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "cords_spalter",
+      "name": "Siekacz Corda",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Siekacz_Corda",
+      "art_key": "item_g1_cords_spalter",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "cronos_brief",
+      "name": "List Cronosa do magów ognia",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/List_Cronosa_do_mag%C3%B3w_ognia",
+      "art_key": "item_g1_cronos_brief",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "crw_armor_h",
+      "name": "Zbroja z pancerzy pełzaczy",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_z_pancerzy_pe%C5%82zaczy",
+      "art_key": "item_g1_crw_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "daemonenstreich",
+      "name": "Gniew Demonów",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gniew_Demon%C3%B3w",
+      "art_key": "item_g1_daemonenstreich",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "das_magische_erz",
+      "name": "Magiczna ruda",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczna_ruda_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_das_magische_erz",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "die_gruft",
+      "name": "Krypta",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krypta_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_die_gruft",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "diegos_bogen",
+      "name": "Łuk Diego",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_Diego",
+      "art_key": "item_g1_diegos_bogen",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "dmb_armor_m",
+      "name": "Szata mrocznych sztuk",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szata_mrocznych_sztuk",
+      "art_key": "item_g1_dmb_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "dungeonkey",
+      "name": "Klucz do lochów",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_loch%C3%B3w",
+      "art_key": "item_g1_dungeonkey",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ebr_armor_h",
+      "name": "Pancerz Gomeza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pancerz_Gomeza",
+      "art_key": "item_g1_ebr_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ebr_armor_h2",
+      "name": "Ciężki pancerz magnata",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCki_pancerz_magnata",
+      "art_key": "item_g1_ebr_armor_h2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ebr_armor_m",
+      "name": "Ozdobna szata",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ozdobna_szata",
+      "art_key": "item_g1_ebr_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "elementare_arcanei",
+      "name": "Arcanum Żywiołów",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Arcanum_%C5%BBywio%C5%82%C3%B3w",
+      "art_key": "item_g1_elementare_arcanei",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "fakescroll",
+      "name": "List",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/List",
+      "art_key": "item_g1_fakescroll",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "focus_1",
+      "name": "Kamień z morskiego klifu",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kamie%C5%84_z_morskiego_klifu_%28przedmiot%29",
+      "art_key": "item_g1_focus_1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "focus_2",
+      "name": "Kamień z kanionu trolli",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kamie%C5%84_z_kanionu_trolli_%28przedmiot%29",
+      "art_key": "item_g1_focus_2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "focus_3",
+      "name": "Kamień z górskiej fortecy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kamie%C5%84_z_g%C3%B3rskiej_fortecy_%28przedmiot%29",
+      "art_key": "item_g1_focus_3",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "focus_4",
+      "name": "Kamień ze starego klasztoru",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kamie%C5%84_ze_starego_klasztoru_%28przedmiot%29",
+      "art_key": "item_g1_focus_4",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "focus_5",
+      "name": "Kamień z kamiennego kręgu",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kamie%C5%84_z_kamiennego_kr%C4%99gu_%28przedmiot%29",
+      "art_key": "item_g1_focus_5",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "fonttestbook",
+      "name": "Zeichenglumpsche ascii",
+      "kind": "misc",
+      "technical": true,
+      "source": "https://gothic.fandom.com/pl/wiki/Zeichenglumpsche_ascii",
+      "art_key": "item_g1_fonttestbook",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "fortunos_keule",
+      "name": "Pałka Fortuno",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka_Fortuno",
+      "art_key": "item_g1_fortunos_keule",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "geheimnisse_der_zauberei",
+      "name": "Tajniki magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Tajniki_magii",
+      "art_key": "item_g1_geheimnisse_der_zauberei",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "gewandtheitsamulett",
+      "name": "Amulet zwinności",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_zwinno%C5%9Bci",
+      "art_key": "item_g1_gewandtheitsamulett",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "gewandtheitsamulett2",
+      "name": "Amulet zręczności",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_zr%C4%99czno%C5%9Bci",
+      "art_key": "item_g1_gewandtheitsamulett2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "goettergabe",
+      "name": "Dar od bogów",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Dar_od_bog%C3%B3w",
+      "art_key": "item_g1_goettergabe",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "gorns_rache",
+      "name": "Zemsta Gorna",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zemsta_Gorna",
+      "art_key": "item_g1_gorns_rache",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "grd_armor_h",
+      "name": "Ciężka zbroja strażnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCka_zbroja_stra%C5%BCnika",
+      "art_key": "item_g1_grd_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "grd_armor_i",
+      "name": "Pancerz Straży Królewskiej",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pancerz_Stra%C5%BCy_Kr%C3%B3lewskiej",
+      "art_key": "item_g1_grd_armor_i",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "grd_armor_l",
+      "name": "Lekka zbroja strażnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekka_zbroja_stra%C5%BCnika",
+      "art_key": "item_g1_grd_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "grd_armor_m",
+      "name": "Zbroja strażnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_stra%C5%BCnika",
+      "art_key": "item_g1_grd_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "gur_armor_h",
+      "name": "Zdobiona szata guru",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zdobiona_szata_guru",
+      "art_key": "item_g1_gur_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "gur_armor_m",
+      "name": "Szata guru",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szata_guru",
+      "art_key": "item_g1_gur_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "healthwater",
+      "name": "Napój uzdrawiający dla Y'Beriona",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_uzdrawiaj%C4%85cy_dla_Y%27Beriona",
+      "art_key": "item_g1_healthwater",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "heerscherstab",
+      "name": "Berło",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ber%C5%82o",
+      "art_key": "item_g1_heerscherstab",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "heiltrank",
+      "name": "Napój błyskawicznego uzdrowienia",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_b%C5%82yskawicznego_uzdrowienia",
+      "art_key": "item_g1_heiltrank",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "innos_zorn",
+      "name": "Gniew Innosa",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gniew_Innosa",
+      "art_key": "item_g1_innos_zorn",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itamarrow",
+      "name": "Strzała",
+      "kind": "ammo",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Strza%C5%82a",
+      "art_key": "item_g1_itamarrow",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itambolt",
+      "name": "Bełt",
+      "kind": "ammo",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Be%C5%82t",
+      "art_key": "item_g1_itambolt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrobemithril",
+      "name": "Ledengary mithril robe",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ledengary_mithril_robe",
+      "art_key": "item_g1_itarrobemithril",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunebreathofdeath",
+      "name": "Tchnienie śmierci",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Tchnienie_%C5%9Bmierci",
+      "art_key": "item_g1_itarrunebreathofdeath",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunechainlightning",
+      "name": "Grom",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Grom_%28zakl%C4%99cie_z_Gothic%29",
+      "art_key": "item_g1_itarrunechainlightning",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunecharm",
+      "name": "Urok",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Urok",
+      "art_key": "item_g1_itarrunecharm",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunecontrol",
+      "name": "Kontrola",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kontrola",
+      "art_key": "item_g1_itarrunecontrol",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunedestroyundead",
+      "name": "Śmierć ożywieńcom",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amier%C4%87_o%C5%BCywie%C5%84com",
+      "art_key": "item_g1_itarrunedestroyundead",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunefireball",
+      "name": "Kula ognia",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kula_ognia",
+      "art_key": "item_g1_itarrunefireball",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunefirebolt",
+      "name": "Ognisty pocisk",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ognisty_pocisk",
+      "art_key": "item_g1_itarrunefirebolt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunefirerain",
+      "name": "Deszcz ognia",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Deszcz_ognia",
+      "art_key": "item_g1_itarrunefirerain",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunefirestorm",
+      "name": "Ognista burza",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ognista_burza",
+      "art_key": "item_g1_itarrunefirestorm",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneheal",
+      "name": "Uzdrowienie",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uzdrowienie",
+      "art_key": "item_g1_itarruneheal",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneicecube",
+      "name": "Bryła lodu",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82a_lodu",
+      "art_key": "item_g1_itarruneicecube",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneicewave",
+      "name": "Lodowa fala",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_fala",
+      "art_key": "item_g1_itarruneicewave",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunelight",
+      "name": "Światło",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiat%C5%82o",
+      "art_key": "item_g1_itarrunelight",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunepyrokinesis",
+      "name": "Pirokineza",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pirokineza",
+      "art_key": "item_g1_itarrunepyrokinesis",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunesleep",
+      "name": "Sen",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sen",
+      "art_key": "item_g1_itarrunesleep",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunestormfist",
+      "name": "Uderzenie burzy",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_burzy",
+      "art_key": "item_g1_itarrunestormfist",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunetelekinesis",
+      "name": "Telekineza",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Telekineza",
+      "art_key": "item_g1_itarrunetelekinesis",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneteleport1",
+      "name": "Teleportacja do magów ognia",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_ognia",
+      "art_key": "item_g1_itarruneteleport1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneteleport2",
+      "name": "Teleportacja do magów wody",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_wody",
+      "art_key": "item_g1_itarruneteleport2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneteleport3",
+      "name": "Teleportacja do Nekromanty",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_Nekromanty",
+      "art_key": "item_g1_itarruneteleport3",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarruneteleport5",
+      "name": "Teleportacja do obozu na bagnie",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_obozu_na_bagnie",
+      "art_key": "item_g1_itarruneteleport5",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunethunderball",
+      "name": "Piorun kulisty",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Piorun_kulisty",
+      "art_key": "item_g1_itarrunethunderball",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunethunderbolt",
+      "name": "Sopel lodu",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sopel_lodu",
+      "art_key": "item_g1_itarrunethunderbolt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarrunewindfist",
+      "name": "Uderzenie wiatru",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_wiatru",
+      "art_key": "item_g1_itarrunewindfist",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollarmyofdarkness",
+      "name": "Armia ciemności",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Armia_ciemno%C5%9Bci",
+      "art_key": "item_g1_itarscrollarmyofdarkness",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollberzerk",
+      "name": "Gniew",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gniew",
+      "art_key": "item_g1_itarscrollberzerk",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollchainlightning",
+      "name": "Grom",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Grom_%28zakl%C4%99cie_z_Gothic%29",
+      "art_key": "item_g1_itarscrollchainlightning",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollcharm",
+      "name": "Urok",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Urok",
+      "art_key": "item_g1_itarscrollcharm",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollcontrol",
+      "name": "Kontrola",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kontrola",
+      "art_key": "item_g1_itarscrollcontrol",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolldestroyundead",
+      "name": "Śmierć ożywieńcom",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amier%C4%87_o%C5%BCywie%C5%84com",
+      "art_key": "item_g1_itarscrolldestroyundead",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollfear",
+      "name": "Strach",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Strach",
+      "art_key": "item_g1_itarscrollfear",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollfireball",
+      "name": "Kula ognia",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kula_ognia",
+      "art_key": "item_g1_itarscrollfireball",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollfirebolt",
+      "name": "Ognisty pocisk",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ognisty_pocisk",
+      "art_key": "item_g1_itarscrollfirebolt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollfirerain",
+      "name": "Deszcz ognia",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Deszcz_ognia",
+      "art_key": "item_g1_itarscrollfirerain",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollfirestorm",
+      "name": "Ognista burza",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ognista_burza",
+      "art_key": "item_g1_itarscrollfirestorm",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollheal",
+      "name": "Uzdrowienie",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uzdrowienie",
+      "art_key": "item_g1_itarscrollheal",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollicecube",
+      "name": "Bryła lodu",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82a_lodu",
+      "art_key": "item_g1_itarscrollicecube",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollicewave",
+      "name": "Lodowa fala",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_fala",
+      "art_key": "item_g1_itarscrollicewave",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolllight",
+      "name": "Światło",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiat%C5%82o",
+      "art_key": "item_g1_itarscrolllight",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollpyrokinesis",
+      "name": "Pirokineza",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pirokineza",
+      "art_key": "item_g1_itarscrollpyrokinesis",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollshrink",
+      "name": "Zmniejszenie potwora",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zmniejszenie_potwora",
+      "art_key": "item_g1_itarscrollshrink",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollsleep",
+      "name": "Sen",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sen",
+      "art_key": "item_g1_itarscrollsleep",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollstormfist",
+      "name": "Uderzenie burzy",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_burzy",
+      "art_key": "item_g1_itarscrollstormfist",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollsummondemon",
+      "name": "Przyzwanie demona",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_demona",
+      "art_key": "item_g1_itarscrollsummondemon",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollsummongolem",
+      "name": "Przyzwanie golema",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_golema",
+      "art_key": "item_g1_itarscrollsummongolem",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollsummonskeletons",
+      "name": "Przyzwanie szkieletów",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_szkielet%C3%B3w",
+      "art_key": "item_g1_itarscrollsummonskeletons",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltelekinesis",
+      "name": "Telekineza",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Telekineza",
+      "art_key": "item_g1_itarscrolltelekinesis",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollteleport1",
+      "name": "Teleportacja do magów ognia",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_ognia",
+      "art_key": "item_g1_itarscrollteleport1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollteleport2",
+      "name": "Teleportacja do magów wody",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_mag%C3%B3w_wody",
+      "art_key": "item_g1_itarscrollteleport2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollteleport3",
+      "name": "Teleportacja do Nekromanty",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_Nekromanty",
+      "art_key": "item_g1_itarscrollteleport3",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollteleport4",
+      "name": "Orkowe zaklęcie teleportacji",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Orkowe_zakl%C4%99cie_teleportacji",
+      "art_key": "item_g1_itarscrollteleport4",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollteleport5",
+      "name": "Teleportacja do obozu na bagnie",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Teleportacja_do_obozu_na_bagnie",
+      "art_key": "item_g1_itarscrollteleport5",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollthunderball",
+      "name": "Piorun kulisty",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Piorun_kulisty",
+      "art_key": "item_g1_itarscrollthunderball",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollthunderbolt",
+      "name": "Sopel lodu",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sopel_lodu",
+      "art_key": "item_g1_itarscrollthunderbolt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfbloodfly",
+      "name": "Przemiana w krwiopijcę",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_krwiopijc%C4%99",
+      "art_key": "item_g1_itarscrolltrfbloodfly",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfcrawler",
+      "name": "Przemiana w pełzacza",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_pe%C5%82zacza",
+      "art_key": "item_g1_itarscrolltrfcrawler",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrflurker",
+      "name": "Przemiana w topielca",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_topielca",
+      "art_key": "item_g1_itarscrolltrflurker",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfmeatbug",
+      "name": "Przemiana w chrząszcza",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_chrz%C4%85szcza",
+      "art_key": "item_g1_itarscrolltrfmeatbug",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfmolerat",
+      "name": "Przemiana w kretoszczura",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_kretoszczura",
+      "art_key": "item_g1_itarscrolltrfmolerat",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrforcdog",
+      "name": "Przemiana w orkowego psa",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_orkowego_psa",
+      "art_key": "item_g1_itarscrolltrforcdog",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfscavenger",
+      "name": "Przemiana w ścierwojada",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_%C5%9Bcierwojada",
+      "art_key": "item_g1_itarscrolltrfscavenger",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfshadowbeast",
+      "name": "Przemiana w cieniostwora",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_cieniostwora",
+      "art_key": "item_g1_itarscrolltrfshadowbeast",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfsnapper",
+      "name": "Przemiana w zębacza",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_z%C4%99bacza",
+      "art_key": "item_g1_itarscrolltrfsnapper",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfwaran",
+      "name": "Przemiana w jaszczura",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_jaszczura",
+      "art_key": "item_g1_itarscrolltrfwaran",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrolltrfwolf",
+      "name": "Przemiana w wilka",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_wilka",
+      "art_key": "item_g1_itarscrolltrfwolf",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itarscrollwindfist",
+      "name": "Uderzenie wiatru",
+      "kind": "scroll",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uderzenie_wiatru",
+      "art_key": "item_g1_itarscrollwindfist",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_bloodfly_01",
+      "name": "Skrzydła krwiopijcy",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Skrzyd%C5%82a_krwiopijcy",
+      "art_key": "item_g1_itat_bloodfly_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_bloodfly_02",
+      "name": "Żądło krwiopijcy",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BB%C4%85d%C5%82o_krwiopijcy",
+      "art_key": "item_g1_itat_bloodfly_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_claws_01",
+      "name": "Pazury",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury",
+      "art_key": "item_g1_itat_claws_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_crawler_01",
+      "name": "Wnętrzności pełzacza",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wn%C4%99trzno%C5%9Bci_pe%C5%82zacza",
+      "art_key": "item_g1_itat_crawler_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_crawler_02",
+      "name": "Fragment pancerza pełzacza",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/P%C5%82ytka_z_pancerza_pe%C5%82zacza",
+      "art_key": "item_g1_itat_crawler_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_crawlerqueen",
+      "name": "Jajo pełzacza",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Jajo_pe%C5%82zacza",
+      "art_key": "item_g1_itat_crawlerqueen",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_damlurker_01",
+      "name": "Szpony topielca spod tamy",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szpony_topielca_spod_tamy",
+      "art_key": "item_g1_itat_damlurker_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_firegolem_01",
+      "name": "Serce ognistego golema",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_ognistego_golema",
+      "art_key": "item_g1_itat_firegolem_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_icegolem_01",
+      "name": "Serce lodowego golema",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_lodowego_golema",
+      "art_key": "item_g1_itat_icegolem_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_icegolem_02",
+      "name": "Fragment lodowego golema",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Fragment_lodowego_golema",
+      "art_key": "item_g1_itat_icegolem_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_lurker_01",
+      "name": "Pazury topielca",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury_topielca",
+      "art_key": "item_g1_itat_lurker_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_lurker_02",
+      "name": "Skóra topielca",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_topielca",
+      "art_key": "item_g1_itat_lurker_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_meatbug_01",
+      "name": "Mięso chrząszcza",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mi%C4%99so_chrz%C4%85szcza",
+      "art_key": "item_g1_itat_meatbug_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_shadow_01",
+      "name": "Skóra cieniostwora",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_cieniostwora",
+      "art_key": "item_g1_itat_shadow_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_shadow_02",
+      "name": "Róg cieniostwora",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/R%C3%B3g_cieniostwora",
+      "art_key": "item_g1_itat_shadow_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_stonegolem_01",
+      "name": "Serce kamiennego golema",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_kamiennego_golema",
+      "art_key": "item_g1_itat_stonegolem_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_swampshark_01",
+      "name": "Skóra błotnego węża",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_b%C5%82otnego_w%C4%99%C5%BCa",
+      "art_key": "item_g1_itat_swampshark_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_swampshark_02",
+      "name": "Kły błotnego węża",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82y_b%C5%82otnego_w%C4%99%C5%BCa",
+      "art_key": "item_g1_itat_swampshark_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_teeth_01",
+      "name": "Kły",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82y",
+      "art_key": "item_g1_itat_teeth_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_troll_01",
+      "name": "Skóra trolla",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_trolla",
+      "art_key": "item_g1_itat_troll_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_troll_02",
+      "name": "Kieł trolla",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kie%C5%82_trolla",
+      "art_key": "item_g1_itat_troll_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_waran_01",
+      "name": "Język ognia",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/J%C4%99zyk_ognistego_jaszczura",
+      "art_key": "item_g1_itat_waran_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_wolf_01",
+      "name": "Skóra wilka",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_wilka",
+      "art_key": "item_g1_itat_wolf_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itat_wolf_02",
+      "name": "Skóra orkowego psa",
+      "kind": "material",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_orkowego_psa",
+      "art_key": "item_g1_itat_wolf_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_mutton_01",
+      "name": "Szynka",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szynka",
+      "art_key": "item_g1_itfo_mutton_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_om_beer_01",
+      "name": "Mocne piwo",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mocne_piwo",
+      "art_key": "item_g1_itfo_om_beer_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_berrys_01",
+      "name": "Jagody",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Jagody",
+      "art_key": "item_g1_itfo_plants_berrys_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_bloodwood_01",
+      "name": "Nasienie czerwonego buka",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nasienie_czerwonego_buka",
+      "art_key": "item_g1_itfo_plants_bloodwood_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_flameberry_01",
+      "name": "Ogniocierń",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ogniocier%C5%84",
+      "art_key": "item_g1_itfo_plants_flameberry_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_herb_01",
+      "name": "Słabe zioła uzdrawiające",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zio%C5%82a_uzdrawiaj%C4%85ce",
+      "art_key": "item_g1_itfo_plants_herb_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_herb_02",
+      "name": "Średnie zioła uzdrawiające",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zio%C5%82a_uzdrawiaj%C4%85ce",
+      "art_key": "item_g1_itfo_plants_herb_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_herb_03",
+      "name": "Mocne zioła uzdrawiające",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zio%C5%82a_uzdrawiaj%C4%85ce",
+      "art_key": "item_g1_itfo_plants_herb_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_mountainmoos_01",
+      "name": "Górski mech",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/G%C3%B3rski_mech",
+      "art_key": "item_g1_itfo_plants_mountainmoos_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_mountainmoos_02",
+      "name": "Mech nagrobny",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mech_nagrobny",
+      "art_key": "item_g1_itfo_plants_mountainmoos_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_mushroom_01",
+      "name": "Piekielnik",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Piekielnik",
+      "art_key": "item_g1_itfo_plants_mushroom_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_mushroom_02",
+      "name": "Gorzki chleb",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gorzki_chleb",
+      "art_key": "item_g1_itfo_plants_mushroom_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_nightshadow_01",
+      "name": "Psianka",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Psianka",
+      "art_key": "item_g1_itfo_plants_nightshadow_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_nightshadow_02",
+      "name": "Kocianka",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kocianka",
+      "art_key": "item_g1_itfo_plants_nightshadow_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_orcherb_01",
+      "name": "Orkowe ziele",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Orkowe_ziele",
+      "art_key": "item_g1_itfo_plants_orcherb_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_orcherb_02",
+      "name": "Liść dębu",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Li%C5%9B%C4%87_d%C4%99bu",
+      "art_key": "item_g1_itfo_plants_orcherb_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_ravenherb_01",
+      "name": "Krucze ziele",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krucze_ziele",
+      "art_key": "item_g1_itfo_plants_ravenherb_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_ravenherb_02",
+      "name": "Czarne ziele",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Czarne_ziele",
+      "art_key": "item_g1_itfo_plants_ravenherb_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_seraphis_01",
+      "name": "Serafis",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Serafis",
+      "art_key": "item_g1_itfo_plants_seraphis_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_stoneroot_01",
+      "name": "Twardzień",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Twardzie%C5%84",
+      "art_key": "item_g1_itfo_plants_stoneroot_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_stoneroot_02",
+      "name": "Dragrot",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Dragrot",
+      "art_key": "item_g1_itfo_plants_stoneroot_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_towerwood_01",
+      "name": "Nasienie wysokiego dębu",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nasienie_wysokiego_d%C4%99bu",
+      "art_key": "item_g1_itfo_plants_towerwood_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_trollberrys_01",
+      "name": "Trolest",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Trolest",
+      "art_key": "item_g1_itfo_plants_trollberrys_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_plants_velayis_01",
+      "name": "Velais",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Velais",
+      "art_key": "item_g1_itfo_plants_velayis_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_dex_01",
+      "name": "Esencja zwinności",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Esencja_zwinno%C5%9Bci",
+      "art_key": "item_g1_itfo_potion_dex_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_dex_02",
+      "name": "Wyciąg zwinności",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyci%C4%85g_zwinno%C5%9Bci",
+      "art_key": "item_g1_itfo_potion_dex_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_dex_03",
+      "name": "Eliksir zwinności",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_zwinno%C5%9Bci",
+      "art_key": "item_g1_itfo_potion_dex_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_elixier",
+      "name": "Eliksir",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir",
+      "art_key": "item_g1_itfo_potion_elixier",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_elixier_egg",
+      "name": "Napój z pełzaczy",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_z_pe%C5%82zaczy",
+      "art_key": "item_g1_itfo_potion_elixier_egg",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_haste_01",
+      "name": "Napój lekkości",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_lekko%C5%9Bci",
+      "art_key": "item_g1_itfo_potion_haste_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_haste_02",
+      "name": "Napój szybkości",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_szybko%C5%9Bci",
+      "art_key": "item_g1_itfo_potion_haste_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_haste_03",
+      "name": "Napój przyspieszenia",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_przyspieszenia",
+      "art_key": "item_g1_itfo_potion_haste_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_health_01",
+      "name": "Esencja uzdrawiająca",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Esencja_uzdrawiaj%C4%85ca",
+      "art_key": "item_g1_itfo_potion_health_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_health_02",
+      "name": "Wyciąg uzdrawiający",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyci%C4%85g_uzdrawiaj%C4%85cy",
+      "art_key": "item_g1_itfo_potion_health_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_health_03",
+      "name": "Eliksir uzdrawiający",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_uzdrawiaj%C4%85cy",
+      "art_key": "item_g1_itfo_potion_health_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_health_perma_01",
+      "name": "Esencja życia",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Esencja_%C5%BCycia",
+      "art_key": "item_g1_itfo_potion_health_perma_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_health_perma_02",
+      "name": "Wyciąg życia",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyci%C4%85g_%C5%BCycia",
+      "art_key": "item_g1_itfo_potion_health_perma_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_health_perma_03",
+      "name": "Eliksir życia",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_%C5%BCycia",
+      "art_key": "item_g1_itfo_potion_health_perma_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_mana_01",
+      "name": "Esencja magicznej energii",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Esencja_magicznej_energii",
+      "art_key": "item_g1_itfo_potion_mana_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_mana_02",
+      "name": "Wyciąg magicznej energii",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyci%C4%85g_magicznej_energii",
+      "art_key": "item_g1_itfo_potion_mana_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_mana_03",
+      "name": "Eliksir magicznej energii",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_magicznej_energii",
+      "art_key": "item_g1_itfo_potion_mana_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_mana_perma_01",
+      "name": "Esencja ducha",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Esencja_ducha",
+      "art_key": "item_g1_itfo_potion_mana_perma_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_mana_perma_02",
+      "name": "Wyciąg ducha",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyci%C4%85g_ducha",
+      "art_key": "item_g1_itfo_potion_mana_perma_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_mana_perma_03",
+      "name": "Eliksir ducha",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_ducha",
+      "art_key": "item_g1_itfo_potion_mana_perma_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_master_01",
+      "name": "Napój potęgi",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_pot%C4%99gi",
+      "art_key": "item_g1_itfo_potion_master_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_master_02",
+      "name": "Napój władzy",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Nap%C3%B3j_w%C5%82adzy",
+      "art_key": "item_g1_itfo_potion_master_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_strength_01",
+      "name": "Esencja siły",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Esencja_si%C5%82y",
+      "art_key": "item_g1_itfo_potion_strength_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_strength_02",
+      "name": "Wyciąg siły",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyci%C4%85g_si%C5%82y",
+      "art_key": "item_g1_itfo_potion_strength_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_strength_03",
+      "name": "Eliksir siły",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_si%C5%82y",
+      "art_key": "item_g1_itfo_potion_strength_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_potion_water_01",
+      "name": "Woda",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Woda",
+      "art_key": "item_g1_itfo_potion_water_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfo_wineberrys_01",
+      "name": "Winogrona",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Winogrona",
+      "art_key": "item_g1_itfo_wineberrys_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfoapple",
+      "name": "Jabłko",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Jab%C5%82ko",
+      "art_key": "item_g1_itfoapple",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfobeer",
+      "name": "Piwo",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Piwo",
+      "art_key": "item_g1_itfobeer",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfobooze",
+      "name": "Ryżówka",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ry%C5%BC%C3%B3wka",
+      "art_key": "item_g1_itfobooze",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfocheese",
+      "name": "Ser",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ser",
+      "art_key": "item_g1_itfocheese",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfocrawlersoup",
+      "name": "Zupa z pełzacza",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zupa_z_pe%C5%82zacza",
+      "art_key": "item_g1_itfocrawlersoup",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfoloaf",
+      "name": "Chleb",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chleb",
+      "art_key": "item_g1_itfoloaf",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfomeatbugragout",
+      "name": "Potrawka z chrząszcza",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Potrawka_z_chrz%C4%85szcza",
+      "art_key": "item_g1_itfomeatbugragout",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfomutton",
+      "name": "Smażone mięso",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sma%C5%BCone_mi%C4%99so",
+      "art_key": "item_g1_itfomutton",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfomuttonraw",
+      "name": "Surowe mięso",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Surowe_mi%C4%99so",
+      "art_key": "item_g1_itfomuttonraw",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itforice",
+      "name": "Ryż",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ry%C5%BC",
+      "art_key": "item_g1_itforice",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfosoup",
+      "name": "Zupa korzenna",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zupa_korzenna",
+      "art_key": "item_g1_itfosoup",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itfowine",
+      "name": "Wino",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wino",
+      "art_key": "item_g1_itfowine",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_berg_01",
+      "name": "Klucz do skrzyni w górskiej fortecy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_w_g%C3%B3rskiej_fortecy",
+      "art_key": "item_g1_itke_berg_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_focus4",
+      "name": "Klucz z jaskini pod starym klasztorem",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_z_jaskini_pod_starym_klasztorem",
+      "art_key": "item_g1_itke_focus4",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_focus5",
+      "name": "Klucz Nadzorcy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Nadzorcy",
+      "art_key": "item_g1_itke_focus5",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_freemine",
+      "name": "Klucz do Wolnej Kopalni",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_Wolnej_Kopalni",
+      "art_key": "item_g1_itke_freemine",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_gomez_01",
+      "name": "Klucz Gomeza",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Gomeza",
+      "art_key": "item_g1_itke_gomez_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_ob_smith_01",
+      "name": "Żelazny klucz",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BBelazny_klucz",
+      "art_key": "item_g1_itke_ob_smith_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_om_01",
+      "name": "Klucz do skrzyni Santino",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_Santino",
+      "art_key": "item_g1_itke_om_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_om_02",
+      "name": "Klucz do skrzyni Aarona",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_Aarona",
+      "art_key": "item_g1_itke_om_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_om_03",
+      "name": "Klucz do skrzyń w składowisku Ulberta",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzy%C5%84_w_sk%C5%82adowisku_Ulberta",
+      "art_key": "item_g1_itke_om_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_om_04",
+      "name": "Klucz do skrzyni Alberto",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzyni_Alberto",
+      "art_key": "item_g1_itke_om_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_psi_kalom_01",
+      "name": "Klucz do laboratorium",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_laboratorium",
+      "art_key": "item_g1_itke_psi_kalom_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_storage_01",
+      "name": "Klucz do składowiska",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_sk%C5%82adowiska",
+      "art_key": "item_g1_itke_storage_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itke_sunkentower",
+      "name": "Klucz do skrzyń w zatopionej wieży",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_skrzy%C5%84_w_zatopionej_wie%C5%BCy",
+      "art_key": "item_g1_itke_sunkentower",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itkecavalorn01",
+      "name": "Klucz Cavalorna",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Cavalorna",
+      "art_key": "item_g1_itkecavalorn01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itkekey1",
+      "name": "Klucz",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz",
+      "art_key": "item_g1_itkekey1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itkekey2",
+      "name": "Klucz",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz",
+      "art_key": "item_g1_itkekey2",
+      "image_match": "shared-page-model"
+    },
+    {
+      "code": "itkekey3",
+      "name": "Klucz",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz",
+      "art_key": "item_g1_itkekey3",
+      "image_match": "shared-page-model"
+    },
+    {
+      "code": "itkekey4",
+      "name": "Klucz",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz",
+      "art_key": "item_g1_itkekey4",
+      "image_match": "shared-page-model"
+    },
+    {
+      "code": "itkelockpick",
+      "name": "Wytrych",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wytrych",
+      "art_key": "item_g1_itkelockpick",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itkey_rb_01",
+      "name": "Klucz Ryżowego Księcia",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_Ry%C5%BCowego_Ksi%C4%99cia",
+      "art_key": "item_g1_itkey_rb_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itlstorch",
+      "name": "Pochodnia",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "art_key": "item_g1_itlstorch",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itlstorchburned",
+      "name": "Wypalona pochodnia",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "art_key": "item_g1_itlstorchburned",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itlstorchburning",
+      "name": "Płonąca pochodnia",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "art_key": "item_g1_itlstorchburning",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itlstorchfirespit",
+      "name": "Pochodnia do ziania ogniem",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "art_key": "item_g1_itlstorchfirespit",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_alchemy_alcohol_01",
+      "name": "Czysty alkohol",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Czysty_alkohol",
+      "art_key": "item_g1_itmi_alchemy_alcohol_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_alchemy_moleratlubric_01",
+      "name": "Sadło kretoszczura",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sad%C5%82o_kretoszczura",
+      "art_key": "item_g1_itmi_alchemy_moleratlubric_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_alchemy_quicksilver_01",
+      "name": "Rtęć",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Rt%C4%99%C4%87",
+      "art_key": "item_g1_itmi_alchemy_quicksilver_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_alchemy_salt_01",
+      "name": "Sól",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/S%C3%B3l",
+      "art_key": "item_g1_itmi_alchemy_salt_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_alchemy_sulphur_01",
+      "name": "Siarka",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Siarka",
+      "art_key": "item_g1_itmi_alchemy_sulphur_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_alchemy_syrianoil_01",
+      "name": "Olej syrianiczny",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Olej_syrianiczny",
+      "art_key": "item_g1_itmi_alchemy_syrianoil_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_amulet_psi_01",
+      "name": "Znak Bractwa",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Znak_Bractwa",
+      "art_key": "item_g1_itmi_amulet_psi_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_orctalisman",
+      "name": "Talizman orków",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Talizman_ork%C3%B3w",
+      "art_key": "item_g1_itmi_orctalisman",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_plants_swampherb_01",
+      "name": "Bagienne ziele",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bagienne_ziele",
+      "art_key": "item_g1_itmi_plants_swampherb_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_amphore_01",
+      "name": "Amfora",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amfora",
+      "art_key": "item_g1_itmi_stuff_amphore_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_barbknife_01",
+      "name": "Brzytwa",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Brzytwa_%28przedmiot%29",
+      "art_key": "item_g1_itmi_stuff_barbknife_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_candel_01",
+      "name": "Świecznik",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiecznik",
+      "art_key": "item_g1_itmi_stuff_candel_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_cup_01",
+      "name": "Kubek",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kubek",
+      "art_key": "item_g1_itmi_stuff_cup_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_cup_02",
+      "name": "Puchar",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Puchar",
+      "art_key": "item_g1_itmi_stuff_cup_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_gearwheel_01",
+      "name": "Koło zębate",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ko%C5%82o_z%C4%99bate",
+      "art_key": "item_g1_itmi_stuff_gearwheel_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_idol_ogront_01",
+      "name": "Posążek",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pos%C4%85%C5%BCek",
+      "art_key": "item_g1_itmi_stuff_idol_ogront_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_idol_sleeper_01",
+      "name": "Posążek Śniącego",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pos%C4%85%C5%BCek_%C5%9Ani%C4%85cego",
+      "art_key": "item_g1_itmi_stuff_idol_sleeper_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_mug_01",
+      "name": "Dzban",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Dzban",
+      "art_key": "item_g1_itmi_stuff_mug_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_oldcoin_01",
+      "name": "Moneta (pierwszy typ)",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Moneta",
+      "art_key": "item_g1_itmi_stuff_oldcoin_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_oldcoin_02",
+      "name": "Moneta (drugi typ)",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Moneta",
+      "art_key": "item_g1_itmi_stuff_oldcoin_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_pan_01",
+      "name": "Patelnia",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Patelnia_%28przedmiot%29",
+      "art_key": "item_g1_itmi_stuff_pan_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_pipe_01",
+      "name": "Fajka",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Fajka",
+      "art_key": "item_g1_itmi_stuff_pipe_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_plate_01",
+      "name": "Talerz",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Talerz",
+      "art_key": "item_g1_itmi_stuff_plate_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmi_stuff_silverware_01",
+      "name": "Sztućce",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sztu%C4%87ce",
+      "art_key": "item_g1_itmi_stuff_silverware_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmialarmhorn",
+      "name": "Róg",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/R%C3%B3g",
+      "art_key": "item_g1_itmialarmhorn",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmibrush",
+      "name": "Szczotka",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szczotka",
+      "art_key": "item_g1_itmibrush",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiflask",
+      "name": "Kolba",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kolba",
+      "art_key": "item_g1_itmiflask",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmihammer",
+      "name": "Młotek",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82otek",
+      "art_key": "item_g1_itmihammer",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmijoint_1",
+      "name": "Zielony nowicjusz",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zielony_nowicjusz",
+      "art_key": "item_g1_itmijoint_1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmijoint_2",
+      "name": "Mrok północy",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mrok_p%C3%B3%C5%82nocy",
+      "art_key": "item_g1_itmijoint_2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmijoint_3",
+      "name": "Zew nocy",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zew_nocy",
+      "art_key": "item_g1_itmijoint_3",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmilute",
+      "name": "Lutnia",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lutnia",
+      "art_key": "item_g1_itmilute",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itminugget",
+      "name": "Bryłka rudy",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82ka_rudy",
+      "art_key": "item_g1_itminugget",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiscoop",
+      "name": "Drewniana łyżka",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81y%C5%BCka",
+      "art_key": "item_g1_itmiscoop",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmistomper",
+      "name": "Rozdrabniacz",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Rozdrabniacz",
+      "art_key": "item_g1_itmistomper",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiswordblade",
+      "name": "Ostrze",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze",
+      "art_key": "item_g1_itmiswordblade",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiswordbladehot",
+      "name": "Rozgrzane ostrze",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Rozgrzane_ostrze",
+      "art_key": "item_g1_itmiswordbladehot",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiswordraw",
+      "name": "Stal",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Surowa_stal",
+      "art_key": "item_g1_itmiswordraw",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiswordrawhot",
+      "name": "Rozgrzana stal",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Rozgrzana_stal",
+      "art_key": "item_g1_itmiswordrawhot",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmiwedel",
+      "name": "Liść palmowy",
+      "kind": "misc",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Li%C5%9B%C4%87_palmowy",
+      "art_key": "item_g1_itmiwedel",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw1hswordburning",
+      "name": "Legendary Short Sword of Burning",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Legendary_Short_Sword_of_Burning",
+      "art_key": "item_g1_itmw1hswordburning",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2horcaxe01",
+      "name": "Krush Pach",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krush_Pach",
+      "art_key": "item_g1_itmw2horcaxe01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2horcaxe02",
+      "name": "Krush UrRok",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krush_UrRok",
+      "art_key": "item_g1_itmw2horcaxe02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2horcaxe03",
+      "name": "Krush Agash",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krush_Agash",
+      "art_key": "item_g1_itmw2horcaxe03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2horcaxe04",
+      "name": "Krush BrokDar",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krush_BrokDar",
+      "art_key": "item_g1_itmw2horcaxe04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2horcmace01",
+      "name": "Krush Karrok",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krush_Karrok",
+      "art_key": "item_g1_itmw2horcmace01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2horcsword01",
+      "name": "Krush Varrok",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krush_Varrok",
+      "art_key": "item_g1_itmw2horcsword01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw2hswordburning",
+      "name": "Legendary Heavy Sword of Burning",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Legendary_Heavy_Sword_of_Burning",
+      "art_key": "item_g1_itmw2hswordburning",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_axe_01",
+      "name": "Topór",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r",
+      "art_key": "item_g1_itmw_1h_axe_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_axe_02",
+      "name": "Gruchotacz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gruchotacz",
+      "art_key": "item_g1_itmw_1h_axe_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_axe_03",
+      "name": "Łamacz kości",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81amacz_ko%C5%9Bci",
+      "art_key": "item_g1_itmw_1h_axe_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_axe_old_01",
+      "name": "Wyszczerbiony topór",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyszczerbiony_top%C3%B3r",
+      "art_key": "item_g1_itmw_1h_axe_old_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_club_01",
+      "name": "Pałka (pierwszy typ)",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka",
+      "art_key": "item_g1_itmw_1h_club_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_hatchet_01",
+      "name": "Siekiera",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Siekiera",
+      "art_key": "item_g1_itmw_1h_hatchet_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_lightguardssword_03",
+      "name": "Lekki miecz strażnika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekki_miecz_stra%C5%BCnika",
+      "art_key": "item_g1_itmw_1h_lightguardssword_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_01",
+      "name": "Maczuga",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Maczuga",
+      "art_key": "item_g1_itmw_1h_mace_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_02",
+      "name": "Ćwiekowana maczuga",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C4%86wiekowana_maczuga",
+      "art_key": "item_g1_itmw_1h_mace_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_03",
+      "name": "Żądło krwiopijcy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BB%C4%85d%C5%82o_krwiopijcy_%28bro%C5%84%29",
+      "art_key": "item_g1_itmw_1h_mace_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_04",
+      "name": "Stalowy język",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Stalowy_j%C4%99zyk",
+      "art_key": "item_g1_itmw_1h_mace_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_light_01",
+      "name": "Pałka (drugi typ)",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka",
+      "art_key": "item_g1_itmw_1h_mace_light_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_war_01",
+      "name": "Morgensztern",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Morgensztern",
+      "art_key": "item_g1_itmw_1h_mace_war_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_war_02",
+      "name": "Żelazna maczuga",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BBelazna_maczuga",
+      "art_key": "item_g1_itmw_1h_mace_war_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_war_03",
+      "name": "Łomotacz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81omotacz",
+      "art_key": "item_g1_itmw_1h_mace_war_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_mace_war_04",
+      "name": "Łamacz serc",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81amacz_serc",
+      "art_key": "item_g1_itmw_1h_mace_war_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_nailmace_01",
+      "name": "Kij z gwoździem",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kij_z_gwo%C5%BAdziem",
+      "art_key": "item_g1_itmw_1h_nailmace_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_poker_01",
+      "name": "Pogrzebacz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pogrzebacz",
+      "art_key": "item_g1_itmw_1h_poker_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_scythe_01",
+      "name": "Siekacz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Siekacz_%28sierp%29",
+      "art_key": "item_g1_itmw_1h_scythe_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sickle_01",
+      "name": "Sierp",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sierp",
+      "art_key": "item_g1_itmw_1h_sickle_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sledgehammer_01",
+      "name": "Młot kowalski",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ot_kowalski",
+      "art_key": "item_g1_itmw_1h_sledgehammer_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_01",
+      "name": "Niewykończony miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Niewyko%C5%84czony_miecz",
+      "art_key": "item_g1_itmw_1h_sword_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_02",
+      "name": "Miecz sędziego",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_s%C4%99dziego",
+      "art_key": "item_g1_itmw_1h_sword_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_03",
+      "name": "Miecz strażnika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_stra%C5%BCnika",
+      "art_key": "item_g1_itmw_1h_sword_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_04",
+      "name": "Miecz bojowy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_bojowy",
+      "art_key": "item_g1_itmw_1h_sword_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_05",
+      "name": "Miecz wojenny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_wojenny",
+      "art_key": "item_g1_itmw_1h_sword_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_bastard_01",
+      "name": "Zardzewiały miecz półtoraręczny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zardzewia%C5%82y_miecz_p%C3%B3%C5%82torar%C4%99czny",
+      "art_key": "item_g1_itmw_1h_sword_bastard_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_bastard_02",
+      "name": "Rzeźnik",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Rze%C5%BAnik",
+      "art_key": "item_g1_itmw_1h_sword_bastard_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_bastard_03",
+      "name": "Kat",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kat_%28miecz%29",
+      "art_key": "item_g1_itmw_1h_sword_bastard_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_bastard_04",
+      "name": "Wrzask berserkera",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wrzask_berserkera",
+      "art_key": "item_g1_itmw_1h_sword_bastard_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_broad_01",
+      "name": "Miecz szeroki",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_szeroki",
+      "art_key": "item_g1_itmw_1h_sword_broad_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_broad_02",
+      "name": "Wyrok wojownika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wyrok_wojownika",
+      "art_key": "item_g1_itmw_1h_sword_broad_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_broad_03",
+      "name": "Szept burzy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szept_burzy",
+      "art_key": "item_g1_itmw_1h_sword_broad_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_broad_04",
+      "name": "Ręka strażnika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/R%C4%99ka_stra%C5%BCnika",
+      "art_key": "item_g1_itmw_1h_sword_broad_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_long_01",
+      "name": "Długi miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/D%C5%82ugi_miecz",
+      "art_key": "item_g1_itmw_1h_sword_long_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_long_02",
+      "name": "Miecz strachu",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_strachu",
+      "art_key": "item_g1_itmw_1h_sword_long_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_long_03",
+      "name": "Miecz nienawiści",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_nienawi%C5%9Bci",
+      "art_key": "item_g1_itmw_1h_sword_long_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_long_04",
+      "name": "Miecz zwycięstwa",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_zwyci%C4%99stwa",
+      "art_key": "item_g1_itmw_1h_sword_long_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_long_05",
+      "name": "Miecz śmierci",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_%C5%9Bmierci",
+      "art_key": "item_g1_itmw_1h_sword_long_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_old_01",
+      "name": "Zardzewiały miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zardzewia%C5%82y_miecz",
+      "art_key": "item_g1_itmw_1h_sword_old_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_short_01",
+      "name": "Krótki miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kr%C3%B3tki_miecz",
+      "art_key": "item_g1_itmw_1h_sword_short_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_short_02",
+      "name": "Chłopski miecz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ch%C5%82opski_miecz",
+      "art_key": "item_g1_itmw_1h_sword_short_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_short_03",
+      "name": "Język topielca",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/J%C4%99zyk_topielca",
+      "art_key": "item_g1_itmw_1h_sword_short_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_short_04",
+      "name": "Kłujący cierń",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82uj%C4%85cy_cier%C5%84",
+      "art_key": "item_g1_itmw_1h_sword_short_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_sword_short_05",
+      "name": "Ząb kopacza",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Z%C4%85b_kopacza",
+      "art_key": "item_g1_itmw_1h_sword_short_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_warhammer_01",
+      "name": "Młot orków",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ot_ork%C3%B3w",
+      "art_key": "item_g1_itmw_1h_warhammer_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_warhammer_02",
+      "name": "Młot wojenny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ot_wojenny",
+      "art_key": "item_g1_itmw_1h_warhammer_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_1h_warhammer_03",
+      "name": "Boski młot",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Boski_m%C5%82ot",
+      "art_key": "item_g1_itmw_1h_warhammer_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_heavy_01",
+      "name": "Topór wojenny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_wojenny",
+      "art_key": "item_g1_itmw_2h_axe_heavy_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_heavy_02",
+      "name": "Krzyk wojownika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krzyk_wojownika",
+      "art_key": "item_g1_itmw_2h_axe_heavy_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_heavy_03",
+      "name": "Pięść barbarzyńcy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pi%C4%99%C5%9B%C4%87_barbarzy%C5%84cy",
+      "art_key": "item_g1_itmw_2h_axe_heavy_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_heavy_04",
+      "name": "Pięść trolla",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pi%C4%99%C5%9B%C4%87_trolla",
+      "art_key": "item_g1_itmw_2h_axe_heavy_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_light_01",
+      "name": "Lekki topór bojowy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekki_top%C3%B3r_bojowy",
+      "art_key": "item_g1_itmw_2h_axe_light_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_light_02",
+      "name": "Grzmot",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Grzmot",
+      "art_key": "item_g1_itmw_2h_axe_light_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_light_03",
+      "name": "Chrzęst",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chrz%C4%99st",
+      "art_key": "item_g1_itmw_2h_axe_light_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_old_01",
+      "name": "Stary topór bojowy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_top%C3%B3r_bojowy",
+      "art_key": "item_g1_itmw_2h_axe_old_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_old_02",
+      "name": "Krwawy żniwiarz",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krwawy_%C5%BCniwiarz_%28Gothic%29",
+      "art_key": "item_g1_itmw_2h_axe_old_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_axe_old_03",
+      "name": "Stary sędzia",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_s%C4%99dzia",
+      "art_key": "item_g1_itmw_2h_axe_old_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_staff_01",
+      "name": "Kostur",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kostur",
+      "art_key": "item_g1_itmw_2h_staff_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_staff_02",
+      "name": "Laska sędziowska",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Laska_s%C4%99dziowska",
+      "art_key": "item_g1_itmw_2h_staff_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_staff_03",
+      "name": "Laska kapłańska",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Laska_kap%C5%82a%C5%84ska",
+      "art_key": "item_g1_itmw_2h_staff_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_01",
+      "name": "Dwuręczniak",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Dwur%C4%99czniak",
+      "art_key": "item_g1_itmw_2h_sword_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_02",
+      "name": "Ostrze bohatera",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze_bohatera",
+      "art_key": "item_g1_itmw_2h_sword_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_03",
+      "name": "Krwawe ostrze",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krwawe_ostrze",
+      "art_key": "item_g1_itmw_2h_sword_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_heavy_01",
+      "name": "Ciężki dwuręczniak",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCki_dwur%C4%99czniak",
+      "art_key": "item_g1_itmw_2h_sword_heavy_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_heavy_02",
+      "name": "Gniewna stal",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gniewna_stal",
+      "art_key": "item_g1_itmw_2h_sword_heavy_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_heavy_03",
+      "name": "Wściekła stal",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/W%C5%9Bciek%C5%82a_stal",
+      "art_key": "item_g1_itmw_2h_sword_heavy_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_heavy_04",
+      "name": "Mściwa stal",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%9Bciwa_stal",
+      "art_key": "item_g1_itmw_2h_sword_heavy_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_light_01",
+      "name": "Lekki miecz dwuręczny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekki_miecz_dwur%C4%99czny",
+      "art_key": "item_g1_itmw_2h_sword_light_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_light_02",
+      "name": "Miecz nadzorcy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_nadzorcy",
+      "art_key": "item_g1_itmw_2h_sword_light_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_light_03",
+      "name": "Ostrze najemnika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze_najemnika",
+      "art_key": "item_g1_itmw_2h_sword_light_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_light_04",
+      "name": "Miecz królewski",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_kr%C3%B3lewski_%28Gothic%29",
+      "art_key": "item_g1_itmw_2h_sword_light_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_light_05",
+      "name": "Miecz demonów",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_demon%C3%B3w",
+      "art_key": "item_g1_itmw_2h_sword_light_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmw_2h_sword_old_01",
+      "name": "Zardzewiały miecz oburęczny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zardzewia%C5%82y_miecz_dwur%C4%99czny",
+      "art_key": "item_g1_itmw_2h_sword_old_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itmwpickaxe",
+      "name": "Kilof",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kilof",
+      "art_key": "item_g1_itmwpickaxe",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_01",
+      "name": "Długi łuk",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/D%C5%82ugi_%C5%82uk",
+      "art_key": "item_g1_itrw_bow_long_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_02",
+      "name": "Łuk kolczasty",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_kolczasty",
+      "art_key": "item_g1_itrw_bow_long_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_03",
+      "name": "Łuk wierzbowy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_wierzbowy",
+      "art_key": "item_g1_itrw_bow_long_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_04",
+      "name": "Łuk dębowy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_d%C4%99bowy",
+      "art_key": "item_g1_itrw_bow_long_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_05",
+      "name": "Wilcze kły",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wilcze_k%C5%82y",
+      "art_key": "item_g1_itrw_bow_long_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_06",
+      "name": "Podmuch wiatru",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Podmuch_wiatru",
+      "art_key": "item_g1_itrw_bow_long_06",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_07",
+      "name": "Łuk żołnierski",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_%C5%BCo%C5%82nierski",
+      "art_key": "item_g1_itrw_bow_long_07",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_08",
+      "name": "Łuk z poroża",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_z_poro%C5%BCa",
+      "art_key": "item_g1_itrw_bow_long_08",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_long_09",
+      "name": "Łuk Nimroda",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_Nimroda",
+      "art_key": "item_g1_itrw_bow_long_09",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_small_01",
+      "name": "Krótki łuk",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kr%C3%B3tki_%C5%82uk",
+      "art_key": "item_g1_itrw_bow_small_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_small_02",
+      "name": "Łuk kawaleryjski",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_kawaleryjski",
+      "art_key": "item_g1_itrw_bow_small_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_small_03",
+      "name": "Łuk polowy",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_polowy",
+      "art_key": "item_g1_itrw_bow_small_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_small_04",
+      "name": "Łuk myśliwski",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_my%C5%9Bliwski",
+      "art_key": "item_g1_itrw_bow_small_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_small_05",
+      "name": "Kościany łuk",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ko%C5%9Bciany_%C5%82uk",
+      "art_key": "item_g1_itrw_bow_small_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_war_01",
+      "name": "Łuk wojenny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_wojenny",
+      "art_key": "item_g1_itrw_bow_war_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_war_02",
+      "name": "Pogromca orków",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pogromca_ork%C3%B3w",
+      "art_key": "item_g1_itrw_bow_war_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_war_03",
+      "name": "Gromowładny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Gromow%C5%82adny",
+      "art_key": "item_g1_itrw_bow_war_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_war_04",
+      "name": "Piekielny łuk",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Piekielny_%C5%82uk",
+      "art_key": "item_g1_itrw_bow_war_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_bow_war_05",
+      "name": "Łuk śmierci",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_%C5%9Bmierci",
+      "art_key": "item_g1_itrw_bow_war_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_crossbow_01",
+      "name": "Lekka kusza",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekka_kusza",
+      "art_key": "item_g1_itrw_crossbow_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_crossbow_02",
+      "name": "Kusza",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kusza",
+      "art_key": "item_g1_itrw_crossbow_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_crossbow_03",
+      "name": "Ciężka kusza",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCka_kusza",
+      "art_key": "item_g1_itrw_crossbow_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrw_crossbow_04",
+      "name": "Kusza wojenna",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kusza_wojenna",
+      "art_key": "item_g1_itrw_crossbow_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrworcstaff",
+      "name": "Grachtnakk",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Grachtnakk",
+      "art_key": "item_g1_itrworcstaff",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrwudorcstaff",
+      "name": "ShaBaNakk",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/ShaBaNakk",
+      "art_key": "item_g1_itrwudorcstaff",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itrwwarbowburning",
+      "name": "Legendary War Bow of Burning",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Legendary_War_Bow_of_Burning",
+      "art_key": "item_g1_itrwwarbowburning",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_bloodfly_01",
+      "name": "Krwiopijcy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Krwiopijcy_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_bloodfly_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_book_circle_01",
+      "name": "Pierwszy krąg magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pierwszy_kr%C4%85g_magii_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_book_circle_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_book_circle_02",
+      "name": "Drugi krąg magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Drugi_kr%C4%85g_magii_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_book_circle_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_book_circle_03",
+      "name": "Trzeci krąg magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Trzeci_kr%C4%85g_magii_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_book_circle_03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_book_circle_04",
+      "name": "Czwarty krąg magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Czwarty_kr%C4%85g_magii_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_book_circle_04",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_book_circle_05",
+      "name": "Piąty krąg magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pi%C4%85ty_kr%C4%85g_magii_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_book_circle_05",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_book_circle_06",
+      "name": "Szósty krąg magii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sz%C3%B3sty_kr%C4%85g_magii_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwr_book_circle_06",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_fire_letter_01",
+      "name": "List do magów ognia (zapieczętowany)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/List_do_mag%C3%B3w_ognia",
+      "art_key": "item_g1_itwr_fire_letter_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_fire_letter_02",
+      "name": "List do magów ognia (otwarty)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/List_do_mag%C3%B3w_ognia",
+      "art_key": "item_g1_itwr_fire_letter_02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_golembook1",
+      "name": "Arcanum Golum – Tom I",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Arcanum_Golum",
+      "art_key": "item_g1_itwr_golembook1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_golembook2",
+      "name": "Arcanum Golum – Tom II",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Arcanum_Golum",
+      "art_key": "item_g1_itwr_golembook2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_troll_01",
+      "name": "Strona z dziennika",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Strona_z_dziennika",
+      "art_key": "item_g1_itwr_troll_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwr_urkunde_01",
+      "name": "Akt własności",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Akt_w%C5%82asno%C5%9Bci",
+      "art_key": "item_g1_itwr_urkunde_01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrbookoftales",
+      "name": "Book of Tales",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Book_of_Tales",
+      "art_key": "item_g1_itwrbookoftales",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrdieverurteilten",
+      "name": "Skazańcy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Skaza%C5%84cy_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_itwrdieverurteilten",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrfocimap",
+      "name": "Mapa od Saturasa",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_od_Saturasa",
+      "art_key": "item_g1_itwrfocimap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrfocusmappsi",
+      "name": "Mapa od Y'Beriona",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_od_Y%27Beriona",
+      "art_key": "item_g1_itwrfocusmappsi",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrfokusbuch",
+      "name": "Almanach",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Almanach_%28Gothic%29",
+      "art_key": "item_g1_itwrfokusbuch",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrlevelmap",
+      "name": "Map of Test Level",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Map_of_Test_Level",
+      "art_key": "item_g1_itwrlevelmap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrncmap",
+      "name": "Plan Nowego Obozu",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Plan_Nowego_Obozu",
+      "art_key": "item_g1_itwrncmap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrocmap",
+      "name": "Plan Starego Obozu",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Plan_Starego_Obozu",
+      "art_key": "item_g1_itwrocmap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrommap",
+      "name": "Mapa do Starej Kopalni",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_do_Starej_Kopalni",
+      "art_key": "item_g1_itwrommap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrpinup",
+      "name": "Szkic",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szkic",
+      "art_key": "item_g1_itwrpinup",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrpsimap",
+      "name": "Plan obozu na bagnie",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Plan_obozu_na_bagnie",
+      "art_key": "item_g1_itwrpsimap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrtemplemap",
+      "name": "Szkic świątyni",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szkic_%C5%9Bwi%C4%85tyni",
+      "art_key": "item_g1_itwrtemplemap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrworldmap",
+      "name": "Mapa kolonii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_kolonii",
+      "art_key": "item_g1_itwrworldmap",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "itwrworldmap_orc",
+      "name": "Mapa kolonii (uzupełniona)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Mapa_kolonii_%28uzupe%C5%82niona%29",
+      "art_key": "item_g1_itwrworldmap_orc",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "jackalssword",
+      "name": "Miecz Szakala",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_Szakala",
+      "art_key": "item_g1_jackalssword",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "jagd_und_beute",
+      "name": "Łowy i zwierzyna",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81owy_i_zwierzyna",
+      "art_key": "item_g1_jagd_und_beute",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kaloms_schwert",
+      "name": "Miecz Kaloma",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_Kaloma",
+      "art_key": "item_g1_kaloms_schwert",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kalomsrecipe",
+      "name": "Receptura Cor Kaloma",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Receptura_Cor_Kaloma",
+      "art_key": "item_g1_kalomsrecipe",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kampfkunst",
+      "name": "Sztuka walki",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Sztuka_walki",
+      "art_key": "item_g1_kampfkunst",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kdf_armor_h",
+      "name": "Zdobiona szata ognia",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zdobiona_szata_ognia",
+      "art_key": "item_g1_kdf_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kdf_armor_l",
+      "name": "Szata ognia",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szata_ognia",
+      "art_key": "item_g1_kdf_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kdw_amulett",
+      "name": "Amulet kuriera magów wody",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_kuriera_mag%C3%B3w_wody",
+      "art_key": "item_g1_kdw_amulett",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kdw_armor_h",
+      "name": "Zdobiona szata wody",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zdobiona_szata_wody",
+      "art_key": "item_g1_kdw_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "kdw_armor_l",
+      "name": "Szata wody",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szata_wody",
+      "art_key": "item_g1_kdw_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lares_axt",
+      "name": "Topór Laresa",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_Laresa",
+      "art_key": "item_g1_lares_axt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lares_ring",
+      "name": "Pierścień Laresa",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_Laresa",
+      "art_key": "item_g1_lares_ring",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "law_armor",
+      "name": "Szata sędziego",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Szata_s%C4%99dziego",
+      "art_key": "item_g1_law_armor",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lebensamulett",
+      "name": "Amulet witalności",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_witalno%C5%9Bci",
+      "art_key": "item_g1_lebensamulett",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lees_axt",
+      "name": "Topór Lee",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_Lee",
+      "art_key": "item_g1_lees_axt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lehren_der_goetter1",
+      "name": "Mądrość bogów (tom I)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C4%85dro%C5%9B%C4%87_bog%C3%B3w",
+      "art_key": "item_g1_lehren_der_goetter1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lehren_der_goetter2",
+      "name": "Mądrość bogów (tom II)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C4%85dro%C5%9B%C4%87_bog%C3%B3w",
+      "art_key": "item_g1_lehren_der_goetter2",
+      "image_match": "shared-page-model"
+    },
+    {
+      "code": "lehren_der_goetter3",
+      "name": "Mądrość bogów (tom III)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/M%C4%85dro%C5%9B%C4%87_bog%C3%B3w",
+      "art_key": "item_g1_lehren_der_goetter3",
+      "image_match": "shared-page-model"
+    },
+    {
+      "code": "lester_bugfixbook",
+      "name": "Schicke Lester nach Hause",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Schicke_Lester_nach_Hause",
+      "art_key": "item_g1_lester_bugfixbook",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lichtbringer",
+      "name": "Ostrze Światła",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze_%C5%9Awiat%C5%82a",
+      "art_key": "item_g1_lichtbringer",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "lukor_bugfixbook",
+      "name": "Zwinge Baal Lukor in den Followmode",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zwinge_Baal_Lukor_in_den_Followmode",
+      "art_key": "item_g1_lukor_bugfixbook",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "machtring",
+      "name": "Pierścień siły wojownika",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_si%C5%82y_wojownika",
+      "art_key": "item_g1_machtring",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "machtvolle_kunst",
+      "name": "Wszechpotężna sztuka",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wszechpot%C4%99%C5%BCna_sztuka",
+      "art_key": "item_g1_machtvolle_kunst",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "mordragsring",
+      "name": "Pierścień Mordraga",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_Mordraga",
+      "art_key": "item_g1_mordragsring",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "myrtanas_lyrik",
+      "name": "Poezja myrtańska",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Poezja_myrta%C5%84ska",
+      "art_key": "item_g1_myrtanas_lyrik",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "mythrilklinge",
+      "name": "Przedziwny miecz",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uriziel",
+      "art_key": "item_g1_mythrilklinge",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "mythrilklinge01",
+      "name": "Nienaładowany Uriziel",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uriziel",
+      "art_key": "item_g1_mythrilklinge01",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "mythrilklinge02",
+      "name": "Naładowany Uriziel",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uriziel",
+      "art_key": "item_g1_mythrilklinge02",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "mythrilklinge03",
+      "name": "Uriziel bez klejnotu",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Uriziel",
+      "art_key": "item_g1_mythrilklinge03",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "namibs_keule",
+      "name": "Pałka Namiba",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka_Namiba",
+      "art_key": "item_g1_namibs_keule",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "neks_amulett",
+      "name": "Amulet Neka",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_Neka",
+      "art_key": "item_g1_neks_amulett",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "nov_armor_h",
+      "name": "Zbroja nowicjusza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_nowicjusza",
+      "art_key": "item_g1_nov_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "nov_armor_l",
+      "name": "Przepaska nowicjusza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przepaska_nowicjusza",
+      "art_key": "item_g1_nov_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "nov_armor_m",
+      "name": "Lekka zbroja nowicjusza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekka_zbroja_nowicjusza",
+      "art_key": "item_g1_nov_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "orcmedicine",
+      "name": "Lekarstwo orków",
+      "kind": "consumable",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekarstwo_ork%C3%B3w",
+      "art_key": "item_g1_orcmedicine",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ore_armor_h",
+      "name": "Wzmocniona zbroja magiczna",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wzmocniona_zbroja_magiczna",
+      "art_key": "item_g1_ore_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ore_armor_m",
+      "name": "Starożytna zbroja magiczna",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Staro%C5%BCytna_zbroja_magiczna",
+      "art_key": "item_g1_ore_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "org_armor_h",
+      "name": "Ciężki strój szkodnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCki_str%C3%B3j_szkodnika",
+      "art_key": "item_g1_org_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "org_armor_l",
+      "name": "Lekki strój szkodnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekki_str%C3%B3j_szkodnika",
+      "art_key": "item_g1_org_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "org_armor_m",
+      "name": "Strój szkodnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Str%C3%B3j_szkodnika",
+      "art_key": "item_g1_org_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "oriks_axt",
+      "name": "Topór Orika",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_Orika",
+      "art_key": "item_g1_oriks_axt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "orkparchmentone",
+      "name": "Połowa pergaminu (górna)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Po%C5%82owa_pergaminu",
+      "art_key": "item_g1_orkparchmentone",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "orkparchmenttwo",
+      "name": "Połowa pergaminu (dolna)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Po%C5%82owa_pergaminu",
+      "art_key": "item_g1_orkparchmenttwo",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "oruns_keule",
+      "name": "Pałka Oruna",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pa%C5%82ka_Oruna",
+      "art_key": "item_g1_oruns_keule",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "prankenhieb",
+      "name": "Cios łapą",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Cios_%C5%82ap%C4%85",
+      "art_key": "item_g1_prankenhieb",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "rabenrecht",
+      "name": "Prawo Kruka",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Prawo_Kruka",
+      "art_key": "item_g1_rabenrecht",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "recruitjoint",
+      "name": "Bagienne ziele dla kopaczy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bagienne_ziele_dla_kopaczy",
+      "art_key": "item_g1_recruitjoint",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "rezepturen",
+      "name": "Przepisy (tom I)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przepisy",
+      "art_key": "item_g1_rezepturen",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "rezepturen2",
+      "name": "Przepisy (tom II)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przepisy",
+      "art_key": "item_g1_rezepturen2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ring_der_erleuchtung",
+      "name": "Pierścień oświecenia",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_o%C5%9Bwiecenia",
+      "art_key": "item_g1_ring_der_erleuchtung",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ring_der_magie",
+      "name": "Pierścień magii",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_magii",
+      "art_key": "item_g1_ring_der_magie",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ring_des_geschicks",
+      "name": "Pomniejszy pierścień zwinności",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pomniejszy_pier%C5%9Bcie%C5%84_zwinno%C5%9Bci",
+      "art_key": "item_g1_ring_des_geschicks",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ring_des_geschicks2",
+      "name": "Większy pierścień zwinności",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wi%C4%99kszy_pier%C5%9Bcie%C5%84_zwinno%C5%9Bci",
+      "art_key": "item_g1_ring_des_geschicks2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ring_des_lebens",
+      "name": "Pierścień życia",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_%C5%BCycia",
+      "art_key": "item_g1_ring_des_lebens",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ring_des_lebens2",
+      "name": "Większy pierścień życia",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wi%C4%99kszy_pier%C5%9Bcie%C5%84_%C5%BCycia",
+      "art_key": "item_g1_ring_des_lebens2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "roter_wind",
+      "name": "Czerwony Wiatr",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Czerwony_Wiatr",
+      "art_key": "item_g1_roter_wind",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "scars_schwert",
+      "name": "Miecz Blizny",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_Blizny",
+      "art_key": "item_g1_scars_schwert",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schlacht_um_varant1",
+      "name": "Bitwa o Varrant (tom I)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bitwa_o_Varrant_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_schlacht_um_varant1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schlacht_um_varant2",
+      "name": "Bitwa o Varrant (tom II)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Bitwa_o_Varrant_%28ksi%C4%99ga%29",
+      "art_key": "item_g1_schlacht_um_varant2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_feuer",
+      "name": "Amulet płomieni",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_p%C5%82omieni",
+      "art_key": "item_g1_schutzamulett_feuer",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_geschosse",
+      "name": "Amulet dębowej skóry",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_d%C4%99bowej_sk%C3%B3ry",
+      "art_key": "item_g1_schutzamulett_geschosse",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_magie",
+      "name": "Amulet duchowej siły",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_duchowej_si%C5%82y",
+      "art_key": "item_g1_schutzamulett_magie",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_magie_feuer",
+      "name": "Amulet oczyszczenia",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_oczyszczenia",
+      "art_key": "item_g1_schutzamulett_magie_feuer",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_total",
+      "name": "Amulet magicznego pancerza",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_magicznego_pancerza",
+      "art_key": "item_g1_schutzamulett_total",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_waffen",
+      "name": "Amulet ochronny",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_ochronny",
+      "art_key": "item_g1_schutzamulett_waffen",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzamulett_waffen_geschosse",
+      "name": "Amulet kamiennej skóry",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_kamiennej_sk%C3%B3ry",
+      "art_key": "item_g1_schutzamulett_waffen_geschosse",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_feuer1",
+      "name": "Pierścień ochrony przed ogniem",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_ochrony_przed_ogniem",
+      "art_key": "item_g1_schutzring_feuer1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_feuer2",
+      "name": "Ochrona przed ogniem (pierścień)",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ochrona_przed_ogniem_%28pier%C5%9Bcie%C5%84%29",
+      "art_key": "item_g1_schutzring_feuer2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_geschosse1",
+      "name": "Pierścień drewnianej skóry",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_drewnianej_sk%C3%B3ry",
+      "art_key": "item_g1_schutzring_geschosse1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_geschosse1_waffen1",
+      "name": "Pierścień wytrwałości",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_wytrwa%C5%82o%C5%9Bci",
+      "art_key": "item_g1_schutzring_geschosse1_waffen1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_geschosse2",
+      "name": "Pierścień kamiennej skóry",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_kamiennej_sk%C3%B3ry",
+      "art_key": "item_g1_schutzring_geschosse2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_geschosse2_waffen2",
+      "name": "Pierścień niewzruszoności",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_niewzruszono%C5%9Bci",
+      "art_key": "item_g1_schutzring_geschosse2_waffen2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_magie1",
+      "name": "Pierścień siły duchowej",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_si%C5%82y_duchowej",
+      "art_key": "item_g1_schutzring_magie1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_magie1_fire1",
+      "name": "Pierścień oczyszczenia",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_oczyszczenia",
+      "art_key": "item_g1_schutzring_magie1_fire1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_magie2",
+      "name": "Pierścień obrony",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_obrony",
+      "art_key": "item_g1_schutzring_magie2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_magie2_fire2",
+      "name": "Pierścień niezwyciężoności",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_niezwyci%C4%99%C5%BCono%C5%9Bci",
+      "art_key": "item_g1_schutzring_magie2_fire2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_total1",
+      "name": "Pomniejszy pierścień niezwyciężoności",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pomniejszy_pier%C5%9Bcie%C5%84_niezwyci%C4%99%C5%BCono%C5%9Bci",
+      "art_key": "item_g1_schutzring_total1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_total2",
+      "name": "Większy pierścień niezwyciężoności",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Wi%C4%99kszy_pier%C5%9Bcie%C5%84_niezwyci%C4%99%C5%BCono%C5%9Bci",
+      "art_key": "item_g1_schutzring_total2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_waffen1",
+      "name": "Pierścień żelaznej skóry",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_%C5%BCelaznej_sk%C3%B3ry",
+      "art_key": "item_g1_schutzring_waffen1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "schutzring_waffen2",
+      "name": "Pierścień magicznego pancerza",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_magicznego_pancerza",
+      "art_key": "item_g1_schutzring_waffen2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "scroll4milten",
+      "name": "Przekaz energii",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przekaz_energii",
+      "art_key": "item_g1_scroll4milten",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "sfb_armor_l",
+      "name": "Strój kopacza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Str%C3%B3j_kopacza",
+      "art_key": "item_g1_sfb_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "silas_axt",
+      "name": "Topór Silasa",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_Silasa",
+      "art_key": "item_g1_silas_axt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "sld_armor_h",
+      "name": "Ciężka zbroja najemnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCka_zbroja_najemnika",
+      "art_key": "item_g1_sld_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "sld_armor_l",
+      "name": "Lekka zbroja najemnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekka_zbroja_najemnika",
+      "art_key": "item_g1_sld_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "sld_armor_m",
+      "name": "Zbroja najemnika",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_najemnika",
+      "art_key": "item_g1_sld_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "specialjoint",
+      "name": "Przygotowany Zew Nocy",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Przygotowany_Zew_Nocy",
+      "art_key": "item_g1_specialjoint",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "specialwater",
+      "name": "Magiczna woda",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczna_woda",
+      "art_key": "item_g1_specialwater",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "stab_des_lichts",
+      "name": "Kostur Światła",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Kostur_%C5%9Awiat%C5%82a",
+      "art_key": "item_g1_stab_des_lichts",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "staerkeamulett",
+      "name": "Amulet mocy",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_mocy",
+      "art_key": "item_g1_staerkeamulett",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "staerkeamulett2",
+      "name": "Amulet siły",
+      "kind": "amulet",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_si%C5%82y",
+      "art_key": "item_g1_staerkeamulett2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "staerkering",
+      "name": "Pierścień mocy",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_mocy",
+      "art_key": "item_g1_staerkering",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "staerkering2",
+      "name": "Pierścień siły",
+      "kind": "ring",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_si%C5%82y",
+      "art_key": "item_g1_staerkering2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "streitschlichter",
+      "name": "Negocjator Lestera",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Negocjator_Lestera",
+      "art_key": "item_g1_streitschlichter",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "stt_armor_h",
+      "name": "Zbroja cienia",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_cienia",
+      "art_key": "item_g1_stt_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "stt_armor_m",
+      "name": "Strój cienia",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Str%C3%B3j_cienia",
+      "art_key": "item_g1_stt_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "tagebuchot",
+      "name": "Dziennik niewolnika",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Dziennik_niewolnika",
+      "art_key": "item_g1_tagebuchot",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "thelist",
+      "name": "Lista od Iana",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_od_Iana",
+      "art_key": "item_g1_thelist",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "thelistnc",
+      "name": "Lista od Iana (poszerzona)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_od_Iana_%28poszerzona%29",
+      "art_key": "item_g1_thelistnc",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "theriddle1",
+      "name": "Chromanin (tom I)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chromanin_%28ksi%C4%99ga_z_Gothic%29",
+      "art_key": "item_g1_theriddle1",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "theriddle2",
+      "name": "Chromanin (tom II)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chromanin_%28ksi%C4%99ga_z_Gothic%29",
+      "art_key": "item_g1_theriddle2",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "theriddle3",
+      "name": "Chromanin (tom III)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chromanin_%28ksi%C4%99ga_z_Gothic%29",
+      "art_key": "item_g1_theriddle3",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "theriddle4",
+      "name": "Chromanin (tom IV)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chromanin_%28ksi%C4%99ga_z_Gothic%29",
+      "art_key": "item_g1_theriddle4",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "theriddle5",
+      "name": "Chromanin (tom V)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chromanin_%28ksi%C4%99ga_z_Gothic%29",
+      "art_key": "item_g1_theriddle5",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "theriddle6",
+      "name": "Chromanin (tom VI)",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Chromanin_%28ksi%C4%99ga_z_Gothic%29",
+      "art_key": "item_g1_theriddle6",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "thorus_schwert",
+      "name": "Miecz Thorusa",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_Thorusa",
+      "art_key": "item_g1_thorus_schwert",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "torlofs_axt",
+      "name": "Topór Torlofa",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_Torlofa",
+      "art_key": "item_g1_torlofs_axt",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "tpl_armor_h",
+      "name": "Ciężka zbroja świątynna",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCka_zbroja_%C5%9Bwi%C4%85tynna",
+      "art_key": "item_g1_tpl_armor_h",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "tpl_armor_l",
+      "name": "Lekka zbroja świątynna",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekka_zbroja_%C5%9Bwi%C4%85tynna",
+      "art_key": "item_g1_tpl_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "tpl_armor_m",
+      "name": "Zbroja świątynna",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_%C5%9Bwi%C4%85tynna",
+      "art_key": "item_g1_tpl_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "ulumulu",
+      "name": "Ulu-Mulu",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ulu-Mulu",
+      "art_key": "item_g1_ulumulu",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "urizielrune",
+      "name": "Fala Śmierci Uriziela",
+      "kind": "rune",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Fala_%C5%9Amierci_Uriziela",
+      "art_key": "item_g1_urizielrune",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "vlk_armor_l",
+      "name": "Lekkie spodnie kopacza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Lekkie_spodnie_kopacza",
+      "art_key": "item_g1_vlk_armor_l",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "vlk_armor_m",
+      "name": "Spodnie kopacza",
+      "kind": "armor",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Spodnie_kopacza",
+      "art_key": "item_g1_vlk_armor_m",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "wahre_macht",
+      "name": "Prawdziwa moc",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Prawdziwa_moc",
+      "art_key": "item_g1_wahre_macht",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "weltenspalter",
+      "name": "Rozcinacz Światów",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Rozcinacz_%C5%9Awiat%C3%B3w",
+      "art_key": "item_g1_weltenspalter",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "whistlers_schwert",
+      "name": "Miecz Świstaka",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_%C5%9Awistaka_%28bro%C5%84%29",
+      "art_key": "item_g1_whistlers_schwert",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "wolfs_bogen",
+      "name": "Łuk Wilka",
+      "kind": "weapon",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_Wilka",
+      "art_key": "item_g1_wolfs_bogen",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "xp_map",
+      "name": "XP Map",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/XP_Map",
+      "art_key": "item_g1_xp_map",
+      "image_match": "code-matched-infobox"
+    },
+    {
+      "code": "zeitenklinge",
+      "name": "Ostrze Czasu",
+      "kind": "quest",
+      "technical": false,
+      "source": "https://gothic.fandom.com/pl/wiki/Ostrze_Czasu",
+      "art_key": "item_g1_zeitenklinge",
+      "image_match": "code-matched-infobox"
+    }
+  ]
+}

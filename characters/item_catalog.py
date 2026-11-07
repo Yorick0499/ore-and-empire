@@ -41,7 +41,9 @@ def install_catalog(raw):
     previous=ContentPack.objects.filter(key='items',game=data['game'],version=data['version']).first()
     if previous:
         if previous.sha256!=digest: raise ValueError('Version already exists with different content; increment the version')
-        return previous,0
+        if ItemBluePrint.objects.filter(catalog_key__in=[i['key'] for i in data['items']]).count()==len(data['items']):return previous,0
+    reference=json.loads((PACK_PATH.parent/"gothic1-items-v2-reference.json").read_bytes())
+    old_items={i["key"]:i for i in reference["items"]}
     created=0
     for item in data['items']:
         fields={key:value for key,value in item.items() if key in NUMBER_FIELDS|OPTION_FIELDS}
@@ -52,10 +54,23 @@ def install_catalog(raw):
             blueprint=ItemBluePrint.objects.filter(name=item['name'],catalog_key__isnull=True).order_by('pk').first()
         if blueprint:
             if blueprint.source_game not in {'adaptation',data['game']}: raise ValueError('Cannot overwrite another game catalog')
+            old=old_items.get(item['key'])
+            active=NUMBER_FIELDS | (OPTION_FIELDS-{'art_key'}) | {'name','kind'}
+            # Repair only untouched v2 definitions. Operator-tuned balance survives.
+            if data['version']>=3 and old and blueprint.catalog_key==item['key'] and all(getattr(blueprint,k)==old.get(k,ItemBluePrint._meta.get_field(k).get_default()) for k in active):
+                for k in active:setattr(blueprint,k,defaults.get(k,ItemBluePrint._meta.get_field(k).get_default()))
             blueprint.catalog_key=item['key'];blueprint.source_url=item['source'];blueprint.source_game=data['game'];blueprint.original_stats=item['original_stats']
             if item.get('art_key'): blueprint.art_key=item['art_key']
-            blueprint.save(update_fields=['catalog_key','source_url','source_game','original_stats','art_key'])
+            blueprint.save()
         else:
             ItemBluePrint.objects.create(catalog_key=item['key'],**defaults);created+=1
+    for old_key,new_key in data.get('retired_keys',{}).items():
+        canonical=ItemBluePrint.objects.filter(catalog_key=new_key).first()
+        if not canonical:continue
+        for retired in ItemBluePrint.objects.filter(catalog_key=old_key):
+            retired.original_stats={**retired.original_stats,'retired_catalog_key':True,'replacement_key':new_key}
+            retired.art_key=canonical.art_key;retired.merchant=False
+            retired.save(update_fields=['original_stats','art_key','merchant'])
+    if previous:return previous,created
     pack=ContentPack.objects.create(key='items',game=data['game'],version=data['version'],sha256=digest,item_count=len(data['items']))
     return pack,created
