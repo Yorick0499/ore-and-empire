@@ -451,7 +451,7 @@ def tick_bot(profile, policy=None, *, lease=None):
         product = next((p for p in products if p.kind == "weapon" and p.blueprint and p.blueprint.required_strength <= profile.strength and p.blueprint.damage > damage and not any(i.blueprint_id == p.blueprint_id for i in inventory)), None)
     camp_target = (profile.pk - 1) % 3 + 1
     from .magic import bot_magic_plan,combat_plan
-    target_monster=next((game.BESTIARY[key] for key in hunt_goals if key in game.BESTIARY),None)
+    target_monster=game.BOSSES[boss_goals[0]].monster if boss_goals else next((game.BESTIARY[key] for key in hunt_goals if key in game.BESTIARY),None)
     magic_action,magic_target=bot_magic_plan(profile,inventory,target_monster)
     active_magic=combat_plan(profile)
     from .camp_guilds import guild_cards,UPGRADES
