@@ -1,6 +1,6 @@
 from characters.models import OwnedItem, ItemBluePrint, PlayerProfile, MarketTrade, BossAttempt
 from .bosses import BOSSES
-from django.db import transaction
+from django.db import transaction,OperationalError,connection
 from django.core.exceptions import ObjectDoesNotExist
 from functools import wraps
 from django.utils import timezone
@@ -56,6 +56,16 @@ def player_action(fn):
 
     @wraps(fn)
     def wrapped(profile, *args, **kwargs):
+        try:return locked_action(profile,*args,**kwargs)
+        except OperationalError as exc:
+            code=getattr(exc.__cause__,'sqlstate',None)
+            if connection.vendor!='postgresql' or code not in {'40P01','40001','55P03'}:raise
+            # The transaction/savepoint has rolled back; the caller may retry explicitly.
+            profile.refresh_from_db()
+            if hasattr(profile,'_gear_stats_cache'):del profile._gear_stats_cache
+            return False
+
+    def locked_action(profile,*args,**kwargs):
         with transaction.atomic():
             from .worlds import playable
             profile.refresh_from_db()

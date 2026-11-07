@@ -234,11 +234,17 @@ class BaselinePolicyV16(BaselinePolicyV15):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV16):
+class BaselinePolicyV17(BaselinePolicyV16):
     def choose(self,o):
         # Optional patrols must not starve an unfinished personal story.
         if o.story_recover or (o.turn % 5 and (o.story_action or o.quest_hunt or o.quest_mine or o.boss_key)):
             o = replace(o,patrol_depth=None)
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV17):
+    def choose(self,o):
+        if o.training_needed and o.skill_points>0:o=replace(o,patrol_depth=None)
         return super().choose(o)
 
 
@@ -284,18 +290,15 @@ def safe_to_hunt(profile, monster, damage):
     return profile.current_health >= health_needed(profile, monster, damage)
 
 
-@transaction.atomic
-def tick_bot(profile, policy=None):
+def tick_bot(profile, policy=None, *, lease=None):
     from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
     from .locations import LOCATIONS
     from .economy import start_adventure, claim_adventure, purchase_product
-    profile = type(profile).objects.select_for_update().get(pk=profile.pk)
+    profile = type(profile).objects.get(pk=profile.pk)
     from .worlds import playable
     if not playable(profile):return "wait",False
     if not profile.is_bot:
         raise ValueError("Only designated bot profiles may run bot policies")
-    profile.bot_last_tick = timezone.now()
-    profile.save(update_fields=["bot_last_tick"])
     game.refresh_player(profile)
     from .story_quests import bot_story_plan, accept_story, activate_story, claim_story, choose_story, travel_story
     story = bot_story_plan(profile)
@@ -532,91 +535,95 @@ def tick_bot(profile, policy=None):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-17" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-18" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
-    if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
-        record_decision(profile, obs, "rejected", None, False, policy_version)
-        return "rejected", False
-    story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
-    from .magic import learn_circle,prepare_magic,purchase_magic
-    from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
-    from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
-    from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
-    from .crafting import learn_craft,buy_craft_material,craft_item
-    from .market_policy import reprice_listing,observe_legacy_listing
-    if action=='ammo' and ammo_stock and target==obs.ammo_id:
-        success=game.buy_item_from_npc(profile,ammo_stock)
-    elif action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
-        from .enhancements import improve_item,salvage_item
-        success=bool(improve_item(profile,target,obs.forge_level,uuid4()) if action=='improve' else salvage_item(profile,target,uuid4()))
-    elif action=='patrol' and target==obs.patrol_depth:
-        from .frontier import patrol
-        success=bool(patrol(profile,target,uuid4()))
-    elif action==obs.market_action and target==obs.market_target and action in {'market_observe','market_reprice','market_cancel','market_sell','market_buy'}:
-        market_item=OwnedItem.objects.filter(pk=target).first()
-        success=bool(market_item and (observe_legacy_listing(profile,market_item) if action=='market_observe' else reprice_listing(profile,market_item,obs.market_price,market_item.market_price) if action=='market_reprice' else game.delist_item_from_market(profile,market_item,'stale') if action=='market_cancel' else game.sell_item_from_npc(profile,market_item) if action=='market_sell' else game.buy_item_on_market(profile,market_item)))
-    elif action==obs.craft_action and target==obs.craft_target and action in {'craft_learn','craft_material','craft'}:
-        success=bool(learn_craft(profile,('smithing','alchemy')[target-1]) if action=='craft_learn' else buy_craft_material(profile,target) if action=='craft_material' else craft_item(profile,target,uuid4()))
-    elif action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
-        success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
-    elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
-        success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
-    elif action=='camp_donate' and obs.camp_action==action and target is None:
-        success=donate_to_camp(profile,10,uuid4())
-    elif action=='camp_upgrade' and obs.camp_action==action and target==obs.camp_target_id:
-        success=upgrade_camp(profile,list(UPGRADES)[target-1],obs.camp_upgrade_level)
-    elif action==obs.magic_action and target==obs.magic_target and action in {'learn_circle','prepare_magic','buy_magic','clear_magic'}:
-        success=bool(learn_circle(profile) if action=='learn_circle' else prepare_magic(profile,None) if action=='clear_magic' else prepare_magic(profile,target) if action=='prepare_magic' else purchase_magic(profile,target))
-    elif action in story_services and action == story.action and target == story.target:
-        success = bool(story_services[action](profile, target))
-    elif action == 'story_talk' and action == story.action and target == story.target:
-        success = choose_story(profile, target, story.goal, story.option)
-    elif action == 'story_travel' and action == story.action and target == story.target:
-        success = travel_story(profile, target, story.goal)
-    elif action == "claim" and obs.reward_ready:
-        success = game.claim_ore_reward(profile)
-    elif action == "mine":
-        success = game.start_mining(profile, 15)
-    elif action == "equip" and equipment and target == equipment.pk:
-        success = game.equip_item(profile, equipment)
-    elif action == "consume" and consumable and target == consumable.pk:
-        success = game.use_item(profile, consumable)
-    elif action == "sell" and disposal and target == disposal.pk:
-        success = game.sell_item_from_npc(profile, disposal)
-    elif action == "train" and obs.training_needed:
-        success = game.train_attribute(profile, training)
-    elif action == "hunt" and hunt and target is None:
-        success = game.execute_hunt(profile, hunt[2], hunt[3]) is not False
-    elif action == "boss" and boss_key and target is None:
-        success = game.execute_boss(profile, boss_key) is not False
-    elif action == "camp" and target == camp_target:
-        success = game.choose_camp(profile, ("OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP")[camp_target - 1])
-    elif action in ("accept", "promote") and action == rank_action and rank and target == obs.rank_target:
-        success = (accept_camp_quest if action == "accept" else promote_in_camp)(profile, rank.key)
-    elif action == "adventure" and template and target == template.pk:
-        success = bool(start_adventure(profile, template.pk))
-    elif action == "adventure_claim" and run and target == run.pk:
-        success = claim_adventure(profile, run.pk)
-    elif action == "shop" and product and target == product.pk:
-        success = bool(purchase_product(profile, product.pk, uuid4()))
-    elif action == "list" and item and target == item.pk:
-        from .market_policy import listing_price
-        price = listing_price(profile,item)
-        success = game.list_item_on_market(profile, item, price)
-    elif action == "buy" and offer and target == offer.pk:
-        success = game.buy_item_on_market(profile, offer)
-    elif action == "stock" and stock and target == stock.pk:
-        success = game.buy_item_from_npc(profile, stock)
-    elif action == "wait":
-        success = True
-    else:
-        record_decision(profile, obs, "rejected", None, False, policy_version)
-        return "rejected", False
-    if success and action != "wait":
-        profile.refresh_from_db()
-        profile.bot_turn += 1
-        profile.save(update_fields=["bot_turn"])
-    record_decision(profile, obs, action, target, success, policy_version)
-    from .community import bot_conversation
-    bot_conversation(profile)
-    return action, success
+    with transaction.atomic():
+        if lease is not None:lease.fence()
+        if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
+            record_decision(profile, obs, "rejected", None, False, policy_version)
+            return "rejected", False
+        story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
+        from .magic import learn_circle,prepare_magic,purchase_magic
+        from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
+        from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
+        from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
+        from .crafting import learn_craft,buy_craft_material,craft_item
+        from .market_policy import reprice_listing,observe_legacy_listing
+        if action=='ammo' and ammo_stock and target==obs.ammo_id:
+            success=game.buy_item_from_npc(profile,ammo_stock)
+        elif action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
+            from .enhancements import improve_item,salvage_item
+            success=bool(improve_item(profile,target,obs.forge_level,uuid4()) if action=='improve' else salvage_item(profile,target,uuid4()))
+        elif action=='patrol' and target==obs.patrol_depth:
+            from .frontier import patrol
+            success=bool(patrol(profile,target,uuid4()))
+        elif action==obs.market_action and target==obs.market_target and action in {'market_observe','market_reprice','market_cancel','market_sell','market_buy'}:
+            market_item=OwnedItem.objects.filter(pk=target).first()
+            success=bool(market_item and (observe_legacy_listing(profile,market_item) if action=='market_observe' else reprice_listing(profile,market_item,obs.market_price,market_item.market_price) if action=='market_reprice' else game.delist_item_from_market(profile,market_item,'stale') if action=='market_cancel' else game.sell_item_from_npc(profile,market_item) if action=='market_sell' else game.buy_item_on_market(profile,market_item)))
+        elif action==obs.craft_action and target==obs.craft_target and action in {'craft_learn','craft_material','craft'}:
+            success=bool(learn_craft(profile,('smithing','alchemy')[target-1]) if action=='craft_learn' else buy_craft_material(profile,target) if action=='craft_material' else craft_item(profile,target,uuid4()))
+        elif action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
+            success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
+        elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
+            success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
+        elif action=='camp_donate' and obs.camp_action==action and target is None:
+            success=donate_to_camp(profile,10,uuid4())
+        elif action=='camp_upgrade' and obs.camp_action==action and target==obs.camp_target_id:
+            success=upgrade_camp(profile,list(UPGRADES)[target-1],obs.camp_upgrade_level)
+        elif action==obs.magic_action and target==obs.magic_target and action in {'learn_circle','prepare_magic','buy_magic','clear_magic'}:
+            success=bool(learn_circle(profile) if action=='learn_circle' else prepare_magic(profile,None) if action=='clear_magic' else prepare_magic(profile,target) if action=='prepare_magic' else purchase_magic(profile,target))
+        elif action in story_services and action == story.action and target == story.target:
+            success = bool(story_services[action](profile, target))
+        elif action == 'story_talk' and action == story.action and target == story.target:
+            success = choose_story(profile, target, story.goal, story.option)
+        elif action == 'story_travel' and action == story.action and target == story.target:
+            success = travel_story(profile, target, story.goal)
+        elif action == "claim" and obs.reward_ready:
+            success = game.claim_ore_reward(profile)
+        elif action == "mine":
+            success = game.start_mining(profile, 15)
+        elif action == "equip" and equipment and target == equipment.pk:
+            success = game.equip_item(profile, equipment)
+        elif action == "consume" and consumable and target == consumable.pk:
+            success = game.use_item(profile, consumable)
+        elif action == "sell" and disposal and target == disposal.pk:
+            success = game.sell_item_from_npc(profile, disposal)
+        elif action == "train" and obs.training_needed:
+            success = game.train_attribute(profile, training)
+        elif action == "hunt" and hunt and target is None:
+            success = game.execute_hunt(profile, hunt[2], hunt[3]) is not False
+        elif action == "boss" and boss_key and target is None:
+            success = game.execute_boss(profile, boss_key) is not False
+        elif action == "camp" and target == camp_target:
+            success = game.choose_camp(profile, ("OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP")[camp_target - 1])
+        elif action in ("accept", "promote") and action == rank_action and rank and target == obs.rank_target:
+            success = (accept_camp_quest if action == "accept" else promote_in_camp)(profile, rank.key)
+        elif action == "adventure" and template and target == template.pk:
+            success = bool(start_adventure(profile, template.pk))
+        elif action == "adventure_claim" and run and target == run.pk:
+            success = claim_adventure(profile, run.pk)
+        elif action == "shop" and product and target == product.pk:
+            success = bool(purchase_product(profile, product.pk, uuid4()))
+        elif action == "list" and item and target == item.pk:
+            from .market_policy import listing_price
+            price = listing_price(profile,item)
+            success = game.list_item_on_market(profile, item, price)
+        elif action == "buy" and offer and target == offer.pk:
+            success = game.buy_item_on_market(profile, offer)
+        elif action == "stock" and stock and target == stock.pk:
+            success = game.buy_item_from_npc(profile, stock)
+        elif action == "wait":
+            success = True
+        else:
+            record_decision(profile, obs, "rejected", None, False, policy_version)
+            return "rejected", False
+        if success and action != "wait":
+            profile.refresh_from_db()
+            profile.bot_turn += 1
+            profile.save(update_fields=["bot_turn"])
+        profile.bot_last_tick=timezone.now()
+        profile.save(update_fields=["bot_last_tick"])
+        record_decision(profile, obs, action, target, success, policy_version)
+        from .community import bot_conversation
+        bot_conversation(profile)
+        return action, success

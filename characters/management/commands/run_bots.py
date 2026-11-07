@@ -52,6 +52,11 @@ class Command(BaseCommand):
         if options["create_only"]:
             self.stdout.write("Bot population initialized without taking actions.")
             return
+        from characters.scheduler_lease import SchedulerGuard,LeaseLost
+        from characters.worlds import current_world
+        guard=SchedulerGuard(current_world())
+        try:guard.acquire()
+        except LeaseLost as exc:raise CommandError(str(exc)) from exc
         from characters.world_events import ensure_world_events
         from django.utils import timezone
         event_day = None
@@ -59,14 +64,16 @@ class Command(BaseCommand):
         try:
             while options["loop"] or round_number < options["rounds"]:
                 if event_day != polish_day():
-                    ensure_world_events()
+                    with guard.work():ensure_world_events()
                     event_day = polish_day()
                 from characters.worlds import current_world
                 profiles = PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).order_by("pk")[: options["limit"]]
                 for profile in profiles:
                     try:
-                        action, success = tick_bot(profile)
+                        action, success = tick_bot(profile,lease=guard)
                         self.stdout.write(f"{profile.user.username}: {action} {'ok' if success else 'denied'}")
+                    except LeaseLost:
+                        raise
                     except Exception as exc:
                         self.stderr.write(f"{profile.user.username}: bot skipped ({type(exc).__name__})")
                 round_number += 1
@@ -74,3 +81,7 @@ class Command(BaseCommand):
                     time.sleep(options["interval"])
         except KeyboardInterrupt:
             self.stdout.write("Bot scheduler stopped; progress retained.")
+        except LeaseLost as exc:
+            raise CommandError(str(exc)) from exc
+        finally:
+            guard.release()

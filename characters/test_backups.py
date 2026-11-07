@@ -9,7 +9,7 @@ class WorldBackupTests(SimpleTestCase):
     def test_old_save_restore_migrates_preserves_facts_and_retains_only_owned_snapshots(self):
         with TemporaryDirectory() as directory:
             root=Path(directory);source=root/'old.sqlite3';dest=root/'snapshots'
-            result=subprocess.run([sys.executable,'manage.py','migrate','characters','0014','--noinput'],env={**os.environ,'ORE_DATABASE_PATH':str(source)},cwd=settings.BASE_DIR,capture_output=True)
+            result=subprocess.run([sys.executable,'manage.py','migrate','characters','0014','--noinput'],env=__import__('ore_empire.database',fromlist=['sqlite_environment']).sqlite_environment(source),cwd=settings.BASE_DIR,capture_output=True)
             self.assertEqual(result.returncode,0,result.stderr.decode())
             with sqlite3.connect(source) as db:
                 db.execute("INSERT INTO auth_user (password,last_login,is_superuser,username,first_name,last_name,email,is_staff,is_active,date_joined) VALUES ('private-hash','2026-01-01',1,'keeper','','','',1,1,'2026-01-01')")

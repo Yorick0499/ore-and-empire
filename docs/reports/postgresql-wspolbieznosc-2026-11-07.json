@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "engine": "postgresql",
+  "isolated_test_database": true,
+  "success": true,
+  "scenarios": [
+    {
+      "scenario": "postgresql-100-botow-i-4-graczy",
+      "bots": 100,
+      "player_requests": 20,
+      "elapsed_seconds": 3.895,
+      "http_p95_ms": 404.39,
+      "errors": 0
+    }
+  ],
+  "limits": [
+    "Krótka próba lokalna, nie prognoza wydajności hostingu ani wielodniowej gospodarki."
+  ]
+}
