@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "migration": "0032_pochodzenie_rynsztunku",
-  "theme": "rynsztunek-mmorpg-1",
-  "fixture": "Kolonia nad Wisłą; 100 botów; syntetyczna postać demonstracyjna poziomu 30, bez ukończonej fabuły",
+  "migration": "0036_ochrona_rynsztunku",
+  "theme": "rynsztunek-i-targ-2",
+  "fixture": "Kolonia nad Wisłą; syntetyczna postać i 100 botów; nowe ujęcia ekwipunku, targu oraz porównywarki",
   "files": [
     {
       "file": "boss.jpg",
@@ -33,6 +33,12 @@
       "bytes": 104866,
       "sha256": "e81fe6519e5122c68eed9e13a04f2dffe2a50834886f767074b2aa4cdb077f68",
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+    },
+    {
+      "file": "comparison.jpg",
+      "bytes": 247968,
+      "sha256": "0fbbaa9f1ae39ab3a6efa4f9c58d14d3ac58435c63d86c5ab218fe301fde66ad",
+      "captured_at_utc": "2026-11-07T15:32:35.961333+00:00"
     },
     {
       "file": "crafting.jpg",
@@ -72,9 +78,9 @@
     },
     {
       "file": "inventory.jpg",
-      "bytes": 340445,
-      "sha256": "f6e770f9a0f9d5d2a5a666160ac84f2ea37d2030f0e0dd80f1347bab916ca51e",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 436466,
+      "sha256": "cc3f491e55786f664a3c278999d84ef136b6d6a3710bffe2fe74242e30bcc0ad",
+      "captured_at_utc": "2026-11-07T15:32:35.960985+00:00"
     },
     {
       "file": "itemshop.jpg",
@@ -102,9 +108,9 @@
     },
     {
       "file": "market.jpg",
-      "bytes": 95870,
-      "sha256": "2f5c732d34af3f1a05a2d5cfe0e2dce1bd75fdce42866eb1051711f3dd56caf3",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 148223,
+      "sha256": "7711abb6b635aeb7d439003473f0841cf00eda948f3d4cf6586844ddf3aaf056",
+      "captured_at_utc": "2026-11-07T15:32:35.961140+00:00"
     },
     {
       "file": "merchant.jpg",
@@ -119,10 +125,22 @@
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
+      "file": "mobile-comparison.jpg",
+      "bytes": 187297,
+      "sha256": "f42d5437c2227cc5a8a1e1a836ab74bc06e164edc590136ca5daddf3019bdaea",
+      "captured_at_utc": "2026-11-07T15:32:35.961797+00:00"
+    },
+    {
       "file": "mobile-equipment.jpg",
-      "bytes": 245166,
-      "sha256": "05c49ef20f2583dffa57b64cda7ce00582a08514530fbcf7b6671ec08ade10ef",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 360424,
+      "sha256": "0d1d6a63d9a64d5870438f42fa3697218353094aeb286eea79084bcac67d18ea",
+      "captured_at_utc": "2026-11-07T15:32:35.961602+00:00"
+    },
+    {
+      "file": "mobile-market.jpg",
+      "bytes": 39868,
+      "sha256": "82435270654b8f3f450d6e18caef8bffa6cd493e4254b1023a520db7f9dfbf79",
+      "captured_at_utc": "2026-11-07T15:32:35.961653+00:00"
     },
     {
       "file": "mobile.jpg",
