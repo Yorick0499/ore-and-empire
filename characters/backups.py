@@ -32,7 +32,7 @@ STABLE = {
     'characters_campproject':['id','guild_id','day','title','objectives','progress','experience_reward','treasury_reward','completed_at'],
     'characters_campcontribution':['id','guild_id','profile_id','project_id','source','kind','amount'],
     'characters_playerprofile': ['id','user_id','world_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','smithing_skill','alchemy_skill','current_mana','equipment_mana','prepared_magic_id'],
-    'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at','upgrade_level','origin','is_protected'],
+    'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at','upgrade_level','origin','is_protected','rarity'],
     'characters_storyrun': ['id','profile_id','quest_id','status','progress','snapshot','choices','claimed_at'],
     'characters_adventurerun': ['id','profile_id','template_id','claimed_at'],
     'characters_economicentry': ['id','profile_id','resource','amount','balance_after','category','reference'],
@@ -63,6 +63,10 @@ def inspect_database(path, specification=None):
             columns=[f for f in fields if f in available]
             if specification and columns!=fields: raise ValueError('Missing restore columns')
             rows=db.execute('SELECT '+','.join(columns)+' FROM '+table+' ORDER BY id').fetchall()
+            if table=='characters_owneditem' and 'rarity' in available and 'rarity' not in columns and 'upgrade_level' in columns:
+                rarities=dict(db.execute('SELECT id,rarity FROM characters_owneditem'))
+                level_index=columns.index('upgrade_level'); id_index=columns.index('id')
+                rows=[tuple(value+2*rarities[row[id_index]] if index==level_index else value for index,value in enumerate(row)) for row in rows]
             if table=='characters_storyrun' and 'snapshot' in columns:
                 # Text-only narrative migrations may relabel a quest, never change its contract.
                 snapshot_index=columns.index('snapshot');normalized=[]

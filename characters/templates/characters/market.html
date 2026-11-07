@@ -14,7 +14,7 @@
             <form method="get" class="colony-panel market-filters">
                 <label>Nazwa <input name="q" value="{{ market_filters.q }}" maxlength="100"></label>
                 <label>Kategoria <select name="kind"><option value="">Wszystkie</option>{% for key,label in item_kinds %}<option value="{{ key }}" {% if key == market_filters.kind %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
-                <label>Ranga <select name="quality"><option value="">Wszystkie</option>{% for rank in all_quality_ranks %}<option value="{{ rank.key }}" {% if rank.key == market_filters.quality %}selected{% endif %}>{{ rank.name }}</option>{% endfor %}</select></label>
+                <label>Rzadkość <select name="quality"><option value="">Wszystkie</option>{% for rank in all_quality_ranks %}<option value="{{ rank.key }}" {% if rank.key == market_filters.quality %}selected{% endif %}>{{ rank.name }}</option>{% endfor %}</select></label>
                 <label>Maks. cena całej oferty <input type="number" name="max_price" min="1" max="1000000" value="{{ market_filters.max_price }}"></label>
                 <label>Sprzedawca <select name="seller"><option value="">Wszyscy</option><option value="mine" {% if market_filters.seller == 'mine' %}selected{% endif %}>Tylko moje</option><option value="others" {% if market_filters.seller == 'others' %}selected{% endif %}>Inni skazańcy</option></select></label>
                 <label>Kolejność <select name="sort"><option value="newest" {% if market_filters.sort == 'newest' %}selected{% endif %}>Najnowsze</option><option value="price" {% if market_filters.sort == 'price' %}selected{% endif %}>Cena całej oferty rosnąco</option><option value="price-desc" {% if market_filters.sort == 'price-desc' %}selected{% endif %}>Cena całej oferty malejąco</option><option value="unit" {% if market_filters.sort == 'unit' %}selected{% endif %}>Cena jednej sztuki rosnąco</option></select></label>
@@ -50,7 +50,7 @@
                                     <form method="POST" class="market-form">
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="buy">
-                                        <input type="hidden" name="buy_item_id" value="{{ item.id }}">
+                                        <input type="hidden" name="buy_item_id" value="{{ item.id }}"><input type="hidden" name="expected_price" value="{{ item.market_price }}">
                                         <span class="price-tag">{{ item.market_price }} rudy / całość<br><small>{{ item.unit_price|floatformat:2 }} / szt.</small></span>
                                         <button type="submit" class="gothic-btn btn-buy">Kup</button>
                                     </form>

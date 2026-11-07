@@ -330,7 +330,6 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .table-scroll { max-width: 100%; overflow-x: auto; }
 
 .quality-badge{display:inline-block;max-width:100%;margin:.5rem 0;padding:.2rem .6rem;border:1px solid #857457;color:#c6bda4;font-size:.85rem;overflow-wrap:anywhere}
-.quality-reforged{border-color:#9ba7ad;color:#d8e5eb}.quality-ore-forged{border-color:#698f74;color:#b3dab9}.quality-runic{border-color:#5484bb;color:#a5c9f7}.quality-enchanted{border-color:#9b72bf;color:#dab8f1}.quality-barrier-marked{border-color:#d5ae51;color:#ffe0a0;box-shadow:0 0 12px #bb8e2622}
 
 .item-thumbnail{max-width:110px;margin:0 0 .5rem}.item-thumbnail img{height:72px;object-fit:contain}.item-thumbnail figcaption{font-size:.65rem;overflow-wrap:anywhere}
 
@@ -350,3 +349,5 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 
 .comparison-table thead th:not(:first-child), .comparison-table td { white-space: nowrap; overflow-wrap: normal; }
 @media (max-width: 480px) { .comparison-table th, .comparison-table td { padding: 8px 4px; } }
+
+.quality-masterwork{border-color:#698f74;color:#b3dab9}.quality-enchanted{border-color:#5484bb;color:#a5c9f7}.quality-runic{border-color:#9b72bf;color:#dab8f1}.quality-ancient{border-color:#d5ae51;color:#ffe0a0;box-shadow:0 0 12px #bb8e2622}

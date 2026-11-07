@@ -4,7 +4,19 @@ from .models import ItemBluePrint
 from .equipment import add_item
 from django.db.models import Q
 
-GEAR_VERSION=2
+GEAR_VERSION=3
+RARITY_WEIGHTS = (6000,2500,1000,400,100)
+BOSS_RARITY_WEIGHTS = (4000,3000,1800,1000,200)
+
+
+def roll_rarity(*, boss=False):
+    roll=random.randrange(10000); threshold=0
+    for rank,weight in enumerate(BOSS_RARITY_WEIGHTS if boss else RARITY_WEIGHTS):
+        threshold+=weight
+        if roll < threshold:return rank
+    raise ValueError("Invalid rarity weights")
+
+
 TIERS=(0,5,10,20,30)
 
 
@@ -39,8 +51,8 @@ def award_gear(profile,level,*,boss=False,guaranteed=False):
         if not pool:
             pool=list(ItemBluePrint.objects.filter(catalog_key__startswith=f'colony-loot-{tier}-').order_by('pk'))
         if pool:
-            bp=random.choice(pool);add_item(profile,bp,origin="loot")
-            drops.append({'blueprint':bp.pk,'name':bp.name,'quantity':1})
+            bp=random.choice(pool);item=add_item(profile,bp,origin="loot",rarity=roll_rarity(boss=boss))
+            drops.append({'blueprint':bp.pk,'name':item.display_name,'quantity':1,'rarity':item.rarity,'rarity_key':item.quality["key"],'upgrade_level':0,'item_id':item.pk})
     if boss or guaranteed or random.randrange(10000)<3500:
         bp=ItemBluePrint.objects.filter(catalog_key='rune-dust').first()
         if bp:

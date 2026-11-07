@@ -89,14 +89,16 @@ def combat_values(profile):
     return damage, min(100, skill), weapon.damage_type if weapon else 'weapon'
 
 
-def add_item(profile, blueprint, quantity=1, *, origin="legacy"):
-    if blueprint.stackable:
-        item = profile.inventory.filter(blueprint=blueprint, origin=origin, is_equipped=False, is_market_listed=False, is_protected=False).order_by('pk').first()
+def add_item(profile, blueprint, quantity=1, *, origin="legacy", rarity=0):
+    if type(rarity) is not int or not 0 <= rarity <= 4 or (rarity and (not blueprint.equippable or quantity != 1)):
+        raise ValueError("Nieprawidłowa rzadkość egzemplarza")
+    if blueprint.stackable and rarity == 0:
+        item = profile.inventory.filter(blueprint=blueprint, origin=origin, is_equipped=False, is_market_listed=False, is_protected=False, rarity=0, upgrade_level=0).order_by('pk').first()
         if item:
             item.quantity += quantity
             item.save(update_fields=['quantity'])
             return item
-    return OwnedItem.objects.create(owner=profile, blueprint=blueprint, quantity=quantity, origin=origin)
+    return OwnedItem.objects.create(owner=profile, blueprint=blueprint, quantity=quantity, origin=origin, rarity=rarity)
 
 
 def set_item_protection(profile, item_id, protected):

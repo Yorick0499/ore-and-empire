@@ -33,7 +33,7 @@ nadmiar materiałów, rezerwując dostawy questowe. Obserwacje mają wersję 17;
 
 ## Dopracowanie pełnej edycji
 
-Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. [Pula 35 łupów, odzysk pyłu, pięć nazwanych rang i koszty przekucia](LOOT_AND_ENDGAME.md).
+Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. [Pula 35 łupów, odzysk pyłu, pięć stałych rzadkości łupu i przekucie do +3](LOOT_AND_ENDGAME.md).
 
 ## Zabezpieczenie cennego sprzętu (#80)
 
@@ -63,3 +63,11 @@ wymienione osobno. Założenie ponownie sprawdza wymagania po stronie serwera.
 Podgląd nie zmienia zdrowia, many, wyposażenia ani walut. To różnice sprzętu,
 nie prognoza DPS: zmiana typu broni zmienia również używaną umiejętność,
 atrybut, koszt amunicji i rodzaj ochrony przeciwnika.
+
+## Stała rzadkość i przekucie (#84)
+
+Niewykończony → Mistrzowski → Nasycony magią → Runiczny → Pradawny oznacza
+kolejność od common do legendary. To osobne, niezmienne pole egzemplarza.
+Kuźnia podnosi wyłącznie +0–+3. Przekucie nie zmienia filtra rzadkości,
+handlowanie nie zeruje obu cech. Migracja historycznych stopni zachowuje ich moc.
+[Szanse dropu, koszty i przeliczenie zapisów](LOOT_AND_ENDGAME.md).

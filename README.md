@@ -101,3 +101,9 @@ Porównywarka pokazuje efektywne różnice oraz wymagania przed założeniem; pr
 pierścieniach wybierasz zastępowany slot. Targ ma filtry, ceny jednostkowe i osobne
 strony ofert, własnych ogłoszeń oraz plecaka. [Ekwipunek](docs/EQUIPMENT.md) ·
 [zasady targu](docs/MARKET_POLICY.md).
+
+### Rzadkość zdobywasz z łupem
+
+**Niewykończony → Mistrzowski → Nasycony magią → Runiczny → Pradawny**.
+Rzadkość egzemplarza pozostaje stała. Kuźnia osobno podnosi jego przekucie do **+3**.
+Rzadkości nie można wykupić kolejnym przekuciem. [Drop, koszty i zachowanie starych zapisów](docs/LOOT_AND_ENDGAME.md).

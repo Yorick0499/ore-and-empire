@@ -40,7 +40,7 @@ class ItemProtectionTests(TestCase):
         self.assertTrue(improve_item(self.profile, self.item.pk, 0, uuid4()))
         self.assertTrue(game.unequip_item(self.profile, self.item))
         self.item.refresh_from_db()
-        self.assertEqual(self.item.upgrade_level, 2)
+        self.assertEqual(self.item.upgrade_level, 1)
         self.assertTrue(self.item.is_protected)
         self.assertTrue(set_item_protection(self.profile, self.item.pk, False))
         self.assertTrue(set_item_protection(self.profile, self.item.pk, False))

@@ -314,6 +314,7 @@ class OwnedItem(models.Model):
         PlayerProfile, on_delete=models.CASCADE, related_name="inventory"
     )
     quantity = models.PositiveIntegerField(default=1)
+    rarity = models.PositiveSmallIntegerField(default=0, editable=False)
     upgrade_level = models.PositiveSmallIntegerField(default=0)
     origin = models.CharField(max_length=12, default="legacy", choices=[(v,v) for v in ("legacy","loot","merchant","craft","reward","admin")])
 
@@ -333,12 +334,12 @@ class OwnedItem(models.Model):
 
     @property
     def display_name(self):
-        return self.blueprint.name + (f" · {self.quality_name}" if self.upgrade_level else "")
+        return self.blueprint.name + (f" · {self.quality_name}" if self.blueprint.equippable else "") + (f" +{self.upgrade_level}" if self.upgrade_level else "")
 
     @property
     def quality(self):
         from .enhancements import QUALITY_RANKS
-        return QUALITY_RANKS[(self.upgrade_level+1)//2]
+        return QUALITY_RANKS[self.rarity]
 
     @property
     def quality_name(self):
@@ -354,7 +355,10 @@ class OwnedItem(models.Model):
         return {'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II'}.get(self.equipped_slot,'Plecak')
 
     def save(self, *args, **kwargs):
-        previous = type(self).objects.filter(pk=self.pk).values('owner_id','is_equipped').first() if self.pk else None
+        previous = type(self).objects.filter(pk=self.pk).values('owner_id','is_equipped','rarity').first() if self.pk else None
+        if previous and self.rarity != previous['rarity']:
+            from django.core.exceptions import ValidationError
+            raise ValidationError('Rzadkość egzemplarza jest stała.')
         was_equipped = bool(previous and previous['is_equipped'])
         if not self.is_equipped:
             self.equipped_slot = ''
@@ -373,7 +377,7 @@ class OwnedItem(models.Model):
         constraints = [
             models.CheckConstraint(condition=models.Q(is_protected=False) | models.Q(is_market_listed=False), name='protected_item_not_listed'),
             models.CheckConstraint(condition=models.Q(quantity__gte=1), name='owned_quantity_positive'),
-            models.CheckConstraint(condition=models.Q(upgrade_level__lte=10) & (models.Q(upgrade_level=0) | models.Q(quantity=1)), name='owned_upgrade_bounds'),
+            models.CheckConstraint(condition=models.Q(upgrade_level__lte=3,rarity__lte=4) & (models.Q(upgrade_level=0,rarity=0) | models.Q(quantity=1)), name='owned_upgrade_bounds'),
             models.UniqueConstraint(fields=['owner','equipped_slot'], condition=models.Q(is_equipped=True), name='one_equipment_per_slot'),
             models.CheckConstraint(condition=(models.Q(is_equipped=False, equipped_slot='') | (models.Q(is_equipped=True) & models.Q(equipped_slot__in=['weapon','armor','amulet','ring1','ring2']))), name='equipment_slot_consistent'),
         ]

@@ -27,8 +27,13 @@ def save_battle(profile, key, monster, location, won, log, experience=0, ore=0, 
             if roll < threshold:
                 blueprint = ItemBluePrint.objects.get(pk=entry['blueprint'])
                 quantity = random.randint(entry.get('min',1), entry.get('max',1))
-                add_item(profile,blueprint,quantity,origin="loot")
-                loot.append({'blueprint':blueprint.pk,'name':blueprint.name,'quantity':quantity})
+                if blueprint.equippable:
+                    from .gear_loot import roll_rarity
+                    items=[add_item(profile,blueprint,origin="loot",rarity=roll_rarity()) for _ in range(quantity)]
+                    loot.extend({"blueprint":blueprint.pk,"name":item.display_name,"quantity":1,"rarity":item.rarity,"rarity_key":item.quality["key"],"upgrade_level":0,"item_id":item.pk} for item in items)
+                else:
+                    add_item(profile,blueprint,quantity,origin="loot")
+                    loot.append({'blueprint':blueprint.pk,'name':blueprint.name,'quantity':quantity})
                 log.append(f"Łup: {blueprint.name} ×{quantity}.")
                 break
     if won:

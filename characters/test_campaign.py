@@ -196,7 +196,7 @@ class CampaignTests(TestCase):
             upgrade_key=response.context['request_key']
             response=self.client.post('/ekwipunek/',{'action':'improve','item_id':weapon.pk,'expected_level':0,'request_key':upgrade_key})
         self.assertEqual(response.status_code,302)
-        weapon.refresh_from_db();self.assertEqual(weapon.upgrade_level,2)
+        weapon.refresh_from_db();self.assertEqual(weapon.upgrade_level,1)
         with advance():
             key=uuid4()
             response=self.client.post('/warty/',{'depth':1,'request_key':key,'ore':999999})

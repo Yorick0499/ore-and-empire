@@ -39,7 +39,7 @@ def create_pg_backup(root,keep=7):
             if result.returncode:raise ValueError('pg_dump nie powiódł się; nie opublikowano częściowej kopii.')
         dump.chmod(0o600)
         revision=subprocess.run(['git','rev-parse','HEAD'],cwd=settings.BASE_DIR,capture_output=True,text=True).stdout.strip()
-        manifest={'schema':1,'engine':'postgresql','created_at':datetime.now(timezone.utc).isoformat(),'code_revision':revision,'database_sha256':sha(dump),'logical_sha256':hashlib.sha256(logical).hexdigest(),'models':counts,'excluded_ephemeral':EXCLUDES}
+        manifest={'schema':1,'inventory_schema':2,'engine':'postgresql','created_at':datetime.now(timezone.utc).isoformat(),'code_revision':revision,'database_sha256':sha(dump),'logical_sha256':hashlib.sha256(logical).hexdigest(),'models':counts,'excluded_ephemeral':EXCLUDES}
         manifest_path=staging/'manifest.json';manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2));manifest_path.chmod(0o600)
         dest=root/('world-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid4().hex[:8]);staging.rename(dest)
         for old in backups(root)[keep:]:shutil.rmtree(old)
@@ -71,7 +71,7 @@ def restore_pg_drill(backup,target):
                 restored.execute('UPDATE characters_schedulerlease SET owner=NULL,expires_at=CURRENT_TIMESTAMP')
             facts=subprocess.run([sys.executable,str(settings.BASE_DIR/'manage.py'),'dumpdata','--format','precise_json','--all','--natural-foreign',*[arg for item in EXCLUDES for arg in ('--exclude',item)]],cwd=settings.BASE_DIR,env=env,capture_output=True,timeout=300)
             if facts.returncode:raise ValueError('Nie udało się zweryfikować osobnej kopii.')
-            logical,counts=canonical(facts.stdout)
+            logical,counts=canonical(facts.stdout,legacy_equipment=manifest.get("inventory_schema",1)==1)
             if hashlib.sha256(logical).hexdigest()!=manifest['logical_sha256'] or counts!=manifest['models']:raise ValueError('Odtworzony zapis różni się od snapshotu.')
             proof={'schema':1,'verified_at':datetime.now(timezone.utc).isoformat(),'engine':'postgresql','tables':len(counts),'database_sha256':sha(dump),'migration_applied':True,'target':target}
             tmp=backup/'.verification.tmp';tmp.write_text(json.dumps(proof,indent=2));tmp.chmod(0o600);tmp.replace(backup/'verification.json')

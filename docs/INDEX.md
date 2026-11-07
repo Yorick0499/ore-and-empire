@@ -49,3 +49,7 @@ Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia:
 
 - [Pętla kampanii po dopracowaniu rynsztunku i targu](reports/rynsztunek-targ-petla-2026-11-07.json) — 87 scenariuszy.
 - [GUI rynsztunku i targu](reports/rynsztunek-targ-gui-2026-11-07.json) — formularze i 320/390/1440 px.
+
+- [Stała rzadkość i przekucie +3 — GUI](reports/rzadkosc-kuznia-gui-2026-11-07.json).
+- [Migracja rzadkości — kontrola statystyk prywatnej kopii](reports/rzadkosc-migracja-2026-11-07.json) — raport zawiera wyłącznie zbiorcze wyniki, bez zapisu i danych logowania.
+- [Kampania, boty i nadużycia po zmianie rzadkości](reports/rzadkosc-kuznia-petla-2026-11-07.json).
