@@ -5,18 +5,28 @@ from .models import EquipmentWork, ItemBluePrint
 
 DUST_KEY = 'rune-dust'
 MAX_UPGRADE = 10
+QUALITY_RANKS = (
+    {'key':'ordinary','name':'Zwykły','ore':0,'dust':0},
+    {'key':'reforged','name':'Wykuty na nowo','ore':60,'dust':3},
+    {'key':'ore-forged','name':'Hartowany rudą','ore':300,'dust':10},
+    {'key':'runic','name':'Runiczny','ore':1200,'dust':20},
+    {'key':'enchanted','name':'Nasycony magią','ore':3600,'dust':30},
+    {'key':'barrier-marked','name':'Naznaczony Barierą','ore':6390,'dust':47},
+)
 STAT_FIELDS = ('damage','weapon_prot','arrow_prot','fire_prot','magic_prot','strength_bonus','dexterity_bonus','mana_bonus','life_bonus')
 
 
 def effective_stats(item):
-    # Base catalog is immutable. A +10 item has +50% of its own non-zero stats.
+    # Keep the historical power counter intact: existing equipment never loses stats.
     return {key: value + max(item.upgrade_level, value * item.upgrade_level // 20) if value else 0
             for key in STAT_FIELDS for value in [getattr(item.blueprint,key)]}
 
 
 def upgrade_cost(item):
-    n = item.upgrade_level + 1
-    return {'level':n,'ore':30*n*n,'dust':2*n} if n <= MAX_UPGRADE and item.blueprint.equippable and item.quantity == 1 else None
+    rank = (item.upgrade_level + 1)//2 + 1
+    if rank >= len(QUALITY_RANKS) or not item.blueprint.equippable or item.quantity != 1:
+        return None
+    return {**QUALITY_RANKS[rank], 'level':rank*2}
 
 
 def request(profile, item_id, key, action):
@@ -49,8 +59,8 @@ def improve_item(profile,item_id,expected_level,key):
         else:stack.quantity-=amount;stack.save(update_fields=['quantity'])
         remaining-=amount
     profile.ore_balance-=cost['ore'];profile.save(update_fields=['ore_balance'])
-    item.upgrade_level+=1;item.save(update_fields=['upgrade_level'])
-    return EquipmentWork.objects.create(profile=profile,request_key=key,item_id_snapshot=item.pk,action='improve',snapshot={'name':item.display_name,**cost})
+    item.upgrade_level=cost['level'];item.save(update_fields=['upgrade_level'])
+    return EquipmentWork.objects.create(profile=profile,request_key=key,item_id_snapshot=item.pk,action='improve',snapshot={**cost,'name':item.display_name,'quality':item.quality_name,'tempering_version':2})
 
 
 @player_action
@@ -58,9 +68,9 @@ def salvage_item(profile,item_id,key):
     prior,key=request(profile,item_id,key,'salvage')
     if prior is not None:return prior
     if key is None or profile.is_busy:return False
-    item=profile.inventory.select_for_update().select_related('blueprint').filter(pk=item_id,is_equipped=False,is_market_listed=False,quantity=1,blueprint__catalog_key__startswith='colony-loot-').first()
+    item=profile.inventory.select_for_update().select_related('blueprint').filter(pk=item_id,is_equipped=False,is_market_listed=False,quantity=1).first()
     dust=ItemBluePrint.objects.filter(catalog_key=DUST_KEY).first()
-    if not item or not dust:return False
+    if not item or not item.can_salvage or not dust:return False
     amount=2+item.blueprint.min_level//5+item.upgrade_level
     name=item.display_name
     from .market_policy import record_market_event
