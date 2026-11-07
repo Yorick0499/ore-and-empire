@@ -130,3 +130,23 @@ def consume_ammo(profile):
         item.quantity -= 1
         item.save(update_fields=['quantity'])
     return True
+
+
+def physical_survival_health(profile, monster, damage=None):
+    """Conservative no-critical forecast using the actual deterministic boss phases."""
+    import math
+    damage = combat_values(profile)[0] if damage is None else damage
+    if monster.get('boss_key'):
+        from .bosses import encounter_round
+        kind = combat_values(profile)[2]
+        health=monster['life'];incoming=0;turn=0
+        while health>0:
+            turn+=1
+            _,protection,strength,incoming_kind,_=encounter_round(monster,health,turn)
+            health-=max(1,damage-(protection if kind in {'weapon','arrow'} else monster.get(kind+'_prot',0)))
+            if health<=0:break
+            incoming+=max(1,strength-profile.effective_protection(incoming_kind))
+        return incoming+10
+    rounds = math.ceil(monster['life'] / max(1, damage - monster.get('forecast_protection',monster['weapon_prot'])))
+    incoming = max(1,monster.get('forecast_strength',monster['strength'])-profile.effective_protection(monster.get('damage_type','weapon')))
+    return (rounds-1)*incoming+10

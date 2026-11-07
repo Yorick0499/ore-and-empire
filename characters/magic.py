@@ -116,20 +116,26 @@ def offers(profile):
 
 
 def survival_health(profile,monster,plan,mana=None):
-    """Conservative deterministic forecast: no critical hits, actual mana/scroll budget."""
-    health=monster['life'];mana=profile.current_mana if mana is None else mana;casts=0;incoming=0
-    protection=min(profile.effective_protection('weapon'),profile.effective_protection('magic')) if monster.get('boss_key')=='sleeper_sanctum' else profile.effective_protection(monster.get('damage_type','weapon'))
-    base=max(1,monster.get('forecast_strength',monster['strength'])-protection)
+    """No-critical forecast with the same boss phases, mana and spell rules as combat."""
+    health=monster['life'];mana=profile.current_mana if mana is None else mana;casts=0;incoming=0;turn=0
     while health>0:
+        turn+=1
+        protection=monster.get('forecast_protection',monster.get('weapon_prot',0))
+        strength=monster.get('forecast_strength',monster['strength']);kind=monster.get('damage_type','weapon')
+        if monster.get('boss_key'):
+            from .bosses import encounter_round
+            _,protection,strength,kind,_=encounter_round(monster,health,turn)
         casting=mana>=plan.cost and (not plan.scroll or casts<plan.quantity)
         if casting:
             spell=plan.spell;mana-=plan.cost;casts+=1
             damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
-        else:damage=max(1,profile.strength+profile.equipment_stats['strength_bonus']-monster.get('forecast_protection',monster.get('weapon_prot',0)))
+            if monster.get('boss_key')=='crawler_nest' and spell.damage_type=='fire':damage=damage*120//100
+        else:damage=max(1,profile.strength+profile.equipment_stats['strength_bonus']-protection)
         health-=damage
         if health<=0:break
+        amount=max(1,strength-profile.effective_protection(kind))
         if casting and spell.stagger_every and casts%spell.stagger_every==0:continue
-        incoming+=max(1,base*(100-spell.mitigation)//100) if casting else base
+        incoming+=max(1,amount*(100-spell.mitigation)//100) if casting and spell.mitigation else amount
     return incoming+10
 
 
@@ -141,11 +147,8 @@ def bot_magic_plan(profile,inventory,target=None):
     usable=[item for item in inventory if not item.is_market_listed and item.blueprint.catalog_key in BY_CODE and not BY_CODE[item.blueprint.catalog_key][1] and rune_allowed(profile,BY_CODE[item.blueprint.catalog_key][0])]
     best=max(usable,key=lambda item:BY_CODE[item.blueprint.catalog_key][0].circle,default=None)
     if target and best:
-        from .equipment import combat_values
-        import math
-        damage,_,kind=combat_values(profile)
-        rounds=math.ceil(target['life']/max(1,damage-target.get(kind+'_prot',target.get('weapon_prot',0) if kind=='arrow' else 0)))
-        physical=(rounds-1)*max(1,target['strength']-profile.effective_protection(target.get('damage_type','weapon')))+10
+        from .equipment import physical_survival_health
+        physical=physical_survival_health(profile,target)
         best=min(usable,key=lambda item:survival_health(profile,target,MagicPlan(BY_CODE[item.blueprint.catalog_key][0],item.pk,False,item.quantity)))
         forecast=survival_health(profile,target,MagicPlan(BY_CODE[best.blueprint.catalog_key][0],best.pk,False,best.quantity))
         if profile.current_mana<BY_CODE[best.blueprint.catalog_key][0].cost or forecast>=physical:

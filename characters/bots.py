@@ -275,9 +275,8 @@ def choose_upgrade(stock, offers, damage, ore):
 
 
 def health_needed(profile, monster, damage):
-    rounds = math.ceil(monster["life"] / max(1, damage - monster.get("forecast_protection",monster["weapon_prot"])))
-    incoming = max(1, monster.get("forecast_strength",monster["strength"]) - min(profile.effective_protection("weapon"),profile.effective_protection("magic")) if monster.get("boss_key")=="sleeper_sanctum" else monster.get("forecast_strength",monster["strength"]) - profile.effective_protection(monster.get("damage_type", "weapon")))
-    return (rounds - 1) * incoming + 10
+    from .equipment import physical_survival_health
+    return physical_survival_health(profile,monster,damage)
 
 
 def health_at_rest(profile,monster,damage):

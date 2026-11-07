@@ -202,3 +202,36 @@ class RareBotEquipmentTests(TestCase):
         self.assertNotEqual(observation['inventory_id'],item.pk)
         self.assertNotEqual(observation['market_action'],'market_sell')
         item.refresh_from_db();self.assertFalse(item.is_market_listed)
+
+    def test_mage_keeps_magic_when_boss_wave_makes_physical_forecast_unsafe(self):
+        from .magic import bot_magic_plan, BY_KEY
+        from .bosses import BOSSES
+        self.p.camp='NEW_CAMP';self.p.guild='ARCH_WATER';self.p.magic_skill=5;self.p.mana=400;self.p.current_mana=400;self.p.strength=70;self.p.save()
+        armor=ItemBluePrint.objects.create(name='Pancerz fizyczny',kind='armor',weapon_prot=75)
+        game.equip_item(self.p,add_item(self.p,armor))
+        bp=ItemBluePrint.objects.create(name='Blok lodu',kind='rune',catalog_key='g1-itarruneicewave')
+        rune=add_item(self.p,bp)
+        action,target=bot_magic_plan(self.p,list(self.p.inventory.select_related('blueprint')),BOSSES['sleeper_sanctum'].monster)
+        self.assertEqual((action,target),('prepare_magic',rune.pk))
+
+    def test_physical_boss_forecast_matches_no_critical_combat_phases(self):
+        from .equipment import physical_survival_health
+        from .bosses import BOSSES
+        self.p.strength=100;self.p.life=3000;self.p.current_health=3000;self.p.save()
+        for boss in BOSSES.values():
+            forecast=physical_survival_health(self.p,boss.monster)
+            with patch('characters.game_logic.random.randint',return_value=100):
+                result=game.simulate_combat(self.p,boss.key,monster=boss.monster)
+            self.assertTrue(result.won)
+            self.assertEqual(forecast,3000-result.remaining_health+10)
+
+    def test_magic_forecast_matches_each_boss_with_real_spell_and_fallback(self):
+        from .magic import survival_health, MagicPlan, BY_KEY
+        from .bosses import BOSSES
+        self.p.strength=100;self.p.life=5000;self.p.current_health=5000;self.p.mana=80;self.p.current_mana=80;self.p.save()
+        plan=MagicPlan(BY_KEY['icewave'],None,False,1)
+        for boss in BOSSES.values():
+            with patch('characters.game_logic.random.randint',return_value=100):
+                result=game.simulate_combat(self.p,boss.key,monster=boss.monster,magic_plan=plan)
+            self.assertTrue(result.won)
+            self.assertEqual(survival_health(self.p,boss.monster,plan),5000-result.remaining_health+10)
