@@ -41,3 +41,5 @@ Dane logowania, `.admin-access.json`, `.env`, bazy i backupy są prywatne. Nie d
 - [Aktualny raport — czas polski](reports/czas-polski-2026-11-06.json).
 - [Historyczny raport pierwszej pełnej pętli](reports/pierwsza-pelna-edycja-2026-11-05.json).
 - [Historyczny model budżetowy gospodarki](reports/economy-baseline-v1.json).
+
+Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia: [PRODUCTION.md](PRODUCTION.md).

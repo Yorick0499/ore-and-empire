@@ -234,3 +234,8 @@ backups/
 *.sqlite3-shm
 
 telemetry-archives/
+
+# Private deployment environments and database dumps
+.env.*
+!.env.production.example
+*.pgdump

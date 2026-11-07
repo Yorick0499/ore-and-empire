@@ -14,7 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+if os.environ.get("ORE_ENV","local") != "production":load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,3 +127,15 @@ LOGOUT_REDIRECT_URL = "login"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 SERIALIZATION_MODULES = {'precise_json':'ore_empire.precise_json'}
+
+PRODUCTION = os.environ.get('ORE_ENV','local') == 'production'
+AUTH_RATE_LIMITS = {'login':5,'ip':30,'register':10,'window':300}
+TRUSTED_PROXY_CIDRS = [s.strip() for s in os.environ.get('ORE_TRUSTED_PROXY_CIDRS','127.0.0.1/32,::1/128').split(',') if s.strip()]
+MIDDLEWARE.append('characters.auth_limits.AuthRateLimitMiddleware')
+if PRODUCTION:
+    from .production import production_settings
+    globals().update(production_settings(os.environ,DATABASES['default']))
+if PRODUCTION or os.environ.get('ORE_BUILD_STATIC')=='1':
+    MIDDLEWARE.insert(1,'whitenoise.middleware.WhiteNoiseMiddleware')
+    STORAGES = {'default':{'BACKEND':'django.core.files.storage.FileSystemStorage'},'staticfiles':{'BACKEND':'whitenoise.storage.CompressedManifestStaticFilesStorage'}}
+    WHITENOISE_MANIFEST_STRICT = True

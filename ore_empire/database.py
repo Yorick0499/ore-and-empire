@@ -29,6 +29,6 @@ def database_config(env,base):
 
 
 def sqlite_environment(path):
-    env={**os.environ,'ORE_DATABASE_ENGINE':'sqlite','ORE_DATABASE_PATH':str(path)}
+    env={**os.environ,'ORE_ENV':'local','ORE_DATABASE_ENGINE':'sqlite','ORE_DATABASE_PATH':str(path)}
     env.pop('DATABASE_URL',None)
     return env

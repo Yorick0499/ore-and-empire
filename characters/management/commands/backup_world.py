@@ -8,7 +8,11 @@ class Command(BaseCommand):
         parser.add_argument('--directory',default=str(settings.BASE_DIR/'backups'))
         parser.add_argument('--keep',type=int,default=7)
     def handle(self,*args,**options):
-        if settings.DATABASES['default']['ENGINE']!='django.db.backends.sqlite3':raise CommandError('PostgreSQL requires pg_dump and a separate restore drill; this command supports SQLite only.')
-        try:path=create_backup(settings.DATABASES['default']['NAME'],options['directory'],options['keep'])
-        except (ValueError,OSError) as exc:raise CommandError(str(exc)) from exc
+        from django.db import connection
+        try:
+            if connection.vendor=='postgresql':
+                from characters.postgres_backups import create_pg_backup
+                path=create_pg_backup(options['directory'],options['keep'])
+            else:path=create_backup(settings.DATABASES['default']['NAME'],options['directory'],options['keep'])
+        except Exception as exc:raise CommandError('Nie udało się utworzyć prywatnej kopii. Sprawdź dostęp do bazy, katalogu i klienta PostgreSQL.') from exc
         self.stdout.write(str(path))

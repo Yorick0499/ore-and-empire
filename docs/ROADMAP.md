@@ -18,7 +18,7 @@ Stan: 7 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 ## Następne fundamenty
 
 1. **#19 wdrożone:** PostgreSQL, weryfikowany import SQLite, rzeczywiste testy współbieżności i dzierżawa schedulera. [Instrukcja](POSTGRESQL.md).
-2. **#24:** publiczny hosting, nadzór procesu, ograniczenia logowań i profil produkcyjny. Obecny launcher jest lokalny/LAN.
+2. **#24 wdrożone:** opcjonalny profil produkcyjny, HTTPS, nadzorowany worker, limity logowań i zweryfikowany staging. [Instrukcja](PRODUCTION.md). Domyślna instalacja pozostaje lokalna; nie opublikowano prywatnego serwera.
 3. Dalsze strojenie gospodarki na podstawie pomiarów. Rosnący obrót nie dowodzi stabilnej podaży waluty.
 
 ## Gothic II: Noc Kruka

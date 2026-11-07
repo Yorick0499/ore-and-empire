@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+.admin-access.json
+*.sqlite3*
+*.pgdump
+backups
+telemetry-archives
+work
+venv
+.venv
+**/__pycache__
+staticfiles
+*.log
