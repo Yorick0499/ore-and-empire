@@ -2,30 +2,15 @@
 
 ## Zakres G1
 
-`characters/data/gothic1-items.json` zawiera **520 pozycji/wariantów kodowych**:
-158 broni, 38 pancerzy, 19 amuletów, 25 pierścieni, 2 rodzaje amunicji,
-25 run, 42 zwoje, 67 napojów/żywności, 80 pism/map/kluczy/przedmiotów fabularnych,
-23 materiały/trofea i 41 pozostałych. To szeroki katalog kodów, a nie twierdzenie,
-że każdy wpis jest unikalnym, dostępnym graczowi przedmiotem.
+Paczka **Gothic I v3** zawiera **522 osobne kody** ze źródłowej listy Gothicpedii: 140 broni, pancerze, biżuterię, runy, zwoje, żywność, mikstury, materiały, pisma, mapy i klucze. Liczba obejmuje warianty wspólnego modelu oraz trzy techniczne wpisy archiwalne, pomijane w zwykłym katalogu gry. To pełna lista przedmiotów z tej rewizji źródła, a nie deklaracja obsługi każdego skryptu oryginalnej gry.
 
-**470 rekordów** mają zweryfikowane statystyki lub efekty z tabel Gothicpedii.
-Pierwsza wersja miała 242 rekordy z tabel wyposażenia i efektów. Wersja 2 dodała 228 cen/efektów z infoboksów dopasowanych po dokładnym kodzie G1 i walucie rudy. Część tych wpisów ma tylko cenę, nie komplet parametrów działania. Reszta ma potwierdzoną
-nazwę/kod i oznaczenie braku kompletnych statystyk. Nie wymyślamy ceny oryginału,
-effektów run czy działania kluczy. Niezweryfikowane rekordy nie trafiają do
-zwykłego sklepu (wyjątek: amunicja z jawną ceną adaptacji). Runy i zwoje pozostają
-katalogiem do czasu #16; stałe mikstury bez pełnej mechaniki także nie są ofertą.
+**520 wpisów** ma potwierdzone parametry, cenę lub efekt; dwa techniczne modele postaci mają tylko tożsamość. 140 broni ma zweryfikowane obrażenia i wymagania, także dwa orcze kostury z oryginalnymi zerowymi obrażeniami. Runy/zwoje korzystają z zaimplementowanej listy zaklęć; pozostałe nadal opisuje katalog. Książki i klucze nie otrzymują wymyślonej mechaniki. Złożone kanały obrażeń G1 są zachowane w danych źródłowych, a silnik przeglądarkowy używa swojego pojedynczego kanału.
 
-Oryginalne obrażenia, wymagania, zasięg, ceny i cztery ochrony/bonusy są zapisane
-w `original_stats`; aktywne bramki poziomu/obozu i istniejący balans to osobne pola.
-Starszych mieczy nie nadpisujemy parametrami G1. Katalog `/przedmioty/` pokazuje oba
-zestawy i źródła, ma filtrowanie oraz paginację. Przy wariantach kodowych nazwy
-mogą się powtarzać. Seedery startowe są na to odporne.
+Indeks `gothic1-source-index.json` przechowuje wszystkie kody, rewizję 585851, skrót zestawu i mapę dwóch starych sklejonych identyfikatorów. Dodano osobno cztery klucze. Stare egzemplarze nie są kasowane. Wersja 3 naprawia niezmienione definicje v2 (np. kamienie ogniskujące błędnie oznaczone jako broń); zachowuje ręcznie dostrojony balans administratora. Niezmieniony plik referencyjny v2 służy wyłącznie do tego porównania.
 
-Źródła faktów: zestawienia Gothicpedii „Bronie w Gothic”, „Pancerze w Gothic”,
-„Amulety w Gothic”, „Pierścienie w Gothic”, „Lista kodów do Gothic” oraz tylko
-sekcje G1 strony „Mikstury”. Źródłowe URL-e są w paczce i przy rekordach.
-Teksty fabularne/poradniki nie są kopiowane. Nie deklarujemy pełnej obsługi
-wszystkich 520 itemów ani kompletnej bazy ich statystyk.
+Każdy z 522 wpisów ma przypisaną ilustrację Gothicpedii, ze wspólnym modelem tam, gdzie źródło nie rozróżnia kodów. Zwój i runa, tomy Chromanina, odmiany ziół, listów oraz kluczy mają dobrany wariant. Techniczne modele postaci otrzymują jawną ilustrację kategorii ubioru. Nie wykorzystujemy obrazu ostrzeżenia Fandomu jako przedmiotu. Adaptacje bez własnego modelu korzystają z podpisanej ilustracji kategorii. Grafiki widać w katalogu, ekwipunku, sklepie i na targu.
+
+Źródła faktów: Gothicpedia „Lista kodów do Gothic”, „Bronie w Gothic”, „Pancerze w Gothic”, „Amulety w Gothic”, „Pierścienie w Gothic” i infoboksy odpowiadające kodom G1. Każdy rekord zachowuje URL i rewizję. Nie kopiujemy treści artykułów. Dane oryginału i aktywny balans gry są osobne.
 
 ## Import danych
 
@@ -43,10 +28,7 @@ SHA-256, format i wymiary oraz pochodzenie/prawa. `asset-selections.json` wskazu
 konkretny tytuł pliku dla gry. Importer nie wybiera pierwszego infoboksu ani obrazka
 strony. Brak jawnego wyboru dla G2 NK odrzuca import zamiast podmieniać grafikę G1.
 
-Dodano 10 ilustracji itemów (miecz, łuk, młot, pancerz, pierścień, amulet,
-skóra, amunicja i mikstura). Pozostałe wpisy nie udają, że mają własny obraz.
-Starszą ikonę mikstury z G2 zastąpiono wskazanym plikiem G1. Pozostałe lokalne
-ilustracje zachowały obrazy i otrzymały hashe/wymiary/metadane.
+Manifest zawiera **632 przypisania grafik**, w tym 522 pozycje katalogowe korzystające z **389 różnych plików**. Obrazy są lokalne, sprawdzane hashami i dekoderem. Manifest jest buforowany według czasu modyfikacji i rozmiaru — karty przedmiotów nie odczytują wielokrotnie całego JSON-a. Ekwipunek i katalog pokazują do 24 kart na stronę.
 
 `import_gothicpedia --only item_rusty_sword --game GOTHIC_I` sprawdza host początkowy
 oraz każdy redirect **przed jego wykonaniem**. Dekodowanie Pillow sprawdza PNG/JPEG/

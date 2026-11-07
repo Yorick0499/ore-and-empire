@@ -40,3 +40,7 @@ python scripts/benchmark_bots.py --seconds 60 --report /tmp/audyt-stu-botow.json
 W 60-sekundowej próbie baseline-16 wszystkie 100 botów otrzymało turę, bez nieudanych decyzji i błędów HTTP. Proces serwera osiągnął 55,57 MiB RSS i 26,10% jednego rdzenia; p95 odpowiedzi HTTP wyniosło 56,19 ms. Wyniki dotyczą maszyny testowej i bieżącego obciążenia, nie są stałym limitem wykorzystania CPU.
 
 Audyt nie jest dowodem braku wszystkich możliwych błędów. Próba HTTP dotyczy lokalnego launchera i ekranu logowania; gotowość PostgreSQL, współbieżność publicznego serwera i wielodniowy balans gospodarki nadal należą do odrębnego zakresu. Aktualizacja nie wymaga resetu świata ani migracji schematu.
+
+## Rozszerzenie rynsztunku — 7 listopada 2026
+
+Tickety #71–75: nazwane rangi, kuźnia podczas fabuły, warty bez finału, 522 kody G1 oraz 632 przypisania ilustracji. Testy wykryły i zabezpieczyły pomylenie ceny runy ze zwojem, import częściowej paczki oraz przerywanie regeneracji botów opcjonalnym patrolem. Dodano 11 regresji katalogu, grafik, cache, pochodzenia, odzysku, filtrów, zachowania historycznej mocy i odblokowania wart. Pełny zestaw przed ostatnimi dwoma testami: 284 zaliczone testy; 53 scenariusze [symulacji](reports/rynsztunek-mmorpg-2026-11-07.json). Sprawdzono GUI 320/390 px i przekucie zwykłym formularzem. Prywatna kopia i odtworzenie zachowały 27 tabel zapisu świata; konta i hasła nie są publikowane.

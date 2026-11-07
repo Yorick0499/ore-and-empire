@@ -84,6 +84,6 @@ def purchase_product(profile, product_id, request_key):
         EnergyRefill.objects.create(profile=profile,reference=f"purchase:{purchase.pk}")
     change_premium(profile, -product.price, "Zakup: " + product.name, f"purchase:{purchase.pk}")
     if product.kind == "weapon":
-        OwnedItem.objects.create(owner=profile, blueprint=product.blueprint)
+        OwnedItem.objects.create(owner=profile, blueprint=product.blueprint, origin="reward")
     profile.save()
     return purchase

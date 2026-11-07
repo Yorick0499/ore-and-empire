@@ -15,10 +15,10 @@ from .asset_packs import validate_image,TrustedRedirect,trusted
 
 
 class ItemPackTests(TestCase):
-    def test_catalog_installs_520_identities_preserves_legacy_balance_and_is_idempotent(self):
+    def test_catalog_installs_522_identities_preserves_legacy_balance_and_is_idempotent(self):
         legacy=ItemBluePrint.objects.create(name='Zardzewiały miecz',damage=12,base_value=25,required_strength=10)
         pack,created=install_catalog(PACK_PATH.read_bytes())
-        self.assertEqual(pack.item_count,520)
+        self.assertEqual(pack.item_count,522)
         self.assertGreater(created,500)
         legacy.refresh_from_db()
         self.assertTrue(legacy.catalog_key.startswith('g1-'))
@@ -60,10 +60,10 @@ class ItemPackTests(TestCase):
         install_catalog(PACK_PATH.read_bytes())
         user=User.objects.create_user('collector');self.client.force_login(user)
         response=self.client.get('/przedmioty/')
-        self.assertContains(response,'520')
+        self.assertContains(response,'522')
         self.assertLessEqual(len(response.context['items']),24)
         verified=self.client.get('/przedmioty/',{'verified':'1'})
-        self.assertEqual(verified.context['items'].paginator.count,470)
+        self.assertEqual(verified.context['items'].paginator.count,519)
         self.assertContains(self.client.get('/przedmioty/',{'q':'Uriziel'}),'Uriziel')
         self.assertContains(self.client.get('/przedmioty/',{'kind':'rune'}),'nie można jej jeszcze używać')
         self.assertLessEqual(len(self.client.get('/sklep/').context['shop_items']),30)

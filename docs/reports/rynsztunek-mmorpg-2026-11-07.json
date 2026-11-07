@@ -1,0 +1,244 @@
+{
+  "schema": 1,
+  "success": true,
+  "elapsed_seconds": 107.49,
+  "isolated_database": true,
+  "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+  "polish_time_scenarios": 4,
+  "loot_endgame_scheduler_scenarios": 12,
+  "time_acceleration": "30 minut symulowanego czasu na krok; wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty",
+  "scenarios": [
+    {
+      "scenario": "gracz-od-zera-do-finalu",
+      "steps": 3721,
+      "simulated_hours": 1860.5,
+      "chapters": 6,
+      "claimed_quests": 27,
+      "level": 30,
+      "experience": 242359,
+      "ore": 5868,
+      "premium": 1,
+      "completion": true
+    },
+    {
+      "scenario": "gracz-po-finale",
+      "upgraded_item": "Legendary Heavy Sword of Burning",
+      "upgrade_level": 2,
+      "patrol_wins": 1,
+      "unlocked": 2,
+      "admin_grants": false
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 534,
+      "simulated_hours": 266.5,
+      "actions": {
+        "stock": 31,
+        "mine": 35,
+        "equip": 37,
+        "list": 1,
+        "claim": 35,
+        "camp": 3,
+        "accept": 12,
+        "buy": 1,
+        "sell": 39,
+        "story_accept": 84,
+        "story_start": 84,
+        "story_talk": 27,
+        "story_claim": 84,
+        "promote": 11,
+        "challenge_accept": 37,
+        "story_travel": 49,
+        "hunt": 97,
+        "train": 474,
+        "improve": 53,
+        "challenge_claim": 13,
+        "raid_rally": 25,
+        "salvage": 53,
+        "raid_strike": 42,
+        "learn_circle": 2,
+        "raid_claim": 13,
+        "achievement_claim": 8,
+        "boss": 8,
+        "camp_donate": 11,
+        "camp_upgrade": 11,
+        "buy_magic": 1,
+        "prepare_magic": 2,
+        "clear_magic": 2,
+        "patrol": 54,
+        "wait": 4
+      },
+      "characters": [
+        {
+          "camp": "OLD_CAMP",
+          "level": 32,
+          "experience": 269713,
+          "ore_balance": 2299,
+          "premium_balance": 15
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 31,
+          "experience": 260641,
+          "ore_balance": 3507,
+          "premium_balance": 12
+        },
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 32,
+          "experience": 266086,
+          "ore_balance": 1225,
+          "premium_balance": 12
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "patrol": 66,
+        "hunt": 39,
+        "salvage": 56,
+        "challenge_accept": 2,
+        "improve": 7,
+        "raid_rally": 3,
+        "sell": 4,
+        "challenge_claim": 1,
+        "camp_upgrade": 1,
+        "camp_donate": 1
+      },
+      "characters": [
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 32,
+          "upgrades": 17
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 41,
+          "upgrades": 20
+        },
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 47,
+          "upgrades": 23
+        }
+      ]
+    },
+    {
+      "scenario": "kontrolowana-macierz-buildow",
+      "synthetic_fixture": true,
+      "encounters": [
+        {
+          "build": "warrior",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "mage",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 74,
+          "mana_spent": 247
+        },
+        {
+          "build": "mage",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 499,
+          "mana_spent": 26
+        },
+        {
+          "build": "mage",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 498,
+          "mana_spent": 39
+        }
+      ]
+    },
+    {
+      "scenario": "wspolna-sesja-gracza-i-botow",
+      "ticks": 40,
+      "bots": 3,
+      "level": 1,
+      "experience": 528,
+      "real_bot_sales_to_player": 1,
+      "distinct_bot_actions": 17
+    },
+    {
+      "scenario": "audyt-blednych-identyfikatorow-i-csrf",
+      "malformed_posts": 24,
+      "csrf_rejections": 2,
+      "progress_unchanged": true
+    },
+    {
+      "scenario": "audyt-powtorzonych-formularzy",
+      "upgrade_replays": 10,
+      "patrol_replays": 10,
+      "upgrades": 1,
+      "patrol_records": 1
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/plac_targowy/",
+      "items": 40,
+      "blueprint_queries": 4
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/sklep/",
+      "items": 40,
+      "blueprint_queries": 4
+    }
+  ],
+  "abuse_scenarios": 6,
+  "clock_scenarios": 4,
+  "finale_scenarios": 4,
+  "mixed_sessions": 1,
+  "build_matrices": 1,
+  "limits": [
+    "Automatyczny przebieg gracza miesza formularze fabuły i zwykłe serwisy rozgrywki; osobny przegląd ręczny sprawdza GUI.",
+    "Nie jest to test współbieżności PostgreSQL ani test publicznego hostingu."
+  ],
+  "audit_scenarios": 19,
+  "bot_policy": "baseline-17"
+}

@@ -231,7 +231,7 @@ class EndgameFormsAuditTests(TestCase):
             after=self.state()
             for _ in range(10):self.assertEqual(self.client.post('/ekwipunek/',upgrade).status_code,302)
             self.assertEqual(self.state(),after)
-            self.item.refresh_from_db();self.assertEqual(self.item.upgrade_level,1)
+            self.item.refresh_from_db();self.assertEqual(self.item.upgrade_level,2)
             patrol={'depth':1,'request_key':uuid4(),'ore':999999,'points':999999}
             self.assertEqual(self.client.post('/warty/',patrol).status_code,302)
             after=self.state()

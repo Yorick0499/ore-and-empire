@@ -8,7 +8,7 @@ Lokalny launcher `play.py` obsługuje HTTP i boty jednym procesem; nie uruchamia
 
 Minimalny odstęp to maksimum z 0,2 sekundy, `--interval / liczba_botów` oraz czterokrotności średniego kosztu ostatnich tur. Dla 100 mieszkańców pełny obieg wynosi co najmniej około 20 sekund plus czas samych akcji i obsługi HTTP. Dla sześciu zachowana jest częstotliwość zbliżona do dawnego obiegu. Dłuższe tury automatycznie spowalniają kolejkę: cel to około 20% czasu na boty, **nie twardy limit CPU**. Nie ma LLM, płatnego API, treningu modeli ani obliczeń na GPU.
 
-Polityka **baseline-16 / schema 16** wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–15 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.
+Polityka **baseline-17 / schema 17** wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–16 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.
 
 Szczegółowe decyzje pozostają ograniczane retencją (`--history-days`, domyślnie 30 pełnych dni UTC) z zachowaniem agregatów. Powtarzane czekanie nie zapisuje nowej decyzji częściej niż co pięć minut. Backup obejmuje przedmioty z poziomami ulepszeń, prace kuźni, postęp i historię wart.
 
@@ -26,3 +26,5 @@ Skrypt zawsze tworzy osobną tymczasową bazę i lokalny launcher na wolnym porc
 Raporty: [nowa populacja](reports/sto-botow-2026-11-06.json), [populacja po finale](reports/sto-botow-endgame-2026-11-06.json). To krótkie pomiary na maszynie wykonującej zadanie, nie obietnica parametrów komputera gracza. Nie zastępują obciążenia uwierzytelnionych ekranów, wielodniowej gospodarki ani wdrożenia PostgreSQL/publicznego hostingu. Lokalny SQLite i pojedynczy proces pozostają świadomym zakresem pierwszej wersji.
 
 Pomiar 6 listopada 2026, po 60 sekund: nowa populacja — 55,61 MiB RSS, 17,25% jednego rdzenia, p95 HTTP 36,90 ms, 505 żądań bez błędów; rozwinięta — 55,77 MiB, 20,08%, p95 48,48 ms, 490 żądań bez błędów. W obu próbach wszystkie 100 botów miało turę w działającym launcherze i nie zapisano odrzuconych decyzji. Wyniki nie obejmują pamięci procesu przygotowania fixture ani przeglądarki.
+
+Pomiar po rozszerzeniu katalogu: [100 botów, baseline-17](reports/rynsztunek-sto-botow-2026-11-07.json). Jedna runda trwała 3,247 s w izolowanym świecie. To krótki test nowej populacji; nie symuluje wielodniowej gospodarki. Kuźnia działa przed finałem, a regeneracja przed walką fabularną ma pierwszeństwo przed patrolem.

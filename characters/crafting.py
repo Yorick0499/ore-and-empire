@@ -26,7 +26,7 @@ def buy_craft_material(profile,blueprint_id):
     bp=ItemBluePrint.objects.filter(pk=blueprint_id,pk__in=valid,base_value__gt=0,tradeable=True).first()
     if not bp or profile.ore_balance<bp.base_value or profile.is_busy:return False
     from .equipment import add_item
-    profile.ore_balance-=bp.base_value;add_item(profile,bp);profile.save();return True
+    profile.ore_balance-=bp.base_value;add_item(profile,bp,origin="merchant");profile.save();return True
 
 
 @player_action
@@ -50,7 +50,7 @@ def craft_item(profile,recipe_id,request_key):
         if item.quantity==count:item.delete()
         else:item.quantity-=count;item.save(update_fields=['quantity'])
     from .equipment import add_item
-    add_item(profile,recipe.output,recipe.quantity);profile.ore_balance-=recipe.fee;profile.save()
+    add_item(profile,recipe.output,recipe.quantity,origin="craft");profile.ore_balance-=recipe.fee;profile.save()
     record=CraftRecord.objects.create(profile=profile,recipe=recipe,request_key=key,snapshot={'name':recipe.name,'ingredients':recipe.ingredients,'fee':recipe.fee,'output':recipe.output_id,'quantity':recipe.quantity})
     from .challenges import record_personal_event
     record_personal_event(profile,'craft');return record

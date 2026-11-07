@@ -28,7 +28,7 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 - Rzeczywisty **czas polski `Europe/Warsaw`**, automatyczne CET/CEST; świt i noc według Słońca dla Warszawy, pory roku meteorologiczne. 12 wydarzeń miesięcznych, trzy coroczne i losowe odkrycia; żadna pora nie blokuje gry.
 - Panel zarządcy, inicjalizacja/reset świata z zachowaniem administratorów, prywatne kopie i sprawdzane odtwarzanie.
 
-Pełna pętla po fabule: [łupy, ulepszenia +10 i 100 stopni wart](docs/LOOT_AND_ENDGAME.md). Świat nadal żyje po osobistym finale, z miesięcznym rankingiem wart. Limit mieszkańców podniesiono do 100; [pomiar i zasady wydajności](docs/BOT_PERFORMANCE.md).
+Rozwój MMORPG od początku gry: [łupy, nazwane rangi rynsztunku i 100 stopni wart](docs/LOOT_AND_ENDGAME.md). Świat nadal żyje po osobistym finale, z miesięcznym rankingiem wart. Limit mieszkańców podniesiono do 100; [pomiar i zasady wydajności](docs/BOT_PERFORMANCE.md).
 
 ## Aktualne ekrany
 
@@ -83,3 +83,7 @@ python manage.py simulate_release --report /tmp/nowa-symulacja.json
 Symulacja używa izolowanej bazy. Przechodzi kampanię graczem i trzema obozami botów, wspólną sesję handlową, próby nadużyć oraz testy buildów i czasu. Przyspiesza czas testowy, bez nadawania zasobów w przejściu od zera. [Aktualna symulacja czasu polskiego](docs/reports/czas-polski-2026-11-06.json). [Raport poprzedniej pełnej wersji](docs/reports/pierwsza-pelna-edycja-2026-11-05.json) jest zachowany jako wynik historyczny wcześniejszego zegara; aktualny zegar opisuje WORLD_CLOCK.md. CI obejmuje Python 3.12 i 3.13.
 
 Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic. Statystyki i fabuła są adaptacją przeglądarkową, nie wierną kopią oryginalnej gry.
+
+Nazwane rangi sprzętu i pełny katalog 522 kodów G1 opisano w [katalogu i grafikach](docs/ITEM_PACKS.md). Fabuła pozostaje opcjonalnym przydziałem mieszkańca; rozwój rynsztunku zaczyna się od pierwszych łupów.
+
+![Kuźnia i ranga runiczna](docs/screenshots/forge.jpg)

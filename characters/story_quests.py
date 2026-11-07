@@ -198,7 +198,7 @@ def claim_story(profile, run_id):
     for item in rewards.get('items', []):
         blueprint = ItemBluePrint.objects.get(pk=item['blueprint'])
         for _ in range(item.get('count', 1)):
-            OwnedItem.objects.create(owner=profile, blueprint=blueprint)
+            OwnedItem.objects.create(owner=profile, blueprint=blueprint, origin="reward")
     from .market_policy import record_market_event
     for item in profile.inventory.select_for_update().filter(pk__in=deliveries):
         count = deliveries[item.pk]
