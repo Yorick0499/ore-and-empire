@@ -19,7 +19,7 @@
                         {% for item in market_all_items %}
                             <div class="item-card">
                                 <div class="item-info">
-                                    <h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
+                                    {% gothic_item_art item.blueprint True %}<h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
                                     <div class="item-stats">
                                         <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
                                         <span>Obrażenia: {{ item.effective_stats.damage }}</span>
@@ -57,7 +57,7 @@
                         {% for item in player_inventory %}
                             <div class="item-card">
                                 <div class="item-info">
-                                    <h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
+                                    {% gothic_item_art item.blueprint True %}<h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
                                     <div class="item-stats">
                                         <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
                                         <span>Obrażenia: {{ item.effective_stats.damage }}</span>

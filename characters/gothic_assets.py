@@ -16,3 +16,8 @@ ASSET_SELECTIONS = json.loads((Path(__file__).resolve().parent / "data/asset-sel
 ASSET_PAGES.update({'item_rusty_sword': 'Zardzewiały miecz', 'item_short_bow': 'Krótki łuk', 'item_digger_trousers': 'Lekkie spodnie kopacza', 'item_iron_ring': 'Pierścień żelaznej skóry', 'item_vitality_amulet': 'Amulet witalności', 'item_god_hammer': 'Boski młot', 'item_wolf_skin': 'Skóra wilka', 'item_arrow': 'Strzała', 'item_bolt': 'Bełt', 'item_healing': 'Esencja uzdrawiająca'})
 
 ASSET_PAGES['healing_essence'] = 'Esencja uzdrawiająca'
+
+# Explicit selections are reproducible for every canonical item, including shared models.
+from urllib.parse import unquote, urlsplit
+for _item in json.loads((Path(__file__).resolve().parent/'data/gothic1-items.json').read_text())['items']:
+    ASSET_PAGES[_item['art_key']] = unquote(urlsplit(_item['source']).path.rsplit('/',1)[-1]).replace('_',' ')
