@@ -29,7 +29,7 @@ class Command(BaseCommand):
             report['observation_schema']=19
             report['local_policy_scenarios']=12
             report['equipment_and_market_scenarios']=23
-            report['rarity_scenarios']=13
+            report['rarity_scenarios']=14
             target.parent.mkdir(parents=True,exist_ok=True)
             with target.open('x') as stream:stream.write(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
         self.stdout.write(str(target))

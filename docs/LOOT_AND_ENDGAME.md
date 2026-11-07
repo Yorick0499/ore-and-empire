@@ -99,3 +99,5 @@ Wersja 3 dodatkowej puli dobiera najpierw zweryfikowaną broń, pancerze i biżu
 Pochodzenie egzemplarza jest trwałe: łup, kupiec, rzemiosło, nagroda, administrator lub zapis historyczny. Sprzedaż graczowi zachowuje pochodzenie i rangę. Stosy różnego pochodzenia nie łączą się. Sprzętu kupionego u NPC ani stworzonego z tanich składników nie można rozbierać na pył. Pochodzenie wchodzi do kontroli kopii zapasowych.
 
 Plecak ma filtrowanie po nazwie, kategorii i randze oraz strony po 24 egzemplarze. Założony sprzęt pozostaje widoczny niezależnie od filtra plecaka.
+
+Pula sprzętu pomija definicje bez żadnej aktywnej statystyki, aby rzadki drop był użyteczny. Takie pozycje źródłowe pozostają w katalogu G1.

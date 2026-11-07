@@ -55,3 +55,5 @@ Dotychczasowe raporty i screeny opisują wersję z chwili ich wykonania;
 aktualne reguły są w [LOOT_AND_ENDGAME.md](LOOT_AND_ENDGAME.md).
 
 Zakup na targu wymaga zgodności aktualnej ceny z potwierdzonym formularzem (#87); zmiana ceny odrzuca transakcję bez pobrania rudy.
+
+#89 — pula łupu pomija nieaktywne ozdoby bez bonusów, z zachowaniem kompletności katalogu G1.

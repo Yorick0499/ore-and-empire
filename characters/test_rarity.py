@@ -99,6 +99,15 @@ class RarityTests(TestCase):
         self.assertTrue(improve_item(self.p,item.pk,0,uuid4()))
         self.p.refresh_from_db();self.assertEqual((self.p.current_health,self.p.current_mana),(20,3))
 
+    def test_empty_verified_jewelry_does_not_take_a_legendary_drop_slot(self):
+        empty=ItemBluePrint.objects.create(catalog_key='g1-test-empty-ring',name='Pusta ozdoba',kind='ring',source_game='GOTHIC_I',original_stats={'verified':True})
+        valuable=ItemBluePrint.objects.create(catalog_key='g1-test-active-ring',name='Cenny pierścień',kind='ring',source_game='GOTHIC_I',strength_bonus=2,original_stats={'verified':True})
+        with patch('characters.gear_loot.roll_rarity',return_value=4),patch('characters.gear_loot.random.choice',side_effect=lambda pool:pool[0]):
+            drop=award_gear(self.p,0,guaranteed=True)[0]
+        self.assertEqual(drop['blueprint'],valuable.pk)
+        self.assertEqual(drop['rarity'],4)
+        self.assertTrue(ItemBluePrint.objects.filter(pk=empty.pk).exists())
+
 
 class RarityRulesTests(SimpleTestCase):
     def test_every_boundary_and_exact_normal_boss_weights(self):
