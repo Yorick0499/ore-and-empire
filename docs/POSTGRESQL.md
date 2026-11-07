@@ -34,3 +34,5 @@ Planowanie bota nie trzyma blokady postaci. Usługi blokują uczestników handlu
 [Pomiar lokalny](reports/postgresql-wspolbieznosc-2026-11-07.json): 3,895 s, p95 HTTP 404,39 ms, bez błędów. To krótki pomiar tej maszyny, nie deklaracja wydajności publicznego hostingu. CI uruchamia prawdziwy PostgreSQL 16 oraz testy rozgrywki. SQLite jawnie pomija testy rzeczywistych blokad.
 
 Źródła implementacji: [Django — PostgreSQL](https://docs.djangoproject.com/en/6.0/ref/databases/#postgresql-notes), [PostgreSQL — blokady](https://www.postgresql.org/docs/16/explicit-locking.html).
+
+Launcher SQLite rozpoznaje nowy świat po resecie i przejmuje jego osobną dzierżawę bez zamykania serwera. Test wykonuje rzeczywisty reset na izolowanej bazie i sprawdza kolejną turę bota. Usunięta dzierżawa daje kontrolowany stan utraty, nie błąd ORM.

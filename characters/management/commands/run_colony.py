@@ -103,8 +103,14 @@ class Command(BaseCommand):
                 while True:
                     now=time.monotonic()
                     if now>=refresh_at:
-                        with guard.work():pass
                         world=current_world()
+                        if world.pk!=guard.world_id:
+                            guard.release()
+                            guard=SchedulerGuard(world).acquire()
+                            cleanup.callback(guard.release)
+                            event_day=None
+                            scheduler=BotScheduler(options['interval'],clock=time.monotonic)
+                        with guard.work():pass
                         scheduler.population(PlayerProfile.objects.filter(is_bot=True,user__is_active=True,world=world).order_by('pk').values_list('pk',flat=True)[:world.bot_count])
                         refresh_at=now+5
                         from characters.world_events import ensure_world_events

@@ -60,3 +60,5 @@ Testy obejmują bezpieczną konfigurację, limity i wygaśnięcie okna, podrobio
 Źródła: [Django — wdrożenie](https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/), [WhiteNoise](https://whitenoise.readthedocs.io/en/stable/django.html), [Caddy — reverse proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy).
 
 Opcjonalna polityka lokalnego modelu wymaga osobnego opt-in i utrzymuje budżet także po restarcie: [LOCAL_AI_POLICIES.md](LOCAL_AI_POLICIES.md). Profil produkcyjny i obraz nie wymagają modelu.
+
+Reset z panelu pozostaje obsługiwany dla lokalnego SQLite. PostgreSQL wymaga osobnej operacji operatora na bazach i kopiach; publiczny profil nie odblokowuje automatycznie panelowego kasowania całej bazy.
