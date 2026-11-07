@@ -43,3 +43,6 @@ Dane logowania, `.admin-access.json`, `.env`, bazy i backupy są prywatne. Nie d
 - [Historyczny model budżetowy gospodarki](reports/economy-baseline-v1.json).
 
 Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia: [PRODUCTION.md](PRODUCTION.md).
+
+- [Lokalne polityki AI i porównanie z regułami](LOCAL_AI_POLICIES.md).
+- [Pełna symulacja po fundamentach serwera i AI](reports/petla-po-fundamentach-ai-2026-11-07.json).

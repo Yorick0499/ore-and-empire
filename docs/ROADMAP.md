@@ -32,8 +32,10 @@ Osobiste ukończenie ani zapis końcowego rankingu nie przenosi do Gothic II i n
 - #34: izolacja wielu grywalnych edycji.
 - #35: kontrolowany start II edycji i archiwizacja I.
 
-Opcjonalnie #28: polityki LLM z limitami i porównaniem do botów regułowych. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
+Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i porównanie z regułami. [Wyniki](LOCAL_AI_POLICIES.md). Model nie jest włączony domyślnie. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
 
 ## Dopracowanie pełnej edycji
 
 Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](https://github.com/Yorick0499/ore-and-empire/issues/66) i [#67](https://github.com/Yorick0499/ore-and-empire/issues/67): 35 wzorów dropu, ulepszenia +10, 100 powtarzalnych wart i miesięczny ranking, do 100 botów z harmonogramem. [Reguły endgame](LOOT_AND_ENDGAME.md) · [wydajność](BOT_PERFORMANCE.md).
+
+Po wykonaniu #19/#24/#28 nie zostały otwarte zadania wykonawcze poza odłożoną II edycją #30–#35. Indeksy #9/#10 pozostają otwarte jako plany. Dalsze zadania gameplayowe warto wyznaczyć na podstawie rzeczywistych sesji gracza; nie zastępujemy brakującego backlogu sztucznymi zgłoszeniami.

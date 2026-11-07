@@ -1,6 +1,6 @@
 # Żyjąca kolonia — gracze i boty
 
-Aktualna wersja używa polityki **baseline-18** i obserwacji schema 18. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+Aktualna wersja używa polityki **baseline-18** i obserwacji schema 19. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
 
 `python play.py --bots 6 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 
@@ -41,3 +41,5 @@ Pełna symulacja przechodzi kampanię zwykłym graczem i trzema obozami botów b
 ## Dopracowanie pełnej edycji
 
 Po finale bot ocenia bezpieczną wartę, w razie potrzeby powtarza niższy stopień, ulepsza noszony sprzęt i rozbiera zbędne łupy. Pył jest chroniony przed automatycznym wystawianiem. Porównanie pancerzy uwzględnia ulepszenie, aby bot nie zamieniał mocniejszego egzemplarza na słabszy łup. [Rozłożenie pracy do 100 botów i pomiary](BOT_PERFORMANCE.md).
+
+Opcjonalny adapter lokalnego modelu ma protokół ollama-1 i trwały budżet. Domyślna gra pozostaje przy regułach; [opis i wyniki](LOCAL_AI_POLICIES.md).

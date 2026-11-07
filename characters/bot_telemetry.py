@@ -5,7 +5,7 @@ from django.utils import timezone
 from .models import BotDecision
 
 
-def record_decision(profile, observation, action, target, success, policy_version="baseline-18"):
+def record_decision(profile, observation, action, target, success, policy_version="baseline-18",policy_snapshot=None):
     now = timezone.now()
     if action == "wait":
         last = BotDecision.objects.filter(profile=profile).first()
@@ -14,7 +14,8 @@ def record_decision(profile, observation, action, target, success, policy_versio
     profile.refresh_from_db()
     BotDecision.objects.create(
         profile=profile,
-        schema_version=18,
+        schema_version=19,
+        policy_snapshot=policy_snapshot or {},
         policy_version=policy_version,
         reason=decision_reason(observation,action,success),
         experience_delta=profile.experience - observation.experience,
@@ -46,6 +47,9 @@ def decision_reason(observation,action,success):
 def replay_decision(decision):
     from dataclasses import fields
     from .bots import Observation,BaselinePolicyV7,BaselinePolicyV8,BaselinePolicyV9,BaselinePolicyV10,BaselinePolicyV11,BaselinePolicyV12,BaselinePolicyV13,BaselinePolicyV14,BaselinePolicyV15,BaselinePolicyV16,BaselinePolicyV17,BaselinePolicy
+    if decision.policy_version=='ollama-1':
+        from .bot_policies import replay
+        return replay(decision)
     if decision.policy_version not in {'baseline-7','baseline-8','baseline-9','baseline-10','baseline-11','baseline-12','baseline-13','baseline-14','baseline-15','baseline-16','baseline-17','baseline-18'}:return {'supported':False,'reason':'Policy implementation unavailable'}
     try:
         allowed={field.name for field in fields(Observation)}

@@ -91,3 +91,5 @@ Nazwane rangi sprzętu i pełny katalog 522 kodów G1 opisano w [katalogu i graf
 Opcjonalna instalacja PostgreSQL, import zapisu i ochrona przed dwoma schedulerami: [POSTGRESQL.md](docs/POSTGRESQL.md). Lokalny zapis nadal domyślnie używa SQLite.
 
 Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia: [PRODUCTION.md](docs/PRODUCTION.md).
+
+Opcjonalne lokalne polityki AI, bez płatnego API i z regułami jako domyślną polityką: [LOCAL_AI_POLICIES.md](docs/LOCAL_AI_POLICIES.md).

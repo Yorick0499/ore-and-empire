@@ -54,6 +54,31 @@ class LeaseTests(TestCase):
         with self.assertRaises(LeaseLost),a.work():pass
         a.release();self.assertEqual(SchedulerLease.objects.get(world=self.world).owner,b.owner)
         b.release();a.acquire();a.release()
+    def test_deleted_world_lease_is_reported_as_lost_not_an_orm_error(self):
+        guard=SchedulerGuard(self.world).acquire();SchedulerLease.objects.filter(world=self.world).delete()
+        with self.assertRaises(LeaseLost),guard.work():pass
+        guard.release()
+    @skipUnless(connection.vendor=='sqlite','Local launcher reset uses SQLite')
+    def test_local_launcher_reacquires_lease_and_continues_after_real_world_reset(self):
+        from unittest.mock import MagicMock,patch
+        from pathlib import Path
+        from .world_management import reset_world
+        from .worlds import current_world
+        admin=User.objects.create_superuser('reset-operator',password='Synthetic-Reset-Only-2026')
+        old=current_world();clock=[0.];requests=[0]
+        server=MagicMock();server.__enter__.return_value=server
+        def handle():
+            requests[0]+=1;clock[0]+=6
+            if requests[0]==1:
+                with patch('characters.backups.create_backup',return_value=Path('/private/test-backup')),patch('characters.world_management.seed_clean_world'):
+                    reset_world(admin,name='Nowa Kolonia',bot_count=1,password='Synthetic-Reset-Only-2026',confirmation=old.name,expected_world=old.pk)
+            elif requests[0]>=3:raise KeyboardInterrupt
+        server.handle_request.side_effect=handle
+        with patch('characters.management.commands.run_colony.make_server',return_value=server),patch('characters.management.commands.run_colony.call_command'),patch('characters.management.commands.run_colony.time.monotonic',side_effect=lambda:clock[0]),patch('characters.management.commands.run_colony.tick_bot',return_value=('mine',True)) as tick:
+            call_command('run_colony',bots=1,stdout=StringIO())
+        fresh=current_world();self.assertNotEqual(fresh.pk,old.pk);self.assertEqual(fresh.name,'Nowa Kolonia')
+        tick.assert_called_once();self.assertEqual(tick.call_args.kwargs['lease'].world_id,fresh.pk)
+        self.assertIsNone(SchedulerLease.objects.get(world=fresh).owner)
     def test_standalone_command_refuses_a_live_owner(self):
         with SchedulerGuard(self.world):
             with self.assertRaises(CommandError):call_command('run_bots',rounds=1,limit=1,stdout=StringIO())

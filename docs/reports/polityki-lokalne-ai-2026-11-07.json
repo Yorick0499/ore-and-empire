@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "isolated_databases": true,
+  "synthetic_equal_start": true,
+  "model": "qwen2.5:0.5b",
+  "model_evaluated": true,
+  "warmup": {
+    "ok": true,
+    "seconds": 0.016,
+    "included_in_policy_budget": false
+  },
+  "budget": {
+    "max_calls": 8,
+    "timeout_seconds": 5.0,
+    "gpu_layers": 0,
+    "inference_threads": 2,
+    "paid_api_cost": 0
+  },
+  "cases": {
+    "baseline": {
+      "policy": "baseline-18",
+      "steps": 100,
+      "bots": 3,
+      "elapsed_seconds": 9.654,
+      "actions": {
+        "stock": 13,
+        "mine": 24,
+        "equip": 16,
+        "list": 5,
+        "claim": 24,
+        "camp": 3,
+        "accept": 8,
+        "buy": 1,
+        "sell": 22,
+        "promote": 5,
+        "hunt": 56,
+        "salvage": 3,
+        "challenge_accept": 8,
+        "adventure": 23,
+        "adventure_claim": 22,
+        "improve": 6,
+        "challenge_claim": 5,
+        "train": 49,
+        "achievement_claim": 4,
+        "market_reprice": 2,
+        "raid_rally": 1
+      },
+      "failed_actions": 0,
+      "experience": 8626,
+      "levels": [
+        3,
+        3,
+        2
+      ],
+      "battles": 56,
+      "wins": 56,
+      "trades": 1,
+      "economy": {
+        "ore": {
+          "opening": 150,
+          "source": 1390,
+          "sink": -1276,
+          "transfer": 0,
+          "admin": 0,
+          "actual_balance": 264,
+          "reconciliation_gap": 0
+        },
+        "shards": {
+          "opening": 0,
+          "source": 41,
+          "sink": 0,
+          "transfer": 0,
+          "admin": 0,
+          "actual_balance": 41,
+          "reconciliation_gap": 0
+        }
+      },
+      "model_statuses": {},
+      "model_latency_ms": 0,
+      "prompt_tokens": 0,
+      "generated_tokens": 0
+    },
+    "ollama": {
+      "policy": "ollama-1",
+      "steps": 100,
+      "bots": 3,
+      "elapsed_seconds": 24.71,
+      "actions": {
+        "stock": 16,
+        "mine": 27,
+        "equip": 17,
+        "list": 6,
+        "claim": 27,
+        "camp": 3,
+        "accept": 6,
+        "buy": 1,
+        "sell": 16,
+        "promote": 3,
+        "hunt": 53,
+        "challenge_accept": 9,
+        "adventure": 24,
+        "adventure_claim": 22,
+        "improve": 4,
+        "train": 43,
+        "ammo": 13,
+        "salvage": 2,
+        "achievement_claim": 5,
+        "challenge_claim": 1,
+        "market_reprice": 2
+      },
+      "failed_actions": 0,
+      "experience": 7698,
+      "levels": [
+        2,
+        3,
+        2
+      ],
+      "battles": 53,
+      "wins": 53,
+      "trades": 1,
+      "economy": {
+        "ore": {
+          "opening": 150,
+          "source": 1402,
+          "sink": -1251,
+          "transfer": 0,
+          "admin": 0,
+          "actual_balance": 301,
+          "reconciliation_gap": 0
+        },
+        "shards": {
+          "opening": 0,
+          "source": 41,
+          "sink": 0,
+          "transfer": 0,
+          "admin": 0,
+          "actual_balance": 41,
+          "reconciliation_gap": 0
+        }
+      },
+      "model_statuses": {
+        "budget-or-cooldown": 93,
+        "forced-rules": 199,
+        "accepted": 8
+      },
+      "model_latency_ms": 14966.58,
+      "prompt_tokens": 3263,
+      "generated_tokens": 48
+    }
+  },
+  "limits": [
+    "Jedna krótka próba na trzech botach, nie dowód przewagi LLM ani wielodniowej stabilności gospodarki.",
+    "Ten sam zapis i ziarno startowe; odmienne decyzje zmieniają kolejne losowania. Czas przyspieszony o 30 minut na krok, bez grantów.",
+    "Warmup jest osobnym, jawnym kosztem lokalnego modelu. Wywołania polityki są ograniczone wspólnym budżetem próby."
+  ]
+}
