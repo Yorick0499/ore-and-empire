@@ -1,0 +1,15 @@
+{
+	admin off
+	skip_install_trust
+}
+https://{$ORE_DOMAIN} {
+	tls internal
+	encode zstd gzip
+	request_body {
+		max_size 1MB
+	}
+	reverse_proxy web:8080 {
+		header_up X-Forwarded-Proto https
+		header_up X-Forwarded-For {remote_host}
+	}
+}

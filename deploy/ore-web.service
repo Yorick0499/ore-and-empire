@@ -1,0 +1,17 @@
+[Unit]
+Description=Ore and Empire - serwer WSGI
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=ore
+WorkingDirectory=/opt/ore/current
+EnvironmentFile=/etc/ore/production.env
+ExecStart=/opt/ore/venv/bin/gunicorn -c deploy/gunicorn.conf.py ore_empire.wsgi:application
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target

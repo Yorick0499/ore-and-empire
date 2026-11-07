@@ -756,6 +756,11 @@ def camp_guild_view(request):
 
 @sensitive_post_parameters("password")
 def world_setup_view(request):
+    from django.conf import settings
+    if settings.PRODUCTION:
+        from django.http import HttpResponseForbidden
+        return HttpResponseForbidden('Pierwszą inicjalizację produkcyjną wykonaj przez konsolę operatora.')
+
     from django.contrib.auth.models import User
     from .world_management import WorldSetupForm,initialize_world
     from django.core.exceptions import ValidationError

@@ -61,6 +61,7 @@ jobs:
       PGUSER: ore_ci
       PGPASSWORD: ci-only-database-password
       PGDATABASE: ore_ci
+      PG_TOOLS_DIRECTORY: /usr/lib/postgresql/16/bin
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -68,11 +69,22 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: python -m pip install -r requirements.txt
+      - name: Install matching PostgreSQL tools
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
       - name: PostgreSQL gameplay regression
-        run: python manage.py test characters.test_equipment characters.test_magic characters.test_endgame characters.test_story_quests characters.test_campaign characters.test_camp_guilds characters.test_camp_raids characters.test_economy_balance characters.test_market_policy --noinput
+        run: python manage.py test characters.test_equipment characters.test_magic characters.test_endgame characters.test_story_quests characters.test_campaign characters.test_camp_guilds characters.test_camp_raids characters.test_economy_balance characters.test_market_policy characters.test_production --noinput
       - name: Real contention and mixed player/bot load
         run: python manage.py simulate_concurrency --report work/postgresql-ci.json
       - uses: actions/upload-artifact@v4
         with:
           name: postgresql-concurrency-report
           path: work/postgresql-ci.json
+
+  production-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production WSGI image and hashed static files
+        run: docker build -t ore-empire-check .
+      - name: Validate HTTPS proxy configuration
+        run: docker run --rm -e ORE_DOMAIN=colony.example.test -v "$PWD/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile

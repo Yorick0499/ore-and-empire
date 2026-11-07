@@ -42,7 +42,11 @@ from characters.views import (
 
 from characters.views import journal_view, battle_detail_view, hall_view
 
+from characters.health import live,ready
+
 urlpatterns = [
+    path('health/live/',live,name='health_live'),
+    path('health/ready/',ready,name='health_ready'),
     path("warty/",frontier_view,name="frontier_page"),
     path("sala-chwaly/", hall_view, name="hall_page"),
     path("dziennik/", journal_view, name="journal_page"),

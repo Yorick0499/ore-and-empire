@@ -1,0 +1,77 @@
+name: ore-and-empire
+x-app: &app
+  build: ..
+  env_file: ../.env.production
+  restart: unless-stopped
+  volumes:
+    - backups:/app/backups
+    - archives:/app/telemetry-archives
+  networks: [backend]
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${PGDATABASE:?Set PGDATABASE}
+      POSTGRES_USER: ${PGUSER:?Set PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD:?Set a private PGPASSWORD}
+    volumes: [database:/var/lib/postgresql/data]
+    networks: [backend]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  migrate:
+    <<: *app
+    restart: 'no'
+    command: [python, manage.py, migrate, --noinput]
+    depends_on:
+      db: {condition: service_healthy}
+  web:
+    <<: *app
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import os,urllib.request; urllib.request.urlopen(urllib.request.Request('http://127.0.0.1:8080/health/live/',headers={'Host':os.environ['ALLOWED_HOSTS'].split(',')[0]}),timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+  worker:
+    <<: *app
+    command: [python, manage.py, run_worker]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, manage.py, check_worker]
+      interval: 20s
+      timeout: 10s
+      retries: 3
+  proxy:
+    image: caddy:2-alpine
+    env_file: ../.env.production
+    restart: unless-stopped
+    ports:
+      - '${ORE_LISTEN_ADDRESS:-127.0.0.1}:${ORE_HTTP_PORT:-8088}:80'
+      - '${ORE_LISTEN_ADDRESS:-127.0.0.1}:${ORE_HTTPS_PORT:-8448}:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      backend:
+        ipv4_address: 172.30.24.2
+      edge: {}
+    depends_on: [web]
+networks:
+  backend:
+    internal: true
+    ipam:
+      config: [{subnet: 172.30.24.0/24}]
+  edge: {}
+volumes:
+  database: {}
+  backups: {}
+  archives: {}
+  caddy_data: {}
+  caddy_config: {}

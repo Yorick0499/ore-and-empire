@@ -31,6 +31,12 @@ class SchedulerLease(models.Model):
     expires_at=models.DateTimeField(default=timezone.now,db_index=True)
 
 
+class AuthRateBucket(models.Model):
+    key=models.CharField(max_length=64,unique=True)
+    window_started=models.DateTimeField(default=timezone.now,db_index=True)
+    attempts=models.PositiveIntegerField(default=0)
+
+
 class PlayerProfile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)

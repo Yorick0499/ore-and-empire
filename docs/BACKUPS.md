@@ -21,3 +21,5 @@ PostgreSQL: te komendy jawnie odmawiają działania. W przyszłym wdrożeniu uż
 Kopie obejmują teraz `OwnedItem.upgrade_level`, potwierdzenia `EquipmentWork`, `FrontierProgress` i historię `FrontierRecord`. Próba odtworzenia starszej bazy stosuje migrację 0031 na osobnym pliku: stare przedmioty dostają +0, a dotychczasowy postęp i hasła muszą pozostać zgodne z manifestem. Nie nadpisujemy żywego świata podczas próby.
 
 Migracja 0032 dodaje pochodzenie egzemplarza (`OwnedItem.origin`); stare egzemplarze zachowują konserwatywne oznaczenie `legacy`. Pochodzenie jest objęte manifestem kopii. Próba odtworzenia przed wdrożeniem rang i katalogu G1 v3 zachowała 27 tabel zapisu.
+
+PostgreSQL ma natywny backup MVCC i próbne odtworzenie do nowej bazy, z pełnym porównaniem logicznym. Szczegóły i wymagania klienta: [PRODUCTION.md](PRODUCTION.md). Hasła i dumpy pozostają prywatne.
