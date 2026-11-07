@@ -34,3 +34,32 @@ nadmiar materiałów, rezerwując dostawy questowe. Obserwacje mają wersję 17;
 ## Dopracowanie pełnej edycji
 
 Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. [Pula 35 łupów, odzysk pyłu, pięć nazwanych rang i koszty przekucia](LOOT_AND_ENDGAME.md).
+
+## Zabezpieczenie cennego sprzętu (#80)
+
+W Ekwipunku przy broni, pancerzu, pierścieniu i amulecie dostępne jest
+„Zabezpiecz przedmiot”. Taki egzemplarz nie trafia na listę sprzedaży NPC ani
+na targ i nie może zostać rozebrany, zużyty w recepturze ani oddany jako dostawa
+fabularna. Nadal można go zakładać, zdejmować i ulepszać. Zabezpieczenie obejmuje
+cały stos, jeśli starszy zapis zawiera stos rynsztunku. Nie obejmuje mikstur,
+amunicji ani zwojów; nie blokuje więc zwykłego zużywania zapasów w walce.
+
+„Zdejmij zabezpieczenie” działa bez kosztu w tym samym ekranie. Nie można
+zmieniać cudzych lub wystawionych egzemplarzy. Ponowienie formularza ustawia
+żądaną wartość, zamiast przełączać ją drugi raz. Dotychczasowy sprzęt pozostaje
+niezabezpieczony, a migracja nie zmienia jego statystyk, ilości ani właścicieli.
+
+## Porównanie rynsztunku (#82)
+
+Przy rynsztunku w plecaku i wyposażeniu wybierz „Porównaj z wyposażeniem”.
+Podgląd pokazuje efektywne parametry obu egzemplarzy, wliczając przekucie,
+oraz różnice obrażeń, czterech ochron i bonusów. Pusty slot ma parametry zerowe.
+Dla pierścienia możesz wskazać slot I lub II; przycisk założenia zastąpi dokładnie
+ten slot. Domyślnie wybierany jest pierwszy wolny, a przy dwóch zajętych — I.
+Dla już założonego pierścienia domyślny podgląd odnosi się do jego własnego slotu.
+
+Niespełnione wymagania poziomu, obozu, rangi i **bazowej** siły/zręczności są
+wymienione osobno. Założenie ponownie sprawdza wymagania po stronie serwera.
+Podgląd nie zmienia zdrowia, many, wyposażenia ani walut. To różnice sprzętu,
+nie prognoza DPS: zmiana typu broni zmienia również używaną umiejętność,
+atrybut, koszt amunicji i rodzaj ochrony przeciwnika.

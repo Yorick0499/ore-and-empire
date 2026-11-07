@@ -68,7 +68,7 @@ def salvage_item(profile,item_id,key):
     prior,key=request(profile,item_id,key,'salvage')
     if prior is not None:return prior
     if key is None or profile.is_busy:return False
-    item=profile.inventory.select_for_update().select_related('blueprint').filter(pk=item_id,is_equipped=False,is_market_listed=False,quantity=1).first()
+    item=profile.inventory.select_for_update().select_related('blueprint').filter(pk=item_id,is_equipped=False,is_market_listed=False,is_protected=False,quantity=1).first()
     dust=ItemBluePrint.objects.filter(catalog_key=DUST_KEY).first()
     if not item or not item.can_salvage or not dust:return False
     amount=2+item.blueprint.min_level//5+item.upgrade_level

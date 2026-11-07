@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
+    equipment_comparison_view,
     frontier_view, register_view,
     item_catalog_view, economy_balance_view, world_monitor_view, magic_view, camp_guild_view,world_setup_view,world_control_view,characters_view,challenges_view,crafting_view,
     tavern_view, colony_life_view, story_view,
@@ -83,6 +84,7 @@ urlpatterns = [
     path("polowanie/", hunt_view, name="hunt_page"),
     path("plac_targowy/", market_view, name="market_page"),
     path("ekwipunek/", inventory_view, name="inventory_page"),
+    path("ekwipunek/<int:item_id>/porownaj/", equipment_comparison_view, name="equipment_comparison"),
     path("sklep/", shop_view, name="shop_page"),
     path("trening/", train_view, name="train_page"),
 ]

@@ -1,4 +1,5 @@
 from django.views.decorators.debug import sensitive_post_parameters
+from django.views.decorators.http import require_GET
 from .worlds import current_world
 from uuid import uuid4
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -129,20 +130,8 @@ def market_view(request):
                 return redirect(request.get_full_path())
             report_action(request, delist_item_from_market(profile, sell_item))
             return redirect(request.get_full_path())
-    market_all_items = OwnedItem.objects.filter(is_market_listed=True,owner__world=current_world()).select_related(
-        "owner__user", "blueprint"
-    )
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False).select_related('blueprint')
-    return render(
-        request,
-        "characters/market.html",
-        {
-            "profile": profile,
-            "market_all_items": market_all_items,
-            "my_offers":market_all_items.filter(owner=profile),
-            "player_inventory": player_inventory,
-        },
-    )
+    from .market_browse import browse_market
+    return render(request, "characters/market.html", {"profile":profile, **browse_market(profile, request.GET)})
 
 
 @login_required
@@ -151,6 +140,11 @@ def inventory_view(request):
     refresh_player(profile)
     if request.method == "POST":
         action = request.POST.get("action")
+        if action == "protect":
+            from .equipment import set_item_protection
+            state = request.POST.get('protected')
+            report_action(request, state in {'0','1'} and set_item_protection(profile, positive_id(request.POST.get('item_id')), state == '1'))
+            return redirect(request.get_full_path())
         if action in {"improve","salvage"}:
             from .enhancements import improve_item,salvage_item
             item_id=positive_id(request.POST.get('item_id'))
@@ -166,7 +160,7 @@ def inventory_view(request):
         if action == "equip":
             item_id = request.POST.get("item_id")
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
-            report_action(request, equip_item(profile, item))
+            report_action(request, equip_item(profile, item, request.POST.get('slot') or None))
             return redirect(request.get_full_path())
         if action == "unequip":
             item_id = request.POST.get("item_id")
@@ -207,6 +201,18 @@ def inventory_view(request):
 
 
 @login_required
+@require_GET
+def equipment_comparison_view(request, item_id):
+    from .equipment import compare_equipment
+    profile = request.user.playerprofile
+    item = get_object_or_404(OwnedItem.objects.select_related('blueprint'), pk=item_id, owner=profile)
+    comparison = compare_equipment(profile, item, request.GET.get('slot'))
+    if comparison is None:
+        raise Http404('Nieprawidłowy slot rynsztunku.')
+    return render(request, 'characters/equipment_comparison.html', {'profile':profile, 'owned':item, 'comparison':comparison})
+
+
+@login_required
 def shop_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
@@ -222,7 +228,7 @@ def shop_view(request):
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, sell_item_from_npc(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False).select_related('blueprint')
+    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False, is_protected=False).select_related('blueprint')
     from django.core.paginator import Paginator
     merchant_inventory = ItemBluePrint.objects.filter(merchant=True, min_level__lte=profile.level, required_camp__in=["",profile.camp], min_camp_tier__lte=profile.camp_tier).order_by("kind","base_value","pk")
     return render(

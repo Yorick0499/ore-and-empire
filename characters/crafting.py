@@ -40,7 +40,7 @@ def craft_item(profile,recipe_id,request_key):
     plan=[]
     for ingredient in recipe.ingredients:
         remaining=ingredient['count']
-        for item in profile.inventory.select_for_update().filter(blueprint_id=ingredient['blueprint'],is_market_listed=False,is_equipped=False).order_by('pk'):
+        for item in profile.inventory.select_for_update().filter(blueprint_id=ingredient['blueprint'],is_market_listed=False,is_equipped=False,is_protected=False).order_by('pk'):
             count=min(remaining,item.quantity);plan.append((item,count));remaining-=count
             if not remaining:break
         if remaining:return False
@@ -57,7 +57,7 @@ def craft_item(profile,recipe_id,request_key):
 
 
 def recipe_cards(profile):
-    inventory={r['blueprint_id']:r['total'] for r in profile.inventory.filter(is_equipped=False,is_market_listed=False).values('blueprint_id').annotate(total=Sum('quantity'))}
+    inventory={r['blueprint_id']:r['total'] for r in profile.inventory.filter(is_equipped=False,is_market_listed=False,is_protected=False).values('blueprint_id').annotate(total=Sum('quantity'))}
     recipes=list(CraftRecipe.objects.filter(enabled=True).select_related('output'))
     inputs={i['blueprint'] for recipe in recipes if valid_recipe(recipe) for i in recipe.ingredients}
     materials={bp.pk:bp for bp in ItemBluePrint.objects.filter(pk__in=inputs)}

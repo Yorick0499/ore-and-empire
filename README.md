@@ -93,3 +93,11 @@ Opcjonalna instalacja PostgreSQL, import zapisu i ochrona przed dwoma schedulera
 Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia: [PRODUCTION.md](docs/PRODUCTION.md).
 
 Opcjonalne lokalne polityki AI, bez płatnego API i z regułami jako domyślną polityką: [LOCAL_AI_POLICIES.md](docs/LOCAL_AI_POLICIES.md).
+
+### Wygoda rynsztunku i targu
+
+Cenny sprzęt można zabezpieczyć przed sprzedażą, rozbiórką i zużyciem w zadaniach.
+Porównywarka pokazuje efektywne różnice oraz wymagania przed założeniem; przy
+pierścieniach wybierasz zastępowany slot. Targ ma filtry, ceny jednostkowe i osobne
+strony ofert, własnych ogłoszeń oraz plecaka. [Ekwipunek](docs/EQUIPMENT.md) ·
+[zasady targu](docs/MARKET_POLICY.md).

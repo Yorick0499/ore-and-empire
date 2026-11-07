@@ -1,0 +1,1 @@
+<nav class="market-pagination" aria-label="{{ pager.label }}">{% if pager.previous_url %}<a href="{{ pager.previous_url }}">Poprzednie</a>{% endif %}<span>Strona {{ pager.page.number }}/{{ pager.page.paginator.num_pages }} · {{ pager.page.paginator.count }} pozycji</span>{% if pager.next_url %}<a href="{{ pager.next_url }}">Następne</a>{% endif %}</nav>

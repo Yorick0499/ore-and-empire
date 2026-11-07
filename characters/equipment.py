@@ -4,6 +4,51 @@ from .models import OwnedItem
 BONUSES = ('weapon_prot','arrow_prot','fire_prot','magic_prot','strength_bonus','dexterity_bonus','mana_bonus','life_bonus')
 
 
+def replacement_slot(item, equipped, requested=None):
+    """One shared rule for the preview and the real equip action."""
+    if item.blueprint.kind == 'ring':
+        if requested is not None:
+            return requested if requested in {'ring1', 'ring2'} else None
+        if item.is_equipped:
+            return item.equipped_slot
+        return next((slot for slot in ('ring1', 'ring2') if slot not in equipped), 'ring1')
+    slot = {'weapon':'weapon', 'armor':'armor', 'amulet':'amulet'}.get(item.blueprint.kind)
+    return slot if requested is None or requested == slot else None
+
+
+def compare_equipment(profile, item, requested=None):
+    from .enhancements import STAT_FIELDS
+    equipped = {owned.equipped_slot:owned for owned in profile.inventory.filter(is_equipped=True).select_related('blueprint')}
+    slot = replacement_slot(item, equipped, requested)
+    if not slot:
+        return None
+    old = equipped.get(slot)
+    old_stats = old.effective_stats if old else dict.fromkeys(STAT_FIELDS, 0)
+    new_stats = item.effective_stats
+    labels = {'damage':'Obrażenia broni', 'weapon_prot':'Ochrona przed bronią', 'arrow_prot':'Ochrona przed pociskami',
+              'fire_prot':'Ochrona przed ogniem', 'magic_prot':'Ochrona przed magią', 'strength_bonus':'Bonus siły',
+              'dexterity_bonus':'Bonus zręczności', 'mana_bonus':'Bonus many', 'life_bonus':'Bonus życia'}
+    requirements = []
+    bp = item.blueprint
+    if profile.level < bp.min_level:
+        requirements.append(f'Poziom {bp.min_level} (masz {profile.level}).')
+    if bp.required_camp and profile.camp != bp.required_camp:
+        from .models import PlayerProfile
+        requirements.append('Obóz: ' + dict(PlayerProfile.CAMP_LIST).get(bp.required_camp, bp.required_camp) + '.')
+    if profile.camp_tier < bp.min_camp_tier:
+        requirements.append(f'Ranga obozowa co najmniej {bp.min_camp_tier} (masz {profile.camp_tier}).')
+    if profile.strength < bp.required_strength:
+        requirements.append(f'Bazowa siła {bp.required_strength} (masz {profile.strength}).')
+    if profile.dexterity < bp.required_dexterity:
+        requirements.append(f'Bazowa zręczność {bp.required_dexterity} (masz {profile.dexterity}).')
+    if item.is_market_listed:
+        requirements.append('Najpierw wycofaj ten egzemplarz z targu.')
+    return {'slot':slot, 'slot_name':{'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II'}[slot],
+            'old':old, 'requirements':requirements, 'can_equip':not requirements and not item.is_equipped,
+            'rows':[{'label':labels[key], 'old':old_stats[key], 'new':new_stats[key],
+                     'delta':new_stats[key]-old_stats[key], 'change':f'{new_stats[key]-old_stats[key]:+d}'} for key in STAT_FIELDS]}
+
+
 def stats_for(profile):
     totals = dict.fromkeys(BONUSES, 0)
     for item in profile.inventory.filter(is_equipped=True).select_related('blueprint'):
@@ -46,12 +91,30 @@ def combat_values(profile):
 
 def add_item(profile, blueprint, quantity=1, *, origin="legacy"):
     if blueprint.stackable:
-        item = profile.inventory.filter(blueprint=blueprint, origin=origin, is_equipped=False, is_market_listed=False).order_by('pk').first()
+        item = profile.inventory.filter(blueprint=blueprint, origin=origin, is_equipped=False, is_market_listed=False, is_protected=False).order_by('pk').first()
         if item:
             item.quantity += quantity
             item.save(update_fields=['quantity'])
             return item
     return OwnedItem.objects.create(owner=profile, blueprint=blueprint, quantity=quantity, origin=origin)
+
+
+def set_item_protection(profile, item_id, protected):
+    """Set a desired state, rather than toggle it when a form is retried."""
+    from .game_logic import player_action
+
+    @player_action
+    def change(profile):
+        if type(protected) is not bool:
+            return False
+        item = profile.inventory.select_for_update().select_related('blueprint').filter(pk=item_id, is_market_listed=False).first()
+        if not item or not item.blueprint.equippable:
+            return False
+        item.is_protected = protected
+        item.save(update_fields=['is_protected'])
+        return True
+
+    return change(profile)
 
 
 def consume_ammo(profile):

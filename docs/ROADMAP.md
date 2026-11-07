@@ -38,4 +38,10 @@ Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i por�
 
 Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](https://github.com/Yorick0499/ore-and-empire/issues/66) i [#67](https://github.com/Yorick0499/ore-and-empire/issues/67): 35 wzorów dropu, ulepszenia +10, 100 powtarzalnych wart i miesięczny ranking, do 100 botów z harmonogramem. [Reguły endgame](LOOT_AND_ENDGAME.md) · [wydajność](BOT_PERFORMANCE.md).
 
-Po wykonaniu #19/#24/#28 nie zostały otwarte zadania wykonawcze poza odłożoną II edycją #30–#35. Indeksy #9/#10 pozostają otwarte jako plany. Dalsze zadania gameplayowe warto wyznaczyć na podstawie rzeczywistych sesji gracza; nie zastępujemy brakującego backlogu sztucznymi zgłoszeniami.
+## Wygoda codziennej gry — #80–#82
+
+Przegląd obecnej pętli wyłonił trzy zadania: zabezpieczanie rynsztunku przed
+utratą (#80), filtrowany i stronicowany targ (#81) oraz odczytowe porównanie
+sprzętu z wyborem slotu pierścienia (#82). Reguły i obsługa: [ekwipunek](EQUIPMENT.md)
+i [targ](MARKET_POLICY.md). Indeksy #9/#10 pozostają otwarte; II edycja #30–#35
+nadal jest odłożona.

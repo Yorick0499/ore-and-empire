@@ -105,7 +105,7 @@ def progress_for(profile, run, goal):
         return int(timezone.now() >= run.activated_at + timedelta(seconds=goal['seconds']))
     if kind == 'item':
         from django.db.models import Sum
-        return min(goal.get('count', 1), profile.inventory.filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False).aggregate(total=Sum('quantity'))['total'] or 0)
+        return min(goal.get('count', 1), profile.inventory.filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False, is_protected=False).aggregate(total=Sum('quantity'))['total'] or 0)
     if kind == 'talk':
         return int(goal['id'] in run.choices)
     return run.progress.get(goal['id'], 0)
@@ -186,7 +186,7 @@ def claim_story(profile, run_id):
     for goal in run.snapshot['objectives']:
         if goal['kind'] != 'item': continue
         needed = goal.get('count', 1)
-        items = profile.inventory.select_for_update().filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False).order_by('pk')
+        items = profile.inventory.select_for_update().filter(blueprint_id=goal['target'], is_equipped=False, is_market_listed=False, is_protected=False).order_by('pk')
         for item in items:
             used = min(needed, item.quantity - deliveries.get(item.pk, 0))
             if used > 0:
