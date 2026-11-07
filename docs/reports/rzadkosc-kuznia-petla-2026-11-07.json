@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "success": true,
+  "elapsed_seconds": 110.05,
+  "isolated_database": true,
+  "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+  "polish_time_scenarios": 4,
+  "loot_endgame_scheduler_scenarios": 12,
+  "time_acceleration": "30 minut symulowanego czasu na krok; wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty",
+  "scenarios": [
+    {
+      "scenario": "gracz-od-zera-do-finalu",
+      "steps": 3663,
+      "simulated_hours": 1831.5,
+      "chapters": 6,
+      "claimed_quests": 27,
+      "level": 30,
+      "experience": 242426,
+      "ore": 5867,
+      "premium": 1,
+      "completion": true
+    },
+    {
+      "scenario": "gracz-po-finale",
+      "upgraded_item": "Legendary Heavy Sword of Burning",
+      "upgrade_level": 1,
+      "patrol_wins": 1,
+      "unlocked": 2,
+      "admin_grants": false
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 491,
+      "simulated_hours": 245.0,
+      "actions": {
+        "stock": 34,
+        "mine": 35,
+        "equip": 37,
+        "list": 1,
+        "claim": 35,
+        "camp": 3,
+        "accept": 13,
+        "buy": 1,
+        "sell": 42,
+        "story_accept": 84,
+        "story_start": 84,
+        "story_talk": 27,
+        "story_claim": 84,
+        "promote": 13,
+        "challenge_accept": 38,
+        "story_travel": 49,
+        "hunt": 101,
+        "salvage": 14,
+        "challenge_claim": 14,
+        "improve": 31,
+        "train": 534,
+        "raid_rally": 26,
+        "learn_circle": 12,
+        "camp_donate": 19,
+        "raid_strike": 48,
+        "achievement_claim": 8,
+        "boss": 7,
+        "raid_claim": 16,
+        "buy_magic": 4,
+        "camp_upgrade": 11,
+        "prepare_magic": 10,
+        "clear_magic": 8,
+        "wait": 1,
+        "patrol": 6
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 31,
+          "experience": 251196,
+          "ore_balance": 2688,
+          "premium_balance": 14
+        },
+        {
+          "camp": "OLD_CAMP",
+          "level": 31,
+          "experience": 249042,
+          "ore_balance": 5476,
+          "premium_balance": 17
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 31,
+          "experience": 249811,
+          "ore_balance": 2068,
+          "premium_balance": 12
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "improve": 15,
+        "salvage": 27,
+        "patrol": 31,
+        "prepare_magic": 2,
+        "raid_rally": 5,
+        "mine": 8,
+        "claim": 8,
+        "train": 11,
+        "challenge_accept": 4,
+        "hunt": 47,
+        "sell": 14,
+        "equip": 2,
+        "challenge_claim": 3,
+        "achievement_claim": 1,
+        "camp_upgrade": 1,
+        "raid_strike": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 22,
+          "upgrades": 20
+        },
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 13,
+          "upgrades": 15
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 2,
+          "upgrades": 11
+        }
+      ]
+    },
+    {
+      "scenario": "kontrolowana-macierz-buildow",
+      "synthetic_fixture": true,
+      "encounters": [
+        {
+          "build": "warrior",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "mage",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 74,
+          "mana_spent": 247
+        },
+        {
+          "build": "mage",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 499,
+          "mana_spent": 26
+        },
+        {
+          "build": "mage",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 498,
+          "mana_spent": 39
+        }
+      ]
+    },
+    {
+      "scenario": "wspolna-sesja-gracza-i-botow",
+      "ticks": 40,
+      "bots": 3,
+      "level": 1,
+      "experience": 528,
+      "real_bot_sales_to_player": 1,
+      "distinct_bot_actions": 18
+    },
+    {
+      "scenario": "audyt-blednych-identyfikatorow-i-csrf",
+      "malformed_posts": 24,
+      "csrf_rejections": 2,
+      "progress_unchanged": true
+    },
+    {
+      "scenario": "audyt-powtorzonych-formularzy",
+      "upgrade_replays": 10,
+      "patrol_replays": 10,
+      "upgrades": 1,
+      "patrol_records": 1
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/plac_targowy/",
+      "items": 40,
+      "blueprint_queries": 3
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/sklep/",
+      "items": 40,
+      "blueprint_queries": 4
+    }
+  ],
+  "abuse_scenarios": 6,
+  "clock_scenarios": 4,
+  "finale_scenarios": 4,
+  "mixed_sessions": 1,
+  "build_matrices": 1,
+  "limits": [
+    "Automatyczny przebieg gracza miesza formularze fabuły i zwykłe serwisy rozgrywki; osobny przegląd ręczny sprawdza GUI.",
+    "Nie jest to test współbieżności PostgreSQL ani test publicznego hostingu."
+  ],
+  "audit_scenarios": 19,
+  "bot_policy": "baseline-18",
+  "observation_schema": 19,
+  "local_policy_scenarios": 12,
+  "equipment_and_market_scenarios": 23,
+  "rarity_scenarios": 17
+}

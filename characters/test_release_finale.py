@@ -118,7 +118,7 @@ class SharedColonySessionTests(TestCase):
                 player.refresh_from_db();game.refresh_player(player)
                 offer=OwnedItem.objects.filter(is_market_listed=True,owner__is_bot=True,market_price__lte=player.ore_balance).first()
                 if offer and not MarketTrade.objects.filter(buyer=player).exists():
-                    self.assertEqual(self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':offer.pk}).status_code,302)
+                    self.assertEqual(self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':offer.pk,'expected_price':offer.market_price}).status_code,302)
                 player.refresh_from_db()
                 if player.action_end_time:
                     self.client.post('/kopalnia/',{'action':'claim'})

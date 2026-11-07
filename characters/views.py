@@ -112,7 +112,16 @@ def market_view(request):
             owned_item = get_object_or_404(
                 OwnedItem, pk=positive_id(buy_item_id), is_market_listed=True
             )
-            report_action(request, buy_item_on_market(profile, owned_item))
+            try:expected_price=int(request.POST.get('expected_price',''))
+            except (TypeError,ValueError):expected_price=0
+            if expected_price <= 0:
+                messages.error(request,'Odśwież ofertę i potwierdź jej aktualną cenę.')
+            else:
+                success = buy_item_on_market(profile, owned_item, expected_price)
+                if not success and owned_item.market_price != expected_price:
+                    messages.error(request,'Oferta lub jej cena zmieniła się. Odśwież targ i potwierdź aktualną ofertę.')
+                else:
+                    report_action(request, success)
             return redirect(request.get_full_path())
         if action == "reprice":
             from .market_policy import reprice_listing
@@ -169,7 +178,7 @@ def inventory_view(request):
             return redirect(request.get_full_path())
     player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False, is_market_listed=False).select_related("blueprint")
     from django.core.paginator import Paginator
-    from .enhancements import QUALITY_RANKS
+    from .enhancements import QUALITY_RANKS, FORGE_STEPS
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
     quality=request.GET.get('quality','')
@@ -178,10 +187,10 @@ def inventory_view(request):
     quality_keys=[rank['key'] for rank in QUALITY_RANKS]
     if quality in quality_keys:
         rank=quality_keys.index(quality)
-        player_inventory=player_inventory.filter(upgrade_level__range=(max(0,2*rank-1),2*rank))
+        player_inventory=player_inventory.filter(rarity=rank)
     player_inventory=Paginator(player_inventory.order_by("blueprint__kind","blueprint__name","pk"),24).get_page(request.GET.get("page"))
     equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True, equipped_slot="weapon").first()
-    from .enhancements import QUALITY_RANKS
+    from .enhancements import QUALITY_RANKS, FORGE_STEPS
     return render(
         request,
         "characters/inventory.html",
@@ -189,7 +198,7 @@ def inventory_view(request):
             "profile": profile,
             "player_inventory": player_inventory,
             "equipped_weapon": equipped_weapon,
-            "quality_ranks":QUALITY_RANKS[1:],
+            "quality_ranks":FORGE_STEPS,
             "all_quality_ranks":QUALITY_RANKS,"query":query,"kind":kind,"quality":quality,
             "item_kinds":[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field("kind").choices],
             "request_key":uuid4(),

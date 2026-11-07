@@ -55,7 +55,7 @@ def browse_market(profile, params):
         offers = offers.filter(blueprint__kind=filters['kind'])
     if filters['quality']:
         rank = next(i for i, r in enumerate(QUALITY_RANKS) if r['key'] == filters['quality'])
-        offers = offers.filter(upgrade_level__range=(max(0, rank*2-1), rank*2))
+        offers = offers.filter(rarity=rank)
     if filters['seller'] == 'mine':
         offers = offers.filter(owner=profile)
     elif filters['seller'] == 'others':

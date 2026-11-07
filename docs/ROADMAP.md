@@ -36,7 +36,7 @@ Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i por�
 
 ## Dopracowanie pełnej edycji
 
-Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](https://github.com/Yorick0499/ore-and-empire/issues/66) i [#67](https://github.com/Yorick0499/ore-and-empire/issues/67): 35 wzorów dropu, ulepszenia +10, 100 powtarzalnych wart i miesięczny ranking, do 100 botów z harmonogramem. [Reguły endgame](LOOT_AND_ENDGAME.md) · [wydajność](BOT_PERFORMANCE.md).
+Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](https://github.com/Yorick0499/ore-and-empire/issues/66) i [#67](https://github.com/Yorick0499/ore-and-empire/issues/67): 35 wzorów dropu, stała rzadkość łupu i przekucie +3, 100 powtarzalnych wart i miesięczny ranking, do 100 botów z harmonogramem. [Reguły endgame](LOOT_AND_ENDGAME.md) · [wydajność](BOT_PERFORMANCE.md).
 
 ## Wygoda codziennej gry — #80–#82
 
@@ -45,3 +45,15 @@ utratą (#80), filtrowany i stronicowany targ (#81) oraz odczytowe porównanie
 sprzętu z wyborem slotu pierścienia (#82). Reguły i obsługa: [ekwipunek](EQUIPMENT.md)
 i [targ](MARKET_POLICY.md). Indeksy #9/#10 pozostają otwarte; II edycja #30–#35
 nadal jest odłożona.
+
+## Rzadkość, kuźnia i audyt — #84–#87
+
+Pięć stałych rzadkości losowanych przy dropie i osobna kuźnia +0–+3 (#84).
+Naprawa wyboru broni botów według mocy egzemplarza i wymagań zręczności (#85).
+Migracja dorobku oraz zgodne, rygorystyczne odtwarzanie starszych kopii (#86).
+Dotychczasowe raporty i screeny opisują wersję z chwili ich wykonania;
+aktualne reguły są w [LOOT_AND_ENDGAME.md](LOOT_AND_ENDGAME.md).
+
+Zakup na targu wymaga zgodności aktualnej ceny z potwierdzonym formularzem (#87); zmiana ceny odrzuca transakcję bez pobrania rudy.
+
+#89 — pula łupu pomija nieaktywne ozdoby bez bonusów, z zachowaniem kompletności katalogu G1.

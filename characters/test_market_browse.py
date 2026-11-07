@@ -21,11 +21,11 @@ class MarketBrowseTests(TestCase):
             market_price=price, is_market_listed=True, quantity=quantity, **kwargs)
 
     def test_combined_filters_and_quality_include_both_legacy_power_steps(self):
-        first = self.offer(price=100, upgrade_level=1)
-        second = self.offer(price=120, upgrade_level=2)
-        self.offer(price=90, upgrade_level=4)
+        first = self.offer(price=100, rarity=1, upgrade_level=1)
+        second = self.offer(price=120, rarity=1, upgrade_level=2)
+        self.offer(price=90, rarity=2)
         self.offer(self.ring, price=70)
-        context = browse_market(self.profile, {'q':'Miecz','kind':'weapon','quality':'reforged','max_price':'120','seller':'others','sort':'price'})
+        context = browse_market(self.profile, {'q':'Miecz','kind':'weapon','quality':'masterwork','max_price':'120','seller':'others','sort':'price'})
         self.assertEqual([i.pk for i in context['market_all_items']], [first.pk, second.pk])
         self.assertEqual(browse_market(self.profile, {'quality':'ordinary'})['market_all_items'].paginator.count, 1)
 
@@ -110,3 +110,23 @@ class MarketBrowseTests(TestCase):
         newest = self.offer(listed_at=timezone.now())
         context = browse_market(self.profile, {})
         self.assertEqual([i.pk for i in context['market_all_items']], [newest.pk, dated.pk, legacy.pk])
+
+    def test_buy_from_old_page_cannot_pay_a_changed_price(self):
+        from .market_policy import reprice_listing
+        from .models import MarketTrade
+        item=self.offer(price=20)
+        self.assertContains(self.client.get('/plac_targowy/'),'name="expected_price" value="20"')
+        self.assertTrue(reprice_listing(self.seller,item,40,20))
+        before=(self.profile.ore_balance,self.seller.ore_balance)
+        self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':item.pk,'expected_price':20})
+        self.profile.refresh_from_db();self.seller.refresh_from_db();item.refresh_from_db()
+        self.assertEqual((self.profile.ore_balance,self.seller.ore_balance),before)
+        self.assertEqual(item.owner_id,self.seller.pk);self.assertFalse(MarketTrade.objects.exists())
+        for price in ['', 'NaN', '-1']:
+            self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':item.pk,'expected_price':price})
+            item.refresh_from_db();self.assertEqual(item.owner_id,self.seller.pk)
+        self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':item.pk,'expected_price':40})
+        item.refresh_from_db();self.assertEqual(item.owner_id,self.profile.pk)
+        self.assertEqual(MarketTrade.objects.count(),1)
+        self.assertEqual(self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':item.pk,'expected_price':40}).status_code,404)
+        self.assertEqual(MarketTrade.objects.count(),1)

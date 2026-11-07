@@ -4,7 +4,19 @@ from .models import ItemBluePrint
 from .equipment import add_item
 from django.db.models import Q
 
-GEAR_VERSION=2
+GEAR_VERSION=3
+RARITY_WEIGHTS = (6000,2500,1000,400,100)
+BOSS_RARITY_WEIGHTS = (4000,3000,1800,1000,200)
+
+
+def roll_rarity(*, boss=False):
+    roll=random.randrange(10000); threshold=0
+    for rank,weight in enumerate(BOSS_RARITY_WEIGHTS if boss else RARITY_WEIGHTS):
+        threshold+=weight
+        if roll < threshold:return rank
+    raise ValueError("Invalid rarity weights")
+
+
 TIERS=(0,5,10,20,30)
 
 
@@ -34,13 +46,13 @@ def award_gear(profile,level,*,boss=False,guaranteed=False):
             Q(kind='weapon',damage__gte=max(1,budget-35),damage__lte=budget,required_strength__lte=10+4*level,required_dexterity__lte=10+4*level) |
             Q(kind='armor',weapon_prot__gte=max(0,4*level-27),weapon_prot__lte=8+4*level) |
             Q(kind__in=['ring','amulet'],strength_bonus__lte=2+level,dexterity_bonus__lte=2+level,life_bonus__lte=15+4*level,mana_bonus__lte=10+3*level,weapon_prot__lte=2+level,arrow_prot__lte=2+level,fire_prot__lte=2+level,magic_prot__lte=2+level)
-        ).exclude(catalog_key__in=['g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('pk'))
+        ).exclude(damage=0,weapon_prot=0,arrow_prot=0,fire_prot=0,magic_prot=0,strength_bonus=0,dexterity_bonus=0,life_bonus=0,mana_bonus=0).exclude(catalog_key__in=['g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('pk'))
         # JSON missing keys are SQL NULL: exclude explicit retired identities separately.
         if not pool:
             pool=list(ItemBluePrint.objects.filter(catalog_key__startswith=f'colony-loot-{tier}-').order_by('pk'))
         if pool:
-            bp=random.choice(pool);add_item(profile,bp,origin="loot")
-            drops.append({'blueprint':bp.pk,'name':bp.name,'quantity':1})
+            bp=random.choice(pool);item=add_item(profile,bp,origin="loot",rarity=roll_rarity(boss=boss))
+            drops.append({'blueprint':bp.pk,'name':item.display_name,'quantity':1,'rarity':item.rarity,'rarity_key':item.quality["key"],'upgrade_level':0,'item_id':item.pk})
     if boss or guaranteed or random.randrange(10000)<3500:
         bp=ItemBluePrint.objects.filter(catalog_key='rune-dust').first()
         if bp:

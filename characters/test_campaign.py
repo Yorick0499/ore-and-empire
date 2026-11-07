@@ -47,6 +47,18 @@ class CampaignTests(TestCase):
     def test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self):
         call_command('seed_equipment', stdout=StringIO())
         call_command('seed_catalog', stdout=StringIO())
+        # Stable IDs exercise two mage branches and all three camps on both databases.
+        # Only fixture identity/randomness is controlled, never stats, resources or outcomes.
+        import random
+        from django.db import connection
+        state=random.getstate();self.addCleanup(random.setstate,state);random.seed(19)
+        self.assertFalse(PlayerProfile.objects.exists())
+        with connection.cursor() as cursor:
+            if connection.vendor=='postgresql':
+                cursor.execute("SELECT setval(pg_get_serial_sequence('characters_playerprofile','id'),221,true)")
+            else:
+                cursor.execute("UPDATE sqlite_sequence SET seq=221 WHERE name='characters_playerprofile'")
+                if not cursor.rowcount:cursor.execute("INSERT INTO sqlite_sequence(name,seq) VALUES ('characters_playerprofile',221)")
         # Simulated elapsed time grants only the ordinary capped resource recovery.
         # No combat mocks, forced progress, stat/XP grants or injected quest outcomes.
         call_command('run_bots', create=3, create_only=True, stdout=StringIO())
@@ -196,7 +208,7 @@ class CampaignTests(TestCase):
             upgrade_key=response.context['request_key']
             response=self.client.post('/ekwipunek/',{'action':'improve','item_id':weapon.pk,'expected_level':0,'request_key':upgrade_key})
         self.assertEqual(response.status_code,302)
-        weapon.refresh_from_db();self.assertEqual(weapon.upgrade_level,2)
+        weapon.refresh_from_db();self.assertEqual(weapon.upgrade_level,1)
         with advance():
             key=uuid4()
             response=self.client.post('/warty/',{'depth':1,'request_key':key,'ore':999999})

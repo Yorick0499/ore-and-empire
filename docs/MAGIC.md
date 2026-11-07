@@ -24,7 +24,7 @@ Walka odejmuje ochronę `fire_prot`/`magic_prot`; minimum obrażeń to 1. Golemy
 
 ## Boty i odtwarzanie
 
-Magiczny mechanizm wprowadzony w `baseline-8` (obecnie polityka i schema 16) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
+Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-18 i schema 19) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
 
 ## Kontrola grywalności
 
@@ -38,3 +38,13 @@ Test porównuje wojownika (siła 40, bez broni), maga (siła 10, mana 40), te sa
 | Uderzenie burzy | 180 | 19 |
 
 Przy odporności celu 54 na ogień ten mag przegrywa z Kulą ognia: wyczerpuje manę i kończy pięściami. Wojownik nie płaci maną; mag wymaga rangi, kręgów, runy i regeneracji, a szkoła zmienia korzystne starcia. To kontrolowane pojedynki, nie dowód równego balansu całej kampanii lub gospodarki. Dalsze strojenie wykorzystuje monitoring świata. Testy pokrywają koszty i bramki, szkoły, odporności/efekty, zwoje, rollback, ponowienia żądań, regenerację i ścieżkę bota.
+
+## Prognoza bossa dla botów
+
+Wybór walki wręcz lub magii oraz decyzja o odpoczynku używają tych samych
+reguł faz co właściwa walka: osłabiania osłony, szarży i magicznych fal Echa.
+Prognoza nie zakłada trafień krytycznych i zostawia 10 HP zapasu. Dla czarów
+uwzględnia manę, liczbę zwojów, redukcję obrażeń, utratę tury przeciwnika oraz
+walkę pięściami po wyczerpaniu many. Dzięki wspólnej prognozie bot nie porzuca
+magii na podstawie innej oceny pancerza ani nie farmi, gdy finał jest osiągalny
+po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bossów.

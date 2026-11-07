@@ -3,15 +3,16 @@
 Zestaw **28 ujęć** z syntetycznego świata „Kolonia nad Wisłą”, z postacią
 `Skazaniec_Pokazowy` i 100 botami. Nie zawiera danych prywatnego administratora.
 
-**7 listopada 2026, migracja 0036:** odświeżono ekwipunek, targ i mobilny
-ekwipunek; dodano porównywarkę, mobilną porównywarkę i mobilny targ. Motyw
-`rynsztunek-i-targ-2`. Pełne ujęcia ekwipunku i porównywarki pokazują zaznaczone
-filtry, ochronę i parametry sprzętu; targ pokazuje widoczne okno (mobilny po
-przewinięciu do filtrów). Starsze ujęcia pozostałych ekranów pochodzą z tego
-samego dnia, z migracji 0032 i wcześniejszego motywu.
+**7 listopada 2026, migracja 0037:** odświeżono siedem ujęć — ekwipunek,
+kuźnię Pradawnego +3, targ, porównywarkę oraz trzy odpowiedniki mobilne.
+Motyw `rzadkosc-i-kuznia-3`. Rzadkość jest stała, a przekucie kończy się na +3.
+Pełne ujęcia ekwipunku i porównywarki pokazują filtry, ochronę oraz parametry;
+targ pokazuje widoczne okno (mobilny po przewinięciu do filtrów). Starsze ujęcia
+pozostałych ekranów pochodzą z tego samego dnia i wcześniejszych migracji/motywów.
 
-Kontrola GUI: 1440×1000, 390×844 i 320×844. Formularze ochrony, wyboru slotu,
-paginacji i wycofania własnej oferty sprawdzono w przeglądarce. [Raport](reports/rynsztunek-targ-gui-2026-11-07.json).
+Kontrola GUI: 1440×1000, 390×844 i 320×844. W przeglądarce wykonano trzy
+przekucia Pradawnego egzemplarza bez zmiany jego rzadkości oraz sprawdzono filtr
+targu i brak formularza +4. [Raport](reports/rzadkosc-kuznia-gui-2026-11-07.json).
 Hashe i czas wykonania każdego pliku są w `screenshots/manifest.json`.
 
 ## Kolonia i eksploracja
@@ -24,7 +25,7 @@ Hashe i czas wykonania każdego pliku są w `screenshots/manifest.json`.
 ## Ekwipunek i ekonomia
 
 ![Ekwipunek](screenshots/inventory.jpg)
-![Runiczny przedmiot w kuźni](screenshots/forge.jpg)
+![Pradawny +3 w kuźni](screenshots/forge.jpg)
 ![Katalog 140 broni G1](screenshots/catalog.jpg)
 ![Porównanie rynsztunku](screenshots/comparison.jpg)
 ![Targ mieszkańców](screenshots/market.jpg)

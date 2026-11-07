@@ -264,7 +264,7 @@ def choose_upgrade(stock, offers, damage, ore):
         for entry in entries:
             weapon = entry if action == "stock" else entry.blueprint
             price = entry.base_value if action == "stock" else entry.market_price
-            gain = weapon.damage - damage
+            gain = (entry.effective_stats["damage"] if action == "buy" else weapon.damage) - damage
             if (gain >= minimum_gain and 0 < price <= ore - UPGRADE_ORE_RESERVE
                     and price <= gain * MAX_ORE_PER_DAMAGE):
                 candidates.append((Fraction(price, gain), -gain, price, action, entry.pk, entry))
@@ -275,9 +275,8 @@ def choose_upgrade(stock, offers, damage, ore):
 
 
 def health_needed(profile, monster, damage):
-    rounds = math.ceil(monster["life"] / max(1, damage - monster.get("forecast_protection",monster["weapon_prot"])))
-    incoming = max(1, monster.get("forecast_strength",monster["strength"]) - min(profile.effective_protection("weapon"),profile.effective_protection("magic")) if monster.get("boss_key")=="sleeper_sanctum" else monster.get("forecast_strength",monster["strength"]) - profile.effective_protection(monster.get("damage_type", "weapon")))
-    return (rounds - 1) * incoming + 10
+    from .equipment import physical_survival_health
+    return physical_survival_health(profile,monster,damage)
 
 
 def health_at_rest(profile,monster,damage):
@@ -328,7 +327,7 @@ def tick_bot(profile, policy=None, *, lease=None):
     reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True) if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
     reserved_materials.update(i.blueprint_id for i in inventory if ammo_kind and i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind)
     spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials and item.blueprint.catalog_key!='rune-dust']
-    item = next((i for i in spare if i.blueprint.tradeable), None)
+    item = next((i for i in spare if i.blueprint.tradeable and not i.is_protected), None)
     equipment = max((item for item in spare if item.blueprint.kind == "weapon" and allowed(profile,item.blueprint) and item.blueprint.required_strength <= profile.strength and item.blueprint.required_dexterity <= profile.dexterity and item.effective_stats['damage'] > damage), key=lambda item: item.effective_stats['damage'], default=None)
     if not equipment:
         worn = next((i.effective_stats['weapon_prot'] for i in inventory if i.is_equipped and i.equipped_slot == 'armor'), 0)
@@ -345,9 +344,7 @@ def tick_bot(profile, policy=None, *, lease=None):
     stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=['onehand','twohand'], min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
-    if combat_equipment:
-        offers = offers.filter(blueprint__damage__gt=damage)
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
     upgrade = None
     if equipped and combat_equipment:
         upgrade = choose_upgrade(stock, offers, damage, profile.ore_balance)
@@ -361,10 +358,10 @@ def tick_bot(profile, policy=None, *, lease=None):
         stock = offer = upgrade = None
     # Sell obsolete weapons through the same NPC service as a human player.
     # Keep stronger future gear, listed goods and the trader's merchandise.
-    disposal = min((i for i in spare if i.blueprint.tradeable and i.blueprint.kind == "weapon" and i.blueprint.damage < damage),
-                   key=lambda i: (i.blueprint.damage, i.pk), default=None) if equipped and combat_equipment else None
+    disposal = min((i for i in spare if i.blueprint.tradeable and i.blueprint.kind == "weapon" and not i.is_protected and i.effective_stats["damage"] < damage),
+                   key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped and combat_equipment else None
     if len(inventory) >= 5:
-        disposal = next((i for i in spare if i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable), disposal)
+        disposal = next((i for i in spare if i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable and not i.is_protected), disposal)
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
     # Delivery stock is bought through the ordinary services and reserved from sale/equip.

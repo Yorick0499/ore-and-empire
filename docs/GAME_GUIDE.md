@@ -26,7 +26,7 @@ PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Pozio
 
 Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu opierają się na bazowych atrybutach, poziomie i ewentualnym obozie/randze. Broń wręcz korzysta z siły, łuki/kusze ze zręczności. Umiejętność danego typu broni określa szansę krytyka. Łuk zużywa strzałę, kusza bełt na całą walkę — to reguła adaptacji. Szczegóły: [wyposażenie](EQUIPMENT.md), [magia](MAGIC.md).
 
-W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. W Ekwipunku przekujesz własny egzemplarz aż do rangi Naznaczony Barierą, także podczas fabuły za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
+W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. Rzadkość łupu jest stała: Niewykończony, Mistrzowski, Nasycony magią, Runiczny lub Pradawny. W Ekwipunku przekujesz egzemplarz osobno do +3, także podczas fabuły za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
 
 Cenny rynsztunek zabezpieczysz przed sprzedażą, rozebraniem i zużyciem jako
 składnik lub dostawa. Przycisk „Porównaj z wyposażeniem” pokazuje różnice

@@ -29,12 +29,14 @@ class MMORPGGearTests(TestCase):
         self.assertFalse(self.p.story_runs.exists())
         self.assertTrue(improve_item(self.p,self.item.pk,0,uuid4()))
         self.item.refresh_from_db()
-        self.assertEqual(self.item.quality_name,'Wykuty na nowo')
-        self.assertNotIn('+2',self.item.display_name)
-        for old in range(1,11):
-            self.item.upgrade_level=old
-            self.assertEqual(self.item.effective_stats['damage'],self.bp.damage+max(old,self.bp.damage*old//20))
-            self.assertIn(self.item.quality_name,[r['name'] for r in QUALITY_RANKS])
+        self.assertEqual(self.item.quality_name,'Niewykończony')
+        self.assertIn('+1',self.item.display_name)
+        for rank in range(5):
+            self.item.rarity=rank
+            for level in range(4):
+                self.item.upgrade_level=level;power=rank*2+level
+                self.assertEqual(self.item.effective_stats['damage'],self.bp.damage+max(power,self.bp.damage*power//20))
+                self.assertIn(self.item.quality_name,[r['name'] for r in QUALITY_RANKS])
     def test_bot_can_forge_before_campaign(self):
         from .bots import tick_bot
         from .game_logic import equip_item
@@ -60,11 +62,12 @@ class MMORPGGearTests(TestCase):
         self.assertTrue(salvage_item(buyer,self.item.pk,uuid4()))
     def test_backpack_filters_name_type_and_named_quality(self):
         self.client.force_login(self.user)
-        self.item.upgrade_level=2;self.item.save()
-        response=self.client.get('/ekwipunek/',{'q':'Zardzewiały','kind':'weapon','quality':'reforged'})
+        OwnedItem.objects.filter(pk=self.item.pk).update(rarity=1,upgrade_level=2)
+        self.item.refresh_from_db()
+        response=self.client.get('/ekwipunek/',{'q':'Zardzewiały','kind':'weapon','quality':'masterwork'})
         self.assertEqual(response.context['player_inventory'].paginator.count,1)
-        self.assertContains(response,'Wykuty na nowo')
-        self.assertEqual(self.client.get('/ekwipunek/',{'quality':'barrier-marked'}).context['player_inventory'].paginator.count,0)
+        self.assertContains(response,'Mistrzowski')
+        self.assertEqual(self.client.get('/ekwipunek/',{'quality':'ancient'}).context['player_inventory'].paginator.count,0)
     def test_stack_provenance_never_merges_bought_and_looted(self):
         bp=ItemBluePrint.objects.get(catalog_key='rune-dust')
         a=add_item(self.p,bp,2,origin='merchant');b=add_item(self.p,bp,3,origin='loot')

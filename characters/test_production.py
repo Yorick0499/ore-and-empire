@@ -92,6 +92,56 @@ class PostgreSQLBackupTests(TransactionTestCase):
                 self.assertTrue(user.check_password('test-only-backup-password'))
             finally:
                 with psycopg.connect(dbname=config['NAME'],host=config.get('HOST'),port=config.get('PORT'),user=config.get('USER'),password=config.get('PASSWORD'),autocommit=True) as db:db.execute(sql.SQL('DROP DATABASE IF EXISTS {} WITH (FORCE)').format(sql.Identifier(target)))
+    def test_old_inventory_dump_migrates_power_and_still_checks_the_full_snapshot(self):
+        import hashlib, subprocess, sys
+        import psycopg
+        from psycopg import sql
+        from uuid import uuid4
+        from .postgres_backups import pg_env, tool, restore_pg_drill
+        from .backups import sha
+        from .management.commands.import_sqlite_world import canonical, EXCLUDES
+        config=settings.DATABASES['default']
+        source='ore_old_'+uuid4().hex[:12];target='ore_new_'+uuid4().hex[:12]
+        kwargs=dict(dbname=config['NAME'],host=config.get('HOST'),port=config.get('PORT'),user=config.get('USER'),password=config.get('PASSWORD'),autocommit=True)
+        with psycopg.connect(**kwargs) as admin, tempfile.TemporaryDirectory(prefix='ore-old-pg-test-') as tmp:
+            root=Path(tmp);admin.execute(sql.SQL('CREATE DATABASE {}').format(sql.Identifier(source)))
+            try:
+                env=pg_env(config,source)
+                result=subprocess.run([sys.executable,'manage.py','migrate','characters','0036','--noinput'],cwd=settings.BASE_DIR,env=env,capture_output=True)
+                self.assertEqual(result.returncode,0,result.stderr.decode())
+                script="""import os;os.environ.setdefault('DJANGO_SETTINGS_MODULE','ore_empire.settings');import django;django.setup()
+from django.db import connection
+from django.db.migrations.executor import MigrationExecutor
+apps=MigrationExecutor(connection).loader.project_state([('characters','0036_ochrona_rynsztunku')]).apps
+U=apps.get_model('auth','User');P=apps.get_model('characters','PlayerProfile');B=apps.get_model('characters','ItemBluePrint');I=apps.get_model('characters','OwnedItem');W=apps.get_model('characters','World')
+u=U.objects.create(username='legacy-pg',password='synthetic-old-hash');p=P.objects.create(user=u,world=W.objects.first(),ore_balance=5432);bp=B.objects.create(name='Old blade',damage=20)
+I.objects.create(owner=p,blueprint=bp,upgrade_level=10)
+from django.core.management import call_command
+from characters.management.commands.import_sqlite_world import EXCLUDES,canonical
+import io
+for app in ['admin','sessions']:call_command('migrate',app,interactive=False,stdout=io.StringIO())
+with connection.cursor() as cursor:cursor.execute('ALTER TABLE characters_owneditem ADD COLUMN rarity smallint NOT NULL DEFAULT 0')
+try:
+    out=io.StringIO();call_command('dumpdata',format='precise_json',use_base_manager=True,use_natural_foreign_keys=True,exclude=EXCLUDES,stdout=out)
+    print(canonical(out.getvalue(),legacy_equipment=True)[0].decode())
+finally:
+    with connection.cursor() as cursor:cursor.execute('ALTER TABLE characters_owneditem DROP COLUMN rarity')
+"""
+                facts=subprocess.run([sys.executable,'-c',script],cwd=settings.BASE_DIR,env=env,capture_output=True)
+                self.assertEqual(facts.returncode,0,facts.stderr.decode())
+                logical,counts=canonical(facts.stdout)
+                dump=root/'world.pgdump'
+                result=subprocess.run([tool('pg_dump'),'--format=custom','--no-owner','--no-acl','--file='+str(dump)],env=env,capture_output=True)
+                self.assertEqual(result.returncode,0,result.stderr.decode())
+                manifest={'schema':1,'engine':'postgresql','database_sha256':sha(dump),'logical_sha256':hashlib.sha256(logical).hexdigest(),'models':counts}
+                (root/'manifest.json').write_text(json.dumps(manifest))
+                proof=restore_pg_drill(root,target);self.assertTrue(proof['migration_applied'])
+                with psycopg.connect(**{**kwargs,'dbname':target}) as restored:
+                    self.assertEqual(restored.execute('SELECT rarity,upgrade_level FROM characters_owneditem').fetchone(),(4,2))
+                    self.assertEqual(restored.execute('SELECT ore_balance FROM characters_playerprofile').fetchone(),(5432,))
+            finally:
+                for name in [source,target]:admin.execute(sql.SQL('DROP DATABASE IF EXISTS {} WITH (FORCE)').format(sql.Identifier(name)))
+
     def test_corrupt_dump_is_rejected_before_creating_destination(self):
         from .postgres_backups import restore_pg_drill
         with tempfile.TemporaryDirectory() as tmp:

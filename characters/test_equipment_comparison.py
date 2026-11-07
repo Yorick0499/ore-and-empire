@@ -17,11 +17,11 @@ class EquipmentComparisonTests(TestCase):
 
     def test_effective_upgrade_differences_and_empty_slot(self):
         old = self.item(damage=20, upgrade=2)
-        candidate = self.item(damage=25, upgrade=4)
+        candidate = self.item(damage=25, upgrade=3)
         self.assertTrue(equip_item(self.profile, old))
         comparison = compare_equipment(self.profile, candidate)
         row = next(r for r in comparison['rows'] if r['label'] == 'Obrażenia broni')
-        self.assertEqual((row['old'], row['new'], row['delta']), (22, 30, 8))
+        self.assertEqual((row['old'], row['new'], row['delta']), (22, 28, 6))
         armor = self.item('armor', weapon_prot=5)
         comparison = compare_equipment(self.profile, armor)
         self.assertIsNone(comparison['old'])

@@ -20,8 +20,8 @@ Ulepszenie należy do egzemplarza i pozostaje przy zmianie właściciela; oferty
 
 Targ pozwala szukać po nazwie, kategorii, randze, maksymalnej cenie całej oferty
 i sprzedawcy (wszyscy / tylko moje / inni). Nazwa szukana jest jako fragment,
-niezależnie od wielkości liter zgodnie z porównaniami używanej bazy. Ranga
-obejmuje również historyczne pośrednie poziomy przekucia.
+niezależnie od wielkości liter zgodnie z porównaniami używanej bazy. Rzadkość
+jest stałą cechą egzemplarza i nie zależy od przekucia +0–+3.
 
 Sortowanie: najnowsze (oferty bez daty na końcu), cena całej oferty rosnąco lub
 malejąco oraz cena jednej sztuki rosnąco. Remisy rozstrzyga ID. **Kupujesz cały
@@ -36,3 +36,7 @@ rozwijanej sekcji także wtedy, gdy filtr ukrywa je na targu; stamtąd można
 zmienić cenę lub wycofać ofertę. Zabezpieczone, założone i przygotowane do magii
 przedmioty nie trafiają na listę wystawiania. Paginacja nie zmienia uprawnień
 zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.
+
+Boty porównują efektywną moc kupowanej i zapasowej broni, uwzględniając rzadkość i przekucie; oferty muszą spełniać również wymaganie zręczności.
+
+Zakup potwierdza cenę całej oferty widoczną w formularzu. Jeśli sprzedawca ją zmienił, transakcja nie pobiera rudy ani przedmiotu; odśwież targ i potwierdź nową cenę. Stare formularze bez potwierdzenia ceny są odrzucane.

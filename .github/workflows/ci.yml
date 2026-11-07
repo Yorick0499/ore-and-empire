@@ -72,7 +72,7 @@ jobs:
       - name: Install matching PostgreSQL tools
         run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
       - name: PostgreSQL gameplay regression
-        run: python manage.py test characters.test_item_protection characters.test_market_browse characters.test_equipment_comparison characters.test_equipment characters.test_magic characters.test_endgame characters.test_story_quests characters.test_campaign characters.test_camp_guilds characters.test_camp_raids characters.test_economy_balance characters.test_market_policy characters.test_production --noinput
+        run: python manage.py test characters.test_rarity characters.test_item_protection characters.test_market_browse characters.test_equipment_comparison characters.test_equipment characters.test_magic characters.test_endgame characters.test_story_quests characters.test_campaign characters.test_camp_guilds characters.test_camp_raids characters.test_economy_balance characters.test_market_policy characters.test_production --noinput
       - name: Real contention and mixed player/bot load
         run: python manage.py simulate_concurrency --report work/postgresql-ci.json
       - uses: actions/upload-artifact@v4
