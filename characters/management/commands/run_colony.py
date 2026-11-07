@@ -2,6 +2,7 @@ from characters.world_clock import polish_day
 """Single-process local world: HTTP requests and bot rounds never overlap."""
 
 import time
+from contextlib import ExitStack
 from wsgiref.simple_server import make_server
 
 from django.contrib.staticfiles.handlers import StaticFilesHandler
@@ -42,7 +43,7 @@ class Command(BaseCommand):
             )
         except OSError as exc:
             raise CommandError(f"Cannot start local server: {exc}") from exc
-        with server:
+        with server, ExitStack() as cleanup:
             call_command("migrate", interactive=False, stdout=self.stdout)
             call_command("seed_world", stdout=self.stdout)
             call_command("seed_equipment", stdout=self.stdout)
@@ -54,6 +55,11 @@ class Command(BaseCommand):
             world=current_world()
             if not world.configured:
                 world.bot_count=options["bots"];world.save(update_fields=["bot_count"])
+            from characters.scheduler_lease import SchedulerGuard,LeaseLost
+            guard=SchedulerGuard(world)
+            cleanup.callback(guard.release)
+            try:guard.acquire()
+            except LeaseLost as exc:raise CommandError(str(exc)) from exc
             active_bots=world.bot_count
             if options["setup_admin"]:
                 call_command("create_game_admin", stdout=self.stdout)
@@ -85,7 +91,9 @@ class Command(BaseCommand):
                 profile=PlayerProfile.objects.select_related('user').filter(pk=pk,is_bot=True,user__is_active=True).first()
                 if not profile:return 'wait',False
                 try:
-                    action,success=tick_bot(profile)
+                    action,success=tick_bot(profile,lease=guard)
+                except LeaseLost:
+                    raise
                 except Exception as exc:
                     self.stderr.write(f"{profile.user.username}: bot skipped ({type(exc).__name__})")
                     return 'wait',False
@@ -95,17 +103,23 @@ class Command(BaseCommand):
                 while True:
                     now=time.monotonic()
                     if now>=refresh_at:
+                        with guard.work():pass
                         world=current_world()
                         scheduler.population(PlayerProfile.objects.filter(is_bot=True,user__is_active=True,world=world).order_by('pk').values_list('pk',flat=True)[:world.bot_count])
                         refresh_at=now+5
                         from characters.world_events import ensure_world_events
                         if event_day!=polish_day():
-                            ensure_world_events()
-                            try:call_command('archive_bot_history',days=options['history_days'],stdout=self.stdout)
-                            except Exception as exc:self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
+                            with guard.work():
+                                ensure_world_events()
+                                try:call_command('archive_bot_history',days=options['history_days'],stdout=self.stdout)
+                                except Exception as exc:self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
                             event_day=polish_day()
                     server.timeout=scheduler.timeout()
                     server.handle_request()
                     scheduler.step(run_one)
             except KeyboardInterrupt:
                 self.stdout.write("Colony stopped. Saved progress retained.")
+            except LeaseLost as exc:
+                raise CommandError(str(exc)) from exc
+            finally:
+                guard.release()

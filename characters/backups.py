@@ -127,7 +127,8 @@ def restore_drill(backup, target, live):
     try:
         with open(target,'xb') as dst,open(source,'rb') as src: os.chmod(target,0o600);shutil.copyfileobj(src,dst)
         repo=Path(__file__).resolve().parent.parent
-        env={**os.environ,'ORE_DATABASE_PATH':str(target)}
+        from ore_empire.database import sqlite_environment
+        env=sqlite_environment(target)
         process=subprocess.run([sys.executable,str(repo/'manage.py'),'migrate','--noinput'],cwd=repo,env=env,capture_output=True,text=True)
         if process.returncode: raise ValueError('Restore migration failed; original backup remains untouched')
         if inspect_database(target,spec)!=manifest['facts']: raise ValueError('Restored progression/ledger differs from snapshot')

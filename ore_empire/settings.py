@@ -79,12 +79,8 @@ WSGI_APPLICATION = "ore_empire.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.environ.get("ORE_DATABASE_PATH", BASE_DIR / "db.sqlite3"),
-    }
-}
+from .database import database_config
+DATABASES = {'default':database_config(os.environ,BASE_DIR)}
 
 
 # Password validation
@@ -129,3 +125,5 @@ LOGOUT_REDIRECT_URL = "login"
 
 # A deterministic destination for CI artifacts and production static serving.
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+SERIALIZATION_MODULES = {'precise_json':'ore_empire.precise_json'}

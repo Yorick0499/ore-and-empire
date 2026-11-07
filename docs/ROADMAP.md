@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: 6 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
+Stan: 7 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
 
 ## Wdrożone
 
@@ -9,7 +9,7 @@ Stan: 6 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 - 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
 - Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
 - Jedenaście wypraw czasowych, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze.
-- Boty baseline-17, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
+- Boty baseline-18, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
 - Karczma, kroniki, powiadomienia, rankingi, sala chwały i jednorazowe podsumowanie operatora.
 - Czas polski 1:1, słoneczne pory dnia Warszawy, sezony meteorologiczne i kalendarz eventów.
 - Administrator, inicjalizacja i kontrolowany reset z zachowaniem kont administratorów, prywatne kopie oraz próby odtwarzania.
@@ -17,7 +17,7 @@ Stan: 6 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 
 ## Następne fundamenty
 
-1. **#19:** PostgreSQL, prawdziwa współbieżność, dzierżawa i wyłączność schedulera.
+1. **#19 wdrożone:** PostgreSQL, weryfikowany import SQLite, rzeczywiste testy współbieżności i dzierżawa schedulera. [Instrukcja](POSTGRESQL.md).
 2. **#24:** publiczny hosting, nadzór procesu, ograniczenia logowań i profil produkcyjny. Obecny launcher jest lokalny/LAN.
 3. Dalsze strojenie gospodarki na podstawie pomiarów. Rosnący obrót nie dowodzi stabilnej podaży waluty.
 

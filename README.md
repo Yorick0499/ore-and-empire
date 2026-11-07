@@ -87,3 +87,5 @@ Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic. Statys
 Nazwane rangi sprzętu i pełny katalog 522 kodów G1 opisano w [katalogu i grafikach](docs/ITEM_PACKS.md). Fabuła pozostaje opcjonalnym przydziałem mieszkańca; rozwój rynsztunku zaczyna się od pierwszych łupów.
 
 ![Kuźnia i ranga runiczna](docs/screenshots/forge.jpg)
+
+Opcjonalna instalacja PostgreSQL, import zapisu i ochrona przed dwoma schedulerami: [POSTGRESQL.md](docs/POSTGRESQL.md). Lokalny zapis nadal domyślnie używa SQLite.

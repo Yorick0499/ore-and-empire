@@ -17,6 +17,8 @@ Stan najnowszej wersji: 6 listopada 2026. [README](../README.md) zawiera instala
 
 ## Dla operatora i programisty
 
+- [PostgreSQL, import zapisu i dzierżawa schedulera](POSTGRESQL.md).
+
 - [100 botów: harmonogram i pomiary](BOT_PERFORMANCE.md)
 
 - [Świat, administrator i reset](WORLD_MANAGEMENT.md), [backup i odtwarzanie](BACKUPS.md).

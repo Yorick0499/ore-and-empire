@@ -24,6 +24,13 @@ class World(models.Model):
         constraints=[models.UniqueConstraint(fields=['is_current'],condition=models.Q(is_current=True),name='one_current_world'),models.CheckConstraint(condition=models.Q(bot_count__lte=100),name='world_bot_count_bounds')]
 
 
+class SchedulerLease(models.Model):
+    world=models.OneToOneField(World,on_delete=models.CASCADE,related_name='scheduler_lease')
+    owner=models.UUIDField(null=True,blank=True)
+    heartbeat_at=models.DateTimeField(default=timezone.now)
+    expires_at=models.DateTimeField(default=timezone.now,db_index=True)
+
+
 class PlayerProfile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
@@ -357,7 +364,7 @@ class OwnedItem(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created:
+    if created and not kwargs.get("raw",False):
         profile = PlayerProfile.objects.create(user=instance)
         from .economic_ledger import record_opening
         record_opening(profile)
