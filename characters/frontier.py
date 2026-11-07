@@ -3,12 +3,17 @@ from datetime import timedelta
 from uuid import UUID
 from django.db.models import Sum,Max
 from django.utils import timezone
-from .models import CampaignCompletion,FrontierProgress,FrontierRecord
+from .models import FrontierProgress,FrontierRecord
 from .game_logic import player_action,simulate_combat,check_level_up
 from .world_clock import polish_day
 
 MAX_DEPTH=100
 COOLDOWN=timedelta(minutes=5)
+
+
+def frontier_unlocked(profile):
+    """Sandbox progression depends on earned level and camp, not the story ending."""
+    return profile.level >= 30 and profile.camp != 'NONE'
 
 
 def season_key(now=None):
@@ -29,7 +34,7 @@ def patrol(profile,depth,key):
     except (ValueError,TypeError,AttributeError):return False
     prior=FrontierRecord.objects.filter(profile=profile,request_key=key).first()
     if prior:return prior if prior.depth==depth else False
-    if type(depth)is not int or not 1<=depth<=MAX_DEPTH or not CampaignCompletion.objects.filter(profile=profile).exists():return False
+    if type(depth)is not int or not 1<=depth<=MAX_DEPTH or not frontier_unlocked(profile):return False
     if profile.is_busy or profile.current_energy<20 or profile.current_health<10:return False
     progress,_=FrontierProgress.objects.select_for_update().get_or_create(profile=profile)
     now=timezone.now()
