@@ -28,9 +28,18 @@ Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu 
 
 W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. W Ekwipunku przekujesz własny egzemplarz aż do rangi Naznaczony Barierą, także podczas fabuły za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
 
+Cenny rynsztunek zabezpieczysz przed sprzedażą, rozebraniem i zużyciem jako
+składnik lub dostawa. Przycisk „Porównaj z wyposażeniem” pokazuje różnice
+uwzględniające przekucie i niespełnione wymagania. Przy pierścieniu wybierzesz
+slot I lub II, który zostanie faktycznie zastąpiony. Sam podgląd nie zmienia zasobów.
+
 ## Handel, rzemiosło i odłamki
 
 Kupiec NPC sprzedaje dostępne przedmioty, a odkupuje dozwolone zapasy za połowę wartości. Na targu handlujesz z rzeczywistymi kontami i botami; cena dotyczy całego stosu. Możesz wycofać ofertę lub zmienić jej cenę. Nie można sprzedać cudzych, noszonych, przygotowanych magicznie ani niezbywalnych przedmiotów. Trofea mimo niezbywalności pozostają widoczne w plecaku.
+
+Na targu filtruj nazwę, kategorię, rangę, sprzedawcę i maksymalną cenę całego
+stosu. Możesz sortować również po cenie jednej sztuki. Oferty, plecak oraz własne
+ogłoszenia mają osobne strony po 24 pozycje; filtry nie ukrywają sekcji twoich ogłoszeń.
 
 Kowalstwo i alchemia mają po trzy poziomy; nauka kosztuje 1 PN i 20 rudy. Cztery receptury zużywają materiały i opłatę; wyprodukowany przedmiot trafia do plecaka. Brakujący komplet nie pobiera części zapłaty. [Receptury](GAME_CONTENT.md), [rynek](MARKET_POLICY.md).
 

@@ -7,10 +7,21 @@
 {% include 'characters/profile.html' %}
 <div class="main-content">
         <div class="guide-frame">
-<details class="colony-panel"><summary>Twoje oferty i zmiana ceny</summary>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.display_name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}</details>
+<details class="colony-panel" id="my-offers"><summary>Twoje oferty i zmiana ceny ({{ my_offers.paginator.count }})</summary><p>Twoje ogłoszenia są widoczne tutaj niezależnie od filtrów targu.</p>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.display_name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form><form method="post">{% csrf_token %}<input type="hidden" name="action" value="delist"><input type="hidden" name="delist_item_id" value="{{ offer.pk }}"><button>Wycofaj: {{ offer.display_name }}</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}{% include "characters/market_pager.html" with pager=own_pager %}</details>
             <h2>Plac Targowy Starego Obozu</h2>
             <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
 
+            <form method="get" class="colony-panel market-filters">
+                <label>Nazwa <input name="q" value="{{ market_filters.q }}" maxlength="100"></label>
+                <label>Kategoria <select name="kind"><option value="">Wszystkie</option>{% for key,label in item_kinds %}<option value="{{ key }}" {% if key == market_filters.kind %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+                <label>Ranga <select name="quality"><option value="">Wszystkie</option>{% for rank in all_quality_ranks %}<option value="{{ rank.key }}" {% if rank.key == market_filters.quality %}selected{% endif %}>{{ rank.name }}</option>{% endfor %}</select></label>
+                <label>Maks. cena całej oferty <input type="number" name="max_price" min="1" max="1000000" value="{{ market_filters.max_price }}"></label>
+                <label>Sprzedawca <select name="seller"><option value="">Wszyscy</option><option value="mine" {% if market_filters.seller == 'mine' %}selected{% endif %}>Tylko moje</option><option value="others" {% if market_filters.seller == 'others' %}selected{% endif %}>Inni skazańcy</option></select></label>
+                <label>Kolejność <select name="sort"><option value="newest" {% if market_filters.sort == 'newest' %}selected{% endif %}>Najnowsze</option><option value="price" {% if market_filters.sort == 'price' %}selected{% endif %}>Cena całej oferty rosnąco</option><option value="price-desc" {% if market_filters.sort == 'price-desc' %}selected{% endif %}>Cena całej oferty malejąco</option><option value="unit" {% if market_filters.sort == 'unit' %}selected{% endif %}>Cena jednej sztuki rosnąco</option></select></label>
+                <button>Filtruj targ</button><a href="{% url 'market_page' %}">Wyczyść filtry</a>
+            </form>
+            {% if filter_error %}<p role="alert">{{ filter_error }}</p>{% endif %}
+            <p>Kupujesz cały stos. Cena jednostkowa służy tylko do porównania ofert. Zabezpieczony sprzęt nie trafia na listę sprzedaży.</p>
             <div class="market-grid">
 
                 <div>
@@ -32,7 +43,7 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delist">
                                         <input type="hidden" name="delist_item_id" value="{{ item.id }}">
-                                        <span class="price-tag">{{ item.market_price }}</span>
+                                        <span class="price-tag">{{ item.market_price }} rudy / całość<br><small>{{ item.unit_price|floatformat:2 }} / szt.</small></span>
                                         <button type="submit" class="gothic-btn btn-sell">Wycofaj</button>
                                     </form>
                                 {% else %}
@@ -40,15 +51,16 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="buy">
                                         <input type="hidden" name="buy_item_id" value="{{ item.id }}">
-                                        <span class="price-tag">{{ item.market_price }}</span>
+                                        <span class="price-tag">{{ item.market_price }} rudy / całość<br><small>{{ item.unit_price|floatformat:2 }} / szt.</small></span>
                                         <button type="submit" class="gothic-btn btn-buy">Kup</button>
                                     </form>
                                 {% endif %}
                            </div>
                         {% empty %}
-                            <p style="font-style: italic; color: #594e43; text-align: center; margin-top: 20px;">Targ jest obecnie pusty...</p>
+                            <p style="font-style: italic; color: #594e43; text-align: center; margin-top: 20px;">Brak ofert pasujących do filtrów.</p>
                         {% endfor %}
                     </div>
+                    {% include 'characters/market_pager.html' with pager=offers_pager %}
                 </div>
 
                 <div>
@@ -76,6 +88,7 @@
                             <p style="font-style: italic; color: #594e43; text-align: center; margin-top: 20px;">Twój plecak jest pusty...</p>
                         {% endfor %}
                     </div>
+                    {% include 'characters/market_pager.html' with pager=bag_pager %}
                 </div>
 
             </div>

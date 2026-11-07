@@ -285,6 +285,8 @@ def execute_hunt(profile, monster_key, location_key="forest", request_key=None):
 
 @player_action
 def list_item_on_market(seller_profile, owned_item, price):
+    if owned_item.is_protected:
+        return False
     if owned_item.owner != seller_profile or not owned_item.blueprint.tradeable:
         return False
     if owned_item.is_equipped or seller_profile.prepared_magic_id==owned_item.pk:
@@ -351,20 +353,21 @@ def delist_item_from_market(seller_profile, owned_item, reason="manual"):
 
 
 @player_action
-def equip_item(profile, owned_item):
+def equip_item(profile, owned_item, slot=None):
     if owned_item.is_equipped:
         return False
     if owned_item.owner != profile:
         return False
     if owned_item.is_market_listed:
         return False
-    from .equipment import allowed, sync_health
+    from .equipment import allowed, sync_health, replacement_slot
     bp = owned_item.blueprint
     if not bp.equippable or not allowed(profile, bp) or bp.required_strength > profile.strength or bp.required_dexterity > profile.dexterity:
         return False
-    slot = {'weapon':'weapon','armor':'armor','amulet':'amulet'}.get(bp.kind)
-    if bp.kind == 'ring':
-        slot = next((slot for slot in ('ring1','ring2') if not profile.inventory.filter(is_equipped=True,equipped_slot=slot).exists()), 'ring1')
+    equipped = {item.equipped_slot:item for item in profile.inventory.filter(is_equipped=True)}
+    slot = replacement_slot(owned_item, equipped, slot)
+    if not slot:
+        return False
     profile.inventory.filter(is_equipped=True, equipped_slot=slot).update(is_equipped=False, equipped_slot='')
     owned_item.is_equipped = True
     owned_item.equipped_slot = slot
@@ -403,6 +406,8 @@ def buy_item_from_npc(profile, item):
 
 @player_action
 def sell_item_from_npc(profile, item):
+    if item.is_protected:
+        return False
     if item.owner != profile or not item.blueprint.tradeable:
         return False
     if item.is_equipped or profile.prepared_magic_id==item.pk:

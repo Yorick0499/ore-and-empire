@@ -307,6 +307,7 @@ class ItemBluePrint(models.Model):
 
 
 class OwnedItem(models.Model):
+    is_protected = models.BooleanField(default=False)
     listed_at = models.DateTimeField(null=True,blank=True,db_index=True)
     blueprint = models.ForeignKey(ItemBluePrint, on_delete=models.CASCADE)
     owner = models.ForeignKey(
@@ -318,7 +319,7 @@ class OwnedItem(models.Model):
 
     @property
     def can_salvage(self):
-        return self.quantity == 1 and self.blueprint.equippable and (self.origin == "loot" or (self.origin == "legacy" and (self.blueprint.catalog_key or "").startswith("colony-loot-")))
+        return not self.is_protected and self.quantity == 1 and self.blueprint.equippable and (self.origin == "loot" or (self.origin == "legacy" and (self.blueprint.catalog_key or "").startswith("colony-loot-")))
 
     @property
     def effective_stats(self):
@@ -370,6 +371,7 @@ class OwnedItem(models.Model):
 
     class Meta:
         constraints = [
+            models.CheckConstraint(condition=models.Q(is_protected=False) | models.Q(is_market_listed=False), name='protected_item_not_listed'),
             models.CheckConstraint(condition=models.Q(quantity__gte=1), name='owned_quantity_positive'),
             models.CheckConstraint(condition=models.Q(upgrade_level__lte=10) & (models.Q(upgrade_level=0) | models.Q(quantity=1)), name='owned_upgrade_bounds'),
             models.UniqueConstraint(fields=['owner','equipped_slot'], condition=models.Q(is_equipped=True), name='one_equipment_per_slot'),

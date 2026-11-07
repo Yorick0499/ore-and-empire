@@ -15,3 +15,24 @@ Aktualna polityka to baseline-18; reguły popytu wprowadzono w baseline-13. Pory
 ## Dopracowanie pełnej edycji
 
 Ulepszenie należy do egzemplarza i pozostaje przy zmianie właściciela; oferty pokazują dopisek oraz efektywne obrażenia i ochronę. NPC nadal płaci według bazowej wartości. Pył magicznej rudy jest zbywalny dla gracza, ale bot rezerwuje własny zapas do ulepszania zamiast automatycznej wyprzedaży. Rozbieranie zużywa zbędne łupy i jest alternatywą dla sprzedaży. [Szczegóły](LOOT_AND_ENDGAME.md).
+
+## Targ gracza (#81)
+
+Targ pozwala szukać po nazwie, kategorii, randze, maksymalnej cenie całej oferty
+i sprzedawcy (wszyscy / tylko moje / inni). Nazwa szukana jest jako fragment,
+niezależnie od wielkości liter zgodnie z porównaniami używanej bazy. Ranga
+obejmuje również historyczne pośrednie poziomy przekucia.
+
+Sortowanie: najnowsze (oferty bez daty na końcu), cena całej oferty rosnąco lub
+malejąco oraz cena jednej sztuki rosnąco. Remisy rozstrzyga ID. **Kupujesz cały
+stos**; cena jednostkowa jest wskazówką do porównania, zaokrągloną do dwóch miejsc.
+Maksymalna cena jest filtrem ceny całego stosu, nie jednej sztuki. Błędna cena
+wyświetla komunikat i jest pomijana; pozostałe nieznane parametry wracają do
+wartości domyślnych.
+
+Oferty, plecak do sprzedaży i własne ogłoszenia mają osobne strony po 24 pozycje.
+Linki zachowują filtry i pozostałe strony. Własne ogłoszenia są dostępne w
+rozwijanej sekcji także wtedy, gdy filtr ukrywa je na targu; stamtąd można
+zmienić cenę lub wycofać ofertę. Zabezpieczone, założone i przygotowane do magii
+przedmioty nie trafiają na listę wystawiania. Paginacja nie zmienia uprawnień
+zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.

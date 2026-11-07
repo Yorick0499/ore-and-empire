@@ -1,6 +1,6 @@
 # Dokumentacja — indeks
 
-Stan najnowszej wersji: 6 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
+Stan najnowszej wersji: 7 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
 
 ## Dla gracza
 
@@ -46,3 +46,6 @@ Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia:
 
 - [Lokalne polityki AI i porównanie z regułami](LOCAL_AI_POLICIES.md).
 - [Pełna symulacja po fundamentach serwera i AI](reports/petla-po-fundamentach-ai-2026-11-07.json).
+
+- [Pętla kampanii po dopracowaniu rynsztunku i targu](reports/rynsztunek-targ-petla-2026-11-07.json) — 87 scenariuszy.
+- [GUI rynsztunku i targu](reports/rynsztunek-targ-gui-2026-11-07.json) — formularze i 320/390/1440 px.

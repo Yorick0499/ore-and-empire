@@ -1,8 +1,18 @@
 # Aktualne zrzuty ekranów
 
-Wykonane ponownie **7 listopada 2026** dla rang rynsztunku i katalogu G1 v3 (migracja 0032, motyw `rynsztunek-mmorpg-1`). Osobny świat „Kolonia nad Wisłą” ma 100 botów i zwykłe konto `Skazaniec_Pokazowy`. Syntetyczna postać poziomu 30 nie ukończyła fabuły. Przekucie do rangi Runiczny wykonano zwykłym formularzem, podobnie jak sprawdzenie filtra rangi.
+Zestaw **28 ujęć** z syntetycznego świata „Kolonia nad Wisłą”, z postacią
+`Skazaniec_Pokazowy` i 100 botami. Nie zawiera danych prywatnego administratora.
 
-Odświeżono 23 ujęcia i dodano katalog oraz szczegół kuźni — razem **25**. Ekwipunek i mobilny ekwipunek mają pełny zrzut strony; pozostałe ujęcia pokazują widoczne okno. Telefon: 390×844, dodatkowa kontrola przepełnienia przy 320 px. Zrzuty nie zawierają danych administratora ani formularzy haseł. Hashe plików są w `screenshots/manifest.json`.
+**7 listopada 2026, migracja 0036:** odświeżono ekwipunek, targ i mobilny
+ekwipunek; dodano porównywarkę, mobilną porównywarkę i mobilny targ. Motyw
+`rynsztunek-i-targ-2`. Pełne ujęcia ekwipunku i porównywarki pokazują zaznaczone
+filtry, ochronę i parametry sprzętu; targ pokazuje widoczne okno (mobilny po
+przewinięciu do filtrów). Starsze ujęcia pozostałych ekranów pochodzą z tego
+samego dnia, z migracji 0032 i wcześniejszego motywu.
+
+Kontrola GUI: 1440×1000, 390×844 i 320×844. Formularze ochrony, wyboru slotu,
+paginacji i wycofania własnej oferty sprawdzono w przeglądarce. [Raport](reports/rynsztunek-targ-gui-2026-11-07.json).
+Hashe i czas wykonania każdego pliku są w `screenshots/manifest.json`.
 
 ## Kolonia i eksploracja
 
@@ -16,6 +26,7 @@ Odświeżono 23 ujęcia i dodano katalog oraz szczegół kuźni — razem **25**
 ![Ekwipunek](screenshots/inventory.jpg)
 ![Runiczny przedmiot w kuźni](screenshots/forge.jpg)
 ![Katalog 140 broni G1](screenshots/catalog.jpg)
+![Porównanie rynsztunku](screenshots/comparison.jpg)
 ![Targ mieszkańców](screenshots/market.jpg)
 ![Kupiec NPC](screenshots/merchant.jpg)
 ![Trening](screenshots/training.jpg)
@@ -43,5 +54,7 @@ Odświeżono 23 ujęcia i dodano katalog oraz szczegół kuźni — razem **25**
 
 ![Mobilna kolonia](screenshots/mobile.jpg)
 ![Mobilny ekwipunek](screenshots/mobile-equipment.jpg)
+![Mobilny targ](screenshots/mobile-market.jpg)
+![Mobilne porównanie](screenshots/mobile-comparison.jpg)
 
 Źródła użytych ilustracji: [ASSETS.md](ASSETS.md), pełny lokalny [manifest](../characters/static/characters/gothicpedia.json). Nazwy, licencjonowanie treści wiki i prawa do obrazów gry nie są tym samym; zachowujemy przypisania źródeł.
