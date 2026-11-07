@@ -242,10 +242,14 @@ class BaselinePolicyV17(BaselinePolicyV16):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV17):
+class BaselinePolicyV18(BaselinePolicyV17):
     def choose(self,o):
         if o.training_needed and o.skill_points>0:o=replace(o,patrol_depth=None)
         return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV18):
+    pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -537,10 +541,13 @@ def tick_bot(profile, policy=None, *, lease=None):
     )
     policy_version = "baseline-18" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
+    from .bot_policies import OllamaPolicy
+    policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
+    if isinstance(policy,OllamaPolicy):policy_version=policy.version
     with transaction.atomic():
         if lease is not None:lease.fence()
         if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
-            record_decision(profile, obs, "rejected", None, False, policy_version)
+            record_decision(profile, obs, "rejected", None, False, policy_version,policy_snapshot)
             return "rejected", False
         story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
         from .magic import learn_circle,prepare_magic,purchase_magic
@@ -615,7 +622,7 @@ def tick_bot(profile, policy=None, *, lease=None):
         elif action == "wait":
             success = True
         else:
-            record_decision(profile, obs, "rejected", None, False, policy_version)
+            record_decision(profile, obs, "rejected", None, False, policy_version,policy_snapshot)
             return "rejected", False
         if success and action != "wait":
             profile.refresh_from_db()
@@ -623,7 +630,7 @@ def tick_bot(profile, policy=None, *, lease=None):
             profile.save(update_fields=["bot_turn"])
         profile.bot_last_tick=timezone.now()
         profile.save(update_fields=["bot_last_tick"])
-        record_decision(profile, obs, action, target, success, policy_version)
+        record_decision(profile, obs, action, target, success, policy_version,policy_snapshot)
         from .community import bot_conversation
         bot_conversation(profile)
         return action, success

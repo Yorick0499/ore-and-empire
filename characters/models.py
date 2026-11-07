@@ -37,6 +37,15 @@ class AuthRateBucket(models.Model):
     attempts=models.PositiveIntegerField(default=0)
 
 
+class BotPolicyBudget(models.Model):
+    world=models.OneToOneField(World,on_delete=models.CASCADE)
+    window_started=models.DateTimeField(default=timezone.now)
+    calls=models.PositiveIntegerField(default=0)
+    tokens_reserved=models.PositiveIntegerField(default=0)
+    milliseconds_reserved=models.PositiveIntegerField(default=0)
+    blocked_until=models.DateTimeField(null=True,blank=True)
+
+
 class PlayerProfile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
@@ -420,6 +429,7 @@ class BossAttempt(models.Model):
 
 
 class BotDecision(models.Model):
+    policy_snapshot=models.JSONField(default=dict)
     """Policy observation and actual outcome; no usernames or credentials."""
 
     profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT)

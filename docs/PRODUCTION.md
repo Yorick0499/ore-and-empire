@@ -58,3 +58,5 @@ Przed wdrożeniem:
 Testy obejmują bezpieczną konfigurację, limity i wygaśnięcie okna, podrobiony nagłówek klienta, odmowę dla zwykłego gracza, bootstrap, native pg_dump/pg_restore oraz krótką pętlę nowego gracza przez formularze HTTPS z rzeczywistym CSRF, bez nadawania zasobów. Pełną kampanię i równoległość nadal sprawdza job PostgreSQL. Docker Compose został zwalidowany lokalnie; budowa obrazu oraz konfiguracja proxy są kontrolowane w CI. Nie jest to wielodniowy test publicznego hostingu.
 
 Źródła: [Django — wdrożenie](https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/), [WhiteNoise](https://whitenoise.readthedocs.io/en/stable/django.html), [Caddy — reverse proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy).
+
+Opcjonalna polityka lokalnego modelu wymaga osobnego opt-in i utrzymuje budżet także po restarcie: [LOCAL_AI_POLICIES.md](LOCAL_AI_POLICIES.md). Profil produkcyjny i obraz nie wymagają modelu.

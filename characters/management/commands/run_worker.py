@@ -25,12 +25,14 @@ class Command(BaseCommand):
         for sig in (signal.SIGTERM,signal.SIGINT):old[sig]=signal.signal(sig,stop)
         try:
             with SchedulerGuard(world) as guard:
+                from characters.bot_policies import configured_policy
+                policy=configured_policy(guard)
                 scheduler=BotScheduler(options['interval']);refresh_at=0;heartbeat=0;day=None;ticks=0
                 def run(pk):
                     nonlocal ticks
                     p=PlayerProfile.objects.filter(pk=pk,is_bot=True,user__is_active=True).first()
                     if not p:return 'wait',False
-                    try:result=tick_bot(p,lease=guard)
+                    try:result=tick_bot(p,policy=policy,lease=guard)
                     except LeaseLost:raise
                     except Exception as exc:self.stderr.write('Worker action failed: '+type(exc).__name__);result=('wait',False)
                     ticks+=1;return result

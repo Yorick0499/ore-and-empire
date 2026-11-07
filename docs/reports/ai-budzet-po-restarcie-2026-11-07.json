@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "isolated_staging": true,
+  "active_bots_in_budget_probe": 3,
+  "model": "qwen2.5:0.5b",
+  "maximum_calls": 2,
+  "calls_before_restart": 2,
+  "calls_after_restart": 2,
+  "accepted_model_choices": 2,
+  "default_player_world_policy": "rules",
+  "paid_api_cost": 0
+}
