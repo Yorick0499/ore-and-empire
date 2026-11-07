@@ -27,6 +27,8 @@ Dane logowania, `.admin-access.json`, `.env`, bazy i backupy są prywatne. Nie d
 
 ## Raporty
 
+- [Aktualna symulacja rynsztunku i kampanii](reports/rynsztunek-mmorpg-2026-11-07.json), [pomiar 100 botów](reports/rynsztunek-sto-botow-2026-11-07.json).
+
 - [Audyt błędów](BUG_AUDIT.md) — odtworzone problemy, poprawki i testy nadużyć.
 
 - [Pełna kampania i dalsza gra po finale](reports/lupy-endgame-2026-11-06.json).

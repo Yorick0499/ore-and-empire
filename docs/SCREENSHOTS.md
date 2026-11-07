@@ -1,8 +1,8 @@
 # Aktualne zrzuty ekranów
 
-Wykonane ponownie 6 listopada 2026 dla pełnej edycji z łupami, ulepszeniami +10 i Wartami za Przełęczą (migracja 0031, motyw `pelna-edycja-3`). Osobny świat demonstracyjny „Kolonia nad Wisłą” ma **100 autonomicznych botów** i zwykłe konto `WedrowiecDemo`. Postać demonstracyjna ma przygotowany poziom 30 i dostęp do endgame, aby pokazać nowe ekrany; nie jest to zapis użytkownika ani dowód przejścia kampanii od zera. Ulepszenie +1, założenie pancerza oraz zwycięska warta zostały wykonane przez formularze gry.
+Wykonane ponownie **7 listopada 2026** dla rang rynsztunku i katalogu G1 v3 (migracja 0032, motyw `rynsztunek-mmorpg-1`). Osobny świat „Kolonia nad Wisłą” ma 100 botów i zwykłe konto `Skazaniec_Pokazowy`. Syntetyczna postać poziomu 30 nie ukończyła fabuły. Przekucie do rangi Runiczny wykonano zwykłym formularzem, podobnie jak sprawdzenie filtra rangi.
 
-Zapisano od nowa wszystkie 21 dotychczasowych ujęć i dodano warty oraz mobilny ekwipunek. Używamy rozszerzenia `.jpg` zgodnego z rzeczywistym formatem z przeglądarki; stare pliki pod mylącym `.png` usunięto. Ekwipunek i warty mają pełny zrzut strony, pozostałe ekrany są ujęciami widocznego okna. Mobilne ujęcia wykonano z viewportem 390×844; kontrola ekwipunku, wart i rynku obejmuje także 320 px. Zrzuty nie zawierają danych administratora ani formularzy haseł. Źródła ilustracji są zachowane lokalnie.
+Odświeżono 23 ujęcia i dodano katalog oraz szczegół kuźni — razem **25**. Ekwipunek i mobilny ekwipunek mają pełny zrzut strony; pozostałe ujęcia pokazują widoczne okno. Telefon: 390×844, dodatkowa kontrola przepełnienia przy 320 px. Zrzuty nie zawierają danych administratora ani formularzy haseł. Hashe plików są w `screenshots/manifest.json`.
 
 ## Kolonia i eksploracja
 
@@ -14,6 +14,8 @@ Zapisano od nowa wszystkie 21 dotychczasowych ujęć i dodano warty oraz mobilny
 ## Ekwipunek i ekonomia
 
 ![Ekwipunek](screenshots/inventory.jpg)
+![Runiczny przedmiot w kuźni](screenshots/forge.jpg)
+![Katalog 140 broni G1](screenshots/catalog.jpg)
 ![Targ mieszkańców](screenshots/market.jpg)
 ![Kupiec NPC](screenshots/merchant.jpg)
 ![Trening](screenshots/training.jpg)
@@ -33,9 +35,9 @@ Zapisano od nowa wszystkie 21 dotychczasowych ujęć i dodano warty oraz mobilny
 ![Prywatna kronika demo](screenshots/journal.jpg)
 ![Sala chwały](screenshots/hall.jpg)
 
-## Gra po finale
+## Powtarzalne warty od poziomu 30
 
-![Warty za Przełęczą: wygrana, odblokowany stopień i ranking](screenshots/frontier.jpg)
+![Warty za Przełęczą bez ukończenia fabuły](screenshots/frontier.jpg)
 
 ## Telefon
 

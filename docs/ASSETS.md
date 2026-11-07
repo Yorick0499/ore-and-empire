@@ -43,3 +43,7 @@ The bundled manifest now covers all creatures and main destinations listed in
 file. The importer selects the first creature infobox to avoid accidentally
 choosing sequel artwork. Original CDN URLs and thumbnail download URLs are kept
 separately. Current README screenshots show the expanded local Gothicpedia assets and the latest Polish-time interface; see [SCREENSHOTS.md](SCREENSHOTS.md).
+
+## Pełny katalog G1 — wersja 3
+
+522 pozycje mają lokalne ilustracje Gothicpedii, dobrane według kodów i wariantów G1. Cały manifest zawiera 632 przypisania; katalog przedmiotów używa 389 różnych plików. Wspólne modele i ilustracje kategorii są jawne. Szczegóły w [ITEM_PACKS.md](ITEM_PACKS.md). Cache manifestu eliminuje wielokrotny odczyt przy renderowaniu kart; runtime nie pobiera grafik z sieci.
