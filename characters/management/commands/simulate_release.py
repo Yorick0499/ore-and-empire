@@ -24,7 +24,7 @@ class Command(BaseCommand):
             result=subprocess.run([sys.executable,str(settings.BASE_DIR/'manage.py'),'test',*cases,'--noinput'],cwd=settings.BASE_DIR,env=env)
             report={'schema':1,'success':result.returncode==0,'elapsed_seconds':round(time.monotonic()-start,2),'isolated_database':True,'world_clock':'Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy','polish_time_scenarios':4,'loot_endgame_scheduler_scenarios':12,'time_acceleration':'30 minut symulowanego czasu na krok; wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty','scenarios':json.loads(facts.read_text()),'abuse_scenarios':6,'clock_scenarios':4,'finale_scenarios':4,'mixed_sessions':1,'build_matrices':1,'limits':['Automatyczny przebieg gracza miesza formularze fabuły i zwykłe serwisy rozgrywki; osobny przegląd ręczny sprawdza GUI.','Nie jest to test współbieżności PostgreSQL ani test publicznego hostingu.']}
             report['audit_scenarios']=19
-            report['bot_policy']='baseline-16'
+            report['bot_policy']='baseline-17'
             target.parent.mkdir(parents=True,exist_ok=True)
             with target.open('x') as stream:stream.write(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
         self.stdout.write(str(target))

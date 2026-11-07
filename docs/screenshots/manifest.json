@@ -1,146 +1,158 @@
 {
   "schema": 1,
-  "migration": "0031_lupy_ulepszenia_warty_i_populacja",
-  "theme": "pelna-edycja-3",
-  "fixture": "Kolonia nad Wisłą; 100 botów; syntetyczna postać demonstracyjna poziomu 30",
+  "migration": "0032_pochodzenie_rynsztunku",
+  "theme": "rynsztunek-mmorpg-1",
+  "fixture": "Kolonia nad Wisłą; 100 botów; syntetyczna postać demonstracyjna poziomu 30, bez ukończonej fabuły",
   "files": [
     {
       "file": "boss.jpg",
-      "bytes": 74543,
-      "sha256": "3862ddd486e421e00cd5b030c2999c200e6143fac0e2ca0dffa0957ccac652b6",
-      "captured_at_utc": "2026-11-05T23:56:03.365458+00:00"
+      "bytes": 96292,
+      "sha256": "b7366f1383866d1ce69e8f781e6085f5025ebb9dff0b898e652be17dee532ba9",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+    },
+    {
+      "file": "catalog.jpg",
+      "bytes": 98552,
+      "sha256": "fd4b867459d325c4d1c9eb2969e34913580af9d48c565e81ee4ad383ae6a405c",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "challenges.jpg",
-      "bytes": 92346,
-      "sha256": "83c4d333013df0b10a66c5ef458a4fe8d6dbe73473ce187b8a27b4c0070a18a8",
-      "captured_at_utc": "2026-11-05T23:56:05.690562+00:00"
+      "bytes": 112185,
+      "sha256": "9c38c26bcf83dd0c92a747fbf55ac950014d8836eed4c615e5a90fbcf94dc660",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "colony.jpg",
-      "bytes": 108176,
-      "sha256": "acf821afe41db99fe9c35d5ee954a241de8108e9183988a0910ccbede9a81c47",
-      "captured_at_utc": "2026-11-05T23:56:02.859529+00:00"
+      "bytes": 130338,
+      "sha256": "cf4aea837ebcadfa4cc2e76dc78e6f11d0b55f99cf9d19225c821bdf175cf788",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "community.jpg",
-      "bytes": 82092,
-      "sha256": "69f8bf768b236e8e6befd6f786b6c18e8b6d6059fbe208e7566ad72d385fb2d3",
-      "captured_at_utc": "2026-11-05T23:56:05.360559+00:00"
+      "bytes": 104866,
+      "sha256": "e81fe6519e5122c68eed9e13a04f2dffe2a50834886f767074b2aa4cdb077f68",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "crafting.jpg",
-      "bytes": 80107,
-      "sha256": "c3de0f891bca82d8f4276411982467e6f635043080c19c82f98f360cc040e34b",
-      "captured_at_utc": "2026-11-05T23:56:04.554708+00:00"
+      "bytes": 99263,
+      "sha256": "e0f43fb9b56fbfe0fed40bb994e05c02f7233c287ea0e02ef3f3d1a4f748c213",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "events.jpg",
-      "bytes": 105088,
-      "sha256": "f44fc10cede94d6c83d5356e0d68f2e72c1417433fc6e6836a87d8477590e63a",
-      "captured_at_utc": "2026-11-05T23:56:05.531669+00:00"
+      "bytes": 133661,
+      "sha256": "ccef659757180c47aa68993f2dd7ee650b2a359fa2ffddfdbb95fb747e5fecd3",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+    },
+    {
+      "file": "forge.jpg",
+      "bytes": 50136,
+      "sha256": "a6b05cd72709fdb81d50587007f092003c91f7f990930c2ecea65654be3d11bf",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "frontier.jpg",
-      "bytes": 222117,
-      "sha256": "0bef0acef706e9b057d5917feb501894782b45b52ff46fdc85a737d904b69544",
-      "captured_at_utc": "2026-11-05T23:56:07.245402+00:00"
+      "bytes": 93911,
+      "sha256": "4dc88bde4afa6e65d4b7d1bb463e628bd640a2fefc370a9ae2921874d0ab3f02",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "hall.jpg",
-      "bytes": 85580,
-      "sha256": "17997bdd9d054f059fd3ecf8d62ccd99c3119380fc28e7fafd5daffb3199db95",
-      "captured_at_utc": "2026-11-05T23:56:06.964099+00:00"
+      "bytes": 97864,
+      "sha256": "4924f6c166313fd250a4f122a4167b9d81f7d03a678ca3eebe392e14402296bc",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "hunting.jpg",
-      "bytes": 95360,
-      "sha256": "5bc322d2b18741653be0670418cb9776c2e3500fcb82253cf086a805890fd8cf",
-      "captured_at_utc": "2026-11-05T23:56:03.040131+00:00"
+      "bytes": 114614,
+      "sha256": "c12426c56fb075ce5dbdb7311f3fed6812d9284bd9f4a53cc6a1158527d045b1",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "inventory.jpg",
-      "bytes": 274408,
-      "sha256": "be181f3887e35a256d741baa7be5a70b2cecda76c755e3bec03b99c65bc2ba23",
-      "captured_at_utc": "2026-11-05T23:56:03.708812+00:00"
+      "bytes": 340445,
+      "sha256": "f6e770f9a0f9d5d2a5a666160ac84f2ea37d2030f0e0dd80f1347bab916ca51e",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "itemshop.jpg",
-      "bytes": 100167,
-      "sha256": "42308917d1d9792f912db457fd8317d32d8fc74f509669c89f4abba2156ebdf2",
-      "captured_at_utc": "2026-11-05T23:56:04.994843+00:00"
+      "bytes": 117631,
+      "sha256": "1fb551def61b295554514497bde6cd281665af3ebd6efe82e9f933e91ad7e3f7",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "journal.jpg",
-      "bytes": 69610,
-      "sha256": "9239d52f0cb37bf3babe1284ee8a85439b57a6632cd301b62e3ecdd0aac3c826",
-      "captured_at_utc": "2026-11-05T23:56:06.820576+00:00"
+      "bytes": 82379,
+      "sha256": "53f423eb4f623abaf54092d9a5505192e293c74a001b8b081ae5928c62c0c159",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "living-world.jpg",
-      "bytes": 77717,
-      "sha256": "2515d05703bf60596307616b29228f163ec357450e71e369cb8f132c4ff27a2b",
-      "captured_at_utc": "2026-11-05T23:56:06.263569+00:00"
+      "bytes": 97374,
+      "sha256": "5cab56c3fe5aa4ceac4438c8e35738ef4097e4e9d8e301802a44b6f9bc96c189",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "magic.jpg",
-      "bytes": 82640,
-      "sha256": "62860808acf180488039fbef22a462de2191cb3e967a8d33764d5d72fbe81f2f",
-      "captured_at_utc": "2026-11-05T23:56:04.798952+00:00"
+      "bytes": 94235,
+      "sha256": "251d5b3aa75ef45b4ba71c0d51c802b7b693fe090c65326dbca4c4a3dceba964",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "market.jpg",
-      "bytes": 86190,
-      "sha256": "8f440e57a26a30e23cb54fcb12225459e6892b6b8a6e50b658c50a71ca229493",
-      "captured_at_utc": "2026-11-05T23:56:03.907541+00:00"
+      "bytes": 95870,
+      "sha256": "2f5c732d34af3f1a05a2d5cfe0e2dce1bd75fdce42866eb1051711f3dd56caf3",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "merchant.jpg",
-      "bytes": 85059,
-      "sha256": "0c49bee6f3fec8aeb7d84b5a83097dbbe60dcd55abf9c79af0f33b021847fb87",
-      "captured_at_utc": "2026-11-05T23:56:04.184342+00:00"
+      "bytes": 85226,
+      "sha256": "bd0c365b8a81e247d7d5678aec186702f4cf43de915fc46fe79a12f09e9adf74",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "mining.jpg",
-      "bytes": 80658,
-      "sha256": "aeb00e66c41eaf24ad562ce6c92f57853d516c1d14c8a801f7e9c63699c2b3cc",
-      "captured_at_utc": "2026-11-05T23:56:03.205607+00:00"
+      "bytes": 91302,
+      "sha256": "9c5bd32e801b1caa89326f7fda9256c794bc106da38cc5c9ac99827a957d2fd7",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "mobile-equipment.jpg",
-      "bytes": 41363,
-      "sha256": "2ebb0e8afe1c92dbc5a6b3ad2577465b38c3af23933cfda444fea2da98a89124",
-      "captured_at_utc": "2026-11-06T00:02:02.673565+00:00"
+      "bytes": 245166,
+      "sha256": "05c49ef20f2583dffa57b64cda7ce00582a08514530fbcf7b6671ec08ade10ef",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "mobile.jpg",
-      "bytes": 45969,
-      "sha256": "f1d2591ad8f2dc2e8b27df597064edcf07c37aea39b592de14d636e11f3fe7b1",
-      "captured_at_utc": "2026-11-06T00:02:02.279632+00:00"
+      "bytes": 45551,
+      "sha256": "4700c28f5f39641d243f673da51700e8f592d0e7d293025c1a503a304b2a5d8c",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "rankings.jpg",
-      "bytes": 81934,
-      "sha256": "6c979ad5e284499f7090654ca08bd3144b83557b30cb15f60d08c0594e59a529",
-      "captured_at_utc": "2026-11-05T23:56:06.667574+00:00"
+      "bytes": 97528,
+      "sha256": "f005738ea03c61758618073fd4551f5033ec49e2944d4216dee34bb77624ca60",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "story.jpg",
-      "bytes": 99952,
-      "sha256": "c8df2c2c31fd447e59f19bbdc0ee1683d6114c1aae1f6799345c83f76317a7fe",
-      "captured_at_utc": "2026-11-05T23:56:05.169556+00:00"
+      "bytes": 109860,
+      "sha256": "72860d5132dc07040b4235c7099e29a78bd165bd6235fed4510403ee97733b9c",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "tavern.jpg",
-      "bytes": 79414,
-      "sha256": "189e27ffc6fb4f857bf4681dd1e063c1f5a0bef2d797a319193797cd497ac6c1",
-      "captured_at_utc": "2026-11-05T23:56:05.846135+00:00"
+      "bytes": 102153,
+      "sha256": "5972f3f4003d2772a303dc23a25d7fa5253843812167595e198c2e53cd3733a6",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
       "file": "training.jpg",
-      "bytes": 80345,
-      "sha256": "ee54fa9805631f0d0b6f23a319a6344ac319c2bac1caab5139f9ffbe5323049d",
-      "captured_at_utc": "2026-11-05T23:56:04.384947+00:00"
+      "bytes": 98852,
+      "sha256": "20c1576f63c1ab30bed4e0dd736d94ffe7aaf1b43f8c68f3ddb779265c737939",
+      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     }
   ]
 }

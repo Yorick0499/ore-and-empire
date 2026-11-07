@@ -292,6 +292,11 @@ class OwnedItem(models.Model):
     )
     quantity = models.PositiveIntegerField(default=1)
     upgrade_level = models.PositiveSmallIntegerField(default=0)
+    origin = models.CharField(max_length=12, default="legacy", choices=[(v,v) for v in ("legacy","loot","merchant","craft","reward","admin")])
+
+    @property
+    def can_salvage(self):
+        return self.quantity == 1 and self.blueprint.equippable and (self.origin == "loot" or (self.origin == "legacy" and (self.blueprint.catalog_key or "").startswith("colony-loot-")))
 
     @property
     def effective_stats(self):
@@ -305,7 +310,16 @@ class OwnedItem(models.Model):
 
     @property
     def display_name(self):
-        return self.blueprint.name + (f" +{self.upgrade_level}" if self.upgrade_level else "")
+        return self.blueprint.name + (f" · {self.quality_name}" if self.upgrade_level else "")
+
+    @property
+    def quality(self):
+        from .enhancements import QUALITY_RANKS
+        return QUALITY_RANKS[(self.upgrade_level+1)//2]
+
+    @property
+    def quality_name(self):
+        return self.quality['name']
 
     equipped_slot = models.CharField(max_length=10, blank=True)
     is_equipped = models.BooleanField(default=False)

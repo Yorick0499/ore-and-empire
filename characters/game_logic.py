@@ -386,7 +386,7 @@ def buy_item_from_npc(profile, item):
     if profile.ore_balance < item.base_value:
         return False
     profile.ore_balance = profile.ore_balance - item.base_value
-    add_item(profile, item)
+    add_item(profile, item, origin="merchant")
     profile.save()
     return True
 

@@ -80,3 +80,5 @@ zostało dopasowanych po dokładnym kodzie i cenie w rudzie. Dane źródłowe or
 balans pozostają rozdzielone; import v2 nie nadpisuje edycji cen w istniejącym świecie.
 To podstawa porównania ofert i przyszłego rzemiosła, nie automatyczne zastosowanie
 wszystkich cen G1 do istniejących przedmiotów.
+
+Wersja G1 v3: 522 kody i 520 wpisów z potwierdzonym parametrem, ceną lub efektem. Rangi przekucia zachowują łączny koszt 11 550 rudy/110 pyłu, lecz pierwszy próg wynosi 60/3 i działa podczas fabuły. Pochodzenie łupów blokuje zamianę tanich zakupów NPC na pył. [Aktualne reguły](LOOT_AND_ENDGAME.md).

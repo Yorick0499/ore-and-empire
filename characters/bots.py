@@ -3,7 +3,7 @@
 No policy receives ORM objects, resource grants or an administrator capability.
 One tick performs one ordinary player action, or rests for real-time recovery.
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import math
 from fractions import Fraction
 from typing import Protocol
@@ -227,10 +227,18 @@ class BaselinePolicyV15(BaselinePolicyV14):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV15):
+class BaselinePolicyV16(BaselinePolicyV15):
     def choose(self,o):
         if o.ammo_id and not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and not o.consume_id and not o.product_urgent:
             return 'ammo',o.ammo_id
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV16):
+    def choose(self,o):
+        # Optional patrols must not starve an unfinished personal story.
+        if o.story_recover or (o.turn % 5 and (o.story_action or o.quest_hunt or o.quest_mine or o.boss_key)):
+            o = replace(o,patrol_depth=None)
         return super().choose(o)
 
 
@@ -471,26 +479,26 @@ def tick_bot(profile, policy=None):
     from .market_policy import bot_market_plan
     market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'})
     forge_action='';forge_target=None;forge_level=0;patrol_depth=None
-    if hasattr(profile,'campaign_completion') and not profile.is_busy:
+    if not profile.is_busy:
         from .enhancements import upgrade_cost
         dust=sum(i.quantity for i in inventory if i.blueprint.catalog_key=='rune-dust' and not i.is_market_listed)
         for worn in (i for i in inventory if i.is_equipped):
             cost=upgrade_cost(worn)
             if cost and profile.ore_balance>=cost['ore']+20 and dust>=cost['dust']:
                 forge_action='improve';forge_target=worn.pk;forge_level=worn.upgrade_level;break
-        obsolete=next((i for i in spare if (i.blueprint.catalog_key or '').startswith('colony-loot-') and i.quantity==1 and (i.blueprint.kind!='weapon' or i.effective_stats['damage']<=damage)),None)
+        obsolete=next((i for i in spare if i.can_salvage and (i.blueprint.kind!='weapon' or i.effective_stats['damage']<=damage)),None)
         if not forge_action and obsolete:forge_action='salvage';forge_target=obsolete.pk
-        from .frontier import enemy,COOLDOWN
+        from .frontier import enemy,COOLDOWN,frontier_unlocked
         from .models import FrontierProgress
-        progress=FrontierProgress.objects.filter(profile=profile).first()
-        if not ammo_blocked and (not progress or not progress.last_attempt_at or timezone.now()>=progress.last_attempt_at+COOLDOWN):
+        progress=FrontierProgress.objects.filter(profile=profile).first() if frontier_unlocked(profile) else None
+        if frontier_unlocked(profile) and not ammo_blocked and (not progress or not progress.last_attempt_at or timezone.now()>=progress.last_attempt_at+COOLDOWN):
             # Farm an easier unlocked challenge when the next guardian is unsafe.
             base_damage=combat_damage
             for depth in range(progress.unlocked if progress else 1,0,-1):
                 foe=enemy(depth)
                 if safe_to_hunt(profile,foe,base_damage):patrol_depth=depth;break
     if not forge_action and len(inventory)>=8 and not profile.is_busy:
-        excess=next((i for i in spare if (i.blueprint.catalog_key or '').startswith('colony-loot-') and i.quantity==1 and (not equipment or i.pk!=equipment.pk)),None)
+        excess=next((i for i in spare if i.can_salvage and (not equipment or i.pk!=equipment.pk)),None)
         if excess:forge_action='salvage';forge_target=excess.pk
     obs = Observation(
         ammo_id=ammo_stock.pk if ammo_stock else None,ammo_blocked=ammo_blocked,
@@ -524,7 +532,7 @@ def tick_bot(profile, policy=None):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-16" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-17" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
         record_decision(profile, obs, "rejected", None, False, policy_version)

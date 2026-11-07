@@ -44,14 +44,14 @@ def combat_values(profile):
     return damage, min(100, skill), weapon.damage_type if weapon else 'weapon'
 
 
-def add_item(profile, blueprint, quantity=1):
+def add_item(profile, blueprint, quantity=1, *, origin="legacy"):
     if blueprint.stackable:
-        item = profile.inventory.filter(blueprint=blueprint, is_equipped=False, is_market_listed=False).order_by('pk').first()
+        item = profile.inventory.filter(blueprint=blueprint, origin=origin, is_equipped=False, is_market_listed=False).order_by('pk').first()
         if item:
             item.quantity += quantity
             item.save(update_fields=['quantity'])
             return item
-    return OwnedItem.objects.create(owner=profile, blueprint=blueprint, quantity=quantity)
+    return OwnedItem.objects.create(owner=profile, blueprint=blueprint, quantity=quantity, origin=origin)
 
 
 def consume_ammo(profile):

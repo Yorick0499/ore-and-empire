@@ -30,6 +30,13 @@ class Command(BaseCommand):
         blueprints={}
         for key,name,kind,value,extra in definitions:
             blueprints[key],_=ItemBluePrint.objects.get_or_create(catalog_key=key,defaults={'name':name,'kind':kind,'base_value':value,**extra})
+        art={'starter-leather':'item_digger_trousers','starter-ring':'item_iron_ring','raw-meat':'item_g1_itfomuttonraw','wolf-skin':'item_wolf_skin','crawler-plate':'item_g1_itat_crawlerplate','shadow-horn':'item_g1_itat_shadowhorn','crawler-egg':'item_g1_itfo_crawler_01','g1-arrow':'item_arrow','g1-bolt':'item_bolt'}
+        from characters.gothic_assets import MANIFEST_PATH
+        import json
+        available=json.loads(MANIFEST_PATH.read_bytes())
+        for key,value in art.items():
+            if value in available:
+                ItemBluePrint.objects.filter(catalog_key=key,art_key__in=['','old_camp']).update(art_key=value)
         for key in [*BESTIARY,*BOSSES]:
             material='crawler-plate' if 'crawler' in key else 'wolf-skin' if key in {'wolf','shadowbeast','orc_dog'} else 'raw-meat'
             entries=[{'blueprint':blueprints[material].pk,'weight':6000,'min':1,'max':1}]

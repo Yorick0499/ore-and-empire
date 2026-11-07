@@ -1,0 +1,7 @@
+{
+  "bots": 100,
+  "round_seconds": 3.247,
+  "isolated_database": true,
+  "policy": "baseline-17",
+  "errors": false
+}

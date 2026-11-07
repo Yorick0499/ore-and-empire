@@ -328,5 +328,1571 @@
   },
   "item_healing": {
     "GOTHIC_I": "Esencja_uzdrawiająca_(G1).png"
+  },
+  "item_g1_altesschwert": {
+    "GOTHIC_I": "Zardzewiały miecz (Gothic).png"
+  },
+  "item_g1_altesschwertvm": {
+    "GOTHIC_I": "Zardzewiały miecz (Gothic).png"
+  },
+  "item_g1_artos_schwert": {
+    "GOTHIC_I": "Miecz strachu (G1).png"
+  },
+  "item_g1_cords_spalter": {
+    "GOTHIC_I": "Topór obosieczny.png"
+  },
+  "item_g1_fortunos_keule": {
+    "GOTHIC_I": "Pałka Fortuno.png"
+  },
+  "item_g1_itmw_1h_axe_01": {
+    "GOTHIC_I": "Topór_(G1).png"
+  },
+  "item_g1_itmw_1h_axe_02": {
+    "GOTHIC_I": "Topór obosieczny.png"
+  },
+  "item_g1_itmw_1h_axe_03": {
+    "GOTHIC_I": "Łamacz_kości_(G1).png"
+  },
+  "item_g1_itmw_1h_axe_old_01": {
+    "GOTHIC_I": "Kiepski tasak (by SpY).png"
+  },
+  "item_g1_itmw_1h_club_01": {
+    "GOTHIC_I": "Pałka_typ_1_(G1).png"
+  },
+  "item_g1_itmw_1h_hatchet_01": {
+    "GOTHIC_I": "Siekiera_(G1).png"
+  },
+  "item_g1_itmw_1h_lightguardssword_03": {
+    "GOTHIC_I": "Lekki miecz strażnika G1 ikona.png"
+  },
+  "item_g1_itmw_1h_mace_01": {
+    "GOTHIC_I": "Pałka Namiba.png"
+  },
+  "item_g1_itmw_1h_mace_02": {
+    "GOTHIC_I": "Ćwiekowana maczuga (G1).png"
+  },
+  "item_g1_itmw_1h_mace_03": {
+    "GOTHIC_I": "Pałka Fortuno.png"
+  },
+  "item_g1_itmw_1h_mace_04": {
+    "GOTHIC_I": "Stalowy_język_(by_Cassidy005).png"
+  },
+  "item_g1_itmw_1h_mace_light_01": {
+    "GOTHIC_I": "Pałka_typ_2_(G1).png"
+  },
+  "item_g1_itmw_1h_mace_war_01": {
+    "GOTHIC_I": "Morgensztern_(G1).png"
+  },
+  "item_g1_itmw_1h_mace_war_02": {
+    "GOTHIC_I": "Oskard (by SpY).png"
+  },
+  "item_g1_itmw_1h_mace_war_03": {
+    "GOTHIC_I": "Łomotacz_(G1).png"
+  },
+  "item_g1_itmw_1h_mace_war_04": {
+    "GOTHIC_I": "Łamacz serc (Gothic I) (by SpY).png"
+  },
+  "item_g1_itmw_1h_nailmace_01": {
+    "GOTHIC_I": "Kij z gwoździem (Gothic I)(by Lother).png"
+  },
+  "item_g1_itmw_1h_poker_01": {
+    "GOTHIC_I": "Pogrzebacz (G1).png"
+  },
+  "item_g1_itmw_1h_scythe_01": {
+    "GOTHIC_I": "Siekacz_(broń)_(G1).png"
+  },
+  "item_g1_itmw_1h_sickle_01": {
+    "GOTHIC_I": "Sierp (G1).png"
+  },
+  "item_g1_itmw_1h_sledgehammer_01": {
+    "GOTHIC_I": "Młot kowalski (G1).png"
+  },
+  "item_g1_itmw_1h_sword_01": {
+    "GOTHIC_I": "Lekki miecz strażnika G1 ikona.png"
+  },
+  "item_g1_itmw_1h_sword_02": {
+    "GOTHIC_I": "Miecz Świstaka (by Cassidy005).png"
+  },
+  "item_g1_itmw_1h_sword_03": {
+    "GOTHIC_I": "Miecz_Strażnika_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_itmw_1h_sword_04": {
+    "GOTHIC_I": "Dobry miecz.png"
+  },
+  "item_g1_itmw_1h_sword_05": {
+    "GOTHIC_I": "Miecz wojenny (gothic1) (by Ossowski21).png"
+  },
+  "item_g1_itmw_1h_sword_bastard_01": {
+    "GOTHIC_I": "Zardzewiały_miecz_półtoraręczny_(G1).png"
+  },
+  "item_g1_itmw_1h_sword_bastard_02": {
+    "GOTHIC_I": "Rzeźnik_(G1).png"
+  },
+  "item_g1_itmw_1h_sword_bastard_03": {
+    "GOTHIC_I": "Kat (Gothic).png"
+  },
+  "item_g1_itmw_1h_sword_bastard_04": {
+    "GOTHIC_I": "Miecz Blizny (Gothic).png"
+  },
+  "item_g1_itmw_1h_sword_broad_01": {
+    "GOTHIC_I": "Miecz szeroki ikona G1.png"
+  },
+  "item_g1_itmw_1h_sword_broad_02": {
+    "GOTHIC_I": "Wyrok_wojownika_(G1).png"
+  },
+  "item_g1_itmw_1h_sword_broad_03": {
+    "GOTHIC_I": "Szept burzy (Gothic I) (by SpY).png"
+  },
+  "item_g1_itmw_1h_sword_broad_04": {
+    "GOTHIC_I": "Prawo Kruka (Gothic).png"
+  },
+  "item_g1_itmw_1h_sword_long_01": {
+    "GOTHIC_I": "Długi miecz g1 (by Ossowski21.png"
+  },
+  "item_g1_itmw_1h_sword_long_02": {
+    "GOTHIC_I": "Miecz strachu (G1).png"
+  },
+  "item_g1_itmw_1h_sword_long_03": {
+    "GOTHIC_I": "Miecz Nienawiści (Gothic).png"
+  },
+  "item_g1_itmw_1h_sword_long_04": {
+    "GOTHIC_I": "Dobry długi miecz (by Ossowski21).png"
+  },
+  "item_g1_itmw_1h_sword_long_05": {
+    "GOTHIC_I": "Miecz śmierci (G1).png"
+  },
+  "item_g1_itmw_1h_sword_old_01": {
+    "GOTHIC_I": "Zardzewiały miecz (Gothic).png"
+  },
+  "item_g1_itmw_1h_sword_short_01": {
+    "GOTHIC_I": "Krótki miecz (Gothic).png"
+  },
+  "item_g1_itmw_1h_sword_short_02": {
+    "GOTHIC_I": "Chłopski_miecz_(by_Cassidy005).png"
+  },
+  "item_g1_itmw_1h_sword_short_03": {
+    "GOTHIC_I": "Język topielca G1 ikona.png"
+  },
+  "item_g1_itmw_1h_sword_short_04": {
+    "GOTHIC_I": "Kłujący_cierń_(G1).png"
+  },
+  "item_g1_itmw_1h_sword_short_05": {
+    "GOTHIC_I": "Ząb kopacza (G1).png"
+  },
+  "item_g1_itmw_1h_warhammer_01": {
+    "GOTHIC_I": "Młot orków (G1).png"
+  },
+  "item_g1_itmw_1h_warhammer_02": {
+    "GOTHIC_I": "Młot wojenny (Gothic) (ikona).png"
+  },
+  "item_g1_itmw_1h_warhammer_03": {
+    "GOTHIC_I": "Boski młot (Gothic).png"
+  },
+  "item_g1_itmw1hswordburning": {
+    "GOTHIC_I": "Zardzewiały miecz (Gothic).png"
+  },
+  "item_g1_jackalssword": {
+    "GOTHIC_I": "Ząb kopacza (G1).png"
+  },
+  "item_g1_kaloms_schwert": {
+    "GOTHIC_I": "Miecz wojenny (gothic1) (by Ossowski21).png"
+  },
+  "item_g1_lares_axt": {
+    "GOTHIC_I": "Topór obosieczny.png"
+  },
+  "item_g1_namibs_keule": {
+    "GOTHIC_I": "Pałka_Namiba.png"
+  },
+  "item_g1_oruns_keule": {
+    "GOTHIC_I": "Ćwiekowana maczuga (G1).png"
+  },
+  "item_g1_prankenhieb": {
+    "GOTHIC_I": "Miecz śmierci (G1).png"
+  },
+  "item_g1_rabenrecht": {
+    "GOTHIC_I": "Prawo Kruka (Gothic).png"
+  },
+  "item_g1_scars_schwert": {
+    "GOTHIC_I": "Miecz Blizny (Gothic).png"
+  },
+  "item_g1_silas_axt": {
+    "GOTHIC_I": "Łamacz_kości_(G1).png"
+  },
+  "item_g1_streitschlichter": {
+    "GOTHIC_I": "Oskard (by SpY).png"
+  },
+  "item_g1_whistlers_schwert": {
+    "GOTHIC_I": "Miecz_Świstaka_(by_Cassidy005).png"
+  },
+  "item_g1_gorns_rache": {
+    "GOTHIC_I": "Zemsta_Gorna_(G1).png"
+  },
+  "item_g1_heerscherstab": {
+    "GOTHIC_I": "Berło (by Cassidy005).png"
+  },
+  "item_g1_innos_zorn": {
+    "GOTHIC_I": "Gniew Innosa (Gothic).png"
+  },
+  "item_g1_itmwpickaxe": {
+    "GOTHIC_I": "Kilof (Gothic).png"
+  },
+  "item_g1_itmw_2h_axe_heavy_01": {
+    "GOTHIC_I": "Topór Lee (by Cassidy005).png"
+  },
+  "item_g1_itmw_2h_axe_heavy_02": {
+    "GOTHIC_I": "Krzyk wojownika (Gothic) (ikona).png"
+  },
+  "item_g1_itmw_2h_axe_heavy_03": {
+    "GOTHIC_I": "Zemsta_Gorna_(G1).png"
+  },
+  "item_g1_itmw_2h_axe_heavy_04": {
+    "GOTHIC_I": "Pięść trolla (Gothic I)(by Lother).png"
+  },
+  "item_g1_itmw_2h_axe_light_01": {
+    "GOTHIC_I": "Lekki topór bojowy (G1).png"
+  },
+  "item_g1_itmw_2h_axe_light_02": {
+    "GOTHIC_I": "Grzmot (by Ossowski21).png"
+  },
+  "item_g1_itmw_2h_axe_light_03": {
+    "GOTHIC_I": "Chrzęst_(by_Cassidy005).png"
+  },
+  "item_g1_itmw_2h_axe_old_01": {
+    "GOTHIC_I": "Zardzewiały topór.png"
+  },
+  "item_g1_itmw_2h_axe_old_02": {
+    "GOTHIC_I": "Krwawy żniwiarz (ikonka) (G1).png"
+  },
+  "item_g1_itmw_2h_axe_old_03": {
+    "GOTHIC_I": "Stary_sędzia_(G1).png"
+  },
+  "item_g1_itmw_2h_staff_01": {
+    "GOTHIC_I": "Pika_bojowa_Wodnego_Kręgu_(by_SpY).png"
+  },
+  "item_g1_itmw_2h_staff_02": {
+    "GOTHIC_I": "Berło (by Cassidy005).png"
+  },
+  "item_g1_itmw_2h_staff_03": {
+    "GOTHIC_I": "Buława_drzewcowa_(G2NK)_(by_Kubar906).png"
+  },
+  "item_g1_itmw_2h_sword_01": {
+    "GOTHIC_I": "Miecz Thorusa (by Cassidy005).png"
+  },
+  "item_g1_itmw_2h_sword_02": {
+    "GOTHIC_I": "Czerwony wiatr.png"
+  },
+  "item_g1_itmw_2h_sword_03": {
+    "GOTHIC_I": "Krwawe ostrze (Gothic).png"
+  },
+  "item_g1_itmw_2h_sword_heavy_01": {
+    "GOTHIC_I": "Ciężki_dwuręczniak_(G1).png"
+  },
+  "item_g1_itmw_2h_sword_heavy_02": {
+    "GOTHIC_I": "Gniewna stal (G1).png"
+  },
+  "item_g1_itmw_2h_sword_heavy_03": {
+    "GOTHIC_I": "Gniew Innosa (Gothic).png"
+  },
+  "item_g1_itmw_2h_sword_heavy_04": {
+    "GOTHIC_I": "Mściwa stal (G1).png"
+  },
+  "item_g1_itmw_2h_sword_light_01": {
+    "GOTHIC_I": "Lekki miecz dwuręczny (by Ossowski21).png"
+  },
+  "item_g1_itmw_2h_sword_light_02": {
+    "GOTHIC_I": "Miecz_nadzorcy_(G1).png"
+  },
+  "item_g1_itmw_2h_sword_light_03": {
+    "GOTHIC_I": "Ostrze najemnika (G1).png"
+  },
+  "item_g1_itmw_2h_sword_light_04": {
+    "GOTHIC_I": "Miecz_królewski_(G1).png"
+  },
+  "item_g1_itmw_2h_sword_light_05": {
+    "GOTHIC_I": "Miecz_demonów_(ikonka)_(G1).png"
+  },
+  "item_g1_itmw_2h_sword_old_01": {
+    "GOTHIC_I": "Zardzewiały miecz oburęczny G1 ikona.png"
+  },
+  "item_g1_itmw2horcaxe01": {
+    "GOTHIC_I": "Lekki orkowy topór (by Ossowski21).png"
+  },
+  "item_g1_itmw2horcaxe02": {
+    "GOTHIC_I": "Krush urrok (by Ossowski21).png"
+  },
+  "item_g1_itmw2horcaxe03": {
+    "GOTHIC_I": "Krush Agash (Gothic).png"
+  },
+  "item_g1_itmw2horcaxe04": {
+    "GOTHIC_I": "Krush BrokDar (Gothic) (ikona).png"
+  },
+  "item_g1_itmw2horcmace01": {
+    "GOTHIC_I": "Krush Karrok (Gothic).png"
+  },
+  "item_g1_itmw2horcsword01": {
+    "GOTHIC_I": "Krush Varrok (Gothic).png"
+  },
+  "item_g1_itmw2hswordburning": {
+    "GOTHIC_I": "Zardzewiały miecz oburęczny G1 ikona.png"
+  },
+  "item_g1_itrworcstaff": {
+    "GOTHIC_I": "Grachtnakk_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_itrwudorcstaff": {
+    "GOTHIC_I": "Grachtnakk_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_lees_axt": {
+    "GOTHIC_I": "Topór Lee (by Cassidy005).png"
+  },
+  "item_g1_mythrilklinge01": {
+    "GOTHIC_I": "Przedziwny miecz.png"
+  },
+  "item_g1_mythrilklinge02": {
+    "GOTHIC_I": "Uriziel (miecz).png"
+  },
+  "item_g1_mythrilklinge03": {
+    "GOTHIC_I": "Przedziwny miecz.png"
+  },
+  "item_g1_oriks_axt": {
+    "GOTHIC_I": "Krzyk wojownika (Gothic) (ikona).png"
+  },
+  "item_g1_roter_wind": {
+    "GOTHIC_I": "Czerwony wiatr.png"
+  },
+  "item_g1_stab_des_lichts": {
+    "GOTHIC_I": "Buława drzewcowa (G2NK) (by Kubar906).png"
+  },
+  "item_g1_thorus_schwert": {
+    "GOTHIC_I": "Miecz Thorusa (by Cassidy005).png"
+  },
+  "item_g1_torlofs_axt": {
+    "GOTHIC_I": "Zemsta_Gorna_(G1).png"
+  },
+  "item_g1_ulumulu": {
+    "GOTHIC_I": "Ulu-Mulu(by Lother).png"
+  },
+  "item_g1_diegos_bogen": {
+    "GOTHIC_I": "Łuk Diego (by Cassidy005).png"
+  },
+  "item_g1_itrw_bow_long_01": {
+    "GOTHIC_I": "Łuk Diego (by Cassidy005).png"
+  },
+  "item_g1_itrw_bow_long_02": {
+    "GOTHIC_I": "Łuk kolczasty (G1).png"
+  },
+  "item_g1_itrw_bow_long_03": {
+    "GOTHIC_I": "Łuk wierzbowy G1.png"
+  },
+  "item_g1_itrw_bow_long_04": {
+    "GOTHIC_I": "Łuk dębowy G1.png"
+  },
+  "item_g1_itrw_bow_long_05": {
+    "GOTHIC_I": "Wilcze kły G1.png"
+  },
+  "item_g1_itrw_bow_long_06": {
+    "GOTHIC_I": "Podmuch_wiatru_(G1).png"
+  },
+  "item_g1_itrw_bow_long_07": {
+    "GOTHIC_I": "Łuk żołnierski G1.png"
+  },
+  "item_g1_itrw_bow_long_08": {
+    "GOTHIC_I": "Łuk Nimroda (Gothic I) (by SpY).png"
+  },
+  "item_g1_itrw_bow_long_09": {
+    "GOTHIC_I": "Łuk Nimroda (Gothic I) (by SpY).png"
+  },
+  "item_g1_itrw_bow_small_01": {
+    "GOTHIC_I": "Krótki łuk (Gothic I) (by Wojciech Wawrzyńczak).png"
+  },
+  "item_g1_itrw_bow_small_02": {
+    "GOTHIC_I": "Łuk wierzbowy (Gothic 2).png"
+  },
+  "item_g1_itrw_bow_small_03": {
+    "GOTHIC_I": "Łuk Bospera (by SpY).png"
+  },
+  "item_g1_itrw_bow_small_04": {
+    "GOTHIC_I": "Łuk myśliwski (G1).png"
+  },
+  "item_g1_itrw_bow_small_05": {
+    "GOTHIC_I": "Kościany łuk g1 (by Ossowski21).png"
+  },
+  "item_g1_itrw_bow_war_01": {
+    "GOTHIC_I": "Łuk_wojenny_(G1).png"
+  },
+  "item_g1_itrw_bow_war_02": {
+    "GOTHIC_I": "Pogromca_orków_(G1).png"
+  },
+  "item_g1_itrw_bow_war_03": {
+    "GOTHIC_I": "Gromowładny G1 ikona.png"
+  },
+  "item_g1_itrw_bow_war_04": {
+    "GOTHIC_I": "Ognisty łuk GIINK.png"
+  },
+  "item_g1_itrw_bow_war_05": {
+    "GOTHIC_I": "Ognisty łuk GIINK.png"
+  },
+  "item_g1_itrwwarbowburning": {
+    "GOTHIC_I": "Łuk wojenny (G1).png"
+  },
+  "item_g1_wolfs_bogen": {
+    "GOTHIC_I": "Łuk Diego (by Cassidy005).png"
+  },
+  "item_g1_itrw_crossbow_01": {
+    "GOTHIC_I": "Lekka kusza ikona G1.png"
+  },
+  "item_g1_itrw_crossbow_02": {
+    "GOTHIC_I": "Kusza_(G1).png"
+  },
+  "item_g1_itrw_crossbow_03": {
+    "GOTHIC_I": "Ciężka kusza (Gothic).png"
+  },
+  "item_g1_itrw_crossbow_04": {
+    "GOTHIC_I": "Kusza wojenna (Gothic).png"
+  },
+  "item_g1_itamarrow": {
+    "GOTHIC_I": "Strzała_(G1).png"
+  },
+  "item_g1_itambolt": {
+    "GOTHIC_I": "Bełt_(G1).png"
+  },
+  "item_g1_bab_armor_bikini": {
+    "GOTHIC_I": "Lekkie spodnie kopacza (by Ossowski21).png"
+  },
+  "item_g1_bab_armor_nude": {
+    "GOTHIC_I": "Lekkie spodnie kopacza (by Ossowski21).png"
+  },
+  "item_g1_crw_armor_h": {
+    "GOTHIC_I": "Zbroja z pancerzy pełzaczy (Gothic I) (by SpY).png"
+  },
+  "item_g1_dmb_armor_m": {
+    "GOTHIC_I": "Szata mrocznych sztuk (by Ossowski21).png"
+  },
+  "item_g1_ebr_armor_m": {
+    "GOTHIC_I": "Ozdobna szata (by Ossowski21).png"
+  },
+  "item_g1_ebr_armor_h2": {
+    "GOTHIC_I": "Ciężki pancerz magnata (by Ossowski21).png"
+  },
+  "item_g1_ebr_armor_h": {
+    "GOTHIC_I": "Pancerz gomeza (by Ossowski21).png"
+  },
+  "item_g1_grd_armor_i": {
+    "GOTHIC_I": "Pancerz straży królewskiej G1.png"
+  },
+  "item_g1_grd_armor_l": {
+    "GOTHIC_I": "Lekka zbroja strażnika (by Ossowski21).png"
+  },
+  "item_g1_grd_armor_m": {
+    "GOTHIC_I": "Zbroja strażnika.png"
+  },
+  "item_g1_grd_armor_h": {
+    "GOTHIC_I": "Ciężka zbroja strażnika (by Ossowski21).png"
+  },
+  "item_g1_gur_armor_m": {
+    "GOTHIC_I": "Szata Guru.png"
+  },
+  "item_g1_gur_armor_h": {
+    "GOTHIC_I": "G1 Zdobiona szata guru.png"
+  },
+  "item_g1_itarrobemithril": {
+    "GOTHIC_I": "Legendary mithril robe.png"
+  },
+  "item_g1_kdf_armor_l": {
+    "GOTHIC_I": "Szata ognia (Gothic).png"
+  },
+  "item_g1_kdf_armor_h": {
+    "GOTHIC_I": "Zdobiona szata ognia (by Ossowski21).png"
+  },
+  "item_g1_kdw_armor_l": {
+    "GOTHIC_I": "Szata wody (GI) (by Jao98).png"
+  },
+  "item_g1_kdw_armor_h": {
+    "GOTHIC_I": "Zdobiona szata wody (G1).png"
+  },
+  "item_g1_law_armor": {
+    "GOTHIC_I": "Szata Sędziego GI (by Wedkarski).png"
+  },
+  "item_g1_nov_armor_l": {
+    "GOTHIC_I": "Przepaska nowicjusza (by Ossowski21).png"
+  },
+  "item_g1_nov_armor_m": {
+    "GOTHIC_I": "Lekka zbroja Nowicjusza (by Ossowski21).png"
+  },
+  "item_g1_nov_armor_h": {
+    "GOTHIC_I": "Zbroja nowicjusza.png"
+  },
+  "item_g1_ore_armor_m": {
+    "GOTHIC_I": "Starożytna zbroja magiczna (GI) (by Jao98).png"
+  },
+  "item_g1_ore_armor_h": {
+    "GOTHIC_I": "Starożytna zbroja magiczna (GI) (by Jao98).png"
+  },
+  "item_g1_org_armor_l": {
+    "GOTHIC_I": "Lekki_strój_szkodnika_(Gothic_I)(by_Lother).png"
+  },
+  "item_g1_org_armor_m": {
+    "GOTHIC_I": "Strój szkodnika (Gothic I)(by Lother).png"
+  },
+  "item_g1_org_armor_h": {
+    "GOTHIC_I": "Ciężki strój szkodnika (Gothic I)(by Lother).png"
+  },
+  "item_g1_sfb_armor_l": {
+    "GOTHIC_I": "Strój kopacza (G1).png"
+  },
+  "item_g1_sld_armor_l": {
+    "GOTHIC_I": "Lekka zbroja najemnika v2.png"
+  },
+  "item_g1_sld_armor_m": {
+    "GOTHIC_I": "Zbroja najemnika.png"
+  },
+  "item_g1_sld_armor_h": {
+    "GOTHIC_I": "Ciężka zbroja najemnika (Gothic I) (by Migulo).png"
+  },
+  "item_g1_stt_armor_m": {
+    "GOTHIC_I": "Strój cienia (by Ossowski21).png"
+  },
+  "item_g1_stt_armor_h": {
+    "GOTHIC_I": "Zbroja cienia (by Ossowski21).png"
+  },
+  "item_g1_tpl_armor_l": {
+    "GOTHIC_I": "Lekka zbroja świątynna (Ossowski21).png"
+  },
+  "item_g1_tpl_armor_m": {
+    "GOTHIC_I": "Średnia zbroja świątynna.png"
+  },
+  "item_g1_tpl_armor_h": {
+    "GOTHIC_I": "Ciężka zbroja świątynna (Ossowski21).png"
+  },
+  "item_g1_vlk_armor_l": {
+    "GOTHIC_I": "Lekkie spodnie kopacza (by Ossowski21).png"
+  },
+  "item_g1_vlk_armor_m": {
+    "GOTHIC_I": "Spodnie kopacza (by Ossowski21).png"
+  },
+  "item_g1_itarrunebreathofdeath": {
+    "GOTHIC_I": "Bryła lodu (runa) (G1).png"
+  },
+  "item_g1_itarrunechainlightning": {
+    "GOTHIC_I": "Grom Runa Gothic.png"
+  },
+  "item_g1_itarrunecharm": {
+    "GOTHIC_I": "Urok_(runa)_(G1).png"
+  },
+  "item_g1_itarrunecontrol": {
+    "GOTHIC_I": "Kontrola_(runa)_(G1).png"
+  },
+  "item_g1_itarrunedestroyundead": {
+    "GOTHIC_I": "Runa Śmierć ożywieńcom.png"
+  },
+  "item_g1_itarrunefireball": {
+    "GOTHIC_I": "Kula ognia (runa) (G1).png"
+  },
+  "item_g1_itarrunefirebolt": {
+    "GOTHIC_I": "Ognista strzała runa (G1) (by Ossowski21).png"
+  },
+  "item_g1_itarrunefirerain": {
+    "GOTHIC_I": "Deszcz ognia (runa) (G1).png"
+  },
+  "item_g1_itarrunefirestorm": {
+    "GOTHIC_I": "Ognista burza runa ikona G1.png"
+  },
+  "item_g1_itarruneheal": {
+    "GOTHIC_I": "Uzdrowienie runa G1.png"
+  },
+  "item_g1_itarruneicecube": {
+    "GOTHIC_I": "Bryła lodu (runa) (G1).png"
+  },
+  "item_g1_itarruneicewave": {
+    "GOTHIC_I": "Lodowa_fala_(runa)_(G1).png"
+  },
+  "item_g1_itarrunelight": {
+    "GOTHIC_I": "Światło_(runa)_(G1).png"
+  },
+  "item_g1_itarrunepyrokinesis": {
+    "GOTHIC_I": "Pirokineza_(runa)_(G1).png"
+  },
+  "item_g1_itarrunesleep": {
+    "GOTHIC_I": "Sen Runa Gothic.png"
+  },
+  "item_g1_itarrunestormfist": {
+    "GOTHIC_I": "Uderzenie_burzy_(runa)_(G1).png"
+  },
+  "item_g1_itarrunetelekinesis": {
+    "GOTHIC_I": "Telekineza runa G1.png"
+  },
+  "item_g1_itarruneteleport1": {
+    "GOTHIC_I": "Teleportacja do magów ognia (runa) (G1).png"
+  },
+  "item_g1_itarruneteleport2": {
+    "GOTHIC_I": "Teleportacja do magów wody (runa) (G1).png"
+  },
+  "item_g1_itarruneteleport3": {
+    "GOTHIC_I": "Teleportacja do Nekromanty (runa) (G1).png"
+  },
+  "item_g1_itarruneteleport5": {
+    "GOTHIC_I": "Teleportacja do obozu na bagnie (runa) (G1).png"
+  },
+  "item_g1_itarrunethunderball": {
+    "GOTHIC_I": "Piorun_kulisty_(runa)_(G1).png"
+  },
+  "item_g1_itarrunethunderbolt": {
+    "GOTHIC_I": "Sopel_Lodu_Runa_GI.png"
+  },
+  "item_g1_itarrunewindfist": {
+    "GOTHIC_I": "Uderzenie wiatru runa G1.png"
+  },
+  "item_g1_urizielrune": {
+    "GOTHIC_I": "Fala Śmierci Uriziela.png"
+  },
+  "item_g1_itarscrollarmyofdarkness": {
+    "GOTHIC_I": "Armia Ciemności Zwój GI.png"
+  },
+  "item_g1_itarscrollberzerk": {
+    "GOTHIC_I": "Gniew Zwój Gothic.png"
+  },
+  "item_g1_itarscrollchainlightning": {
+    "GOTHIC_I": "Grom Zwój Gothic.png"
+  },
+  "item_g1_itarscrollcharm": {
+    "GOTHIC_I": "Urok_(zwój)_(G1).png"
+  },
+  "item_g1_itarscrollcontrol": {
+    "GOTHIC_I": "Kontrola_(zwój)_(G1).png"
+  },
+  "item_g1_itarscrolldestroyundead": {
+    "GOTHIC_I": "Zwój Śmierć Ożywieńcom.png"
+  },
+  "item_g1_itarscrollfear": {
+    "GOTHIC_I": "Strach Zwój Gothic.png"
+  },
+  "item_g1_itarscrollfireball": {
+    "GOTHIC_I": "Kula ognia (zwój) (G1).png"
+  },
+  "item_g1_itarscrollfirebolt": {
+    "GOTHIC_I": "Ognisty pocisk (zwój).png"
+  },
+  "item_g1_itarscrollfirerain": {
+    "GOTHIC_I": "Deszcz ognia (zwój) (G1).png"
+  },
+  "item_g1_itarscrollfirestorm": {
+    "GOTHIC_I": "OgnistaBurzaZwojByGaroK.png"
+  },
+  "item_g1_itarscrollheal": {
+    "GOTHIC_I": "Przemiana W Zębacza Zwój G1.png"
+  },
+  "item_g1_itarscrollicecube": {
+    "GOTHIC_I": "Bryła lodu (zwój) (G1).png"
+  },
+  "item_g1_itarscrollicewave": {
+    "GOTHIC_I": "Lodowa_fala_(zwój)_(G1).png"
+  },
+  "item_g1_itarscrolllight": {
+    "GOTHIC_I": "Światło (zwój) (G1).png"
+  },
+  "item_g1_itarscrollpyrokinesis": {
+    "GOTHIC_I": "Pirokineza_(zwój)_(G1).png"
+  },
+  "item_g1_itarscrollshrink": {
+    "GOTHIC_I": "Zmniejszenie_potwora_(zwój)_(G1).png"
+  },
+  "item_g1_itarscrollsleep": {
+    "GOTHIC_I": "Sen Zwój Gothic.png"
+  },
+  "item_g1_itarscrollstormfist": {
+    "GOTHIC_I": "Uderzenie_burzy_(zwój)_(G1).png"
+  },
+  "item_g1_itarscrollsummondemon": {
+    "GOTHIC_I": "Przyzwanie Demona Zwój GI.png"
+  },
+  "item_g1_itarscrollsummongolem": {
+    "GOTHIC_I": "Przyzwanie Golema Zwój GI.png"
+  },
+  "item_g1_itarscrollsummonskeletons": {
+    "GOTHIC_I": "Przyzwanie Golema Zwój GI.png"
+  },
+  "item_g1_itarscrolltelekinesis": {
+    "GOTHIC_I": "Telekineza zwój G1.png"
+  },
+  "item_g1_itarscrollteleport1": {
+    "GOTHIC_I": "Teleportacja do magów ognia zwój G1.png"
+  },
+  "item_g1_itarscrollteleport2": {
+    "GOTHIC_I": "Teleportacja do magów wody zwój G1.png"
+  },
+  "item_g1_itarscrollteleport3": {
+    "GOTHIC_I": "Teleportacja do Nekromanty zwój G1.png"
+  },
+  "item_g1_itarscrollteleport4": {
+    "GOTHIC_I": "Orkowe zaklęcie teleportacji G1 ikona.png"
+  },
+  "item_g1_itarscrollteleport5": {
+    "GOTHIC_I": "Orkowe_zaklęcie_teleportacji_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_itarscrollthunderball": {
+    "GOTHIC_I": "Przemiana W Zębacza Zwój G1.png"
+  },
+  "item_g1_itarscrollthunderbolt": {
+    "GOTHIC_I": "Sopel_Lodu_Zwój_GI.png"
+  },
+  "item_g1_itarscrolltrfbloodfly": {
+    "GOTHIC_I": "Przemiana W Zębacza Zwój G1.png"
+  },
+  "item_g1_itarscrolltrfcrawler": {
+    "GOTHIC_I": "Przemiana w pełzacza ikona G1.png"
+  },
+  "item_g1_itarscrolltrflurker": {
+    "GOTHIC_I": "Przemiana w topielca ikona G1.png"
+  },
+  "item_g1_itarscrolltrfmeatbug": {
+    "GOTHIC_I": "Przemiana_w_Chrząszcza_G1_Zwój.png"
+  },
+  "item_g1_itarscrolltrfmolerat": {
+    "GOTHIC_I": "Przemiana w kretoszczura ikona G1.png"
+  },
+  "item_g1_itarscrolltrforcdog": {
+    "GOTHIC_I": "Przemiana w orkowego psa ikona G1.png"
+  },
+  "item_g1_itarscrolltrfscavenger": {
+    "GOTHIC_I": "Przemiana w ścierwojada (ikona) (G1).png"
+  },
+  "item_g1_itarscrolltrfshadowbeast": {
+    "GOTHIC_I": "Przemiana w cieniostwora (ikona) (G1).png"
+  },
+  "item_g1_itarscrolltrfsnapper": {
+    "GOTHIC_I": "Przemiana W Zębacza Zwój G1.png"
+  },
+  "item_g1_itarscrolltrfwaran": {
+    "GOTHIC_I": "Przemiana w jaszczura GI Zwój.png"
+  },
+  "item_g1_itarscrolltrfwolf": {
+    "GOTHIC_I": "Przemiana w wilka ikona G1.png"
+  },
+  "item_g1_itarscrollwindfist": {
+    "GOTHIC_I": "Uderzenie wiatru zwój G1.png"
+  },
+  "item_g1_amulett_der_erleuchtung": {
+    "GOTHIC_I": "Amulet 3 G1.png"
+  },
+  "item_g1_amulett_der_macht": {
+    "GOTHIC_I": "Amulet 3 G1.png"
+  },
+  "item_g1_amulett_der_magie": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_g1_gewandtheitsamulett": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_gewandtheitsamulett2": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_g1_itmi_amulet_psi_01": {
+    "GOTHIC_I": "Znak Bractwa.png"
+  },
+  "item_g1_itmi_orctalisman": {
+    "GOTHIC_I": "Talizman orków G.png"
+  },
+  "item_g1_kdw_amulett": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_lares_ring": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_lebensamulett": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_g1_machtring": {
+    "GOTHIC_I": "Pierścień_3_GI.png"
+  },
+  "item_g1_mordragsring": {
+    "GOTHIC_I": "Pierścień 1 GI.png"
+  },
+  "item_g1_neks_amulett": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_ring_der_erleuchtung": {
+    "GOTHIC_I": "Pierścień_3_GI.png"
+  },
+  "item_g1_ring_der_magie": {
+    "GOTHIC_I": "Pierścień_2_GI.png"
+  },
+  "item_g1_ring_des_geschicks": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_ring_des_geschicks2": {
+    "GOTHIC_I": "Pierścień_2_GI.png"
+  },
+  "item_g1_ring_des_lebens": {
+    "GOTHIC_I": "Pierścień 1 GI.png"
+  },
+  "item_g1_ring_des_lebens2": {
+    "GOTHIC_I": "Pierścień_2_GI.png"
+  },
+  "item_g1_schutzamulett_feuer": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_schutzamulett_geschosse": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_schutzamulett_magie": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_schutzamulett_magie_feuer": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_g1_schutzamulett_total": {
+    "GOTHIC_I": "Amulet 3 G1.png"
+  },
+  "item_g1_schutzamulett_waffen": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_schutzamulett_waffen_geschosse": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_g1_schutzring_feuer1": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_schutzring_feuer2": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_schutzring_geschosse1": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_schutzring_geschosse1_waffen1": {
+    "GOTHIC_I": "Pierścień 2 GI.png"
+  },
+  "item_g1_schutzring_geschosse2": {
+    "GOTHIC_I": "Pierścień 1 GI.png"
+  },
+  "item_g1_schutzring_geschosse2_waffen2": {
+    "GOTHIC_I": "Pierścień_2_GI.png"
+  },
+  "item_g1_schutzring_magie1": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_schutzring_magie1_fire1": {
+    "GOTHIC_I": "Pierścień 2 GI.png"
+  },
+  "item_g1_schutzring_magie2": {
+    "GOTHIC_I": "Pierścień 1 GI.png"
+  },
+  "item_g1_schutzring_magie2_fire2": {
+    "GOTHIC_I": "Pierścień_2_GI.png"
+  },
+  "item_g1_schutzring_total1": {
+    "GOTHIC_I": "Pierścień_3_GI.png"
+  },
+  "item_g1_schutzring_total2": {
+    "GOTHIC_I": "Pierścień_3_GI.png"
+  },
+  "item_g1_schutzring_waffen1": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_schutzring_waffen2": {
+    "GOTHIC_I": "Pierścień 1 GI.png"
+  },
+  "item_g1_staerkeamulett": {
+    "GOTHIC_I": "Amulet 1 G1.png"
+  },
+  "item_g1_staerkeamulett2": {
+    "GOTHIC_I": "Amulet 2 G1.png"
+  },
+  "item_g1_staerkering": {
+    "GOTHIC_I": "Pierścień_1_GI.png"
+  },
+  "item_g1_staerkering2": {
+    "GOTHIC_I": "Pierścień_2_GI.png"
+  },
+  "item_g1_itat_meatbug_01": {
+    "GOTHIC_I": "Mięso chrząszcza.png"
+  },
+  "item_g1_itfo_mutton_01": {
+    "GOTHIC_I": "Szynka (G1).png"
+  },
+  "item_g1_itfo_om_beer_01": {
+    "GOTHIC_I": "Piwo (G1).png"
+  },
+  "item_g1_itfo_plants_berrys_01": {
+    "GOTHIC_I": "Jagody_(G1).png"
+  },
+  "item_g1_itfo_plants_bloodwood_01": {
+    "GOTHIC_I": "Nasienie_Czerwonego_Buka.png"
+  },
+  "item_g1_itfo_plants_flameberry_01": {
+    "GOTHIC_I": "Ogniocierń (G1).png"
+  },
+  "item_g1_itfo_plants_herb_01": {
+    "GOTHIC_I": "Zioła uzdrawiające1 G1.png"
+  },
+  "item_g1_itfo_plants_herb_02": {
+    "GOTHIC_I": "Zioła uzdrawiające2 G1.png"
+  },
+  "item_g1_itfo_plants_herb_03": {
+    "GOTHIC_I": "Zioła uzdrawiające3 G1.png"
+  },
+  "item_g1_itfo_plants_mountainmoos_01": {
+    "GOTHIC_I": "Smoczy_korzeń_(by_SpY).png"
+  },
+  "item_g1_itfo_plants_mountainmoos_02": {
+    "GOTHIC_I": "Smoczy_korzeń_(by_SpY).png"
+  },
+  "item_g1_itfo_plants_mushroom_01": {
+    "GOTHIC_I": "Piekielnik.png"
+  },
+  "item_g1_itfo_plants_mushroom_02": {
+    "GOTHIC_I": "Piekielnik.png"
+  },
+  "item_g1_itfo_plants_nightshadow_01": {
+    "GOTHIC_I": "Kocianka.png"
+  },
+  "item_g1_itfo_plants_nightshadow_02": {
+    "GOTHIC_I": "Kocianka.png"
+  },
+  "item_g1_itfo_plants_orcherb_01": {
+    "GOTHIC_I": "Orkowe ziele G1.png"
+  },
+  "item_g1_itfo_plants_orcherb_02": {
+    "GOTHIC_I": "Orkowe ziele G1.png"
+  },
+  "item_g1_itfo_plants_ravenherb_01": {
+    "GOTHIC_I": "Krucze ziele (G1).png"
+  },
+  "item_g1_itfo_plants_ravenherb_02": {
+    "GOTHIC_I": "Krucze ziele (G1).png"
+  },
+  "item_g1_itfo_plants_seraphis_01": {
+    "GOTHIC_I": "Serafis GI (by Wedkarski).png"
+  },
+  "item_g1_itfo_plants_stoneroot_01": {
+    "GOTHIC_I": "Dragrot GI.png"
+  },
+  "item_g1_itfo_plants_stoneroot_02": {
+    "GOTHIC_I": "Dragrot GI.png"
+  },
+  "item_g1_itfo_plants_towerwood_01": {
+    "GOTHIC_I": "Nasienie_Czerwonego_Buka.png"
+  },
+  "item_g1_itfo_plants_trollberrys_01": {
+    "GOTHIC_I": "Trolest.png"
+  },
+  "item_g1_itfo_plants_velayis_01": {
+    "GOTHIC_I": "Serafis GI (by Wedkarski).png"
+  },
+  "item_g1_itfo_potion_water_01": {
+    "GOTHIC_I": "Woda_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_itfo_wineberrys_01": {
+    "GOTHIC_I": "Winogrona.png"
+  },
+  "item_g1_itfoapple": {
+    "GOTHIC_I": "Jabłko (G1).png"
+  },
+  "item_g1_itfobeer": {
+    "GOTHIC_I": "Piwo (G1).png"
+  },
+  "item_g1_itfobooze": {
+    "GOTHIC_I": "Ryżówka_GI.png"
+  },
+  "item_g1_itfocheese": {
+    "GOTHIC_I": "Ser (G1).png"
+  },
+  "item_g1_itfocrawlersoup": {
+    "GOTHIC_I": "Zupa z pełzacza (by Cassidy005).png"
+  },
+  "item_g1_itfoloaf": {
+    "GOTHIC_I": "Chleb (Gothic I) (by SpY).png"
+  },
+  "item_g1_itfomeatbugragout": {
+    "GOTHIC_I": "Potrawka z chrząszcza gothic.png"
+  },
+  "item_g1_itfomuttonraw": {
+    "GOTHIC_I": "Surowe_mięso_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_itfomutton": {
+    "GOTHIC_I": "Smażone_mięso_(G1).png"
+  },
+  "item_g1_itforice": {
+    "GOTHIC_I": "Ryż (Gothic).png"
+  },
+  "item_g1_itfosoup": {
+    "GOTHIC_I": "Zupa korzenna.png"
+  },
+  "item_g1_itfowine": {
+    "GOTHIC_I": "Wino (G1).png"
+  },
+  "item_g1_healthwater": {
+    "GOTHIC_I": "Esencja uzdrawiająca (G1).png"
+  },
+  "item_g1_heiltrank": {
+    "GOTHIC_I": "Esencja uzdrawiająca (G1).png"
+  },
+  "item_g1_itfo_potion_dex_01": {
+    "GOTHIC_I": "Esencja zwinności (G1).png"
+  },
+  "item_g1_itfo_potion_dex_02": {
+    "GOTHIC_I": "Wyciąg Zwinności (by Cassidy005).png"
+  },
+  "item_g1_itfo_potion_dex_03": {
+    "GOTHIC_I": "Eliksir zwinności (G1).png"
+  },
+  "item_g1_itfo_potion_elixier": {
+    "GOTHIC_I": "Eliksir_Gothic.png"
+  },
+  "item_g1_itfo_potion_elixier_egg": {
+    "GOTHIC_I": "Napój z pełzaczy (G1).png"
+  },
+  "item_g1_itfo_potion_haste_01": {
+    "GOTHIC_I": "Napój lekkości.png"
+  },
+  "item_g1_itfo_potion_haste_02": {
+    "GOTHIC_I": "Napój lekkości.png"
+  },
+  "item_g1_itfo_potion_haste_03": {
+    "GOTHIC_I": "Napój lekkości.png"
+  },
+  "item_g1_itfo_potion_health_01": {
+    "GOTHIC_I": "Esencja_uzdrawiająca_(G1).png"
+  },
+  "item_g1_itfo_potion_health_02": {
+    "GOTHIC_I": "Wyciąg uzdrawiający Gothic.png"
+  },
+  "item_g1_itfo_potion_health_03": {
+    "GOTHIC_I": "Esencja uzdrawiająca (G1).png"
+  },
+  "item_g1_itfo_potion_health_perma_01": {
+    "GOTHIC_I": "Esencja życia (G1).png"
+  },
+  "item_g1_itfo_potion_health_perma_02": {
+    "GOTHIC_I": "Wyciąg życia (G1).png"
+  },
+  "item_g1_itfo_potion_health_perma_03": {
+    "GOTHIC_I": "Eliksirżycia_ossowski21.png"
+  },
+  "item_g1_itfo_potion_mana_01": {
+    "GOTHIC_I": "Esencja magicznej energii (G1).png"
+  },
+  "item_g1_itfo_potion_mana_02": {
+    "GOTHIC_I": "Wyciąg magicznej energii.png"
+  },
+  "item_g1_itfo_potion_mana_03": {
+    "GOTHIC_I": "Eliksir magicznej energii (G1).png"
+  },
+  "item_g1_itfo_potion_mana_perma_01": {
+    "GOTHIC_I": "Esencja ducha.png"
+  },
+  "item_g1_itfo_potion_mana_perma_02": {
+    "GOTHIC_I": "Wyciąg_ducha_(G1).png"
+  },
+  "item_g1_itfo_potion_mana_perma_03": {
+    "GOTHIC_I": "Eliksir ducha.png"
+  },
+  "item_g1_itfo_potion_master_01": {
+    "GOTHIC_I": "Napój potęgi (G1).png"
+  },
+  "item_g1_itfo_potion_master_02": {
+    "GOTHIC_I": "Napój władzy.png"
+  },
+  "item_g1_itfo_potion_strength_01": {
+    "GOTHIC_I": "Lekarstwo orków.png"
+  },
+  "item_g1_itfo_potion_strength_02": {
+    "GOTHIC_I": "Wyciąg siły (Gothic I) (by Cassidy005).png"
+  },
+  "item_g1_itfo_potion_strength_03": {
+    "GOTHIC_I": "Eliksir siły.png"
+  },
+  "item_g1_orcmedicine": {
+    "GOTHIC_I": "Lekarstwo orków.png"
+  },
+  "item_g1_astronomie": {
+    "GOTHIC_I": "Astronomia.png"
+  },
+  "item_g1_cronos_brief": {
+    "GOTHIC_I": "List Cronosa do Magów Ognia.png"
+  },
+  "item_g1_das_magische_erz": {
+    "GOTHIC_I": "Magiczna ruda (księga).png"
+  },
+  "item_g1_die_gruft": {
+    "GOTHIC_I": "Księga 3 Gothic.png"
+  },
+  "item_g1_elementare_arcanei": {
+    "GOTHIC_I": "Arcanum żywiołów (G1).png"
+  },
+  "item_g1_fakescroll": {
+    "GOTHIC_I": "List otwarty.png"
+  },
+  "item_g1_geheimnisse_der_zauberei": {
+    "GOTHIC_I": "Tajniki magii.png"
+  },
+  "item_g1_goettergabe": {
+    "GOTHIC_I": "Dar od bogów.png"
+  },
+  "item_g1_itwr_bloodfly_01": {
+    "GOTHIC_I": "Krwiopijcy.png"
+  },
+  "item_g1_itwr_book_circle_01": {
+    "GOTHIC_I": "Pierwszy krąg magii.png"
+  },
+  "item_g1_itwr_book_circle_02": {
+    "GOTHIC_I": "Drugi Krąg Magii.png"
+  },
+  "item_g1_itwr_book_circle_03": {
+    "GOTHIC_I": "Trzeci Krąg Magii.png"
+  },
+  "item_g1_itwr_book_circle_04": {
+    "GOTHIC_I": "Czwarty Krąg Magii.png"
+  },
+  "item_g1_itwr_book_circle_05": {
+    "GOTHIC_I": "Piąty Krąg Magii.png"
+  },
+  "item_g1_itwr_book_circle_06": {
+    "GOTHIC_I": "Szósty Krąg Magii.png"
+  },
+  "item_g1_itwr_fire_letter_01": {
+    "GOTHIC_I": "List do magów ognia zamknięty.png"
+  },
+  "item_g1_itwr_fire_letter_02": {
+    "GOTHIC_I": "List do Magów Ognia.png"
+  },
+  "item_g1_itwr_golembook1": {
+    "GOTHIC_I": "Arcanum Golum (Tom I).png"
+  },
+  "item_g1_itwr_golembook2": {
+    "GOTHIC_I": "Arcanum Golum (Tom II).png"
+  },
+  "item_g1_itwr_troll_01": {
+    "GOTHIC_I": "Strona z dziennika.png"
+  },
+  "item_g1_itwr_urkunde_01": {
+    "GOTHIC_I": "Akt własności.png"
+  },
+  "item_g1_itwrbookoftales": {
+    "GOTHIC_I": "G1 Book of Tales treść.png"
+  },
+  "item_g1_itwrdieverurteilten": {
+    "GOTHIC_I": "Mądrość bogów 1.png"
+  },
+  "item_g1_itwrfokusbuch": {
+    "GOTHIC_I": "Almanach (księga).png"
+  },
+  "item_g1_itwrpinup": {
+    "GOTHIC_I": "Szkic G.png"
+  },
+  "item_g1_jagd_und_beute": {
+    "GOTHIC_I": "Łowy i zwierzyna.png"
+  },
+  "item_g1_kalomsrecipe": {
+    "GOTHIC_I": "Receptura cor kaloma (by Ossowski21).png"
+  },
+  "item_g1_kampfkunst": {
+    "GOTHIC_I": "Sztuka walki.png"
+  },
+  "item_g1_lehren_der_goetter1": {
+    "GOTHIC_I": "Mądrość bogów 1.png"
+  },
+  "item_g1_lehren_der_goetter2": {
+    "GOTHIC_I": "Mądrość bogów 2.png"
+  },
+  "item_g1_lehren_der_goetter3": {
+    "GOTHIC_I": "Mądrość bogów 3.png"
+  },
+  "item_g1_lester_bugfixbook": {
+    "GOTHIC_I": "Zwinge Baal Lukor in den Followmode.png"
+  },
+  "item_g1_lukor_bugfixbook": {
+    "GOTHIC_I": "Zwinge Baal Lukor in den Followmode.png"
+  },
+  "item_g1_machtvolle_kunst": {
+    "GOTHIC_I": "Wszechpotężna sztuka.png"
+  },
+  "item_g1_myrtanas_lyrik": {
+    "GOTHIC_I": "Poezja myrtańska.png"
+  },
+  "item_g1_orkparchmentone": {
+    "GOTHIC_I": "Połowa pergaminu (Gothic).png"
+  },
+  "item_g1_orkparchmenttwo": {
+    "GOTHIC_I": "Połowa pergaminu (Gothic).png"
+  },
+  "item_g1_rezepturen": {
+    "GOTHIC_I": "Przepisy (Tom I).png"
+  },
+  "item_g1_rezepturen2": {
+    "GOTHIC_I": "Przepisy (Tom II).png"
+  },
+  "item_g1_schlacht_um_varant1": {
+    "GOTHIC_I": "Bitwa o Varrant 1.png"
+  },
+  "item_g1_schlacht_um_varant2": {
+    "GOTHIC_I": "Bitwa o Varrant 2.png"
+  },
+  "item_g1_tagebuchot": {
+    "GOTHIC_I": "Dziennik niewolnika.png"
+  },
+  "item_g1_thelist": {
+    "GOTHIC_I": "Lista od Iana.png"
+  },
+  "item_g1_thelistnc": {
+    "GOTHIC_I": "Lista od Iana (poszerzona).png"
+  },
+  "item_g1_theriddle1": {
+    "GOTHIC_I": "Chromanin 1.png"
+  },
+  "item_g1_theriddle2": {
+    "GOTHIC_I": "Chromanin 2.png"
+  },
+  "item_g1_theriddle3": {
+    "GOTHIC_I": "Chromanin 3.png"
+  },
+  "item_g1_theriddle4": {
+    "GOTHIC_I": "Chromanin 4.png"
+  },
+  "item_g1_theriddle5": {
+    "GOTHIC_I": "Chromanin 5.png"
+  },
+  "item_g1_theriddle6": {
+    "GOTHIC_I": "Chromanin 6.png"
+  },
+  "item_g1_wahre_macht": {
+    "GOTHIC_I": "Prawdziwa moc.png"
+  },
+  "item_g1_fonttestbook": {
+    "GOTHIC_I": "zeichenglumpsche_ascii G1.png"
+  },
+  "item_g1_itwrfocimap": {
+    "GOTHIC_I": "Mapa_od_Saturasa.png"
+  },
+  "item_g1_itwrfocusmappsi": {
+    "GOTHIC_I": "Mapa od Y'Beriona.png"
+  },
+  "item_g1_itwrncmap": {
+    "GOTHIC_I": "Plan_Nowy_Oboz.png"
+  },
+  "item_g1_itwrocmap": {
+    "GOTHIC_I": "Plan_Stary_Oboz.png"
+  },
+  "item_g1_itwrommap": {
+    "GOTHIC_I": "Mapa do Starej Kopalni.png"
+  },
+  "item_g1_itwrpsimap": {
+    "GOTHIC_I": "Plan_obozu_na_bagnie.png"
+  },
+  "item_g1_itwrtemplemap": {
+    "GOTHIC_I": "Szkic świątyni (G1).png"
+  },
+  "item_g1_itwrworldmap": {
+    "GOTHIC_I": "Mapa_koloni_(niepełna).png"
+  },
+  "item_g1_itwrworldmap_orc": {
+    "GOTHIC_I": "Mapa_koloni_(pełna).png"
+  },
+  "item_g1_itwrlevelmap": {
+    "GOTHIC_I": "Map_of_Test_Level_(HQ).png"
+  },
+  "item_g1_xp_map": {
+    "GOTHIC_I": "XP_Map_efekt.png"
+  },
+  "item_g1_dungeonkey": {
+    "GOTHIC_I": "Klucz Brązowy Gothic.png"
+  },
+  "item_g1_itke_berg_01": {
+    "GOTHIC_I": "Klucz Żelazny Gothic.png"
+  },
+  "item_g1_itke_focus4": {
+    "GOTHIC_I": "Klucz Żelazny Gothic.png"
+  },
+  "item_g1_itke_focus5": {
+    "GOTHIC_I": "Klucz Złoty Gothic.png"
+  },
+  "item_g1_itke_freemine": {
+    "GOTHIC_I": "Klucz Żelazny Gothic.png"
+  },
+  "item_g1_itke_gomez_01": {
+    "GOTHIC_I": "Klucz Srebrny Gothic.png"
+  },
+  "item_g1_itke_ob_smith_01": {
+    "GOTHIC_I": "Klucz_Złoty_Gothic.png"
+  },
+  "item_g1_itke_om_01": {
+    "GOTHIC_I": "Klucz Żelazny Gothic.png"
+  },
+  "item_g1_itke_om_02": {
+    "GOTHIC_I": "Klucz Złoty Gothic.png"
+  },
+  "item_g1_itke_om_03": {
+    "GOTHIC_I": "Klucz Brązowy Gothic.png"
+  },
+  "item_g1_itke_om_04": {
+    "GOTHIC_I": "Klucz Srebrny Gothic.png"
+  },
+  "item_g1_itke_psi_kalom_01": {
+    "GOTHIC_I": "Klucz Srebrny Gothic.png"
+  },
+  "item_g1_itke_storage_01": {
+    "GOTHIC_I": "Klucz Brązowy Gothic.png"
+  },
+  "item_g1_itke_sunkentower": {
+    "GOTHIC_I": "Klucz Brązowy Gothic.png"
+  },
+  "item_g1_itkecavalorn01": {
+    "GOTHIC_I": "Klucz Srebrny Gothic.png"
+  },
+  "item_g1_itkekey1": {
+    "GOTHIC_I": "Klucz Żelazny Gothic.png"
+  },
+  "item_g1_itkekey2": {
+    "GOTHIC_I": "Klucz Złoty Gothic.png"
+  },
+  "item_g1_itkekey3": {
+    "GOTHIC_I": "Klucz Brązowy Gothic.png"
+  },
+  "item_g1_itkekey4": {
+    "GOTHIC_I": "Klucz Srebrny Gothic.png"
+  },
+  "item_g1_itkey_rb_01": {
+    "GOTHIC_I": "Klucz Żelazny Gothic.png"
+  },
+  "item_g1_itat_bloodfly_01": {
+    "GOTHIC_I": "Skrzydła Krwiopijcy G.png"
+  },
+  "item_g1_itat_bloodfly_02": {
+    "GOTHIC_I": "Żądło krwiopijcy (G1).png"
+  },
+  "item_g1_itat_claws_01": {
+    "GOTHIC_I": "Pazury GI.png"
+  },
+  "item_g1_itat_crawler_01": {
+    "GOTHIC_I": "Wnętrzności_Pełzacza.png"
+  },
+  "item_g1_itat_crawler_02": {
+    "GOTHIC_I": "Płytka z pancerza pełzacza.png"
+  },
+  "item_g1_itat_crawlerqueen": {
+    "GOTHIC_I": "Jajo pełzacza (G1).png"
+  },
+  "item_g1_itat_damlurker_01": {
+    "GOTHIC_I": "Pazur topielca GII.png"
+  },
+  "item_g1_itat_firegolem_01": {
+    "GOTHIC_I": "Serce ognistego golema (Gothic, ikona).png"
+  },
+  "item_g1_itat_icegolem_01": {
+    "GOTHIC_I": "Serce lodowego golema g1 (by Ossowski21).png"
+  },
+  "item_g1_itat_icegolem_02": {
+    "GOTHIC_I": "Serce lodowego golema g1 (by Ossowski21).png"
+  },
+  "item_g1_itat_lurker_01": {
+    "GOTHIC_I": "Pazur topielca GII.png"
+  },
+  "item_g1_itat_lurker_02": {
+    "GOTHIC_I": "Skóra topielca.png"
+  },
+  "item_g1_itat_shadow_01": {
+    "GOTHIC_I": "Skóra_cieniostwora_(G1).png"
+  },
+  "item_g1_itat_shadow_02": {
+    "GOTHIC_I": "Róg cieniostwora (G1).png"
+  },
+  "item_g1_itat_stonegolem_01": {
+    "GOTHIC_I": "Serce kamiennego golema G1 ikona.png"
+  },
+  "item_g1_itat_swampshark_01": {
+    "GOTHIC_I": "Skóra błotnego węża.png"
+  },
+  "item_g1_itat_swampshark_02": {
+    "GOTHIC_I": "Kły_błotnego_węża_(G1).png"
+  },
+  "item_g1_itat_teeth_01": {
+    "GOTHIC_I": "Kły (G1).png"
+  },
+  "item_g1_itat_troll_01": {
+    "GOTHIC_I": "Skóra trolla ikona G1.png"
+  },
+  "item_g1_itat_troll_02": {
+    "GOTHIC_I": "Kieł trolla.png"
+  },
+  "item_g1_itat_waran_01": {
+    "GOTHIC_I": "Język_ognia_(G1)_(by_Kubar906).png"
+  },
+  "item_g1_itat_wolf_01": {
+    "GOTHIC_I": "Skóra wilka (G1).png"
+  },
+  "item_g1_itat_wolf_02": {
+    "GOTHIC_I": "Skóra_orkowego_psa_(G1).png"
+  },
+  "item_g1_bannklinge": {
+    "GOTHIC_I": "Wygnaniec (G1).png"
+  },
+  "item_g1_daemonenstreich": {
+    "GOTHIC_I": "Wygnaniec (G1).png"
+  },
+  "item_g1_focus_1": {
+    "GOTHIC_I": "Kamień ogniskujący (G2NK).png"
+  },
+  "item_g1_focus_2": {
+    "GOTHIC_I": "Kamień ogniskujący (G2NK).png"
+  },
+  "item_g1_focus_3": {
+    "GOTHIC_I": "Kamień ogniskujący (G2NK).png"
+  },
+  "item_g1_focus_4": {
+    "GOTHIC_I": "Kamień ogniskujący (G2NK).png"
+  },
+  "item_g1_focus_5": {
+    "GOTHIC_I": "Kamień ogniskujący (G2NK).png"
+  },
+  "item_g1_itmi_stuff_gearwheel_01": {
+    "GOTHIC_I": "Koło_zębate_(G1).png"
+  },
+  "item_g1_itmi_stuff_idol_sleeper_01": {
+    "GOTHIC_I": "Posążek_(G1).png"
+  },
+  "item_g1_lichtbringer": {
+    "GOTHIC_I": "Wygnaniec (G1).png"
+  },
+  "item_g1_mythrilklinge": {
+    "GOTHIC_I": "Przedziwny miecz.png"
+  },
+  "item_g1_recruitjoint": {
+    "GOTHIC_I": "Zew nocy.png"
+  },
+  "item_g1_scroll4milten": {
+    "GOTHIC_I": "Przekaz energii.png"
+  },
+  "item_g1_specialjoint": {
+    "GOTHIC_I": "Zew nocy.png"
+  },
+  "item_g1_specialwater": {
+    "GOTHIC_I": "Woda_(Gothic_I)_(by_SpY).png"
+  },
+  "item_g1_weltenspalter": {
+    "GOTHIC_I": "Wygnaniec (G1).png"
+  },
+  "item_g1_zeitenklinge": {
+    "GOTHIC_I": "Wygnaniec (G1).png"
+  },
+  "item_g1_itkelockpick": {
+    "GOTHIC_I": "Wytrych (G1).png"
+  },
+  "item_g1_itlstorch": {
+    "GOTHIC_I": "Pochodnia_GI.png"
+  },
+  "item_g1_itlstorchburned": {
+    "GOTHIC_I": "Pochodnia_GI.png"
+  },
+  "item_g1_itlstorchburning": {
+    "GOTHIC_I": "Pochodnia_GI.png"
+  },
+  "item_g1_itlstorchfirespit": {
+    "GOTHIC_I": "Pochodnia_GI.png"
+  },
+  "item_g1_itmi_alchemy_alcohol_01": {
+    "GOTHIC_I": "Czysty Alkohol.png"
+  },
+  "item_g1_itmi_alchemy_moleratlubric_01": {
+    "GOTHIC_I": "Sadło kretoszczura G1.png"
+  },
+  "item_g1_itmi_alchemy_quicksilver_01": {
+    "GOTHIC_I": "Rtęć (Gothic I) (by SpY).png"
+  },
+  "item_g1_itmi_alchemy_salt_01": {
+    "GOTHIC_I": "Sól (Gothic I) (by Spy).png"
+  },
+  "item_g1_itmi_alchemy_sulphur_01": {
+    "GOTHIC_I": "Siarka (G1).png"
+  },
+  "item_g1_itmi_alchemy_syrianoil_01": {
+    "GOTHIC_I": "Olej Syrianiczny GI.png"
+  },
+  "item_g1_itmi_plants_swampherb_01": {
+    "GOTHIC_I": "Bagienne_ziele_(G1).png"
+  },
+  "item_g1_itmi_stuff_amphore_01": {
+    "GOTHIC_I": "Amfora (G1).png"
+  },
+  "item_g1_itmi_stuff_barbknife_01": {
+    "GOTHIC_I": "Brzytwa (Gothic I) (by Cassidy005).png"
+  },
+  "item_g1_itmi_stuff_candel_01": {
+    "GOTHIC_I": "Świecznik (Gothic I) (by Cassidy005).png"
+  },
+  "item_g1_itmi_stuff_cup_01": {
+    "GOTHIC_I": "Kubek GI (by Cassidy005).png"
+  },
+  "item_g1_itmi_stuff_cup_02": {
+    "GOTHIC_I": "Puchar GI (by Wedkarski).png"
+  },
+  "item_g1_itmi_stuff_idol_ogront_01": {
+    "GOTHIC_I": "Posążek.png"
+  },
+  "item_g1_itmi_stuff_mug_01": {
+    "GOTHIC_I": "Dzban (by Cassidy005).png"
+  },
+  "item_g1_itmi_stuff_oldcoin_01": {
+    "GOTHIC_I": "Moneta_(G1).png"
+  },
+  "item_g1_itmi_stuff_oldcoin_02": {
+    "GOTHIC_I": "Moneta_(G1).png"
+  },
+  "item_g1_itmi_stuff_pan_01": {
+    "GOTHIC_I": "Patelnia Gothic.png"
+  },
+  "item_g1_itmi_stuff_pipe_01": {
+    "GOTHIC_I": "Fajka (G1).png"
+  },
+  "item_g1_itmi_stuff_plate_01": {
+    "GOTHIC_I": "Talerz_(G1).png"
+  },
+  "item_g1_itmi_stuff_silverware_01": {
+    "GOTHIC_I": "Sztućce (Gothic I) (by Cassidy005).png"
+  },
+  "item_g1_itmialarmhorn": {
+    "GOTHIC_I": "Róg.png"
+  },
+  "item_g1_itmibrush": {
+    "GOTHIC_I": "Szczotka.png"
+  },
+  "item_g1_itmiflask": {
+    "GOTHIC_I": "Wyciąg magicznej energii.png"
+  },
+  "item_g1_itmihammer": {
+    "GOTHIC_I": "Młotek G1 (by Cassidy005).png"
+  },
+  "item_g1_itmijoint_1": {
+    "GOTHIC_I": "Zew nocy.png"
+  },
+  "item_g1_itmijoint_2": {
+    "GOTHIC_I": "Zew nocy.png"
+  },
+  "item_g1_itmijoint_3": {
+    "GOTHIC_I": "Zew nocy.png"
+  },
+  "item_g1_itmilute": {
+    "GOTHIC_I": "Lutnia (G1).png"
+  },
+  "item_g1_itminugget": {
+    "GOTHIC_I": "Bryłka rudy (Gothic I) (by SpY).png"
+  },
+  "item_g1_itmiscoop": {
+    "GOTHIC_I": "Drewniana łyżka (G1).png"
+  },
+  "item_g1_itmistomper": {
+    "GOTHIC_I": "Rozdrabniacz_(G1).png"
+  },
+  "item_g1_itmiswordblade": {
+    "GOTHIC_I": "Ostrze_(ikonka)_(G1).png"
+  },
+  "item_g1_itmiswordbladehot": {
+    "GOTHIC_I": "Rozgrzane_ostrze_(ikonka)_(G1).png"
+  },
+  "item_g1_itmiswordraw": {
+    "GOTHIC_I": "Stal G1 ikona.png"
+  },
+  "item_g1_itmiswordrawhot": {
+    "GOTHIC_I": "Rozgrzana stal ikona G1.png"
+  },
+  "item_g1_itmiwedel": {
+    "GOTHIC_I": "Liść palmowy.png"
   }
 }

@@ -34,18 +34,18 @@ class EndgameTests(TestCase):
         self.assertEqual(improve_item(self.p,self.gear.pk,0,key).pk,EquipmentWork.objects.get().pk)
         self.assertFalse(improve_item(self.p,self.gear.pk,0,uuid4()))
         self.gear.refresh_from_db();self.p.refresh_from_db();self.dust.refresh_from_db()
-        self.assertEqual((self.gear.upgrade_level,self.p.ore_balance,self.dust.quantity),(1,9970,198))
-        self.assertEqual(combat_values(self.p)[0],before+1)
+        self.assertEqual((self.gear.upgrade_level,self.p.ore_balance,self.dust.quantity),(2,9940,197))
+        self.assertEqual(combat_values(self.p)[0],before+2)
         self.assertEqual(self.gear.blueprint.damage,12)
         game.unequip_item(self.p,self.gear);game.list_item_on_market(self.p,self.gear,40)
         other=User.objects.create_user('kupujacy').playerprofile
         self.assertFalse(improve_item(other,self.gear.pk,1,uuid4()))
         self.assertFalse(improve_item(self.p,self.gear.pk,1,uuid4()))
         self.assertTrue(game.buy_item_on_market(other,self.gear))
-        self.gear.refresh_from_db();self.assertEqual((self.gear.owner_id,self.gear.upgrade_level),(other.pk,1))
-    def test_all_ten_upgrades_material_sink_and_cap(self):
+        self.gear.refresh_from_db();self.assertEqual((self.gear.owner_id,self.gear.upgrade_level),(other.pk,2))
+    def test_five_named_ranks_material_sink_and_cap(self):
         self.p.ore_balance=100000;self.p.save()
-        for level in range(10):self.assertTrue(improve_item(self.p,self.gear.pk,level,uuid4()))
+        for level in range(0,10,2):self.assertTrue(improve_item(self.p,self.gear.pk,level,uuid4()))
         self.assertFalse(improve_item(self.p,self.gear.pk,10,uuid4()))
         self.dust.refresh_from_db();self.assertEqual(self.dust.quantity,90)
         self.gear.refresh_from_db();self.assertEqual(self.gear.effective_stats['damage'],22)
@@ -57,7 +57,7 @@ class EndgameTests(TestCase):
         with patch('characters.enhancements.EquipmentWork.objects.create',side_effect=RuntimeError):
             with self.assertRaises(RuntimeError):improve_item(self.p,self.gear.pk,0,uuid4())
         self.gear.refresh_from_db();self.dust.refresh_from_db();self.p.refresh_from_db()
-        self.assertEqual((self.gear.upgrade_level,self.dust.quantity,self.p.ore_balance),(0,198,9970))
+        self.assertEqual((self.gear.upgrade_level,self.dust.quantity,self.p.ore_balance),(0,197,9940))
     def test_salvage_ownership_no_equipped_or_merchant_item_and_replay(self):
         key=uuid4();self.assertTrue(salvage_item(self.p,self.gear.pk,key));self.assertTrue(salvage_item(self.p,self.gear.pk,key))
         self.dust.refresh_from_db();self.assertEqual(self.dust.quantity,202)

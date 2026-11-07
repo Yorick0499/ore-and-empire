@@ -27,10 +27,10 @@ PD i wynik. Boss zachowuje zgodność z istniejącym `BossAttempt` i cooldownem.
 
 Przedmioty stosowalne mają liczbę sztuk; kupiec sprzedaje jedną, a skupuje cały
 stos za 50% wartości. Materiały i amunicja łączą się wyłącznie we własnym,
-niewystawionym stosie. Przedmioty fabularne mogą mieć zakaz handlu. Boty nadal
+niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty nadal
 preferują walkę wręcz, zakładają zdobyte zbroje, używają zapasów i sprzedają
-nadmiar materiałów, rezerwując dostawy questowe. Obserwacje mają wersję 6.
+nadmiar materiałów, rezerwując dostawy questowe. Obserwacje mają wersję 17; zachowano historyczne implementacje do replay.
 
 ## Dopracowanie pełnej edycji
 
-Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. [Pula 35 łupów, odzysk pyłu, wszystkie koszty +1…+10](LOOT_AND_ENDGAME.md).
+Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. [Pula 35 łupów, odzysk pyłu, pięć nazwanych rang i koszty przekucia](LOOT_AND_ENDGAME.md).

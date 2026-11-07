@@ -174,7 +174,20 @@ def inventory_view(request):
             report_action(request, unequip_item(profile, item))
             return redirect(request.get_full_path())
     player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False, is_market_listed=False).select_related("blueprint")
+    from django.core.paginator import Paginator
+    from .enhancements import QUALITY_RANKS
+    query=request.GET.get('q','').strip()[:100]
+    kind=request.GET.get('kind','')
+    quality=request.GET.get('quality','')
+    if query:player_inventory=player_inventory.filter(blueprint__name__icontains=query)
+    if kind in dict(ItemBluePrint._meta.get_field('kind').choices):player_inventory=player_inventory.filter(blueprint__kind=kind)
+    quality_keys=[rank['key'] for rank in QUALITY_RANKS]
+    if quality in quality_keys:
+        rank=quality_keys.index(quality)
+        player_inventory=player_inventory.filter(upgrade_level__range=(max(0,2*rank-1),2*rank))
+    player_inventory=Paginator(player_inventory.order_by("blueprint__kind","blueprint__name","pk"),24).get_page(request.GET.get("page"))
     equipped_weapon = OwnedItem.objects.filter(owner=profile, is_equipped=True, equipped_slot="weapon").first()
+    from .enhancements import QUALITY_RANKS
     return render(
         request,
         "characters/inventory.html",
@@ -182,6 +195,9 @@ def inventory_view(request):
             "profile": profile,
             "player_inventory": player_inventory,
             "equipped_weapon": equipped_weapon,
+            "quality_ranks":QUALITY_RANKS[1:],
+            "all_quality_ranks":QUALITY_RANKS,"query":query,"kind":kind,"quality":quality,
+            "item_kinds":[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field("kind").choices],
             "request_key":uuid4(),
             "dust_count":profile.inventory.filter(blueprint__catalog_key="rune-dust",is_market_listed=False).aggregate(total=Sum("quantity"))["total"] or 0,
             "equipped_items": profile.inventory.filter(is_equipped=True).select_related("blueprint"),
@@ -661,7 +677,7 @@ def item_catalog_view(request):
     from django.core.paginator import Paginator
     from django.db.models import Q
     from .models import ContentPack
-    items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').exclude(catalog_key__startswith='g1-bab-armor-').order_by('kind','name','catalog_key')
+    items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
     if query:items=items.filter(Q(name__icontains=query)|Q(catalog_key__icontains=query))
@@ -863,7 +879,7 @@ def hall_view(request):
 
 @login_required
 def frontier_view(request):
-    from .frontier import patrol,board,season_key,enemy,COOLDOWN
+    from .frontier import patrol,board,season_key,enemy,COOLDOWN,frontier_unlocked
     from .models import CampaignCompletion,FrontierProgress
     profile=request.user.playerprofile
     refresh_player(profile)
@@ -876,4 +892,4 @@ def frontier_view(request):
     rows=list(board(profile.world))
     names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[r['profile_id'] for r in rows]).select_related('user')}
     for row in rows:row['name']=names[row['profile_id']]
-    return render(request,'characters/frontier.html',{'profile':profile,'ready':CampaignCompletion.objects.filter(profile=profile).exists(),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})
+    return render(request,'characters/frontier.html',{'profile':profile,'ready':frontier_unlocked(profile),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})

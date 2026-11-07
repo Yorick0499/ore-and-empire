@@ -26,7 +26,7 @@ PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Pozio
 
 Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu opierają się na bazowych atrybutach, poziomie i ewentualnym obozie/randze. Broń wręcz korzysta z siły, łuki/kusze ze zręczności. Umiejętność danego typu broni określa szansę krytyka. Łuk zużywa strzałę, kusza bełt na całą walkę — to reguła adaptacji. Szczegóły: [wyposażenie](EQUIPMENT.md), [magia](MAGIC.md).
 
-W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. W Ekwipunku ulepszysz własny egzemplarz do +10 za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
+W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. W Ekwipunku przekujesz własny egzemplarz aż do rangi Naznaczony Barierą, także podczas fabuły za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
 
 ## Handel, rzemiosło i odłamki
 
@@ -58,7 +58,7 @@ Królowa pełzaczy (poziom 5), Prastary błotny wąż (8) i Echo Śniącego (30)
 
 Finał wymaga poziomu 30, obozu i odebranych przygotowań „Zabezpieczyć dolinę”. Zwycięstwo zapisuje osobisty udział w utrzymaniu pieczęci oraz trofeum w sali chwały. Potem nadal możesz grać, handlować i wspierać obóz. Bot może ukończyć własną drogę, ale nie kończy świata. Operator po finale gracza może utrwalić końcowe rankingi i listę zwycięzców. II edycja Gothic II NK i transfery nie są jeszcze wdrożone.
 
-Po finale odblokujesz **Warty za Przełęczą**: 100 stopni wyzwań z powtarzalnymi łupami i miesięcznym rankingiem, który odnawia cel bez kasowania postaci. Pierwsza wygrana na stopniu gwarantuje sprzęt; kolejne służą farmieniu pyłu, rudy i wyniku. [Zasady endgame](LOOT_AND_ENDGAME.md).
+Na poziomie 30, po dołączeniu do obozu, odblokujesz **Warty za Przełęczą**, bez wymogu ukończenia fabuły: 100 stopni wyzwań z powtarzalnymi łupami i miesięcznym rankingiem, który odnawia cel bez kasowania postaci. Pierwsza wygrana na stopniu gwarantuje sprzęt; kolejne służą farmieniu pyłu, rudy i wyniku. [Zasady endgame](LOOT_AND_ENDGAME.md).
 
 ## Karczma, kronika i boty
 

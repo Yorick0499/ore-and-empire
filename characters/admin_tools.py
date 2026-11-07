@@ -62,7 +62,7 @@ def administer_player(actor, profile_id, action, payload):
         blueprint = ItemBluePrint.objects.filter(pk=blueprint_id).first()
         if not blueprint or not 1 <= quantity <= 20:
             return False, "Wybierz przedmiot i liczbę od 1 do 20."
-        OwnedItem.objects.bulk_create([OwnedItem(owner=profile, blueprint=blueprint) for _ in range(quantity)])
+        OwnedItem.objects.bulk_create([OwnedItem(owner=profile, blueprint=blueprint, origin="admin") for _ in range(quantity)])
         details = {"blueprint_id": blueprint.pk, "quantity": quantity}
     elif action == "premium":
         try:

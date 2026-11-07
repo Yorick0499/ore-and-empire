@@ -1,4 +1,4 @@
-{% load gothic_media %}<strong>{{ item.name }}{% if owned.upgrade_level %} +{{ owned.upgrade_level }}{% endif %}</strong>{% if item.art_key %}{% gothic_art item.art_key %}{% endif %}
+{% load gothic_media %}<strong>{{ item.name }}</strong>{% if owned and item.equippable %}<span class="quality-badge quality-{{ owned.quality.key }}">{{ owned.quality_name }}</span>{% endif %}{% gothic_item_art item %}
 <p>{{ item.kind_name }}{% if item.kind == 'weapon' %} · {{ item.weapon_name }} · Obrażenia {{ item.damage }} ({{ item.damage_name }}) · Siła {{ item.required_strength }} · Zręczność {{ item.required_dexterity }}{% endif %}</p>
 {% if item.weapon_prot or item.arrow_prot or item.fire_prot or item.magic_prot %}<p>Ochrona: broń {{ item.weapon_prot }} · pociski {{ item.arrow_prot }} · ogień {{ item.fire_prot }} · magia {{ item.magic_prot }}</p>{% endif %}
 {% if item.strength_bonus or item.dexterity_bonus or item.mana_bonus or item.life_bonus %}<p>Bonus: siła +{{ item.strength_bonus }} · zręczność +{{ item.dexterity_bonus }} · mana +{{ item.mana_bonus }} · życie +{{ item.life_bonus }}</p>{% endif %}

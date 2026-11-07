@@ -27,7 +27,7 @@ def save_battle(profile, key, monster, location, won, log, experience=0, ore=0, 
             if roll < threshold:
                 blueprint = ItemBluePrint.objects.get(pk=entry['blueprint'])
                 quantity = random.randint(entry.get('min',1), entry.get('max',1))
-                add_item(profile,blueprint,quantity)
+                add_item(profile,blueprint,quantity,origin="loot")
                 loot.append({'blueprint':blueprint.pk,'name':blueprint.name,'quantity':quantity})
                 log.append(f"Łup: {blueprint.name} ×{quantity}.")
                 break
