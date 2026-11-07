@@ -1,0 +1,31 @@
+{
+  "synthetic_world": true,
+  "bots": 100,
+  "checks": [
+    "three_real_forge_forms_0_to_3",
+    "ancient_rarity_unchanged",
+    "no_plus4_form",
+    "protected_item_can_be_forged",
+    "market_rarity_filter",
+    "inventory_1440px_no_horizontal_overflow",
+    "market_1440px_no_horizontal_overflow",
+    "comparison_1440px_no_horizontal_overflow",
+    "inventory_390px_no_horizontal_overflow",
+    "market_390px_no_horizontal_overflow",
+    "comparison_390px_no_horizontal_overflow",
+    "inventory_320px_no_horizontal_overflow",
+    "market_320px_no_horizontal_overflow",
+    "comparison_320px_no_horizontal_overflow"
+  ],
+  "screenshots": [
+    "forge.jpg",
+    "inventory.jpg",
+    "market.jpg",
+    "comparison.jpg",
+    "mobile-equipment.jpg",
+    "mobile-market.jpg",
+    "mobile-comparison.jpg"
+  ],
+  "browser_errors": [],
+  "success": true
+}

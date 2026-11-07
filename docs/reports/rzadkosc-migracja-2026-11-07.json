@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "private_copy_only": true,
+  "preserved_tables": 27,
+  "equipment_rows": 832,
+  "all_effective_stats_preserved": true,
+  "account_hashes_balances_and_protected_items_preserved": true,
+  "historical_snapshots_unchanged": true
+}
