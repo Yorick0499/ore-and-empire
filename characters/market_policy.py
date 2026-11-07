@@ -51,7 +51,7 @@ def bot_market_plan(profile,reserved=()):
         floor=max(1,stale.blueprint.base_value*stale.quantity//2)
         if stale.market_price>floor and not MarketEvent.objects.filter(item=stale,action='repricing',created_at__gte=now-timedelta(days=1)).exists():
             return 'market_reprice',stale.pk,max(floor,stale.market_price*85//100)
-    cancelled=MarketEvent.objects.filter(profile=profile,action='cancellation',reason='stale',item__isnull=False,item__is_market_listed=False,item__is_equipped=False).exclude(blueprint_id__in=reserved).select_related('item__blueprint').first()
+    cancelled=MarketEvent.objects.filter(profile=profile,action='cancellation',reason='stale',item__isnull=False,item__is_market_listed=False,item__is_equipped=False,item__is_protected=False).exclude(blueprint_id__in=reserved).select_related('item__blueprint').first()
     if cancelled and cancelled.item.owner_id==profile.pk and cancelled.item.blueprint.tradeable and cancelled.item.pk!=profile.prepared_magic_id:return 'market_sell',cancelled.item_id,0
     if profile.inventory.count()>=6 or profile.ore_balance<25:return '',None,0
     offers=OwnedItem.objects.filter(owner__world_id=profile.world_id,is_market_listed=True,market_price__gt=0,market_price__lte=profile.ore_balance-20).exclude(owner=profile).select_related('blueprint')

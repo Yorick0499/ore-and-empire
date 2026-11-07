@@ -185,8 +185,11 @@ class RareBotEquipmentTests(TestCase):
         from .models import BotDecision
         bp=ItemBluePrint.objects.create(name='Pamiątka',damage=1,base_value=100,merchant=False)
         item=add_item(self.p,bp);item.is_protected=True;item.save()
+        from .models import MarketEvent
+        MarketEvent.objects.create(profile=self.p,item=item,blueprint=bp,action='cancellation',reason='stale',price=100)
         tick_bot(self.p)
         observation=BotDecision.objects.filter(profile=self.p).first().observation
         self.assertNotEqual(observation['disposal_id'],item.pk)
         self.assertNotEqual(observation['inventory_id'],item.pk)
+        self.assertNotEqual(observation['market_action'],'market_sell')
         item.refresh_from_db();self.assertFalse(item.is_market_listed)
