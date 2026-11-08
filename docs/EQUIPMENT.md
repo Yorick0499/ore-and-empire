@@ -75,3 +75,9 @@ handlowanie nie zeruje obu cech. Migracja historycznych stopni zachowuje ich moc
 ## Rozwój umiejętności broni
 
 U Nauczyciela uczysz się czterech typów broni do 100%. Punkt kosztuje 1 PN i aktualną cenę treningu (10 rudy minus poziom szkoły obozowej). Jedna lekcja obejmuje 1–10 punktów; przekroczenie limitu lub brak pełnej opłaty odrzuca całość. Umiejętność jest szansą podwojenia ciosu przed pancerzem; nie zastępuje siły, zręczności ani amunicji. Zwiększenie rzadkości w kuźni nadal jest niemożliwe.
+
+## Oprawy egzemplarzy
+
+Pięć odmian ma osobne ramy całych kart i plakietki: I Niewykończony (surowa stal), II Mistrzowski (mosiężne okucia), III Nasycony magią (błękitny krąg), IV Runiczny (fasetowany znak i poświata magicznej rudy), V Pradawny (stare złoto i podwójny ornament). Ramy działają w plecaku, na wyposażeniu, u kupca przy sprzedaży, na targu i w porównywarce. Nazwa, liczba i ornament uzupełniają kolor. Wzór towaru NPC nie udaje wylosowanego egzemplarza.
+
+Oprawa jest statycznym CSS: nie pobiera dodatkowych grafik i nie uruchamia animacji. Nie zmienia statystyk, szans łupu ani stałej rzadkości. +1–+3 pozostaje oddzielną cechą. [Przykłady pięciu kart](SCREENSHOTS.md).

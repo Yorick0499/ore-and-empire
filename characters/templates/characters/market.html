@@ -7,7 +7,7 @@
 {% include 'characters/profile.html' %}
 <div class="main-content">
         <div class="guide-frame">
-<details class="colony-panel" id="my-offers"><summary>Twoje oferty i zmiana ceny ({{ my_offers.paginator.count }})</summary><p>Twoje ogłoszenia są widoczne tutaj niezależnie od filtrów targu.</p>{% for offer in my_offers %}<form method="post">{% csrf_token %}<p>{{ offer.display_name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form><form method="post">{% csrf_token %}<input type="hidden" name="action" value="delist"><input type="hidden" name="delist_item_id" value="{{ offer.pk }}"><button>Wycofaj: {{ offer.display_name }}</button></form>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}{% include "characters/market_pager.html" with pager=own_pager %}</details>
+<details class="colony-panel" id="my-offers"><summary>Twoje oferty i zmiana ceny ({{ my_offers.paginator.count }})</summary><p>Twoje ogłoszenia są widoczne tutaj niezależnie od filtrów targu.</p>{% for offer in my_offers %}<article class="colony-panel{% if offer.blueprint.equippable %} rarity-card rarity-{{ offer.quality.key }}{% endif %}">{% include "characters/rarity_badge.html" with owned=offer %}<form method="post">{% csrf_token %}<p>{{ offer.display_name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form><form method="post">{% csrf_token %}<input type="hidden" name="action" value="delist"><input type="hidden" name="delist_item_id" value="{{ offer.pk }}"><button>Wycofaj: {{ offer.display_name }}</button></form></article>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}{% include "characters/market_pager.html" with pager=own_pager %}</details>
             <h2>Plac Targowy Starego Obozu</h2>
             <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
 
@@ -28,9 +28,9 @@
                     <div class="market-column-title"> Oferty na targu</div>
                     <div class="card-list">
                         {% for item in market_all_items %}
-                            <div class="item-card">
+                            <div class="item-card{% if item.blueprint.equippable %} rarity-card rarity-{{ item.quality.key }}{% endif %}">
                                 <div class="item-info">
-                                    {% gothic_item_art item.blueprint True %}<h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
+                                    {% gothic_item_art item.blueprint True %}<h4>{{ item.blueprint.name }}</h4>{% include "characters/rarity_badge.html" with owned=item %}<p>{{ item.quantity }} szt.</p>
                                     <div class="item-stats">
                                         <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
                                         <span>Obrażenia: {{ item.effective_stats.damage }}</span>
@@ -67,9 +67,9 @@
                     <div class="market-column-title"> Twój Plecak</div>
                     <div class="card-list">
                         {% for item in player_inventory %}
-                            <div class="item-card">
+                            <div class="item-card{% if item.blueprint.equippable %} rarity-card rarity-{{ item.quality.key }}{% endif %}">
                                 <div class="item-info">
-                                    {% gothic_item_art item.blueprint True %}<h4>{{ item.display_name }} ×{{ item.quantity }}</h4>
+                                    {% gothic_item_art item.blueprint True %}<h4>{{ item.blueprint.name }}</h4>{% include "characters/rarity_badge.html" with owned=item %}<p>{{ item.quantity }} szt.</p>
                                     <div class="item-stats">
                                         <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
                                         <span>Obrażenia: {{ item.effective_stats.damage }}</span>

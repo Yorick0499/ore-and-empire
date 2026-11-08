@@ -1,0 +1,106 @@
+[
+  {
+    "scenario": "ordinary_new_contract_started",
+    "text": "AKTYWNA WYPRAWA\nŚlady przy placu wymian\n\nTropy i zwiad · Plac wymian\n\nSprawdź, którędy młode ścierwojady schodzą do miejsca zrzutów. Zaznacz bezpieczne przejście dla nowych skazańców.\n\nUkończenie: 8 lis 2026, 22:08:31 (czas lokalny) · Czas polski: 2026-11-08 22:08:31 CET (+0100)\n\n0:50\n\n8 rudy · 126 PD · 0 odłamków\n\nPremie zapisane przy starcie: Noc — rytm kolonii, Mgły nad doliną\n\nOdbierz nagrody"
+  },
+  {
+    "scenario": "ordinary_new_contract_claimed",
+    "text": "DZIENNIK SKAZAŃCA\nWedrowiec_Samotnik\n\nStary Obóz · Bez rangi\n\nPostać\nPoziom\n1\nDoświadczenie\n858 PD\n\nNastępny poziom przy 1500 PD.\n\nZasoby\nBryłki rudy\n149\nEnergia\n57/100\nZdrowie\n62/62\nMana\n10/10\nMagiczne odłamki\n1\nAtrybuty\nSiła\n11\nZręczność\n10\nŻycie\n62\nPunkty nauki\n8\n« Wróć do Górniczej Doliny\nZLECENIA MIESZKAŃCÓW KOLONII\nDziennik wypraw\n\nWybierz zlecenie i wróć po upływie czasu. Nagrody odbierasz osobiście. Wyprawa zajmuje miejsce pracy w kopalni i blokuje walkę do odbioru nagrody. W tym czasie zdrowie i energia nadal się odnawiają.\n\nTablica zleceń\n\nDostawy, prace przy kopalni, zwiad, badania, warsztaty i warty. Każdy build może podjąć zlecenie. Nie wymagają zmiany obozu ani określonej broni; są bezpiecznymi wyprawami czasowymi, bez losowej walki.\n\nSzukaj\nRodzaj\nWszystkie zlecenia\nInne zlecenia\nPosłańcy i dostawy\nKopalnie i zaopatrzenie\nTropy i zwiad\nWiedza i alchemia\nWarsztaty i rzemiosło\nWarty i ochrona\nPoziom\nNa mój poziom\nTakże do odblokowania\nKolejność\nWedług poziomu\nNajkrótsze\nNajwięcej rudy\nNajwięcej PD\nPrzejrzyj zlecenia\nWyczyść\n\n1 zleceń pasuje do filtrów. Sortowanie nagród dotyczy wartości przed premiami.\n\nTROPY I ZWIAD\nŚlady przy placu wymian\n\nPlac wymian\n\nSprawdź, którędy młode ścierwojady schodzą do miejsca zrzutów. Zaznacz bezpieczne przejście dla nowych skazańców.\n\nPoziom 0 · 50 sekund · 7 energii\n\n8 rudy · 126 PD · 0 odłamków\n\nPremie: Noc — rytm kolonii, Mgły nad doliną\n\nWyrusz\nStrona 1/1 · 1 pozycji\nOstatnie ukończone zlecenia\nŚlady przy placu wymian\n\nTropy i zwiad · Plac wymian\n\nNa szkicu zaznaczono świeże tropy i spokojniejszą ścieżkę pod skałą.\n\nŚlady przy placu wymian · 8 lis 2026, 22:08:31 (czas lokalny) · Czas polski: 2026-11-08 22:08:31 CET (+0100) · 126 PD · 0 odłamków"
+  },
+  {
+    "scenario": "responsive",
+    "page": "quests",
+    "width": 1440,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "inventory",
+    "width": 1440,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "market",
+    "width": 1440,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "merchant",
+    "width": 1440,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "quests",
+    "width": 390,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "inventory",
+    "width": 390,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "market",
+    "width": 390,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "merchant",
+    "width": 390,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "quests",
+    "width": 320,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "inventory",
+    "width": 320,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "market",
+    "width": 320,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "merchant",
+    "width": 320,
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "browser_resources",
+    "javascript_errors": [],
+    "failed_resources": []
+  },
+  {
+    "scenario": "long_unbroken_item_name",
+    "width": 320,
+    "page_overflow": false,
+    "card_overflow": false,
+    "fixture": "syntetyczny przedmiot wyłącznie do granic GUI"
+  }
+]

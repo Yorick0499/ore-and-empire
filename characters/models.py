@@ -471,6 +471,10 @@ class CampQuest(models.Model):
 
 
 class AdventureTemplate(models.Model):
+    from .adventures import CATEGORIES
+    category = models.CharField(max_length=16, choices=(("other", "Inne zlecenia"), *CATEGORIES), default="other")
+    place = models.CharField(max_length=100, blank=True)
+    success_text = models.TextField(blank=True)
     key = models.SlugField(unique=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -506,6 +510,7 @@ class WorldEvent(models.Model):
 
 
 class AdventureRun(models.Model):
+    briefing = models.JSONField(default=dict, blank=True)
     profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name="adventures")
     template = models.ForeignKey(AdventureTemplate, on_delete=models.PROTECT)
     started_at = models.DateTimeField(default=timezone.now)
@@ -515,6 +520,26 @@ class AdventureRun(models.Model):
     experience_reward = models.PositiveIntegerField()
     premium_reward = models.PositiveIntegerField()
     event_names = models.JSONField(default=list)
+
+    @property
+    def public_name(self):
+        return self.briefing['name'] if 'name' in self.briefing else self.template.name
+
+    @property
+    def public_description(self):
+        return self.briefing['description'] if 'description' in self.briefing else self.template.description
+
+    @property
+    def public_result(self):
+        return self.briefing['success_text'] if 'success_text' in self.briefing else self.template.success_text
+
+    @property
+    def public_place(self):
+        return self.briefing['place'] if 'place' in self.briefing else self.template.place
+
+    @property
+    def category_label(self):
+        return self.briefing['category_label'] if 'category_label' in self.briefing else self.template.get_category_display()
 
     class Meta:
         ordering = ["-started_at", "-pk"]

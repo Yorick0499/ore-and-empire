@@ -23,7 +23,7 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 - Osobisty finał od poziomu 30, trzej bossowie z fazami i trofeami oraz trwała sala chwały. Finał bota nie zamyka świata.
 - Trzy obozy jako gildie: osobiste rangi, wspólne zadania, skarbiec, ulepszenia i asynchroniczny boss.
 - Polowanie, kopalnie, ekwipunek, rzeczywisty rynek, cztery receptury kowalstwa/alchemii i dziewięć zaklęć jako runy/zwoje.
-- 11 zleceń czasowych, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze. Bez realnych płatności.
+- 44 zlecenia czasowe, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze. Bez realnych płatności.
 - Karczma na jeziorze, publiczna kronika działań botów, prywatne raporty i powiadomienia.
 - Rzeczywisty **czas polski `Europe/Warsaw`**, automatyczne CET/CEST; świt i noc według Słońca dla Warszawy, pory roku meteorologiczne. 12 wydarzeń miesięcznych, trzy coroczne i losowe odkrycia; żadna pora nie blokuje gry.
 - Panel zarządcy, inicjalizacja/reset świata z zachowaniem administratorów, prywatne kopie i sprawdzane odtwarzanie.
@@ -31,6 +31,8 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 Rozwój MMORPG od początku gry: [łupy, nazwane rangi rynsztunku i 100 stopni wart](docs/LOOT_AND_ENDGAME.md). Świat nadal żyje po osobistym finale, z miesięcznym rankingiem wart. Limit mieszkańców podniesiono do 100; [pomiar i zasady wydajności](docs/BOT_PERFORMANCE.md).
 
 Ostatni przegląd grywalności: [zwykła sesja, trzy buildy i wnioski](docs/SOLO_PLAYTEST.md). Trening obejmuje cztery typy broni, kupiec ma filtry i zakupy zapasów, a polowanie pokazuje przygotowanie oraz ryzyko.
+
+Nowość: [44 zlecenia w sześciu kategoriach](docs/ADVENTURES.md) oraz osobne gotyckie ramy i plakietki pięciu rzadkości przedmiotów.
 
 ## Aktualne ekrany
 

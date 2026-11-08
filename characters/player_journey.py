@@ -22,7 +22,7 @@ def journey(profile):
         else:add('Trwa twoja zmiana w kopalni','mine_page','Po zakończeniu wróć po urobek.',profile.action_end_time)
     adventure=profile.adventures.filter(claimed_at__isnull=True).select_related('template').first()
     if adventure:
-        add('Odbierz zapłatę za wyprawę' if adventure.ends_at<=now else 'Trwa wyprawa: '+adventure.template.name,'adventures_page',
+        add('Odbierz zapłatę za wyprawę' if adventure.ends_at<=now else 'Trwa wyprawa: '+adventure.public_name,'adventures_page',
             'Nagroda czeka na ręczny odbiór.' if adventure.ends_at<=now else 'Możesz zamknąć grę i wrócić później.',None if adventure.ends_at<=now else adventure.ends_at)
     if active:
         if ready(profile,active):add('Odbierz: '+active.snapshot['title'],'story_page','Cele przydziału są wykonane.')

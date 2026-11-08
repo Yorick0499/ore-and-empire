@@ -23,7 +23,7 @@ def start_adventure(profile, template_id):
     if profile.action_end_time is not None or profile.adventures.filter(claimed_at__isnull=True).exists():
         return False
     ore, experience, premium, events = reward_snapshot(template.ore_reward, template.experience_reward, template.premium_reward)
-    run = AdventureRun.objects.create(profile=profile, template=template, ends_at=timezone.now() + timedelta(seconds=template.duration_seconds), ore_reward=ore, experience_reward=experience, premium_reward=premium, event_names=events)
+    run = AdventureRun.objects.create(profile=profile, template=template, briefing={"name":template.name,"description":template.description,"category":template.category,"category_label":template.get_category_display(),"place":template.place,"success_text":template.success_text,"duration_seconds":template.duration_seconds,"energy_cost":template.energy_cost}, ends_at=timezone.now() + timedelta(seconds=template.duration_seconds), ore_reward=ore, experience_reward=experience, premium_reward=premium, event_names=events)
     profile.current_energy -= template.energy_cost
     profile.save(update_fields=["current_energy"])
     return run
@@ -40,7 +40,7 @@ def claim_adventure(profile, run_id):
     profile.save(update_fields=["ore_balance", "experience"])
     check_level_up(profile)
     if run.premium_reward:
-        change_premium(profile, run.premium_reward, "Wyprawa: " + run.template.name, f"adventure:{run.pk}")
+        change_premium(profile, run.premium_reward, "Wyprawa: " + run.public_name, f"adventure:{run.pk}")
     run.claimed_at = now
     run.save(update_fields=["claimed_at"])
     return True

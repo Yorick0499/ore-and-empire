@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "migration": "0037_rzadkosc_lupow_i_kuznia_plus_trzy",
-  "theme": "gra-solo-i-buildy-4; starsze ujęcia zachowują własną datę",
+  "migration": "0038_roznorodne_zlecenia_i_zapis_tresci",
+  "theme": "zlecenia-i-rzadkosc-5; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
     {
@@ -38,9 +38,11 @@
     },
     {
       "file": "comparison.jpg",
-      "bytes": 250739,
-      "sha256": "4f3b6a25677ea0c4787aa5dfb61f52da4a29cc9a7728afefc5134be73d68174f",
-      "captured_at_utc": "2026-11-07T22:32:53.187454+00:00"
+      "bytes": 267947,
+      "sha256": "200e8fc9495af224989804d36344167625dcce5013078a023d14de13344abb35",
+      "captured_at_utc": "2026-11-08T21:11:17.472183+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "crafting.jpg",
@@ -56,9 +58,11 @@
     },
     {
       "file": "forge.jpg",
-      "bytes": 45403,
-      "sha256": "ff5b16e57b3377751248f343ca632dc2bf0fb4a15b60a47e56d6ebb321d42668",
-      "captured_at_utc": "2026-11-07T22:32:53.186724+00:00"
+      "bytes": 61105,
+      "sha256": "c5b16f55fde05bbb74098d5fae2ee09dcb7e7f262c5579e446400beeea160529",
+      "captured_at_utc": "2026-11-08T21:11:17.471741+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "frontier.jpg",
@@ -82,9 +86,11 @@
     },
     {
       "file": "inventory.jpg",
-      "bytes": 480238,
-      "sha256": "73d662c92d1299fc3f465719a46a583780cd917d741c81c848d31737d3413cb0",
-      "captured_at_utc": "2026-11-07T22:32:53.187118+00:00"
+      "bytes": 108346,
+      "sha256": "10df63a09d26028359bf46ae1026ca5cfbd34d14fa2c4992f54be3df1939ccce",
+      "captured_at_utc": "2026-11-08T21:11:17.471681+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "itemshop.jpg",
@@ -114,17 +120,19 @@
     },
     {
       "file": "market.jpg",
-      "bytes": 149212,
-      "sha256": "878e845f8a6e5dfc515d050ae92a620e1582760bf5fa5f828e517b10715fb716",
-      "captured_at_utc": "2026-11-07T22:32:53.187262+00:00"
+      "bytes": 124408,
+      "sha256": "b2df4015a3389d6eca31ed2a070ab065a90b419c603170dd4dbb3b2b33b9465e",
+      "captured_at_utc": "2026-11-08T21:11:17.471844+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "merchant.jpg",
-      "bytes": 122318,
-      "sha256": "7a1e6a6b2d1f17db3b20dbc64c12adb9d6bbb7b1381dcbbdd9a0f82004555a83",
-      "captured_at_utc": "2026-11-08T20:37:25.482527+00:00",
-      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
-      "theme": "gra-solo-i-buildy-4"
+      "bytes": 104510,
+      "sha256": "6e467aca45d221e5bf8073ec9d64d865834a00af71bb627775e4b1bf3905f3a0",
+      "captured_at_utc": "2026-11-08T21:11:17.471932+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "mining.jpg",
@@ -134,21 +142,27 @@
     },
     {
       "file": "mobile-comparison.jpg",
-      "bytes": 189819,
-      "sha256": "985b3b1082c611c0de439939885eb6adaf52175b75b0c36304da032620ed1c54",
-      "captured_at_utc": "2026-11-07T22:32:53.187962+00:00"
+      "bytes": 57188,
+      "sha256": "7f2685a50dd6190fd98b6aba988ca39a9faa1ee80f6063e8b9b7c3d1c466a633",
+      "captured_at_utc": "2026-11-08T21:11:17.472495+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "mobile-equipment.jpg",
-      "bytes": 401354,
-      "sha256": "30c79bc1964bdd583428b6694819465f7988b7924480f423ba568ce5155004b5",
-      "captured_at_utc": "2026-11-07T22:32:53.187745+00:00"
+      "bytes": 48483,
+      "sha256": "c485d88502cadfacdab1f0cbf062c0746462147107885db5296c53939f7dd7e6",
+      "captured_at_utc": "2026-11-08T21:11:17.472386+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "mobile-market.jpg",
-      "bytes": 40040,
-      "sha256": "a435380919349d57f3c3d499ccfa09ae49b5dcc00e5118b7ef4b0232fc3a536f",
-      "captured_at_utc": "2026-11-07T22:32:53.187801+00:00"
+      "bytes": 37565,
+      "sha256": "df96a8ab8ef20328e70e1b9c1c88618fce72552a2a526d35864835484bc2b37b",
+      "captured_at_utc": "2026-11-08T21:11:17.472431+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     },
     {
       "file": "mobile.jpg",
@@ -185,6 +199,62 @@
       "captured_at_utc": "2026-11-08T20:37:26.136535+00:00",
       "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
       "theme": "gra-solo-i-buildy-4"
+    },
+    {
+      "file": "rarity-ordinary.jpg",
+      "bytes": 45984,
+      "sha256": "569a3e438d0f10d20178427f8dc334fae64f58cda9153a4d645e683d49a981d8",
+      "captured_at_utc": "2026-11-08T21:11:17.471336+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-masterwork.jpg",
+      "bytes": 53552,
+      "sha256": "ffb3c86ee46683d3df74d1b55354cf384c4b57962019278276e2a5b06fd004e6",
+      "captured_at_utc": "2026-11-08T21:11:17.471413+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-enchanted.jpg",
+      "bytes": 52302,
+      "sha256": "c00df5cc51e4aa332b7da23e5d2cbbe654779a9f5a721969e9bad9dc53b008ad",
+      "captured_at_utc": "2026-11-08T21:11:17.471470+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-runic.jpg",
+      "bytes": 56865,
+      "sha256": "d1851de43d1e95a7e7a175157d2da5cd24f332428620442a525ba43887824707",
+      "captured_at_utc": "2026-11-08T21:11:17.471527+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-ancient.jpg",
+      "bytes": 61107,
+      "sha256": "0644f795d05fb9a77825c0e5019310e8a9cb55cd5c6537e403a3a6a9b91bdb95",
+      "captured_at_utc": "2026-11-08T21:11:17.471587+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "adventures.jpg",
+      "bytes": 165345,
+      "sha256": "2ac85852b77dd8368731cb5ff9e2a6e634bd2b0e9fccf013a2b2131b3881f8da",
+      "captured_at_utc": "2026-11-08T21:11:17.472330+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "mobile-adventures.jpg",
+      "bytes": 58906,
+      "sha256": "e11a658f53b4543d50d7438d0077a15e0503985ceef44fb312b79a9a3773bc72",
+      "captured_at_utc": "2026-11-08T21:11:17.472556+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
     }
   ]
 }

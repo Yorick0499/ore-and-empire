@@ -48,3 +48,11 @@ Tickety #71–75: nazwane rangi, kuźnia podczas fabuły, warty bez finału, 522
 ## Zwykła sesja i buildy — 8 listopada 2026
 
 #90–#93: trening czterech umiejętności broni, wyszukiwanie zakupów i paczki amunicji, prawdziwe kolejne kroki i imiona mieszkańców, diagnoza zasobów oraz prognoza polowania. [Przebieg i ograniczenia](SOLO_PLAYTEST.md). 386 testów lokalnych (12 pominiętych z wymaganiami PostgreSQL/produkcji), 126 scenariuszy symulacji oraz 18 kontroli GUI 320/390/1366 px.
+
+## Zlecenia i oprawy — 8 listopada 2026
+
+Naprawiono przepisywanie treści rozpoczętej wyprawy przez późniejszą edycję szablonu. Własny zapis nazwy, opisu, miejsca i zakończenia działa również w powiadomieniach i rozliczeniach. Migracja utrwala bieżący opis dawnych prac bez zmiany terminów, własności i nagród. Lista zleceń pobiera premie jednym zapytaniem o wydarzenia zamiast powtarzać je dla każdego wiersza.
+
+Zabezpieczono zgodność dawnych backupów PostgreSQL: pomijane są tylko nowe pola opisowe, a zmiana wypłaty nadal unieważnia dowód. Rotacja botów omija ostatnią pracę, gdy jest alternatywa; samo modulo tury nie wystarcza przy naprzemiennym starcie i odbiorze.
+
+397 testów lokalnych (12 pominiętych środowiskowo), 17 końcowych testów zleceń i botów, [137 scenariuszy kampanii, buildów i nadużyć](reports/zlecenia-buildy-petla-2026-11-08.json). [GUI](reports/zlecenia-rzadkosc-gui-2026-11-08.json): zwykły gracz wykonał nowe zlecenie po rzeczywistych 50 sekundach; 320/390/1440 px, długa nazwa bez spacji, bez błędów JS i zasobów. Zestaw wizualny rzadkości jest jawnie syntetyczny. Migracja prywatnej kopii istniejącego świata zachowała 27 tabel; nie resetowano zapisu.

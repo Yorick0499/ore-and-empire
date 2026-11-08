@@ -363,7 +363,8 @@ def tick_bot(profile, policy=None, *, lease=None):
     if len(inventory) >= 5:
         disposal = next((i for i in spare if i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable and not i.is_protected), disposal)
     run = profile.adventures.filter(claimed_at__isnull=True).first()
-    template = AdventureTemplate.objects.filter(enabled=True, level__lte=profile.level, energy_cost__lte=profile.current_energy).order_by("-experience_reward", "duration_seconds", "pk").first()
+    from .adventures import choose_adventure
+    template = choose_adventure(profile)
     # Delivery stock is bought through the ordinary services and reserved from sale/equip.
     delivery_needed = False
     if story.missing_items and len(inventory) < 6:

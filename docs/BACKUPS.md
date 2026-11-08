@@ -23,3 +23,7 @@ Kopie obejmują teraz `OwnedItem.upgrade_level`, potwierdzenia `EquipmentWork`, 
 Migracja 0032 dodaje pochodzenie egzemplarza (`OwnedItem.origin`); stare egzemplarze zachowują konserwatywne oznaczenie `legacy`. Pochodzenie jest objęte manifestem kopii. Próba odtworzenia przed wdrożeniem rang i katalogu G1 v3 zachowała 27 tabel zapisu.
 
 PostgreSQL ma natywny backup MVCC i próbne odtworzenie do nowej bazy, z pełnym porównaniem logicznym. Szczegóły i wymagania klienta: [PRODUCTION.md](PRODUCTION.md). Hasła i dumpy pozostają prywatne.
+
+## Zapis treści wypraw — migracja 0038
+
+Nowe kopie SQLite obejmują utrwaloną treść i kwoty nagród wypraw. Starsza kopia jest sprawdzana według pierwotnych kolumn, a migracja dopisuje treść z zachowanego szablonu. Nowe kopie PostgreSQL mają `adventure_schema: 1`; starsze porównuje się bez czterech dodanych pól opisowych. Kwoty, własność i pozostałe dane nadal podlegają ścisłej kontroli. Import SQLite najpierw migruje prywatną kopię i porównuje pełny aktualny zapis.
