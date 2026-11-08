@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from characters.adventures import ADVENTURES
+from characters.adventures import ADVENTURES, ADVENTURE_DETAILS
 from characters.models import AdventureTemplate, ItemBluePrint, StoreProduct
 from characters.world_events import ensure_world_events
 
@@ -11,7 +11,8 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **options):
         for key, name, description, level, duration, energy, ore, experience, premium in ADVENTURES:
-            AdventureTemplate.objects.get_or_create(key=key, defaults=dict(name=name, description=description, level=level, duration_seconds=duration, energy_cost=energy, ore_reward=ore, experience_reward=experience, premium_reward=premium))
+            category, place, success_text = ADVENTURE_DETAILS[key]
+            AdventureTemplate.objects.get_or_create(key=key, defaults=dict(category=category, place=place, success_text=success_text, name=name, description=description, level=level, duration_seconds=duration, energy_cost=energy, ore_reward=ore, experience_reward=experience, premium_reward=premium))
         blade = ItemBluePrint.objects.filter(name="Miecz runiczny").order_by("pk").first() or ItemBluePrint.objects.create(name="Miecz runiczny",damage=42,required_strength=30,base_value=320)
         staff = ItemBluePrint.objects.filter(name="Pałka z kolcami").order_by("pk").first() or ItemBluePrint.objects.create(name="Pałka z kolcami",damage=22,required_strength=15,base_value=90)
         for key, name, description, kind, price, level, effect, blueprint, art in (

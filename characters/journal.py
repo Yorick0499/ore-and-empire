@@ -8,7 +8,7 @@ def sync_notices(profile):
     now = timezone.now()
     facts = []
     for run in AdventureRun.objects.filter(profile=profile, claimed_at__isnull=True, ends_at__lte=now).select_related("template"):
-        facts.append((f"adventure:{run.pk}", f"Wyprawa ukończona: {run.template.name}", "adventures_page"))
+        facts.append((f"adventure:{run.pk}", f"Wyprawa ukończona: {run.public_name}", "adventures_page"))
     for sale in MarketTrade.objects.filter(seller=profile).select_related("blueprint")[:50]:
         facts.append((f"sale:{sale.pk}", f"Sprzedano: {sale.blueprint.name} — {sale.price} rudy", "market_page"))
     for quest in CampQuest.objects.filter(profile=profile, promoted_at__isnull=False)[:20]:

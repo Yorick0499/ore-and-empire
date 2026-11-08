@@ -1,6 +1,8 @@
 # Aktualne zrzuty ekranów
 
-Zestaw **28 ujęć** z dwóch osobnych światów testowych, każdy ze 100 botami: „Kolonia nad Wisłą” (`Skazaniec_Pokazowy`) i „Dolina Wędrowców — próba gry solo” (`Wedrowiec_Samotnik`). Nie zawiera danych prywatnego administratora.
+Zestaw **35 ujęć** z dwóch osobnych światów testowych, każdy ze 100 botami: „Kolonia nad Wisłą” (`Skazaniec_Pokazowy`) i „Dolina Wędrowców — próba gry solo” (`Wedrowiec_Samotnik`). Nie zawiera danych prywatnego administratora.
+
+**8 listopada 2026, migracja 0038:** odświeżono ekwipunek, kuźnię, targ, kupca i porównywarkę wraz z trzema mobilnymi odpowiednikami. Dodano dziennik zleceń i pięć osobnych kart. Motyw `zlecenia-i-rzadkosc-5`. `Zbrojmistrz_Proba` to jawny syntetyczny zestaw do porównania pięciu rzadkości; poziom 30, zasoby i Pradawny +3 nie pochodzą z przejścia. Osobny zwykły gracz testował nowe zlecenie bez nadań. Starsze ekrany zachowują własną datę w manifeście.
 
 **8 listopada 2026, bez nowej migracji:** odświeżono kolonię, kupca z filtrami, nauczyciela z umiejętnościami, polowanie z prognozą, karczmę, życie kolonii i mobilną kolonię. Postać tego zestawu jest zwykłym graczem na poziomie 1, rozwiniętym w przeglądarce bez darów administratora. Motyw `gra-solo-i-buildy-4`.
 
@@ -60,3 +62,16 @@ Hashe i czas wykonania każdego pliku są w `screenshots/manifest.json`.
 ![Mobilne porównanie](screenshots/mobile-comparison.jpg)
 
 Źródła użytych ilustracji: [ASSETS.md](ASSETS.md), pełny lokalny [manifest](../characters/static/characters/gothicpedia.json). Nazwy, licencjonowanie treści wiki i prawa do obrazów gry nie są tym samym; zachowujemy przypisania źródeł.
+
+## Rozbudowane zlecenia i oprawy rzadkości
+
+![Dziennik zleceń](screenshots/adventures.jpg)
+![Zlecenia na telefonie](screenshots/mobile-adventures.jpg)
+
+| Runiczny — magiczna ruda | Pradawny — stare złoto |
+| --- | --- |
+| ![Runiczny](screenshots/rarity-runic.jpg) | ![Pradawny](screenshots/rarity-ancient.jpg) |
+
+![Niewykończony](screenshots/rarity-ordinary.jpg)
+![Mistrzowski](screenshots/rarity-masterwork.jpg)
+![Nasycony magią](screenshots/rarity-enchanted.jpg)

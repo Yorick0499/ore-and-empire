@@ -147,23 +147,56 @@ Poziom przeciwnika jest zaleceniem; wymagania lokacji są obowiązkowe. Wartośc
 | Obóz na bagnie | Guru | NOVICE | 15 | mana 25 | 150 | Próba skupienia: Ukończ trening many ×3; Pokonaj szkielety magów ×2 |
 | Obóz na bagnie | Arcyguru | GURU | 25 | mana 45 | 350 | Cisza pośród cieni: Pokonaj opiekunów świątyni ×3; Pokonaj pomniejsze demony ×3 |
 
-## Zlecenia czasowe (11)
+## Zlecenia czasowe (44)
 
-Bazowe nagrody przed premią pory i eventu; snapshot przy rozpoczęciu.
+Bazowe nagrody przed premią pory i eventu. Treść, czas, koszt i nagrody są utrwalane przy starcie. Zlecenia są oryginalnymi pracami mieszkańców tej adaptacji, nie odtworzeniem kanonicznych misji Bezimiennego. Wszystkie buildy mają ten sam dostęp po osiągnięciu poziomu. [Zasady i zakończenia](ADVENTURES.md).
 
-| Zlecenie | Poziom | Sekundy | Energia | Ruda | PD | Odłamki |
-|---|---|---|---|---|---|---|
-| Przesyłka dla Diega | 0 | 45 | 5 | 12 | 80 | 1 |
-| Zioła dla Cor Kaloma | 0 | 60 | 6 | 16 | 100 | 1 |
-| Dostawa z pól ryżowych | 1 | 90 | 8 | 22 | 140 | 1 |
-| Eskorta karawany rudy | 2 | 120 | 10 | 30 | 190 | 2 |
-| Ślad zaginionego almanachu | 3 | 150 | 10 | 35 | 230 | 2 |
-| Próbki magicznej rudy | 5 | 180 | 12 | 45 | 300 | 2 |
-| Ślady kamienia ogniskującego | 8 | 240 | 14 | 60 | 400 | 3 |
-| Zwiad w górskiej fortecy | 12 | 300 | 16 | 80 | 550 | 3 |
-| Rozpoznanie orkowych patroli | 16 | 360 | 18 | 110 | 750 | 4 |
-| Posłaniec nekromanty | 20 | 420 | 20 | 140 | 950 | 4 |
-| Runiczne zapisy świątyni | 25 | 480 | 22 | 180 | 1200 | 5 |
+| Zlecenie | Kategoria | Miejsce | Poziom | Sekundy | Energia | Ruda | PD | Odłamki |
+|---|---|---|---|---|---|---|---|---|
+| Przesyłka dla Diega | Posłańcy i dostawy | Trakt do Starego Obozu | 0 | 45 | 5 | 12 | 80 | 1 |
+| Zioła dla Cor Kaloma | Wiedza i alchemia | Obrzeże bagna | 0 | 60 | 6 | 16 | 100 | 1 |
+| Zmiana przy pomoście | Warty i ochrona | Jezioro Nowego Obozu | 0 | 180 | 3 | 12 | 80 | 1 |
+| Światło dla kopaczy | Kopalnie i zaopatrzenie | Stara Kopalnia | 0 | 120 | 5 | 22 | 65 | 0 |
+| Ślady przy placu wymian | Tropy i zwiad | Plac wymian | 0 | 50 | 7 | 7 | 115 | 0 |
+| Sieci spod karczmy | Warsztaty i rzemiosło | Karczma na jeziorze | 0 | 150 | 4 | 18 | 65 | 0 |
+| Kocioł dla następnej zmiany | Kopalnie i zaopatrzenie | Podejście do kopalni | 1 | 100 | 9 | 35 | 100 | 0 |
+| Rachunki kopalnianego pisarza | Wiedza i alchemia | Stara Kopalnia | 1 | 180 | 5 | 20 | 155 | 1 |
+| Dostawa z pól ryżowych | Kopalnie i zaopatrzenie | Pola ryżowe — Karczma na jeziorze | 1 | 90 | 8 | 22 | 140 | 1 |
+| Proste drzewce | Warsztaty i rzemiosło | Chata Cavalorna | 2 | 240 | 6 | 35 | 165 | 1 |
+| Eskorta karawany rudy | Warty i ochrona | Kopalniany trakt | 2 | 120 | 10 | 30 | 190 | 2 |
+| Uczciwa miara ryżu | Kopalnie i zaopatrzenie | Pola ryżowe | 2 | 130 | 11 | 46 | 140 | 0 |
+| Warta przy południowej bramie | Warty i ochrona | Brama Starego Obozu | 2 | 300 | 5 | 24 | 190 | 1 |
+| Ślad zaginionego almanachu | Tropy i zwiad | Stary most | 3 | 150 | 10 | 35 | 230 | 2 |
+| Kraty nad paleniskiem | Warsztaty i rzemiosło | Kuźnia Starego Obozu | 3 | 300 | 7 | 48 | 180 | 1 |
+| Sucha droga przez trzciny | Tropy i zwiad | Obrzeże bagna | 3 | 180 | 12 | 22 | 280 | 1 |
+| Woda z trzech rozlewisk | Wiedza i alchemia | Bagno Bractwa | 3 | 360 | 6 | 26 | 240 | 2 |
+| Szelest za ścianą | Tropy i zwiad | Boczne chodniki kopalni | 5 | 180 | 14 | 30 | 390 | 1 |
+| Łańcuchy kopalnianej windy | Kopalnie i zaopatrzenie | Stara Kopalnia | 5 | 220 | 15 | 70 | 210 | 1 |
+| Próbki magicznej rudy | Kopalnie i zaopatrzenie | Stare wyrobisko | 5 | 180 | 12 | 45 | 300 | 2 |
+| Znaki na talizmanach | Wiedza i alchemia | Pracownia Cor Kaloma | 5 | 420 | 8 | 38 | 310 | 2 |
+| Przejście nad przepaścią | Warty i ochrona | Górski most | 8 | 540 | 9 | 55 | 420 | 3 |
+| Ślady kamienia ogniskującego | Wiedza i alchemia | Kamienne kręgi | 8 | 240 | 14 | 60 | 400 | 3 |
+| Nacięcia poszukiwaczy | Kopalnie i zaopatrzenie | Opuszczone wyrobisko | 8 | 300 | 17 | 90 | 300 | 1 |
+| Wzorniki dla kowala | Warsztaty i rzemiosło | Obozowy warsztat | 8 | 420 | 11 | 82 | 310 | 2 |
+| Zapasy na dalekim szlaku | Kopalnie i zaopatrzenie | Obóz Aidana | 12 | 360 | 20 | 118 | 400 | 2 |
+| Meldunki między posterunkami | Posłańcy i dostawy | Posterunki kolonii | 12 | 240 | 22 | 48 | 690 | 2 |
+| Odciski spod kamiennych kręgów | Wiedza i alchemia | Kamienne kręgi | 12 | 600 | 11 | 58 | 600 | 3 |
+| Zwiad w górskiej fortecy | Tropy i zwiad | Górska forteca | 12 | 300 | 16 | 80 | 550 | 3 |
+| Znaki orkowych patroli | Tropy i zwiad | Granica terytorium orków | 16 | 300 | 24 | 65 | 900 | 2 |
+| Rozpoznanie orkowych patroli | Tropy i zwiad | Orkowy trakt | 16 | 360 | 18 | 110 | 750 | 4 |
+| Warta przy uszkodzonym kręgu | Warty i ochrona | Zniszczony kamienny krąg | 16 | 720 | 12 | 90 | 760 | 4 |
+| Oprawy dla kamiennych pieczęci | Warsztaty i rzemiosło | Warsztat obozowy | 16 | 540 | 16 | 145 | 520 | 2 |
+| Próbki z głębokiej żyły | Kopalnie i zaopatrzenie | Głębokie wyrobiska | 20 | 360 | 26 | 200 | 600 | 2 |
+| Pokwitowania dalekiej karawany | Posłańcy i dostawy | Dalekie szlaki kolonii | 20 | 480 | 24 | 190 | 660 | 2 |
+| Porządek w zapiskach wieży | Wiedza i alchemia | Podnóże wieży Xardasa | 20 | 780 | 14 | 95 | 1000 | 4 |
+| Posłaniec nekromanty | Posłańcy i dostawy | Podnóże wieży Xardasa | 20 | 420 | 20 | 140 | 950 | 4 |
+| Rejestr dawnych ognisk | Wiedza i alchemia | Dawne miejsca ogniskowania | 25 | 660 | 18 | 125 | 1300 | 4 |
+| Nocna zmiana przy pieczęci | Warty i ochrona | Przedpole świątyni | 25 | 900 | 15 | 140 | 1250 | 5 |
+| Runiczne zapisy świątyni | Wiedza i alchemia | Ruiny świątyni | 25 | 480 | 22 | 180 | 1200 | 5 |
+| Ładunek dla warty świątynnej | Kopalnie i zaopatrzenie | Szlak świątynny | 25 | 420 | 28 | 250 | 850 | 3 |
+| Granice bezpiecznych szlaków | Tropy i zwiad | Dalekie posterunki | 30 | 600 | 25 | 120 | 1700 | 4 |
+| Poczta za Przełęczą | Posłańcy i dostawy | Warty za Przełęczą | 30 | 480 | 28 | 135 | 1650 | 3 |
+| Rynsztunek kolejnej zmiany | Warsztaty i rzemiosło | Warsztat weteranów | 30 | 840 | 20 | 270 | 1150 | 3 |
 
 ## Fabularne definicje (41)
 

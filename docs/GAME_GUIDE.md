@@ -28,6 +28,8 @@ Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu 
 
 W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. Rzadkość łupu jest stała: Niewykończony, Mistrzowski, Nasycony magią, Runiczny lub Pradawny. W Ekwipunku przekujesz egzemplarz osobno do +3, także podczas fabuły za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
 
+Każda rzadkość ma własną ramę całej karty, tło i plakietkę z oznaczeniem I–V. Runiczny używa motywu magicznej rudy, Pradawny — starych złotych okuć. Numer i nazwa pozwalają rozpoznać odmianę również bez koloru. +1–+3 pozostaje osobnym oznaczeniem przekucia.
+
 Cenny rynsztunek zabezpieczysz przed sprzedażą, rozebraniem i zużyciem jako
 składnik lub dostawa. Przycisk „Porównaj z wyposażeniem” pokazuje różnice
 uwzględniające przekucie i niespełnione wymagania. Przy pierścieniu wybierzesz
@@ -55,7 +57,7 @@ Każdy obóz ma jednego wspólnego przeciwnika dziennie. Członkowie atakują as
 
 ## Zlecenia, wyzwania i fabuła
 
-Zlecenia czasowe: wybierz jedną z 11 wypraw, opłać energię, poczekaj i odbierz. Możesz zamknąć stronę. Nagroda i premie są zapisywane przy starcie. Nieodebrane zlecenie blokuje polowanie, bossów i kopalnię; handel i trening nadal działają.
+Zlecenia czasowe: wybierz jedną z 44 wypraw, opłać energię, poczekaj i odbierz. Możesz zamknąć stronę. Treść, miejsce, zakończenie, koszt, czas, nagroda i premie są zapisywane przy starcie. Filtruj kategorię, nazwę, opis lub miejsce; sortuj czasem albo bazową nagrodą. Domyślnie widzisz zlecenia na własny poziom, a aktywna wyprawa i historia nie znikają po zmianie filtrów. [Pełna pula](ADVENTURES.md). Nieodebrane zlecenie blokuje polowanie, bossów i kopalnię; handel i trening nadal działają.
 
 Przyjmij jedno dzienne i jedno tygodniowe wyzwanie. Wymagana liczba prac/polowań rośnie z poziomem. Nagrody obejmują rudę, PD, odłamki i reputację obozu przyjęcia. Osiągnięcia: 10 zmian, 10 polowań, zwycięska wyprawa obozowa, 5 wytworzeń. Każdą nagrodę odbierzesz raz. Doba resetuje się o polskiej północy, tydzień w poniedziałek.
 

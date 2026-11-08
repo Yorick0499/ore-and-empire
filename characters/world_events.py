@@ -12,16 +12,19 @@ def active_events(now=None):
     return WorldEvent.objects.filter(world=current_world(),enabled=True, starts_at__lte=now, ends_at__gt=now)
 
 
-def reward_snapshot(ore, experience, premium=0):
-    events = list(active_events())
+def reward_rates():
+    events=list(active_events())
     from .world_clock import clock_state
-    clock = clock_state()
-    return (
-        ore * max([clock["ore"], *(event.ore_percent for event in events)]) // 100,
-        experience * max([clock["experience"], *(event.experience_percent for event in events)]) // 100,
-        premium + max([0, *(event.premium_bonus for event in events)]) if premium else 0,
-        [clock["name"] + " — rytm kolonii", *[event.name for event in events]],
-    )
+    clock=clock_state()
+    return (max([clock['ore'],*(event.ore_percent for event in events)]),
+            max([clock['experience'],*(event.experience_percent for event in events)]),
+            max([0,*(event.premium_bonus for event in events)]),
+            [clock['name']+' — rytm kolonii',*[event.name for event in events]])
+
+
+def reward_snapshot(ore, experience, premium=0, *, rates=None):
+    ore_rate,xp_rate,premium_bonus,names=reward_rates() if rates is None else rates
+    return (ore*ore_rate//100,experience*xp_rate//100,premium+premium_bonus if premium else 0,names)
 
 
 def ensure_world_events(now=None):

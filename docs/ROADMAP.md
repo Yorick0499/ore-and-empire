@@ -61,3 +61,7 @@ Zakup na targu wymaga zgodności aktualnej ceny z potwierdzonym formularzem (#87
 ## Próba gry solo — #90–#93
 
 Trening czterech umiejętności broni, filtrowany kupiec i paczki zapasów, najbliższe kroki oraz autentyczna kronika na ekranie kolonii, publiczne imiona mieszkańców i prognoza polowania. [Scenariusze oraz granice oceny](SOLO_PLAYTEST.md).
+
+## Zlecenia i oprawy — #95–#96
+
+44 powtarzalne zlecenia w sześciu kategoriach od poziomu 0 do 30, z wyborem proporcji rudy/PD/czasu/energii. Filtry, utrwalona treść i zakończenia; boty dobierają prace do roli i nie powtarzają ostatniej, gdy jest alternatywa. Pięć gotyckich opraw egzemplarzy, spójnych w ekwipunku i handlu. [Zasady zleceń](ADVENTURES.md) · [oprawy](EQUIPMENT.md).

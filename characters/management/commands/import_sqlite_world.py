@@ -11,12 +11,18 @@ from ore_empire.database import sqlite_environment
 
 EXCLUDES=['contenttypes','auth.permission','sessions.session','characters.schedulerlease']
 
-def canonical(raw, *, legacy_equipment=False):
+def canonical(raw, *, legacy_equipment=False, legacy_adventures=False):
     rows=json.loads(raw)
     if legacy_equipment:
         for row in rows:
             if row['model']=='characters.owneditem':
                 fields=row['fields'];fields['upgrade_level']+=2*fields.pop('rarity',0)
+    if legacy_adventures:
+        for row in rows:
+            fields=row['fields']
+            if row['model']=='characters.adventuretemplate':
+                for key in ('category','place','success_text'):fields.pop(key,None)
+            elif row['model']=='characters.adventurerun':fields.pop('briefing',None)
     rows.sort(key=lambda row:(row['model'],str(row['pk'])))
     return json.dumps(rows,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode(),dict(Counter(row['model'] for row in rows))
 

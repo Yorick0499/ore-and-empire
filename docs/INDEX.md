@@ -55,3 +55,7 @@ Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia:
 - [Kampania, boty i nadużycia po zmianie rzadkości](reports/rzadkosc-kuznia-petla-2026-11-07.json).
 
 - [Próba zwykłej gry solo, trzy buildy i ocena immersji](SOLO_PLAYTEST.md).
+
+- [44 zlecenia: kategorie, koszty i zapis rozpoczętej wyprawy](ADVENTURES.md).
+
+- [Ponowna kampania i trzy buildy po rozbudowie zleceń](reports/zlecenia-buildy-petla-2026-11-08.json), [karty i GUI](reports/zlecenia-rzadkosc-gui-2026-11-08.json).

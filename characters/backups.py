@@ -34,7 +34,7 @@ STABLE = {
     'characters_playerprofile': ['id','user_id','world_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','onehand_skill','twohand_skill','bow_skill','crossbow_skill','smithing_skill','alchemy_skill','current_mana','equipment_mana','prepared_magic_id'],
     'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at','upgrade_level','origin','is_protected','rarity'],
     'characters_storyrun': ['id','profile_id','quest_id','status','progress','snapshot','choices','claimed_at'],
-    'characters_adventurerun': ['id','profile_id','template_id','claimed_at'],
+    'characters_adventurerun': ['id','profile_id','template_id','claimed_at','ore_reward','experience_reward','premium_reward','event_names','briefing'],
     'characters_economicentry': ['id','profile_id','resource','amount','balance_after','category','reference'],
     'characters_premiumentry': ['id','profile_id','amount','balance_after','reference'],
     'characters_markettrade': ['id','seller_id','buyer_id','price','blueprint_id','quantity'],

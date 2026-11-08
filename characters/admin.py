@@ -132,8 +132,9 @@ class AdventureForm(BoundedRewardsForm):
 @admin.register(AdventureTemplate)
 class AdventureAdmin(admin.ModelAdmin):
     form = AdventureForm
-    list_display = ("name", "level", "duration_seconds", "energy_cost", "premium_reward", "enabled")
-    list_filter = ("enabled",)
+    list_display = ("name", "category", "place", "level", "duration_seconds", "energy_cost", "premium_reward", "enabled")
+    search_fields = ("name", "description", "place")
+    list_filter = ("enabled", "category")
 
 
 class EventForm(BoundedRewardsForm):

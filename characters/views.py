@@ -528,9 +528,7 @@ def camp_view(request):
 @login_required
 def adventures_view(request):
     from django.utils import timezone
-    from .models import AdventureTemplate
     from .economy import start_adventure, claim_adventure
-    from .world_events import reward_snapshot
     profile = request.user.playerprofile
     refresh_player(profile)
     if request.method == "POST":
@@ -542,14 +540,10 @@ def adventures_view(request):
         else:
             result = False
         report_action(request, result)
-        return redirect("adventures_page")
-    run = profile.adventures.filter(claimed_at__isnull=True).select_related("template").first()
-    quests = []
-    for quest in AdventureTemplate.objects.filter(enabled=True):
-        ore, experience, premium, events = reward_snapshot(quest.ore_reward, quest.experience_reward, quest.premium_reward)
-        quests.append({"quest": quest, "ore": ore, "experience": experience, "premium": premium, "events": events,
-                      "available": profile.level >= quest.level and profile.current_energy >= quest.energy_cost and not run and profile.action_end_time is None})
-    return render(request, "characters/adventures.html", {"profile": profile, "quests": quests, "run": run, "ready": run and timezone.now() >= run.ends_at, "history": profile.adventures.filter(claimed_at__isnull=False).select_related("template")[:10]})
+        return redirect(request.get_full_path())
+    from .adventure_browse import adventure_context
+    context=adventure_context(profile,request.GET)
+    return render(request, "characters/adventures.html", {"profile":profile,**context,"ready":context['run'] and timezone.now()>=context['run'].ends_at,"history":profile.adventures.filter(claimed_at__isnull=False).select_related('template')[:10]})
 
 
 @login_required

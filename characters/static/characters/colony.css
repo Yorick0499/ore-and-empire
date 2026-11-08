@@ -356,3 +356,37 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .hunt-forecast{flex:1 1 240px;min-width:0;border-left:3px solid #aaa;padding:10px 14px}.forecast-safe{border-color:#8ab582}.forecast-rest{border-color:#d0b069}.forecast-danger{border-color:#c87c70}.combat-warning{border-left:3px solid #c87c70;padding-left:12px}
 
 .market-filters input[type="checkbox"] { width: auto; justify-self: start; }
+
+/* Forged frames: ornament, numeral and readable name distinguish every rarity. */
+.rarity-card {
+  --rarity-edge:#8a8174; --rarity-light:#d3cabb; --rarity-glow:#99918120;
+  position:relative; isolation:isolate; border:2px solid var(--rarity-edge);
+  background:linear-gradient(135deg,var(--rarity-glow),transparent 48%),#151817;
+  box-shadow:inset 0 0 0 3px #0a0d0c,inset 0 0 32px var(--rarity-glow),0 5px 16px #0007;
+}
+.rarity-card::before { content:""; position:absolute; inset:6px; border:1px solid var(--rarity-edge); opacity:.4; pointer-events:none; z-index:-1; }
+.rarity-card::after { content:"◆"; position:absolute; top:5px; right:10px; color:var(--rarity-light); font-size:12px; pointer-events:none; }
+.rarity-card .gothic-art { border:1px solid var(--rarity-edge); background:radial-gradient(ellipse at 50% 35%,var(--rarity-glow),#080c0e 76%); box-shadow:inset 0 0 24px #0009; }
+.rarity-card strong,.rarity-card h4 { overflow-wrap:anywhere; }
+.rarity-card .quality-badge { display:flex; flex-wrap:wrap; align-items:center; gap:9px; width:fit-content; padding:5px 10px 5px 5px; margin:12px 0; color:var(--rarity-light); border:1px solid var(--rarity-edge); background:linear-gradient(110deg,var(--rarity-glow),#0d1013); box-shadow:inset 0 1px #ffffff15; font-size:14px; font-variant:small-caps; letter-spacing:.5px; }
+.rarity-seal { display:inline-grid; place-items:center; flex:0 0 28px; min-width:28px; height:28px; border:1px solid currentColor; font:13px Georgia,serif; background:#080a0ab0; }
+.forge-mark { border-left:1px solid currentColor; padding-left:9px; font-weight:bold; }
+.rarity-ordinary { --rarity-edge:#817b6d; --rarity-light:#ded5c4; --rarity-glow:#a2a09618; border-style:dashed; }
+.rarity-masterwork { --rarity-edge:#a38859; --rarity-light:#efdbac; --rarity-glow:#b4964b25; border-style:double; border-width:4px; }
+.rarity-masterwork .rarity-seal { border-width:3px; border-style:double; }
+.rarity-enchanted { --rarity-edge:#527f9f; --rarity-light:#c0e9f6; --rarity-glow:#4f9dc53b; }
+.rarity-enchanted .rarity-seal { border-radius:50%; box-shadow:0 0 10px #75b5d938; }
+.rarity-runic { --rarity-edge:#a085da; --rarity-light:#e2d2ff; --rarity-glow:#627bd55c; background:radial-gradient(ellipse at top right,#8d6dbd35,transparent 58%),repeating-linear-gradient(125deg,transparent 0 39px,#7392db0b 40px 41px),#11151f; box-shadow:inset 0 0 0 3px #0d101a,inset 0 0 45px #597cc530,0 0 16px #8a6bcb25; }
+.rarity-runic::after { content:"◇ ◈ ◇"; color:#d3c5ff; letter-spacing:3px; }
+.rarity-runic .rarity-seal { clip-path:polygon(25% 0,75% 0,100% 25%,100% 75%,75% 100%,25% 100%,0 75%,0 25%); background:linear-gradient(145deg,#7291d9,#302449 52%,#7677bc); color:#fff1ff; border:0; }
+.rarity-ancient { --rarity-edge:#c59c4a; --rarity-light:#ffe3a1; --rarity-glow:#be8d3040; border-width:4px; border-style:double; background:radial-gradient(ellipse at 50% 0,#b7853040,transparent 60%),repeating-linear-gradient(45deg,transparent 0 29px,#b398590a 30px 31px),#201a12; box-shadow:inset 0 0 0 3px #100d08,inset 0 0 45px #aa762522,0 0 18px #ad7d2426; }
+.rarity-ancient::before { border-style:double; border-width:3px; opacity:.5; }
+.rarity-ancient::after { content:"✦ ◆ ✦"; letter-spacing:3px; }
+.rarity-ancient .rarity-seal { background:linear-gradient(135deg,#99723e,#e1c282 48%,#886434); color:#21190a; border:2px solid #f6d99c; box-shadow:0 0 0 2px #72522a; }
+.adventure-list .item-card { border-left:3px solid #9b8151; }
+.adventure-place,.adventure-kind { color:#c6b58d; font-size:.9rem; }
+.adventure-list .item-info { flex:1; min-width:0; }
+.adventure-list form { max-width:220px; }
+.adventure-list .eyebrow { margin-bottom:8px; }
+@media(max-width:540px) { .rarity-card .quality-badge { gap:6px; font-size:13px; letter-spacing:0; } .adventure-list form { max-width:100%; } }
+@media(prefers-contrast:more) { .rarity-card::before { opacity:.8; } .rarity-card .quality-badge { background:#080a0c; color:#fff; } }
