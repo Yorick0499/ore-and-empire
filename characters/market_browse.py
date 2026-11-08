@@ -1,4 +1,5 @@
 """Bounded market pages; filters affect browsing, never trading permissions."""
+from .text_search import literal_pattern
 from urllib.parse import urlencode
 from django.core.paginator import Paginator
 from django.db.models import ExpressionWrapper, F, FloatField
@@ -50,7 +51,7 @@ def browse_market(profile, params):
     all_offers = OwnedItem.objects.filter(owner__world_id=profile.world_id, is_market_listed=True).select_related('blueprint', 'owner__user')
     offers = all_offers
     if filters['q']:
-        offers = offers.filter(blueprint__name__icontains=filters['q'])
+        offers = offers.filter(blueprint__name__iregex=literal_pattern(filters['q']))
     if filters['kind']:
         offers = offers.filter(blueprint__kind=filters['kind'])
     if filters['quality']:

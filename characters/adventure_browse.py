@@ -1,4 +1,5 @@
 """Bounded contract list; filtering never changes the active assignment or history."""
+from .text_search import literal_pattern
 from django.db.models import Q
 from .models import AdventureTemplate
 from .market_browse import bounded_page, pager
@@ -12,7 +13,7 @@ def adventure_context(profile, params):
              'access':params.get('access','open') if params.get('access','open') in {'open','all'} else 'open',
              'sort':params.get('sort','level') if params.get('sort','level') in {'level','short','ore','experience'} else 'level'}
     stock=AdventureTemplate.objects.filter(enabled=True)
-    if filters['q']:stock=stock.filter(Q(name__icontains=filters['q'])|Q(description__icontains=filters['q'])|Q(place__icontains=filters['q']))
+    if filters['q']:stock=stock.filter(Q(name__iregex=literal_pattern(filters['q']))|Q(description__iregex=literal_pattern(filters['q']))|Q(place__iregex=literal_pattern(filters['q'])))
     if filters['category']:stock=stock.filter(category=filters['category'])
     if filters['access']=='open':stock=stock.filter(level__lte=profile.level)
     ordering={'level':('level','pk'),'short':('duration_seconds','level','pk'),'ore':('-ore_reward','level','pk'),'experience':('-experience_reward','level','pk')}
