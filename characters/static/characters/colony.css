@@ -351,3 +351,8 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 @media (max-width: 480px) { .comparison-table th, .comparison-table td { padding: 8px 4px; } }
 
 .quality-masterwork{border-color:#698f74;color:#b3dab9}.quality-enchanted{border-color:#5484bb;color:#a5c9f7}.quality-runic{border-color:#9b72bf;color:#dab8f1}.quality-ancient{border-color:#d5ae51;color:#ffe0a0;box-shadow:0 0 12px #bb8e2622}
+
+.journey-steps{padding-left:1.4rem}.journey-steps li{padding:.6rem 0}.journey-steps p{margin:.3rem 0;color:#c9c4b6}
+.hunt-forecast{flex:1 1 240px;min-width:0;border-left:3px solid #aaa;padding:10px 14px}.forecast-safe{border-color:#8ab582}.forecast-rest{border-color:#d0b069}.forecast-danger{border-color:#c87c70}.combat-warning{border-left:3px solid #c87c70;padding-left:12px}
+
+.market-filters input[type="checkbox"] { width: auto; justify-self: start; }

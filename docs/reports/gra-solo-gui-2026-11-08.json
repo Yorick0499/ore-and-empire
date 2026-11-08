@@ -1,0 +1,136 @@
+[
+  {
+    "scenario": "ordinary_earned_level_and_training",
+    "text": "DZIENNIK SKAZAŃCA\nWedrowiec_Samotnik\n\nStary Obóz · Bez rangi\n\nPostać\nPoziom\n1\nDoświadczenie\n732 PD\n\nNastępny poziom przy 1500 PD.\n\nZasoby\nBryłki rudy\n141\nEnergia\n32/100\nZdrowie\n50/62\nMana\n10/10\nMagiczne odłamki\n1\nAtrybuty\nSiła\n11\nZręczność\n10\nŻycie\n62\nPunkty nauki\n8\n« Wróć do Górniczej Doliny\nNAUCZYCIEL KOLONII\nNowy Obóz\n\nĆwicz swoje umiejętności. Każdy punkt atrybutu kosztuje 1 punkt nauki i 10 bryłek rudy.\n\nPunkty nauki\n8\nRuda\n141\nSiła\n\nAktualna wartość: 11\n\nKoszt: 1 PN · 10 rudy\n\nLiczba punktów (1–10)\nTrenuj wybraną liczbę punktów\nZręczność\n\nAktualna wartość: 10\n\nKoszt: 1 PN · 10 rudy\n\nLiczba punktów (1–10)\nTrenuj wybraną liczbę punktów\nMana\n\nAktualna wartość: 10\n\nKoszt: 1 PN · 10 rudy\n\nLiczba punktów (1–10)\nTrenuj wybraną liczbę punktów\nWładanie bronią\n\nUmiejętność oznacza szansę na podwojenie uderzenia przed ochroną przeciwnika. Każdy punkt kosztuje 1 PN i 10 rudy. Limit: 100%. Wybierz konkretną broń: łuk i kusza nadal wymagają amunicji, a siła lub zręczność decyduje o podstawowych obrażeniach.\n\nBroń jednoręczna\n\nOpanowanie: 1%\n\nPunkty (1–10, do 100%)\nUcz się władania bronią\nBroń dwuręczna\n\nOpanowanie: 0%\n\nPunkty (1–10, do 100%)\nUcz się władania bronią\nŁuki\n\nOpanowanie: 0%\n\nPunkty (1–10, do 100%)\nUcz się władania bronią\nKusze\n\nOpanowanie: 0%\n\nPunkty (1–10, do 100%)\nUcz się władania bronią"
+  },
+  {
+    "scenario": "actual_tavern_reply",
+    "text": "NOWY OBÓZ · ROZMOWY POD BARIERĄ\nKarczma na jeziorze\nKarczma na jeziorze · Gothicpedia\n\nOdłóż kilof, przysiądź do stołu. Tu wymienia się wieści ze szlaków, pyta o oręż i umawia interesy.\n\nWpisy pozostają w świecie po wylogowaniu. Mieszkańcy oznaczeni jako „bot” odpowiadają według reguł między kolejnymi turami — odwołują się do własnych zapisanych akcji. Sprawdź, kto teraz gra →\n\n← Wszystkie stoły\n\nNowy w dolinie — pierwsza wyprawa\nWedrowiec_Samotnik\nGRACZ\n\n08.11.2026 21:13 (Polska)\n\nWróciłem z pierwszego polowania. Jak wam idzie wydobycie rudy i handel na targu?\nBrann z Kopalni\nBOT · KUPIEC\n\n08.11.2026 21:13 (Polska)\n\nWedrowiec_Samotnik, Rudy szukaj w Starej Kopalni. Pilnuj energii i odbierz urobek po zmianie. Mój ostatni zapis: zmienił oręż (08.11 20:13 UTC).\n· 1/1 ·\nDołącz do rozmowy\nTwoja wiadomość\nWyślij"
+  },
+  {
+    "scenario": "responsive",
+    "page": "colony",
+    "width": 1366,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "shop",
+    "width": 1366,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "trainer",
+    "width": 1366,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "hunting",
+    "width": 1366,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "tavern",
+    "width": 1366,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "community",
+    "width": 1366,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "colony",
+    "width": 390,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "shop",
+    "width": 390,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "trainer",
+    "width": 390,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "hunting",
+    "width": 390,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "tavern",
+    "width": 390,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "community",
+    "width": 390,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "colony",
+    "width": 320,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "shop",
+    "width": 320,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "trainer",
+    "width": 320,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "hunting",
+    "width": 320,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "tavern",
+    "width": 320,
+    "http": 200,
+    "overflow": false
+  },
+  {
+    "scenario": "responsive",
+    "page": "community",
+    "width": 320,
+    "http": 200,
+    "overflow": false
+  }
+]

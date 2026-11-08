@@ -1,0 +1,369 @@
+{
+  "schema": 1,
+  "success": true,
+  "elapsed_seconds": 144.31,
+  "isolated_database": true,
+  "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+  "polish_time_scenarios": 4,
+  "loot_endgame_scheduler_scenarios": 12,
+  "time_acceleration": "30 minut symulowanego czasu na krok; wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty",
+  "scenarios": [
+    {
+      "scenario": "gracz-od-zera-do-finalu",
+      "steps": 3713,
+      "simulated_hours": 1856.5,
+      "chapters": 6,
+      "claimed_quests": 27,
+      "level": 30,
+      "experience": 242366,
+      "ore": 5874,
+      "premium": 1,
+      "completion": true
+    },
+    {
+      "scenario": "gracz-po-finale",
+      "upgraded_item": "Legendary Heavy Sword of Burning",
+      "upgrade_level": 1,
+      "patrol_wins": 1,
+      "unlocked": 2,
+      "admin_grants": false
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 502,
+      "simulated_hours": 250.5,
+      "actions": {
+        "stock": 36,
+        "mine": 28,
+        "equip": 40,
+        "list": 1,
+        "claim": 28,
+        "camp": 3,
+        "accept": 13,
+        "buy": 1,
+        "sell": 45,
+        "story_accept": 84,
+        "story_start": 84,
+        "story_talk": 27,
+        "story_claim": 84,
+        "promote": 13,
+        "challenge_accept": 37,
+        "story_travel": 49,
+        "hunt": 101,
+        "challenge_claim": 15,
+        "salvage": 16,
+        "train": 553,
+        "improve": 36,
+        "learn_circle": 12,
+        "raid_rally": 27,
+        "raid_strike": 49,
+        "camp_donate": 20,
+        "achievement_claim": 7,
+        "raid_claim": 17,
+        "boss": 7,
+        "buy_magic": 4,
+        "camp_upgrade": 12,
+        "prepare_magic": 8,
+        "clear_magic": 6,
+        "patrol": 11,
+        "wait": 2
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 31,
+          "experience": 253028,
+          "ore_balance": 2579,
+          "premium_balance": 16
+        },
+        {
+          "camp": "OLD_CAMP",
+          "level": 31,
+          "experience": 249784,
+          "ore_balance": 5346,
+          "premium_balance": 18
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 31,
+          "experience": 250966,
+          "ore_balance": 1468,
+          "premium_balance": 10
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "patrol": 49,
+        "improve": 16,
+        "salvage": 50,
+        "prepare_magic": 2,
+        "hunt": 23,
+        "challenge_claim": 2,
+        "raid_rally": 3,
+        "mine": 7,
+        "claim": 7,
+        "equip": 2,
+        "camp_donate": 2,
+        "train": 10,
+        "sell": 3,
+        "achievement_claim": 1,
+        "challenge_accept": 2,
+        "raid_strike": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 29,
+          "upgrades": 20
+        },
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 25,
+          "upgrades": 17
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 6,
+          "upgrades": 15
+        }
+      ]
+    },
+    {
+      "scenario": "kontrolowana-macierz-buildow",
+      "synthetic_fixture": true,
+      "encounters": [
+        {
+          "build": "warrior",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "mage",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 74,
+          "mana_spent": 247
+        },
+        {
+          "build": "mage",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 499,
+          "mana_spent": 26
+        },
+        {
+          "build": "mage",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 498,
+          "mana_spent": 39
+        }
+      ]
+    },
+    {
+      "scenario": "wspolna-sesja-gracza-i-botow",
+      "ticks": 40,
+      "bots": 3,
+      "level": 1,
+      "experience": 528,
+      "real_bot_sales_to_player": 1,
+      "distinct_bot_actions": 16
+    },
+    {
+      "scenario": "audyt-blednych-identyfikatorow-i-csrf",
+      "malformed_posts": 24,
+      "csrf_rejections": 2,
+      "progress_unchanged": true
+    },
+    {
+      "scenario": "audyt-powtorzonych-formularzy",
+      "upgrade_replays": 10,
+      "patrol_replays": 10,
+      "upgrades": 1,
+      "patrol_records": 1
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/plac_targowy/",
+      "items": 40,
+      "blueprint_queries": 3
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/sklep/",
+      "items": 40,
+      "blueprint_queries": 5
+    },
+    {
+      "scenario": "trzy-zwykle-buildy-od-zera",
+      "seed": 71,
+      "ticks": 168,
+      "simulated_hours": 41.75,
+      "minutes_per_tick": 15,
+      "characters": [
+        {
+          "build": "warrior",
+          "level": 6,
+          "xp": 10595,
+          "ore": 138,
+          "strength": 45,
+          "dexterity": 10,
+          "mana": 10,
+          "mastery": 15,
+          "actions": {
+            "buy_weapon": 8,
+            "equip": 8,
+            "adventure_start": 34,
+            "adventure_claim": 34,
+            "sell_loot": 7,
+            "melee_hunt": 22,
+            "train_onehand_skill": 15,
+            "train_strength": 35
+          },
+          "defeats": 0
+        },
+        {
+          "build": "archer",
+          "level": 6,
+          "xp": 10609,
+          "ore": 128,
+          "strength": 10,
+          "dexterity": 45,
+          "mana": 10,
+          "mastery": 15,
+          "actions": {
+            "buy_weapon": 5,
+            "equip": 5,
+            "buy_ammo_pack": 3,
+            "adventure_start": 30,
+            "adventure_claim": 30,
+            "ranged_hunt": 29,
+            "train_bow_skill": 15,
+            "train_dexterity": 35,
+            "sell_loot": 5
+          },
+          "defeats": 0
+        },
+        {
+          "build": "mage",
+          "level": 6,
+          "xp": 11710,
+          "ore": 249,
+          "strength": 10,
+          "dexterity": 10,
+          "mana": 65,
+          "mastery": 1,
+          "actions": {
+            "rank_accept": 2,
+            "buy_weapon": 1,
+            "equip": 1,
+            "melee_hunt": 25,
+            "rank_promote": 2,
+            "train_mana": 55,
+            "sell_loot": 2,
+            "adventure_start": 34,
+            "adventure_claim": 34,
+            "learn_circle": 1,
+            "buy_rune": 1,
+            "prepare_rune": 1,
+            "magic_hunt": 10
+          },
+          "defeats": 0
+        }
+      ],
+      "bot_actions": {
+        "stock": 27,
+        "mine": 24,
+        "equip": 22,
+        "list": 1,
+        "claim": 23,
+        "camp": 3,
+        "accept": 9,
+        "buy": 1,
+        "sell": 26,
+        "story_accept": 45,
+        "story_start": 45,
+        "story_talk": 14,
+        "story_claim": 42,
+        "promote": 6,
+        "challenge_accept": 9,
+        "story_travel": 14,
+        "hunt": 42,
+        "challenge_claim": 7,
+        "train": 96,
+        "craft_learn": 1,
+        "raid_rally": 6,
+        "improve": 7,
+        "raid_strike": 10,
+        "salvage": 4,
+        "craft_material": 3,
+        "learn_circle": 2,
+        "camp_donate": 3,
+        "achievement_claim": 6,
+        "craft": 1,
+        "boss": 3,
+        "raid_claim": 2
+      },
+      "bots": 3,
+      "admin_grants": false,
+      "limits": "Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji."
+    }
+  ],
+  "abuse_scenarios": 6,
+  "clock_scenarios": 4,
+  "finale_scenarios": 4,
+  "mixed_sessions": 1,
+  "build_matrices": 1,
+  "limits": [
+    "Automatyczny przebieg gracza miesza formularze fabuły i zwykłe serwisy rozgrywki; osobny przegląd ręczny sprawdza GUI.",
+    "Nie jest to test współbieżności PostgreSQL ani test publicznego hostingu."
+  ],
+  "audit_scenarios": 19,
+  "bot_policy": "baseline-18",
+  "observation_schema": 19,
+  "local_policy_scenarios": 12,
+  "equipment_and_market_scenarios": 23,
+  "rarity_scenarios": 17,
+  "solo_usability_scenarios": 20
+}

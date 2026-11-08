@@ -15,7 +15,7 @@ from .models import MarketTrade
 from .game_logic import refresh_player
 from .models import ItemBluePrint, PlayerProfile, OwnedItem
 from .game_logic import (
-    BESTIARY,
+    BESTIARY, WEAPON_SKILLS,
     buy_item_from_npc,
     delist_item_from_market,
     equip_item,
@@ -58,6 +58,9 @@ def hunt_view(request):
     from .world_events import reward_snapshot
     xp_percent = reward_snapshot(0,100)[1]
     available = {key: {**BESTIARY[key], "current_reward":BESTIARY[key]["exp_reward"]*xp_percent//100} for key in location.monsters}
+    from .combat_preparation import hunt_preparation
+    preparation=hunt_preparation(profile,available)
+    for key,row in available.items():row['preparation']=preparation['forecasts'][key]
     combat_log = request.session.pop("combat_log", None)
     if request.method == "POST":
         monster = request.POST.get("monster_key")
@@ -66,7 +69,8 @@ def hunt_view(request):
             return redirect(request.get_full_path())
         combat_log = execute_hunt(profile, monster, location.key, request.POST.get("request_key"))
         if combat_log is False:
-            messages.error(request, "Potrzebujesz 15 energii i co najmniej 10 zdrowia. Zakończ też trwające zadanie.")
+            current=hunt_preparation(profile,available)
+            messages.error(request,current['blocks'][0]['text'] if current['blocks'] else "Nie udało się rozliczyć walki. Odśwież teren i wybierz cel ponownie.")
             combat_log = None
         request.session["combat_log"] = combat_log
         return redirect(request.get_full_path())
@@ -76,6 +80,7 @@ def hunt_view(request):
         {
             "profile": profile,
             "combat_log": combat_log,
+            "preparation":preparation,
             "request_key": uuid4(),
             "BESTIARY": available,
             "location": location,
@@ -230,25 +235,17 @@ def shop_view(request):
         if action == "buy":
             item_id = request.POST.get("buy_item_id")
             item = get_object_or_404(ItemBluePrint, pk=positive_id(item_id))
-            report_action(request, buy_item_from_npc(profile, item))
+            try:quantity=int(request.POST.get('quantity','1'))
+            except (ValueError,TypeError):quantity=0
+            report_action(request, buy_item_from_npc(profile, item,quantity))
             return redirect(request.get_full_path())
         if action == "sell":
             item_id = request.POST.get("sell_item_id")
             item = get_object_or_404(OwnedItem, pk=positive_id(item_id), owner=profile)
             report_action(request, sell_item_from_npc(profile, item))
             return redirect(request.get_full_path())
-    player_inventory = OwnedItem.objects.filter(owner=profile,is_equipped=False,blueprint__tradeable=True, is_market_listed=False, is_protected=False).select_related('blueprint')
-    from django.core.paginator import Paginator
-    merchant_inventory = ItemBluePrint.objects.filter(merchant=True, min_level__lte=profile.level, required_camp__in=["",profile.camp], min_camp_tier__lte=profile.camp_tier).order_by("kind","base_value","pk")
-    return render(
-        request,
-        "characters/shop.html",
-        {
-            "profile": profile,
-            "player_inventory": player_inventory,
-            "shop_items": Paginator(merchant_inventory,30).get_page(request.GET.get("page")),
-        },
-    )
+    from .merchant_browse import merchant_context
+    return render(request,"characters/shop.html",{"profile":profile,**merchant_context(profile,request.GET)})
 
 
 @login_required
@@ -261,7 +258,7 @@ def train_view(request):
         except (TypeError,ValueError):count=0
         report_action(request, train_attribute(profile,request.POST.get("attribute"),count))
         return redirect(request.get_full_path())
-    return render(request, "characters/train.html", {"profile": profile, "location": location, "attributes": [("strength", "Siła", profile.strength), ("dexterity", "Zręczność", profile.dexterity), ("mana", "Mana", profile.mana)]})
+    return render(request, "characters/train.html", {"profile": profile, "location": location, "attributes": [("strength", "Siła", profile.strength), ("dexterity", "Zręczność", profile.dexterity), ("mana", "Mana", profile.mana)], "weapon_skills":[{'key':key,'label':label,'value':getattr(profile,key),'remaining':max(0,100-getattr(profile,key))} for key,label in WEAPON_SKILLS.items()]})
 
 
 def positive_id(value):
@@ -331,12 +328,18 @@ def locations_view(request):
              and (availability == "all" or card["unlocked"] == (availability == "open"))
              and (activity == "all" or card["location"].route == activity)
              and edition == str(profile.world.edition)]
+    from .player_journey import journey
+    next_steps=journey(profile)
+    from .community import activity_rows
+    recent_activity=activity_rows(limit=5)
     return render(
         request,
         "characters/locations.html",
         {
             "profile": profile,
             "cards": cards,
+            "journey":next_steps,
+            "recent_activity":recent_activity,
             "population": PlayerProfile.objects.filter(
                 world=current_world(),is_bot=True, user__is_active=True
             )

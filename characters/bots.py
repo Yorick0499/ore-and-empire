@@ -408,6 +408,11 @@ def tick_bot(profile, policy=None, *, lease=None):
         rank=rank or next(iter(candidates),None)
         if rank:
             rank_action = "accept"
+    # Optional veteran lessons use earned points without delaying the campaign.
+    if hasattr(profile,'campaign_completion') and not training_needed and profile.skill_points and equipped and profile.bot_turn % 7 == 0:
+        skill=equipped.blueprint.weapon_type+'_skill'
+        if getattr(profile,skill) < min(60,profile.level*2):
+            training=skill;training_needed=True
     story_training = next((key for kind, key in story.events if kind == 'train'), None)
     if story_training:
         training, training_needed = story_training, True

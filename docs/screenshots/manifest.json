@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "migration": "0037_rzadkosc_lupow_i_kuznia_plus_trzy",
-  "theme": "rzadkosc-i-kuznia-3",
-  "fixture": "Syntetyczna Kolonia nad Wisłą; 100 botów; stała rzadkość łupu i przekucie do +3",
+  "theme": "gra-solo-i-buildy-4; starsze ujęcia zachowują własną datę",
+  "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
     {
       "file": "boss.jpg",
@@ -24,9 +24,11 @@
     },
     {
       "file": "colony.jpg",
-      "bytes": 130338,
-      "sha256": "cf4aea837ebcadfa4cc2e76dc78e6f11d0b55f99cf9d19225c821bdf175cf788",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 147947,
+      "sha256": "8c69ede9f7a7313a6a39f17fa348f8a7aa7f2aed2e76b34569c5f447a418c5e8",
+      "captured_at_utc": "2026-11-08T20:37:24.850946+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     },
     {
       "file": "community.jpg",
@@ -72,9 +74,11 @@
     },
     {
       "file": "hunting.jpg",
-      "bytes": 114614,
-      "sha256": "c12426c56fb075ce5dbdb7311f3fed6812d9284bd9f4a53cc6a1158527d045b1",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 238492,
+      "sha256": "a19e2754f16fcec7b14ffe0597cd4908725c5576e1c518de37a68e0a1a58b462",
+      "captured_at_utc": "2026-11-08T20:37:26.817546+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     },
     {
       "file": "inventory.jpg",
@@ -96,9 +100,11 @@
     },
     {
       "file": "living-world.jpg",
-      "bytes": 97374,
-      "sha256": "5cab56c3fe5aa4ceac4438c8e35738ef4097e4e9d8e301802a44b6f9bc96c189",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 92525,
+      "sha256": "d290d57e85280b497caf341de92d6dec9dc7f4bd90faf6925af6fdb017c42fe4",
+      "captured_at_utc": "2026-11-08T20:37:28.053840+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     },
     {
       "file": "magic.jpg",
@@ -114,9 +120,11 @@
     },
     {
       "file": "merchant.jpg",
-      "bytes": 85226,
-      "sha256": "bd0c365b8a81e247d7d5678aec186702f4cf43de915fc46fe79a12f09e9adf74",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 122318,
+      "sha256": "7a1e6a6b2d1f17db3b20dbc64c12adb9d6bbb7b1381dcbbdd9a0f82004555a83",
+      "captured_at_utc": "2026-11-08T20:37:25.482527+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     },
     {
       "file": "mining.jpg",
@@ -144,9 +152,11 @@
     },
     {
       "file": "mobile.jpg",
-      "bytes": 45551,
-      "sha256": "4700c28f5f39641d243f673da51700e8f592d0e7d293025c1a503a304b2a5d8c",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 51174,
+      "sha256": "f5ae8ff24b1890c4d0eeb43891e6e88ede5f21ce09dea5b7c10daa753d5ef504",
+      "captured_at_utc": "2026-11-08T20:37:28.678219+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     },
     {
       "file": "rankings.jpg",
@@ -162,15 +172,19 @@
     },
     {
       "file": "tavern.jpg",
-      "bytes": 102153,
-      "sha256": "5972f3f4003d2772a303dc23a25d7fa5253843812167595e198c2e53cd3733a6",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 97225,
+      "sha256": "dc97d1c0b039c0a114a00ffd736149b81c0701bcf3791275c0c05041eb7d728e",
+      "captured_at_utc": "2026-11-08T20:37:27.420561+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     },
     {
       "file": "training.jpg",
-      "bytes": 98852,
-      "sha256": "20c1576f63c1ab30bed4e0dd736d94ffe7aaf1b43f8c68f3ddb779265c737939",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 240639,
+      "sha256": "b035796593dd8acca3d0d26ab73a3f4750aaecd076135a8fc71abbf4080ca540",
+      "captured_at_utc": "2026-11-08T20:37:26.136535+00:00",
+      "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
+      "theme": "gra-solo-i-buildy-4"
     }
   ]
 }

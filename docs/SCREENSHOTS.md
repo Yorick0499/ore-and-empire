@@ -1,7 +1,8 @@
 # Aktualne zrzuty ekranów
 
-Zestaw **28 ujęć** z syntetycznego świata „Kolonia nad Wisłą”, z postacią
-`Skazaniec_Pokazowy` i 100 botami. Nie zawiera danych prywatnego administratora.
+Zestaw **28 ujęć** z dwóch osobnych światów testowych, każdy ze 100 botami: „Kolonia nad Wisłą” (`Skazaniec_Pokazowy`) i „Dolina Wędrowców — próba gry solo” (`Wedrowiec_Samotnik`). Nie zawiera danych prywatnego administratora.
+
+**8 listopada 2026, bez nowej migracji:** odświeżono kolonię, kupca z filtrami, nauczyciela z umiejętnościami, polowanie z prognozą, karczmę, życie kolonii i mobilną kolonię. Postać tego zestawu jest zwykłym graczem na poziomie 1, rozwiniętym w przeglądarce bez darów administratora. Motyw `gra-solo-i-buildy-4`.
 
 **7 listopada 2026, migracja 0037:** odświeżono siedem ujęć — ekwipunek,
 kuźnię Pradawnego +3, targ, porównywarkę oraz trzy odpowiedniki mobilne.

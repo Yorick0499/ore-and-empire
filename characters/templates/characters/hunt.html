@@ -24,6 +24,7 @@
             <h2>{{ location.name }}</h2>
             <p class="desc">{{ location.description }} Możesz tu polować na dzikie bestie i zdobywać doświadczenie.</p>
 
+            <section class="colony-panel"><h3>Przygotowanie do polowania</h3><p>{% if preparation.plan %}Skupienie: {{ preparation.plan.spell.name }} · {{ profile.current_mana }} many · {{ preparation.plan.cost }} many na rzut.{% else %}{{ preparation.weapon_name }} · podstawowe uderzenie {{ preparation.damage }} · krytyk {{ preparation.skill }}%.{% endif %}{% if preparation.ammo_count != None %} Amunicja: {{ preparation.ammo_count }} ({{ preparation.ammo_name }}).{% endif %}</p><p>Prognoza pomija losowe krytyki; gwarantowany krytyk przy 100% jest liczony. Dodaje 10 HP zapasu. Magia uwzględnia obecną manę i pięści po jej zużyciu. To pomoc w wyborze, nie obietnica zwycięstwa ani dodatkowy koszt.</p>{% for reason in preparation.blocks %}<p class="combat-warning"><a href="{{ reason.url }}">{{ reason.text }}</a></p>{% endfor %}</section>
             <div class="monster-list">
                 {% for key, monster in BESTIARY.items %}
                     <div class="monster-card">
@@ -38,11 +39,12 @@
                             </div>
                         </div>
 
+                        <div class="hunt-forecast forecast-{{ monster.preparation.state }}"><strong>{{ monster.preparation.label }}</strong><p>Szacowane obrażenia otrzymane: do {{ monster.preparation.loss }} HP. Zalecane zdrowie z zapasem: {{ monster.preparation.needed }}.</p>{% if monster.preparation.state == 'danger' %}<p><a href="{% url 'train_page' %}">Rozwijaj postać</a> · <a href="{% url 'inventory_page' %}">Sprawdź wyposażenie</a></p>{% endif %}</div>
                         <form method="POST">
                             {% csrf_token %}<input type="hidden" name="request_key" value="{{ request_key }}">
                             <input type="hidden" name="monster_key" value="{{ key }}">
 
-                            {% if profile.current_energy >= 15 and profile.current_health >= 10 and not profile.is_busy %}
+                            {% if not preparation.blocks %}
                                 <button type="submit" class="gothic-btn">Atakuj (15 ⚡)</button>
                             {% else %}
                                 <button type="button" class="gothic-btn btn-disabled" disabled>Odpocznij lub zakończ zadanie</button>
