@@ -79,6 +79,9 @@ class ContractTests(TestCase):
 
     def test_filters_pagination_and_active_run_are_independent(self):
         self.assertEqual(adventure_context(self.p,{})['quest_count'],6)
+        for query in ['światło','ŚWIATŁO','Światło']:
+            self.assertEqual(adventure_context(self.p,{'q':query})['quest_count'],1)
+        self.assertEqual(adventure_context(self.p,{'q':'.*'})['quest_count'],0)
         c=adventure_context(self.p,{'access':'all','page':'2','category':'scout','q':'','sort':'short'})
         self.assertTrue(all(row['quest'].category=='scout' for row in c['quests']))
         c=adventure_context(self.p,{'access':'all','page':'2'})
@@ -130,7 +133,7 @@ class RarityPresentationTests(TestCase):
         self.p=User.objects.create_user('zbrojmistrz').playerprofile
         self.other=User.objects.create_user('kupiec').playerprofile
         self.client.force_login(self.p.user)
-        self.bp=ItemBluePrint.objects.create(name='Ostrze przybysza',damage=20,base_value=60)
+        self.bp=ItemBluePrint.objects.create(name='Łowcy Śniącego [I]',damage=20,base_value=60,source_game='GOTHIC_I')
         self.items=[add_item(self.p,self.bp,rarity=i) for i in range(5)]
 
     def test_all_rarities_have_card_frames_and_distinct_named_badges(self):
@@ -141,6 +144,10 @@ class RarityPresentationTests(TestCase):
             self.assertContains(page,'quality-badge quality-'+rank['key'])
             self.assertContains(page,rank['name'])
         self.assertContains(page,'rarity-seal')
+        for route in ['/ekwipunek/','/sklep/','/przedmioty/']:
+            response=self.client.get(route,{'q':'łOWCY śNIĄCEGO [i]'})
+            self.assertContains(response,self.bp.name)
+        self.assertEqual(self.client.get('/ekwipunek/',{'q':'.*'}).context['player_inventory'].paginator.count,0)
         self.assertContains(self.client.get('/sklep/'),'rarity-card rarity-runic')
         self.assertContains(self.client.get(f'/ekwipunek/{self.items[4].pk}/porownaj/'),'rarity-card rarity-ancient')
 
@@ -152,6 +159,8 @@ class RarityPresentationTests(TestCase):
         page=self.client.get('/plac_targowy/')
         self.assertContains(page,'rarity-card rarity-ancient')
         self.assertContains(page,'quality-badge quality-ancient')
+        self.assertEqual(self.client.get('/plac_targowy/',{'q':'łowcy śniącego [i]'}).context['market_all_items'].paginator.count,1)
+        self.assertEqual(self.client.get('/plac_targowy/',{'q':'.*'}).context['market_all_items'].paginator.count,0)
         # Original blueprint on NPC stock has no rolled instance rarity.
         q=self.client.get('/sklep/?kind=weapon')
         self.assertNotContains(q,'Towary</h2><article class="colony-panel rarity-card')

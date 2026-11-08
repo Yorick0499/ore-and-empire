@@ -56,3 +56,7 @@ Naprawiono przepisywanie treści rozpoczętej wyprawy przez późniejszą edycj�
 Zabezpieczono zgodność dawnych backupów PostgreSQL: pomijane są tylko nowe pola opisowe, a zmiana wypłaty nadal unieważnia dowód. Rotacja botów omija ostatnią pracę, gdy jest alternatywa; samo modulo tury nie wystarcza przy naprzemiennym starcie i odbiorze.
 
 397 testów lokalnych (12 pominiętych środowiskowo), 17 końcowych testów zleceń i botów, [138 scenariuszy kampanii, buildów i nadużyć](reports/zlecenia-buildy-petla-2026-11-08.json). [GUI](reports/zlecenia-rzadkosc-gui-2026-11-08.json): zwykły gracz wykonał nowe zlecenie po rzeczywistych 50 sekundach; 320/390/1440 px, długa nazwa bez spacji, bez błędów JS i zasobów. Zestaw wizualny rzadkości jest jawnie syntetyczny. Migracja prywatnej kopii istniejącego świata zachowała 27 tabel; nie resetowano zapisu.
+
+### Polskie litery w wyszukiwaniu — #98
+
+SQLite nie składa wielkości liter Unicode w `LIKE`, przez co „światło” nie znajdowało „Światło”. Zlecenia, kupiec, plecak, targ i katalog używają teraz dopasowania Unicode z dosłownym traktowaniem wpisanego tekstu. Znaki regex są escapowane, a długość zapytania pozostaje ograniczona do 100 znaków. Regresja obejmuje polskie wielkie/małe litery, nawiasy i wpis `.*`, który nie jest operatorem wyszukiwania. 40 powiązanych testów lokalnych przeszło.

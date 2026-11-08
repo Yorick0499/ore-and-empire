@@ -1,3 +1,4 @@
+from .text_search import literal_pattern
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_GET
 from .worlds import current_world
@@ -187,7 +188,7 @@ def inventory_view(request):
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
     quality=request.GET.get('quality','')
-    if query:player_inventory=player_inventory.filter(blueprint__name__icontains=query)
+    if query:player_inventory=player_inventory.filter(blueprint__name__iregex=literal_pattern(query))
     if kind in dict(ItemBluePrint._meta.get_field('kind').choices):player_inventory=player_inventory.filter(blueprint__kind=kind)
     quality_keys=[rank['key'] for rank in QUALITY_RANKS]
     if quality in quality_keys:
@@ -692,7 +693,7 @@ def item_catalog_view(request):
     items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
-    if query:items=items.filter(Q(name__icontains=query)|Q(catalog_key__icontains=query))
+    if query:items=items.filter(Q(name__iregex=literal_pattern(query))|Q(catalog_key__iregex=literal_pattern(query)))
     if kind in {c[0] for c in ItemBluePrint._meta.get_field('kind').choices}:items=items.filter(kind=kind)
     if request.GET.get('verified')=='1':items=items.filter(original_stats__verified=True)
     return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game='GOTHIC_I').order_by('-version')[:1],'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
