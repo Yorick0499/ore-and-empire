@@ -25,3 +25,7 @@ Boty wybierają rzeczywiste zlecenia dostępne na ich poziom i energię, preferu
 Migracja **0038** dopisuje metadane i utrwala bieżącą treść historycznych wypraw. Nie da się odtworzyć opisu sprzed dawnych edycji administratora, dlatego migracja zachowuje treść obecną w chwili aktualizacji; nowe starty mają już niezależny zapis. Dotychczasowe terminy, własność, nagrody i statusy nie zmieniają się. Seed dodaje brakujące zlecenia i nie nadpisuje istniejących edycji operatora. Starsze kopie SQLite i PostgreSQL pozostają odtwarzalne; nowe kopie obejmują też utrwaloną treść.
 
 [Komplet cen, miejsc, poziomów i nagród](GAME_CONTENT.md#zlecenia-czasowe-44) · [Wygląd](SCREENSHOTS.md) · [Raport prób](reports/zlecenia-rzadkosc-gui-2026-11-08.json).
+
+## Próby dwóch stylów rozwoju
+
+Symulacja porównuje wojownika, łucznika i maga wybierających zlecenia na PD z takimi samymi kierunkami rozwoju, które przy brakach rudy szukają prac zarobkowych. Oba przebiegi płacą rzeczywistą cenę ekwipunku, amunicji, treningu i magii. Porównanie pokazuje różnicę strategii, nie ustala uniwersalnego najsilniejszego builda ani czasu przejścia. Zegar jest przyspieszony; bazowa regeneracja pozostaje zwykła. [Wyniki](reports/zlecenia-buildy-petla-2026-11-08.json).

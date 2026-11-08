@@ -20,6 +20,12 @@ from .release_probe import record_scenario
 
 class OrdinaryBuildSession(TestCase):
     def test_three_earned_builds_in_shared_world(self):
+        self.run_session(income_first=False)
+
+    def test_income_first_builds_can_finance_their_gear_and_magic(self):
+        self.run_session(income_first=True)
+
+    def run_session(self, *, income_first):
         seed_clean_world()
         state=random.getstate();self.addCleanup(random.setstate,state);random.seed(71)
         call_command('run_bots',create=3,create_only=True,stdout=StringIO())
@@ -104,7 +110,7 @@ class OrdinaryBuildSession(TestCase):
                     # Alternate repeatable contracts and hunts to fund all three builds.
                     need_funds=p.ore_balance<50 or (name=='mage' and not p.prepared_magic_id)
                     if not target and (step%4==0 or need_funds or preview['blocks'] or not choices):
-                        quest=AdventureTemplate.objects.filter(enabled=True,level__lte=p.level,energy_cost__lte=p.current_energy).order_by('-experience_reward').first()
+                        quest=AdventureTemplate.objects.filter(enabled=True,level__lte=p.level,energy_cost__lte=p.current_energy).order_by('-ore_reward' if income_first and need_funds else '-experience_reward').first()
                         if quest:post('/zadania/',action='start',template=quest.pk);actions['adventure_start']+=1;continue
                     key=target if target in choices else max(choices,key=lambda k:BESTIARY[k]['exp_reward']) if choices else None
                     if key and not preview['blocks']:
@@ -126,4 +132,4 @@ class OrdinaryBuildSession(TestCase):
                 self.assertGreaterEqual(actions['melee_hunt' if name=='warrior' else 'ranged_hunt'],10)
             facts.append({'build':name,'level':p.level,'xp':p.experience,'ore':p.ore_balance,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'mastery':p.onehand_skill if name=='warrior' else p.bow_skill if name=='archer' else p.magic_skill,'actions':dict(actions),'defeats':p.battles.filter(won=False).count()})
         self.assertFalse(BotDecision.objects.filter(success=False).exists())
-        record_scenario('trzy-zwykle-buildy-od-zera',{'seed':71,'ticks':step+1,'simulated_hours':step/4,'minutes_per_tick':15,'characters':facts,'bot_actions':dict(bot_actions),'bots':3,'admin_grants':False,'limits':'Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji.'})
+        record_scenario('trzy-buildy-z-finansowaniem' if income_first else 'trzy-zwykle-buildy-od-zera',{'strategy':'zlecenia na rudę przy brakach' if income_first else 'zlecenia na PD','seed':71,'ticks':step+1,'simulated_hours':step/4,'minutes_per_tick':15,'characters':facts,'bot_actions':dict(bot_actions),'bots':3,'admin_grants':False,'limits':'Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji.'})
