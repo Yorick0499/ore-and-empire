@@ -6,7 +6,7 @@
 
 Uruchom grę według README, skonfiguruj świat i administratora przy pierwszym starcie. Zarejestruj **zwykłe konto** do gry. Zaczynasz na poziomie 0, z 50 rudy, 100/100 energii, 50/50 zdrowia i 10 many. Rozmowę z kopaczem znajdziesz w dzienniku fabuły. Każde zadanie trzeba przyjąć, rozpocząć i po spełnieniu celów odebrać.
 
-Kolonia pokazuje lokacje i ich wymagania. Filtruj dostępność, maksymalny wymagany poziom, aktywność i edycję. Wymagania sprawdza serwer; sam adres lokacji nie daje dostępu. Wybór obozu jest stały. Twoja postać jest mieszkańcem doliny, nie jedynym Bezimiennym; późne rozdziały nie wyrzucają jej z obozu.
+Kolonia pokazuje najbliższe kroki wynikające z twoich faktycznych przydziałów, odbiorów i PN, postęp do następnego poziomu oraz pięć ostatnich rzeczywistych działań mieszkańców. Nagrody nadal odbierasz samodzielnie. Kolonia pokazuje lokacje i ich wymagania. Filtruj dostępność, maksymalny wymagany poziom, aktywność i edycję. Wymagania sprawdza serwer; sam adres lokacji nie daje dostępu. Wybór obozu jest stały. Twoja postać jest mieszkańcem doliny, nie jedynym Bezimiennym; późne rozdziały nie wyrzucają jej z obozu.
 
 ## Zasoby, czas i odpoczynek
 
@@ -18,11 +18,11 @@ Energia i zdrowie odnawiają po 1 punkcie na minutę, mana po 1 co 30 sekund, do
 
 Zmiana górnicza w UI trwa 15 sekund i kosztuje 10 energii. Wróć po urobek: bazowo 10–25 rudy, do tego aktualna premia i ewentualny magazyn obozu. Nagroda nie wpada automatycznie. Jedna aktywność czasowa naraz: kopalnia lub zlecenie czasowe. Zakończona, ale nieodebrana praca nadal blokuje drugą.
 
-Zwykła walka kosztuje 15 energii. Wybierz przeciwnika z danej lokacji; jego poziom jest zaleceniem, a poziom wejścia do lokacji obowiązkowy. Walka rozstrzyga się automatycznie do zwycięstwa lub porażki. Broń, atrybuty, typ obrażeń, pancerz, magia i amunicja wpływają na wynik. Raport i łupy są trwałe w kronice. Ponowienie tego samego formularza nie losuje drugiego wyniku.
+Zwykła walka kosztuje 15 energii. Wybierz przeciwnika z danej lokacji; jego poziom jest zaleceniem, a poziom wejścia do lokacji obowiązkowy. Walka rozstrzyga się automatycznie do zwycięstwa lub porażki. Broń, atrybuty, typ obrażeń, pancerz, magia i amunicja wpływają na wynik. Przed wyborem celu zobaczysz konserwatywną prognozę utraty HP z rezerwą 10, uwzględniającą własny sprzęt i przygotowaną magię. Pomija losowe krytyki; przy opanowaniu 100% podwojenie jest pewne. Prognoza nie blokuje ryzykownej walki. Brak energii, amunicji, many na pierwszy czar albo zajętość mają osobny komunikat. Raport i łupy są trwałe w kronice. Ponowienie tego samego formularza nie losuje drugiego wyniku.
 
 ## Rozwój i wyposażenie
 
-PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Poziom daje 10 PN i +12 maksymalnego zdrowia. Nauczyciel rozwija siłę, zręczność i manę; jeden punkt kosztuje 1 PN i 10 rudy pomniejszone o poziom szkoły obozowej. Formularz pozwala ćwiczyć 1–10 punktów i płaci za każdy.
+PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Poziom daje 10 PN i +12 maksymalnego zdrowia. Nauczyciel rozwija siłę, zręczność, manę oraz władanie bronią jednoręczną, dwuręczną, łukami i kuszami (do 100%); jeden punkt kosztuje 1 PN i 10 rudy pomniejszone o poziom szkoły obozowej. Formularz pozwala ćwiczyć 1–10 punktów i płaci za każdy.
 
 Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu opierają się na bazowych atrybutach, poziomie i ewentualnym obozie/randze. Broń wręcz korzysta z siły, łuki/kusze ze zręczności. Umiejętność danego typu broni określa szansę krytyka. Łuk zużywa strzałę, kusza bełt na całą walkę — to reguła adaptacji. Szczegóły: [wyposażenie](EQUIPMENT.md), [magia](MAGIC.md).
 
@@ -35,7 +35,7 @@ slot I lub II, który zostanie faktycznie zastąpiony. Sam podgląd nie zmienia 
 
 ## Handel, rzemiosło i odłamki
 
-Kupiec NPC sprzedaje dostępne przedmioty, a odkupuje dozwolone zapasy za połowę wartości. Na targu handlujesz z rzeczywistymi kontami i botami; cena dotyczy całego stosu. Możesz wycofać ofertę lub zmienić jej cenę. Nie można sprzedać cudzych, noszonych, przygotowanych magicznie ani niezbywalnych przedmiotów. Trofea mimo niezbywalności pozostają widoczne w plecaku.
+Kupiec NPC pozwala szukać po nazwie, kategorii, typie broni, cenie w zasięgu sakwy i wymaganiach sprzętu. Towary i sprzedaż z plecaka mają osobne strony po 24 wpisy, a filtry pozostają po zakupie. Sprzęt kupujesz pojedynczo, zapasy i amunicję w paczkach 1–100 sztuk za pełną cenę. Zakup nie zakłada broni — zrób to w Ekwipunku. Kupiec NPC sprzedaje dostępne przedmioty, a odkupuje dozwolone zapasy za połowę wartości. Na targu handlujesz z rzeczywistymi kontami i botami; cena dotyczy całego stosu. Możesz wycofać ofertę lub zmienić jej cenę. Nie można sprzedać cudzych, noszonych, przygotowanych magicznie ani niezbywalnych przedmiotów. Trofea mimo niezbywalności pozostają widoczne w plecaku.
 
 Na targu filtruj nazwę, kategorię, rangę, sprzedawcę i maksymalną cenę całego
 stosu. Możesz sortować również po cenie jednej sztuki. Oferty, plecak oraz własne
@@ -73,7 +73,7 @@ Na poziomie 30, po dołączeniu do obozu, odblokujesz **Warty za Przełęczą**,
 
 Karczma na jeziorze działa jako trwałe forum. Boty odpowiadają regułowo na podstawie rzeczywistych działań, z limitami częstotliwości; nie rozumieją dowolnej rozmowy jak model językowy. „Życie kolonii” pokazuje aktywność, role i ostatnie akcje. Boty mają imiona i jawne oznaczenia. Działają tylko, gdy launcher jest uruchomiony; zatrzymanie procesu nie odgrywa wstecz wszystkich tur. Zasoby po powrocie regenerują się normalnie.
 
-Prywatna kronika ma walki, rozliczenia i powiadomienia, po 20 wpisów na stronę. Raporty innych postaci są niedostępne. Powiadomienia obejmują zakończenie wyprawy, sprzedaż, awans i event startujący w ciągu doby. Ich przeczytanie nie odbiera nagrody.
+Prywatna kronika ma walki, rozliczenia i powiadomienia, po 20 wpisów na stronę. Raporty innych postaci są niedostępne. Powiadomienia obejmują nowy poziom z liczbą zdobytych PN i maksymalnego zdrowia, zakończenie wyprawy, sprzedaż, awans i event startujący w ciągu doby. Ich przeczytanie nie odbiera nagrody.
 
 ## Administrator i bezpieczeństwo zapisu
 

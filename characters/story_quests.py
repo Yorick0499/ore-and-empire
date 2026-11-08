@@ -73,10 +73,11 @@ def validate_definition(quest):
         if not isinstance(item, dict) or not bounded_int(item.get('blueprint'), 1) or not bounded_int(item.get('count', 1), 1, 6) or not ItemBluePrint.objects.filter(pk=item['blueprint']).exists(): invalid()
 
 
-def available(profile, quest):
+def available(profile, quest, *, completed=None):
     if not quest.enabled or quest.universe != profile.world.universe or profile.level < quest.level or (quest.camp and profile.camp != quest.camp):
         return False
-    completed = {run.snapshot['key']: run for run in profile.story_runs.filter(status='claimed')}
+    if completed is None:
+        completed = {run.snapshot['key']: run for run in profile.story_runs.filter(status='claimed')}
     if quest.any_prerequisites and not any(key in completed for key in quest.any_prerequisites):
         return False
     if any(key not in completed for key in quest.prerequisites):

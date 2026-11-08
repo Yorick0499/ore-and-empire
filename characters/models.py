@@ -581,6 +581,12 @@ class TavernTopic(models.Model):
     updated_at = models.DateTimeField(default=timezone.now, db_index=True)
     locked = models.BooleanField(default=False)
 
+    @property
+    def public_title(self):
+        if self.author.is_bot and self.title == f'Wieści ze szlaku: {self.author.user.username}'[:100]:
+            return f'Wieści ze szlaku: {self.author.display_name}'
+        return self.title
+
     class Meta:
         ordering = ['-updated_at', '-pk']
 

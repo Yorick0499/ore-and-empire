@@ -12,6 +12,7 @@ from dataclasses import dataclass
 
 ENERGY_INTERVAL_SECONDS = 60
 MAX_MARKET_PRICE = 1_000_000
+WEAPON_SKILLS = {"onehand_skill":"Broń jednoręczna", "twohand_skill":"Broń dwuręczna", "bow_skill":"Łuki", "crossbow_skill":"Kusze"}
 
 
 def recover_energy(profile):
@@ -394,14 +395,16 @@ def unequip_item(profile, owned_item):
 
 
 @player_action
-def buy_item_from_npc(profile, item):
+def buy_item_from_npc(profile, item, quantity=1):
     from .equipment import allowed, add_item
+    if type(quantity) is not int or not 1<=quantity<=100 or (quantity>1 and (not item.stackable or item.equippable)):
+        return False
     if not item.merchant or not allowed(profile, item) or item.base_value < 0:
         return False
-    if profile.ore_balance < item.base_value:
+    if profile.ore_balance < item.base_value*quantity:
         return False
-    profile.ore_balance = profile.ore_balance - item.base_value
-    add_item(profile, item, origin="merchant")
+    profile.ore_balance = profile.ore_balance - item.base_value*quantity
+    add_item(profile, item, quantity, origin="merchant")
     profile.save()
     return True
 
@@ -425,19 +428,27 @@ def sell_item_from_npc(profile, item):
 def check_level_up(profile):
     if profile.experience < profile.required_exp:
         return False
+    previous_level=profile.level
     while profile.experience >= profile.required_exp:
         profile.level += 1
         profile.skill_points += 10
         profile.life += 12
     profile.save()
+    from .models import JournalNotice
+    gained=profile.level-previous_level
+    JournalNotice.objects.get_or_create(profile=profile,key=f'level:{profile.level}',defaults={
+        'title':f'Poziom {profile.level}! +{gained*10} PN i +{gained*12} maksymalnego zdrowia.',
+        'destination':'train_page'})
     return True
 
 
 @player_action
 def train_attribute(profile, attribute_name, count=1):
-    if attribute_name not in {"strength", "dexterity", "mana"}:
+    if attribute_name not in {"strength", "dexterity", "mana", *WEAPON_SKILLS}:
         return False
     if type(count) is not int or not 1 <= count <= 10 or profile.skill_points < count:
+        return False
+    if attribute_name in WEAPON_SKILLS and getattr(profile,attribute_name)+count > 100:
         return False
     cost=10-profile.camp_perks["training_level"]
     if profile.ore_balance < cost * count:

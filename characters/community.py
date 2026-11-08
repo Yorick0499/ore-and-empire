@@ -61,6 +61,7 @@ def post_message(profile, body, *, topic_id=None, title=None):
 def bot_conversation(profile):
     # The shared topic lock serializes different bots answering the same visitor.
     now = timezone.now()
+    from .world_clock import POLISH_TIME
     if profile.tavern_messages.filter(created_at__gt=now - timedelta(minutes=10)).exists():
         return
     topic = TavernTopic.objects.select_for_update().filter(author__world_id=profile.world_id,locked=False, messages__author__is_bot=False, messages__created_at__gte=now - timedelta(days=1)).order_by('-updated_at').first()
@@ -72,8 +73,8 @@ def bot_conversation(profile):
             return
         if TavernTopic.objects.filter(author__world_id=profile.world_id,author__is_bot=True, created_at__gt=now - timedelta(minutes=15)).exists():
             return
-        topic = TavernTopic.objects.create(author=profile, title=f'Wieści ze szlaku: {profile.user.username}'[:100])
-        TavernMessage.objects.create(topic=topic, author=profile, decision=fact, body=f'Wpadłem na chwilę do karczmy. Mój ostatni zapis: {ACTION_NAMES[fact.action]} ({fact.created_at:%d.%m %H:%M} UTC). Co słychać na waszych szlakach?')
+        topic = TavernTopic.objects.create(author=profile, title=f'Wieści ze szlaku: {profile.display_name}'[:100])
+        TavernMessage.objects.create(topic=topic, author=profile, decision=fact, body=f'Wpadłem na chwilę do karczmy. Mój ostatni zapis: {ACTION_NAMES[fact.action]} ({fact.created_at.astimezone(POLISH_TIME):%d.%m %H:%M %Z}, Polska). Co słychać na waszych szlakach?')
         return
     latest = topic.messages.order_by('-created_at', '-pk').first()
     if latest.author.is_bot or hasattr(latest, 'bot_response'):
@@ -90,7 +91,7 @@ def bot_conversation(profile):
         advice = 'O awans pytaj w swoim obozie. Same bryłki nie wystarczą — trzeba przejść próbę.'
     else:
         advice = 'Pod barierą warto mieć dobry oręż i zostawić sobie siły na powrót.'
-    body = f'{latest.author.user.username}, {advice} Mój ostatni zapis: {ACTION_NAMES[fact.action]} ({fact.created_at:%d.%m %H:%M} UTC).'
+    body = f'{latest.author.user.username}, {advice} Mój ostatni zapis: {ACTION_NAMES[fact.action]} ({fact.created_at.astimezone(POLISH_TIME):%d.%m %H:%M %Z}, Polska).'
     TavernMessage.objects.create(topic=topic, author=profile, body=body, reply_to=latest, decision=fact)
     topic.updated_at = now
     topic.save(update_fields=['updated_at'])

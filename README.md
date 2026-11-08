@@ -15,7 +15,7 @@ python play.py --bots 6 --port 8001
 
 Otwórz [grę lokalną](http://127.0.0.1:8001/). Nowa instalacja udostępnia `/inicjalizacja/`: wybierz nazwę serwera, 0–100 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; `--bots` służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.
 
-Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Publiczny hosting i współbieżność PostgreSQL pozostają osobnym etapem.
+Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Opcjonalny profil produkcyjny, PostgreSQL i procedury wdrożenia są w [dokumentacji operatora](docs/PRODUCTION.md).
 
 ## Co możesz przejść
 
@@ -30,9 +30,11 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 
 Rozwój MMORPG od początku gry: [łupy, nazwane rangi rynsztunku i 100 stopni wart](docs/LOOT_AND_ENDGAME.md). Świat nadal żyje po osobistym finale, z miesięcznym rankingiem wart. Limit mieszkańców podniesiono do 100; [pomiar i zasady wydajności](docs/BOT_PERFORMANCE.md).
 
+Ostatni przegląd grywalności: [zwykła sesja, trzy buildy i wnioski](docs/SOLO_PLAYTEST.md). Trening obejmuje cztery typy broni, kupiec ma filtry i zakupy zapasów, a polowanie pokazuje przygotowanie oraz ryzyko.
+
 ## Aktualne ekrany
 
-Zrzuty pokazują osobny świat demonstracyjny i zwykłe konto testowe najnowszej wersji. Stan postaci na screenach nie jest obietnicą zasobów startowych. Grafiki Gothicpedii i czcionka są lokalne; [źródła](docs/ASSETS.md).
+Zrzuty pokazują osobny świat demonstracyjny i zwykłe konta testowe; zmienione ekrany odświeżono 8 listopada 2026, pozostałe mają daty w manifeście. Stan postaci na screenach nie jest obietnicą zasobów startowych. Grafiki Gothicpedii i czcionka są lokalne; [źródła](docs/ASSETS.md).
 
 ![Kolonia i czas polski](docs/screenshots/colony.jpg)
 

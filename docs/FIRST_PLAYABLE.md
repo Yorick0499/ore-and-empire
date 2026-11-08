@@ -7,7 +7,7 @@ Uruchom `python play.py --bots 6 --port 8001` w środowisku z requirements.txt. 
 1. Otwórz fabułę, przyjmij i rozpocznij rozmowę z kopaczem.
 2. Ukończ zmianę w kopalni i odbierz urobek. Kup i załóż pierwszą broń.
 3. Poluj na dostępne stworzenia. Zdrowie/energia/mana regenerują się także poza stroną; po porażce pozostaje 1 HP.
-4. Wydawaj zdobyte punkty nauki u nauczyciela. Możesz trenować 1–10 punktów naraz, płacąc za każdy. Obozowa szkoła obniża cenę punktu.
+4. Wydawaj zdobyte punkty nauki u nauczyciela. Możesz trenować atrybuty i cztery umiejętności broni (limit 100%), po 1–10 punktów naraz, płacąc za każdy. Obozowa szkoła obniża cenę punktu.
 5. Wybierz obóz, wykonuj osobiste awanse oraz wspólne zlecenia i wyprawy. Przynależność pozostaje stała również w późnych rozdziałach.
 6. Korzystaj z rynku, kuźni/alchemii, zleceń czasowych, wyzwań i odłamków. To źródła dodatkowego rozwoju, a nie wymaganie opłacenia premium.
 7. Przejdź sześć rozdziałów, odbierz przygotowania „Zabezpieczyć dolinę”, osiągnij poziom 30. Przygotuj zdrowie, energię i oręż, a potem podejmij wartę w sanktuarium.
@@ -33,7 +33,7 @@ Finał postaci nie oznacza odegrania roli Bezimiennego: jest udziałem mieszkań
 
 Raport zawiera liczbę kroków, poziomy, salda, akcje botów, ukończenia i wynik testów nadużyć. Zegar/losowy loot mogą zmieniać dokładny przebieg; raport jest wynikiem danego uruchomienia, nie gwarancją czasu przejścia dla każdego stylu gry. Symulowane godziny nie są czasem aktywnego klikania. GUI jest dodatkowo sprawdzane ręcznie w przeglądarce.
 
-To wersja lokalna z jednym serializującym launcherem i SQLite. PostgreSQL, wieloprocesowy scheduler oraz publiczny hosting nadal wymagają #19/#24. Nie łącz `play.py` z niezależnym `run_bots --loop` na tym samym zapisie.
+To wersja lokalna z jednym serializującym launcherem i SQLite. Opcjonalne PostgreSQL, dzierżawa schedulera i profil publicznego hostingu są opisane w [POSTGRESQL.md](POSTGRESQL.md) i [PRODUCTION.md](PRODUCTION.md); #19/#24 są wdrożone. Nie łącz `play.py` z niezależnym `run_bots --loop` na tym samym zapisie.
 
 Historyczny raport pierwszej wersji (przyspieszony zegar świata sprzed synchronizacji z Polską): [przejście i próby nadużyć](reports/pierwsza-pelna-edycja-2026-11-05.json). Obejmuje także mieszaną sesję, w której zwykły gracz kupuje rzeczywistą ofertę bota i zdobywa poziom podczas równoległych tur trzech mieszkańców. Oddzielna kontrolowana macierz porównuje wojownika, łucznika i maga przeciw trzem bossom; te syntetyczne buildy są oznaczone osobno i nie stanowią przebiegu postaci od zera.
 
@@ -41,6 +41,10 @@ Aktualny raport po synchronizacji z Polską: [22 scenariusze](reports/czas-polsk
 
 ## Dopracowanie pełnej edycji
 
-Od poziomu 30 i po dołączeniu do obozu przejdź do Wart za Przełęczą, bez kończenia fabuły: odblokowuj 100 stopni, farm sprzęt i pył, przekuwaj oręż aż do znamienia Bariery oraz walcz o nowy wynik każdego miesiąca. [Pełne reguły łupów i endgame](LOOT_AND_ENDGAME.md). Ten sam świat pozostaje w Gothic I; nie ma automatycznego transferu.
+Od poziomu 30 i po dołączeniu do obozu przejdź do Wart za Przełęczą, bez kończenia fabuły: odblokowuj 100 stopni, farm sprzęt i pył, szukaj Pradawnych łupów i przekuwaj egzemplarz do +3 oraz walcz o nowy wynik każdego miesiąca. [Pełne reguły łupów i endgame](LOOT_AND_ENDGAME.md). Ten sam świat pozostaje w Gothic I; nie ma automatycznego transferu.
 
 Najnowszy [raport łupów i endgame](reports/lupy-endgame-2026-11-06.json) obejmuje dalszą grę tych samych postaci po finale, ulepszanie, powtarzalne warty oraz próby nadużyć. [Pomiary 100 botów](BOT_PERFORMANCE.md) są osobnymi testami wydajności.
+
+## Próba zwykłej gry — 8 listopada 2026
+
+[Przegląd grywalności](SOLO_PLAYTEST.md) opisuje rzeczywistą sesję w przeglądarce, trzy buildy od zera oraz pełną kampanię i dalszą grę botów. Raporty rozdzielają czas rzeczywisty, przyspieszony zegar i syntetyczne testy granic.

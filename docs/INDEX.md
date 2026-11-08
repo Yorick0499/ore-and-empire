@@ -1,6 +1,6 @@
 # Dokumentacja — indeks
 
-Stan najnowszej wersji: 7 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
+Stan najnowszej wersji: 8 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
 
 ## Dla gracza
 
@@ -53,3 +53,5 @@ Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia:
 - [Stała rzadkość i przekucie +3 — GUI](reports/rzadkosc-kuznia-gui-2026-11-07.json).
 - [Migracja rzadkości — kontrola statystyk prywatnej kopii](reports/rzadkosc-migracja-2026-11-07.json) — raport zawiera wyłącznie zbiorcze wyniki, bez zapisu i danych logowania.
 - [Kampania, boty i nadużycia po zmianie rzadkości](reports/rzadkosc-kuznia-petla-2026-11-07.json).
+
+- [Próba zwykłej gry solo, trzy buildy i ocena immersji](SOLO_PLAYTEST.md).

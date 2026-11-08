@@ -26,7 +26,7 @@ def operation_name(key):
             'craft_item':'Wytworzenie przedmiotu', 'learn_craft':'Nauka rzemiosła',
             'buy_craft_material':'Zakup surowców', 'claim_adventure':'Nagroda za wyprawę',
             'claim_challenge':'Nagroda za wyzwanie', 'claim_achievement':'Nagroda za osiągnięcie',
-            'claim_camp_raid':'Nagroda za wyprawę obozową', 'train_stat':'Nauka u mistrza',
+            'claim_camp_raid':'Nagroda za wyprawę obozową', 'train_stat':'Nauka u mistrza', 'train_attribute':'Nauka u nauczyciela',
             'purchase_product':'Sklep odłamków'}.get(key, 'Rozliczenie sakiewki')
 
 @register.filter

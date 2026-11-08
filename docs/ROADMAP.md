@@ -57,3 +57,7 @@ aktualne reguły są w [LOOT_AND_ENDGAME.md](LOOT_AND_ENDGAME.md).
 Zakup na targu wymaga zgodności aktualnej ceny z potwierdzonym formularzem (#87); zmiana ceny odrzuca transakcję bez pobrania rudy.
 
 #89 — pula łupu pomija nieaktywne ozdoby bez bonusów, z zachowaniem kompletności katalogu G1.
+
+## Próba gry solo — #90–#93
+
+Trening czterech umiejętności broni, filtrowany kupiec i paczki zapasów, najbliższe kroki oraz autentyczna kronika na ekranie kolonii, publiczne imiona mieszkańców i prognoza polowania. [Scenariusze oraz granice oceny](SOLO_PLAYTEST.md).
