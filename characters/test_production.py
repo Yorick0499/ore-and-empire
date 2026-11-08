@@ -116,16 +116,17 @@ apps=MigrationExecutor(connection).loader.project_state([('characters','0036_och
 U=apps.get_model('auth','User');P=apps.get_model('characters','PlayerProfile');B=apps.get_model('characters','ItemBluePrint');I=apps.get_model('characters','OwnedItem');W=apps.get_model('characters','World')
 u=U.objects.create(username='legacy-pg',password='synthetic-old-hash');p=P.objects.create(user=u,world=W.objects.first(),ore_balance=5432);bp=B.objects.create(name='Old blade',damage=20)
 I.objects.create(owner=p,blueprint=bp,upgrade_level=10)
+from django.utils import timezone
+from datetime import timedelta
+T=apps.get_model('characters','AdventureTemplate');R=apps.get_model('characters','AdventureRun')
+q=T.objects.create(key='courier',name='Dawny meldunek operatora',description='Własny opis',ore_reward=41)
+R.objects.create(profile=p,template=q,ends_at=timezone.now()+timedelta(days=1),ore_reward=41,experience_reward=93,premium_reward=0)
 from django.core.management import call_command
 from characters.management.commands.import_sqlite_world import EXCLUDES,canonical
 import io
 for app in ['admin','sessions']:call_command('migrate',app,interactive=False,stdout=io.StringIO())
-with connection.cursor() as cursor:cursor.execute('ALTER TABLE characters_owneditem ADD COLUMN rarity smallint NOT NULL DEFAULT 0')
-try:
-    out=io.StringIO();call_command('dumpdata',format='precise_json',use_base_manager=True,use_natural_foreign_keys=True,exclude=EXCLUDES,stdout=out)
-    print(canonical(out.getvalue(),legacy_equipment=True)[0].decode())
-finally:
-    with connection.cursor() as cursor:cursor.execute('ALTER TABLE characters_owneditem DROP COLUMN rarity')
+from characters.migration_testing import historical_fixture
+print(canonical(historical_fixture(apps,EXCLUDES))[0].decode())
 """
                 facts=subprocess.run([sys.executable,'-c',script],cwd=settings.BASE_DIR,env=env,capture_output=True)
                 self.assertEqual(facts.returncode,0,facts.stderr.decode())
@@ -139,6 +140,7 @@ finally:
                 with psycopg.connect(**{**kwargs,'dbname':target}) as restored:
                     self.assertEqual(restored.execute('SELECT rarity,upgrade_level FROM characters_owneditem').fetchone(),(4,2))
                     self.assertEqual(restored.execute('SELECT ore_balance FROM characters_playerprofile').fetchone(),(5432,))
+                    self.assertEqual(restored.execute("SELECT briefing->>'name',ore_reward,experience_reward,claimed_at FROM characters_adventurerun").fetchone(),('Dawny meldunek operatora',41,93,None))
             finally:
                 for name in [source,target]:admin.execute(sql.SQL('DROP DATABASE IF EXISTS {} WITH (FORCE)').format(sql.Identifier(name)))
 

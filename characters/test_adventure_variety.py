@@ -183,6 +183,14 @@ U=apps.get_model('auth','User');P=apps.get_model('characters','PlayerProfile');W
 u=U.objects.create(username='legacy-probe');w=W.objects.first();w.name='Kopia testowa';w.save()
 p=P.objects.create(user=u,world=w);q=T.objects.create(key='courier',name='Nazwa operatora',description='Własna treść',ore_reward=17)
 R.objects.create(profile=p,template=q,ends_at=timezone.now()+timedelta(days=1),ore_reward=13,experience_reward=71,premium_reward=0,event_names=['Dawna premia'])
+from characters.migration_testing import historical_fixture
+from characters.management.commands.import_sqlite_world import EXCLUDES
+import json
+rows=json.loads(historical_fixture(apps,EXCLUDES))
+run=next(row for row in rows if row['model']=='characters.adventurerun')
+assert run['fields']['ore_reward']==13 and 'briefing' not in run['fields']
+assert 'category' not in next(row for row in rows if row['model']=='characters.adventuretemplate')['fields']
+
 """)
             execute('manage.py','migrate','--noinput')
             execute('-c',"""
