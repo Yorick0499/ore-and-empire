@@ -6,7 +6,7 @@
   "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
   "polish_time_scenarios": 4,
   "loot_endgame_scheduler_scenarios": 12,
-  "time_acceleration": "30 minut symulowanego czasu na krok; wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty",
+  "time_acceleration": "Kampania: 30 minut na krok; trzy buildy: 15 minut na krok. Wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty",
   "scenarios": [
     {
       "scenario": "gracz-od-zera-do-finalu",

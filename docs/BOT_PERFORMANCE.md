@@ -32,3 +32,7 @@ Pomiar po rozszerzeniu katalogu: [100 botów, baseline-17](reports/rynsztunek-st
 Polityka baseline-18 daje potrzebnemu treningowi pierwszeństwo przed opcjonalnym patrolem. Test PostgreSQL z innymi identyfikatorami postaci objął również dwie ścieżki magiczne w jednej populacji. Planowanie nie blokuje gracza na czas decyzji bota, a scheduler ma wspólną dzierżawę — [szczegóły](POSTGRESQL.md).
 
 Eksperymentalne Ollama jest opcjonalne i objęte trwałym budżetem. [Porównanie](LOCAL_AI_POLICIES.md) nie wykazało powodu do zmiany domyślnych stu botów na LLM. Reguły nie potrzebują GPU ani działającego serwera modelu.
+
+## Próba gry solo — 8 listopada 2026
+
+[60 sekund ze 100 świeżymi botami](reports/gra-solo-sto-botow-2026-11-08.json): turę otrzymało 100/100, 0 błędnych decyzji, 497 żądań HTTP bez błędów, p95 61,58 ms, szczyt 56,74 MiB RSS i 27,35% jednego rdzenia. Test dotyczy lokalnego launchera oraz ekranu logowania na maszynie pomiarowej, nie publicznego obciążenia ani długiego balansu.

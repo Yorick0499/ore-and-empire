@@ -44,3 +44,7 @@ Audyt nie jest dowodem braku wszystkich możliwych błędów. Próba HTTP dotycz
 ## Rozszerzenie rynsztunku — 7 listopada 2026
 
 Tickety #71–75: nazwane rangi, kuźnia podczas fabuły, warty bez finału, 522 kody G1 oraz 632 przypisania ilustracji. Testy wykryły i zabezpieczyły pomylenie ceny runy ze zwojem, import częściowej paczki oraz przerywanie regeneracji botów opcjonalnym patrolem. Dodano 11 regresji katalogu, grafik, cache, pochodzenia, odzysku, filtrów, zachowania historycznej mocy i odblokowania wart. Pełny zestaw przed ostatnimi dwoma testami: 284 zaliczone testy; 53 scenariusze [symulacji](reports/rynsztunek-mmorpg-2026-11-07.json). Sprawdzono GUI 320/390 px i przekucie zwykłym formularzem. Prywatna kopia i odtworzenie zachowały 27 tabel zapisu świata; konta i hasła nie są publikowane.
+
+## Zwykła sesja i buildy — 8 listopada 2026
+
+#90–#93: trening czterech umiejętności broni, wyszukiwanie zakupów i paczki amunicji, prawdziwe kolejne kroki i imiona mieszkańców, diagnoza zasobów oraz prognoza polowania. [Przebieg i ograniczenia](SOLO_PLAYTEST.md). 386 testów lokalnych (12 pominiętych z wymaganiami PostgreSQL/produkcji), 126 scenariuszy symulacji oraz 18 kontroli GUI 320/390/1366 px.
