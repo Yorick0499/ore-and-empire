@@ -52,6 +52,9 @@ class Command(BaseCommand):
             call_command("seed_crafting", stdout=self.stdout)
             call_command("seed_adventures", stdout=self.stdout)
             call_command("seed_story", stdout=self.stdout)
+            from characters.models import World
+            if World.objects.filter(is_open=True,universe="GOTHIC_II").exists():
+                call_command("seed_khorinis",stdout=self.stdout)
             from characters.worlds import current_world
             world=current_world()
             if not world.configured:

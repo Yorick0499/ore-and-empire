@@ -3,6 +3,7 @@ from django.db import transaction
 from django.core.exceptions import PermissionDenied, ValidationError
 from .models import CampaignCompletion, EditionConclusion, PlayerProfile, World, AdminAction
 from .worlds import current_world
+from .realms import camps as realm_camps
 
 
 def finale_ready(profile):
@@ -32,7 +33,7 @@ def conclude_edition(operator, world_id, confirmation):
         raise ValidationError("Najpierw przynajmniej jeden gracz musi ukończyć finał.")
     population = PlayerProfile.objects.filter(world=world,user__is_active=True,user__is_staff=False).select_related("user").order_by("-level","-experience","pk")
     rankings = [{"id":p.pk,"name":p.display_name,"camp":p.camp,"level":p.level,"experience":p.experience,"is_bot":p.is_bot} for p in population]
-    camp_rankings = sorted([{"name":label,"experience":sum(p["experience"] for p in rankings if p["camp"]==camp),"residents":sum(p["camp"]==camp for p in rankings)} for camp,label in PlayerProfile.CAMP_LIST if camp!="NONE"],key=lambda row:-row["experience"])
+    camp_rankings = sorted([{"name":label,"experience":sum(p["experience"] for p in rankings if p["camp"]==camp),"residents":sum(p["camp"]==camp for p in rankings)} for camp,label in PlayerProfile.CAMP_LIST if camp in realm_camps(world)],key=lambda row:-row["experience"])
     result = EditionConclusion.objects.create(world=world,operator=operator,snapshot={"name":world.name,"edition":world.edition,"rules_version":world.rules_version,"rankings":rankings,"camp_rankings":camp_rankings,"finishers":list(CampaignCompletion.objects.filter(profile__world=world).values_list("profile_id",flat=True))})
     AdminAction.objects.create(actor=operator,profile=operator.playerprofile,action="conclude_edition",details={"world":world.pk,"edition":world.edition,"rules_version":world.rules_version})
     return result

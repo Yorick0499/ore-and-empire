@@ -27,6 +27,10 @@ class TwoRealmTests(TestCase):
         self.assertEqual(page.context['server_world'].pk,self.island.pk)
         self.assertContains(page,'Port Khorinis');self.assertNotContains(page,'Zamek Starego Obozu')
         self.assertContains(self.client.get('/fabula/'),'Szlaki zaopatrzenia')
+        from django.urls import reverse
+        rankings=self.client.get(reverse('rankings_page'))
+        self.assertEqual({row[0] for row in rankings.context['camps']},{'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'})
+        self.assertNotContains(rankings,'Stary Obóz')
         self.assertEqual(self.client.get('/polowanie/?location=forest').status_code,403)
         self.assertEqual(self.client.get('/polowanie/?location=k2_fields').status_code,200)
         self.assertEqual(current_world().pk,self.colony.pk) # ContextVar reset after response.

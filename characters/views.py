@@ -591,7 +591,7 @@ def rankings_view(request):
     populations = {"all": "Wszyscy", "humans": "Gracze", "bots": "Boty"}
     population = request.GET.get("population", "all")
     camp = request.GET.get("camp", "")
-    camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"]
+    camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key in realm_camps(current_world())]
     if population not in populations or camp not in {"", *(key for key, _ in camps)}:
         raise Http404("Nieznany ranking")
     profiles = PlayerProfile.objects.filter(world=current_world(),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user")
