@@ -47,3 +47,6 @@ separately. Current README screenshots show the expanded local Gothicpedia asset
 ## Pełny katalog G1 — wersja 3
 
 522 pozycje mają lokalne ilustracje Gothicpedii, dobrane według kodów i wariantów G1. Cały manifest zawiera 632 przypisania; katalog przedmiotów używa 388 różnych plików. Wspólne modele i ilustracje kategorii są jawne. Szczegóły w [ITEM_PACKS.md](ITEM_PACKS.md). Cache manifestu eliminuje wielokrotny odczyt przy renderowaniu kart; runtime nie pobiera grafik z sieci.
+
+
+Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.

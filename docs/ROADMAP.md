@@ -4,7 +4,7 @@ Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 
 ## Wdrożone
 
-- Lokalny launcher, trwałe konto i do pięciu postaci, jeden aktywny nazwany świat, 0–100 botów.
+- Lokalny launcher, trwałe konto i do pięciu postaci, dwa równoległe nazwane światy, 0–100 botów.
 - Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
 - 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
 - Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
@@ -26,7 +26,7 @@ Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 
 ## Gothic II: Noc Kruka — nowy kierunek
 
-Nowy plan z 9 listopada zastępuje ręczną II edycję: dwa równoległe światy Kolonia i Khorinis, a następnie jednorazowe połączenie po obozowym pokonaniu Śniącego. [Zakres i zależności #30–#35 / #111](CHARACTERS_AND_WORLDS.md). Konto premium daje osobne uprawnienie Jarkendaru; odłamki nie zastępują premium. Aktualnie grywalna pozostaje Kolonia. Osobisty finał nie uruchamia połączenia.
+Nowy plan z 9 listopada zastępuje ręczną II edycję: dwa równoległe światy Kolonia i Khorinis, a następnie jednorazowe połączenie po obozowym pokonaniu Śniącego. [Zakres i zależności #30–#35 / #111](CHARACTERS_AND_WORLDS.md). Konto premium daje osobne uprawnienie Jarkendaru; odłamki nie zastępują premium. Kolonia i pierwsza paczka Khorinis są grywalne równolegle (#34/#113). [Zakres paczki](KHORINIS.md). Osobisty finał nie uruchamia połączenia.
 
 Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i porównanie z regułami. [Wyniki](LOCAL_AI_POLICIES.md). Model nie jest włączony domyślnie. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
 

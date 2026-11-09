@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "migration": "0042_postacie_fabula_i_przywileje",
-  "theme": "postacie-fabula-przywileje-7; starsze pliki mają własne daty",
+  "migration": "0043_rownolegle_khorinis",
+  "theme": "rownolegle-khorinis-8; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
     {
@@ -157,6 +157,38 @@
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
+      "file": "khorinis-factions.jpg",
+      "bytes": 299739,
+      "sha256": "731e951a8a1c3a5b50a6546a8854ff0f2c4944a2e0de7429e66aad603b34648d",
+      "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
+      "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
+      "theme": "rownolegle-khorinis-8"
+    },
+    {
+      "file": "khorinis-story.jpg",
+      "bytes": 176099,
+      "sha256": "bff39062bff4f4b0bbae2732670b95d342104ee1a58e5adce3d4fb0712575df0",
+      "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
+      "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
+      "theme": "rownolegle-khorinis-8"
+    },
+    {
+      "file": "khorinis-tavern.jpg",
+      "bytes": 154684,
+      "sha256": "2950349e9052f356ad6e92827b565a46dfe0c4f2a9e3c71d365362795398a569",
+      "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
+      "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
+      "theme": "rownolegle-khorinis-8"
+    },
+    {
+      "file": "khorinis.jpg",
+      "bytes": 768751,
+      "sha256": "32867b1d8ff65efff20fbfe514d67fbe4bf0607cc16f8b64e3e16612a9b94800",
+      "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
+      "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
+      "theme": "rownolegle-khorinis-8"
+    },
+    {
       "file": "living-world.jpg",
       "bytes": 92525,
       "sha256": "d290d57e85280b497caf341de92d6dec9dc7f4bd90faf6925af6fdb017c42fe4",
@@ -299,6 +331,22 @@
       "captured_at_utc": "2026-11-08T20:37:26.136535+00:00",
       "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
       "theme": "gra-solo-i-buildy-4"
+    },
+    {
+      "file": "two-worlds-mobile.jpg",
+      "bytes": 108207,
+      "sha256": "db2cb4084caaa441b8eb0e7cfd44c8752ab028439026a348587bc0a419e55455",
+      "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
+      "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
+      "theme": "rownolegle-khorinis-8"
+    },
+    {
+      "file": "two-worlds.jpg",
+      "bytes": 152135,
+      "sha256": "a28a1b63f2bda5a8327a4e01c70309a749ea3707ac93dc6d3842c89b8570af57",
+      "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
+      "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
+      "theme": "rownolegle-khorinis-8"
     }
   ]
 }
