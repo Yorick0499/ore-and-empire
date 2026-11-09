@@ -427,8 +427,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     hunt_goals = [key for kind, key in story.events if kind == 'hunt']
     boss_goals = [key for kind, key in story.events if kind == 'boss']
     if final_goal:boss_goals.append('sleeper_sanctum')
-    training = "strength"
-    training_needed = profile.skill_points > 0 and profile.strength < 15 + profile.level * 4
+    training = "mana" if profile.camp=="FIRE_ORDER" and profile.camp_tier>=1 else "strength"
+    training_needed = profile.skill_points > 0 and getattr(profile,training) < 15 + profile.level * 4
     quest = profile.camp_quests.filter(promoted_at__isnull=True).first()
     if quest:
         rank = next((r for r in RANKS if r.key == quest.rank_key and available_rank(profile, r)), None)

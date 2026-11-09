@@ -71,7 +71,7 @@ class CharacterSelectionMiddleware:
             if request.user.is_authenticated and request.user.is_superuser and request.path.startswith('/zarzadca/'):
                 from .realms import open_worlds,_scope
                 server=request.GET.get('server')
-                if server and server.isdecimal():
+                if server and len(server)<=18 and server.isdecimal():
                     selected_world=open_worlds().filter(pk=int(server)).first()
                     if selected_world:_scope.set(selected_world.pk)
             return self.get_response(request)

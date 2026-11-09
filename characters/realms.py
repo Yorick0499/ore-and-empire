@@ -31,6 +31,3 @@ def profile_scope(fn):
             raise LeaseLost('Dzierżawa innego serwera nie uprawnia do działania.')
         with world_scope(profile.world_id):return fn(profile,*args,**kwargs)
     return wrapped
-
-def catalog(queryset,world):
-    return queryset.filter(source_game__in=['adaptation',world.universe])

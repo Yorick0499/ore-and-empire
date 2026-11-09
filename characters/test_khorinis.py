@@ -79,13 +79,23 @@ class TwoRealmTests(TestCase):
                     action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(step,bot.pk,action));actions[action]+=1
                     if bot.story_runs.filter(status='claimed',snapshot__key='k2-supply-8').exists():done.add(bot.pk)
             if len(done)==3:break
+        # The same earned characters keep playing after their pre-merge story.
+        for extra in range(80):
+            with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*(step+extra+1))):
+                for bot in bots:
+                    action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(extra,bot.pk,action));actions[action]+=1
         status=list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('id','camp','guild','level','strength','mana','ore_balance'))
         self.assertEqual(len(done),3,(status,actions,{b.pk:list(b.story_runs.exclude(status='claimed').values('snapshot__key','progress')) for b in bots}))
         self.assertEqual({p['camp'] for p in status},{'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'})
+        mage=next(b for b in bots if PlayerProfile.objects.get(pk=b.pk).camp=='FIRE_ORDER')
+        self.assertTrue(mage.battles.filter(combat_details__casts__gt=0).exists())
         for bot in bots:
+            bot.refresh_from_db();self.assertEqual(bot.camp_tier,3)
             self.assertEqual(bot.story_runs.filter(status='claimed').count(),17)
             self.assertFalse(bot.story_runs.exclude(snapshot__universe='GOTHIC_II').exists())
         self.assertEqual(current_world().pk,self.colony.pk)
+        from .release_probe import record_scenario
+        record_scenario('khorinis-trzy-frakcje',{'ticks':step+1,'quests_each':17,'actions':dict(actions),'characters':status,'ordinary_services_without_grants':True})
 
     def test_human_completes_island_campaign_using_forms_without_grants(self):
         from .story_quests import available
@@ -149,6 +159,8 @@ class TwoRealmTests(TestCase):
         self.assertTrue(self.p.story_runs.filter(snapshot__key='k2-supply-8',status='claimed').exists())
         self.assertFalse(self.p.campaigncompletion_set.exists() if hasattr(self.p,'campaigncompletion_set') else hasattr(self.p,'campaign_completion'))
         self.assertEqual(World.objects.filter(is_open=True,universe='GOTHIC_II').count(),1)
+        from .release_probe import record_scenario
+        record_scenario('khorinis-gracz-od-zera',{'steps':step,'quests':17,'level':self.p.level,'ore':self.p.ore_balance,'experience':self.p.experience,'ordinary_forms_without_grants':True})
 
     def test_scheduler_has_distinct_leases_and_one_shared_population_queue(self):
         from contextlib import ExitStack
@@ -176,9 +188,15 @@ class TwoRealmTests(TestCase):
         self.client.force_login(self.user)
         response=self.client.get('/zarzadca/swiat/reset/?server='+str(self.island.pk))
         self.assertEqual(response.context['world'].pk,self.island.pk)
+        self.assertEqual(self.user.characters.count(),2) # Manager GET must not create an implicit character.
         self.assertEqual(response.context['server_world'].pk,self.island.pk)
         self.assertEqual(self.client.get('/').context['profile'].pk,self.original.pk)
         response=self.client.post('/zarzadca/swiat/reset/?server='+str(self.island.pk),{'action':'configure','name':'Latarnia testowa','bot_count':4,'bot_personality_cycles':'on'})
         self.assertEqual(response.status_code,302);self.island.refresh_from_db();self.colony.refresh_from_db()
         self.assertEqual(self.island.bot_count,4);self.assertEqual(self.colony.bot_count,0)
         self.assertEqual(PlayerProfile.objects.filter(world=self.island,is_bot=True).count(),4)
+        manager=self.client.get('/zarzadca/?server='+str(self.island.pk)+'&profile='+str(self.p.pk))
+        self.assertContains(manager,'name="server" value="'+str(self.island.pk)+'"')
+        response=self.client.post('/zarzadca/?server='+str(self.island.pk),{'action':'restore','profile':self.p.pk})
+        self.assertIn('server='+str(self.island.pk),response.url)
+        self.assertEqual(self.client.get(response.url).status_code,200)

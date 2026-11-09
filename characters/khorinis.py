@@ -20,7 +20,7 @@ DESTINATIONS=[
  ('k2_fields','Pola Lobarta','Ścierwojady podchodzą pod pola. Każda para rąk ma tu zajęcie.',0,'hunt_page',('k2_scavenger',),'Tereny Khorinis'),
  ('k2_market','Targ Khorinis','Handel mieszkańców tego serwera; towary z Kolonii nie przechodzą przez Barierę.',0,'market_page',(),'Miasto Khorinis'),
  ('k2_quarry','Kamieniołom przy trakcie','Wspólna praca za rudę rozliczeniową. Waluta jest adaptacją przeglądarkową.',0,'mine_page',(),'Tereny Khorinis'),
- ('k2_tavern','Martwa Harpia','Senteza i karawaniarze wymieniają tu wieści. Karczma mieszkańców Khorinis.',0,'tavern_page',(),'Martwa Harpia'),
+ ('k2_tavern','Martwa Harpia','Podróżni i karawaniarze wymieniają tu wieści. Karczma mieszkańców Khorinis.',0,'tavern_page',(),'Martwa Harpia'),
  ('k2_onar','Farma Onara','Kontrakty najemników i niezależność farmerów.',0,'train_page',(),'Farma Onara'),
  ('k2_barracks','Koszary Khorinis','Ćwiczenia obywateli oraz miejskie patrole.',0,'train_page',(),'Koszary w Khorinis'),
  ('k2_monastery','Klasztor Innosa','Praca nowicjuszy, nauka i ochrona pielgrzymów.',0,'train_page',(),'Tereny Khorinis'),
@@ -66,7 +66,7 @@ def campaign():
         home={'CITY_WATCH':'k2_barracks','FIRE_ORDER':'k2_monastery','ONAR_MERCS':'k2_onar'}[camp]
         prefix={'CITY_WATCH':'watch','FIRE_ORDER':'fire','ONAR_MERCS':'onar'}[camp]
         patron={'CITY_WATCH':'Andre','FIRE_ORDER':'Parlan','ONAR_MERCS':'Torlof'}[camp]
-        objectives=[([visit(home,'Zamelduj się we wspólnocie'),talk('Ustal obowiązki z '+patron)],'Pierwszy meldunek'),([mine(2)],'Zapasy zamiast obietnic'),([hunt('k2_goblin',2)],'Droga bez haraczu'),([train('mana' if camp=='FIRE_ORDER' else 'strength')],'Próba codziennej dyscypliny'),([hunt('k2_field_raider',2)],'Żniwa pod ochroną'),([visit('k2_tavern','Zanieś meldunki do Martwej Harpii'),wait(60,'Poczekaj na powrót gońca')],'Zaufanie przy wspólnym stole')]
+        objectives=[([visit(home,'Zamelduj się we wspólnocie'),talk('Ustal obowiązki z '+patron)],'Pierwszy meldunek'),([mine(2)],'Zapasy zamiast obietnic'),([hunt('k2_goblin',3)],'Droga bez haraczu'),([train('mana' if camp=='FIRE_ORDER' else 'strength')],'Próba codziennej dyscypliny'),([hunt('k2_field_raider',2)],'Żniwa pod ochroną'),([visit('k2_tavern','Zanieś meldunki do Martwej Harpii'),wait(60,'Poczekaj na powrót gońca')],'Zaufanie przy wspólnym stole')]
         previous='k2-citizenship'
         for n,(goals,title) in enumerate(objectives,1):
             key=f'k2-{prefix}-{n}';q(key,title,f'{label}: {patron} powierza ci część codziennych obowiązków. Wspólnota zapamięta wykonaną pracę, nie tylko słowa.',goals,(1200,1800,2500,3500,5000,6500)[n-1],(0,2,3,4,5,6)[n-1],[previous],camp=camp,chapter=2);previous=key

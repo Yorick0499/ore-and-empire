@@ -619,8 +619,8 @@ def game_master_view(request):
     if request.method == "POST":
         success, message = administer_player(request.user, target.pk, request.POST.get("action"), request.POST)
         (messages.success if success else messages.error)(request, message)
-        return redirect(reverse_url("game_master") + "?profile=" + str(target.pk))
-    return render(request, "characters/game_master.html", {"backup_status": backup_status(settings.BASE_DIR / "backups"), "profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.select_related("actor", "profile__user")[:30]})
+        return redirect(reverse_url("game_master") + "?profile=" + str(target.pk)+"&server="+str(target.world_id))
+    return render(request, "characters/game_master.html", {"backup_status": backup_status(settings.BASE_DIR / "backups"), "profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.filter(profile__world=current_world()).select_related("actor", "profile__user")[:30]})
 
 
 def reverse_url(name):
