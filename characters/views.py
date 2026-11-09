@@ -301,8 +301,9 @@ def register_view(request):
     if request.method == "POST" and form.is_valid():
         with transaction.atomic():
             user = form.save()
+            user.characters.filter(world=current_world()).update(is_draft=True)
         login(request, user)
-        return redirect("locations_page")
+        return redirect("characters_page")
     return render(request, "registration/register.html", {"form": form})
 
 
@@ -313,7 +314,10 @@ def locations_view(request):
     if request.method == "POST":
         camp = request.POST.get("camp")
         from .game_logic import choose_camp
-        report_action(request, choose_camp(profile, camp))
+        from .story_gates import missing
+        blockers=missing(profile)
+        if blockers:messages.error(request,"Najpierw ukończ i odbierz: "+", ".join(row["title"] for row in blockers))
+        else:report_action(request, choose_camp(profile, camp))
         return redirect("locations_page")
     cards = [
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS
@@ -331,6 +335,7 @@ def locations_view(request):
              and edition == str(profile.world.edition)]
     from .player_journey import journey
     next_steps=journey(profile)
+    from .story_gates import missing
     from .community import activity_rows
     recent_activity=activity_rows(limit=5)
     return render(
@@ -340,6 +345,7 @@ def locations_view(request):
             "profile": profile,
             "cards": cards,
             "journey":next_steps,
+            "membership_missing":missing(profile) if profile.camp=="NONE" else [],
             "recent_activity":recent_activity,
             "population": PlayerProfile.objects.filter(
                 world=current_world(),is_bot=True, user__is_active=True
@@ -581,7 +587,7 @@ def rankings_view(request):
     camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"]
     if population not in populations or camp not in {"", *(key for key, _ in camps)}:
         raise Http404("Nieznany ranking")
-    profiles = PlayerProfile.objects.filter(world=current_world(),user__is_active=True, user__is_staff=False).select_related("user")
+    profiles = PlayerProfile.objects.filter(world=current_world(),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user")
     if population != "all":
         profiles = profiles.filter(is_bot=population == "bots")
     totals = {row["camp"]: row for row in profiles.values("camp").annotate(players=Count("pk"), experience=Sum("experience"), average=Avg("level"))}
@@ -762,7 +768,10 @@ def camp_guild_view(request):
         try:amount=int(request.POST.get('amount',0));expected=int(request.POST.get('expected_level',-1))
         except (TypeError,ValueError):amount=0;expected=-1
         action=request.POST.get('action')
-        if action=='rally':result=rally_camp_raid(profile)
+        if action=='resupply':
+            from .camp_privileges import claim_resupply
+            result=claim_resupply(profile,request.POST.get('request_key'))
+        elif action=='rally':result=rally_camp_raid(profile)
         elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
         elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
         else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
@@ -823,13 +832,25 @@ def world_control_view(request):
 
 @login_required
 def characters_view(request):
-    from .worlds import profile_for
-    profile=profile_for(request.user)
+    from .character_selection import CharacterForm,create_character,select_character
+    from django.core.exceptions import ValidationError
+    from django.db import IntegrityError
+    form=CharacterForm(request.POST if request.method=='POST' and request.POST.get('action')=='create' else None)
     if request.method=='POST':
-        selected=get_object_or_404(PlayerProfile,pk=positive_id(request.POST.get('profile')),user=request.user,world=current_world())
-        request.session['active_character']=selected.pk
-        return redirect('locations_page')
-    return render(request,'characters/characters.html',{'profile':profile,'characters':request.user.characters.select_related('world').all()})
+        try:
+            if request.POST.get('action')=='create':
+                if form.is_valid():
+                    selected=create_character(request.user,form.cleaned_data['name'],form.cleaned_data['world'].pk)
+                    select_character(request,selected)
+                    return redirect('locations_page')
+            else:
+                selected=get_object_or_404(PlayerProfile.objects.select_related('world'),pk=positive_id(request.POST.get('profile')),user=request.user,is_draft=False,world__is_current=True,world__status="active")
+                select_character(request,selected)
+                return redirect('locations_page')
+        except ValidationError as error:form.add_error(None,error)
+        except IntegrityError:form.add_error(None,'Imię lub slot zajęto przed chwilą. Odśwież listę i spróbuj ponownie.')
+    characters=request.user.characters.filter(is_draft=False).select_related('world').order_by('slot')
+    return render(request,'characters/characters.html',{'form':form,'characters':characters,'character_count':characters.count(),'active_id':request.session.get('active_character')})
 
 
 @login_required

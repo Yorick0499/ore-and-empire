@@ -47,7 +47,7 @@ class Quote:
 class MarketState:
     def __init__(self,world_id):
         self.now=timezone.now();self.world_id=world_id
-        self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True))
+        self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True,is_draft=False))
         self.items=defaultdict(list);self.listings=[]
         for i in OwnedItem.objects.filter(owner__world_id=world_id,owner__user__is_active=True).select_related('blueprint','owner'):
             self.items[i.owner_id].append(i)
@@ -55,9 +55,9 @@ class MarketState:
         self.merchants=list(ItemBluePrint.objects.filter(merchant=True))
         self.recipes=list(CraftRecipe.objects.filter(enabled=True).select_related("output"))
         self.history=defaultdict(dict);self._need={};self._value={};self._ceil={}
-        for row in MarketTrade.objects.filter(seller__world_id=world_id,buyer__world_id=world_id,created_at__gte=self.now-timedelta(days=7),rarity__isnull=False,quantity__gt=0).order_by('-created_at','-pk').values('blueprint_id','rarity','upgrade_level','buyer_id','price','quantity')[:2000]:
+        for row in MarketTrade.objects.filter(seller__world_id=world_id,buyer__world_id=world_id,created_at__gte=self.now-timedelta(days=7),rarity__isnull=False,quantity__gt=0).order_by('-created_at','-pk').values('blueprint_id','rarity','upgrade_level','buyer__user_id','price','quantity')[:2000]:
             h=self.history[(row['blueprint_id'],row['rarity'],row['upgrade_level'])]
-            if len(h)<20:h.setdefault(row['buyer_id'],row['price']/row['quantity'])
+            if len(h)<20:h.setdefault(row['buyer__user_id'],row['price']/row['quantity'])
     def value(self,p,i):
         b=i.blueprint if isinstance(i,OwnedItem) else i
         key=(p.pk,b.pk,i.rarity if isinstance(i,OwnedItem) else 0,i.upgrade_level if isinstance(i,OwnedItem) else 0)

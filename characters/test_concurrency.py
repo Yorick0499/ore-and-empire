@@ -99,6 +99,27 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
             try:gate.wait(timeout=10);return callback(n)
             finally:connections.close_all()
         with ThreadPoolExecutor(max_workers=2) as pool:return list(pool.map(worker,range(2)))
+    def test_fifth_character_slot_has_exactly_one_concurrent_winner(self):
+        from django.core.exceptions import ValidationError
+        from .character_selection import create_character
+        for n in range(2,5):create_character(self.a.user,'Istniejąca '+str(n),self.a.world_id)
+        def create(n):
+            try:return create_character(User.objects.get(pk=self.a.user_id),'Równoległa '+str(n),self.a.world_id).slot
+            except ValidationError:return 0
+        self.assertEqual(sorted(self.race(create)),[0,5])
+        self.assertEqual(self.a.user.characters.count(),5)
+
+    def test_concurrent_resupply_debits_and_refills_once(self):
+        from .camp_privileges import claim_resupply
+        from .models import CampSupplyUse,EnergyRefill
+        self.a.camp='OLD_CAMP';self.a.guild='GUARD';self.a.current_energy=0;self.a.energy_updated_at=timezone.now();self.a.save()
+        key=uuid4()
+        results=self.race(lambda n:claim_resupply(PlayerProfile.objects.get(pk=self.a.pk),key).pk)
+        self.assertEqual(results[0],results[1]);self.a.refresh_from_db()
+        self.assertEqual(self.a.ore_balance,40)
+        self.assertEqual(CampSupplyUse.objects.filter(profile=self.a).count(),1)
+        self.assertEqual(EnergyRefill.objects.filter(profile=self.a).count(),1)
+
     def test_single_market_winner_and_conserved_currency(self):
         item=OwnedItem.objects.create(owner=self.seller,blueprint=self.bp,is_market_listed=True,market_price=25)
         total=sum(p.ore_balance for p in (self.seller,self.a,self.b))
@@ -124,6 +145,9 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
     def test_rank_promotion_spends_once(self):
         from .camp_progression import promote_in_camp
         self.a.camp='OLD_CAMP';self.a.save()
+        call_command('seed_story',stdout=StringIO())
+        from .testing_story import claimed_milestone
+        claimed_milestone(self.a,'prologue-path')
         CampQuest.objects.create(profile=self.a,rank_key='DIGGER',progress={'mine':1})
         result=self.race(lambda n:promote_in_camp(PlayerProfile.objects.get(pk=self.a.pk),'DIGGER'))
         self.assertEqual(sorted(result),[False,True]);self.a.refresh_from_db();self.assertEqual(self.a.guild,'DIGGER')

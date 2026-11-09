@@ -1,8 +1,15 @@
 # Aktualne zrzuty ekranów
 
+**9 listopada 2026, migracja 0042:** 40 ujęć w manifeście. Odświeżono sklep, ekran rang i wspólnotę; dodano kreator oraz jego mobilne ujęcie. „Bariera — Kolonia” to odrębny świat testowy z 12 botami i syntetycznymi postaciami Darin/Mira. Stan Darina służy kontroli przywilejów, nie dowodzi naturalnego przejścia. Chromium sprawdza 12 kombinacji czterech stron i trzech szerokości; wszystkie 17 kart sklepu mają jedną ilustrację/nagłówek. Sprawdzono przełączenie na Mirę i blokadę dołączenia bez prologu. [Raport kontroli](reports/postacie-fabula-przywileje-2026-11-09.json).
+
+![Wymagania i rangi obozowe](screenshots/camp.jpg)
+
+![Wybór i tworzenie postaci](screenshots/characters.jpg)
+![Mobilny wybór postaci](screenshots/characters-mobile.jpg)
+
 **9 listopada 2026, migracja 0041:** odświeżono sklep odłamków, życie kolonii oraz panel zarządcy; dodano mobilny sklep. Świat „Kolonia siedmiu osobowości — test”, 100 botów i syntetyczny zarządca poziomu 10 z nadanymi odłamkami służą wyłącznie kontroli GUI. Test Chromium obejmuje 320/390/1440 px, brak błędów JS, poziomego przewijania i brakujących obrazów, a także nadanie dwóch Pradawnych egzemplarzy +0. Hasła i prywatny zapis nie są publikowane.
 
-Zestaw **37 ujęć** z dwóch osobnych światów testowych, każdy ze 100 botami: „Kolonia nad Wisłą” (`Skazaniec_Pokazowy`) i „Dolina Wędrowców — próba gry solo” (`Wedrowiec_Samotnik`). Nie zawiera danych prywatnego administratora.
+Starszy zestaw 37 ujęć z dwóch osobnych światów testowych, każdy ze 100 botami: „Kolonia nad Wisłą” (`Skazaniec_Pokazowy`) i „Dolina Wędrowców — próba gry solo” (`Wedrowiec_Samotnik`). Nie zawiera danych prywatnego administratora.
 
 **8 listopada 2026, migracja 0038:** odświeżono ekwipunek, kuźnię, targ, kupca i porównywarkę wraz z trzema mobilnymi odpowiednikami. Dodano dziennik zleceń i pięć osobnych kart. Motyw `zlecenia-i-rzadkosc-5`. `Zbrojmistrz_Proba` to jawny syntetyczny zestaw do porównania pięciu rzadkości; poziom 30, zasoby i Pradawny +3 nie pochodzą z przejścia. Osobny zwykły gracz testował nowe zlecenie bez nadań. Starsze ekrany zachowują własną datę w manifeście.
 

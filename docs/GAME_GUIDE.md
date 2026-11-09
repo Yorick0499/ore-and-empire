@@ -6,7 +6,7 @@
 
 Uruchom grę według README, skonfiguruj świat i administratora przy pierwszym starcie. Zarejestruj **zwykłe konto** do gry. Zaczynasz na poziomie 0, z 50 rudy, 100/100 energii, 50/50 zdrowia i 10 many. Rozmowę z kopaczem znajdziesz w dzienniku fabuły. Każde zadanie trzeba przyjąć, rozpocząć i po spełnieniu celów odebrać.
 
-Kolonia pokazuje najbliższe kroki wynikające z twoich faktycznych przydziałów, odbiorów i PN, postęp do następnego poziomu oraz pięć ostatnich rzeczywistych działań mieszkańców. Nagrody nadal odbierasz samodzielnie. Kolonia pokazuje lokacje i ich wymagania. Filtruj dostępność, maksymalny wymagany poziom, aktywność i edycję. Wymagania sprawdza serwer; sam adres lokacji nie daje dostępu. Wybór obozu jest stały. Twoja postać jest mieszkańcem doliny, nie jedynym Bezimiennym; późne rozdziały nie wyrzucają jej z obozu.
+Kolonia pokazuje najbliższe kroki wynikające z twoich faktycznych przydziałów, odbiorów i PN, postęp do następnego poziomu oraz pięć ostatnich rzeczywistych działań mieszkańców. Nagrody nadal odbierasz samodzielnie. Kolonia pokazuje lokacje i ich wymagania. Filtruj dostępność, maksymalny wymagany poziom, aktywność i edycję. Wymagania sprawdza serwer; sam adres lokacji nie daje dostępu. Przed dołączeniem musisz wykonać trzy zadania prologu i odebrać „Drogę między ogniskami”. Wybór obozu jest stały. Awanse wymagają dalszej fabuły i odblokowują przywileje wspólnoty — [pełne progi](CHARACTERS_AND_WORLDS.md). Twoja postać jest mieszkańcem doliny, nie jedynym Bezimiennym; późne rozdziały nie wyrzucają jej z obozu.
 
 ## Zasoby, czas i odpoczynek
 
@@ -22,7 +22,7 @@ Zwykła walka kosztuje 15 energii. Wybierz przeciwnika z danej lokacji; jego poz
 
 ## Rozwój i wyposażenie
 
-PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Poziom daje 10 PN i +12 maksymalnego zdrowia. Nauczyciel rozwija siłę, zręczność, manę oraz władanie bronią jednoręczną, dwuręczną, łukami i kuszami (do 100%); jeden punkt kosztuje 1 PN i 10 rudy pomniejszone o poziom szkoły obozowej. Formularz pozwala ćwiczyć 1–10 punktów i płaci za każdy.
+PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Poziom daje 10 PN i +12 maksymalnego zdrowia. Nauczyciel rozwija siłę, zręczność, manę oraz władanie bronią jednoręczną, dwuręczną, łukami i kuszami (do 100%); jeden punkt kosztuje 1 PN i 10 rudy pomniejszone o poziom szkoły obozowej i osobistą premię rangi (do 5 rudy łącznie). Formularz pozwala ćwiczyć 1–10 punktów i płaci za każdy.
 
 Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu opierają się na bazowych atrybutach, poziomie i ewentualnym obozie/randze. Broń wręcz korzysta z siły, łuki/kusze ze zręczności. Umiejętność danego typu broni określa szansę krytyka. Łuk zużywa strzałę, kusza bełt na całą walkę — to reguła adaptacji. Szczegóły: [wyposażenie](EQUIPMENT.md), [magia](MAGIC.md).
 
@@ -86,3 +86,6 @@ Panel świata zmienia nazwę serwera i liczbę botów. Pełny reset wymaga hasł
 ## Osobowości i zakupy mieszkańców
 
 [Siedem stylów, sesje, 17 ofert i limity](BOT_PERSONALITIES.md). Boty mają okresy aktywności według czasu polskiego, a symulowane zakupy są oddzielnie ewidencjonowanym źródłem premium. Zarządca może wybrać rzadkość nowo nadawanego przedmiotu. [Model cen i ochrona ekwipunku](MARKET_POLICY.md).
+
+
+Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywileje rang i aktualny plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).

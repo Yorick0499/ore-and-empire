@@ -1,0 +1,637 @@
+{
+  "date": "2026-11-09",
+  "scope": "#107–#110 / migracja 0042",
+  "full_sqlite_regression": {
+    "tests": 438,
+    "success": true,
+    "skipped": 14,
+    "seconds": 299.565,
+    "note": "Pominięto testy wymagające PostgreSQL; późniejsze doprecyzowanie nazw i wskazówek sprawdzono w 34 testach oraz końcowym CI."
+  },
+  "latest_focused_tests": {
+    "tests": 34,
+    "success": true
+  },
+  "interface": {
+    "pages": [
+      {
+        "route": "/sklep-odlamkow/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/sklep-odlamkow/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/sklep-odlamkow/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/postacie/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/postacie/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/postacie/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/wspolnota/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/wspolnota/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/wspolnota/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/oboz/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/oboz/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "route": "/oboz/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      }
+    ],
+    "product_cards": 17,
+    "one_image_and_title_per_card": true,
+    "switch_to_unaffiliated_character": true,
+    "story_gate_visible_and_join_disabled": true,
+    "javascript_errors": []
+  },
+  "migration_copy": {
+    "isolated_copy": true,
+    "migration": "0042_postacie_fabula_i_przywileje",
+    "stable_tables": 28,
+    "all_existing_tables": 56,
+    "existing_rows_preserved": 151107,
+    "all_existing_columns_and_ids_preserved": true,
+    "passwords_and_accounts_preserved": true
+  },
+  "gameplay_scenarios": [
+    {
+      "kind": "sessions_48h",
+      "sampling_minutes": 5,
+      "population": 7,
+      "actions": {
+        "stock": 45,
+        "equip": 51,
+        "list": 23,
+        "story_accept": 92,
+        "story_start": 89,
+        "story_talk": 27,
+        "story_claim": 88,
+        "mine": 44,
+        "claim": 44,
+        "story_travel": 33,
+        "hunt": 43,
+        "salvage": 4,
+        "buy": 13,
+        "camp": 7,
+        "accept": 12,
+        "improve": 12,
+        "promote": 6,
+        "train": 231,
+        "challenge_accept": 19,
+        "finance": 9,
+        "ammo": 7,
+        "craft_learn": 4,
+        "challenge_claim": 6,
+        "sell": 35,
+        "camp_donate": 7,
+        "market_buy": 6,
+        "boss": 2,
+        "market_cancel": 3,
+        "market_sell": 2,
+        "achievement_claim": 2,
+        "craft_material": 4,
+        "craft": 1,
+        "adventure": 3,
+        "consume": 1,
+        "adventure_claim": 2,
+        "shop": 6,
+        "wait": 1
+      },
+      "by_persona": {
+        "grinder": {
+          "stock": 13,
+          "equip": 11,
+          "list": 5,
+          "story_accept": 24,
+          "story_start": 24,
+          "story_talk": 7,
+          "story_claim": 24,
+          "mine": 7,
+          "claim": 7,
+          "story_travel": 13,
+          "hunt": 18,
+          "salvage": 3,
+          "camp": 1,
+          "accept": 2,
+          "improve": 5,
+          "promote": 1,
+          "train": 92,
+          "challenge_accept": 3,
+          "craft_learn": 2,
+          "challenge_claim": 2,
+          "sell": 10,
+          "camp_donate": 5,
+          "boss": 1,
+          "market_cancel": 1,
+          "achievement_claim": 1,
+          "market_buy": 2,
+          "craft_material": 2,
+          "craft": 1,
+          "consume": 1
+        },
+        "casual": {
+          "buy": 4,
+          "equip": 5,
+          "list": 3,
+          "story_accept": 4,
+          "story_start": 4,
+          "story_talk": 1,
+          "story_claim": 4,
+          "mine": 3,
+          "claim": 3,
+          "challenge_accept": 1,
+          "story_travel": 1,
+          "hunt": 1,
+          "camp": 1,
+          "accept": 1,
+          "promote": 1,
+          "train": 9,
+          "stock": 1,
+          "sell": 1
+        },
+        "prospector": {
+          "mine": 8,
+          "claim": 8,
+          "buy": 2,
+          "equip": 7,
+          "list": 4,
+          "stock": 7,
+          "story_accept": 14,
+          "story_start": 14,
+          "story_talk": 4,
+          "story_claim": 14,
+          "finance": 2,
+          "ammo": 2,
+          "story_travel": 4,
+          "hunt": 7,
+          "camp": 1,
+          "accept": 2,
+          "market_buy": 1,
+          "train": 30,
+          "challenge_accept": 3,
+          "sell": 6,
+          "promote": 1,
+          "camp_donate": 2,
+          "improve": 1
+        },
+        "merchant": {
+          "buy": 2,
+          "equip": 10,
+          "list": 4,
+          "stock": 9,
+          "story_accept": 18,
+          "story_start": 18,
+          "story_talk": 6,
+          "story_claim": 17,
+          "mine": 8,
+          "claim": 8,
+          "finance": 2,
+          "ammo": 2,
+          "challenge_accept": 3,
+          "story_travel": 7,
+          "hunt": 10,
+          "camp": 1,
+          "accept": 2,
+          "promote": 1,
+          "challenge_claim": 2,
+          "train": 45,
+          "sell": 8,
+          "improve": 3,
+          "craft_learn": 1,
+          "market_buy": 1,
+          "boss": 1,
+          "salvage": 1,
+          "achievement_claim": 1,
+          "craft_material": 1
+        },
+        "adventurer": {
+          "buy": 3,
+          "equip": 6,
+          "list": 3,
+          "story_accept": 10,
+          "story_start": 9,
+          "story_talk": 3,
+          "story_claim": 9,
+          "mine": 6,
+          "claim": 6,
+          "challenge_accept": 3,
+          "story_travel": 3,
+          "hunt": 1,
+          "camp": 1,
+          "accept": 2,
+          "stock": 4,
+          "sell": 3,
+          "promote": 1,
+          "train": 17,
+          "finance": 1,
+          "craft_learn": 1,
+          "craft_material": 1,
+          "adventure": 1,
+          "wait": 1,
+          "adventure_claim": 1
+        },
+        "social": {
+          "mine": 4,
+          "claim": 4,
+          "buy": 2,
+          "equip": 3,
+          "sell": 2,
+          "stock": 2,
+          "story_accept": 8,
+          "story_start": 7,
+          "story_talk": 2,
+          "story_claim": 7,
+          "finance": 2,
+          "ammo": 1,
+          "market_buy": 2,
+          "challenge_accept": 3,
+          "story_travel": 2,
+          "hunt": 1,
+          "camp": 1,
+          "accept": 1,
+          "challenge_claim": 1,
+          "train": 13,
+          "list": 1,
+          "adventure": 2,
+          "adventure_claim": 1
+        },
+        "patron": {
+          "stock": 9,
+          "equip": 9,
+          "list": 3,
+          "story_accept": 14,
+          "story_start": 13,
+          "story_talk": 4,
+          "story_claim": 13,
+          "market_cancel": 2,
+          "market_sell": 2,
+          "mine": 8,
+          "claim": 8,
+          "finance": 2,
+          "ammo": 2,
+          "story_travel": 3,
+          "hunt": 5,
+          "camp": 1,
+          "accept": 2,
+          "promote": 1,
+          "challenge_accept": 3,
+          "train": 25,
+          "sell": 5,
+          "shop": 6,
+          "improve": 3,
+          "challenge_claim": 1
+        }
+      },
+      "offline_samples": {
+        "casual": 528,
+        "prospector": 432,
+        "merchant": 384,
+        "adventurer": 480,
+        "social": 504,
+        "patron": 432,
+        "grinder": 288
+      },
+      "trades": 19,
+      "purchases": 6,
+      "simulated_shards": 40,
+      "failures": [],
+      "limits": [
+        "Próbkowanie pięciominutowe nie mierzy minimalnych odstępów 15–120 sekund.",
+        "Mała populacja startowa nie stanowi prognozy długookresowej gospodarki."
+      ]
+    },
+    {
+      "scenario": "audyt-blednych-identyfikatorow-i-csrf",
+      "malformed_posts": 24,
+      "csrf_rejections": 2,
+      "progress_unchanged": true
+    },
+    {
+      "scenario": "audyt-powtorzonych-formularzy",
+      "upgrade_replays": 10,
+      "patrol_replays": 10,
+      "upgrades": 1,
+      "patrol_records": 1
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/plac_targowy/",
+      "items": 40,
+      "blueprint_queries": 3
+    },
+    {
+      "scenario": "audyt-zapytan-plecaka",
+      "route": "/sklep/",
+      "items": 40,
+      "blueprint_queries": 5
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 425,
+      "simulated_hours": 212.0,
+      "actions": {
+        "stock": 38,
+        "mine": 21,
+        "equip": 45,
+        "claim": 21,
+        "sell": 38,
+        "story_accept": 84,
+        "story_start": 84,
+        "story_talk": 27,
+        "story_claim": 84,
+        "finance": 3,
+        "ammo": 2,
+        "challenge_accept": 32,
+        "story_travel": 49,
+        "hunt": 61,
+        "camp": 3,
+        "accept": 6,
+        "promote": 3,
+        "challenge_claim": 13,
+        "train": 525,
+        "camp_donate": 25,
+        "improve": 30,
+        "boss": 6,
+        "salvage": 8,
+        "achievement_claim": 3,
+        "patrol": 11,
+        "wait": 1,
+        "list": 1,
+        "market_buy": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 30,
+          "experience": 246355,
+          "ore_balance": 6291,
+          "premium_balance": 6
+        },
+        {
+          "camp": "OLD_CAMP",
+          "level": 30,
+          "experience": 246623,
+          "ore_balance": 4281,
+          "premium_balance": 7
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 30,
+          "experience": 245619,
+          "ore_balance": 4873,
+          "premium_balance": 7
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "improve": 35,
+        "salvage": 42,
+        "hunt": 7,
+        "patrol": 46,
+        "train": 10,
+        "challenge_claim": 3,
+        "equip": 9,
+        "sell": 4,
+        "list": 6,
+        "market_buy": 4,
+        "promote": 3,
+        "learn_circle": 2,
+        "market_cancel": 2,
+        "buy_magic": 1,
+        "prepare_magic": 2,
+        "accept": 1,
+        "clear_magic": 1,
+        "challenge_accept": 1,
+        "raid_rally": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 15,
+          "upgrades": 21
+        },
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 22,
+          "upgrades": 21
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 20,
+          "upgrades": 23
+        }
+      ]
+    },
+    {
+      "scenario": "gracz-od-zera-do-finalu",
+      "steps": 3704,
+      "simulated_hours": 1852.0,
+      "chapters": 6,
+      "claimed_quests": 27,
+      "level": 30,
+      "experience": 242397,
+      "ore": 5913,
+      "premium": 1,
+      "completion": true
+    },
+    {
+      "scenario": "gracz-po-finale",
+      "upgraded_item": "Legendary Heavy Sword of Burning",
+      "upgrade_level": 1,
+      "patrol_wins": 1,
+      "unlocked": 2,
+      "admin_grants": false
+    },
+    {
+      "scenario": "kontrolowana-macierz-buildow",
+      "synthetic_fixture": true,
+      "encounters": [
+        {
+          "build": "warrior",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "warrior",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 310,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "archer",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 500,
+          "mana_spent": 0
+        },
+        {
+          "build": "mage",
+          "boss": "sleeper_sanctum",
+          "won": true,
+          "health_left": 74,
+          "mana_spent": 247
+        },
+        {
+          "build": "mage",
+          "boss": "crawler_nest",
+          "won": true,
+          "health_left": 499,
+          "mana_spent": 26
+        },
+        {
+          "build": "mage",
+          "boss": "swamp_den",
+          "won": true,
+          "health_left": 498,
+          "mana_spent": 39
+        }
+      ]
+    },
+    {
+      "scenario": "wspolna-sesja-gracza-i-botow",
+      "ticks": 80,
+      "bots": 3,
+      "level": 1,
+      "experience": 970,
+      "real_bot_sales_to_player": 1,
+      "distinct_bot_actions": 15
+    }
+  ],
+  "documentation": {
+    "viewports": [
+      {
+        "width": 1440,
+        "overflow": false
+      },
+      {
+        "width": 1024,
+        "overflow": false
+      },
+      {
+        "width": 768,
+        "overflow": false
+      },
+      {
+        "width": 760,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "chapters": 42,
+    "appendices": 3,
+    "screenshots": 40,
+    "reports": 27,
+    "network_requests": [],
+    "js_errors": [],
+    "broken_images": [],
+    "search": true,
+    "no_results": true,
+    "mobile_navigation": true,
+    "screenshot_modal": true,
+    "report_download": true,
+    "print_styles": true,
+    "no_js": true,
+    "offline_file": true
+  },
+  "limitations": [
+    "Wyłącznie syntetyczne światy i prywatna kopia do próby migracji; raport nie zawiera zapisu ani danych logowania.",
+    "Khorinis/G2, uprawnienie premium Jarkendaru, obozowy Śniący i połączenie serwerów pozostają osobnymi zadaniami.",
+    "Wymuszona aktywność w testach kampanii pomija sesje; osobny scenariusz 48 godzin respektuje osobowości i sesje."
+  ]
+}

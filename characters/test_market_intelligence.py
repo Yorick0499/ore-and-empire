@@ -82,3 +82,11 @@ class IntelligentMarketTests(TestCase):
         self.s.ore_balance=30;self.s.save()
         b=ItemBluePrint.objects.create(name='Zamiennik rzadkiej',damage=150,base_value=100)
         self.assertIsNone(plan(self.s,list(self.s.inventory.select_related('blueprint')),[b]))
+
+    def test_account_alts_do_not_multiply_history_and_drafts_add_no_demand(self):
+        from .character_selection import create_character
+        alt=create_character(self.b.user,'Drugi nabywca',self.b.world_id)
+        for buyer in (self.b,alt):MarketTrade.objects.create(seller=self.s,buyer=buyer,blueprint=self.bp,price=100,quantity=1,rarity=0,upgrade_level=0)
+        self.assertEqual(MarketState(self.s.world_id).quote(self.s,self.item).sales,1)
+        self.b.is_draft=True;self.b.save();alt.is_draft=True;alt.save()
+        self.assertEqual(MarketState(self.s.world_id).quote(self.s,self.item).price,0)

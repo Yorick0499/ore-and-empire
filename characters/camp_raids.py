@@ -18,6 +18,8 @@ def phase(raid):
 
 @player_action
 def rally_camp_raid(profile):
+    from .camp_privileges import privileges
+    if not privileges(profile)["can_rally"]:return False
     if profile.camp not in CAMPS:return False
     guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
     name,art=ENCOUNTERS[profile.camp];health=500+guild.level*100
@@ -101,5 +103,9 @@ def raid_card(profile):
     if not raid:return {'raid':None,'rewards':rewards}
     last=raid.strikes.filter(profile=profile).first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)
+    contributions=list(raid.strikes.values('profile_id','profile__user__username','profile__name','profile__is_bot').annotate(damage=Sum('damage')).order_by('-damage')[:30])
+    from .models import PlayerProfile
+    names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[row['profile_id'] for row in contributions]).select_related('user')}
+    for row in contributions:row['name']=names[row['profile_id']]
     return {'raid':raid,'phase':phase(raid),'can_attack':not raid.completed_at and ready and profile.level>=raid.minimum_level and profile.current_energy>=20 and profile.current_health>=10 and not profile.is_busy,
-        'rewards':rewards,'contributions':raid.strikes.values('profile_id','profile__user__username','profile__is_bot').annotate(damage=Sum('damage')).order_by('-damage')[:30],'logs':raid.strikes.select_related('profile__user')[:10]}
+        'rewards':rewards,'contributions':contributions,'logs':raid.strikes.select_related('profile__user')[:10]}

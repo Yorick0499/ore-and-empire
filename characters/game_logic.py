@@ -531,6 +531,8 @@ def execute_boss(profile, boss_key, request_key=None):
 
 @player_action
 def choose_camp(profile, camp):
+    from .story_gates import missing
+    if missing(profile):return False
     if profile.camp != "NONE" or camp not in {"OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP"}:
         return False
     profile.camp = camp

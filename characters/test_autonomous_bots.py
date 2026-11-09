@@ -13,16 +13,18 @@ from .bots import tick_bot
 
 class AutonomousBotTests(TestCase):
     def setUp(self):
-        call_command("seed_world", stdout=StringIO())
-        call_command("seed_adventures", stdout=StringIO())
+        from .world_management import seed_clean_world
+        seed_clean_world()
         call_command("run_bots", create=3, create_only=True, stdout=StringIO())
         WorldEvent.objects.all().delete()
 
     def test_three_roles_play_earn_rest_trade_and_buy_without_resource_grants(self):
         bots = list(PlayerProfile.objects.filter(is_bot=True).order_by("pk"))
+        # Include a side-quest personality; grinders/prospectors need not take optional trips.
+        bots[-1].bot_personality="adventurer";bots[-1].save(update_fields=["bot_personality"])
         now = timezone.now()
         actions = Counter()
-        for step in range(240):
+        for step in range(480):
             with patch("django.utils.timezone.now", return_value=now + timedelta(minutes=step)):
                 for bot in bots:
                     action, success = tick_bot(bot, force_active=True)
@@ -33,19 +35,19 @@ class AutonomousBotTests(TestCase):
             self.assertGreater(bot.experience, 0)
             self.assertGreater(bot.level, 0)
             self.assertNotEqual(bot.camp, "NONE")
-            self.assertTrue(bot.adventures.filter(claimed_at__isnull=False).exists())
+            self.assertTrue(bot.story_runs.filter(quest__key="prologue-path",status="claimed").exists())
             self.assertTrue(bot.premium_entries.filter(amount__gt=0).exists())
             self.assertLessEqual(bot.current_energy, bot.max_energy)
             self.assertLessEqual(bot.current_health, bot.life)
             self.assertGreaterEqual(bot.ore_balance, 0)
             self.assertGreaterEqual(bot.premium_balance, 0)
-            self.assertLessEqual(bot.inventory.count(), 6)
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 12)
         for action in ("mine", "claim", "hunt", "train", "adventure", "adventure_claim", "shop", "accept", "promote"):
             self.assertGreater(actions[action], 0, (action, actions))
         self.assertTrue(StorePurchase.objects.exists())
         self.assertTrue(PremiumEntry.objects.filter(amount__lt=0).exists())
         # Wszystkie odłamki pochodzą z rozliczonych działań, nigdy z nadania polityki.
-        allowed=Q(reference__startswith="adventure:")|Q(reference__startswith="challenge:")|Q(reference__startswith="achievement:")|Q(reference__startswith="camp-raid:")
+        allowed=Q(reference__startswith="adventure:")|Q(reference__startswith="challenge:")|Q(reference__startswith="achievement:")|Q(reference__startswith="camp-raid:")|Q(reference__startswith="story:")
         self.assertFalse(PremiumEntry.objects.filter(amount__gt=0).exclude(allowed).exists())
         from .models import PersonalChallenge,PlayerAchievement
         for entry in PremiumEntry.objects.filter(reference__startswith="challenge:"):

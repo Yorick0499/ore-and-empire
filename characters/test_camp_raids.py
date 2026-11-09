@@ -11,9 +11,9 @@ from .magic import prepare_magic
 class CampRaidTests(TestCase):
     def setUp(self):
         self.player=User.objects.create_user('first').playerprofile
-        self.player.camp='OLD_CAMP';self.player.level=10;self.player.life=200;self.player.current_health=200;self.player.strength=50;self.player.save()
+        self.player.guild='SHADOW';self.player.camp='OLD_CAMP';self.player.level=10;self.player.life=200;self.player.current_health=200;self.player.strength=50;self.player.save()
         self.ally=User.objects.create_user('second').playerprofile
-        self.ally.camp='OLD_CAMP';self.ally.level=10;self.ally.life=200;self.ally.current_health=200;self.ally.strength=50;self.ally.save()
+        self.ally.guild='SHADOW';self.ally.camp='OLD_CAMP';self.ally.level=10;self.ally.life=200;self.ally.current_health=200;self.ally.strength=50;self.ally.save()
         self.enemy=User.objects.create_user('other-camp').playerprofile
         self.enemy.camp='NEW_CAMP';self.enemy.level=10;self.enemy.save()
         self.raid=rally_camp_raid(self.player)

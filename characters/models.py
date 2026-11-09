@@ -49,6 +49,10 @@ class BotPolicyBudget(models.Model):
 
 
 class PlayerProfile(models.Model):
+    slot = models.PositiveSmallIntegerField(default=1)
+    name = models.CharField(max_length=80,blank=True)
+    name_key = models.CharField(max_length=160,blank=True)
+    is_draft = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
 
@@ -161,13 +165,22 @@ class PlayerProfile(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=["user","world"],name="one_character_per_account_world"),
+            models.UniqueConstraint(fields=["user","slot"],name="one_character_per_account_slot"),
+            models.UniqueConstraint(fields=["world","name_key"],condition=~models.Q(name_key=""),name="unique_character_name_per_world"),
+            models.CheckConstraint(condition=models.Q(slot__gte=1,slot__lte=5),name="character_slot_bounds"),
             models.CheckConstraint(condition=models.Q(current_energy__gte=0) & models.Q(current_energy__lte=models.F("max_energy")), name="profile_energy_bounds"),
             models.CheckConstraint(condition=models.Q(current_health__lte=models.F("life") + models.F("equipment_health")), name="profile_health_bounds"),
             models.CheckConstraint(condition=models.Q(current_mana__lte=models.F("mana") + models.F("equipment_mana")), name="profile_mana_bounds"),
             models.CheckConstraint(condition=models.Q(ore_balance__gte=0), name="profile_ore_nonnegative"),
             models.CheckConstraint(condition=models.Q(life__gte=1) & models.Q(max_energy__gte=1), name="profile_resource_caps_positive"),
         ]
+
+    def save(self,*args,**kwargs):
+        import unicodedata
+        self.name_key=unicodedata.normalize('NFKC',self.name).casefold() if self.name else ''
+        if kwargs.get('update_fields') and 'name' in kwargs['update_fields']:
+            kwargs['update_fields']=[*kwargs['update_fields'],'name_key']
+        super().save(*args,**kwargs)
 
     # actions time
     action_end_time = models.DateTimeField(null=True, blank=True)
@@ -176,6 +189,8 @@ class PlayerProfile(models.Model):
         super().refresh_from_db(*args,**kwargs)
         if hasattr(self,'_gear_stats_cache'): del self._gear_stats_cache
         if hasattr(self,'_camp_perks'): del self._camp_perks
+        if hasattr(self,'_story_gate_claimed'):del self._story_gate_claimed
+        if hasattr(self,'_story_gate_titles'):del self._story_gate_titles
 
     @property
     def max_mana(self):
@@ -196,7 +211,9 @@ class PlayerProfile(models.Model):
     def camp_perks(self):
         if not hasattr(self,'_camp_perks'):
             self._camp_perks=(CampGuild.objects.filter(camp=self.camp,world_id=self.world_id).values('training_level','supply_level','defense_level').first() if self.camp!='NONE' else None) or dict(training_level=0,supply_level=0,defense_level=0)
-        return self._camp_perks
+        from .camp_privileges import privileges
+        personal=privileges(self)
+        return {key:self._camp_perks[key]+personal[bonus] for key,bonus in [('training_level','training'),('supply_level','supply'),('defense_level','defense')]}
 
     def effective_protection(self, kind='weapon'):
         return getattr(self, kind + '_prot') + self.equipment_stats[kind + '_prot'] + (self.camp_perks['defense_level'] if kind in {'weapon','arrow'} else 0)
@@ -217,7 +234,7 @@ class PlayerProfile(models.Model):
     def display_name(self):
         names = ("Brann", "Kord", "Mira", "Hagen ze Sztolni", "Ruda", "Silas z Traktu", "Nela", "Jarven", "Falk", "Toran", "Dagna", "Orrik", "Bora", "Velin", "Gerta", "Arvid", "Tessa", "Kurt", "Nordin", "Wolmar")
         if not self.is_bot:
-            return self.user.username
+            return self.name or self.user.username
         name=names[(self.pk-1)%len(names)]
         group=(self.pk-1)//len(names)
         if group:
@@ -995,3 +1012,13 @@ class FrontierRecord(models.Model):
         constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='frontier_request')]
         ordering = ['-created_at','-pk']
         indexes = [models.Index(fields=['profile','season'], name='frontier_profile_season')]
+
+
+class CampSupplyUse(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.CASCADE)
+    day=models.DateField()
+    request_key=models.UUIDField()
+    energy=models.PositiveSmallIntegerField()
+    health=models.PositiveSmallIntegerField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','day'],name='one_camp_resupply_per_day'),models.UniqueConstraint(fields=['profile','request_key'],name='one_camp_resupply_request')]

@@ -22,6 +22,7 @@ def sync_notices(profile):
 def journal_context(request):
     if not request.user.is_authenticated:
         return {}
+    if request.resolver_match and request.resolver_match.url_name=='characters_page' and not getattr(request.user,'_server_profile',None):return {}
     profile = request.user.playerprofile
     sync_notices(profile)
     return {"unread_notices": profile.notices.filter(read_at__isnull=True).count()}

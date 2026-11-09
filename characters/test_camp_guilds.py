@@ -35,9 +35,10 @@ class CampGuildTests(TestCase):
             with self.assertRaises(RuntimeError):donate_to_camp(self.player,10,uuid4())
         self.player.refresh_from_db();self.assertEqual(self.player.ore_balance,390)
     def test_upgrade_is_capped_stale_form_cannot_buy_twice_and_benefits_are_derived(self):
+        self.player.guild='SHADOW';self.player.save()
         self.guild.level=4;self.guild.experience=300;self.guild.treasury=1000;self.guild.save()
         self.assertTrue(upgrade_camp(self.player,'training',0));self.assertFalse(upgrade_camp(self.player,'training',0))
-        self.assertTrue(game.train_attribute(self.player,'strength'));self.player.refresh_from_db();self.assertEqual(self.player.ore_balance,491)
+        self.assertTrue(game.train_attribute(self.player,'strength'));self.player.refresh_from_db();self.assertEqual(self.player.ore_balance,492)
         self.assertTrue(upgrade_camp(self.player,'defense',0));game.refresh_player(self.player)
         self.assertEqual(self.player.effective_protection(),1);self.assertEqual(self.other.effective_protection(),0)
         self.assertFalse(upgrade_camp(self.player,'unknown',0))

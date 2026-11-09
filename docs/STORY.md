@@ -93,3 +93,6 @@ z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
 wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.
 
 Aktualna polityka i obserwacje mają wersję 14. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
+
+
+Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywileje rang i aktualny plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).

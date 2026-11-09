@@ -96,7 +96,7 @@ class BotUpgradeTests(TestCase):
         self.bot.current_health = 1
         self.bot.current_energy = 0
         self.bot.save()
-        self.assertEqual(tick_bot(self.bot, force_active=True), ('wait', True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ('camp_supply', True))
         self.assertEqual(self.bot.inventory.count(), 1)
 
     def test_forged_sale_cannot_sell_another_players_item(self):

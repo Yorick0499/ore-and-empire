@@ -1,14 +1,38 @@
 {
   "schema": 1,
-  "migration": "0041_granice_wariantow_transakcji",
-  "theme": "osobowosci-i-itemshop-6; starsze pliki mają własne daty",
+  "migration": "0042_postacie_fabula_i_przywileje",
+  "theme": "postacie-fabula-przywileje-7; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
+    {
+      "file": "admin.jpg",
+      "bytes": 288044,
+      "sha256": "c4ead4babcd7949733e58c1eebdd6fd304171415b7430636495681d64debda5a",
+      "captured_at_utc": "2026-11-09T16:41:11.757427+00:00",
+      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
+      "theme": "osobowosci-i-itemshop-6"
+    },
+    {
+      "file": "adventures.jpg",
+      "bytes": 165345,
+      "sha256": "2ac85852b77dd8368731cb5ff9e2a6e634bd2b0e9fccf013a2b2131b3881f8da",
+      "captured_at_utc": "2026-11-08T21:11:17.472330+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
     {
       "file": "boss.jpg",
       "bytes": 96292,
       "sha256": "b7366f1383866d1ce69e8f781e6085f5025ebb9dff0b898e652be17dee532ba9",
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+    },
+    {
+      "file": "camp.jpg",
+      "bytes": 319875,
+      "sha256": "bc307c3521b001acda7479421dc08e64cb94f26c7b181e34f13e354c1ca70106",
+      "captured_at_utc": "2026-11-09T20:27:00.231576+00:00",
+      "fixture": "Bariera — Kolonia; syntetyczne konto, Darin szczebel 2, Mira poziom 0, 12 botów",
+      "theme": "postacie-fabula-przywileje-7"
     },
     {
       "file": "catalog.jpg",
@@ -23,6 +47,22 @@
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
+      "file": "characters-mobile.jpg",
+      "bytes": 103755,
+      "sha256": "6c854eb54da70e3cebea09fc4a892e91ea09cb791f060f2257ca6a6e05279e8e",
+      "captured_at_utc": "2026-11-09T20:27:00.231576+00:00",
+      "fixture": "Bariera — Kolonia; syntetyczne konto, Darin szczebel 2, Mira poziom 0, 12 botów",
+      "theme": "postacie-fabula-przywileje-7"
+    },
+    {
+      "file": "characters.jpg",
+      "bytes": 145852,
+      "sha256": "4cbdf3c2c880effecad3cebd5a475dd3969179f1a9ecb90f05de7192ccd1480d",
+      "captured_at_utc": "2026-11-09T20:27:00.231576+00:00",
+      "fixture": "Bariera — Kolonia; syntetyczne konto, Darin szczebel 2, Mira poziom 0, 12 botów",
+      "theme": "postacie-fabula-przywileje-7"
+    },
+    {
       "file": "colony.jpg",
       "bytes": 147947,
       "sha256": "8c69ede9f7a7313a6a39f17fa348f8a7aa7f2aed2e76b34569c5f447a418c5e8",
@@ -32,11 +72,11 @@
     },
     {
       "file": "community.jpg",
-      "bytes": 125677,
-      "sha256": "770610823a224521fcef4467c308c5e9a1ed408ee73ea28dcd07b25532885c79",
-      "captured_at_utc": "2026-11-09T16:41:09.881538+00:00",
-      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
-      "theme": "osobowosci-i-itemshop-6"
+      "bytes": 337434,
+      "sha256": "14a72137caf04c01b4e5ec42149cb6492f32bce29b490869756a2ac3eca91d54",
+      "captured_at_utc": "2026-11-09T20:27:00.231576+00:00",
+      "fixture": "Bariera — Kolonia; syntetyczne konto, Darin szczebel 2, Mira poziom 0, 12 botów",
+      "theme": "postacie-fabula-przywileje-7"
     },
     {
       "file": "comparison.jpg",
@@ -95,12 +135,20 @@
       "theme": "zlecenia-i-rzadkosc-5"
     },
     {
+      "file": "itemshop-mobile.jpg",
+      "bytes": 551981,
+      "sha256": "1e7c590d48c09ed5e36b62196df678d0a5c162c038f3e3684d183f853de092e8",
+      "captured_at_utc": "2026-11-09T20:27:00.231576+00:00",
+      "fixture": "Bariera — Kolonia; syntetyczne konto, Darin szczebel 2, Mira poziom 0, 12 botów",
+      "theme": "postacie-fabula-przywileje-7"
+    },
+    {
       "file": "itemshop.jpg",
-      "bytes": 732426,
-      "sha256": "fdcfff286b96f143be8f22636b2cd31fd0bf1157ebcc65a44fa42ef123087db7",
-      "captured_at_utc": "2026-11-09T16:41:08.061454+00:00",
-      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
-      "theme": "osobowosci-i-itemshop-6"
+      "bytes": 624019,
+      "sha256": "777f68ed22cff48edc4630e4017bd0241ff7af81a7aad38f70c1ea3585c2ef83",
+      "captured_at_utc": "2026-11-09T20:27:00.231576+00:00",
+      "fixture": "Bariera — Kolonia; syntetyczne konto, Darin szczebel 2, Mira poziom 0, 12 botów",
+      "theme": "postacie-fabula-przywileje-7"
     },
     {
       "file": "journal.jpg",
@@ -145,6 +193,14 @@
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
+      "file": "mobile-adventures.jpg",
+      "bytes": 58906,
+      "sha256": "e11a658f53b4543d50d7438d0077a15e0503985ceef44fb312b79a9a3773bc72",
+      "captured_at_utc": "2026-11-08T21:11:17.472556+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
       "file": "mobile-comparison.jpg",
       "bytes": 57188,
       "sha256": "7f2685a50dd6190fd98b6aba988ca39a9faa1ee80f6063e8b9b7c3d1c466a633",
@@ -183,6 +239,46 @@
       "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
     },
     {
+      "file": "rarity-ancient.jpg",
+      "bytes": 61107,
+      "sha256": "0644f795d05fb9a77825c0e5019310e8a9cb55cd5c6537e403a3a6a9b91bdb95",
+      "captured_at_utc": "2026-11-08T21:11:17.471587+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-enchanted.jpg",
+      "bytes": 52302,
+      "sha256": "c00df5cc51e4aa332b7da23e5d2cbbe654779a9f5a721969e9bad9dc53b008ad",
+      "captured_at_utc": "2026-11-08T21:11:17.471470+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-masterwork.jpg",
+      "bytes": 53552,
+      "sha256": "ffb3c86ee46683d3df74d1b55354cf384c4b57962019278276e2a5b06fd004e6",
+      "captured_at_utc": "2026-11-08T21:11:17.471413+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-ordinary.jpg",
+      "bytes": 45984,
+      "sha256": "569a3e438d0f10d20178427f8dc334fae64f58cda9153a4d645e683d49a981d8",
+      "captured_at_utc": "2026-11-08T21:11:17.471336+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "rarity-runic.jpg",
+      "bytes": 56865,
+      "sha256": "d1851de43d1e95a7e7a175157d2da5cd24f332428620442a525ba43887824707",
+      "captured_at_utc": "2026-11-08T21:11:17.471527+00:00",
+      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
+      "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
       "file": "story.jpg",
       "bytes": 109860,
       "sha256": "72860d5132dc07040b4235c7099e29a78bd165bd6235fed4510403ee97733b9c",
@@ -203,78 +299,6 @@
       "captured_at_utc": "2026-11-08T20:37:26.136535+00:00",
       "fixture": "Dolina Wędrowców — próba gry solo; zwykła postać od zera, 100 botów",
       "theme": "gra-solo-i-buildy-4"
-    },
-    {
-      "file": "rarity-ordinary.jpg",
-      "bytes": 45984,
-      "sha256": "569a3e438d0f10d20178427f8dc334fae64f58cda9153a4d645e683d49a981d8",
-      "captured_at_utc": "2026-11-08T21:11:17.471336+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "rarity-masterwork.jpg",
-      "bytes": 53552,
-      "sha256": "ffb3c86ee46683d3df74d1b55354cf384c4b57962019278276e2a5b06fd004e6",
-      "captured_at_utc": "2026-11-08T21:11:17.471413+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "rarity-enchanted.jpg",
-      "bytes": 52302,
-      "sha256": "c00df5cc51e4aa332b7da23e5d2cbbe654779a9f5a721969e9bad9dc53b008ad",
-      "captured_at_utc": "2026-11-08T21:11:17.471470+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "rarity-runic.jpg",
-      "bytes": 56865,
-      "sha256": "d1851de43d1e95a7e7a175157d2da5cd24f332428620442a525ba43887824707",
-      "captured_at_utc": "2026-11-08T21:11:17.471527+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "rarity-ancient.jpg",
-      "bytes": 61107,
-      "sha256": "0644f795d05fb9a77825c0e5019310e8a9cb55cd5c6537e403a3a6a9b91bdb95",
-      "captured_at_utc": "2026-11-08T21:11:17.471587+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "adventures.jpg",
-      "bytes": 165345,
-      "sha256": "2ac85852b77dd8368731cb5ff9e2a6e634bd2b0e9fccf013a2b2131b3881f8da",
-      "captured_at_utc": "2026-11-08T21:11:17.472330+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "mobile-adventures.jpg",
-      "bytes": 58906,
-      "sha256": "e11a658f53b4543d50d7438d0077a15e0503985ceef44fb312b79a9a3773bc72",
-      "captured_at_utc": "2026-11-08T21:11:17.472556+00:00",
-      "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
-      "theme": "zlecenia-i-rzadkosc-5"
-    },
-    {
-      "file": "admin.jpg",
-      "bytes": 288044,
-      "sha256": "c4ead4babcd7949733e58c1eebdd6fd304171415b7430636495681d64debda5a",
-      "captured_at_utc": "2026-11-09T16:41:11.757427+00:00",
-      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
-      "theme": "osobowosci-i-itemshop-6"
-    },
-    {
-      "file": "itemshop-mobile.jpg",
-      "bytes": 632069,
-      "sha256": "167ef985ac8a445f2dc04b96cbf26c01f49509a4b02f97b2438d386c6dccbf20",
-      "captured_at_utc": "2026-11-09T16:41:07.179868+00:00",
-      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
-      "theme": "osobowosci-i-itemshop-6"
     }
   ]
 }
