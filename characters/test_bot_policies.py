@@ -103,9 +103,9 @@ class PersistentPolicyBudgetTests(TestCase):
     def test_actual_bot_action_records_versioned_local_policy_snapshot(self):
         from .bot_telemetry import replay_decision
         call_command('seed_world',stdout=StringIO())
-        bot=User.objects.create_user('local-policy-bot').playerprofile;bot.is_bot=True;bot.bot_role='miner';bot.save()
+        bot=User.objects.create_user('local-policy-bot').playerprofile;bot.is_bot=True;bot.bot_role='miner';bot.camp='OLD_CAMP';bot.save()
         policy=OllamaPolicy('unused-local-model',endpoint='http://127.0.0.1:9/api/chat')
         self.assertEqual(tick_bot(bot,policy, force_active=True),('mine',True))
         record=BotDecision.objects.get(profile=bot)
-        self.assertEqual(record.policy_version,'ollama-1');self.assertEqual(record.schema_version,21)
+        self.assertEqual(record.policy_version,'ollama-1');self.assertEqual(record.schema_version,22)
         self.assertEqual(record.policy_snapshot['status'],'forced-rules');self.assertTrue(replay_decision(record)['matches'])

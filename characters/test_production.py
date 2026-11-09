@@ -165,6 +165,7 @@ class SecurePlayerLoopTests(TestCase):
         def post(path,values):
             return client.post(path,{**values,'csrfmiddlewaretoken':client.cookies['csrftoken'].value},secure=True,HTTP_ORIGIN='https://testserver')
         p=User.objects.get(username='secure-player').playerprofile
+        self.assertEqual(post('/postacie/',{'action':'create','name':'Bezpieczny','world':p.world_id}).status_code,302)
         now=timezone.now();self.assertEqual(post('/kopalnia/',{'action':'mine'}).status_code,302)
         with patch('django.utils.timezone.now',return_value=now+timedelta(seconds=16)):
             self.assertEqual(post('/kopalnia/',{'action':'claim'}).status_code,302)

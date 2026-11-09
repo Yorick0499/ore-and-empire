@@ -15,7 +15,7 @@ class WorldManagementTests(TestCase):
         self.user=User.objects.create_user('resident');self.world=current_world()
     def test_character_world_context_and_cross_world_actions_are_isolated(self):
         other=World.objects.create(name='Archiwum',status='archived')
-        old=PlayerProfile.objects.create(user=self.user,world=other,ore_balance=900)
+        old=PlayerProfile.objects.create(user=self.user,slot=2,world=other,ore_balance=900)
         self.assertFalse(game.start_mining(old,15))
         with self.assertRaises(IntegrityError),transaction.atomic():PlayerProfile.objects.create(user=self.user,world=self.world)
         self.client.force_login(self.user)

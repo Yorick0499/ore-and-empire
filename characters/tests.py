@@ -41,7 +41,7 @@ class ColonyTests(TestCase):
                 "password2": "Strong-colony-pass-123",
             },
         )
-        self.assertRedirects(response, reverse("locations_page"))
+        self.assertRedirects(response, reverse("characters_page"))
         self.assertTrue(
             PlayerProfile.objects.filter(user__username="new-prisoner").exists()
         )
@@ -257,6 +257,11 @@ class ColonyTests(TestCase):
         self.a.save()
         url = reverse("mine_page") + "?location=free_mine"
         self.assertEqual(self.client.get(url).status_code, 403)
+        call_command("seed_story", stdout=StringIO())
+        from .testing_story import claimed_milestone
+        self.client.post(reverse("locations_page"), {"camp": "NEW_CAMP"})
+        self.assertEqual(self.client.get(url).status_code, 403)
+        claimed_milestone(self.a,"prologue-path")
         self.client.post(reverse("locations_page"), {"camp": "NEW_CAMP"})
         self.assertEqual(self.client.get(url).status_code, 200)
         self.client.post(reverse("locations_page"), {"camp": "OLD_CAMP"})
@@ -743,7 +748,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 21)
+        self.assertEqual(decision.schema_version, 22)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

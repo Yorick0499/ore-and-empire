@@ -112,7 +112,6 @@ class CampaignTests(TestCase):
         from .world_management import seed_clean_world
         seed_clean_world()
         hero = User.objects.create_user('solo-player').playerprofile
-        game.choose_camp(hero, 'OLD_CAMP')
         self.client.force_login(hero.user)
         now = timezone.now()
         step = 0
@@ -128,6 +127,13 @@ class CampaignTests(TestCase):
                     self.client.force_login(hero.user)
                     response = self.client.post('/fabula/', {'action': action, 'target': target, **kwargs})
             self.assertEqual(response.status_code, 302)
+            hero.refresh_from_db()
+            from .story_gates import missing
+            if hero.camp == "NONE" and not missing(hero):
+                with advance():
+                    self.assertEqual(self.client.post("/", {"camp":"OLD_CAMP"}).status_code,302)
+                hero.refresh_from_db()
+                self.assertEqual(hero.camp,"OLD_CAMP")
         def mining_shift():
             with advance(): self.assertTrue(game.start_mining(hero, 15))
             with advance(): self.assertTrue(game.claim_ore_reward(hero))

@@ -61,6 +61,18 @@ class ProgressionGateTests(TestCase):
         self.p.refresh_from_db();self.assertEqual((self.p.ore_balance,self.p.current_energy,self.p.current_health),(90,20,40))
         self.assertEqual(EnergyRefill.objects.filter(profile=self.p).count(),1)
         self.assertEqual(CampSupplyUse.objects.filter(profile=self.p).count(),1)
+    def test_resupply_retry_after_midnight_returns_original_without_daily_second_grant(self):
+        from datetime import datetime,timezone as utc
+        now=datetime(2026,11,9,22,59,tzinfo=utc.utc)
+        self.p.camp='OLD_CAMP';self.p.guild='GUARD';self.p.current_energy=0;self.p.energy_updated_at=now;self.p.save()
+        key=uuid4()
+        with patch('django.utils.timezone.now',return_value=now):first=claim_resupply(self.p,key)
+        self.assertTrue(first)
+        with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=2)):
+            self.assertEqual(claim_resupply(self.p,key).pk,first.pk)
+        self.p.refresh_from_db();self.assertEqual(self.p.ore_balance,40)
+        self.assertEqual(CampSupplyUse.objects.filter(profile=self.p).count(),1)
+
     def test_full_resources_and_exhausted_energy_cap_do_not_charge(self):
         self.p.camp='OLD_CAMP';self.p.guild='GUARD';self.p.save()
         self.assertFalse(claim_resupply(self.p,uuid4()))
@@ -104,6 +116,18 @@ class CharacterFlowTests(TestCase):
         other=User.objects.create_user('inne-konto')
         with self.assertRaises(ValidationError):create_character(other,'łowca',self.p.world_id)
         with self.assertRaises(ValidationError):create_character(self.user,'<script>',self.p.world_id)
+    def test_switch_cannot_equip_another_slots_item_and_creator_names_world(self):
+        from .models import OwnedItem,ItemBluePrint
+        self.client.force_login(self.user)
+        self.assertContains(self.client.get('/postacie/'),self.p.world.name)
+        self.assertNotContains(self.client.get('/postacie/'),'World object')
+        other=create_character(self.user,'Inny plecak',self.p.world_id)
+        item=OwnedItem.objects.create(owner=self.p,blueprint=ItemBluePrint.objects.create(name='Miecz pierwszej postaci',damage=20))
+        self.client.post('/postacie/',{'profile':other.pk})
+        self.client.post('/ekwipunek/',{'action':'equip','item_id':item.pk})
+        item.refresh_from_db();self.assertFalse(item.is_equipped);self.assertEqual(item.owner_id,self.p.pk)
+        self.assertEqual(other.inventory.count(),0)
+
     def test_switch_rotates_csrf_so_old_tabs_cannot_act_on_new_character(self):
         c=Client(enforce_csrf_checks=True);c.force_login(self.user)
         other=create_character(self.user,'Druga',self.p.world_id)

@@ -15,6 +15,7 @@ class CharacterForm(forms.Form):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.fields['world'].queryset=World.objects.filter(is_current=True,status='active',universe='GOTHIC_I')
+        self.fields['world'].label_from_instance=lambda world: f'{world.name} · Kolonia (Gothic I)'
     def clean_name(self):
         value=unicodedata.normalize('NFKC',' '.join(self.cleaned_data['name'].split()))
         if not re.fullmatch(r"[\w][\w .'-]{1,31}",value):raise ValidationError('Użyj 2–32 liter, cyfr, spacji lub znaków _ . - i apostrofu.')

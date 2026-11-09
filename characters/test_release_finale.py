@@ -115,6 +115,7 @@ class SharedColonySessionTests(TestCase):
         response=self.client.post('/konto/rejestracja/',{'username':'MieszkaniecSesji','password1':'Droga-Przez-Kolonie-2026','password2':'Droga-Przez-Kolonie-2026'})
         self.assertEqual(response.status_code,302)
         player=User.objects.get(username='MieszkaniecSesji').playerprofile
+        self.assertEqual(self.client.post('/postacie/',{'action':'create','name':'Mieszkaniec','world':player.world_id}).status_code,302)
         self.assertFalse(player.user.is_staff)
         bots=list(PlayerProfile.objects.filter(is_bot=True))
         now=timezone.now();actions=[]

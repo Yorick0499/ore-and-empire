@@ -51,7 +51,7 @@ class HostilePlayerTests(TestCase):
         self.assertEqual((stack.quantity,self.p.ore_balance),(2,57))
     def test_other_world_cannot_transfer_or_bypass_battle_gates(self):
         archived=World.objects.create(name='Archiwum',status='archived')
-        old=PlayerProfile.objects.create(user=self.user,world=archived)
+        old=PlayerProfile.objects.create(user=self.user,slot=2,world=archived)
         self.assertFalse(game.start_mining(old,15))
         self.assertFalse(game.execute_boss(self.p,'sleeper_sanctum'))
         self.assertFalse(game.execute_hunt(self.p,'demon_lord','exchange'))

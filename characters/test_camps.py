@@ -35,6 +35,11 @@ class CampProgressionTests(TestCase):
         self.profile = self.user.playerprofile
         self.profile.camp = "OLD_CAMP"
         self.profile.save()
+        from io import StringIO
+        from django.core.management import call_command
+        from .testing_story import promotion_prerequisites
+        call_command("seed_story", stdout=StringIO())
+        promotion_prerequisites(self.profile)
         self.client.force_login(self.user)
 
     def mine(self):
@@ -66,6 +71,8 @@ class CampProgressionTests(TestCase):
                 profile.ore_balance = 10000
                 profile.max_energy = profile.current_energy = 10000
                 profile.save()
+                from .testing_story import promotion_prerequisites
+                promotion_prerequisites(profile, rank.tier)
                 self.assertTrue(accept_camp_quest(profile, rank.key))
                 for goal in rank.objectives:
                     for _ in range(goal.count):

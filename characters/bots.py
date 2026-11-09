@@ -595,7 +595,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     )
     policy_version = "baseline-21" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
-    if isinstance(policy,OllamaPolicy) and not obs.membership_ready:
+    if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
         policy=None;policy_version="baseline-21"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}

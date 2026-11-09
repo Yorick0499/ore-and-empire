@@ -47,7 +47,7 @@ class Quote:
 class MarketState:
     def __init__(self,world_id):
         self.now=timezone.now();self.world_id=world_id
-        self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True))
+        self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True,is_draft=False))
         self.items=defaultdict(list);self.listings=[]
         for i in OwnedItem.objects.filter(owner__world_id=world_id,owner__user__is_active=True).select_related('blueprint','owner'):
             self.items[i.owner_id].append(i)

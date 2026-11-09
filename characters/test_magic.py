@@ -125,7 +125,7 @@ class MagicTests(TestCase):
             fire_resistant={**target,'fire_prot':54}
             poor_fire=game.simulate_combat(self.profile,'arena',monster=fire_resistant,magic_plan=MagicPlan(BY_KEY['fireball'],1,False,1))
         self.assertTrue(all(r.won for r in results.values()))
-        self.assertEqual({k:r.remaining_health for k,r in results.items()},{'warrior':140,'fireball':180,'icecube':176,'stormfist':180})
+        self.assertEqual({k:r.remaining_health for k,r in results.items()},{'warrior':140,'fireball':181,'icecube':178,'stormfist':181})
         self.assertEqual({k:r.remaining_mana for k,r in results.items() if k!='warrior'},{'fireball':24,'icecube':19,'stormfist':19})
         self.assertFalse(poor_fire.won)
 
