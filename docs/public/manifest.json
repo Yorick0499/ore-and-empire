@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-09",
-  "code_revision": "7331757",
-  "migration": "0041_granice_wariantow_transakcji",
+  "code_revision": "0f87baf + etap postaci i fabuły",
+  "migration": "0042_postacie_fabula_i_przywileje",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -26,6 +26,10 @@
     {
       "title": "Postać i przygoda",
       "chapters": [
+        [
+          "docs/CHARACTERS_AND_WORLDS.md",
+          "Pięć postaci, progi fabuły i dwa światy"
+        ],
         [
           "docs/WORLD.md",
           "Świat i lokacje"

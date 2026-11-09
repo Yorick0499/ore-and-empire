@@ -4,7 +4,7 @@ Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 
 ## Wdrożone
 
-- Lokalny launcher, trwałe konto i postać, jeden aktywny nazwany świat, 0–100 botów.
+- Lokalny launcher, trwałe konto i do pięciu postaci, jeden aktywny nazwany świat, 0–100 botów.
 - Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
 - 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
 - Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
@@ -12,7 +12,7 @@ Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 - Siedem osobowości, sesje w czasie polskim, limitowane symulowane zakupy premium i 17 ofert itemshopu.
 - Rynek reagujący na potrzeby, podaż i zamienniki NPC; ochrona najlepszego sprzętu i atomowe finansowanie wymiany.
 - Nadawanie rzadkości nowych przedmiotów przez zarządcę z audytem.
-- Boty baseline-20, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
+- Boty baseline-21, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
 - Karczma, kroniki, powiadomienia, rankingi, sala chwały i jednorazowe podsumowanie operatora.
 - Czas polski 1:1, słoneczne pory dnia Warszawy, sezony meteorologiczne i kalendarz eventów.
 - Administrator, inicjalizacja i kontrolowany reset z zachowaniem kont administratorów, prywatne kopie oraz próby odtwarzania.
@@ -24,16 +24,9 @@ Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 2. **#24 wdrożone:** opcjonalny profil produkcyjny, HTTPS, nadzorowany worker, limity logowań i zweryfikowany staging. [Instrukcja](PRODUCTION.md). Domyślna instalacja pozostaje lokalna; nie opublikowano prywatnego serwera.
 3. Dalsze strojenie gospodarki na podstawie pomiarów. Rosnący obrót nie dowodzi stabilnej podaży waluty.
 
-## Gothic II: Noc Kruka
+## Gothic II: Noc Kruka — nowy kierunek
 
-Osobiste ukończenie ani zapis końcowego rankingu nie przenosi do Gothic II i nie czyści świata.
-
-- #30: reguły i jednorazowy transfer dorobku.
-- #31: świeży start nowych postaci i balans weteranów.
-- #32: Khorinis, gildie, potwory, przedmioty i zadania NK.
-- #33: konto premium i osobne uprawnienie do Jarkendaru; saldo odłamków nie daje obecnie takiego dostępu.
-- #34: izolacja wielu grywalnych edycji.
-- #35: kontrolowany start II edycji i archiwizacja I.
+Nowy plan z 9 listopada zastępuje ręczną II edycję: dwa równoległe światy Kolonia i Khorinis, a następnie jednorazowe połączenie po obozowym pokonaniu Śniącego. [Zakres i zależności #30–#35 / #111](CHARACTERS_AND_WORLDS.md). Konto premium daje osobne uprawnienie Jarkendaru; odłamki nie zastępują premium. Aktualnie grywalna pozostaje Kolonia. Osobisty finał nie uruchamia połączenia.
 
 Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i porównanie z regułami. [Wyniki](LOCAL_AI_POLICIES.md). Model nie jest włączony domyślnie. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
 
@@ -68,3 +61,7 @@ Trening czterech umiejętności broni, filtrowany kupiec i paczki zapasów, najb
 ## Zlecenia i oprawy — #95–#96
 
 44 powtarzalne zlecenia w sześciu kategoriach od poziomu 0 do 30, z wyborem proporcji rudy/PD/czasu/energii. Filtry, utrwalona treść i zakończenia; boty dobierają prace do roli i nie powtarzają ostatniej, gdy jest alternatywa. Pięć gotyckich opraw egzemplarzy, spójnych w ekwipunku i handlu. [Zasady zleceń](ADVENTURES.md) · [oprawy](EQUIPMENT.md).
+
+## Postacie i obowiązkowa fabuła — #107–#110
+
+Jedna ilustracja/nazwa na karcie itemshopu, prolog przed dołączeniem i kolejne zadania przed awansami, przywileje osobistych rang oraz kreator do pięciu postaci z bezpiecznym wyborem sesji. [Szczegóły](CHARACTERS_AND_WORLDS.md).

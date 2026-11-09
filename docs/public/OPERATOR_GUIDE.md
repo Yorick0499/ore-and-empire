@@ -20,7 +20,7 @@ Nie ma realnych płatności ani gotowego transferu do Gothic II: Noc Kruka. Jark
 | Opcjonalny serwer | PostgreSQL, psycopg 3.3.8; szablon Compose używa PostgreSQL 17 |
 | Procesy produkcyjne | Gunicorn 26.2.0, osobny `run_worker`, WhiteNoise 6.12.0, Caddy 2, Docker Compose / szablony systemd |
 | Reguły gry | Wspólne usługi domenowe i transakcje Django dla ludzi oraz botów |
-| Boty | Reguły `baseline-20`, obserwacja schematu 21, scheduler z dzierżawą i limitem pracy |
+| Boty | Reguły `baseline-21`, obserwacja schematu 22, scheduler z dzierżawą i limitem pracy |
 | Opcjonalny eksperyment AI | Lokalny adapter Ollama, jawny opt-in; model i GPU nie są wymagane do normalnej gry |
 | Zegar | `zoneinfo`, `Europe/Warsaw`, Astral 3.2; automatyczne CET/CEST |
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |
@@ -315,3 +315,6 @@ Zmiany rozwija się na osobnej gałęzi `codex/...`, z polskimi commitami i opis
 Plik `dokumentacja.html` zawiera style, font, ilustracje, rozdziały, zrzuty i publiczne raporty. Można przenieść sam plik i czytać go offline. Linki do GitHuba, dokumentacji zewnętrznych i źródeł Gothicpedii naturalnie wymagają internetu. Nie są to zależności potrzebne do wyświetlenia księgi.
 
 Wyszukiwarka przeszukuje tekst rozdziałów i raportów. Spis treści działa także bez JavaScriptu; przyciskiem „Drukuj” otworzysz drukowanie lub zapis PDF przez przeglądarkę. Historyczne przeglądy i raporty mają osobne oznaczenia — dawnych limitów, cen, wyników i planów nie traktuj jako aktualnych zasad. Właściwe wymagania bieżącego świata zawsze pokazuje gra.
+
+
+Od migracji 0042: [pięć postaci, fabuła i przywileje rang](../CHARACTERS_AND_WORLDS.md). Kreator pojawia się po rejestracji; w zarządcy wybierz imię postaci wraz z kontem i slotem. Konta administratorów i hasła pozostają.

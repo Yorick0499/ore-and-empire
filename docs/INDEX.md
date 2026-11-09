@@ -2,9 +2,11 @@
 
 Stan najnowszej wersji: 9 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
 
-**[Jednoplikowa publiczna księga HTML](dokumentacja.html)** — pełna treść, wyszukiwarka, 37 ekranów i publiczne raporty; działa offline. Źródła i odtwarzanie: `docs/public/`, `requirements-docs.txt`, `python scripts/build_public_docs.py`.
+**[Jednoplikowa publiczna księga HTML](dokumentacja.html)** — pełna treść, wyszukiwarka, 40 ekranów i publiczne raporty; działa offline. Źródła i odtwarzanie: `docs/public/`, `requirements-docs.txt`, `python scripts/build_public_docs.py`.
 
 ## Dla gracza
+
+- [Pięć postaci, wymagania fabuły, przywileje i plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).
 
 - [Osobowości, sesje i itemshop](BOT_PERSONALITIES.md).
 
