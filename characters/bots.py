@@ -328,6 +328,9 @@ def safe_to_hunt(profile, monster, damage):
     return profile.current_health >= health_needed(profile, monster, damage)
 
 
+from .realms import profile_scope,camps as realm_camps
+
+@profile_scope
 def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
     from .locations import LOCATIONS
@@ -384,7 +387,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .economic_ledger import refills_remaining
     energy_refills_left = refills_remaining(profile)
     consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
-    stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    stock = ItemBluePrint.objects.filter(source_game__in=["adaptation",profile.world.universe],merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
     offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
@@ -666,7 +669,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         elif action == "boss" and boss_key and target is None:
             success = game.execute_boss(profile, boss_key) is not False
         elif action == "camp" and target == camp_target:
-            success = game.choose_camp(profile, ("OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP")[camp_target - 1])
+            success = game.choose_camp(profile, realm_camps(profile.world)[camp_target - 1])
         elif action in ("accept", "promote") and action == rank_action and rank and target == obs.rank_target:
             success = (accept_camp_quest if action == "accept" else promote_in_camp)(profile, rank.key)
         elif action == "adventure" and template and target == template.pk:

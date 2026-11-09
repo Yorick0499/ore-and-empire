@@ -61,6 +61,8 @@ CREATURES = [
     ("demon_lord", "Książę demonów", 28, 700, 68, 36, 850, "Książę demonów"),
     ("overseer", "Nadzorca", 28, 750, 70, 36, 900, "Nadzorca"),
 ]
+from .khorinis import CREATURES as KHORINIS_CREATURES
+CREATURES += KHORINIS_CREATURES
 BESTIARY = {
     key: dict(nazwa=name, level=level, life=life, strength=strength,
               weapon_prot=armour, exp_reward=experience, source=source)

@@ -9,13 +9,16 @@ from .locations import LOCATIONS
 
 
 def journey(profile):
+    if profile.world.universe=='GOTHIC_II':
+        from .khorinis import CHAPTERS as realm_chapters
+    else:realm_chapters=CHAPTERS
     steps=[];now=timezone.now()
     def add(title,route,description='',ends_at=None,query=''):
         steps.append({'title':title,'url':reverse(route)+query,'description':description,'ends_at':ends_at})
     runs=list(profile.story_runs.select_related('quest').order_by('-accepted_at','-pk')[:100])
     claimed=[r for r in runs if r.status=='claimed'];active=next((r for r in runs if r.status!='claimed'),None)
     chapter=max([1,*[r.snapshot.get('chapter',1) for r in runs]])
-    chapter=max(1,min(6,chapter));name=next(n for number,n,_ in CHAPTERS if number==chapter)
+    chapter=max(1,min(len(realm_chapters),chapter));name=next(n for number,n,_ in realm_chapters if number==chapter)
     finished=hasattr(profile,'campaign_completion')
     if profile.action_end_time:
         if profile.action_end_time<=now:add('Odbierz urobek','mine_page','Zmiana w kopalni już się skończyła.')
@@ -46,7 +49,7 @@ def journey(profile):
         add('Znajdź i załóż pierwszą broń','shop_page','Kupno nie zakłada sprzętu — potem otwórz Ekwipunek.',query='?kind=weapon&usable=1&affordable=1')
     if profile.camp=='NONE':
         from .story_gates import missing
-        if missing(profile):add('Ukończ prolog przed dołączeniem','story_page','Odbierz Drogę między ogniskami, aby obóz przyjął twoją postać.')
+        if missing(profile):add('Ukończ prolog przed dołączeniem','story_page','Odbierz ostatni przydział prologu, aby wspólnota przyjęła twoją postać.')
         else:add('Wybierz obóz i wspólne cele','locations_page','Obóz jest twoją gildią. Wybór przynależności jest stały.')
     else:add('Sprawdź wspólne cele swojego obozu','camp_guild','Twój wkład oraz działania mieszkańców rozwijają tę samą wspólnotę.')
     if finished:add('Dalsza droga: Warty za Przełęczą','frontier_page','Szukaj lepszego łupu i walcz o wynik miesiąca.')

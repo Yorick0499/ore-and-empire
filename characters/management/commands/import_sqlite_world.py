@@ -11,8 +11,12 @@ from ore_empire.database import sqlite_environment
 
 EXCLUDES=['contenttypes','auth.permission','sessions.session','characters.schedulerlease']
 
-def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False, legacy_characters=False):
+def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False, legacy_characters=False, legacy_realms=False):
     rows=json.loads(raw)
+    if legacy_realms:
+        for row in rows:
+            if row['model']=='characters.world':row['fields'].pop('is_open',None)
+            elif row['model']=='characters.adventuretemplate':row['fields'].pop('universe',None)
     if legacy_equipment:
         for row in rows:
             if row['model']=='characters.owneditem':

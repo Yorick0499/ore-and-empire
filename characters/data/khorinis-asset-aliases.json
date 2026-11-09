@@ -1,0 +1,13 @@
+{
+  "k2_fields": "k2_landscape",
+  "k2_market": "k2_harbor",
+  "k2_quarry": "k2_landscape",
+  "k2_road": "k2_landscape",
+  "k2_farms": "k2_onar",
+  "k2_lake": "k2_monastery",
+  "k2_coast": "k2_landscape",
+  "k2_dark_forest": "k2_landscape",
+  "k2_troll_grove": "k2_black_troll",
+  "k2_bandit_boss": "k2_barracks",
+  "k2_harbor_boss": "k2_harbor"
+}

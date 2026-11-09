@@ -1,5 +1,6 @@
 """Production worker: adaptive scheduling, no HTTP, no implicit migrations."""
 import signal,time
+from contextlib import ExitStack
 from django.core.management import BaseCommand,CommandError,call_command
 from django.utils import timezone
 from characters.models import World,PlayerProfile,AuthRateBucket
@@ -25,7 +26,9 @@ class Command(BaseCommand):
             stopped=True
         for sig in (signal.SIGTERM,signal.SIGINT):old[sig]=signal.signal(sig,stop)
         try:
-            with SchedulerGuard(world) as guard:
+            with ExitStack() as cleanup, SchedulerGuard(world) as guard:
+                from characters.realm_scheduler import ParallelRealms
+                parallel=ParallelRealms()
                 from characters.bot_policies import configured_policy
                 policy=configured_policy(guard)
                 scheduler=BotScheduler(options['interval']);refresh_at=0;heartbeat=0;day=None;ticks=0
@@ -33,7 +36,7 @@ class Command(BaseCommand):
                     nonlocal ticks
                     p=PlayerProfile.objects.filter(pk=pk,is_bot=True,user__is_active=True).first()
                     if not p:return 'wait',False
-                    try:result=tick_bot(p,policy=policy,lease=guard)
+                    try:result=tick_bot(p,policy=policy if p.world_id==guard.world_id else None,lease=parallel.for_profile(p))
                     except LeaseLost:raise
                     except Exception as exc:self.stderr.write('Worker action failed: '+type(exc).__name__);result=('wait',False)
                     ticks+=1;return result
@@ -45,10 +48,10 @@ class Command(BaseCommand):
                     if now>=refresh_at:
                         world.refresh_from_db()
                         if not world.is_current or world.status!='active':raise LeaseLost('Świat został zatrzymany lub zmieniony.')
-                        scheduler.population(due_population(world));refresh_at=now+5
+                        scheduler.population(parallel.sync(guard,cleanup));refresh_at=now+5
                         if day!=polish_day():
                             with guard.work():
-                                ensure_world_events()
+                                parallel.events()
                                 AuthRateBucket.objects.filter(window_started__lt=timezone.now()-timezone.timedelta(days=7)).delete()
                                 call_command('archive_bot_history',days=30,stdout=self.stdout)
                             day=polish_day()

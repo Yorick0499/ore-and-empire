@@ -29,6 +29,7 @@ def compare_equipment(profile, item, requested=None):
               'fire_prot':'Ochrona przed ogniem', 'magic_prot':'Ochrona przed magią', 'strength_bonus':'Bonus siły',
               'dexterity_bonus':'Bonus zręczności', 'mana_bonus':'Bonus many', 'life_bonus':'Bonus życia'}
     requirements = []
+    if item.blueprint.source_game not in {"adaptation",profile.world.universe}:requirements.append("Przedmiot pochodzi z innego świata.")
     bp = item.blueprint
     if profile.level < bp.min_level:
         requirements.append(f'Poziom {bp.min_level} (masz {profile.level}).')
@@ -59,7 +60,7 @@ def stats_for(profile):
 
 
 def allowed(profile, blueprint):
-    return (profile.level >= blueprint.min_level and
+    return (blueprint.source_game in {"adaptation",profile.world.universe} and profile.level >= blueprint.min_level and
             (not blueprint.required_camp or profile.camp == blueprint.required_camp) and
             profile.camp_tier >= blueprint.min_camp_tier)
 

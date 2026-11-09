@@ -42,13 +42,13 @@ def award_gear(profile,level,*,boss=False,guaranteed=False):
     if guaranteed or random.randrange(10000)<(6000 if boss else 1200):
         # Bound source equipment by encounter strength; late-game uniques cannot drop from young scavengers.
         budget=(20+5*level) if boss else (12+4*level)
-        pool=list(ItemBluePrint.objects.filter(source_game='GOTHIC_I',original_stats__verified=True,tradeable=True,min_level__lte=level).filter(
+        pool=list(ItemBluePrint.objects.filter(source_game=profile.world.universe,tradeable=True,min_level__lte=level).filter(
             Q(kind='weapon',damage__gte=max(1,budget-35),damage__lte=budget,required_strength__lte=10+4*level,required_dexterity__lte=10+4*level) |
             Q(kind='armor',weapon_prot__gte=max(0,4*level-27),weapon_prot__lte=8+4*level) |
             Q(kind__in=['ring','amulet'],strength_bonus__lte=2+level,dexterity_bonus__lte=2+level,life_bonus__lte=15+4*level,mana_bonus__lte=10+3*level,weapon_prot__lte=2+level,arrow_prot__lte=2+level,fire_prot__lte=2+level,magic_prot__lte=2+level)
-        ).exclude(damage=0,weapon_prot=0,arrow_prot=0,fire_prot=0,magic_prot=0,strength_bonus=0,dexterity_bonus=0,life_bonus=0,mana_bonus=0).exclude(catalog_key__in=['g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('pk'))
+        ).filter(Q(original_stats__verified=True)|Q(source_game='GOTHIC_II',original_stats__balance='premerge-v1')).exclude(damage=0,weapon_prot=0,arrow_prot=0,fire_prot=0,magic_prot=0,strength_bonus=0,dexterity_bonus=0,life_bonus=0,mana_bonus=0).exclude(catalog_key__in=['g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('pk'))
         # JSON missing keys are SQL NULL: exclude explicit retired identities separately.
-        if not pool:
+        if not pool and profile.world.universe=='GOTHIC_I':
             pool=list(ItemBluePrint.objects.filter(catalog_key__startswith=f'colony-loot-{tier}-').order_by('pk'))
         if pool:
             bp=random.choice(pool);item=add_item(profile,bp,origin="loot",rarity=roll_rarity(boss=boss))

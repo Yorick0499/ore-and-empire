@@ -85,6 +85,8 @@ class Command(BaseCommand):
                     "LAN mode: configure ALLOWED_HOSTS with your machine's LAN address. This server is for trusted local networks, not public hosting."
                 )
             from characters.bot_scheduler import BotScheduler
+            from characters.realm_scheduler import ParallelRealms
+            parallel=ParallelRealms()
             scheduler=BotScheduler(options['interval'],clock=time.monotonic)
             event_day=None
             refresh_at=0
@@ -92,7 +94,7 @@ class Command(BaseCommand):
                 profile=PlayerProfile.objects.select_related('user').filter(pk=pk,is_bot=True,user__is_active=True).first()
                 if not profile:return 'wait',False
                 try:
-                    action,success=tick_bot(profile,lease=guard)
+                    action,success=tick_bot(profile,lease=parallel.for_profile(profile))
                 except LeaseLost:
                     raise
                 except Exception as exc:
@@ -112,12 +114,12 @@ class Command(BaseCommand):
                             event_day=None
                             scheduler=BotScheduler(options['interval'],clock=time.monotonic)
                         with guard.work():pass
-                        scheduler.population(due_population(world))
+                        scheduler.population(parallel.sync(guard,cleanup))
                         refresh_at=now+5
                         from characters.world_events import ensure_world_events
                         if event_day!=polish_day():
                             with guard.work():
-                                ensure_world_events()
+                                parallel.events()
                                 try:call_command('archive_bot_history',days=options['history_days'],stdout=self.stdout)
                                 except Exception as exc:self.stderr.write(f"History archival skipped ({type(exc).__name__}); raw records retained.")
                             event_day=polish_day()

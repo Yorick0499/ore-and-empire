@@ -36,7 +36,14 @@ BOSSES = {
 }
 
 
+BOSSES.update({
+ 'k2_bandit_boss':Boss('k2_bandit_boss','Poborcy haraczu',10,220,25,10,1000,100),
+ 'k2_harbor_boss':Boss('k2_harbor_boss','Wódz rozbójników z wybrzeża',18,500,42,20,2200,200),
+})
+
 MECHANICS = {
+    'k2_bandit_boss':'Trzy etapy osłony; zapowiedziany silniejszy atak co trzecią rundę.',
+    'k2_harbor_boss':'Wódz gromadzi ludzi do kontrataku; przygotuj ochronę i zapas zdrowia.',
     "crawler_nest": "Królowa przyzywa młode poniżej 65% zdrowia. Co trzecią rundę wykonuje zapowiedziany szarżujący atak. Ogień zadaje jej o 20% więcej obrażeń.",
     "swamp_den": "Poniżej połowy zdrowia wąż zanurza się co drugą rundę: zyskuje 6 pancerza. Przy wynurzeniu traci 6 pancerza. Co trzecią rundę następuje zapowiedziany atak ogonem.",
     "sleeper_sanctum": "Warta walczy z echem Śniącego i stabilizuje pieczęć. Przy 65% i 30% zdrowia osłona słabnie. Co trzecią rundę uderza zapowiedziana fala; magiczna ochrona zmniejsza jej obrażenia. Wymagane przygotowania sześciu rozdziałów.",

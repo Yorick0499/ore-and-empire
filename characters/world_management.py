@@ -12,6 +12,7 @@ from django.db import connection,transaction
 from django.contrib.sessions.models import Session
 from .models import World,CampGuild
 from .worlds import current_world,profile_for
+from .realms import camps
 
 class WorldSetupForm(forms.Form):
     name=forms.CharField(label='Nazwa świata / serwera',max_length=80)
@@ -47,7 +48,7 @@ def seed_clean_world():
     from io import StringIO
     output=StringIO()
     world=current_world()
-    for camp in ('OLD_CAMP','NEW_CAMP','SWAMP_CAMP'):CampGuild.objects.get_or_create(world=world,camp=camp)
+    for camp in camps(world):CampGuild.objects.get_or_create(world=world,camp=camp)
     for command in ('seed_world','seed_equipment','seed_catalog','seed_crafting','seed_adventures','seed_story'):call_command(command,stdout=output)
 
 
@@ -71,6 +72,7 @@ def reset_world(actor,*,name,bot_count,password,confirmation,expected_world):
     from .backups import create_backup
     actor=User.objects.get(pk=actor.pk)
     world=current_world()
+    if not world.is_current:raise ValidationError('Pełny reset instalacji uruchamiaj z panelu głównej Kolonii.')
     if not actor.is_active or not actor.is_superuser or not actor.check_password(password):raise PermissionDenied('Podaj poprawne hasło administratora.')
     if confirmation!=world.name or expected_world!=world.pk:raise ValidationError('Nazwa potwierdzenia lub wersja świata nie zgadza się. Odśwież formularz.')
     if not name.strip() or len(name)>80 or type(bot_count)is not int or not 0<=bot_count<=100:raise ValidationError('Niepoprawna nazwa lub liczba botów.')

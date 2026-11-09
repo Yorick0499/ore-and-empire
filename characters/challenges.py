@@ -2,6 +2,7 @@ from .world_clock import POLISH_TIME
 """Bounded personal goals; Polish calendar periods, immutable rewards, shared rules for bots."""
 from datetime import timedelta,timezone as utc
 from django.utils import timezone
+from .realms import camps
 from .models import PersonalChallenge,PlayerAchievement,CampReputation
 from .game_logic import player_action,check_level_up
 
@@ -46,7 +47,7 @@ def claim_challenge(profile,challenge_id):
     from .economy import change_premium
     if challenge.premium:
         change_premium(profile,challenge.premium,'Wyzwanie osobiste',f'challenge:{challenge.pk}')
-    if challenge.camp in {'OLD_CAMP','NEW_CAMP','SWAMP_CAMP'}:
+    if challenge.camp in camps(profile.world):
         rep,_=CampReputation.objects.select_for_update().get_or_create(profile=profile,camp=challenge.camp)
         rep.value+=challenge.reputation;rep.save(update_fields=['value'])
     check_level_up(profile);profile.save();challenge.claimed_at=timezone.now();challenge.save(update_fields=['claimed_at']);return True
