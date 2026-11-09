@@ -11,3 +11,7 @@ Launcher raz dziennie czasu polskiego archiwizuje decyzje starsze niż 30 pełny
 Retencja nie usuwa ledgerów, transakcji, walk ani questów. Dzienne agregaty i surowe decyzje są rozłączne; sumy PD/liczby decyzji pozostają zgodne przed i po archiwizacji. Akcje historyczne są dostępne w sekcji agregatów dziennych. Same archiwa nie zastępują backup_world: kopiuj również katalog archiwów, jeśli potrzebujesz zachować wszystkie dawne obserwacje po awarii dysku.
 
 Testy obejmują zgodność sum, replay bez mutacji, idempotencję, rollback archiwizacji, autoryzację i budżet liczby zapytań dla 2000 dawnych decyzji. Jest to ochrona przed N+1, nie obietnica czasu odpowiedzi na niezmierzonym produkcyjnym PostgreSQL.
+
+## Odczyt po dodaniu sesji osobowości
+
+Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny `/zycie-kolonii/` uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 21, a polityka domyślna baseline-20; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.

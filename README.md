@@ -2,6 +2,8 @@
 
 Fanowskie, polskojęzyczne RPG przeglądarkowe inspirowane Gothic I, II i III. Możesz grać solo w kolonię zaludnioną autonomicznymi botami: pracują, walczą, awansują, handlują i rozwijają wspólnoty obozowe. Boty są jawnie oznaczone i nie wymagają płatnego API AI.
 
+**[Publiczna dokumentacja HTML — cała księga offline](docs/dokumentacja.html)**: stack, instalacja, restart, panel zarządcy, zasady gry, katalogi, screenshoty i raporty. Pobierz plik i otwórz go w przeglądarce; podgląd GitHuba pokazuje kod HTML.
+
 ## Uruchomienie lokalne
 
 Wymagany Python 3.12 lub 3.13. W terminalu w katalogu projektu:

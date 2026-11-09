@@ -14,7 +14,7 @@ Po awarii: zatrzymaj launcher i wszystkie procesy piszące do świata. Zachowaj 
 
 Retencja usuwa wyłącznie kompletne katalogi o nazwach nadanych przez narzędzie; obce katalogi i niedokończone kopie są pomijane. Weryfikacja dotyczy konkretnej kopii, nie gwarantuje zdrowia wszystkich przyszłych backupów. Próby wykonuj cyklicznie oraz przed aktualizacjami.
 
-PostgreSQL: te komendy jawnie odmawiają działania. W przyszłym wdrożeniu używaj `pg_dump` (spójny snapshot), zaszyfrowanej/offsite retencji oraz `pg_restore` do osobnej bazy i równoważnej walidacji. Samo skopiowanie plików działającego PostgreSQL nie jest tą procedurą. Gotowość tego backendu pozostaje w #19.
+PostgreSQL: te same komendy wybierają natywny `pg_dump` i próbne `pg_restore`. Użyj `backup_world`, a do próby `restore_world KOPIA --target-database NOWA_NAZWA`. Wymagane są narzędzia klienta zgodne z główną wersją serwera i uprawnienie do utworzenia osobnej bazy. Samo kopiowanie plików działającego PostgreSQL nie jest tą procedurą. [Pełny profil i procedury](PRODUCTION.md).
 
 ## Dopracowanie pełnej edycji
 
