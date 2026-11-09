@@ -4,6 +4,11 @@ from .models import World,PlayerProfile
 
 
 def current_world():
+    from .realms import _scope
+    scoped=_scope.get()
+    if scoped:
+        selected=World.objects.filter(pk=scoped).first()
+        if selected:return selected
     world=World.objects.filter(is_current=True).first()
     if world:return world
     return World.objects.create(is_current=True)
@@ -29,10 +34,11 @@ def profile_for(user):
 
 def playable(profile):
     world=profile.world
-    return not profile.is_draft and world.is_current and world.status=='active' and world.universe=='GOTHIC_I'
+    from .realms import is_open
+    return not profile.is_draft and is_open(world)
 
 
 def world_context(request):
     world=current_world()
     from .world_clock import clock_state
-    return {'active_character':getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None,'world_clock':clock_state(),'server_world':world,'world_needs_setup':not world.configured}
+    return {'is_khorinis':world.universe=='GOTHIC_II','realm_title':'Khorinis' if world.universe=='GOTHIC_II' else 'Kolonia','active_character':getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None,'world_clock':clock_state(),'server_world':world,'world_needs_setup':not world.configured}

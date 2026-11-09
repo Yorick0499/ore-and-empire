@@ -1,8 +1,8 @@
 <header class="colony-header">
-  <div class="masthead"><a class="wordmark" href="{% url 'locations_page' %}">Ore <span>&amp;</span> Empire<small>Kroniki Kolonii</small></a><div class="server-identity"><span class="eyebrow">Twój świat pod barierą</span><strong>{{ server_world.name }}</strong><span>Edycja {{ server_world.edition }} · {{ server_world.bot_count }} botów</span></div></div>
+  <div class="masthead"><a class="wordmark" href="{% url 'locations_page' %}">Ore <span>&amp;</span> Empire<small>Kroniki Kolonii</small></a><div class="server-identity"><span class="eyebrow">Twój świat · {{ realm_title }}</span><strong>{{ server_world.name }}</strong><span>Edycja {{ server_world.edition }} · {{ server_world.bot_count }} botów</span></div></div>
   <nav class="colony-toolbar" aria-label="Nawigacja kolonii">
   {% if user.is_authenticated %}{% with current=request.resolver_match.url_name %}
-    <a href="{% url 'locations_page' %}" {% if current == 'locations_page' %}aria-current="page"{% endif %}>Kolonia</a>
+    <a href="{% url 'locations_page' %}" {% if current == 'locations_page' %}aria-current="page"{% endif %}>{{ realm_title }}</a>
     <a href="{% url 'camp_guild' %}" {% if current == 'camp_guild' %}aria-current="page"{% endif %}>Wspólnota obozu</a>
     <a href="{% url 'story_page' %}" {% if current == 'story_page' %}aria-current="page"{% endif %}>Dziennik fabuły</a>
     <details class="nav-group"><summary>Droga postaci</summary><div>

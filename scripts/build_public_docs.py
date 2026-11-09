@@ -159,9 +159,9 @@ def build():
     dependencies = (ROOT / 'requirements.txt').read_text(encoding='utf-8').strip()
     commands = sorted(p.stem for p in (ROOT / 'characters/management/commands').glob('*.py') if not p.name.startswith('_'))
     command_groups = {
-        'Uruchomienie i kontrola': ['run_colony', 'run_worker', 'run_bots', 'check_worker', 'bootstrap_world', 'create_game_admin'],
+        'Uruchomienie i kontrola': ['run_colony', 'run_worker', 'run_bots', 'check_worker', 'bootstrap_world', 'create_game_admin', 'open_khorinis'],
         'Dane i utrzymanie': ['backup_world', 'restore_world', 'import_sqlite_world', 'archive_bot_history', 'validate_content', 'economy_report'],
-        'Katalogi i grafiki': [c for c in commands if c.startswith('seed_')] + ['import_gothicpedia'],
+        'Katalogi i grafiki': [c for c in commands if c.startswith('seed_')] + ['import_gothicpedia', 'import_khorinis_assets'],
         'Symulacje i pomiary': [c for c in commands if c.startswith('simulate_') or c.startswith('benchmark_')],
     }
     if set(commands) != {c for values in command_groups.values() for c in values}: raise ValueError('Uncategorized command')

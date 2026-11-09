@@ -11,6 +11,7 @@ from .camp_guilds import CAMPS,credit_guild
 
 ENCOUNTERS={'OLD_CAMP':('Matka pełzaczy z bocznego szybu','crawler_queen'),'NEW_CAMP':('Orkowy zwiadowca przy zaporze','orc_warrior'),'SWAMP_CAMP':('Prastary wąż z rozlewiska','swampshark')}
 
+ENCOUNTERS.update({'CITY_WATCH':('Banda z leśnego traktu','k2_goblin'),'FIRE_ORDER':('Warg spod klasztoru','k2_warg'),'ONAR_MERCS':('Bestia pustosząca pola','k2_field_raider')})
 
 def phase(raid):
     return 1 if raid.health*100>raid.maximum_health*60 else 2 if raid.health*100>raid.maximum_health*25 else 3

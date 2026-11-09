@@ -13,9 +13,10 @@ class Location:
     monsters: tuple = ()
     wiki: str = ""
     min_tier: int = 0
+    universe: str = "GOTHIC_I"
 
     def accessible(self, profile):
-        return profile.level >= self.level and (
+        return profile.world.universe == self.universe and profile.level >= self.level and (
             not self.camps or profile.camp in self.camps
         ) and profile.camp_tier >= self.min_tier
 
@@ -69,5 +70,7 @@ LOCATIONS = (
     Location("sleeper_sanctum", "Sanktuarium Śniącego", "Ostatnia wyprawa w głąb świątyni. Przygotuj oręż i zapasy energii.", 30, route="boss_page", wiki="Portal w świątyni Śniącego"),
     Location("overseer_crypt", "Krypta Nadzorcy", "Najgłębszej krypty broni Nadzorca i jego nieumarła świta.", 28, monsters=("overseer", "skeleton_mage", "demon_lord"), wiki="Krypta Nadzorcy"),
 )
+from .khorinis import DESTINATIONS
+LOCATIONS += tuple(Location(key,name,description,level,route=route,monsters=monsters,wiki=wiki,universe="GOTHIC_II") for key,name,description,level,route,monsters,wiki in DESTINATIONS)
 LOCATIONS = tuple(sorted(LOCATIONS, key=lambda location: location.level))
 BY_KEY = {location.key: location for location in LOCATIONS}

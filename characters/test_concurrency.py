@@ -120,6 +120,19 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
         self.assertEqual(CampSupplyUse.objects.filter(profile=self.a).count(),1)
         self.assertEqual(EnergyRefill.objects.filter(profile=self.a).count(),1)
 
+    def test_world_context_is_separate_across_concurrent_connections(self):
+        from .models import World
+        from .worlds import current_world
+        from .realms import world_scope
+        island=World.objects.create(name='Równoległa wyspa',universe='GOTHIC_II',is_open=True,configured=True,bot_count=0)
+        ids=[self.a.world_id,island.pk];inside=Barrier(2)
+        def context(n):
+            with world_scope(ids[n]):
+                inside.wait(timeout=10)
+                return current_world().pk
+        self.assertEqual(self.race(context),ids)
+        self.assertEqual(current_world().pk,self.a.world_id)
+
     def test_single_market_winner_and_conserved_currency(self):
         item=OwnedItem.objects.create(owner=self.seller,blueprint=self.bp,is_market_listed=True,market_price=25)
         total=sum(p.ore_balance for p in (self.seller,self.a,self.b))

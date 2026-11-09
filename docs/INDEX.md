@@ -2,7 +2,7 @@
 
 Stan najnowszej wersji: 9 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
 
-**[Jednoplikowa publiczna księga HTML](dokumentacja.html)** — pełna treść, wyszukiwarka, 40 ekranów i publiczne raporty; działa offline. Źródła i odtwarzanie: `docs/public/`, `requirements-docs.txt`, `python scripts/build_public_docs.py`.
+**[Jednoplikowa publiczna księga HTML](dokumentacja.html)** — pełna treść, wyszukiwarka, 46 ekranów i publiczne raporty; działa offline. Źródła i odtwarzanie: `docs/public/`, `requirements-docs.txt`, `python scripts/build_public_docs.py`.
 
 ## Dla gracza
 
@@ -65,3 +65,6 @@ Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia:
 - [44 zlecenia: kategorie, koszty i zapis rozpoczętej wyprawy](ADVENTURES.md).
 
 - [Ponowna kampania i trzy buildy po rozbudowie zleceń](reports/zlecenia-buildy-petla-2026-11-08.json), [karty i GUI](reports/zlecenia-rzadkosc-gui-2026-11-08.json).
+
+
+Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.

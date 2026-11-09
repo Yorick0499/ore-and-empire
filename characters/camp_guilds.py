@@ -7,7 +7,7 @@ from django.utils import timezone
 from .models import CampGuild,CampProject,CampContribution,PlayerProfile
 from .game_logic import player_action
 
-CAMPS=('OLD_CAMP','NEW_CAMP','SWAMP_CAMP')
+CAMPS=('OLD_CAMP','NEW_CAMP','SWAMP_CAMP','CITY_WATCH','FIRE_ORDER','ONAR_MERCS')
 UPGRADES={'training':('training_level','Szkoła obozowa','Trening atrybutu tańszy o 1 rudę na poziom (maks. 3).'),'supply':('supply_level','Magazyn kopaczy','Każdy odebrany urobek: +1 rudy na poziom (maks. 3).'),'defense':('defense_level','Warty przy bramach','Ochrona przed bronią i pociskami: +1 na poziom (maks. 3).')}
 PROJECTS=(('Zapasy na kolejną zmianę',[{'id':'mine','kind':'mine','target':'','count':2},{'id':'hunt','kind':'hunt','target':'','count':4}]),('Bezpieczne ścieżki',[{'id':'hunt','kind':'hunt','target':'','count':6}]),('Wspólny urobek',[{'id':'mine','kind':'mine','target':'','count':4}]))
 

@@ -51,7 +51,7 @@ def summary():
     trades=MarketTrade.objects.filter(seller__world=world,created_at__gte=since) if since else MarketTrade.objects.none()
     averages={r['blueprint_id']:r for r in trades.filter(blueprint__kind='weapon').values('blueprint_id').annotate(average=Avg('price'),count=Count('pk'))}
     prices=[]
-    for item in ItemBluePrint.objects.filter(merchant=True,kind='weapon').order_by('base_value','pk')[:30]:
+    for item in ItemBluePrint.objects.filter(source_game__in=['adaptation',world.universe],merchant=True,kind='weapon').order_by('base_value','pk')[:30]:
         market=averages.get(item.pk,{})
         prices.append({'name':item.name,'npc':item.base_value,'g1':item.original_stats.get('value'),'market_average':round(market['average'],2) if market else None,'trades':market.get('count',0)})
-    return {'simulated_purchase_shards':EconomicEntry.objects.filter(profile__world=world,operation='simulated_purchase',resource='shards').aggregate(n=Sum('amount'))['n'] or 0,'resources':totals,'market_turnover':trades.aggregate(total=Sum('price'))['total'] or 0,'since':since.isoformat() if since else None,'prices':prices,'refills_per_day':REFILLS_PER_DAY,'entries':EconomicEntry.objects.count()}
+    return {'simulated_purchase_shards':EconomicEntry.objects.filter(profile__world=world,operation='simulated_purchase',resource='shards').aggregate(n=Sum('amount'))['n'] or 0,'resources':totals,'market_turnover':trades.aggregate(total=Sum('price'))['total'] or 0,'since':since.isoformat() if since else None,'prices':prices,'refills_per_day':REFILLS_PER_DAY,'entries':EconomicEntry.objects.filter(profile__world=world).count()}

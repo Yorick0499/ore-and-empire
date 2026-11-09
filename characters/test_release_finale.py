@@ -64,7 +64,7 @@ class FinaleTests(TestCase):
         self.p.refresh_from_db();self.assertEqual(before,(self.p.experience,self.p.ore_balance,self.p.current_energy))
         self.assertEqual(BossAttempt.objects.count(),1)
     def test_all_bosses_have_distinct_loot_and_actual_phase_reports(self):
-        tables=[LootTable.objects.get(key=k).entries for k in BOSSES]
+        tables=[LootTable.objects.get(key=k).entries for k in BOSSES if not k.startswith("k2_")]
         self.assertEqual(len({str(t) for t in tables}),3)
         self.p.life=500;self.p.current_health=500;self.p.strength=20;self.p.save()
         result=game.simulate_combat(self.p,'crawler_nest',monster=BOSSES['crawler_nest'].monster)

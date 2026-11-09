@@ -1,7 +1,7 @@
 {% extends 'characters/base.html' %}{% load gothic_media %}
 {% block title %}Ore &amp; Empire — Bestiariusz{% endblock %}
 {% block content %}
-<span class="eyebrow">Notatki myśliwych</span><h1>Bestiariusz kolonii</h1>
+<span class="eyebrow">Notatki myśliwych</span><h1>Bestiariusz — {{ realm_title }}</h1>
 <p>{{ total }} rodzaje i warianty stworzeń z Gothic I. Królową pełzaczy i Śniącego znajdziesz w wyprawach na bossów. Poziomy i statystyki są balansem tej gry przeglądarkowej.</p>
 <form class="inline-form" method="get"><div><label for="creature-search">Nazwa stworzenia</label><input id="creature-search" name="q" value="{{ query }}" maxlength="100" type="search"></div><button>Szukaj</button></form>
 <div class="colony-panel monster-list">

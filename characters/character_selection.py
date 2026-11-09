@@ -14,8 +14,9 @@ class CharacterForm(forms.Form):
     world=forms.ModelChoiceField(label='Świat / serwer',queryset=World.objects.none(),empty_label=None)
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        self.fields['world'].queryset=World.objects.filter(is_current=True,status='active',universe='GOTHIC_I')
-        self.fields['world'].label_from_instance=lambda world: f'{world.name} · Kolonia (Gothic I)'
+        from .realms import open_worlds
+        self.fields['world'].queryset=open_worlds().order_by('edition','pk')
+        self.fields['world'].label_from_instance=lambda world: f'{world.name} · '+('Khorinis (Gothic II)' if world.universe=='GOTHIC_II' else 'Kolonia (Gothic I)')
     def clean_name(self):
         value=unicodedata.normalize('NFKC',' '.join(self.cleaned_data['name'].split()))
         if not re.fullmatch(r"[\w][\w .'-]{1,31}",value):raise ValidationError('Użyj 2–32 liter, cyfr, spacji lub znaków _ . - i apostrofu.')
@@ -46,7 +47,8 @@ def create_character(user,name,world_id):
 
 
 def select_character(request,profile):
-    if profile.user_id!=request.user.pk or profile.is_draft or not profile.world.is_current or profile.world.status!='active':raise ValidationError('Ta postać nie jest dostępna na tym koncie i świecie.')
+    from .realms import is_open
+    if profile.user_id!=request.user.pk or profile.is_draft or not is_open(profile.world):raise ValidationError('Ta postać nie jest dostępna na tym koncie i świecie.')
     request.session['active_character']=profile.pk
     request.user._server_profile=profile
     # Forms from another open character tab must not act on the newly selected one.
@@ -54,11 +56,33 @@ def select_character(request,profile):
 
 class CharacterSelectionMiddleware:
     def __init__(self,get_response):self.get_response=get_response
-    def __call__(self,request):return self.get_response(request)
+    def __call__(self,request):
+        from .realms import world_scope
+        # Bind before view dispatch and template context processing; reset on every response/exception.
+        with world_scope(None):
+            if request.user.is_authenticated:
+                from .realms import open_worlds
+                ready=request.user.characters.filter(world__in=open_worlds(),is_draft=False).select_related('world')
+                selected=ready.filter(pk=request.session.get('active_character')).first() or ready.order_by('slot').first()
+                if selected:
+                    request.user._server_profile=selected
+                    from .realms import _scope
+                    _scope.set(selected.world_id)
+            if request.user.is_authenticated and request.user.is_superuser and request.path.startswith('/zarzadca/'):
+                from .realms import open_worlds,_scope
+                server=request.GET.get('server')
+                if server is not None:
+                    from django.http import Http404
+                    if not server or len(server)>18 or not server.isdecimal():raise Http404('Nieznany serwer.')
+                    selected_world=open_worlds().filter(pk=int(server)).first()
+                    if selected_world is None:raise Http404('Serwer jest zamknięty lub nie istnieje.')
+                    _scope.set(selected_world.pk)
+            return self.get_response(request)
     def process_view(self,request,view,args,kwargs):
         if not request.user.is_authenticated:return None
         world=current_world()
-        ready=request.user.characters.filter(world=world,is_draft=False).select_related('world')
+        from .realms import open_worlds
+        ready=request.user.characters.filter(world__in=open_worlds(),is_draft=False).select_related('world')
         selected=ready.filter(pk=request.session.get('active_character')).first() or ready.order_by('slot').first()
         if selected:
             request.user._server_profile=selected

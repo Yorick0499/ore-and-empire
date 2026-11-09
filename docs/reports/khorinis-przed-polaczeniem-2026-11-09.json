@@ -1,0 +1,238 @@
+{
+  "date": "2026-11-09",
+  "scope": "Równoległe serwery #34 i pierwsza paczka Khorinis #113; migracja 0043",
+  "full_sqlite_regression": {
+    "tests": 445,
+    "success": true,
+    "skipped": 14,
+    "seconds": 350.56,
+    "note": "Po tym przebiegu doprecyzowano zarządcę i styl magiczny G2; końcowe 8 testów Khorinis i 24 testy zarządcy/gospodarki przeszły, a CI sprawdza pełną końcową wersję."
+  },
+  "latest_khorinis_suite": {
+    "tests": 8,
+    "success": true,
+    "seconds": 63.813
+  },
+  "manager_economy_suite": {
+    "tests": 24,
+    "success": true
+  },
+  "gameplay": [
+    {
+      "scenario": "khorinis-gracz-od-zera",
+      "steps": 397,
+      "quests": 17,
+      "level": 26,
+      "ore": 1901,
+      "experience": 186341,
+      "ordinary_forms_without_grants": true
+    },
+    {
+      "scenario": "khorinis-trzy-frakcje",
+      "ticks": 316,
+      "quests_each": 17,
+      "actions": {
+        "stock": 8,
+        "mine": 41,
+        "equip": 26,
+        "claim": 41,
+        "story_accept": 51,
+        "story_start": 51,
+        "story_talk": 6,
+        "story_claim": 51,
+        "story_travel": 24,
+        "hunt": 87,
+        "camp": 3,
+        "accept": 12,
+        "train": 380,
+        "challenge_accept": 28,
+        "promote": 12,
+        "challenge_claim": 8,
+        "craft_learn": 7,
+        "raid_rally": 20,
+        "shop": 12,
+        "adventure": 29,
+        "adventure_claim": 29,
+        "finance": 3,
+        "learn_circle": 6,
+        "list": 11,
+        "raid_strike": 36,
+        "salvage": 5,
+        "improve": 29,
+        "buy_magic": 3,
+        "prepare_magic": 6,
+        "clear_magic": 3,
+        "raid_claim": 11,
+        "achievement_claim": 9,
+        "sell": 4,
+        "market_reprice": 17,
+        "camp_upgrade": 8,
+        "boss": 6,
+        "market_buy": 3,
+        "market_cancel": 3,
+        "camp_donate": 12,
+        "wait": 2,
+        "camp_supply": 4,
+        "patrol": 4
+      },
+      "characters": [
+        {
+          "id": 1,
+          "camp": "CITY_WATCH",
+          "guild": "K2_COMMANDER",
+          "level": 30,
+          "strength": 135,
+          "mana": 10,
+          "ore_balance": 6150
+        },
+        {
+          "id": 2,
+          "camp": "FIRE_ORDER",
+          "guild": "K2_ARCHMAGE",
+          "level": 29,
+          "strength": 27,
+          "mana": 131,
+          "ore_balance": 3956
+        },
+        {
+          "id": 3,
+          "camp": "ONAR_MERCS",
+          "guild": "K2_CAPTAIN",
+          "level": 28,
+          "strength": 127,
+          "mana": 10,
+          "ore_balance": 965
+        }
+      ],
+      "ordinary_services_without_grants": true
+    }
+  ],
+  "gui": {
+    "screens": [
+      {
+        "path": "/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/fabula/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/fabula/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/fabula/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/oboz/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/oboz/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/oboz/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/karczma/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/karczma/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/karczma/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/postacie/",
+        "width": 320,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/postacie/",
+        "width": 390,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      },
+      {
+        "path": "/postacie/",
+        "width": 1440,
+        "status": 200,
+        "overflow": false,
+        "broken_images": []
+      }
+    ],
+    "javascript_errors": [],
+    "two_world_dropdown": true,
+    "cross_world_old_form_rejected": true,
+    "ordinary_first_story_quest_completed": true
+  },
+  "migration_copy": {
+    "isolated_copy": true,
+    "migration": "0043_rownolegle_khorinis",
+    "stable_tables": 30,
+    "all_existing_tables": 57,
+    "existing_rows_preserved": 153935,
+    "all_existing_columns_and_ids_preserved": true,
+    "passwords_and_accounts_preserved": true
+  },
+  "limits": [
+    "Pierwsza paczka wyspy; nie pełny katalog oryginalnego G2.",
+    "Jarkendar, smoki, Kruk i połączenie światów nie są uruchomione.",
+    "Kampanie używają przyspieszonego czasu i wymuszonych aktywnych tur, lecz wyłącznie zwykłej regeneracji i serwisów; brak nadania statystyk, przedmiotów i walut.",
+    "Zrzuty przedstawiają osobny syntetyczny świat; raport nie zawiera danych logowania ani prywatnej bazy."
+  ]
+}

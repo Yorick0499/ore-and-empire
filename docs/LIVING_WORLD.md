@@ -45,3 +45,6 @@ Po finale bot ocenia bezpieczną wartę, w razie potrzeby powtarza niższy stopi
 Opcjonalny adapter lokalnego modelu ma protokół ollama-1 i trwały budżet. Domyślna gra pozostaje przy regułach; [opis i wyniki](LOCAL_AI_POLICIES.md).
 
 [Siedem osobowości, godziny sesji, symulowane zakupy i 17 ofert itemshopu](BOT_PERSONALITIES.md).
+
+
+Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.

@@ -34,20 +34,11 @@ Dołączenie wymaga odebrania `prologue-path` — **Drogi między ogniskami**, p
 
 Premie sumują się z trzema poziomami ulepszeń wspólnoty. Trening kosztuje co najmniej 5 rudy za PN. Zaopatrzenie kosztuje 10 rudy raz na dobę `Europe/Warsaw`: odnawia najwyżej `10+5×szczebel` energii i `20+5×szczebel` zdrowia. Nie pobiera opłaty przy pełnych zasobach; energia wlicza się do wspólnego limitu pięciu odnowień napojowych. UUID chroni przed powtórną wypłatą, również po północy. Boty respektują te same wymagania, wykonują prolog przed dołączeniem i płacą własną rudą.
 
-## Plan dwóch serwerów — jeszcze niewdrożony
+## Dwa grywalne serwery od migracji 0043
 
-Aktualnie działa **Kolonia / Gothic I**. Kreator nie oferuje pustego Khorinis. Nowy plan zastępuje wcześniejszy pomysł ręcznego przeniesienia całej edycji przez administratora.
+Kolonia i Khorinis działają równolegle. Kreator oferuje oba otwarte serwery, a wybór postaci zmienia cały kontekst gry. Pierwsza paczka Khorinis zawiera 29 definicji historii mieszkańca, trzy frakcje, cztery rozdziały i własne zlecenia, lokacje oraz rynsztunek. [Pełny zakres i instrukcja](KHORINIS.md).
 
-1. **#34 — izolacja równoległych serwerów.** Robocze nazwy: „Bariera — Kolonia” i „Latarnia — Khorinis”. Osobne gospodarki, wspólnoty, boty, zadania i zdarzenia; wybór przy tworzeniu postaci. Nie zmieniamy nazwy już skonfigurowanego prywatnego serwera.
-2. **#32 — grywalne Khorinis.** Audyt i lokalne paczki G2 z Gothicpedii: przedmioty, przeciwnicy, lokacje, mieszkańcy, gildie i zadania. Każda ilustracja z pochodzeniem i weryfikacją. Fabuła zwykłego mieszkańca zamiast powielania Bezimiennego; szczegóły historii do doprecyzowania z autorem.
-3. **#33 / #31 — premium i balans.** Jarkendar wymaga uprawnienia premium konta. Samo saldo odłamków ani osobowość bota „patron” nie nadaje tego uprawnienia. Nowy gracz może zacząć od zera; skalowanie nie może kasować korzyści wypracowanych przez weterana.
-4. **#111 — obozowy Śniący.** Pierwszy obóz Kolonii na poziomie 10 otwiera wyścig o wieloetapowy, trudny cel ze wspólnym HP i wkładem mieszkańców. Parametry trzeba zmierzyć dla małej i dużej aktywnej populacji. To nie jest obecna codzienna wyprawa ani osobisty finał.
-5. **#30 — jednorazowe połączenie po zwycięstwie.** Pierwsze prawidłowo rozliczone pokonanie Śniącego łączy serwery bez kasowania ID, postaci, skarbców i historii. Kolizje imion/slotów, duplikaty żądań i równoczesne ostatnie ciosy wymagają testów PostgreSQL. Po połączeniu otwarty ruch między regionami i jeden wybór świata przy tworzeniu postaci; Jarkendar zachowuje warunek premium.
-6. **#35 — kontrola zarządcy i odblokowania.** Podgląd stanu, audyt, kopia i próba odtwarzania przed połączeniem. Po połączeniu dalsza historia G2 NK, smoki i nowi bossowie.
-
-Epik: [#10](https://github.com/Yorick0499/ore-and-empire/issues/10). Wszystkie wymienione numery są zapisane na GitHubie. Obecny osobisty finał nie łączy serwerów i nie odblokowuje jeszcze G2; wymiana jego roli nastąpi wraz z #111. Dokument nie obiecuje dostępności przyszłych paczek.
-
-Punkty wyjścia audytu źródeł #32: [Miasto Khorinis](https://gothic.fandom.com/pl/wiki/Miasto_Khorinis) i [Gothic II: Noc Kruka](https://gothic.fandom.com/pl/wiki/Gothic_II:_Noc_Kruka). W tym etapie nie pobrano ani nie włączono nowej paczki G2.
+Kolejne etapy epiku [#10](https://github.com/Yorick0499/ore-and-empire/issues/10): pełny katalog G2 (#32), obozowy Śniący (#111), bezpieczne połączenie (#30), balans (#31) i kontrola zarządcy (#35). Jarkendar pozostaje całkowicie zamknięty do połączenia; później dodatkowo wymaga premium konta (#33). Obecny osobisty finał Kolonii nie łączy serwerów.
 
 ## Wyniki weryfikacji
 

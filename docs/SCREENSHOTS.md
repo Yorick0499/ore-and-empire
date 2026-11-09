@@ -1,5 +1,14 @@
 # Aktualne zrzuty ekranów
 
+**Migracja 0043 — równoległe Khorinis:** sześć nowych ujęć (46 w manifeście): wyspa, fabuła, frakcje, Martwa Harpia i dwa wybory postaci. Osobna syntetyczna instalacja 6/12 botów, bez danych prywatnego administratora. Kontrola pięciu stron w 320/390/1440 px oraz rzeczywisty pierwszy quest i odrzucenie formularza po zmianie serwera. [Raport](reports/khorinis-przed-polaczeniem-2026-11-09.json).
+
+![Khorinis](screenshots/khorinis.jpg)
+![Fabuła wyspy](screenshots/khorinis-story.jpg)
+![Frakcje Khorinis](screenshots/khorinis-factions.jpg)
+![Martwa Harpia](screenshots/khorinis-tavern.jpg)
+![Dwa serwery w kreatorze](screenshots/two-worlds.jpg)
+![Mobilny wybór świata](screenshots/two-worlds-mobile.jpg)
+
 **9 listopada 2026, migracja 0042:** 40 ujęć w manifeście. Odświeżono sklep, ekran rang i wspólnotę; dodano kreator oraz jego mobilne ujęcie. „Bariera — Kolonia” to odrębny świat testowy z 12 botami i syntetycznymi postaciami Darin/Mira. Stan Darina służy kontroli przywilejów, nie dowodzi naturalnego przejścia. Chromium sprawdza 12 kombinacji czterech stron i trzech szerokości; wszystkie 17 kart sklepu mają jedną ilustrację/nagłówek. Sprawdzono przełączenie na Mirę i blokadę dołączenia bez prologu. [Raport kontroli](reports/postacie-fabula-przywileje-2026-11-09.json).
 
 ![Wymagania i rangi obozowe](screenshots/camp.jpg)

@@ -6,11 +6,15 @@ from django.dispatch import receiver
 
 
 def default_world_id():
+    from .realms import _scope
+    scoped=_scope.get()
+    if scoped and World.objects.filter(pk=scoped).exists():return scoped
     existing = World.objects.filter(is_current=True).values_list("pk",flat=True).first()
     return existing if existing else World.objects.create(is_current=True).pk
 
 
 class World(models.Model):
+    is_open = models.BooleanField(default=False)
     bot_personality_cycles = models.BooleanField(default=True)
     bot_simulated_purchases = models.BooleanField(default=True)
     name = models.CharField(max_length=80,default='Górnicza Dolina')
@@ -62,6 +66,9 @@ class PlayerProfile(models.Model):
         ("SWAMP_CAMP", "Obóz na bagnie"),
         ("OLD_CAMP", "Stary Obóz"),
         ("NEW_CAMP", "Nowy Obóz"),
+        ("CITY_WATCH", "Straż Khorinis"),
+        ("FIRE_ORDER", "Krąg Ognia"),
+        ("ONAR_MERCS", "Najemnicy Onara"),
     ]
 
     OLD_CAMP_GUILDS = [
@@ -496,6 +503,7 @@ class CampQuest(models.Model):
 
 
 class AdventureTemplate(models.Model):
+    universe = models.CharField(max_length=20,default="GOTHIC_I")
     from .adventures import CATEGORIES
     category = models.CharField(max_length=16, choices=(("other", "Inne zlecenia"), *CATEGORIES), default="other")
     place = models.CharField(max_length=100, blank=True)
@@ -805,7 +813,7 @@ class CampGuild(models.Model):
     supply_level = models.PositiveSmallIntegerField(default=0)
     defense_level = models.PositiveSmallIntegerField(default=0)
     class Meta:
-        constraints=[models.UniqueConstraint(fields=['world','camp'],name='one_camp_guild_per_world'),models.CheckConstraint(condition=models.Q(camp__in=['OLD_CAMP','NEW_CAMP','SWAMP_CAMP']),name='valid_camp_guild'),models.CheckConstraint(condition=models.Q(training_level__lte=3,supply_level__lte=3,defense_level__lte=3,level__gte=1,level__lte=10),name='camp_guild_upgrade_bounds')]
+        constraints=[models.UniqueConstraint(fields=['world','camp'],name='one_camp_guild_per_world'),models.CheckConstraint(condition=models.Q(camp__in=['OLD_CAMP','NEW_CAMP','SWAMP_CAMP','CITY_WATCH','FIRE_ORDER','ONAR_MERCS']),name='valid_camp_guild'),models.CheckConstraint(condition=models.Q(training_level__lte=3,supply_level__lte=3,defense_level__lte=3,level__gte=1,level__lte=10),name='camp_guild_upgrade_bounds')]
     @property
     def name(self):return dict(PlayerProfile.CAMP_LIST)[self.camp]
 

@@ -55,6 +55,8 @@ def player_action(fn):
     PostgreSQL honors row locks; SQLite is for local development only.
     """
 
+    from .realms import profile_scope
+    @profile_scope
     @wraps(fn)
     def wrapped(profile, *args, **kwargs):
         try:return locked_action(profile,*args,**kwargs)
@@ -533,7 +535,8 @@ def execute_boss(profile, boss_key, request_key=None):
 def choose_camp(profile, camp):
     from .story_gates import missing
     if missing(profile):return False
-    if profile.camp != "NONE" or camp not in {"OLD_CAMP", "NEW_CAMP", "SWAMP_CAMP"}:
+    from .realms import camps
+    if profile.camp != "NONE" or camp not in camps(profile.world):
         return False
     profile.camp = camp
     profile.save(update_fields=["camp"])

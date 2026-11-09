@@ -12,7 +12,7 @@ def adventure_context(profile, params):
              'category':params.get('category','') if params.get('category') in dict(categories) else '',
              'access':params.get('access','open') if params.get('access','open') in {'open','all'} else 'open',
              'sort':params.get('sort','level') if params.get('sort','level') in {'level','short','ore','experience'} else 'level'}
-    stock=AdventureTemplate.objects.filter(enabled=True)
+    stock=AdventureTemplate.objects.filter(enabled=True,universe=profile.world.universe)
     if filters['q']:stock=stock.filter(Q(name__iregex=literal_pattern(filters['q']))|Q(description__iregex=literal_pattern(filters['q']))|Q(place__iregex=literal_pattern(filters['q'])))
     if filters['category']:stock=stock.filter(category=filters['category'])
     if filters['access']=='open':stock=stock.filter(level__lte=profile.level)

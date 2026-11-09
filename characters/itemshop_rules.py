@@ -10,6 +10,7 @@ def remaining(p):
     used={r['kind_snapshot']:r['n'] for r in StorePurchase.objects.filter(profile=p,created_at__gte=start,created_at__lt=start+timedelta(days=1)).values('kind_snapshot').annotate(n=Count('pk'))}
     return {kind:max(0,limit-used.get(kind,0)) for kind,limit in LIMITS.items()}
 def helpful(p,q,energy_left,limits=None):
+    if q.blueprint and q.blueprint.source_game not in {"adaptation",p.world.universe}:return False
     if not q.enabled or p.level<q.level or p.premium_balance<q.price:return False
     if q.kind in LIMITS and not (limits if limits is not None else remaining(p))[q.kind]:return False
     if q.kind=='energy':return energy_left>0 and q.effect>0 and p.current_energy<p.max_energy

@@ -19,7 +19,7 @@ Otwórz [grę lokalną](http://127.0.0.1:8001/). Nowa instalacja udostępnia `/i
 
 Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Opcjonalny profil produkcyjny, PostgreSQL i procedury wdrożenia są w [dokumentacji operatora](docs/PRODUCTION.md).
 
-Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. [Zasady oraz plan Kolonia + Khorinis](docs/CHARACTERS_AND_WORLDS.md). Khorinis i połączenie światów po Śniącym są kolejnymi etapami, jeszcze niedostępnymi.
+Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. [Zasady oraz plan Kolonia + Khorinis](docs/CHARACTERS_AND_WORLDS.md). **Khorinis jest już grywalne przed połączeniem**: 29 definicji fabuły, trzy frakcje i własna pętla. [Zakres paczki i otwarcie serwera](docs/KHORINIS.md). Jarkendar pozostaje zamknięty do przyszłego połączenia po obozowym Śniącym.
 
 ## Co możesz przejść
 

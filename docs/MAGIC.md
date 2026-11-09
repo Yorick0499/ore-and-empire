@@ -48,3 +48,6 @@ uwzględnia manę, liczbę zwojów, redukcję obrażeń, utratę tury przeciwnik
 walkę pięściami po wyczerpaniu many. Dzięki wspólnej prognozie bot nie porzuca
 magii na podstawie innej oceny pancerza ani nie farmi, gdy finał jest osiągalny
 po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bossów.
+
+
+Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.

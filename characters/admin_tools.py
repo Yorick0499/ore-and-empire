@@ -15,6 +15,13 @@ class ProfileStatsForm(forms.ModelForm):
         fields = ["level", "experience", "skill_points", "strength", "dexterity", "mana", "current_mana", "life", "current_health", "weapon_prot", "ore_balance", "current_energy", "max_energy", "camp", "guild", "arrow_prot", "fire_prot", "magic_prot", "onehand_skill", "twohand_skill", "bow_skill", "crossbow_skill", "lockpick_skill", "pickpock_skill", "magic_skill", "sneaking", "acrobatics"]
         labels = {"level": "Poziom", "experience": "Doświadczenie", "skill_points": "Punkty nauki", "strength": "Siła", "dexterity": "Zręczność", "mana": "Mana", "life": "Maksymalne zdrowie", "current_health": "Aktualne zdrowie", "weapon_prot": "Pancerz", "ore_balance": "Ruda", "current_energy": "Aktualna energia", "max_energy": "Maksymalna energia", "camp": "Obóz", "guild": "Kod rangi (NONE lub kod z drabinki)"}
 
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        if self.instance and self.instance.pk:
+            from .realms import camps
+            permitted=camps(self.instance.world)
+            self.fields['camp'].choices=[(key,name) for key,name in PlayerProfile.CAMP_LIST if key=='NONE' or key in permitted]
+
     def clean(self):
         data = super().clean()
         for field, value in data.items():

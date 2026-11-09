@@ -70,18 +70,23 @@ RANKS = (
     Rank("ARCH_GURU", "Arcyguru", "SWAMP_CAMP", ("GURU",), 3, 25, "mana", 45, 350,
          "Cisza pośród cieni", "Staw czoła nieumarłym opiekunom świątyni.", (obj("hunt:temple_guardian", 3, "Pokonaj opiekunów świątyni"), obj("hunt:demon", 3, "Pokonaj pomniejsze demony"))),
 )
+from .khorinis import ranks as khorinis_ranks
+KHORINIS_RANKS,KHORINIS_PATHS=khorinis_ranks(Rank,obj)
+RANKS += KHORINIS_RANKS
 BY_RANK = {rank.key: rank for rank in RANKS}
 CAMP_PATHS = {
     "OLD_CAMP": (("Kopacz", "Cień", "Strażnik", "Magnat"), ("Kopacz", "Cień", "Mag Ognia", "Arcymag Ognia")),
     "NEW_CAMP": (("Kret", "Szkodnik", "Najemnik", "Gwardzista Lee"), ("Kret", "Szkodnik", "Najemnik", "Mag Wody", "Arcymag Wody")),
     "SWAMP_CAMP": (("Zbieracz", "Nowicjusz", "Strażnik świątynny", "Templariusz bagien"), ("Zbieracz", "Nowicjusz", "Guru", "Arcyguru")),
 }
+CAMP_PATHS.update(KHORINIS_PATHS)
 ATTRIBUTE_NAMES = {"strength": "Siła", "dexterity": "Zręczność", "mana": "Mana"}
 
 
 def available_rank(profile, rank):
     from .story_gates import missing
-    return profile.camp == rank.camp and profile.guild in rank.parents and not missing(profile,rank.tier)
+    from .realms import camps
+    return rank.camp in camps(profile.world) and profile.camp == rank.camp and profile.guild in rank.parents and not missing(profile,rank.tier)
 
 
 def quest_complete(quest, rank):

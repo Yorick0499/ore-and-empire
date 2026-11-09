@@ -2,6 +2,7 @@ from .text_search import literal_pattern
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_GET
 from .worlds import current_world
+from .realms import camps as realm_camps,open_worlds
 from uuid import uuid4
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
@@ -283,6 +284,8 @@ def report_action(request, success):
 
 
 def current_location(request, profile, default, route):
+    if profile.world.universe=="GOTHIC_II":
+        default={"old_mine":"k2_quarry","forest":"k2_fields","exchange":"k2_fields","old_camp":"k2_market","new_camp":"k2_onar","crawler_nest":"k2_bandit_boss"}.get(default,default)
     key = request.GET.get("location", default)
     location = BY_KEY.get(key)
     if location is None or location.route != route:
@@ -320,7 +323,7 @@ def locations_view(request):
         else:report_action(request, choose_camp(profile, camp))
         return redirect("locations_page")
     cards = [
-        {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS
+        {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS if loc.universe==profile.world.universe
     ]
     availability = request.GET.get("availability", "all")
     activity = request.GET.get("activity", "all")
@@ -345,6 +348,7 @@ def locations_view(request):
             "profile": profile,
             "cards": cards,
             "journey":next_steps,
+            "camp_choices":[(key,name) for key,name in PlayerProfile.CAMP_LIST if key in realm_camps(profile.world)],
             "membership_missing":missing(profile) if profile.camp=="NONE" else [],
             "recent_activity":recent_activity,
             "population": PlayerProfile.objects.filter(
@@ -503,7 +507,8 @@ def bestiary_view(request):
     for key, monster in sorted(BESTIARY.items(), key=lambda entry: (entry[1]["level"], entry[1]["nazwa"])):
         if query.casefold() not in monster["nazwa"].casefold():
             continue
-        habitats = [loc for loc in LOCATIONS if key in loc.monsters]
+        habitats = [loc for loc in LOCATIONS if key in loc.monsters and loc.universe==request.user.playerprofile.world.universe]
+        if not habitats:continue
         entries.append({"key": key, "monster": monster, "habitats": habitats})
     return render(request, "characters/bestiary.html", {
         "page": Paginator(entries, 12).get_page(request.GET.get("page")),
@@ -521,14 +526,16 @@ def camp_view(request):
         action = actions.get(request.POST.get("action"))
         report_action(request, action(profile, request.POST.get("rank")) if action else False)
         return redirect("camp_page")
-    camps = dict(PlayerProfile.CAMP_LIST)
-    selected = request.GET.get("camp", profile.camp if profile.camp != "NONE" else "OLD_CAMP")
+    from .realms import camps as realm_camps
+    camp_choices=[(key,name) for key,name in PlayerProfile.CAMP_LIST if key in realm_camps(profile.world)]
+    camps = dict(camp_choices)
+    selected = request.GET.get("camp", profile.camp if profile.camp != "NONE" else realm_camps(profile.world)[0])
     if selected not in camps or selected == "NONE":
         raise Http404("Nieznany obóz")
     return render(request, "characters/camp.html", {
         "profile": profile, "cards": rank_cards(profile, selected),
         "selected": selected, "camp_name": camps[selected], "paths": CAMP_PATHS[selected],
-        "camps": [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"],
+        "camps": camp_choices,
     })
 
 
@@ -584,7 +591,7 @@ def rankings_view(request):
     populations = {"all": "Wszyscy", "humans": "Gracze", "bots": "Boty"}
     population = request.GET.get("population", "all")
     camp = request.GET.get("camp", "")
-    camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key != "NONE"]
+    camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key in realm_camps(current_world())]
     if population not in populations or camp not in {"", *(key for key, _ in camps)}:
         raise Http404("Nieznany ranking")
     profiles = PlayerProfile.objects.filter(world=current_world(),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user")
@@ -612,8 +619,8 @@ def game_master_view(request):
     if request.method == "POST":
         success, message = administer_player(request.user, target.pk, request.POST.get("action"), request.POST)
         (messages.success if success else messages.error)(request, message)
-        return redirect(reverse_url("game_master") + "?profile=" + str(target.pk))
-    return render(request, "characters/game_master.html", {"backup_status": backup_status(settings.BASE_DIR / "backups"), "profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.select_related("actor", "profile__user")[:30]})
+        return redirect(reverse_url("game_master") + "?profile=" + str(target.pk)+"&server="+str(target.world_id))
+    return render(request, "characters/game_master.html", {"backup_status": backup_status(settings.BASE_DIR / "backups"), "profiles": profiles, "target": target, "stats_form": ProfileStatsForm(instance=target), "blueprints": ItemBluePrint.objects.all(), "audit": AdminAction.objects.filter(profile__world=current_world()).select_related("actor", "profile__user")[:30]})
 
 
 def reverse_url(name):
@@ -691,6 +698,8 @@ def story_view(request):
     for entry in history:
         entry.decision_labels = [g.get('options', {}).get(entry.choices[g['id']], entry.choices[g['id']]) for g in entry.snapshot['objectives'] if g['id'] in entry.choices]
     chapter = run.snapshot['chapter'] if run else max((r.snapshot['chapter'] for r in history), default=1)
+    if profile.world.universe=='GOTHIC_II':
+        from .khorinis import CHAPTERS
     chapter_rows = [{'number': number, 'name': name, 'art': art, 'current': number == chapter} for number, name, art in CHAPTERS]
     return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})
 
@@ -700,13 +709,13 @@ def item_catalog_view(request):
     from django.core.paginator import Paginator
     from django.db.models import Q
     from .models import ContentPack
-    items=ItemBluePrint.objects.filter(source_game='GOTHIC_I').exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
+    items=ItemBluePrint.objects.filter(source_game=request.user.playerprofile.world.universe).exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
     if query:items=items.filter(Q(name__iregex=literal_pattern(query))|Q(catalog_key__iregex=literal_pattern(query)))
     if kind in {c[0] for c in ItemBluePrint._meta.get_field('kind').choices}:items=items.filter(kind=kind)
     if request.GET.get('verified')=='1':items=items.filter(original_stats__verified=True)
-    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game='GOTHIC_I').order_by('-version')[:1],'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
+    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game=request.user.playerprofile.world.universe).order_by('-version')[:1],'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
 
 
 @login_required
@@ -810,6 +819,14 @@ def world_control_view(request):
     from django.core.exceptions import ValidationError
     from django.contrib.auth import logout
     world=current_world()
+    if request.method=='POST' and request.POST.get('action')=='open_khorinis':
+        from django.core.management import call_command
+        from django.core.management.base import CommandError
+        from io import StringIO
+        try:call_command('open_khorinis',stdout=StringIO())
+        except CommandError as exc:messages.error(request,str(exc))
+        else:messages.success(request,'Khorinis otwarte jako odrębny serwer. Jarkendar pozostaje zamknięty.')
+        return redirect('world_control')
     configuring=request.method=='POST' and request.POST.get('action')=='configure'
     config_form=WorldSettingsForm(request.POST if configuring else None,auto_id='config_%s',initial={'name':world.name,'bot_count':world.bot_count,'bot_personality_cycles':world.bot_personality_cycles,'bot_simulated_purchases':world.bot_simulated_purchases})
     if configuring and config_form.is_valid():
@@ -818,7 +835,7 @@ def world_control_view(request):
         with transaction.atomic():
             world.name=config_form.cleaned_data['name'];world.bot_count=config_form.cleaned_data['bot_count'];world.bot_personality_cycles=config_form.cleaned_data['bot_personality_cycles'];world.bot_simulated_purchases=config_form.cleaned_data['bot_simulated_purchases'];world.configured=True;world.save()
             if world.bot_count:call_command('run_bots',create=world.bot_count,create_only=True,limit=world.bot_count,stdout=StringIO())
-        messages.success(request,'Zapisano nazwę i liczbę aktywnych botów bez resetu.');return redirect('world_control')
+        messages.success(request,'Zapisano nazwę i liczbę aktywnych botów bez resetu.');return redirect('/zarzadca/swiat/reset/?server='+str(world.pk))
     form=WorldResetForm(request.POST if request.method=='POST' and not configuring else None,auto_id='reset_%s',initial={'name':world.name,'bot_count':world.bot_count,'expected_world':world.pk})
     if request.method=='POST' and not configuring and form.is_valid():
         values=dict(form.cleaned_data);values.pop('acknowledge')
@@ -827,7 +844,7 @@ def world_control_view(request):
         except OSError:form.add_error(None,'Nie udało się utworzyć kopii. Świat nie został wyczyszczony.')
         else:
             logout(request);messages.success(request,'Nowy świat utworzony. Zaloguj się tym samym kontem administratora.');return redirect('login')
-    return render(request,'characters/world_control.html',{'world':world,'form':form,'config_form':config_form})
+    return render(request,'characters/world_control.html',{'world':world,'open_servers':open_worlds(),'form':form,'config_form':config_form})
 
 
 @login_required
@@ -844,7 +861,7 @@ def characters_view(request):
                     select_character(request,selected)
                     return redirect('locations_page')
             else:
-                selected=get_object_or_404(PlayerProfile.objects.select_related('world'),pk=positive_id(request.POST.get('profile')),user=request.user,is_draft=False,world__is_current=True,world__status="active")
+                selected=get_object_or_404(PlayerProfile.objects.select_related('world'),pk=positive_id(request.POST.get('profile')),user=request.user,is_draft=False,world__in=open_worlds())
                 select_character(request,selected)
                 return redirect('locations_page')
         except ValidationError as error:form.add_error(None,error)

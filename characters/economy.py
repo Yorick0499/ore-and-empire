@@ -17,7 +17,7 @@ def change_premium(profile, amount, reason, reference):
 
 @player_action
 def start_adventure(profile, template_id):
-    template = AdventureTemplate.objects.filter(pk=template_id, enabled=True).first()
+    template = AdventureTemplate.objects.filter(pk=template_id, enabled=True,universe=profile.world.universe).first()
     if not template or profile.level < template.level or profile.current_energy < template.energy_cost:
         return False
     if profile.action_end_time is not None or profile.adventures.filter(claimed_at__isnull=True).exists():

@@ -18,3 +18,6 @@ Testy: izolacja obozów, wspólna realizacja przez ludzi/boty, retry walk/darowi
 
 
 Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywileje rang i aktualny plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).
+
+
+Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.

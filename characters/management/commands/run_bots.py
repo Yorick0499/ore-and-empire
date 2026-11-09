@@ -11,6 +11,7 @@ class Command(BaseCommand):
     help = "Run bounded bot rounds or an explicit continuous scheduler; no AI API is needed."
 
     def add_arguments(self, parser):
+        parser.add_argument("--world",type=int,help="ID otwartego serwera; domyślnie bieżący kontekst.")
         parser.add_argument("--force-active",action="store_true",help="Test aktywnych tur bez sesji i symulowanych zakupów; tylko ograniczona liczba rund.")
         parser.add_argument("--loop", action="store_true", help="Run a continuous scheduler; do not combine with play.py bots.")
         parser.add_argument("--interval", type=float, default=5)
@@ -30,7 +31,16 @@ class Command(BaseCommand):
             "--limit", type=int, default=20, help="Maximum bots to tick (1-100)."
         )
 
-    def handle(self, *args, **options):
+    def handle(self,*args,**options):
+        from characters.realms import world_scope,open_worlds
+        from characters.worlds import current_world
+        world=open_worlds().filter(pk=options["world"]).first() if options.get("world") else current_world()
+        if not world:raise CommandError("Nieznany lub zamknięty serwer.")
+        with world_scope(world):return self.run_world(*args,**options)
+
+    def run_world(self, *args, **options):
+        from characters.worlds import current_world
+        world=current_world()
         if not 0 <= options["create"] <= 100 or not 1 <= options["limit"] <= 100:
             raise CommandError("--create must be 0-100 and --limit 1-100")
         if not 1 <= options["interval"] <= 3600 or not 1 <= options["rounds"] <= 100000:
@@ -38,16 +48,16 @@ class Command(BaseCommand):
         if options["force_active"] and options["loop"]:raise CommandError("--force-active nie działa z --loop")
         with transaction.atomic():
             for number in range(1, options["create"] + 1):
-                username = f"colony-bot-{number}"
+                username = ("khorinis-bot-" if world.universe=="GOTHIC_II" else "colony-bot-")+str(number)
                 user, created = User.objects.get_or_create(username=username)
-                if not created and not user.playerprofile.is_bot:
+                if not created and not user.characters.filter(world=world,is_bot=True).exists():
                     raise CommandError(
                         f"{username} belongs to a human; refusing to convert it"
                     )
                 if created:
                     user.set_unusable_password()
                     user.save(update_fields=["password"])
-                    PlayerProfile.objects.filter(user=user).update(
+                    PlayerProfile.objects.filter(user=user,world=world).update(
                         is_bot=True,
                         bot_role=("hunter", "trader", "miner")[(number - 1) % 3],
                     )

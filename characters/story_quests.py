@@ -234,7 +234,7 @@ class StoryPlan:
 def bot_story_plan(profile):
     run = profile.story_runs.exclude(status='claimed').first()
     if not run:
-        for quest in StoryQuest.objects.filter(enabled=True, universe=UNIVERSE):
+        for quest in StoryQuest.objects.filter(enabled=True, universe=profile.world.universe):
             try:
                 validate_definition(quest)
             except ValidationError:

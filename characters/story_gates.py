@@ -3,6 +3,12 @@ PREFIX={'OLD_CAMP':'old','NEW_CAMP':'new','SWAMP_CAMP':'swamp'}
 MEMBERSHIP='prologue-path'
 
 def requirements(profile,tier=None,camp=None):
+    if profile.world.universe=='GOTHIC_II':
+        base=('k2-citizenship',)
+        if tier is None or tier==0:return base
+        prefix={'CITY_WATCH':'watch','FIRE_ORDER':'fire','ONAR_MERCS':'onar'}.get(camp or profile.camp)
+        if not prefix:return base
+        return base+(f'k2-{prefix}-{2 if tier==1 else 6}',)+(('k2-supply-5',) if tier>=3 else ())
     if tier is None or tier==0:return (MEMBERSHIP,)
     prefix=PREFIX.get(camp or profile.camp)
     if not prefix:return (MEMBERSHIP,)

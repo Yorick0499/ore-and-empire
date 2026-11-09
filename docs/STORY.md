@@ -40,7 +40,7 @@ odłamków powstają w tej samej transakcji co zakończenie questa. Powtórzony 
 nie wypłaca drugi raz. Błąd ledgeru cofa także zużycie dostaw. Nagrody fabularne
 są stałe; premie eventowe nie mnożą jednorazowych nagród.
 
-Uniwersum jest sprawdzane względem świata postaci. Instalacja ma jeden aktywny świat Gothic I; POST nie może wybierać cudzej edycji. Fundament kont/postaci/światów jest wdrożony (#15); transfery i równolegle grywalne edycje pozostają w #30/#34.
+Uniwersum jest sprawdzane względem świata postaci. Od migracji 0043 działają dwa odrębne konteksty; POST nie może wybierać cudzej edycji. Khorinis ma własne 29 definicji i 17 zadań jednej ścieżki — [szczegóły](KHORINIS.md). Połączenie nadal pozostaje #111/#30.
 
 ## Boty
 
