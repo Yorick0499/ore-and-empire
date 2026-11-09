@@ -64,6 +64,7 @@ class BotUpgradeTests(TestCase):
         self.assertFalse(MarketTrade.objects.exists())
 
     def test_reserve_strength_and_price_per_damage_filter_even_fallback_purchases(self):
+        self.old.is_protected=True;self.old.save()  # Test the reserve without the separately tested financing path.
         self.bot.ore_balance = 99  # The 80 ore sword would leave less than 20.
         self.bot.save()
         self.assertNotIn(tick_bot(self.bot, force_active=True)[0], ('stock', 'buy'))

@@ -6,6 +6,7 @@ from characters.models import World,PlayerProfile,AuthRateBucket
 from characters.scheduler_lease import SchedulerGuard,LeaseLost
 from characters.bot_scheduler import BotScheduler
 from characters.bots import tick_bot
+from characters.bot_personalities import due_population
 from characters.world_clock import polish_day
 from characters.world_events import ensure_world_events
 
@@ -44,7 +45,7 @@ class Command(BaseCommand):
                     if now>=refresh_at:
                         world.refresh_from_db()
                         if not world.is_current or world.status!='active':raise LeaseLost('Świat został zatrzymany lub zmieniony.')
-                        scheduler.population(__import__('characters.bot_personalities',fromlist=['due_population']).due_population(world));refresh_at=now+5
+                        scheduler.population(due_population(world));refresh_at=now+5
                         if day!=polish_day():
                             with guard.work():
                                 ensure_world_events()

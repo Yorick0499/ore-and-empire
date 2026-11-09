@@ -9,9 +9,9 @@ def remaining(p):
     start=datetime.combine(timezone.now().astimezone(POLISH_TIME).date(),time(),tzinfo=POLISH_TIME)
     used={r['kind_snapshot']:r['n'] for r in StorePurchase.objects.filter(profile=p,created_at__gte=start,created_at__lt=start+timedelta(days=1)).values('kind_snapshot').annotate(n=Count('pk'))}
     return {kind:max(0,limit-used.get(kind,0)) for kind,limit in LIMITS.items()}
-def helpful(p,q,energy_left):
+def helpful(p,q,energy_left,limits=None):
     if not q.enabled or p.level<q.level or p.premium_balance<q.price:return False
-    if q.kind in LIMITS and not remaining(p)[q.kind]:return False
+    if q.kind in LIMITS and not (limits if limits is not None else remaining(p))[q.kind]:return False
     if q.kind=='energy':return energy_left>0 and q.effect>0 and p.current_energy<p.max_energy
     if q.kind=='health':return q.effect>0 and p.current_health<p.max_health
     if q.kind=='mana':return q.effect>0 and p.current_mana<p.max_mana
@@ -23,10 +23,10 @@ def helpful(p,q,energy_left):
 def choose(p,items,products,energy_left):
     from .market_intelligence import score,usable,fists
     from .bot_personalities import persona,number
-    candidates=[]
+    candidates=[];limits=remaining(p)
     held=[i for i in items if not i.is_market_listed]
     for q in products:
-        if not helpful(p,q,energy_left):continue
+        if not helpful(p,q,energy_left,limits):continue
         priority=0;gain=0
         if q.kind=='health' and p.current_health<p.max_health-20:
             priority=100 if p.current_health<10 else 30;gain=min(q.effect,p.max_health-p.current_health)

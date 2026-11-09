@@ -67,3 +67,18 @@ class IntelligentMarketTests(TestCase):
         self.assertFalse(finance(self.s,self.best.pk,better.pk,101))
         self.assertTrue(finance(self.s,self.best.pk,better.pk,100))
         self.assertEqual(self.s.inventory.get(is_equipped=True).blueprint_id,better.pk)
+
+    def test_own_equivalent_listing_is_not_a_reason_to_buy_the_same_weapon_again(self):
+        game.list_item_on_market(self.b,add_item(self.b,self.bp),100)
+        self.assertEqual(MarketState(self.s.world_id).need(self.b,self.item),0)
+    def test_inactive_seller_does_not_break_bot_planning(self):
+        self.b.user.is_active=False;self.b.user.save()
+        game.list_item_on_market(self.b,add_item(self.b,self.bp),10)
+        from .bots import tick_bot
+        self.assertTrue(tick_bot(self.s,force_active=True)[1])
+    def test_rare_weapon_is_not_liquidated_to_finance_an_npc_upgrade(self):
+        game.unequip_item(self.s,self.best)
+        rare=add_item(self.s,self.best.blueprint,rarity=3);game.equip_item(self.s,rare)
+        self.s.ore_balance=30;self.s.save()
+        b=ItemBluePrint.objects.create(name='Zamiennik rzadkiej',damage=150,base_value=100)
+        self.assertIsNone(plan(self.s,list(self.s.inventory.select_related('blueprint')),[b]))

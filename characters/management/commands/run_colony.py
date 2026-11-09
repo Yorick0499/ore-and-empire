@@ -9,6 +9,7 @@ from django.contrib.staticfiles.handlers import StaticFilesHandler
 from django.core.management import BaseCommand, CommandError, call_command
 from django.core.wsgi import get_wsgi_application
 from characters.bots import tick_bot
+from characters.bot_personalities import due_population
 from characters.models import PlayerProfile
 
 
@@ -111,7 +112,7 @@ class Command(BaseCommand):
                             event_day=None
                             scheduler=BotScheduler(options['interval'],clock=time.monotonic)
                         with guard.work():pass
-                        scheduler.population(__import__('characters.bot_personalities',fromlist=['due_population']).due_population(world))
+                        scheduler.population(due_population(world))
                         refresh_at=now+5
                         from characters.world_events import ensure_world_events
                         if event_day!=polish_day():

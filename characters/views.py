@@ -559,8 +559,9 @@ def itemshop_view(request):
         return redirect("itemshop_page")
     from .economic_ledger import refills_remaining
     energy_left = refills_remaining(profile)
-    from .itemshop_rules import helpful
-    products = [{"product": product, "available":helpful(profile,product,energy_left), "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
+    from .itemshop_rules import helpful,remaining
+    limits=remaining(profile)
+    products = [{"product": product, "available":helpful(profile,product,energy_left,limits), "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
     return render(request, "characters/itemshop.html", {"energy_refills_left": energy_left,"profile": profile, "products": products, "entries": profile.premium_entries.all()[:15]})
 
 

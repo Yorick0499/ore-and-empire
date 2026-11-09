@@ -549,7 +549,7 @@ def use_item(profile, item):
         from .economic_ledger import refills_remaining
         from .models import EnergyRefill
         if not refills_remaining(profile): return False
-        EnergyRefill.objects.create(profile=profile, reference='item:' + str(uuid4()))
+        EnergyRefill.objects.create(profile=profile, created_at=timezone.now(), reference='item:' + str(uuid4()))
     profile.current_health += health
     profile.current_energy += energy
     if health: profile.health_updated_at = timezone.now()

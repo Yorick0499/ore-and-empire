@@ -40,3 +40,5 @@ Eksperymentalne Ollama jest opcjonalne i objęte trwałym budżetem. [Porównani
 ## Harmonogram osobowości
 
 Od baseline-20 kolejka uwzględnia sesje i odstęp 15–120 s danego stylu. Nie wszystkie ze 100 kont są online jednocześnie. Historyczne wyniki powyżej pochodzą z poprzednich polityk. `--force-active` służy wyłącznie do ograniczonych testów aktywnych tur; pomija sesje i symulowane zakupy. Nie działa z `--loop`. Kampanie testowe wymuszają aktywne tury, a osobny test 48 godzin respektuje sesje i audyt premium.
+
+Pomiar 9 listopada 2026: [populacja z sesjami](reports/osobowosci-sto-botow-2026-11-09.json), 30 sekund, 285 odpowiedzi HTTP bez błędów, p95 6,33 ms, szczyt 58,36 MiB RSS, 6,09% jednego rdzenia. Launcher wykonał turę 13 mieszkańców, pozostałe konta miały przerwę lub nie osiągnęły kolejnego terminu. Wstępna osobna runda wymuszonych aktywnych tur objęła wszystkie 100 kont (p95 34,52 ms). To krótki pomiar lokalny, nie długoterminowa prognoza gospodarki ani publicznego serwera.

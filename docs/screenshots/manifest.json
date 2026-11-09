@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "migration": "0038_roznorodne_zlecenia_i_zapis_tresci",
-  "theme": "zlecenia-i-rzadkosc-5; starsze pliki mają własne daty",
+  "migration": "0041_granice_wariantow_transakcji",
+  "theme": "osobowosci-i-itemshop-6; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
     {
@@ -32,9 +32,11 @@
     },
     {
       "file": "community.jpg",
-      "bytes": 104866,
-      "sha256": "e81fe6519e5122c68eed9e13a04f2dffe2a50834886f767074b2aa4cdb077f68",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 125677,
+      "sha256": "770610823a224521fcef4467c308c5e9a1ed408ee73ea28dcd07b25532885c79",
+      "captured_at_utc": "2026-11-09T16:41:09.881538+00:00",
+      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
+      "theme": "osobowosci-i-itemshop-6"
     },
     {
       "file": "comparison.jpg",
@@ -94,9 +96,11 @@
     },
     {
       "file": "itemshop.jpg",
-      "bytes": 117631,
-      "sha256": "1fb551def61b295554514497bde6cd281665af3ebd6efe82e9f933e91ad7e3f7",
-      "captured_at_utc": "2026-11-07T09:06:08.638316+00:00"
+      "bytes": 732426,
+      "sha256": "fdcfff286b96f143be8f22636b2cd31fd0bf1157ebcc65a44fa42ef123087db7",
+      "captured_at_utc": "2026-11-09T16:41:08.061454+00:00",
+      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
+      "theme": "osobowosci-i-itemshop-6"
     },
     {
       "file": "journal.jpg",
@@ -255,6 +259,22 @@
       "captured_at_utc": "2026-11-08T21:11:17.472556+00:00",
       "fixture": "Dolina Wędrowców; Zbrojmistrz_Proba: jawny syntetyczny zestaw 5 rzadkości, 100 rzeczywistych botów",
       "theme": "zlecenia-i-rzadkosc-5"
+    },
+    {
+      "file": "admin.jpg",
+      "bytes": 288044,
+      "sha256": "c4ead4babcd7949733e58c1eebdd6fd304171415b7430636495681d64debda5a",
+      "captured_at_utc": "2026-11-09T16:41:11.757427+00:00",
+      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
+      "theme": "osobowosci-i-itemshop-6"
+    },
+    {
+      "file": "itemshop-mobile.jpg",
+      "bytes": 632069,
+      "sha256": "167ef985ac8a445f2dc04b96cbf26c01f49509a4b02f97b2438d386c6dccbf20",
+      "captured_at_utc": "2026-11-09T16:41:07.179868+00:00",
+      "fixture": "Kolonia siedmiu osobowości — test; syntetyczny zarządca poziomu 10 z testowymi odłamkami; 100 botów",
+      "theme": "osobowosci-i-itemshop-6"
     }
   ]
 }

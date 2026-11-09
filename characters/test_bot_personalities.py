@@ -64,6 +64,24 @@ class PersonalityTests(TestCase):
         from dataclasses import replace
         self.assertEqual(BaselinePolicyV20().choose(replace(o,reward_ready=True)),('claim',None))
 
+    def test_offline_rewards_and_regeneration_wait_for_the_next_session(self):
+        from .models import AdventureTemplate,AdventureRun
+        template=AdventureTemplate.objects.create(key='powrot',name='Powrót',duration_seconds=60)
+        now=self.now.replace(hour=12)
+        run=AdventureRun.objects.create(profile=self.p,template=template,ends_at=now-timedelta(minutes=1),ore_reward=10,experience_reward=80,premium_reward=0)
+        self.p.current_energy=0;self.p.current_health=1;self.p.energy_updated_at=self.p.health_updated_at=now;self.p.save()
+        with patch('django.utils.timezone.now',return_value=now):self.assertEqual(tick_bot(self.p),('offline',True))
+        run.refresh_from_db();self.assertIsNone(run.claimed_at)
+        with patch('django.utils.timezone.now',return_value=now+timedelta(hours=12)):
+            self.assertEqual(tick_bot(self.p),('adventure_claim',True))
+        self.p.refresh_from_db();self.assertEqual((self.p.current_energy,self.p.current_health),(100,50))
+    def test_audit_failure_rolls_back_simulated_purchase(self):
+        self.p.bot_personality='patron';self.p.save()
+        with patch('django.utils.timezone.now',return_value=self.now),patch('characters.bot_personalities.purchase_roll',return_value=(10,'bot-topup:rollback')),patch('characters.economy.PremiumEntry.objects.create',side_effect=RuntimeError('audit')):
+            with self.assertRaises(RuntimeError):simulate_purchase(self.p)
+        self.p.refresh_from_db();self.assertEqual(self.p.premium_balance,0)
+        self.assertFalse(PremiumEntry.objects.exists())
+
 class ShopAndAdminTests(TestCase):
     def setUp(self):
         from .world_management import seed_clean_world

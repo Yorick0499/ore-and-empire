@@ -49,7 +49,7 @@ class MarketState:
         self.now=timezone.now();self.world_id=world_id
         self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True))
         self.items=defaultdict(list);self.listings=[]
-        for i in OwnedItem.objects.filter(owner__world_id=world_id).select_related('blueprint'):
+        for i in OwnedItem.objects.filter(owner__world_id=world_id,owner__user__is_active=True).select_related('blueprint'):
             self.items[i.owner_id].append(i)
             if i.is_market_listed:self.listings.append(i)
         self.merchants=list(ItemBluePrint.objects.filter(merchant=True))
@@ -72,7 +72,7 @@ class MarketState:
         if not usable(p,b):return 0
         held=[x for x in self.items[p.pk] if not x.is_market_listed]
         if b.equippable:
-            values=sorted((self.value(p,x) for x in held if x.blueprint.kind==b.kind and usable(p,x.blueprint)),reverse=True)
+            values=sorted((self.value(p,x) for x in self.items[p.pk] if x.blueprint.kind==b.kind and usable(p,x.blueprint)),reverse=True)
             slots=2 if b.kind=='ring' else 1
             current=values[slots-1] if len(values)>=slots else fists(p) if b.kind=='weapon' else 0
             return int(self.value(p,i)-current>=max(5,current//20))
