@@ -82,3 +82,7 @@ Prywatna kronika ma walki, rozliczenia i powiadomienia, po 20 wpisów na stronę
 Administrator loguje się zwykłym formularzem, potem otwiera `/zarzadca/` lub `/admin/`. Może przyznawać przedmioty i odłamki, odnawiać zasoby, edytować statystyki oraz definicje treści i wydarzenia. Operacje god-mode mają audyt. Konto tworzysz lokalnie przez `python manage.py createsuperuser`; danych logowania nie publikuj w repozytorium ani na screenach.
 
 Panel świata zmienia nazwę serwera i liczbę botów. Pełny reset wymaga hasła, potwierdzenia nazwy i zgody; przed czyszczeniem powstaje kopia. Reset usuwa zwykłe konta, postacie, postęp, rynek i salę chwały, ale zachowuje konta administratorów i hasła. To świeży start Gothic I, nie transfer. Kopie są prywatne. [Procedura backupu i próby odtworzenia](BACKUPS.md).
+
+## Osobowości i zakupy mieszkańców
+
+[Siedem stylów, sesje, 17 ofert i limity](BOT_PERSONALITIES.md). Boty mają okresy aktywności według czasu polskiego, a symulowane zakupy są oddzielnie ewidencjonowanym źródłem premium. Zarządca może wybrać rzadkość nowo nadawanego przedmiotu. [Model cen i ochrona ekwipunku](MARKET_POLICY.md).

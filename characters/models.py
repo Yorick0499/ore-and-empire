@@ -418,6 +418,7 @@ class MarketTrade(models.Model):
             models.CheckConstraint(
                 condition=models.Q(price__gt=0), name="trade_positive_price"
             ),
+            models.CheckConstraint(condition=(models.Q(rarity__isnull=True,upgrade_level__isnull=True) | models.Q(rarity__isnull=False,upgrade_level__isnull=False,rarity__lte=4,upgrade_level__lte=3)), name="trade_variant_bounds"),
             models.CheckConstraint(
                 condition=~models.Q(seller=models.F("buyer")),
                 name="trade_distinct_players",

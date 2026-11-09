@@ -24,6 +24,8 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 - Trzy obozy jako gildie: osobiste rangi, wspólne zadania, skarbiec, ulepszenia i asynchroniczny boss.
 - Polowanie, kopalnie, ekwipunek, rzeczywisty rynek, cztery receptury kowalstwa/alchemii i dziewięć zaklęć jako runy/zwoje.
 - 44 zlecenia czasowe, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze. Bez realnych płatności.
+- Siedem osobowości botów, sesje w czasie polskim i jawne symulowane zakupy odłamków — [szczegóły](docs/BOT_PERSONALITIES.md).
+- 17 ofert itemshopu z limitami przyspieszania postępu, racjonalna wycena i ochrona wyposażenia botów.
 - Karczma na jeziorze, publiczna kronika działań botów, prywatne raporty i powiadomienia.
 - Rzeczywisty **czas polski `Europe/Warsaw`**, automatyczne CET/CEST; świt i noc według Słońca dla Warszawy, pory roku meteorologiczne. 12 wydarzeń miesięcznych, trzy coroczne i losowe odkrycia; żadna pora nie blokuje gry.
 - Panel zarządcy, inicjalizacja/reset świata z zachowaniem administratorów, prywatne kopie i sprawdzane odtwarzanie.

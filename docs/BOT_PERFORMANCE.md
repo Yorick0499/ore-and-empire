@@ -8,7 +8,7 @@ Lokalny launcher `play.py` obsługuje HTTP i boty jednym procesem; nie uruchamia
 
 Minimalny odstęp to maksimum z 0,2 sekundy, `--interval / liczba_botów` oraz czterokrotności średniego kosztu ostatnich tur. Dla 100 mieszkańców pełny obieg wynosi co najmniej około 20 sekund plus czas samych akcji i obsługi HTTP. Dla sześciu zachowana jest częstotliwość zbliżona do dawnego obiegu. Dłuższe tury automatycznie spowalniają kolejkę: cel to około 20% czasu na boty, **nie twardy limit CPU**. Nie ma LLM, płatnego API, treningu modeli ani obliczeń na GPU.
 
-Polityka **baseline-18 / schema 19** wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–17 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.
+Polityka **baseline-20 / schema 21** wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–19 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.
 
 Szczegółowe decyzje pozostają ograniczane retencją (`--history-days`, domyślnie 30 pełnych dni UTC) z zachowaniem agregatów. Powtarzane czekanie nie zapisuje nowej decyzji częściej niż co pięć minut. Backup obejmuje przedmioty z poziomami ulepszeń, prace kuźni, postęp i historię wart.
 
@@ -29,10 +29,14 @@ Pomiar 6 listopada 2026, po 60 sekund: nowa populacja — 55,61 MiB RSS, 17,25% 
 
 Pomiar po rozszerzeniu katalogu: [100 botów, baseline-17](reports/rynsztunek-sto-botow-2026-11-07.json). Jedna runda trwała 3,247 s w izolowanym świecie. To krótki test nowej populacji; nie symuluje wielodniowej gospodarki. Kuźnia działa przed finałem, a regeneracja przed walką fabularną ma pierwszeństwo przed patrolem.
 
-Polityka baseline-18 daje potrzebnemu treningowi pierwszeństwo przed opcjonalnym patrolem. Test PostgreSQL z innymi identyfikatorami postaci objął również dwie ścieżki magiczne w jednej populacji. Planowanie nie blokuje gracza na czas decyzji bota, a scheduler ma wspólną dzierżawę — [szczegóły](POSTGRESQL.md).
+Polityka baseline-20 daje potrzebnemu treningowi pierwszeństwo przed opcjonalnym patrolem. Test PostgreSQL z innymi identyfikatorami postaci objął również dwie ścieżki magiczne w jednej populacji. Planowanie nie blokuje gracza na czas decyzji bota, a scheduler ma wspólną dzierżawę — [szczegóły](POSTGRESQL.md).
 
 Eksperymentalne Ollama jest opcjonalne i objęte trwałym budżetem. [Porównanie](LOCAL_AI_POLICIES.md) nie wykazało powodu do zmiany domyślnych stu botów na LLM. Reguły nie potrzebują GPU ani działającego serwera modelu.
 
 ## Próba gry solo — 8 listopada 2026
 
 [60 sekund ze 100 świeżymi botami](reports/gra-solo-sto-botow-2026-11-08.json): turę otrzymało 100/100, 0 błędnych decyzji, 497 żądań HTTP bez błędów, p95 61,58 ms, szczyt 56,74 MiB RSS i 27,35% jednego rdzenia. Test dotyczy lokalnego launchera oraz ekranu logowania na maszynie pomiarowej, nie publicznego obciążenia ani długiego balansu.
+
+## Harmonogram osobowości
+
+Od baseline-20 kolejka uwzględnia sesje i odstęp 15–120 s danego stylu. Nie wszystkie ze 100 kont są online jednocześnie. Historyczne wyniki powyżej pochodzą z poprzednich polityk. `--force-active` służy wyłącznie do ograniczonych testów aktywnych tur; pomija sesje i symulowane zakupy. Nie działa z `--loop`. Kampanie testowe wymuszają aktywne tury, a osobny test 48 godzin respektuje sesje i audyt premium.

@@ -19,3 +19,7 @@ Na istniejącej instalacji `python manage.py createsuperuser` tworzy nowe konto 
 ## Dopracowanie pełnej edycji
 
 Limit 100 obejmuje inicjalizację, reset, konfigurację bez resetu, walidację modelu i komendy. Zwiększenie liczby w panelu tworzy brakujących mieszkańców; zmniejszenie nie kasuje ich postaci. Launcher odświeża populację co pięć sekund. [Jak ustawić 100 mieszkańców i jak rozkładamy ich pracę](BOT_PERFORMANCE.md).
+
+## Osobowości i zakupy mieszkańców
+
+[Siedem stylów, sesje, 17 ofert i limity](BOT_PERSONALITIES.md). Boty mają okresy aktywności według czasu polskiego, a symulowane zakupy są oddzielnie ewidencjonowanym źródłem premium. Zarządca może wybrać rzadkość nowo nadawanego przedmiotu. [Model cen i ochrona ekwipunku](MARKET_POLICY.md).

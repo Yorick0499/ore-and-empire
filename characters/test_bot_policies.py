@@ -107,5 +107,5 @@ class PersistentPolicyBudgetTests(TestCase):
         policy=OllamaPolicy('unused-local-model',endpoint='http://127.0.0.1:9/api/chat')
         self.assertEqual(tick_bot(bot,policy, force_active=True),('mine',True))
         record=BotDecision.objects.get(profile=bot)
-        self.assertEqual(record.policy_version,'ollama-1');self.assertEqual(record.schema_version,19)
+        self.assertEqual(record.policy_version,'ollama-1');self.assertEqual(record.schema_version,21)
         self.assertEqual(record.policy_snapshot['status'],'forced-rules');self.assertTrue(replay_decision(record)['matches'])

@@ -72,6 +72,7 @@ class LeaseTests(TestCase):
             if requests[0]==1:
                 with patch('characters.backups.create_backup',return_value=Path('/private/test-backup')),patch('characters.world_management.seed_clean_world'):
                     reset_world(admin,name='Nowa Kolonia',bot_count=1,password='Synthetic-Reset-Only-2026',confirmation=old.name,expected_world=old.pk)
+                    fresh=current_world();fresh.bot_personality_cycles=False;fresh.save(update_fields=['bot_personality_cycles'])
             elif requests[0]>=3:raise KeyboardInterrupt
         server.handle_request.side_effect=handle
         with patch('characters.management.commands.run_colony.make_server',return_value=server),patch('characters.management.commands.run_colony.call_command'),patch('characters.management.commands.run_colony.time.monotonic',side_effect=lambda:clock[0]),patch('characters.management.commands.run_colony.tick_bot',return_value=('mine',True)) as tick:

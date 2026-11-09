@@ -99,7 +99,9 @@ class AutonomousBotTests(TestCase):
         bot.save()
         self.assertEqual(tick_bot(bot, force_active=True), ("shop", True))
         decision = BotDecision.objects.filter(profile=bot).first()
-        self.assertEqual((decision.health_delta, decision.premium_delta), (49, -2))
+        purchase=StorePurchase.objects.filter(profile=bot).latest("pk")
+        self.assertEqual(decision.health_delta,min(purchase.product.effect,bot.max_health-1))
+        self.assertEqual(decision.premium_delta,-purchase.price)
 
     def test_malformed_policy_targets_are_rejected_before_any_action(self):
         bot = PlayerProfile.objects.filter(is_bot=True).first()

@@ -369,24 +369,24 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         worn=[i for i in inventory if i.is_equipped and i.blueprint.kind==candidate.blueprint.kind]
         slots=2 if candidate.blueprint.kind=='ring' else 1
         baseline=min((score(profile,i) for i in worn),default=fists(profile) if candidate.blueprint.kind=='weapon' else 0)
-        if len(worn)<slots or score(profile,candidate)>baseline:
+        if (len(worn)<slots and candidate.blueprint.kind!='weapon') or score(profile,candidate)>baseline:
             equipment=candidate;break
     from .economic_ledger import refills_remaining
     energy_refills_left = refills_remaining(profile)
     consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
-    stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=['onehand','twohand'], min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    stock = ItemBluePrint.objects.filter(merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint")
+    offers=[o for o in offers if o.market_price<=market.quote(next(p for p in market.people if p.pk==o.owner_id),o).price]
     upgrade = None
     if equipped and combat_equipment:
         upgrade = choose_upgrade(stock, offers, score(profile,equipped), profile.ore_balance,profile)
         stock = upgrade[1] if upgrade and upgrade[0] == "stock" else None
         offer = upgrade[1] if upgrade and upgrade[0] == "buy" else None
     else:
-        if equipped:offers=offers.filter(blueprint__damage__gt=damage)
         stock = next((b for b in stock.order_by("base_value", "pk") if score(profile,b)>=fists(profile)+5),None)
-        offer = offers.order_by("market_price", "pk").first()
+        offer = min((o for o in offers if score(profile,o)>=fists(profile)+5),key=lambda o:(o.market_price,o.pk),default=None)
     if len(inventory) >= 6:
         stock = offer = upgrade = None
     # Sell obsolete weapons through the same NPC service as a human player.

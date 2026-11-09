@@ -1,6 +1,6 @@
 # Opcjonalne lokalne polityki AI (#28)
 
-**Domyślnie działają boty regułowe baseline-18.** Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment `ollama-1` jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.
+**Domyślnie działają boty regułowe baseline-20.** Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment `ollama-1` jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.
 
 ## Co model może wybrać
 
@@ -21,7 +21,7 @@ Adapter wymusza 0 warstw GPU i dwa wątki inferencji, kontekst 4096 i maksymalni
 
 ## Audyt i replay
 
-Obserwacje/rekordy mają schemat 19. Reguły pozostają baseline-18; wersje 7–18 są odtwarzalne. `BotDecision.policy_snapshot` zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.
+Obserwacje/rekordy mają schemat 21. Reguły to baseline-20; wersje 7–20 są odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. `BotDecision.policy_snapshot` zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.
 
 Replay weryfikuje listę wyborów i hash na podstawie zapisanej obserwacji oraz zamrożonej baseline-18. **Nie pyta ponownie modelu**. Status `forced-rules` oznacza obowiązkową decyzję reguł, `accepted` poprawny wybór modelu, `fallback` błąd, a `budget-or-cooldown` brak dostępnego budżetu. Sam napis `ollama-1` nie znaczy, że każdą akcję wybrał model.
 

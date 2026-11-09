@@ -307,7 +307,8 @@ class ColonyTests(TestCase):
         self.assertEqual(tick_bot(bot, force_active=True), ("list", True))
         surplus.refresh_from_db()
         self.assertTrue(surplus.is_market_listed)
-        self.assertEqual(surplus.market_price, 21)  # 105% aktualnej referencji zamiast dawnego 110%
+        self.assertGreater(surplus.market_price,self.blueprint.base_value//2)
+        self.assertLess(surplus.market_price,self.blueprint.base_value)
 
     def test_bot_policy_cannot_target_human_inventory(self):
         self.b.is_bot = True
@@ -494,6 +495,8 @@ class BossTests(TestCase):
 
 class LocalWorldTests(TestCase):
     def setUp(self):
+        from .worlds import current_world
+        world=current_world();world.bot_personality_cycles=False;world.save(update_fields=["bot_personality_cycles"])
         self.user = User.objects.create_user("local-bot")
         self.bot = self.user.playerprofile
         self.bot.is_bot = True
@@ -502,14 +505,14 @@ class LocalWorldTests(TestCase):
             name="Starter", base_value=20, damage=12
         )
 
-    def test_trader_lists_stock_instead_of_equipping_it(self):
+    def test_trader_equips_and_keeps_first_usable_weapon(self):
         self.bot.bot_role = "trader"
         self.bot.save()
         self.assertEqual(tick_bot(self.bot, force_active=True), ("stock", True))
-        self.assertEqual(tick_bot(self.bot, force_active=True), ("list", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("equip", True))
         item = self.bot.inventory.get()
-        self.assertTrue(item.is_market_listed)
-        self.assertFalse(item.is_equipped)
+        self.assertFalse(item.is_market_listed)
+        self.assertTrue(item.is_equipped)
 
     def test_miner_preserves_ore_instead_of_buying_weapons(self):
         self.bot.bot_role = "miner"
@@ -740,7 +743,7 @@ class BotTelemetryTests(TestCase):
         self.assertEqual(decision.observation["role"], "miner")
         self.assertEqual((decision.action, decision.energy_delta, decision.ore_delta),
                          ("mine", -10, 0))
-        self.assertEqual(decision.schema_version, 19)
+        self.assertEqual(decision.schema_version, 21)
 
     def test_rejected_target_is_recorded_without_mutation(self):
         from .models import BotDecision

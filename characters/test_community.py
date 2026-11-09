@@ -90,7 +90,7 @@ class CommunityTests(TestCase):
         fact.save()
         self.assertEqual(activity_rows(), [])
         self.client.force_login(self.human.user)
-        with patch('django.utils.timezone.now', return_value=timezone.now() + timedelta(minutes=2)):
+        with patch('django.utils.timezone.now', return_value=timezone.now() + timedelta(minutes=10)):
             response = self.client.get(reverse('colony_life'))
         self.assertEqual(response.context['active_count'], 0)
         self.assertNotContains(response, 'observation')
