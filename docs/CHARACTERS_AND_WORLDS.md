@@ -46,3 +46,9 @@ Aktualnie działa **Kolonia / Gothic I**. Kreator nie oferuje pustego Khorinis. 
 6. **#35 — kontrola zarządcy i odblokowania.** Podgląd stanu, audyt, kopia i próba odtwarzania przed połączeniem. Po połączeniu dalsza historia G2 NK, smoki i nowi bossowie.
 
 Epik: [#10](https://github.com/Yorick0499/ore-and-empire/issues/10). Wszystkie wymienione numery są zapisane na GitHubie. Obecny osobisty finał nie łączy serwerów i nie odblokowuje jeszcze G2; wymiana jego roli nastąpi wraz z #111. Dokument nie obiecuje dostępności przyszłych paczek.
+
+Punkty wyjścia audytu źródeł #32: [Miasto Khorinis](https://gothic.fandom.com/pl/wiki/Miasto_Khorinis) i [Gothic II: Noc Kruka](https://gothic.fandom.com/pl/wiki/Gothic_II:_Noc_Kruka). W tym etapie nie pobrano ani nie włączono nowej paczki G2.
+
+## Wyniki weryfikacji
+
+[Publiczny raport](reports/postacie-fabula-przywileje-2026-11-09.json): pełna regresja SQLite 438 testów (14 wymagających PostgreSQL pominięto), następnie 34 testy granic i wskazówek. Przebieg gracza obejmuje cały prolog, dołączenie przez formularz i kampanię bez nadań; trzy obozy botów przechodzą całość i grają dalej. Chromium sprawdził 12 wariantów czterech ekranów; kopia migracyjna zachowała 151 107 istniejących wierszy we wszystkich dawnych kolumnach. Oddzielne CI PostgreSQL sprawdza prawdziwe blokady przy piątym slocie i zaopatrzeniu. To nie jest jeszcze próba połączenia dwóch serwerów.

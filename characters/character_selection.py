@@ -29,7 +29,9 @@ def create_character(user,name,world_id):
     if not form.is_valid():raise ValidationError(' '.join(str(error) for errors in form.errors.values() for error in errors))
     world=form.cleaned_data['world'];name=form.cleaned_data['name']
     name_key=unicodedata.normalize('NFKC',name).casefold()
-    if PlayerProfile.objects.filter(world=world,name_key=name_key).exists():raise ValidationError('To imię jest już zajęte na tym świecie.')
+    legacy_names=PlayerProfile.objects.filter(world=world,name='',is_bot=False,is_draft=False).values_list('user__username',flat=True)
+    reserved=any(unicodedata.normalize('NFKC',legacy).casefold()==name_key for legacy in legacy_names)
+    if reserved or PlayerProfile.objects.filter(world=world,name_key=name_key).exists():raise ValidationError('To imię jest już zajęte na tym świecie.')
     draft=owner.characters.filter(is_draft=True).order_by('slot').first()
     if draft:
         draft.name=name;draft.world=world;draft.is_draft=False;draft.save(update_fields=['name','world','is_draft'])

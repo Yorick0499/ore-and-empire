@@ -40,6 +40,14 @@ class ProgressionGateTests(TestCase):
         self.p.refresh_from_db();self.assertEqual(self.p.ore_balance,100)
         run.status='claimed';run.save();self.assertTrue(promote_in_camp(self.p,'SHADOW'))
         self.assertFalse(promote_in_camp(self.p,'SHADOW'))
+    def test_guidance_points_to_required_prologue_then_membership(self):
+        from .player_journey import journey
+        before=journey(self.p)
+        self.assertTrue(any(step['title']=='Ukończ prolog przed dołączeniem' and step['url']=='/fabula/' for step in before['steps']))
+        self.assertNotIn('Fabuła jest opcjonalna',str(before))
+        claim(self.p,'prologue-path');self.p.refresh_from_db()
+        self.assertTrue(any(step['title']=='Wybierz obóz i wspólne cele' and step['url']=='/' for step in journey(self.p)['steps']))
+
     def test_rank_perks_and_upgrade_authority_grow(self):
         from .camp_guilds import upgrade_camp
         self.p.camp='OLD_CAMP';self.p.guild='DIGGER';self.p.save()
@@ -116,6 +124,7 @@ class CharacterFlowTests(TestCase):
         other=User.objects.create_user('inne-konto')
         with self.assertRaises(ValidationError):create_character(other,'łowca',self.p.world_id)
         with self.assertRaises(ValidationError):create_character(self.user,'<script>',self.p.world_id)
+        with self.assertRaises(ValidationError):create_character(other,'KONTO',self.p.world_id)
     def test_switch_cannot_equip_another_slots_item_and_creator_names_world(self):
         from .models import OwnedItem,ItemBluePrint
         self.client.force_login(self.user)

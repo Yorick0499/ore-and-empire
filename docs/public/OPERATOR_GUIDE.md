@@ -1,6 +1,6 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 9 listopada 2026, po scaleniu PR #105, migracja 0041. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 9 listopada 2026, etap pięciu postaci i obowiązkowych progów fabuły (PR #112), migracja 0042. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
@@ -8,7 +8,7 @@ Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z miesz
 
 W grze są 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Szczegółowe tabele są w [katalogu zawartości](../GAME_CONTENT.md), a pełna instrukcja w [przewodniku gracza](../GAME_GUIDE.md).
 
-Nie ma realnych płatności ani gotowego transferu do Gothic II: Noc Kruka. Jarkendar, II edycja i przenoszenie postaci to plany opisane w roadmapie. Projekt jest fanowski; grafiki i font mają osobno wskazane źródła i prawa.
+Nie ma realnych płatności ani gotowego transferu do Gothic II: Noc Kruka. Dwa równoległe serwery, Jarkendar premium i ich połączenie po obozowym Śniącym to plany opisane w roadmapie. Projekt jest fanowski; grafiki i font mają osobno wskazane źródła i prawa.
 
 ## Stack i architektura
 

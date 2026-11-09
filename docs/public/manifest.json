@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-09",
-  "code_revision": "0f87baf + etap postaci i fabuły",
+  "code_revision": "etap #107–#110 / PR #112",
   "migration": "0042_postacie_fabula_i_przywileje",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -220,6 +220,7 @@
     "docs/reports/petla-po-fundamentach-ai-2026-11-07.json",
     "docs/reports/pierwsza-pelna-edycja-2026-11-05.json",
     "docs/reports/polityki-lokalne-ai-2026-11-07.json",
+    "docs/reports/postacie-fabula-przywileje-2026-11-09.json",
     "docs/reports/postgresql-wspolbieznosc-2026-11-07.json",
     "docs/reports/rynsztunek-mmorpg-2026-11-07.json",
     "docs/reports/rynsztunek-sto-botow-2026-11-07.json",

@@ -1,6 +1,6 @@
 # Aktualne zrzuty ekranów
 
-**9 listopada 2026, migracja 0042:** 40 ujęć w manifeście. Odświeżono sklep, ekran rang i wspólnotę; dodano kreator oraz jego mobilne ujęcie. „Bariera — Kolonia” to odrębny świat testowy z 12 botami i syntetycznymi postaciami Darin/Mira. Stan Darina służy kontroli przywilejów, nie dowodzi naturalnego przejścia. Chromium sprawdza 12 kombinacji czterech stron i trzech szerokości; wszystkie 17 kart sklepu mają jedną ilustrację/nagłówek. Sprawdzono przełączenie na Mirę i blokadę dołączenia bez prologu.
+**9 listopada 2026, migracja 0042:** 40 ujęć w manifeście. Odświeżono sklep, ekran rang i wspólnotę; dodano kreator oraz jego mobilne ujęcie. „Bariera — Kolonia” to odrębny świat testowy z 12 botami i syntetycznymi postaciami Darin/Mira. Stan Darina służy kontroli przywilejów, nie dowodzi naturalnego przejścia. Chromium sprawdza 12 kombinacji czterech stron i trzech szerokości; wszystkie 17 kart sklepu mają jedną ilustrację/nagłówek. Sprawdzono przełączenie na Mirę i blokadę dołączenia bez prologu. [Raport kontroli](reports/postacie-fabula-przywileje-2026-11-09.json).
 
 ![Wymagania i rangi obozowe](screenshots/camp.jpg)
 

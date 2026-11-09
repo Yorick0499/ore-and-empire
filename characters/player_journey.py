@@ -38,13 +38,16 @@ def journey(profile):
     else:
         completed={r.snapshot['key']:r for r in claimed};taken={r.quest_id for r in runs}
         quest=next((q for q in StoryQuest.objects.filter(enabled=True).exclude(pk__in=taken).order_by('chapter','level','pk') if available(profile,q,completed=completed)),None)
-        if quest:add('Dostępny przydział: '+quest.title,'story_page','Fabuła jest opcjonalna; możesz też rozwijać się przez polowania i wspólnotę.')
+        if quest:add('Dostępny przydział: '+quest.title,'story_page','Etapy fabuły otwierają członkostwo i awanse obozowe; pomiędzy nimi możesz rozwijać się przez polowania i wspólnotę.')
     if profile.challenges.filter(claimed_at__isnull=True,progress__gte=F('required')).exists():add('Odbierz nagrodę wyzwania','challenges_page')
     if profile.skill_points:
         add(f'Wydaj punkty nauki: {profile.skill_points}','train_page','Wybierz atrybut lub umiejętność broni; pamiętaj o koszcie rudy.')
     if not profile.inventory.filter(is_equipped=True,equipped_slot='weapon').exists() and not profile.prepared_magic_id:
         add('Znajdź i załóż pierwszą broń','shop_page','Kupno nie zakłada sprzętu — potem otwórz Ekwipunek.',query='?kind=weapon&usable=1&affordable=1')
-    if profile.camp=='NONE':add('Wybierz obóz i wspólne cele','camp_page','Obóz jest twoją gildią. Wybór przynależności jest stały.')
+    if profile.camp=='NONE':
+        from .story_gates import missing
+        if missing(profile):add('Ukończ prolog przed dołączeniem','story_page','Odbierz Drogę między ogniskami, aby obóz przyjął twoją postać.')
+        else:add('Wybierz obóz i wspólne cele','locations_page','Obóz jest twoją gildią. Wybór przynależności jest stały.')
     else:add('Sprawdź wspólne cele swojego obozu','camp_guild','Twój wkład oraz działania mieszkańców rozwijają tę samą wspólnotę.')
     if finished:add('Dalsza droga: Warty za Przełęczą','frontier_page','Szukaj lepszego łupu i walcz o wynik miesiąca.')
     previous=250*profile.level*(profile.level+1);span=max(1,profile.required_exp-previous)
