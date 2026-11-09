@@ -99,6 +99,13 @@ class BossBuildMatrixTests(TestCase):
 
 
 class SharedColonySessionTests(TestCase):
+    def setUp(self):
+        import random
+        previous=random.getstate();self.addCleanup(random.setstate,previous);random.seed(71)
+        from datetime import datetime,timezone as utc
+        clock=patch('django.utils.timezone.now',return_value=datetime(2026,11,10,8,tzinfo=utc.utc))
+        clock.start();self.addCleanup(clock.stop)
+
     def test_regular_player_levels_and_trades_while_bots_play_same_world(self):
         from .models import PlayerProfile,MarketTrade,BotDecision
         from .bots import tick_bot
@@ -111,7 +118,7 @@ class SharedColonySessionTests(TestCase):
         self.assertFalse(player.user.is_staff)
         bots=list(PlayerProfile.objects.filter(is_bot=True))
         now=timezone.now();actions=[]
-        for step in range(40):
+        for step in range(80):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=10*step)):
                 for bot in bots:
                     action,success=tick_bot(bot, force_active=True);self.assertTrue(success,(step,action));actions.append(action)
@@ -137,4 +144,4 @@ class SharedColonySessionTests(TestCase):
         for bot in bots:
             bot.refresh_from_db();self.assertGreater(bot.experience,0)
         from .release_probe import record_scenario
-        record_scenario('wspolna-sesja-gracza-i-botow',{'ticks':40,'bots':3,'level':player.level,'experience':player.experience,'real_bot_sales_to_player':MarketTrade.objects.filter(buyer=player,seller__is_bot=True).count(),'distinct_bot_actions':len(set(actions))})
+        record_scenario('wspolna-sesja-gracza-i-botow',{'ticks':80,'bots':3,'level':player.level,'experience':player.experience,'real_bot_sales_to_player':MarketTrade.objects.filter(buyer=player,seller__is_bot=True).count(),'distinct_bot_actions':len(set(actions))})

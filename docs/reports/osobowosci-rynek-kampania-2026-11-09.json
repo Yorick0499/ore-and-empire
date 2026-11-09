@@ -745,5 +745,19 @@
   "equipment_and_market_scenarios": 23,
   "rarity_scenarios": 17,
   "solo_usability_scenarios": 20,
-  "adventure_variety_scenarios": 11
+  "adventure_variety_scenarios": 11,
+  "shared_session_recheck": {
+    "reason": "Stabilizacja losowości i czasu po niestabilnym wyniku CI; 80 tur zamiast 40, bez sztucznej oferty lub złagodzenia asercji handlu.",
+    "random_seed": 71,
+    "clock": "2026-11-10 08:00 UTC + 10 minut na krok",
+    "facts": {
+      "scenario": "wspolna-sesja-gracza-i-botow",
+      "ticks": 80,
+      "bots": 3,
+      "level": 1,
+      "experience": 970,
+      "real_bot_sales_to_player": 1,
+      "distinct_bot_actions": 20
+    }
+  }
 }

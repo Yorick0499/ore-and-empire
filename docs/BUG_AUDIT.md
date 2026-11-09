@@ -68,3 +68,5 @@ SQLite nie składa wielkości liter Unicode w `LIKE`, przez co „światło” n
 Chromium: sklep, osobowości i zarządca przy 320/390/1440 px bez poziomego przepełnienia, błędów JS i brakujących grafik. Nadanie dwóch Pradawnych +0 potwierdzono w plecaku konta syntetycznego. [Pomiar 100 botów](reports/osobowosci-sto-botow-2026-11-09.json) dotyczy prawdziwego harmonogramu sesji, z osobną rundą wszystkich aktywnych tur.
 
 Próba migracji prywatnej kopii istniejącego świata do 0041 zachowała wszystkie stare wartości i identyfikatory: 144 015 wierszy w 56 tabelach; kontrola kluczowego postępu i kont objęła 28 tabel. Syntetyczne testy i publiczne raporty nie zawierają tego zapisu ani haseł.
+
+CI ujawniło niestabilność krótkiej wspólnej sesji: dostępność oferty zależała od niekontrolowanej losowości. Scenariusz ma teraz własny seed i stałą datę, trwa 80 tur zamiast 40 i nadal wymaga realnego zakupu od bota. Powtórzenie uzyskało jeden zakup, 970 PD i 20 rodzajów akcji botów, bez sztucznego towaru. Wynik dopisano jako osobną kontrolę do raportu.
