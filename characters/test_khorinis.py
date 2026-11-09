@@ -204,3 +204,8 @@ class TwoRealmTests(TestCase):
         response=self.client.post('/zarzadca/?server='+str(self.island.pk),{'action':'restore','profile':self.p.pk})
         self.assertIn('server='+str(self.island.pk),response.url)
         self.assertEqual(self.client.get(response.url).status_code,200)
+        before=list(World.objects.order_by('pk').values_list('name','bot_count'))
+        for bad in ('999999','', 'x', '9'*200):
+            response=self.client.post('/zarzadca/swiat/reset/?server='+bad,{'action':'configure','name':'Nie zmieniaj','bot_count':99})
+            self.assertEqual(response.status_code,404)
+        self.assertEqual(before,list(World.objects.order_by('pk').values_list('name','bot_count')))

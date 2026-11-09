@@ -71,9 +71,12 @@ class CharacterSelectionMiddleware:
             if request.user.is_authenticated and request.user.is_superuser and request.path.startswith('/zarzadca/'):
                 from .realms import open_worlds,_scope
                 server=request.GET.get('server')
-                if server and len(server)<=18 and server.isdecimal():
+                if server is not None:
+                    from django.http import Http404
+                    if not server or len(server)>18 or not server.isdecimal():raise Http404('Nieznany serwer.')
                     selected_world=open_worlds().filter(pk=int(server)).first()
-                    if selected_world:_scope.set(selected_world.pk)
+                    if selected_world is None:raise Http404('Serwer jest zamknięty lub nie istnieje.')
+                    _scope.set(selected_world.pk)
             return self.get_response(request)
     def process_view(self,request,view,args,kwargs):
         if not request.user.is_authenticated:return None
