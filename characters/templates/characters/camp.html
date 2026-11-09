@@ -16,7 +16,7 @@
 <span class="eyebrow">Szczebel {{ card.rank.tier }} · {% if card.current %}Twoja ranga{% elif card.quest.promoted_at %}Ukończono{% elif card.eligible %}Następny krok{% else %}Dalsza ścieżka{% endif %}</span>
 <h2>{{ card.rank.name }}</h2><p class="requirements">Droga od: {{ card.parents }}</p>
 <dl class="rank-requirements"><div><dt>Poziom</dt><dd>{{ profile.level }} / {{ card.rank.level }}</dd></div><div><dt>{{ card.attribute_name }}</dt><dd>{{ card.attribute_current }} / {{ card.rank.attribute_value }}</dd></div><div><dt>Koszt awansu</dt><dd>{{ card.rank.cost }} rudy</dd></div></dl>
-<h3>{{ card.rank.quest_name }}</h3><p>{{ card.rank.description }}</p>
+{% if card.story_missing %}<p class="requirements">Wymagana fabuła: {% for gate in card.story_missing %}{{ gate.title }}{% if not forloop.last %}, {% endif %}{% endfor %}. <a href="{% url 'story_page' %}">Przejdź do dziennika</a>.</p>{% endif %}<h3>{{ card.rank.quest_name }}</h3><p>{{ card.rank.description }}</p>
 <ul class="quest-goals">{% for goal in card.goals %}<li>{{ goal.label }} <strong>{{ goal.progress }} / {{ goal.count }}</strong></li>{% endfor %}</ul>
 {% if card.quest and not card.quest.promoted_at %}
 <p>{% if card.complete %}Zadanie wykonane. Sprawdź pozostałe wymagania awansu.{% else %}Zadanie aktywne.{% endif %}</p>

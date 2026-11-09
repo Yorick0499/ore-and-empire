@@ -68,6 +68,8 @@ def upgrade_camp(profile,key,expected_level):
     field=UPGRADES[key][0];level=getattr(guild,field)
     # A stale/retried form cannot purchase another level or spend twice.
     if level!=expected_level or level>=3 or guild.level<level+2:return False
+    from .camp_privileges import privileges
+    if privileges(profile)["upgrade_limit"]<level+1:return False
     cost=100*(level+1)
     if guild.treasury<cost:return False
     guild.treasury-=cost;setattr(guild,field,level+1);guild.save(update_fields=['treasury',field])
@@ -83,6 +85,8 @@ def guild_cards(profile):
     index=(day.toordinal()+CAMPS.index(guild.camp))%len(PROJECTS)
     title,objectives=PROJECTS[index] if not project else (project.title,project.objectives)
     progress=project.progress if project else {}
-    return {'guild':guild,'project':project,'title':title,'day':day,'goals':[{'label':'Odebrane zmiany w kopalni' if g['kind']=='mine' else 'Wygrane polowania','count':g['count'],'progress':progress.get(g['id'],0)} for g in objectives],
-        'upgrades':[{'key':key,'name':name,'description':description,'level':getattr(guild,field),'cost':100*(getattr(guild,field)+1),'can_buy':getattr(guild,field)<3 and guild.level>=getattr(guild,field)+2 and guild.treasury>=100*(getattr(guild,field)+1)} for key,(field,name,description) in UPGRADES.items()],
+    from .camp_privileges import privileges
+    personal=privileges(profile)
+    return {'privileges':personal,'guild':guild,'project':project,'title':title,'day':day,'goals':[{'label':'Odebrane zmiany w kopalni' if g['kind']=='mine' else 'Wygrane polowania','count':g['count'],'progress':progress.get(g['id'],0)} for g in objectives],
+        'upgrades':[{'key':key,'name':name,'description':description,'level':getattr(guild,field),'cost':100*(getattr(guild,field)+1),'required_rank':getattr(guild,field)+1,'can_buy':personal['upgrade_limit']>=getattr(guild,field)+1 and getattr(guild,field)<3 and guild.level>=getattr(guild,field)+2 and guild.treasury>=100*(getattr(guild,field)+1)} for key,(field,name,description) in UPGRADES.items()],
         'members':PlayerProfile.objects.filter(camp=profile.camp,world_id=profile.world_id,user__is_active=True).count(),'history':CampContribution.objects.filter(guild=guild).select_related('profile__user')[:30]}

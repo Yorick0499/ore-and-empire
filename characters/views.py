@@ -313,7 +313,10 @@ def locations_view(request):
     if request.method == "POST":
         camp = request.POST.get("camp")
         from .game_logic import choose_camp
-        report_action(request, choose_camp(profile, camp))
+        from .story_gates import missing
+        blockers=missing(profile)
+        if blockers:messages.error(request,"Najpierw ukończ i odbierz: "+", ".join(row["title"] for row in blockers))
+        else:report_action(request, choose_camp(profile, camp))
         return redirect("locations_page")
     cards = [
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS
@@ -762,7 +765,10 @@ def camp_guild_view(request):
         try:amount=int(request.POST.get('amount',0));expected=int(request.POST.get('expected_level',-1))
         except (TypeError,ValueError):amount=0;expected=-1
         action=request.POST.get('action')
-        if action=='rally':result=rally_camp_raid(profile)
+        if action=='resupply':
+            from .camp_privileges import claim_resupply
+            result=claim_resupply(profile,request.POST.get('request_key'))
+        elif action=='rally':result=rally_camp_raid(profile)
         elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
         elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
         else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False

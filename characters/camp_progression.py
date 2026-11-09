@@ -79,7 +79,8 @@ ATTRIBUTE_NAMES = {"strength": "Siła", "dexterity": "Zręczność", "mana": "Ma
 
 
 def available_rank(profile, rank):
-    return profile.camp == rank.camp and profile.guild in rank.parents
+    from .story_gates import missing
+    return profile.camp == rank.camp and profile.guild in rank.parents and not missing(profile,rank.tier)
 
 
 def quest_complete(quest, rank):
@@ -157,6 +158,7 @@ def rank_cards(profile, camp=None):
         complete = bool(quest and quest_complete(quest, rank))
         cards.append({
             "rank": rank, "quest": quest, "current": profile.guild == rank.key,
+            "story_missing":__import__("characters.story_gates",fromlist=["missing"]).missing(profile,rank.tier),
             "parents": ", ".join(BY_RANK[parent].name if parent in BY_RANK else "Nowy członek obozu" for parent in rank.parents),
             "attribute_name": ATTRIBUTE_NAMES[rank.attribute],
             "attribute_current": getattr(profile, rank.attribute),

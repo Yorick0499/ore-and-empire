@@ -85,6 +85,7 @@ class Observation:
     patrol_depth: int | None = None
     ammo_id: int | None = None
     ammo_blocked: bool = False
+    membership_ready: bool = True
     personality: str = ""
     finance_id: int | None = None
     finance_old_id: int | None = None
@@ -273,7 +274,14 @@ class BaselinePolicyV20(BaselinePolicyV19):
             if o.personality=='grinder' and o.armed and o.hunt_key and o.energy>=15:return 'hunt',None
         return choice
 
-class BaselinePolicy(BaselinePolicyV20):pass
+class BaselinePolicyV21(BaselinePolicyV20):
+    def choose(self,o):
+        if o.camp=='NONE' and not o.membership_ready:
+            # Continue the prologue through ordinary services before choosing a camp.
+            return super().choose(replace(o,camp='PROLOGUE_PENDING'))
+        return super().choose(o)
+
+class BaselinePolicy(BaselinePolicyV21):pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -510,7 +518,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if pending:raid_action='raid_claim';raid_target=pending.pk
         elif profile.bot_turn%(7 if profile.bot_personality=='social' else 13)==0:
             raid=raid_status['raid']
-            if not raid:raid_action='raid_rally'
+            if not raid:
+                from .camp_privileges import privileges
+                if privileges(profile)['can_rally']:raid_action='raid_rally'
             elif raid_status['can_attack'] and profile.current_health>=min(profile.max_health,(raid.attack+10)*3+10) and (not profile.prepared_magic_id or (active_magic and profile.current_mana>=active_magic.cost)):
                 raid_action='raid_strike';raid_target=raid.pk
     from .challenges import bot_personal_plan
@@ -543,7 +553,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if excess:forge_action='salvage';forge_target=excess.pk
     from .weapon_finance import plan as finance_plan
     financed=finance_plan(profile,inventory,market.merchants) if not upgrade and not equipment else None
+    from .story_gates import missing as story_missing
     obs = Observation(
+        membership_ready=not story_missing(profile),
         finance_id=financed.pk if financed else None,finance_old_id=equipped.pk if financed else None,finance_price=financed.base_value if financed else 0,
         personality=profile.bot_personality,
         ammo_id=ammo_stock.pk if ammo_stock else None,ammo_blocked=ammo_blocked,
@@ -577,7 +589,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-20" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-21" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     action, target = (policy or BaselinePolicy()).choose(obs)
     from .bot_policies import OllamaPolicy
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}

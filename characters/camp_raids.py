@@ -18,6 +18,8 @@ def phase(raid):
 
 @player_action
 def rally_camp_raid(profile):
+    from .camp_privileges import privileges
+    if not privileges(profile)["can_rally"]:return False
     if profile.camp not in CAMPS:return False
     guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
     name,art=ENCOUNTERS[profile.camp];health=500+guild.level*100

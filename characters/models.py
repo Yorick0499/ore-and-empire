@@ -176,6 +176,7 @@ class PlayerProfile(models.Model):
         super().refresh_from_db(*args,**kwargs)
         if hasattr(self,'_gear_stats_cache'): del self._gear_stats_cache
         if hasattr(self,'_camp_perks'): del self._camp_perks
+        if hasattr(self,'_story_gate_claimed'):del self._story_gate_claimed
 
     @property
     def max_mana(self):
@@ -196,7 +197,9 @@ class PlayerProfile(models.Model):
     def camp_perks(self):
         if not hasattr(self,'_camp_perks'):
             self._camp_perks=(CampGuild.objects.filter(camp=self.camp,world_id=self.world_id).values('training_level','supply_level','defense_level').first() if self.camp!='NONE' else None) or dict(training_level=0,supply_level=0,defense_level=0)
-        return self._camp_perks
+        from .camp_privileges import privileges
+        personal=privileges(self)
+        return {key:self._camp_perks[key]+personal[bonus] for key,bonus in [('training_level','training'),('supply_level','supply'),('defense_level','defense')]}
 
     def effective_protection(self, kind='weapon'):
         return getattr(self, kind + '_prot') + self.equipment_stats[kind + '_prot'] + (self.camp_perks['defense_level'] if kind in {'weapon','arrow'} else 0)
@@ -995,3 +998,13 @@ class FrontierRecord(models.Model):
         constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='frontier_request')]
         ordering = ['-created_at','-pk']
         indexes = [models.Index(fields=['profile','season'], name='frontier_profile_season')]
+
+
+class CampSupplyUse(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.CASCADE)
+    day=models.DateField()
+    request_key=models.UUIDField()
+    energy=models.PositiveSmallIntegerField()
+    health=models.PositiveSmallIntegerField()
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','day'],name='one_camp_resupply_per_day')]
