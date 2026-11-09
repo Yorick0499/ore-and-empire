@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: 7 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
+Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
 
 ## Wdrożone
 
@@ -8,7 +8,10 @@ Stan: 7 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/
 - Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
 - 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
 - Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
-- Jedenaście wypraw czasowych, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze.
+- 44 zlecenia czasowe, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze.
+- Siedem osobowości, sesje w czasie polskim, limitowane symulowane zakupy premium i 17 ofert itemshopu.
+- Rynek reagujący na potrzeby, podaż i zamienniki NPC; ochrona najlepszego sprzętu i atomowe finansowanie wymiany.
+- Nadawanie rzadkości nowych przedmiotów przez zarządcę z audytem.
 - Boty baseline-20, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
 - Karczma, kroniki, powiadomienia, rankingi, sala chwały i jednorazowe podsumowanie operatora.
 - Czas polski 1:1, słoneczne pory dnia Warszawy, sezony meteorologiczne i kalendarz eventów.

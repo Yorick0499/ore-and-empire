@@ -48,3 +48,5 @@ W obu wariantach różnica uzgodnienia ledgeru rudy/odłamków wynosiła zero. M
 [Osobny staging](reports/ai-budzet-po-restarcie-2026-11-07.json) wykonał dwie rzeczywiste, poprawne decyzje modelu na trzech aktywnych botach. Restart workera zachował licznik 2/2 i nie odnowił limitu. Po próbie procesy testowe zatrzymano. Testy automatyczne używają małego kontrolowanego serwera HTTP, nie pobierają modelu; sprawdzają timeout, złośliwe indeksy/pola, przekierowania, sekrety, replay, fallback oraz budżet po restarcie.
 
 Źródło protokołu: [Ollama — lokalne chat API](https://docs.ollama.com/api/chat).
+
+Porównanie `benchmark_policies` wymusza ograniczoną liczbę aktywnych tur: pomija sesje i symulowane zakupy premium, aby porównywać decyzje przy tym samym czasie gry. Osobny scenariusz 48 godzin w `simulate_release` respektuje prawdziwe sesje i rejestruje symulowane zakupy jako oddzielne źródło.
