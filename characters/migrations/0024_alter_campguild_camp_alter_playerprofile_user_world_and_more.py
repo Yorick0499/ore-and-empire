@@ -7,6 +7,10 @@ from django.conf import settings
 from django.db import migrations, models
 
 
+def bootstrap_world(apps, schema_editor):
+    apps.get_model("characters", "World").objects.using(schema_editor.connection.alias).get_or_create(is_current=True)
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -43,6 +47,7 @@ class Migration(migrations.Migration):
                 'constraints': [models.UniqueConstraint(condition=models.Q(('is_current', True)), fields=('is_current',), name='one_current_world'), models.CheckConstraint(condition=models.Q(('bot_count__lte', 20)), name='world_bot_count_bounds')],
             },
         ),
+        migrations.RunPython(bootstrap_world,migrations.RunPython.noop),
         migrations.AddField(
             model_name='campguild',
             name='world',

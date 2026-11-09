@@ -102,10 +102,10 @@ class EndgameTests(TestCase):
         from .bot_telemetry import replay_decision
         from .models import BotDecision
         self.finish();self.p.is_bot=True;self.p.save();game.equip_item(self.p,self.gear)
-        action,ok=tick_bot(self.p);self.assertEqual((action,ok),('improve',True))
+        action,ok=tick_bot(self.p, force_active=True);self.assertEqual((action,ok),('improve',True))
         self.assertTrue(replay_decision(BotDecision.objects.first())['matches'])
         self.p.inventory.filter(blueprint__catalog_key='rune-dust').delete()
-        action,ok=tick_bot(self.p);self.assertEqual((action,ok),('patrol',True))
+        action,ok=tick_bot(self.p, force_active=True);self.assertEqual((action,ok),('patrol',True))
         self.assertEqual(self.p.patrols.count(),1)
     def test_bot_reserves_dust_and_does_not_replace_improved_armor_with_weaker_drop(self):
         from .bots import tick_bot
@@ -113,13 +113,13 @@ class EndgameTests(TestCase):
         armor=add_item(self.p,ItemBluePrint.objects.get(catalog_key='colony-loot-0-armor'),rarity=4)
         armor.upgrade_level=2;armor.save();game.equip_item(self.p,armor)
         weaker=add_item(self.p,ItemBluePrint.objects.get(catalog_key='colony-loot-1-armor'))
-        action,ok=tick_bot(self.p)
+        action,ok=tick_bot(self.p, force_active=True)
         self.assertTrue(ok);weaker.refresh_from_db();self.assertFalse(weaker.is_equipped)
         self.dust.refresh_from_db();self.assertFalse(self.dust.is_market_listed)
         # Even an external policy cannot list a material reserved by the ordinary allowlist.
         class DumpDust:
             def choose(policy,observation):return 'list',self.dust.pk
-        self.assertEqual(tick_bot(self.p,DumpDust()),('rejected',False))
+        self.assertEqual(tick_bot(self.p,DumpDust(), force_active=True),('rejected',False))
 
     def test_population_100_and_validator_101(self):
         from .world_management import WorldSettingsForm

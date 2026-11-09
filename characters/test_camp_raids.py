@@ -72,7 +72,7 @@ class CampRaidTests(TestCase):
     def test_bot_uses_same_strike_service_and_ui_does_not_expose_other_camp(self):
         from .bots import tick_bot
         self.player.is_bot=True;self.player.bot_turn=13;self.player.save()
-        action,success=tick_bot(self.player);self.assertEqual((action,success),('raid_strike',True))
+        action,success=tick_bot(self.player, force_active=True);self.assertEqual((action,success),('raid_strike',True))
         self.assertTrue(CampRaidStrike.objects.filter(profile=self.player).exists())
         self.client.force_login(self.enemy.user)
         response=self.client.post('/wspolnota/',{'action':'strike','raid':self.raid.pk,'request_key':uuid4()})

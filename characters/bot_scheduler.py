@@ -40,6 +40,6 @@ class BotScheduler:
         result=tick(selected)
         elapsed=max(0,self.clock()-start)
         self.cost_ema=elapsed if not self.cost_ema else .8*self.cost_ema+.2*elapsed
-        if result and result[0]=='wait':self.rest_until[selected]=self.clock()+30
+        if result and result[0] in {'wait','offline','idle'}:self.rest_until[selected]=self.clock()+30
         self.next_tick=self.clock()+self.gap
         return selected,result

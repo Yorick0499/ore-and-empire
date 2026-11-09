@@ -314,3 +314,7 @@ Paczka Gothic I v3 zawiera 522 tożsamości kodowe, z potwierdzonymi cenami/stat
 ## Dopracowanie pełnej edycji
 
 Do katalogu Gothic I i dotychczasowych adaptacji dochodzi 35 wzorów wyposażenia z pięciu kręgów oraz pył magicznej rudy. [Komplet typów, nazw kręgów i statystyk](LOOT_AND_ENDGAME.md) opisuje też szanse dropu i 100 stopni Wart za Przełęczą. Miesięczny ranking wart działa niezależnie od globalnego rankingu doświadczenia.
+
+## Osobowości i zakupy mieszkańców
+
+[Siedem stylów, sesje, 17 ofert i limity](BOT_PERSONALITIES.md). Boty mają okresy aktywności według czasu polskiego, a symulowane zakupy są oddzielnie ewidencjonowanym źródłem premium. Zarządca może wybrać rzadkość nowo nadawanego przedmiotu. [Model cen i ochrona ekwipunku](MARKET_POLICY.md).

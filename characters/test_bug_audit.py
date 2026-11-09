@@ -93,7 +93,7 @@ class RangedBotAuditTests(TestCase):
 
     def test_ranged_bot_buys_real_ammo_and_then_can_hunt(self):
         from .bots import tick_bot
-        action, success=tick_bot(self.p)
+        action, success=tick_bot(self.p, force_active=True)
         self.assertTrue(success)
         self.assertTrue(self.p.inventory.filter(blueprint__kind='ammo',blueprint__original_stats__ammo_type='arrow').exists(),action)
         self.assertEqual(self.p.purchases.count(),0)
@@ -106,7 +106,7 @@ class RangedBotAuditTests(TestCase):
         start=timezone.now()
         for step in range(30):
             with patch('django.utils.timezone.now',return_value=start+timedelta(minutes=2*step)):
-                action,success=tick_bot(self.p)
+                action,success=tick_bot(self.p, force_active=True)
                 self.assertTrue(success,action)
 
     def test_crossbow_does_not_treat_arrows_or_listed_bolts_as_available_ammo(self):
@@ -115,7 +115,7 @@ class RangedBotAuditTests(TestCase):
         add_item(self.p,ItemBluePrint.objects.get(catalog_key='g1-arrow'),5)
         bolts=add_item(self.p,ItemBluePrint.objects.get(catalog_key='g1-bolt'),5)
         game.list_item_on_market(self.p,bolts,10)
-        action,ok=tick_bot(self.p)
+        action,ok=tick_bot(self.p, force_active=True)
         self.assertEqual((action,ok),('ammo',True))
         self.assertEqual(self.p.inventory.get(blueprint__catalog_key='g1-bolt',is_market_listed=False).quantity,1)
 
@@ -126,7 +126,7 @@ class RangedBotAuditTests(TestCase):
         from .bestiary import BESTIARY
         self.p.strength=100;self.p.current_health=10;self.p.save()
         add_item(self.p,ItemBluePrint.objects.get(catalog_key='g1-arrow'),5)
-        _,ok=tick_bot(self.p);self.assertTrue(ok)
+        _,ok=tick_bot(self.p, force_active=True);self.assertTrue(ok)
         decision=BotDecision.objects.filter(profile=self.p).first()
         key=decision.observation['hunt_key']
         self.assertIsNotNone(key)
@@ -136,13 +136,13 @@ class RangedBotAuditTests(TestCase):
         from .bots import tick_bot
         from .models import BotDecision
         from .bot_telemetry import replay_decision
-        self.assertEqual(tick_bot(self.p),('ammo',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('ammo',True))
         fact=BotDecision.objects.filter(profile=self.p).first()
         self.assertTrue(replay_decision(fact)['matches'])
         before=self.p.inventory.count()
         class Forged:
             def choose(self,observation):return 'ammo',999999
-        self.assertEqual(tick_bot(self.p,Forged()),('rejected',False))
+        self.assertEqual(tick_bot(self.p,Forged(), force_active=True),('rejected',False))
         self.assertEqual(self.p.inventory.count(),before)
 
     def test_magic_comparison_includes_physical_armor_against_arrows(self):
@@ -162,7 +162,7 @@ class RangedBotAuditTests(TestCase):
         now=timezone.now()
         for step in range(20):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=2*step)):
-                action,ok=tick_bot(self.p);self.assertTrue(ok,action)
+                action,ok=tick_bot(self.p, force_active=True);self.assertTrue(ok,action)
         self.assertFalse(MarketEvent.objects.filter(profile=self.p,blueprint__kind='ammo',action='listing').exists())
 
 

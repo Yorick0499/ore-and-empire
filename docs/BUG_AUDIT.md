@@ -60,3 +60,13 @@ Zabezpieczono zgodność dawnych backupów PostgreSQL: pomijane są tylko nowe p
 ### Polskie litery w wyszukiwaniu — #98
 
 SQLite nie składa wielkości liter Unicode w `LIKE`, przez co „światło” nie znajdowało „Światło”. Zlecenia, kupiec, plecak, targ i katalog używają teraz dopasowania Unicode z dosłownym traktowaniem wpisanego tekstu. Znaki regex są escapowane, a długość zapytania pozostaje ograniczona do 100 znaków. Regresja obejmuje polskie wielkie/małe litery, nawiasy i wpis `.*`, który nie jest operatorem wyszukiwania. 40 powiązanych testów lokalnych przeszło.
+
+## 9 listopada 2026 — osobowości i rynek
+
+[Raport przejść i sesji](reports/osobowosci-rynek-kampania-2026-11-09.json): 158 przypadków zakończonych powodzeniem, w tym kampania gracza i trzech obozów, buildy, próby nadużyć oraz osobny cykl 48 godzin z siedmioma osobowościami. W cyklu wystąpiło 15 prawdziwych transakcji, 7 zakupów itemshopu (6 patrona), 40 jawnych symulowanych odłamków i zero nieudanych akcji. To mała populacja próbkowana co pięć minut, bez prognozy wielomiesięcznego rynku. Osobne testy sprawdzają DST, brak tur offline, limity, retry, rollback audytu, ochronę najlepszego sprzętu i atomową wymianę broni.
+
+Chromium: sklep, osobowości i zarządca przy 320/390/1440 px bez poziomego przepełnienia, błędów JS i brakujących grafik. Nadanie dwóch Pradawnych +0 potwierdzono w plecaku konta syntetycznego. [Pomiar 100 botów](reports/osobowosci-sto-botow-2026-11-09.json) dotyczy prawdziwego harmonogramu sesji, z osobną rundą wszystkich aktywnych tur.
+
+Próba migracji prywatnej kopii istniejącego świata do 0041 zachowała wszystkie stare wartości i identyfikatory: 144 015 wierszy w 56 tabelach; kontrola kluczowego postępu i kont objęła 28 tabel. Syntetyczne testy i publiczne raporty nie zawierają tego zapisu ani haseł.
+
+CI ujawniło niestabilność krótkiej wspólnej sesji: dostępność oferty zależała od niekontrolowanej losowości. Scenariusz ma teraz własny seed i stałą datę, trwa 80 tur zamiast 40 i nadal wymaga realnego zakupu od bota. Powtórzenie uzyskało jeden zakup, 970 PD i 20 rodzajów akcji botów, bez sztucznego towaru. Wynik dopisano jako osobną kontrolę do raportu.

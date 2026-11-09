@@ -111,7 +111,7 @@ class EquipmentTests(TestCase):
         self.hero.is_bot=True;self.hero.save()
         game.equip_item(self.hero,self.sword)
         armor=self.item('armor',weapon_prot=10)
-        self.assertEqual(tick_bot(self.hero),('equip',True))
+        self.assertEqual(tick_bot(self.hero, force_active=True),('equip',True))
         armor.refresh_from_db()
         self.assertTrue(armor.is_equipped)
         self.assertEqual(armor.equipped_slot,'armor')

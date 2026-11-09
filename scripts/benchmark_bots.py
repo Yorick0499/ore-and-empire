@@ -50,7 +50,7 @@ with tempfile.TemporaryDirectory(prefix='ore-100-bots-') as tmp:
         from django.db import reset_queries
         reset_queries()
         start=time.perf_counter()
-        with CaptureQueriesContext(connection) as captured:action,ok=tick_bot(bot)
+        with CaptureQueriesContext(connection) as captured:action,ok=tick_bot(bot, force_active=True)
         times.append(time.perf_counter()-start);queries.append(len(captured));actions[action]=actions.get(action,0)+1
         if not ok:raise RuntimeError((bot.pk,action))
     connection.close()

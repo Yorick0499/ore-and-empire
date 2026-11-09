@@ -57,13 +57,16 @@ def administer_player(actor, profile_id, action, payload):
         try:
             quantity = int(payload.get("quantity", 1))
             blueprint_id = int(payload.get("blueprint", 0))
+            rarity = int(payload.get("rarity", 0))
         except (ValueError, TypeError):
             return False, "Nieprawidłowy przedmiot lub liczba."
         blueprint = ItemBluePrint.objects.filter(pk=blueprint_id).first()
-        if not blueprint or not 1 <= quantity <= 20:
+        if not blueprint or not 1 <= quantity <= 20 or not 0 <= rarity <= 4:
             return False, "Wybierz przedmiot i liczbę od 1 do 20."
-        OwnedItem.objects.bulk_create([OwnedItem(owner=profile, blueprint=blueprint, origin="admin") for _ in range(quantity)])
-        details = {"blueprint_id": blueprint.pk, "quantity": quantity}
+        if rarity and not blueprint.equippable:
+            return False, "Rzadkość dotyczy tylko wyposażenia."
+        items = OwnedItem.objects.bulk_create([OwnedItem(owner=profile, blueprint=blueprint, origin="admin", rarity=rarity) for _ in range(quantity)])
+        details = {"blueprint_id": blueprint.pk, "quantity": quantity, "rarity": rarity, "item_ids": [i.pk for i in items]}
     elif action == "premium":
         try:
             amount = int(payload.get("amount", 0))

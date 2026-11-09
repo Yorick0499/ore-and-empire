@@ -174,10 +174,10 @@ class RareBotEquipmentTests(TestCase):
         offer=add_item(seller,bp,origin='loot',rarity=4);game.list_item_on_market(seller,offer,60)
         forbidden_bp=ItemBluePrint.objects.create(name='Za trudny miecz',damage=100,base_value=100,merchant=False,required_dexterity=99)
         forbidden=add_item(seller,forbidden_bp);game.list_item_on_market(seller,forbidden,1)
-        self.assertEqual(tick_bot(self.p),('buy',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('buy',True))
         offer.refresh_from_db();self.assertEqual((offer.owner_id,offer.rarity),(self.p.pk,4))
-        self.assertEqual(tick_bot(self.p),('equip',True))
-        self.assertEqual(tick_bot(self.p),('sell',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('equip',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('list',True))
         offer.refresh_from_db();self.assertTrue(offer.is_equipped)
         forbidden.refresh_from_db();self.assertEqual(forbidden.owner_id,seller.pk)
 
@@ -185,7 +185,7 @@ class RareBotEquipmentTests(TestCase):
         from .bots import tick_bot
         bp=ItemBluePrint.objects.create(name='Rzadki łup',damage=18,base_value=100,merchant=False)
         item=add_item(self.p,bp,rarity=4,origin='loot')
-        self.assertEqual(tick_bot(self.p),('equip',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('equip',True))
         item.refresh_from_db();self.assertTrue(item.is_equipped)
         self.worn.refresh_from_db();self.assertFalse(self.worn.is_equipped)
 
@@ -196,7 +196,7 @@ class RareBotEquipmentTests(TestCase):
         item=add_item(self.p,bp);item.is_protected=True;item.save()
         from .models import MarketEvent
         MarketEvent.objects.create(profile=self.p,item=item,blueprint=bp,action='cancellation',reason='stale',price=100)
-        tick_bot(self.p)
+        tick_bot(self.p, force_active=True)
         observation=BotDecision.objects.filter(profile=self.p).first().observation
         self.assertNotEqual(observation['disposal_id'],item.pk)
         self.assertNotEqual(observation['inventory_id'],item.pk)

@@ -21,7 +21,7 @@ def record_changes(before,operation,category=None):
             amount=value-before[pk][resource]
             if not amount:continue
             kind=category or ('transfer' if operation=='buy_item_on_market' else 'source' if amount>0 else 'sink')
-            EconomicEntry.objects.create(profile_id=pk,resource=resource,amount=amount,balance_after=value,category=kind,operation=operation,reference=reference)
+            EconomicEntry.objects.create(profile_id=pk,resource=resource,amount=amount,balance_after=value,category=kind,operation=operation,reference=reference,created_at=timezone.now())
 
 
 def record_opening(profile):
@@ -54,4 +54,4 @@ def summary():
     for item in ItemBluePrint.objects.filter(merchant=True,kind='weapon').order_by('base_value','pk')[:30]:
         market=averages.get(item.pk,{})
         prices.append({'name':item.name,'npc':item.base_value,'g1':item.original_stats.get('value'),'market_average':round(market['average'],2) if market else None,'trades':market.get('count',0)})
-    return {'resources':totals,'market_turnover':trades.aggregate(total=Sum('price'))['total'] or 0,'since':since.isoformat() if since else None,'prices':prices,'refills_per_day':REFILLS_PER_DAY,'entries':EconomicEntry.objects.count()}
+    return {'simulated_purchase_shards':EconomicEntry.objects.filter(profile__world=world,operation='simulated_purchase',resource='shards').aggregate(n=Sum('amount'))['n'] or 0,'resources':totals,'market_turnover':trades.aggregate(total=Sum('price'))['total'] or 0,'since':since.isoformat() if since else None,'prices':prices,'refills_per_day':REFILLS_PER_DAY,'entries':EconomicEntry.objects.count()}

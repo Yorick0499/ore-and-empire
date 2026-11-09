@@ -72,6 +72,7 @@ class LeaseTests(TestCase):
             if requests[0]==1:
                 with patch('characters.backups.create_backup',return_value=Path('/private/test-backup')),patch('characters.world_management.seed_clean_world'):
                     reset_world(admin,name='Nowa Kolonia',bot_count=1,password='Synthetic-Reset-Only-2026',confirmation=old.name,expected_world=old.pk)
+                    fresh=current_world();fresh.bot_personality_cycles=False;fresh.save(update_fields=['bot_personality_cycles'])
             elif requests[0]>=3:raise KeyboardInterrupt
         server.handle_request.side_effect=handle
         with patch('characters.management.commands.run_colony.make_server',return_value=server),patch('characters.management.commands.run_colony.call_command'),patch('characters.management.commands.run_colony.time.monotonic',side_effect=lambda:clock[0]),patch('characters.management.commands.run_colony.tick_bot',return_value=('mine',True)) as tick:
@@ -145,7 +146,7 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
                 entered.set();release.wait(timeout=10);return 'buy',offered.pk
         def bot():
             connections.close_all()
-            try:return tick_bot(PlayerProfile.objects.get(pk=self.a.pk),SlowPolicy())
+            try:return tick_bot(PlayerProfile.objects.get(pk=self.a.pk),SlowPolicy(), force_active=True)
             finally:connections.close_all()
         def human():
             connections.close_all()
@@ -194,7 +195,7 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
         try:
             with ThreadPoolExecutor(max_workers=4) as pool:
                 requests=[pool.submit(resident,user_id) for user_id in players]
-                for pk in bot_ids:self.assertTrue(tick_bot(PlayerProfile.objects.get(pk=pk),lease=guard)[1])
+                for pk in bot_ids:self.assertTrue(tick_bot(PlayerProfile.objects.get(pk=pk),lease=guard, force_active=True)[1])
                 for response in requests:response.result(timeout=30)
         finally:guard.release()
         record_scenario('postgresql-100-botow-i-4-graczy',{'bots':100,'player_requests':len(latencies),'elapsed_seconds':round(time.monotonic()-started,3),'http_p95_ms':round(sorted(latencies)[int(len(latencies)*.95)-1]*1000,2),'errors':0})

@@ -12,8 +12,10 @@ class MarketPolicyTests(TestCase):
     def setUp(self):
         self.seller=User.objects.create_user('seller').playerprofile;self.seller.is_bot=True;self.seller.bot_role='trader';self.seller.save()
         self.buyer=User.objects.create_user('buyer').playerprofile;self.buyer.ore_balance=500;self.buyer.save()
-        self.bp=ItemBluePrint.objects.create(name='Towar',base_value=100)
+        self.bp=ItemBluePrint.objects.create(name='Towar',damage=20,base_value=100,merchant=False)
         self.item=OwnedItem.objects.create(owner=self.seller,blueprint=self.bp)
+        better=ItemBluePrint.objects.create(name="Własny oręż",damage=40,base_value=200,merchant=False)
+        OwnedItem.objects.create(owner=self.seller,blueprint=better,is_equipped=True,equipped_slot="weapon")
     def test_listing_repricing_cancellation_history_and_stale_price(self):
         self.assertTrue(list_item_on_market(self.seller,self.item,110))
         self.item.listed_at=timezone.now()-timedelta(days=2);self.item.save()
@@ -37,7 +39,7 @@ class MarketPolicyTests(TestCase):
         action,target,_=bot_market_plan(self.buyer);self.assertEqual((action,target),('market_buy',self.item.pk))
         self.assertTrue(buy_item_on_market(self.buyer,self.item));self.buyer.refresh_from_db();self.assertEqual(self.buyer.ore_balance,475)
         self.assertEqual(MarketTrade.objects.get().quantity,1)
-        self.assertEqual(bot_market_plan(self.buyer)[0],'')
+        self.assertNotEqual(bot_market_plan(self.buyer)[0],'market_buy')
     def test_event_write_failure_rolls_back_listing_and_multi_day_model_frees_stock(self):
         with patch.object(MarketEvent.objects,'create',side_effect=RuntimeError):
             with self.assertRaises(RuntimeError):list_item_on_market(self.seller,self.item,100)

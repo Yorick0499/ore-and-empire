@@ -1,6 +1,6 @@
 # Żyjąca kolonia — gracze i boty
 
-Aktualna wersja używa polityki **baseline-18** i obserwacji schema 19. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+Aktualna wersja używa polityki **baseline-20** i obserwacji schema 21. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
 
 `python play.py --bots 6 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 
@@ -14,13 +14,13 @@ Aktualna wersja używa polityki **baseline-18** i obserwacji schema 19. Boty reg
 - Przyjmuje wyzwania, odbiera ukończone nagrody i osiągnięcia, wspiera projekty/skarbiec/wyprawy obozu.
 - Handluje według potrzeb i ceny jednostkowej; przecenia i wycofuje zalegające oferty, odzyskuje miejsce w zapasie.
 
-Bot nie może nadawać sobie waluty, XP, ekwipunku ani dowolnych ID celów. Kontroler tworzy allowlistę dozwolonych akcji i wywołuje te same transakcyjne serwisy co człowiek. Czas polski, eventy, koszty i wymagania są wspólne. Zwycięstwo bota w finale nie zamyka serwera.
+Bot nie może samodzielnie zmieniać portfela, XP, ekwipunku ani wybierać dowolnych ID celów. Osobny kontroler może przyznać jawny limitowany symulowany zakup odłamków. Kontroler tworzy allowlistę dozwolonych akcji i wywołuje te same transakcyjne serwisy co człowiek. Czas polski, eventy, koszty i wymagania są wspólne. Zwycięstwo bota w finale nie zamyka serwera.
 
 Sześć przedmiotów to limit roboczego zapasu polityki, nie ogólny limit plecaka każdego gracza. Niezbywalne trofea fabularne nie zajmują tego roboczego limitu. Handel przenosi rudę; nie emituje jej samym przekazaniem przedmiotu.
 
 ## Jak zobaczyć, że boty grają
 
-`/zycie-kolonii/` pokazuje imiona, role, ostatni heartbeat i ostatnie 40 udanych działań. Aktywność wygasa po 90 sekundach. Sam odczyt nie odgrywa tury ani nie tworzy losowej transakcji. Monitor zarządcy pokazuje powody odpoczynku/odrzucenia i przepływy; czytaj go razem z realnym zużyciem przedmiotów, nie samym obrotem bot–bot.
+`/zycie-kolonii/` pokazuje imiona, role, ostatni heartbeat i ostatnie 40 udanych działań. Aktywność wymaga otwartego okna gry i sygnału młodszego niż większa z wartości: 180 sekund albo dwukrotność odstępu tur. Sam odczyt nie odgrywa tury ani nie tworzy losowej transakcji. Monitor zarządcy pokazuje powody odpoczynku/odrzucenia i przepływy; czytaj go razem z realnym zużyciem przedmiotów, nie samym obrotem bot–bot.
 
 `/karczma/` to trwałe forum: 20 wątków i 30 wiadomości na stronie, do 1000 znaków, 20 sekund między wpisami gracza. HTML jest escapowany. Administrator może zamykać wątki i usuwać wpisy.
 
@@ -43,3 +43,5 @@ Pełna symulacja przechodzi kampanię zwykłym graczem i trzema obozami botów b
 Po finale bot ocenia bezpieczną wartę, w razie potrzeby powtarza niższy stopień, ulepsza noszony sprzęt i rozbiera zbędne łupy. Pył jest chroniony przed automatycznym wystawianiem. Porównanie pancerzy uwzględnia ulepszenie, aby bot nie zamieniał mocniejszego egzemplarza na słabszy łup. [Rozłożenie pracy do 100 botów i pomiary](BOT_PERFORMANCE.md).
 
 Opcjonalny adapter lokalnego modelu ma protokół ollama-1 i trwały budżet. Domyślna gra pozostaje przy regułach; [opis i wyniki](LOCAL_AI_POLICIES.md).
+
+[Siedem osobowości, godziny sesji, symulowane zakupy i 17 ofert itemshopu](BOT_PERSONALITIES.md).

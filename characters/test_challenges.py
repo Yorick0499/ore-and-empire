@@ -41,5 +41,5 @@ class ChallengeTests(TestCase):
         self.assertContains(self.client.get('/wyzwania/'),'Wyzwania mieszkańca')
         from .bots import tick_bot
         self.other.is_bot=True;self.other.bot_turn=19;self.other.save()
-        self.assertEqual(tick_bot(self.other),('challenge_accept',True))
+        self.assertEqual(tick_bot(self.other, force_active=True),('challenge_accept',True))
         self.assertEqual(PersonalChallenge.objects.filter(profile=self.other).count(),1)

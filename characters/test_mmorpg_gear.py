@@ -41,7 +41,7 @@ class MMORPGGearTests(TestCase):
         from .bots import tick_bot
         from .game_logic import equip_item
         self.p.is_bot=True;self.p.save();equip_item(self.p,self.item)
-        self.assertEqual(tick_bot(self.p),('improve',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('improve',True))
         self.assertFalse(CampaignCompletion.objects.filter(profile=self.p).exists())
     def test_level_and_camp_unlock_patrol_without_story(self):
         self.assertFalse(frontier_unlocked(self.p))

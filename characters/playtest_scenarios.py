@@ -42,7 +42,7 @@ class OrdinaryBuildSession(TestCase):
         for step in range(600):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=15*step)):
                 for bot in bots:
-                    action,success=tick_bot(bot);self.assertTrue(success,(step,action));bot_actions[action]+=1
+                    action,success=tick_bot(bot, force_active=True);self.assertTrue(success,(step,action));bot_actions[action]+=1
                 for name,p,client,actions in actors:
                     p.refresh_from_db();game.refresh_player(p)
                     if p.level>=6 and actions[{'mage':'magic_hunt','archer':'ranged_hunt','warrior':'melee_hunt'}[name]]>=10:continue

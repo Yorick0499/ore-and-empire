@@ -25,7 +25,7 @@ class AutonomousBotTests(TestCase):
         for step in range(240):
             with patch("django.utils.timezone.now", return_value=now + timedelta(minutes=step)):
                 for bot in bots:
-                    action, success = tick_bot(bot)
+                    action, success = tick_bot(bot, force_active=True)
                     self.assertTrue(success, (step, bot.pk, action))
                     actions[action] += 1
         for bot in bots:
@@ -60,9 +60,9 @@ class AutonomousBotTests(TestCase):
         bot.current_health = 1
         bot.save()
         now = timezone.now()
-        self.assertEqual(tick_bot(bot), ("wait", True))
+        self.assertEqual(tick_bot(bot, force_active=True), ("wait", True))
         with patch("django.utils.timezone.now", return_value=now + timedelta(minutes=10)):
-            action, success = tick_bot(bot)
+            action, success = tick_bot(bot, force_active=True)
         bot.refresh_from_db()
         self.assertTrue(success)
         self.assertNotEqual(action, "wait")
@@ -73,7 +73,7 @@ class AutonomousBotTests(TestCase):
         class ForgedPolicy:
             def choose(self, observation):
                 return "shop", 999999
-        self.assertEqual(tick_bot(bot, ForgedPolicy()), ("rejected", False))
+        self.assertEqual(tick_bot(bot, ForgedPolicy(), force_active=True), ("rejected", False))
         bot.refresh_from_db()
         self.assertEqual(bot.premium_balance, 0)
         self.assertFalse(StorePurchase.objects.exists())
@@ -90,23 +90,25 @@ class AutonomousBotTests(TestCase):
         bot.current_health = 1
         bot.save()
         now = timezone.now()
-        self.assertEqual(tick_bot(bot), ("wait", True))
+        self.assertEqual(tick_bot(bot, force_active=True), ("wait", True))
         with patch("django.utils.timezone.now", return_value=now + timedelta(seconds=20)):
-            self.assertEqual(tick_bot(bot), ("wait", True))
+            self.assertEqual(tick_bot(bot, force_active=True), ("wait", True))
         self.assertEqual(BotDecision.objects.filter(profile=bot).count(), 1)
         bot.refresh_from_db()
         bot.premium_balance = 2
         bot.save()
-        self.assertEqual(tick_bot(bot), ("shop", True))
+        self.assertEqual(tick_bot(bot, force_active=True), ("shop", True))
         decision = BotDecision.objects.filter(profile=bot).first()
-        self.assertEqual((decision.health_delta, decision.premium_delta), (49, -2))
+        purchase=StorePurchase.objects.filter(profile=bot).latest("pk")
+        self.assertEqual(decision.health_delta,min(purchase.product.effect,bot.max_health-1))
+        self.assertEqual(decision.premium_delta,-purchase.price)
 
     def test_malformed_policy_targets_are_rejected_before_any_action(self):
         bot = PlayerProfile.objects.filter(is_bot=True).first()
         class BadPolicy:
             def choose(self, observation):
                 return "mine", -1
-        self.assertEqual(tick_bot(bot, BadPolicy()), ("rejected", False))
+        self.assertEqual(tick_bot(bot, BadPolicy(), force_active=True), ("rejected", False))
         bot.refresh_from_db()
         self.assertEqual(bot.current_energy, 100)
         self.assertIsNone(bot.action_end_time)

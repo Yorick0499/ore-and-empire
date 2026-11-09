@@ -1,8 +1,10 @@
 # Dokumentacja — indeks
 
-Stan najnowszej wersji: 8 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
+Stan najnowszej wersji: 9 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
 
 ## Dla gracza
+
+- [Osobowości, sesje i itemshop](BOT_PERSONALITIES.md).
 
 - [Łupy, ulepszenia i endgame](LOOT_AND_ENDGAME.md)
 

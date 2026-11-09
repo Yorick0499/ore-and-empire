@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "isolated_database": true,
+  "population": 100,
+  "fixture": "100 nowych kont botów, zwykłe akcje bez nadawania statystyk; lokalny launcher i żądania ekranu logowania",
+  "elapsed_seconds": 30.03,
+  "http_requests": 285,
+  "http_errors": 0,
+  "http_p50_ms": 4.34,
+  "http_p95_ms": 6.33,
+  "http_max_ms": 40.18,
+  "cpu_percent_one_core": 6.09,
+  "rss_peak_mib": 58.36,
+  "initial_tick_p50_ms": 31.03,
+  "initial_tick_p95_ms": 34.52,
+  "initial_queries_median": 59.0,
+  "initial_actions": {
+    "stock": 67,
+    "mine": 33
+  },
+  "limits": [
+    "Pomiar na maszynie wykonującej test, nie na komputerze gracza.",
+    "Krótka próba lokalnego SQLite i ekranu logowania; nie zastępuje obciążenia publicznego serwera ani długiej symulacji gospodarki.",
+    "Cel adaptacyjnego harmonogramu około 20% czasu pracy nie jest twardym limitem CPU."
+  ],
+  "residents_ticked": 13,
+  "resident_turns": [
+    {
+      "bot_turn": 1,
+      "count": 87
+    },
+    {
+      "bot_turn": 2,
+      "count": 13
+    }
+  ],
+  "failed_decisions": 0
+}

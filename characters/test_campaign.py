@@ -70,7 +70,7 @@ class CampaignTests(TestCase):
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30*step)):
                 for bot in bots:
                     if bot.pk in completed: continue
-                    action, success = tick_bot(bot)
+                    action, success = tick_bot(bot, force_active=True)
                     self.assertTrue(success, (step, bot.pk, action))
                     actions[action] += 1
                     if bot.story_runs.filter(quest__key='ritual-ready', status='claimed').exists() and CampaignCompletion.objects.filter(profile=bot).exists():
@@ -93,7 +93,7 @@ class CampaignTests(TestCase):
         for extra in range(60):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*(step+extra+1))):
                 for bot in bots:
-                    action,success=tick_bot(bot)
+                    action,success=tick_bot(bot, force_active=True)
                     self.assertTrue(success,(extra,bot.pk,action))
                     after[action]+=1
         for bot in bots:
