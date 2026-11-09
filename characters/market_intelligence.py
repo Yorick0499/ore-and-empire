@@ -49,7 +49,7 @@ class MarketState:
         self.now=timezone.now();self.world_id=world_id
         self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True))
         self.items=defaultdict(list);self.listings=[]
-        for i in OwnedItem.objects.filter(owner__world_id=world_id,owner__user__is_active=True).select_related('blueprint'):
+        for i in OwnedItem.objects.filter(owner__world_id=world_id,owner__user__is_active=True).select_related('blueprint','owner'):
             self.items[i.owner_id].append(i)
             if i.is_market_listed:self.listings.append(i)
         self.merchants=list(ItemBluePrint.objects.filter(merchant=True))
@@ -120,7 +120,7 @@ class MarketState:
             if budget>=floor:budgets.append(budget)
         supply=sum(x.quantity for x in self.listings if x.pk!=i.pk and self.comparable(x,i))
         history=self.history[(b.pk,i.rarity,i.upgrade_level)]
-        if not budgets:return Quote(0,0,supply,len(history))
+        if not budgets or floor*i.quantity>1_000_000:return Quote(0,len(budgets),supply,len(history))
         anchor=max(1,round(b.base_value*(1+.18*i.rarity+.08*i.upgrade_level)))
         prior=max(anchor*.65,min(anchor*1.45,median(history.values()) if history else anchor))
         pressure=max(-.4,min(.3,(len(budgets)+len(history)*.5-supply*.8)/max(2,len(budgets)+len(history)*.5)))

@@ -25,6 +25,7 @@ class Command(BaseCommand):
             result=subprocess.run([sys.executable,str(settings.BASE_DIR/'manage.py'),'test',*cases,'--noinput'],cwd=settings.BASE_DIR,env=env)
             report={'schema':1,'success':result.returncode==0,'elapsed_seconds':round(time.monotonic()-start,2),'isolated_database':True,'world_clock':'Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy','polish_time_scenarios':4,'loot_endgame_scheduler_scenarios':12,'time_acceleration':'Kampania: 30 minut na krok; trzy buildy: 15 minut na krok. Wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty','scenarios':json.loads(facts.read_text()),'abuse_scenarios':6,'clock_scenarios':4,'finale_scenarios':4,'mixed_sessions':1,'build_matrices':1,'limits':['Automatyczny przebieg gracza miesza formularze fabuły i zwykłe serwisy rozgrywki; osobny przegląd ręczny sprawdza GUI.','Nie jest to test współbieżności PostgreSQL ani test publicznego hostingu.']}
             report['audit_scenarios']=19
+            report['time_acceleration']+='; osobny test osobowości: 48 godzin co 5 minut, z jawnymi limitowanymi symulowanymi zakupami premium'
             report['bot_policy']='baseline-20'
             report['observation_schema']=21
             report['local_policy_scenarios']=12

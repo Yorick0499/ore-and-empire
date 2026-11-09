@@ -6,7 +6,7 @@
   "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
   "polish_time_scenarios": 4,
   "loot_endgame_scheduler_scenarios": 12,
-  "time_acceleration": "Kampania: 30 minut na krok; trzy buildy: 15 minut na krok. Wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty",
+  "time_acceleration": "Kampania: 30 minut na krok; trzy buildy: 15 minut na krok. Wyłącznie zwykła regeneracja, bez nadania statystyk lub waluty; osobny test osobowości: 48 godzin co 5 minut, z jawnymi limitowanymi symulowanymi zakupami premium",
   "scenarios": [
     {
       "scenario": "gracz-od-zera-do-finalu",
