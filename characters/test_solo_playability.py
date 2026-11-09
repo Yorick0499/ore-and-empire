@@ -57,7 +57,7 @@ class MasteryTests(TestCase):
         game.equip_item(self.p,add_item(self.p,blade))
         attempt=BossAttempt.objects.create(profile=self.p,boss_key='sleeper_sanctum',won=True)
         CampaignCompletion.objects.create(profile=self.p,battle=attempt)
-        self.assertEqual(tick_bot(self.p),('train',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('train',True))
         self.p.refresh_from_db();self.assertEqual(self.p.onehand_skill,1)
 
     def test_new_level_has_one_reward_notice_without_regranting_points(self):

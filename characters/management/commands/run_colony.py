@@ -111,7 +111,7 @@ class Command(BaseCommand):
                             event_day=None
                             scheduler=BotScheduler(options['interval'],clock=time.monotonic)
                         with guard.work():pass
-                        scheduler.population(PlayerProfile.objects.filter(is_bot=True,user__is_active=True,world=world).order_by('pk').values_list('pk',flat=True)[:world.bot_count])
+                        scheduler.population(__import__('characters.bot_personalities',fromlist=['due_population']).due_population(world))
                         refresh_at=now+5
                         from characters.world_events import ensure_world_events
                         if event_day!=polish_day():

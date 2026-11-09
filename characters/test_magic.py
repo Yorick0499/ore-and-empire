@@ -101,7 +101,7 @@ class MagicTests(TestCase):
         call_command('seed_world',stdout=StringIO())
         actions=[]
         for _ in range(9):
-            action,success=tick_bot(self.profile);actions.append(action)
+            action,success=tick_bot(self.profile, force_active=True);actions.append(action)
         self.assertIn('learn_circle',actions);self.assertIn('buy_magic',actions);self.assertIn('prepare_magic',actions)
         # Force a known safe combat plan while retaining the ordinary action allowlist.
         class HuntPolicy:
@@ -109,7 +109,7 @@ class MagicTests(TestCase):
         self.profile.refresh_from_db();self.profile.current_energy=100;self.profile.current_health=200;self.profile.save()
         owned=self.profile.inventory.filter(blueprint__kind='rune').first()
         self.assertTrue(prepare_magic(self.profile,owned.pk))
-        action,success=tick_bot(self.profile,HuntPolicy());self.assertEqual(action,'hunt');self.assertTrue(success)
+        action,success=tick_bot(self.profile,HuntPolicy(), force_active=True);self.assertEqual(action,'hunt');self.assertTrue(success)
         fact=BotDecision.objects.first();self.assertEqual(fact.policy_version,'external-unknown')
         self.assertTrue(BattleRecord.objects.filter(profile=self.profile,combat_details__casts__gt=0).exists())
 

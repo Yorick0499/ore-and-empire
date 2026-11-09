@@ -60,7 +60,7 @@ def simulate_purchase(profile):
     from .models import PremiumEntry
     from django.db.models import Sum
     @player_action
-    def execute(p):
+    def simulated_purchase(p):
         if not p.is_bot or not p.world.bot_simulated_purchases or not due(p):return 0
         amount,reference=purchase_roll(p)
         if not amount or PremiumEntry.objects.filter(reference=reference).exists():return 0
@@ -68,4 +68,14 @@ def simulate_purchase(profile):
         amount=min(amount,max(0,persona(p).daily_cap-used))
         if amount:change_premium(p,amount,'Symulowany zakup odłamków bota',reference)
         return amount
-    return execute(profile)
+    return simulated_purchase(profile)
+
+
+def due_population(world):
+    from .models import PlayerProfile
+    people=PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).order_by('pk').only('pk','world_id','bot_personality','bot_session_shift','bot_last_tick')[:world.bot_count]
+    now=timezone.now();ids=[]
+    for p in people:
+        p.world=world
+        if due(p,now):ids.append(p.pk)
+    return ids

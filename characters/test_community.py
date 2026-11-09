@@ -21,14 +21,14 @@ class CommunityTests(TestCase):
     def test_scheduler_replies_once_to_human_with_real_fact_and_heartbeat(self):
         topic = post_message(self.human, 'Gdzie zdobyć rudę?', title='Praca w kopalni')
         self.assertEqual(topic.messages.count(), 1)
-        tick_bot(self.bot)
+        tick_bot(self.bot, force_active=True)
         self.bot.refresh_from_db()
         self.assertIsNotNone(self.bot.bot_last_tick)
         answer = topic.messages.filter(author=self.bot).get()
         self.assertIsNotNone(answer.decision_id)
         self.assertIn('Starej Kopalni', answer.body)
         self.assertIn('Mój ostatni zapis', answer.body)
-        tick_bot(self.other)
+        tick_bot(self.other, force_active=True)
         bot_conversation(self.bot)
         self.assertEqual(topic.messages.count(), 2)
 
@@ -62,7 +62,7 @@ class CommunityTests(TestCase):
     def test_reply_cooldown_and_recent_topics_only(self):
         now = timezone.now()
         topic = post_message(self.human, 'Hej', title='Powitanie')
-        tick_bot(self.bot)
+        tick_bot(self.bot, force_active=True)
         with patch('django.utils.timezone.now', return_value=now + timedelta(seconds=30)):
             post_message(self.human, 'A co z bronią?', topic_id=topic.pk)
             bot_conversation(self.bot)
@@ -83,7 +83,7 @@ class CommunityTests(TestCase):
         self.assertContains(page, 'Gothicpedia')
 
     def test_feed_only_successful_public_actions_and_stale_status(self):
-        tick_bot(self.bot)
+        tick_bot(self.bot, force_active=True)
         fact = BotDecision.objects.filter(profile=self.bot).first()
         self.assertTrue(activity_rows())
         fact.success = False
@@ -106,7 +106,7 @@ class CommunityTests(TestCase):
     def test_bots_start_bounded_conversations_from_actual_play(self):
         self.bot.bot_turn = 3
         self.bot.save()
-        tick_bot(self.bot)
+        tick_bot(self.bot, force_active=True)
         topic = TavernTopic.objects.get(author=self.bot)
         self.assertIsNotNone(topic.messages.get().decision_id)
         with patch('django.utils.timezone.now', return_value=timezone.now() + timedelta(minutes=11)):

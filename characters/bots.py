@@ -86,6 +86,9 @@ class Observation:
     ammo_id: int | None = None
     ammo_blocked: bool = False
     personality: str = ""
+    finance_id: int | None = None
+    finance_old_id: int | None = None
+    finance_price: int = 0
 
 
 class Policy(Protocol):
@@ -253,6 +256,7 @@ class BaselinePolicyV19(BaselinePolicyV18):
     def choose(self,o):
         if not o.busy and not o.adventure_ready and not o.reward_ready and o.health>=10 and not o.consume_id and not o.product_urgent:
             if o.equip_id:return 'equip',o.equip_id
+            if o.finance_id:return 'finance',o.finance_id
             if o.inventory_id and not o.story_recover:return 'list',o.inventory_id
         return super().choose(o)
 
@@ -277,14 +281,15 @@ UPGRADE_ORE_RESERVE = 20
 MAX_ORE_PER_DAMAGE = 40
 
 
-def choose_upgrade(stock, offers, damage, ore):
+def choose_upgrade(stock, offers, damage, ore, profile=None):
     candidates = []
-    minimum_gain = max(3, math.ceil(damage / 10))
+    minimum_gain = max(3, math.ceil(damage / (30 if profile else 10)))
     for action, entries in (("stock", stock), ("buy", offers)):
         for entry in entries:
             weapon = entry if action == "stock" else entry.blueprint
             price = entry.base_value if action == "stock" else entry.market_price
-            gain = (entry.effective_stats["damage"] if action == "buy" else weapon.damage) - damage
+            from .market_intelligence import score
+            gain = (score(profile,entry) if profile else entry.effective_stats["damage"] if action == "buy" else weapon.damage) - damage
             if (gain >= minimum_gain and 0 < price <= ore - UPGRADE_ORE_RESERVE
                     and price <= gain * MAX_ORE_PER_DAMAGE):
                 candidates.append((Fraction(price, gain), -gain, price, action, entry.pk, entry))
@@ -375,12 +380,12 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=['onehand','twohand'], blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).filter(market_price__lte=F("blueprint__base_value") * 1.2).exclude(owner=profile).select_related("blueprint")
     upgrade = None
     if equipped and combat_equipment:
-        upgrade = choose_upgrade(stock, offers, damage, profile.ore_balance)
+        upgrade = choose_upgrade(stock, offers, score(profile,equipped), profile.ore_balance,profile)
         stock = upgrade[1] if upgrade and upgrade[0] == "stock" else None
         offer = upgrade[1] if upgrade and upgrade[0] == "buy" else None
     else:
         if equipped:offers=offers.filter(blueprint__damage__gt=damage)
-        stock = stock.order_by("base_value", "pk").first()
+        stock = next((b for b in stock.order_by("base_value", "pk") if score(profile,b)>=fists(profile)+5),None)
         offer = offers.order_by("market_price", "pk").first()
     if len(inventory) >= 6:
         stock = offer = upgrade = None
@@ -536,7 +541,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if not forge_action and len(inventory)>=8 and not profile.is_busy:
         excess=next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.can_salvage and (not equipment or i.pk!=equipment.pk)),None)
         if excess:forge_action='salvage';forge_target=excess.pk
+    from .weapon_finance import plan as finance_plan
+    financed=finance_plan(profile,inventory,market.merchants) if not upgrade and not equipment else None
     obs = Observation(
+        finance_id=financed.pk if financed else None,finance_old_id=equipped.pk if financed else None,finance_price=financed.base_value if financed else 0,
         personality=profile.bot_personality,
         ammo_id=ammo_stock.pk if ammo_stock else None,ammo_blocked=ammo_blocked,
         forge_action=forge_action,forge_target=forge_target,forge_level=forge_level,patrol_depth=patrol_depth,
@@ -619,6 +627,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             success = game.claim_ore_reward(profile)
         elif action == "mine":
             success = game.start_mining(profile, 15)
+        elif action == "finance" and financed and target==financed.pk:
+            from .weapon_finance import finance
+            success=finance(profile,obs.finance_old_id,target,obs.finance_price)
         elif action == "equip" and equipment and target == equipment.pk:
             worn=sorted((i for i in inventory if i.is_equipped and i.blueprint.kind==equipment.blueprint.kind),key=lambda i:score(profile,i))
             slot=worn[0].equipped_slot if equipment.blueprint.kind=="ring" and len(worn)==2 else None

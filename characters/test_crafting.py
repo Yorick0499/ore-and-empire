@@ -41,6 +41,6 @@ class CraftingTests(TestCase):
     def test_bot_learns_and_uses_material_service_and_ui_ignores_fake_cost(self):
         from .bots import tick_bot
         self.p.is_bot=True;self.p.bot_turn=23;self.p.current_health=20;self.p.save()
-        self.assertEqual(tick_bot(self.p),('craft_learn',True))
+        self.assertEqual(tick_bot(self.p, force_active=True),('craft_learn',True))
         self.client.force_login(self.p.user)
         self.assertContains(self.client.get('/rzemioslo/'),'Kuźnia i alchemia')

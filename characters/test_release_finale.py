@@ -114,7 +114,7 @@ class SharedColonySessionTests(TestCase):
         for step in range(40):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=10*step)):
                 for bot in bots:
-                    action,success=tick_bot(bot);self.assertTrue(success,(step,action));actions.append(action)
+                    action,success=tick_bot(bot, force_active=True);self.assertTrue(success,(step,action));actions.append(action)
                 player.refresh_from_db();game.refresh_player(player)
                 offer=OwnedItem.objects.filter(is_market_listed=True,owner__is_bot=True,market_price__lte=player.ore_balance).first()
                 if offer and not MarketTrade.objects.filter(buyer=player).exists():

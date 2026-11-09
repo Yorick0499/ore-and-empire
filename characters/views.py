@@ -559,7 +559,8 @@ def itemshop_view(request):
         return redirect("itemshop_page")
     from .economic_ledger import refills_remaining
     energy_left = refills_remaining(profile)
-    products = [{"product": product, "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
+    from .itemshop_rules import helpful
+    products = [{"product": product, "available":helpful(profile,product,energy_left), "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
     return render(request, "characters/itemshop.html", {"energy_refills_left": energy_left,"profile": profile, "products": products, "entries": profile.premium_entries.all()[:15]})
 
 
@@ -637,9 +638,11 @@ def colony_life_view(request):
     from django.utils import timezone
     from .community import activity_rows
     now = timezone.now()
-    residents = list(PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).select_related('user').order_by('pk')[:100])
+    residents = list(PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).select_related('user','world').order_by('pk')[:100])
+    from .bot_personalities import cycle_state
     for resident in residents:
-        resident.scheduler_active = bool(resident.bot_last_tick and now - resident.bot_last_tick < timedelta(seconds=90))
+        resident.session=cycle_state(resident,now)
+        resident.scheduler_active = bool(resident.session["online"] and resident.bot_last_tick and now-resident.bot_last_tick < timedelta(seconds=max(180,resident.session["cadence"]*2)))
     return render(request, 'characters/colony_life.html', {'residents': residents, 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
 
 
@@ -798,12 +801,12 @@ def world_control_view(request):
     from django.contrib.auth import logout
     world=current_world()
     configuring=request.method=='POST' and request.POST.get('action')=='configure'
-    config_form=WorldSettingsForm(request.POST if configuring else None,auto_id='config_%s',initial={'name':world.name,'bot_count':world.bot_count})
+    config_form=WorldSettingsForm(request.POST if configuring else None,auto_id='config_%s',initial={'name':world.name,'bot_count':world.bot_count,'bot_personality_cycles':world.bot_personality_cycles,'bot_simulated_purchases':world.bot_simulated_purchases})
     if configuring and config_form.is_valid():
         from django.core.management import call_command
         from io import StringIO
         with transaction.atomic():
-            world.name=config_form.cleaned_data['name'];world.bot_count=config_form.cleaned_data['bot_count'];world.configured=True;world.save()
+            world.name=config_form.cleaned_data['name'];world.bot_count=config_form.cleaned_data['bot_count'];world.bot_personality_cycles=config_form.cleaned_data['bot_personality_cycles'];world.bot_simulated_purchases=config_form.cleaned_data['bot_simulated_purchases'];world.configured=True;world.save()
             if world.bot_count:call_command('run_bots',create=world.bot_count,create_only=True,limit=world.bot_count,stdout=StringIO())
         messages.success(request,'Zapisano nazwę i liczbę aktywnych botów bez resetu.');return redirect('world_control')
     form=WorldResetForm(request.POST if request.method=='POST' and not configuring else None,auto_id='reset_%s',initial={'name':world.name,'bot_count':world.bot_count,'expected_world':world.pk})

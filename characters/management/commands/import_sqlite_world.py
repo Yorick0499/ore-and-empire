@@ -11,7 +11,7 @@ from ore_empire.database import sqlite_environment
 
 EXCLUDES=['contenttypes','auth.permission','sessions.session','characters.schedulerlease']
 
-def canonical(raw, *, legacy_equipment=False, legacy_adventures=False):
+def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False):
     rows=json.loads(raw)
     if legacy_equipment:
         for row in rows:
@@ -23,6 +23,10 @@ def canonical(raw, *, legacy_equipment=False, legacy_adventures=False):
             if row['model']=='characters.adventuretemplate':
                 for key in ('category','place','success_text'):fields.pop(key,None)
             elif row['model']=='characters.adventurerun':fields.pop('briefing',None)
+    if legacy_bots:
+        added={'characters.playerprofile':('bot_personality','bot_session_shift'),'characters.world':('bot_personality_cycles','bot_simulated_purchases'),'characters.storepurchase':('kind_snapshot',),'characters.markettrade':('rarity','upgrade_level')}
+        for row in rows:
+            for field in added.get(row['model'],()):row['fields'].pop(field,None)
     rows.sort(key=lambda row:(row['model'],str(row['pk'])))
     return json.dumps(rows,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode(),dict(Counter(row['model'] for row in rows))
 

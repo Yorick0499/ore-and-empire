@@ -60,7 +60,7 @@ class CampGuildTests(TestCase):
     def test_bot_donates_only_through_regular_allowlisted_action(self):
         from .bots import tick_bot
         self.player.is_bot=True;self.player.bot_turn=17;self.player.save()
-        action,success=tick_bot(self.player)
+        action,success=tick_bot(self.player, force_active=True)
         self.assertEqual((action,success),('camp_donate',True))
         self.player.refresh_from_db();self.assertEqual(self.player.ore_balance,490)
         self.assertEqual(CampContribution.objects.get(profile=self.player).kind,'donation')

@@ -155,7 +155,7 @@ class StoryQuestTests(TestCase):
         now = timezone.now()
         for minute in range(12):
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=minute)):
-                _, success = tick_bot(self.profile)
+                _, success = tick_bot(self.profile, force_active=True)
                 self.assertTrue(success)
             if self.profile.story_runs.filter(status='claimed').exists(): break
         run = self.profile.story_runs.get()
@@ -196,7 +196,7 @@ class StoryQuestTests(TestCase):
         now = timezone.now()
         for step in range(120):
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=step)):
-                _, success = tick_bot(self.profile)
+                _, success = tick_bot(self.profile, force_active=True)
                 self.assertTrue(success, step)
             if self.profile.story_runs.filter(status='claimed', quest__key__startswith='prologue-').count() == 3: break
         self.assertEqual(self.profile.story_runs.filter(status='claimed', quest__key__startswith='prologue-').count(), 3)

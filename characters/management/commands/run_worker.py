@@ -44,7 +44,7 @@ class Command(BaseCommand):
                     if now>=refresh_at:
                         world.refresh_from_db()
                         if not world.is_current or world.status!='active':raise LeaseLost('Świat został zatrzymany lub zmieniony.')
-                        scheduler.population(PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).order_by('pk').values_list('pk',flat=True)[:world.bot_count]);refresh_at=now+5
+                        scheduler.population(__import__('characters.bot_personalities',fromlist=['due_population']).due_population(world));refresh_at=now+5
                         if day!=polish_day():
                             with guard.work():
                                 ensure_world_events()

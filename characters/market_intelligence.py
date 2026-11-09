@@ -5,7 +5,7 @@ from datetime import timedelta
 from statistics import median
 from django.db import connection
 from django.utils import timezone
-from .models import PlayerProfile,OwnedItem,ItemBluePrint,MarketTrade
+from .models import PlayerProfile,OwnedItem,ItemBluePrint,MarketTrade,CraftRecipe
 from .equipment import allowed
 
 _cache={}
@@ -53,6 +53,7 @@ class MarketState:
             self.items[i.owner_id].append(i)
             if i.is_market_listed:self.listings.append(i)
         self.merchants=list(ItemBluePrint.objects.filter(merchant=True))
+        self.recipes=list(CraftRecipe.objects.filter(enabled=True).select_related("output"))
         self.history=defaultdict(dict);self._need={};self._value={};self._ceil={}
         for row in MarketTrade.objects.filter(seller__world_id=world_id,buyer__world_id=world_id,created_at__gte=self.now-timedelta(days=7),rarity__isnull=False,quantity__gt=0).order_by('-created_at','-pk').values('blueprint_id','rarity','upgrade_level','buyer_id','price','quantity')[:2000]:
             h=self.history[(row['blueprint_id'],row['rarity'],row['upgrade_level'])]
@@ -84,6 +85,12 @@ class MarketState:
             kind='arrow' if weapon and weapon.blueprint.weapon_type=='bow' else 'bolt' if weapon and weapon.blueprint.weapon_type=='crossbow' else None
             if kind and b.original_stats.get('ammo_type')==kind:return max(0,10-sum(x.quantity for x in held if x.blueprint.kind=='ammo' and x.blueprint.original_stats.get('ammo_type')==kind))
         if b.catalog_key=='rune-dust' and any(x.is_equipped and x.upgrade_level<3 for x in held):return max(0,10-sum(x.quantity for x in held if x.blueprint_id==b.pk))
+        if b.kind=='material':
+            from .crafting import valid_recipe
+            def interested(r):
+                return (r.output.kind=='consumable' and p.current_health<p.max_health-20) or (r.output.kind=='weapon' and not any(x.blueprint_id==r.output_id for x in held) and not any(x.is_equipped and x.blueprint.kind=='weapon' and self.value(p,x)>=self.value(p,r.output) for x in held))
+            counts=[g['count'] for r in self.recipes if valid_recipe(r) and interested(r) and p.level>=r.level and getattr(p,r.discipline+'_skill')>=r.skill for g in r.ingredients if g['blueprint']==b.pk]
+            return max(0,max(counts,default=0)-sum(x.quantity for x in held if x.blueprint_id==b.pk))
         return 0
     def ceiling(self,p,i):
         b=i.blueprint;key=(p.pk,b.pk,i.rarity,i.upgrade_level)

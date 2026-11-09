@@ -298,13 +298,13 @@ class ColonyTests(TestCase):
         self.assertFalse(bot.user.has_usable_password())
         self.assertEqual(bot.ore_balance, 30)
         self.assertEqual(bot.inventory.count(), 1)
-        tick_bot(bot)
+        tick_bot(bot, force_active=True)
         self.assertTrue(bot.inventory.get().is_equipped)
         surplus = OwnedItem.objects.create(owner=bot, blueprint=self.blueprint)
         bot.ore_balance = 50
         bot.current_energy = 0
         bot.save()
-        self.assertEqual(tick_bot(bot), ("list", True))
+        self.assertEqual(tick_bot(bot, force_active=True), ("list", True))
         surplus.refresh_from_db()
         self.assertTrue(surplus.is_market_listed)
         self.assertEqual(surplus.market_price, 21)  # 105% aktualnej referencji zamiast dawnego 110%
@@ -317,7 +317,7 @@ class ColonyTests(TestCase):
             def choose(policy, observation):
                 return "list", self.item.pk
 
-        self.assertEqual(tick_bot(self.b, BadPolicy()), ("rejected", False))
+        self.assertEqual(tick_bot(self.b, BadPolicy(), force_active=True), ("rejected", False))
         self.item.refresh_from_db()
         self.assertFalse(self.item.is_market_listed)
 
@@ -335,7 +335,7 @@ class ColonyTests(TestCase):
 
     def test_human_cannot_be_ticked(self):
         with self.assertRaises(ValueError):
-            tick_bot(self.a)
+            tick_bot(self.a, force_active=True)
 
     def test_completed_mining_is_claimable_after_returning(self):
         self.login()
@@ -352,7 +352,7 @@ class ColonyTests(TestCase):
         OwnedItem.objects.create(
             owner=self.b, blueprint=self.blueprint, is_equipped=True
         )
-        self.assertEqual(tick_bot(self.b), ("hunt", True))
+        self.assertEqual(tick_bot(self.b, force_active=True), ("hunt", True))
         self.b.refresh_from_db()
         self.assertGreater(self.b.experience, 0)
 
@@ -360,7 +360,7 @@ class ColonyTests(TestCase):
         self.b.is_bot = True
         self.b.save()
         game.list_item_on_market(self.a, self.item, 15)
-        self.assertEqual(tick_bot(self.b), ("buy", True))
+        self.assertEqual(tick_bot(self.b, force_active=True), ("buy", True))
         self.assertEqual(MarketTrade.objects.get().buyer_id, self.b.pk)
 
 
@@ -505,8 +505,8 @@ class LocalWorldTests(TestCase):
     def test_trader_lists_stock_instead_of_equipping_it(self):
         self.bot.bot_role = "trader"
         self.bot.save()
-        self.assertEqual(tick_bot(self.bot), ("stock", True))
-        self.assertEqual(tick_bot(self.bot), ("list", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("stock", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("list", True))
         item = self.bot.inventory.get()
         self.assertTrue(item.is_market_listed)
         self.assertFalse(item.is_equipped)
@@ -514,21 +514,21 @@ class LocalWorldTests(TestCase):
     def test_miner_preserves_ore_instead_of_buying_weapons(self):
         self.bot.bot_role = "miner"
         self.bot.save()
-        self.assertEqual(tick_bot(self.bot), ("mine", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("mine", True))
         self.bot.refresh_from_db()
         self.assertEqual(self.bot.ore_balance, 50)
         self.assertFalse(self.bot.inventory.exists())
-        self.assertEqual(tick_bot(self.bot), ("wait", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("wait", True))
         self.bot.action_end_time = timezone.now() - timedelta(seconds=1)
         self.bot.save()
-        self.assertEqual(tick_bot(self.bot), ("claim", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("claim", True))
         self.bot.refresh_from_db()
         self.assertGreater(self.bot.ore_balance, 50)
 
     def test_hunter_spends_earned_learning_points(self):
         self.bot.skill_points = 2
         self.bot.save()
-        self.assertEqual(tick_bot(self.bot), ("train", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("train", True))
         self.bot.refresh_from_db()
         self.assertEqual(
             (self.bot.strength, self.bot.skill_points, self.bot.ore_balance),
@@ -734,7 +734,7 @@ class BotTelemetryTests(TestCase):
     def test_records_observation_and_actual_cost_once(self):
         from .models import BotDecision
 
-        self.assertEqual(tick_bot(self.bot), ("mine", True))
+        self.assertEqual(tick_bot(self.bot, force_active=True), ("mine", True))
         decision = BotDecision.objects.get()
         self.assertEqual(decision.observation["energy"], 100)
         self.assertEqual(decision.observation["role"], "miner")
@@ -749,7 +749,7 @@ class BotTelemetryTests(TestCase):
             def choose(self, observation):
                 return "buy", 999999
 
-        self.assertEqual(tick_bot(self.bot, InvalidPolicy()), ("rejected", False))
+        self.assertEqual(tick_bot(self.bot, InvalidPolicy(), force_active=True), ("rejected", False))
         decision = BotDecision.objects.get()
         self.assertFalse(decision.success)
         self.assertIsNone(decision.target_id)
@@ -758,13 +758,13 @@ class BotTelemetryTests(TestCase):
     def test_telemetry_failure_rolls_back_action(self):
         with patch("characters.bots.record_decision", side_effect=RuntimeError):
             with self.assertRaises(RuntimeError):
-                tick_bot(self.bot)
+                tick_bot(self.bot, force_active=True)
         self.bot.refresh_from_db()
         self.assertEqual(self.bot.current_energy, 100)
         self.assertIsNone(self.bot.action_end_time)
 
     def test_staff_export_has_observation_and_excludes_usernames(self):
-        tick_bot(self.bot)
+        tick_bot(self.bot, force_active=True)
         self.client.force_login(self.user)
         url = reverse("market_monitor") + "?format=bots-csv"
         self.assertEqual(self.client.get(url).status_code, 302)
