@@ -6,11 +6,13 @@ from django.dispatch import receiver
 
 
 def default_world_id():
-    from .worlds import current_world
-    return current_world().pk
+    existing = World.objects.filter(is_current=True).values_list("pk",flat=True).first()
+    return existing if existing else World.objects.create(is_current=True).pk
 
 
 class World(models.Model):
+    bot_personality_cycles = models.BooleanField(default=True)
+    bot_simulated_purchases = models.BooleanField(default=True)
     name = models.CharField(max_length=80,default='Górnicza Dolina')
     edition = models.PositiveIntegerField(default=1)
     universe = models.CharField(max_length=20,default='GOTHIC_I')
@@ -144,6 +146,9 @@ class PlayerProfile(models.Model):
     max_energy = models.IntegerField(default=100)
     energy_updated_at = models.DateTimeField(default=timezone.now)
     is_bot = models.BooleanField(default=False)
+    from .bot_personalities import CHOICES
+    bot_personality = models.CharField(max_length=16, choices=CHOICES, blank=True)
+    bot_session_shift = models.PositiveSmallIntegerField(default=0)
     bot_role = models.CharField(
         max_length=10,
         default="hunter",
@@ -392,6 +397,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 class MarketTrade(models.Model):
+    rarity = models.PositiveSmallIntegerField(null=True, blank=True)
+    upgrade_level = models.PositiveSmallIntegerField(null=True, blank=True)
     quantity = models.PositiveIntegerField(null=True,blank=True)
     """Append-only trade facts; item ownership may change after the transaction."""
 
@@ -563,7 +570,7 @@ class StoreProduct(models.Model):
     key = models.SlugField(unique=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
-    kind = models.CharField(max_length=10, choices=[("weapon", "Oręż"), ("energy", "Energia"), ("health", "Zdrowie")])
+    kind = models.CharField(max_length=10, choices=[("weapon", "Wyposażenie"), ("energy", "Energia"), ("health", "Zdrowie"), ("mana", "Mana"), ("xp", "Wiedza"), ("item", "Zapasy")])
     price = models.PositiveIntegerField()
     level = models.PositiveIntegerField(default=0)
     effect = models.PositiveIntegerField(default=0)
@@ -577,6 +584,7 @@ class StoreProduct(models.Model):
 
 
 class StorePurchase(models.Model):
+    kind_snapshot = models.CharField(max_length=10, blank=True)
     profile = models.ForeignKey(PlayerProfile, on_delete=models.PROTECT, related_name="store_purchases")
     product = models.ForeignKey(StoreProduct, on_delete=models.PROTECT)
     request_key = models.UUIDField()

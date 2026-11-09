@@ -12,7 +12,7 @@ def change_premium(profile, amount, reason, reference):
         raise ValueError("Invalid premium balance change")
     profile.premium_balance += amount
     profile.save(update_fields=["premium_balance"])
-    return PremiumEntry.objects.create(profile=profile, amount=amount, balance_after=profile.premium_balance, reason=reason, reference=reference)
+    return PremiumEntry.objects.create(profile=profile, amount=amount, balance_after=profile.premium_balance, created_at=timezone.now(), reason=reason, reference=reference)
 
 
 @player_action
@@ -58,32 +58,26 @@ def purchase_product(profile, product_id, request_key):
     product = StoreProduct.objects.select_related("blueprint").filter(pk=product_id, enabled=True).first()
     if not product or profile.level < product.level or profile.premium_balance < product.price:
         return False
-    if product.kind == "weapon":
-        if not product.blueprint:
-            return False
-        effect = 0
-    elif product.kind == "energy":
-        from .economic_ledger import refills_remaining
-        if not refills_remaining(profile): return False
-        effect = min(product.effect, profile.max_energy - profile.current_energy)
-        if effect <= 0:
-            return False
-        profile.current_energy += effect
-        profile.energy_updated_at = timezone.now()
-    elif product.kind == "health":
-        effect = min(product.effect, profile.max_health - profile.current_health)
-        if effect <= 0:
-            return False
-        profile.current_health += effect
-        profile.health_updated_at = timezone.now()
-    else:
-        return False
-    purchase = StorePurchase.objects.create(profile=profile, product=product, request_key=request_key, price=product.price, effect=effect)
+    from .itemshop_rules import helpful
+    from .economic_ledger import refills_remaining
+    if not helpful(profile,product,refills_remaining(profile)):return False
+    effect=0
+    if product.kind in {'energy','health','mana'}:
+        field={'energy':'current_energy','health':'current_health','mana':'current_mana'}[product.kind]
+        maximum=getattr(profile,'max_'+product.kind)
+        effect=min(product.effect,maximum-getattr(profile,field))
+        setattr(profile,field,getattr(profile,field)+effect)
+        setattr(profile,product.kind+'_updated_at',timezone.now())
+    elif product.kind=='xp':
+        effect=product.effect;profile.experience+=effect;profile.save(update_fields=['experience']);check_level_up(profile)
+    elif product.kind=='item':effect=product.effect
+    purchase = StorePurchase.objects.create(profile=profile, product=product, request_key=request_key, price=product.price, effect=effect, kind_snapshot=product.kind, created_at=timezone.now())
     if product.kind == "energy":
         from .models import EnergyRefill
-        EnergyRefill.objects.create(profile=profile,reference=f"purchase:{purchase.pk}")
+        EnergyRefill.objects.create(profile=profile,created_at=timezone.now(),reference=f"purchase:{purchase.pk}")
     change_premium(profile, -product.price, "Zakup: " + product.name, f"purchase:{purchase.pk}")
-    if product.kind == "weapon":
-        OwnedItem.objects.create(owner=profile, blueprint=product.blueprint, origin="reward")
+    if product.kind in {"weapon","item"}:
+        from .equipment import add_item
+        add_item(profile,product.blueprint,effect if product.kind=="item" else 1,origin="reward")
     profile.save()
     return purchase

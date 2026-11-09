@@ -319,7 +319,7 @@ def buy_item_on_market(buyer_profile, owned_item, expected_price=None):
         return False
     if owned_item.market_price > buyer_profile.ore_balance:
         return False
-    MarketTrade.objects.create(
+    MarketTrade.objects.create(rarity=owned_item.rarity,upgrade_level=owned_item.upgrade_level,created_at=timezone.now(),
         blueprint=owned_item.blueprint,
         seller=current_owner,
         buyer=buyer_profile,

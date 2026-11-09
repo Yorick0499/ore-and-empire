@@ -28,6 +28,8 @@ class WorldSetupForm(forms.Form):
         return data
 
 class WorldSettingsForm(forms.Form):
+    bot_personality_cycles=forms.BooleanField(label="Dzienne sesje osobowości botów",required=False,initial=True)
+    bot_simulated_purchases=forms.BooleanField(label="Symulowane zakupy odłamków botów",required=False,initial=True)
     name=forms.CharField(label='Nazwa świata / serwera',max_length=80)
     bot_count=forms.IntegerField(label='Aktywne boty',min_value=0,max_value=100)
 

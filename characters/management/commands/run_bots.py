@@ -11,6 +11,7 @@ class Command(BaseCommand):
     help = "Run bounded bot rounds or an explicit continuous scheduler; no AI API is needed."
 
     def add_arguments(self, parser):
+        parser.add_argument("--force-active",action="store_true",help="Test aktywnych tur bez sesji i symulowanych zakupów; tylko ograniczona liczba rund.")
         parser.add_argument("--loop", action="store_true", help="Run a continuous scheduler; do not combine with play.py bots.")
         parser.add_argument("--interval", type=float, default=5)
         parser.add_argument("--rounds", type=int, default=1, help="Bounded rounds when --loop is not set (1-100000).")
@@ -34,6 +35,7 @@ class Command(BaseCommand):
             raise CommandError("--create must be 0-100 and --limit 1-100")
         if not 1 <= options["interval"] <= 3600 or not 1 <= options["rounds"] <= 100000:
             raise CommandError("--interval must be 1-3600; --rounds must be 1-100000")
+        if options["force_active"] and options["loop"]:raise CommandError("--force-active nie działa z --loop")
         with transaction.atomic():
             for number in range(1, options["create"] + 1):
                 username = f"colony-bot-{number}"
@@ -49,6 +51,10 @@ class Command(BaseCommand):
                         is_bot=True,
                         bot_role=("hunter", "trader", "miner")[(number - 1) % 3],
                     )
+        from characters.bot_personalities import assignment
+        for p in PlayerProfile.objects.filter(is_bot=True,bot_personality=''):
+            p.bot_personality,p.bot_session_shift=assignment(p.pk,p.world_id)
+            p.save(update_fields=['bot_personality','bot_session_shift'])
         if options["create_only"]:
             self.stdout.write("Bot population initialized without taking actions.")
             return
@@ -70,7 +76,7 @@ class Command(BaseCommand):
                 profiles = PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).order_by("pk")[: options["limit"]]
                 for profile in profiles:
                     try:
-                        action, success = tick_bot(profile,lease=guard)
+                        action, success = tick_bot(profile,lease=guard,force_active=options["force_active"])
                         self.stdout.write(f"{profile.user.username}: {action} {'ok' if success else 'denied'}")
                     except LeaseLost:
                         raise
