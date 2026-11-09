@@ -298,14 +298,30 @@ Do przygotowania finału postać wykonuje 27 zadań własnej ścieżki. Możliwy
 
 Zwój kosztuje 1 many za faktyczny rzut i jedną sztukę; ograniczenia szkoły/kręgu dotyczą run.
 
-## Sklep odłamków
+## Sklep odłamków (17 ofert)
 
-| Produkt | Cena w odłamkach | Poziom | Efekt |
-|---|---|---|---|
-| Ryżówka | 3 | 0 | do +25 energii; wspólny dobowy limit napojów |
-| Esencja lecznicza | 2 | 0 | do +60 HP |
-| Pałka z kolcami | 8 | 3 | broń, 22 obrażenia, siła 15 |
-| Miecz runiczny | 18 | 8 | broń, 42 obrażenia, siła 30 |
+| Oferta | Odłamki | Poziom | Efekt |
+|---|---:|---:|---|
+| Łyk ryżówki | 1 | 0 | do 10 energii |
+| Ryżówka | 3 | 0 | do 25 energii |
+| Mocna ryżówka | 6 | 10 | do 50 energii |
+| Prowiant z karczmy | 1 | 0 | do 25 zdrowia |
+| Esencja lecznicza | 2 | 0 | do 60 zdrowia |
+| Czysta esencja lecznicza | 5 | 12 | do 160 zdrowia |
+| Napój skupienia | 2 | 1 | do 15 many |
+| Esencja skupienia | 5 | 5 | do 50 many |
+| Zapiski obozowego zwiadowcy | 6 | 3 | 150 PD |
+| Kronika dalekich szlaków | 10 | 10 | 300 PD |
+| Pałka z kolcami | 8 | 3 | obrażenia 22, wymagana siła 15 |
+| Miecz runiczny | 18 | 8 | obrażenia 42, wymagana siła 30 |
+| Łuk zbieracza | 7 | 2 | obrażenia 15, zręczność 10, wymaga strzał |
+| Wzmocnione spodnie kopacza | 7 | 3 | ochrona przed bronią 5 i pociskami 3 |
+| Pierścień skupienia | 8 | 3 | +5 maksymalnej many |
+| Amulet obozowego zwiadowcy | 10 | 5 | +10 maksymalnego zdrowia |
+| Sakiewka pyłu magicznej rudy | 6 | 3 | 5 pyłu do kuźni, nadal potrzeba rudy |
+
+
+Sprzęt ma zwykłą rzadkość; nazwa szablonu „Miecz runiczny” nie nadaje rzadkości Runiczny. Wspólne limity: 5 odnowień energii, 5 zakupów many, 3 księgi, 2 zakupy sprzętu i 2 paczki materiałów na polską dobę. [Szczegóły i zachowanie botów](BOT_PERSONALITIES.md).
 
 ## Przedmioty i grafiki
 

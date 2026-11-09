@@ -81,4 +81,8 @@ balans pozostają rozdzielone; import v2 nie nadpisuje edycji cen w istniejącym
 To podstawa porównania ofert i przyszłego rzemiosła, nie automatyczne zastosowanie
 wszystkich cen G1 do istniejących przedmiotów.
 
-Wersja G1 v3: 522 kody i 520 wpisów z potwierdzonym parametrem, ceną lub efektem. Rangi przekucia zachowują łączny koszt 11 550 rudy/110 pyłu, lecz pierwszy próg wynosi 60/3 i działa podczas fabuły. Pochodzenie łupów blokuje zamianę tanich zakupów NPC na pył. [Aktualne reguły](LOOT_AND_ENDGAME.md).
+Wersja G1 v3: 522 kody i 520 wpisów z potwierdzonym parametrem, ceną lub efektem. Historyczny system dziesięciu rang został zastąpiony stałą rzadkością łupu oraz niezależnym przekuciem +0–+3. Obecne pełne przekucie kosztuje 1560 rudy i 33 pyłu; pierwszy próg to 60 rudy i 3 pyłu i jest dostępny podczas fabuły. Pochodzenie łupów blokuje zamianę tanich zakupów NPC na pył. [Aktualne reguły](LOOT_AND_ENDGAME.md).
+
+## Obecny model mieszkańców
+
+Budżetowa symulacja v1 powyżej opisuje dawne założenia, nie dzisiejsze sesje botów. Aktualny system ma siedem osobowości, przerwy w grze, 17 ofert itemshopu i jawne symulowane zakupy odłamków, księgowane operacją `simulated_purchase` w kategorii `source` oraz pokazywane oddzielnie w podsumowaniu. [Osobowości i limity](BOT_PERSONALITIES.md), [model rynku](MARKET_POLICY.md).

@@ -1,0 +1,2 @@
+# Build-time documentation only; not required by the game or the HTML reader.
+Markdown==3.11.3

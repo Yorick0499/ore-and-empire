@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "title": "Ore & Empire — Publiczna księga projektu",
+  "date": "2026-11-09",
+  "code_revision": "7331757",
+  "migration": "0041_granice_wariantow_transakcji",
+  "repository": "https://github.com/Yorick0499/ore-and-empire",
+  "groups": [
+    {
+      "title": "Pierwsze kroki",
+      "chapters": [
+        [
+          "docs/public/OPERATOR_GUIDE.md",
+          "Instalacja i instrukcja zarządcy"
+        ],
+        [
+          "README.md",
+          "O projekcie i szybki start"
+        ],
+        [
+          "docs/GAME_GUIDE.md",
+          "Jak grać — pełny przewodnik"
+        ]
+      ]
+    },
+    {
+      "title": "Postać i przygoda",
+      "chapters": [
+        [
+          "docs/WORLD.md",
+          "Świat i lokacje"
+        ],
+        [
+          "docs/EQUIPMENT.md",
+          "Ekwipunek i porównywarka"
+        ],
+        [
+          "docs/LOOT_AND_ENDGAME.md",
+          "Łupy, rzadkość, kuźnia i endgame"
+        ],
+        [
+          "docs/MAGIC.md",
+          "Magia i szkoły"
+        ],
+        [
+          "docs/CRAFTING.md",
+          "Kowalstwo i alchemia"
+        ],
+        [
+          "docs/ADVENTURES.md",
+          "44 zlecenia czasowe"
+        ],
+        [
+          "docs/STORY.md",
+          "Fabuła i rozdziały"
+        ],
+        [
+          "docs/RESIDENT_STORY.md",
+          "Historia mieszkańca kolonii"
+        ],
+        [
+          "docs/CHALLENGES.md",
+          "Wyzwania i osiągnięcia"
+        ],
+        [
+          "docs/JOURNAL.md",
+          "Dziennik i powiadomienia"
+        ]
+      ]
+    },
+    {
+      "title": "Obozy i życie kolonii",
+      "chapters": [
+        [
+          "docs/CAMPS.md",
+          "Rangi i awanse obozowe"
+        ],
+        [
+          "docs/CAMP_GUILDS.md",
+          "Obóz jako wspólnota"
+        ],
+        [
+          "docs/CAMP_RAIDS.md",
+          "Wspólne wyprawy i boss"
+        ],
+        [
+          "docs/LIVING_WORLD.md",
+          "Karczma i żyjący świat"
+        ],
+        [
+          "docs/BOT_PERSONALITIES.md",
+          "Osobowości i itemshop"
+        ],
+        [
+          "docs/MARKET_POLICY.md",
+          "AI rynku i handel"
+        ],
+        [
+          "docs/WORLD_CLOCK.md",
+          "Czas polski, dzień i noc"
+        ],
+        [
+          "docs/EVENTS.md",
+          "Wszystkie święta i eventy"
+        ]
+      ]
+    },
+    {
+      "title": "Zarządzanie serwerem",
+      "chapters": [
+        [
+          "docs/WORLD_MANAGEMENT.md",
+          "Świat, administrator i reset"
+        ],
+        [
+          "docs/BACKUPS.md",
+          "Backup i odtwarzanie"
+        ],
+        [
+          "docs/PRODUCTION.md",
+          "Docker, HTTPS i produkcja"
+        ],
+        [
+          "docs/POSTGRESQL.md",
+          "PostgreSQL i migracja zapisu"
+        ],
+        [
+          "docs/WORLD_MONITOR.md",
+          "Monitoring i telemetria"
+        ],
+        [
+          "docs/BOT_PERFORMANCE.md",
+          "100 botów i wydajność"
+        ],
+        [
+          "docs/LOCAL_AI_POLICIES.md",
+          "Opcjonalny lokalny model AI"
+        ],
+        [
+          "docs/ECONOMY.md",
+          "Księga i bilans gospodarki"
+        ]
+      ]
+    },
+    {
+      "title": "Dane, grafiki i rozwój",
+      "chapters": [
+        [
+          "docs/GAME_CONTENT.md",
+          "Pełny katalog zawartości"
+        ],
+        [
+          "docs/ITEM_PACKS.md",
+          "Paczki i 522 rekordy G1"
+        ],
+        [
+          "docs/DESIGN.md",
+          "Motyw interfejsu"
+        ],
+        [
+          "docs/ASSETS.md",
+          "Źródła i prawa do grafik"
+        ],
+        [
+          "docs/SCREENSHOTS.md",
+          "Manifest zrzutów ekranów"
+        ],
+        [
+          "docs/BUG_AUDIT.md",
+          "Audyt błędów i regresje"
+        ],
+        [
+          "docs/SOLO_PLAYTEST.md",
+          "Próba gry solo i buildy"
+        ],
+        [
+          "docs/ROADMAP.md",
+          "Roadmapa i granice wersji"
+        ],
+        [
+          "docs/INDEX.md",
+          "Indeks źródłowych dokumentów"
+        ]
+      ]
+    },
+    {
+      "title": "Archiwum projektu",
+      "chapters": [
+        [
+          "docs/FIRST_PLAYABLE.md",
+          "Droga do pierwszej grywalnej edycji"
+        ],
+        [
+          "docs/LEGACY_SAVES.md",
+          "Naprawy dawnych zapisów"
+        ],
+        [
+          "docs/PROJECT_REVIEW.md",
+          "Przegląd architektury z 3 listopada"
+        ]
+      ]
+    }
+  ],
+  "reports": [
+    "docs/reports/ai-budzet-po-restarcie-2026-11-07.json",
+    "docs/reports/audyt-bledow-2026-11-06.json",
+    "docs/reports/audyt-stu-botow-2026-11-06.json",
+    "docs/reports/czas-polski-2026-11-06.json",
+    "docs/reports/economy-baseline-v1.json",
+    "docs/reports/gra-solo-buildy-petla-2026-11-08.json",
+    "docs/reports/gra-solo-gui-2026-11-08.json",
+    "docs/reports/gra-solo-sto-botow-2026-11-08.json",
+    "docs/reports/lupy-endgame-2026-11-06.json",
+    "docs/reports/osobowosci-rynek-kampania-2026-11-09.json",
+    "docs/reports/osobowosci-sto-botow-2026-11-09.json",
+    "docs/reports/petla-po-fundamentach-ai-2026-11-07.json",
+    "docs/reports/pierwsza-pelna-edycja-2026-11-05.json",
+    "docs/reports/polityki-lokalne-ai-2026-11-07.json",
+    "docs/reports/postgresql-wspolbieznosc-2026-11-07.json",
+    "docs/reports/rynsztunek-mmorpg-2026-11-07.json",
+    "docs/reports/rynsztunek-sto-botow-2026-11-07.json",
+    "docs/reports/rynsztunek-targ-gui-2026-11-07.json",
+    "docs/reports/rynsztunek-targ-petla-2026-11-07.json",
+    "docs/reports/rzadkosc-kuznia-gui-2026-11-07.json",
+    "docs/reports/rzadkosc-kuznia-petla-2026-11-07.json",
+    "docs/reports/rzadkosc-migracja-2026-11-07.json",
+    "docs/reports/staging-https-2026-11-07.json",
+    "docs/reports/sto-botow-2026-11-06.json",
+    "docs/reports/sto-botow-endgame-2026-11-06.json",
+    "docs/reports/zlecenia-buildy-petla-2026-11-08.json",
+    "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json"
+  ]
+}
