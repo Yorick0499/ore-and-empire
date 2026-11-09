@@ -33,7 +33,7 @@
       if (tokens.length && !group.hidden) group.open = true;
     });
     document.querySelector('#no-results').hidden = count > 0;
-    status.textContent = tokens.length ? `Pasujące rozdziały: ${count} z ${sections.length}.` : `${sections.length} rozdziałów i dodatków. Cała księga jest dostępna offline.`;
+    status.textContent = tokens.length ? `Pasujące rozdziały: ${count} z ${sections.length}.` : `Liczba rozdziałów i dodatków: ${sections.length}. Księga działa offline.`;
     document.querySelectorAll('.report').forEach(report => {
       if (tokens.length) report.open = tokens.every(token => normalize(report.textContent).includes(token));
       else report.open = false;
