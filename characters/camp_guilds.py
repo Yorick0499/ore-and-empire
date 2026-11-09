@@ -85,8 +85,8 @@ def guild_cards(profile):
     index=(day.toordinal()+CAMPS.index(guild.camp))%len(PROJECTS)
     title,objectives=PROJECTS[index] if not project else (project.title,project.objectives)
     progress=project.progress if project else {}
-    from .camp_privileges import privileges
+    from .camp_privileges import privileges,resupply_available
     personal=privileges(profile)
-    return {'privileges':personal,'guild':guild,'project':project,'title':title,'day':day,'goals':[{'label':'Odebrane zmiany w kopalni' if g['kind']=='mine' else 'Wygrane polowania','count':g['count'],'progress':progress.get(g['id'],0)} for g in objectives],
+    return {'resupply_available':resupply_available(profile),'privileges':personal,'guild':guild,'project':project,'title':title,'day':day,'goals':[{'label':'Odebrane zmiany w kopalni' if g['kind']=='mine' else 'Wygrane polowania','count':g['count'],'progress':progress.get(g['id'],0)} for g in objectives],
         'upgrades':[{'key':key,'name':name,'description':description,'level':getattr(guild,field),'cost':100*(getattr(guild,field)+1),'required_rank':getattr(guild,field)+1,'can_buy':personal['upgrade_limit']>=getattr(guild,field)+1 and getattr(guild,field)<3 and guild.level>=getattr(guild,field)+2 and guild.treasury>=100*(getattr(guild,field)+1)} for key,(field,name,description) in UPGRADES.items()],
         'members':PlayerProfile.objects.filter(camp=profile.camp,world_id=profile.world_id,user__is_active=True).count(),'history':CampContribution.objects.filter(guild=guild).select_related('profile__user')[:30]}

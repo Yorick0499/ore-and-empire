@@ -13,8 +13,9 @@ def requirements(profile,tier=None):
 
 def missing(profile,tier=None):
     from .models import StoryQuest
-    if not hasattr(profile,'_story_gate_claimed'):profile._story_gate_claimed=set(profile.story_runs.filter(status='claimed').values_list('quest__key',flat=True))
+    if not hasattr(profile,'_story_gate_claimed'):profile._story_gate_claimed=set(profile.story_runs.filter(status='claimed').values_list('snapshot__key',flat=True))
     completed=profile._story_gate_claimed
     keys=[key for key in requirements(profile,tier) if key not in completed]
-    names=dict(StoryQuest.objects.filter(key__in=keys).values_list('key','title')) if keys else {}
+    if keys and not hasattr(profile,'_story_gate_titles'):profile._story_gate_titles=dict(StoryQuest.objects.filter(universe=profile.world.universe).values_list('key','title'))
+    names=getattr(profile,'_story_gate_titles',{})
     return [{'key':key,'title':names.get(key,key)} for key in keys]

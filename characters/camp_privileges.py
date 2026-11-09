@@ -18,8 +18,9 @@ def claim_resupply(profile,request_key):
     except (TypeError,ValueError,AttributeError):return False
     perks=privileges(profile);day=polish_day()
     if not perks['can_resupply'] or profile.is_busy:return False
-    previous=CampSupplyUse.objects.filter(profile=profile,day=day).first()
-    if previous:return previous if previous.request_key==key else False
+    previous=CampSupplyUse.objects.filter(profile=profile,request_key=key).first()
+    if previous:return previous
+    if CampSupplyUse.objects.filter(profile=profile,day=day).exists():return False
     energy=min(perks['energy'],profile.max_energy-profile.current_energy) if refills_remaining(profile) else 0
     health=min(perks['health'],profile.max_health-profile.current_health)
     if profile.ore_balance<10 or not (energy or health):return False
@@ -32,3 +33,11 @@ def claim_resupply(profile,request_key):
     entry=CampSupplyUse.objects.create(profile=profile,day=day,request_key=key,energy=energy,health=health)
     if energy:EnergyRefill.objects.create(profile=profile,created_at=now,reference='camp:'+str(entry.pk))
     return entry
+
+
+def resupply_available(profile):
+    from .models import CampSupplyUse
+    from .economic_ledger import refills_remaining
+    return (privileges(profile)['can_resupply'] and profile.ore_balance>=10
+        and not profile.is_busy and (profile.current_health<profile.max_health or (profile.current_energy<profile.max_energy and refills_remaining(profile)))
+        and not CampSupplyUse.objects.filter(profile=profile,day=polish_day()).exists())
