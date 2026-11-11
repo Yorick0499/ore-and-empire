@@ -74,3 +74,20 @@ Wyniki pokazują praktyczny problem: koncentracja wyłącznie na kopalni i kupow
 - Rejestracja zapowiada konto, wybór świata i pięć slotów; cel treningu w dzienniku ma bezpośredni odsyłacz do nauczyciela.
 
 [Raport z aktualnego uruchomienia](reports/grywalnosc-2026-11-11.json) rozdziela przejścia, model czasu i GUI. Jego sekcja kompletności potwierdza, że **pełnego G2 NK nadal nie ma**; dokładny zakres i brakujące etapy opisuje [audyt Khorinis](KHORINIS.md).
+
+## Rozwój po połączeniu — #31, 11 listopada 2026
+
+[Raport źródłowy](reports/balans-po-polaczeniu-2026-11-11.json) porównuje cztery organiczne ścieżki wojownika. Weteran zdobywa kampanię przed połączeniem, nowa postać zaczyna już w połączonym świecie. Połączenie jest fixture otoczenia, bez nadawania postaci statystyk. Zlecenia, treningi, wyposażenie NPC i itemshop zużywają rzeczywiście zarobione zasoby. Zegar startuje 11 listopada o 09:00 czasu polskiego; kalendarz świata działa przy zmianie dnia.
+
+| Droga od poziomu 0 | Próg 30 | Poziom 35 | Poziom 40 |
+| --- | ---: | ---: | ---: |
+| Weteran Kolonii | 11,26 h (poziom 31) | 25,14 h | 45,26 h |
+| Nowy mieszkaniec Kolonii po połączeniu | 11,54 h (poziom 31) | 25,45 h | 45,56 h |
+| Weteran Khorinis | 13,47 h | 22,66 h | 42,35 h |
+| Nowy mieszkaniec Khorinis po połączeniu | 15,61 h | 24,96 h | 44,24 h |
+
+To godziny czasu świata z oczekiwaniem, nie samego klikania. Różnice obejmują dostęp do wspólnego wyposażenia i kalendarz. Na 35/40 wszystkie cztery ścieżki pokonały smoka w rzeczywistej płatnej walce. Osobne 25 prognoz z różnymi ziarnami na każdym zdobytym zestawie również dało zwycięstwa; prognozy nie wypłacały nagród.
+
+Trzy zwykłe buildy (wojownik, łucznik, mag) sprawdzono do poziomu 6 z faktycznymi atakami i kosztem amunicji/many. Trzy boty obozowe zdobyły kampanię oraz grały dalej w połączonym świecie. Nie jest to pomiar trzech buildów endgame. Pełne NK, premium, wszystkie warty i konkurencja rynku pozostają poza tym pomiarem. Brak podstaw do resetu lub limitowania dorobku; liczbowych nagród i statystyk nie zmieniono.
+
+Chromium przeszedł rejestrację, wybór Khorinis, prolog, zakup i założenie broni, polowanie, frakcję i zakup napoju za zdobyte odłamki; następnie utworzył postać Kolonii. 24 widoki (dwa regiony, cztery strony, 320/390/1440 px) nie wykazały przewijania poziomego, brakujących obrazów ani błędów JS. Wszystko na osobnej bazie.

@@ -88,3 +88,7 @@ Aktualny [raport audytu i tempa gry](reports/grywalnosc-2026-11-11.json) oraz [o
 ## Aktualizacja 0046–0047: po obozowym zwycięstwie
 
 Powyższy katalog opisuje paczkę **przed** upadkiem Bariery. Po potwierdzonym obozowym zwycięstwie i zweryfikowanej świeżej kopii dostępne są teraz wspólny rynek/ranking, podróże oraz dwa pierwsze wspólne przydziały i wyprawa przeciw smokowi ognia (35). Najemnicy Onara tworzą wspólnotę z ludźmi Lee, zachowując historyczne członkostwo. Dawne zadania, prace i nagrody nie są resetowane. [Pełne reguły przejścia](CHARACTERS_AND_WORLDS.md). Jarkendar nadal pozostaje zamknięty; pełna zawartość NK i premium wymagają kolejnych etapów.
+
+## Nowy gracz po połączeniu — #31
+
+Kreator pozwala zacząć bezpośrednio w Khorinis również po globalnym wydarzeniu. Własny prolog i frakcje pozostają dostępne od początku, bez wymogu ukończenia kampanii Kolonii. Wspólny katalog wyposażenia daje dostęp do rynsztunku obu regionów według zwykłych wymagań i cen. [Porównanie nowych postaci i weteranów](SOLO_PLAYTEST.md). Historyczna tabela powyżej opisuje paczkę przed połączeniem; obecny smok ognia nie oznacza kompletnej kampanii NK.

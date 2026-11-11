@@ -84,7 +84,7 @@ class CampaignTests(TestCase):
             self.assertEqual(bot.story_runs.filter(status='claimed', quest__camp=bot.camp).count(), 6)
             self.assertEqual(bot.story_runs.filter(status='claimed').exclude(quest__camp__in=['', bot.camp]).count(), 0)
             self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 12)
-            self.assertIn(bot.story_runs.filter(status='claimed').count(), (27,28))
+            self.assertIn(bot.story_runs.filter(status='claimed',quest__universe='GOTHIC_I').count(), (27,28))
             self.assertTrue(hasattr(bot,'campaign_completion'))
         from .release_probe import record_scenario
         record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})

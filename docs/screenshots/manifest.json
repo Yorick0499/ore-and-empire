@@ -379,6 +379,22 @@
       "captured_at_utc": "2026-11-11T16:12:53.627238+00:00",
       "fixture": "Oddzielna baza; syntetyczny uczestnik końca gry. Zwycięstwo przez formularz, świeża kopia/odtworzenie, podróż po atomowym połączeniu.",
       "theme": "Śniący i połączenie 0046/0047"
+    },
+    {
+      "file": "joined-start-390.png",
+      "bytes": 310736,
+      "sha256": "7335d5fd3e8673a194dc0e6b830f0157d3797d8e1767313f5edbb3ca98677330",
+      "captured_at_utc": "2026-11-11T18:15:50.084738+00:00",
+      "fixture": "Oddzielna baza połączonego świata; nowe konto, Khorinis poziom 1 i Kolonia poziom 0, bez grantów; połączenie jako fixture",
+      "theme": "swiezy-start-31"
+    },
+    {
+      "file": "joined-start-1440.png",
+      "bytes": 689890,
+      "sha256": "5369ce55e87173b9e82c222d228341d7f1cf4d54ebb31fb518d23541ef57cfa4",
+      "captured_at_utc": "2026-11-11T18:15:50.086267+00:00",
+      "fixture": "Oddzielna baza połączonego świata; nowe konto, Khorinis poziom 1 i Kolonia poziom 0, bez grantów; połączenie jako fixture",
+      "theme": "swiezy-start-31"
     }
   ]
 }

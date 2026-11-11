@@ -1,3 +1,4 @@
+from .barrier import region
 """Opt-in ordinary-player simulation; deliberately outside automatic test discovery."""
 from collections import Counter
 from datetime import timedelta
@@ -25,8 +26,15 @@ class OrdinaryBuildSession(TestCase):
     def test_income_first_builds_can_finance_their_gear_and_magic(self):
         self.run_session(income_first=True)
 
-    def run_session(self, *, income_first):
+    def run_session(self, *, income_first,joined_start=False):
         seed_clean_world()
+        if joined_start:
+            from .worlds import current_world
+            from .models import World
+            world=current_world();world.configured=True;world.bot_count=0;world.save()
+            call_command('open_khorinis',bots=0,stdout=StringIO())
+            from uuid import uuid4
+            World.objects.filter(status='active').update(union_key=uuid4())
         state=random.getstate();self.addCleanup(random.setstate,state);random.seed(71)
         call_command('run_bots',create=3,create_only=True,stdout=StringIO())
         from .bots import tick_bot
@@ -129,7 +137,7 @@ class OrdinaryBuildSession(TestCase):
                     # Alternate repeatable contracts and hunts to fund all three builds.
                     need_funds=p.ore_balance<50 or (name=='mage' and not p.prepared_magic_id)
                     if not target and (step%4==0 or need_funds or preview['blocks'] or not choices):
-                        quest=AdventureTemplate.objects.filter(enabled=True,level__lte=p.level,energy_cost__lte=p.current_energy).order_by('-ore_reward' if income_first and need_funds else '-experience_reward').first()
+                        quest=AdventureTemplate.objects.filter(universe=region(p).universe,enabled=True,level__lte=p.level,energy_cost__lte=p.current_energy).order_by('-ore_reward' if income_first and need_funds else '-experience_reward').first()
                         if quest:post('/zadania/',action='start',template=quest.pk);actions['adventure_start']+=1;continue
                     key=target if target in choices else max(choices,key=lambda k:BESTIARY[k]['exp_reward']) if choices else None
                     if key and not preview['blocks']:

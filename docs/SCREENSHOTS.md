@@ -104,3 +104,11 @@ Nowa postać Khorinis po zwykłym prologu i zakupie napoju za zarobiony odłamek
 ## Bariera i podróże — etap #120
 
 Aktualne widoki [telefon 390 px](screenshots/bariera-390.png) i [desktop 1440 px](screenshots/bariera-1440.png) po rzeczywistym ostatnim ciosie przez formularz i atomowym przejściu na osobnej bazie. Statystyki końca gry oraz wcześniejszy wkład były przygotowanym syntetycznym fixture, nie organicznym przejściem kampanii. [Raport](reports/sniacy-polaczenie-2026-11-11.json) obejmuje również 320 px, podróże, kreator, wspólnotę, ranking, targ i fabułę.
+
+## Świeży start po połączeniu — #31
+
+11 listopada 2026: 52 ujęcia w manifeście. Kreator jednego świata z wyborem Kolonii/Khorinis, 390 i 1440 px. Oddzielna baza, nowe konto, postacie poziomu 1/0 bez nadań; samo połączenie jest fixture. Brak danych prywatnego zapisu.
+
+![Kreator na telefonie](screenshots/joined-start-390.png)
+
+![Kreator na komputerze](screenshots/joined-start-1440.png)

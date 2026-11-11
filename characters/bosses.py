@@ -15,6 +15,7 @@ class Boss:
     ore: int
     cooldown_minutes: int = 30
     energy_cost: int = 25
+    balance_version: int = 1
 
     @property
     def monster(self):
@@ -24,6 +25,7 @@ class Boss:
             "strength": self.strength,
             "weapon_prot": self.protection,
             "boss_key": self.key,
+            "balance_version":self.balance_version,
             "forecast_strength": self.strength + 13,
             "forecast_protection": self.protection + 6,
         }

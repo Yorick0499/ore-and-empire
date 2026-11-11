@@ -101,3 +101,14 @@ Pochodzenie egzemplarza jest trwałe: łup, kupiec, rzemiosło, nagroda, adminis
 Plecak ma filtrowanie po nazwie, kategorii i randze oraz strony po 24 egzemplarze. Założony sprzęt pozostaje widoczny niezależnie od filtra plecaka.
 
 Pula sprzętu pomija definicje bez żadnej aktywnej statystyki, aby rzadki drop był użyteczny. Takie pozycje źródłowe pozostają w katalogu G1.
+
+## Przedziały po połączeniu i wersja balansu #31
+
+- 0–9: prolog i lokalne polowania/zlecenia Kolonii albo Khorinis; obie historie mają świeży start.
+- 10–29: kolejne rozdziały i frakcje regionu pochodzenia; wspólny rynek nie omija wymagań sprzętu.
+- 30+: Warty za Przełęczą (wymagają obozu) i przygotowanie do obozowego Śniącego; sama trzydziestka nie zastępuje kwalifikacji wspólnoty, rangi ani rytuału.
+- 35+: po połączeniu Feomathar; 40+: dalsza hierarchia wspólnych najemników, z osobnymi warunkami rangi.
+
+Bossowie mają jawny `balance_version=1`, stałe bazowe statystyki oraz zapis kosztu energii, cooldownu i statystyk przeciwnika przy walce. Nagrody rzeczywiście wypłacone są zapisane w historii; wydarzenia mogą je modyfikować według zwykłych zasad kalendarza. Feomathar: 2400 życia, 120 ataku, 75 ochrony, 30 energii, 60 minut przerwy, bazowo 5000 PD i 750 rudy. Wyposażenie gracza nie podnosi jego bazowych statystyk.
+
+Warty zachowują snapshot wersji 1: dla głębokości d życie 600+60d, atak 55+3d, ochrona broni 25+2d, magia/ogień 10+d. Bazowa ruda 50+10d, PD 400+80d, koszt 20 energii i 5 minut przerwy. Trudność wybiera się postępem wart (1–100), a nie siłą aktualnego sprzętu. Zlecenia zachowują własną wersję i snapshot przy przyjęciu. Dawne raporty nie są przepisywane. [Pomiary bez nadań](SOLO_PLAYTEST.md).

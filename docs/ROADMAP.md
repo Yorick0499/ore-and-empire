@@ -73,3 +73,7 @@ Migracje 0046–0047 dodają wyścig wspólnot, trwałe zlecenie przejścia, św
 ## Panel operatorski — #35
 
 Odczytowy plan, kwalifikacja obozów, HP i wkład kont, stan świeżej kopii i ostatnie 40 zdarzeń są dostępne w `/zarzadca/bariera/`. Administrator może wstrzymać lub wznowić oczekujące przejście; panel nie pomija zwycięstwa i nie wykonuje kopii w żądaniu HTTP. Podgląd działa również podczas blokady gry. [Instrukcja](BACKUPS.md).
+
+## Świeży start i balans — #31
+
+W połączonym świecie można zacząć w obu regionach bez dawnej kampanii. Bez zmian dorobku i liczbowych nagród; jawna wersja bossów, zapis parametrów walki, test konfliktu wspólnego imienia i porównanie zdobytych postaci na poziomach 30/35/40. [Czasy i ograniczenia](SOLO_PLAYTEST.md). To zamyka zakres startu i balansu obecnej adaptacji; pełny katalog/kampania NK (#32) i premium/Jarkendar (#33) nadal wymagają osobnych etapów.

@@ -12,26 +12,42 @@ from .worlds import current_world
 class CharacterForm(forms.Form):
     name=forms.CharField(label='Imię postaci',min_length=2,max_length=32)
     world=forms.ModelChoiceField(label='Świat / serwer',queryset=World.objects.none(),empty_label=None)
+    start_region=forms.ModelChoiceField(label='Region startowy',queryset=World.objects.none(),required=False,empty_label=None,widget=forms.HiddenInput)
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         from .barrier import creation_worlds
         self.fields['world'].queryset=creation_worlds().order_by('edition','pk')
         self.fields['world'].label_from_instance=lambda world: ('Połączony świat — Kolonia i Khorinis' if world.union_key else f'{world.name} · '+('Khorinis (Gothic II)' if world.universe=='GOTHIC_II' else 'Kolonia (Gothic I)'))
+        raw=self.data.get('world') if self.is_bound else self.initial.get('world')
+        chosen=self.fields['world'].queryset.filter(pk=int(raw)).first() if raw and str(raw).isdigit() and len(str(raw))<19 else self.fields['world'].queryset.first()
+        if chosen and chosen.union_key:
+            from .barrier import region_ids
+            self.fields['start_region'].widget=forms.Select()
+            self.fields['start_region'].queryset=World.objects.filter(pk__in=region_ids(chosen),status='active')
+            self.fields['start_region'].initial=chosen.pk
+            self.fields['start_region'].label_from_instance=lambda region: 'Khorinis' if region.universe=='GOTHIC_II' else 'Górnicza Dolina (Kolonia)'
+
     def clean_name(self):
         value=unicodedata.normalize('NFKC',' '.join(self.cleaned_data['name'].split()))
         if not re.fullmatch(r"[\w][\w .'-]{1,31}",value):raise ValidationError('Użyj 2–32 liter, cyfr, spacji lub znaków _ . - i apostrofu.')
         return value
 
 @transaction.atomic
-def create_character(user,name,world_id):
+def create_character(user,name,world_id,*,start_region=None):
     owner=User.objects.select_for_update().get(pk=user.pk)
     if not owner.is_active or owner.characters.filter(is_bot=True).exists():raise ValidationError('Konto nie może tworzyć postaci gracza.')
-    form=CharacterForm({'name':name,'world':world_id})
+    form=CharacterForm({'name':name,'world':world_id,'start_region':start_region})
     if not form.is_valid():raise ValidationError(' '.join(str(error) for errors in form.errors.values() for error in errors))
     world=form.cleaned_data['world'];name=form.cleaned_data['name']
+    if world.union_key:
+        from .models import SleeperRace
+        # All starting regions share a name reservation after the global event.
+        # Lock its joined record; activation never writes it again.
+        SleeperRace.objects.select_for_update().filter(colony=world,state='joined').first()
     name_key=unicodedata.normalize('NFKC',name).casefold()
     from .barrier import region_ids
     worlds=region_ids(world)
+    world=form.cleaned_data.get('start_region') or world
     legacy_names=PlayerProfile.objects.filter(world_id__in=worlds,name='',is_bot=False,is_draft=False).values_list('user__username',flat=True)
     reserved=any(unicodedata.normalize('NFKC',legacy).casefold()==name_key for legacy in legacy_names)
     if reserved or PlayerProfile.objects.filter(world_id__in=worlds,name_key=name_key).exists():raise ValidationError('To imię jest już zajęte na tym świecie.')
