@@ -112,3 +112,11 @@ Aktualne widoki [telefon 390 px](screenshots/bariera-390.png) i [desktop 1440 px
 ![Kreator na telefonie](screenshots/joined-start-390.png)
 
 ![Kreator na komputerze](screenshots/joined-start-1440.png)
+
+## Równe rangi — #124
+
+54ujęcia w manifeście. Nowe ekrany pokazują zgodność starej drogi Wody (390px) i podstawową straż Khorinis (1440px). Oddzielna baza0048; postacie syntetyczne poziomu25 z maną55, bez botów. To kontrola GUI, nie organiczna kampania. Dziewięć widoków przy320/390/1440 bez overflow, błędówJS i brakujących obrazów.
+
+![Zachowana droga Wody](screenshots/rank-water-390.png)
+
+![Podstawowe rangi straży](screenshots/rank-watch-1440.png)

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0047_wspolna_hierarchia_najemnikow",
+  "migration": "0048_rowne_podstawowe_rangi",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -395,6 +395,22 @@
       "captured_at_utc": "2026-11-11T18:15:50.086267+00:00",
       "fixture": "Oddzielna baza połączonego świata; nowe konto, Khorinis poziom 1 i Kolonia poziom 0, bez grantów; połączenie jako fixture",
       "theme": "swiezy-start-31"
+    },
+    {
+      "file": "rank-water-390.png",
+      "bytes": 702477,
+      "sha256": "653d235ec07f8d3386bbba64ec040df85933682f195cbe17f5d0e03621133f27",
+      "captured_at_utc": "2026-11-11T19:37:10.077241+00:00",
+      "fixture": "Oddzielna baza0048; syntetyczne postacie poziomu25/mana55, stara droga Wody oraz Sierżant Khorinis; zero botów; nie organiczna kampania",
+      "theme": "rowne-rangi-124"
+    },
+    {
+      "file": "rank-watch-1440.png",
+      "bytes": 960812,
+      "sha256": "34831e119df84fbfcfd6bfd59809472c121b17287c1d34cb7eb313d28ce3971e",
+      "captured_at_utc": "2026-11-11T19:37:10.078373+00:00",
+      "fixture": "Oddzielna baza0048; syntetyczne postacie poziomu25/mana55, stara droga Wody oraz Sierżant Khorinis; zero botów; nie organiczna kampania",
+      "theme": "rowne-rangi-124"
     }
   ]
 }

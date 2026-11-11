@@ -26,7 +26,7 @@ Stan: 11 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com
 
 ## Gothic II: Noc Kruka — nowy kierunek
 
-Nowy plan z 9 listopada zastępuje ręczną II edycję: dwa równoległe światy Kolonia i Khorinis, a następnie jednorazowe połączenie po obozowym pokonaniu Śniącego. [Zakres i zależności #30–#35 / #111](CHARACTERS_AND_WORLDS.md). Konto premium daje osobne uprawnienie Jarkendaru; odłamki nie zastępują premium. Kolonia i pierwsza paczka Khorinis są grywalne równolegle (#34/#113). [Zakres paczki](KHORINIS.md). Osobisty finał nie uruchamia połączenia.
+Nowy plan z 9 listopada zastępuje ręczną II edycję: dwa równoległe światy Kolonia i Khorinis, a następnie jednorazowe połączenie po obozowym pokonaniu Śniącego. [Zakres i zależności #30–#35 / #111](CHARACTERS_AND_WORLDS.md). Decyzja z 11 listopada: nie będzie kont premium; Jarkendar będzie publiczny po połączeniu (wdrożenie #33). Kolonia i pierwsza paczka Khorinis są grywalne równolegle (#34/#113). [Zakres paczki](KHORINIS.md). Osobisty finał nie uruchamia połączenia.
 
 Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i porównanie z regułami. [Wyniki](LOCAL_AI_POLICIES.md). Model nie jest włączony domyślnie. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
 
@@ -39,8 +39,7 @@ Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](htt
 Przegląd obecnej pętli wyłonił trzy zadania: zabezpieczanie rynsztunku przed
 utratą (#80), filtrowany i stronicowany targ (#81) oraz odczytowe porównanie
 sprzętu z wyborem slotu pierścienia (#82). Reguły i obsługa: [ekwipunek](EQUIPMENT.md)
-i [targ](MARKET_POLICY.md). Indeksy #9/#10 pozostają otwarte; II edycja #30–#35
-nadal jest odłożona.
+i [targ](MARKET_POLICY.md). Indeksy #9/#10 pozostają otwarte; dawny plan II edycji zastąpiły połączone światy opisane niżej.
 
 ## Rzadkość, kuźnia i audyt — #84–#87
 
@@ -68,7 +67,7 @@ Jedna ilustracja/nazwa na karcie itemshopu, prolog przed dołączeniem i kolejne
 
 ## Wspólny Śniący i połączenie — #120
 
-Migracje 0046–0047 dodają wyścig wspólnot, trwałe zlecenie przejścia, świeżą zweryfikowaną kopię pod blokadą zapisu oraz atomowe otwarcie wspólnego rynku/rankingu i podróży. Najemnicy Lee/Onara otrzymują wspólną wspólnotę i dalszą hierarchię. Dwa pierwsze przydziały po Barierze prowadzą do smoka ognia. [Reguły](CHARACTERS_AND_WORLDS.md) · [wznowienie i kopie](BACKUPS.md). Nie oznacza to pełnego katalogu G2 NK, premium/Jarkendaru ani ukończonego panelu wyścigu; #32/#33/#35 i szersze #111/#30 pozostają otwarte.
+Migracje 0046–0047 dodają wyścig wspólnot, trwałe zlecenie przejścia, świeżą zweryfikowaną kopię pod blokadą zapisu oraz atomowe otwarcie wspólnego rynku/rankingu i podróży. Najemnicy Lee/Onara otrzymują wspólną wspólnotę i dalszą hierarchię. Dwa pierwsze przydziały po Barierze prowadzą do smoka ognia. [Reguły](CHARACTERS_AND_WORLDS.md) · [wznowienie i kopie](BACKUPS.md). Nie oznacza to pełnego katalogu G2 NK, Jarkendaru; panel #35 jest już ukończony, #32/#33 i szersze #111/#30 pozostają otwarte.
 
 ## Panel operatorski — #35
 
@@ -76,4 +75,64 @@ Odczytowy plan, kwalifikacja obozów, HP i wkład kont, stan świeżej kopii i o
 
 ## Świeży start i balans — #31
 
-W połączonym świecie można zacząć w obu regionach bez dawnej kampanii. Bez zmian dorobku i liczbowych nagród; jawna wersja bossów, zapis parametrów walki, test konfliktu wspólnego imienia i porównanie zdobytych postaci na poziomach 30/35/40. [Czasy i ograniczenia](SOLO_PLAYTEST.md). To zamyka zakres startu i balansu obecnej adaptacji; pełny katalog/kampania NK (#32) i premium/Jarkendar (#33) nadal wymagają osobnych etapów.
+W połączonym świecie można zacząć w obu regionach bez dawnej kampanii. Bez zmian dorobku i liczbowych nagród; jawna wersja bossów, zapis parametrów walki, test konfliktu wspólnego imienia i porównanie zdobytych postaci na poziomach 30/35/40. [Czasy i ograniczenia](SOLO_PLAYTEST.md). To zamyka zakres startu i balansu obecnej adaptacji; pełny katalog/kampania NK (#32) i publiczny Jarkendar (#33) nadal wymagają osobnych etapów.
+
+
+## Obowiązująca zmiana projektu — 11 XI 2026, po PR #123
+
+**To plan do wdrożenia, nie opis aktualnego runtime. Zastępuje wcześniejsze wymagania premium i zachowania frakcji po Barierze.**
+
+Nie ma kont premium ani płatnego uprawnienia Jarkendaru. Region otwiera się dopiero po globalnym połączeniu, dla wszystkich kont i botów, bez warunku salda odłamków. Zwykłe zadania/progi fabularne mogą prowadzić przez portal; nie stanowią płatnego dostępu. Obecny itemshop i odłamki pozostają mechaniką gry; techniczne nazwy `premium_balance` i symulowane zakupy botów nie oznaczają konta premium. Nie dodawać systemu abonamentu ani premium botów.
+
+Po połączeniu istnieje jeden serwer ze wspólnym rynkiem/rankingiem i pięć frakcji: **Miasto Khorinis (straż/paladyni), Klasztor Magów Ognia, Magowie Wody, Bandyci, Najemnicy**. Piraci mogą występować fabularnie, ale nie są szóstą grywalną frakcją. Bandyci jako frakcja powstają dopiero po upadku Bariery; oddzielna wspólnota Wody również dopiero wtedy. Przed Barierą Magowie Wody należą do Nowego Obozu.
+
+| Dotychczasowa przynależność | Następstwo po Barierze |
+| --- | --- |
+| Stary Obóz: Kopacz, Cień, Strażnik, Magnat | Bandyci, odpowiadający szczebel podstawowy |
+| Stary Obóz: Mag/Arcymag Ognia | Wspólny Klasztor Ognia z magami Khorinis |
+| Nowy Obóz: Mag/Arcymag Wody | Osobna frakcja Magów Wody |
+| Pozostali Nowego Obozu i najemnicy Onara | Wspólni Najemnicy |
+| Wojownicy Bractwa | Jednorazowy wybór dowolnej z pięciu frakcji |
+| Guru/Arcyguru | Jednorazowy wybór Ognia albo Wody |
+| Zbieracz/Nowicjusz bez wybranej gałęzi | Propozycja: wybór otwarty; rozstrzygnąć w #126 przed kodowaniem |
+| Dotychczasowe frakcje Khorinis | Zachowanie członkostwa we wspólnych odpowiednikach |
+| Bez frakcji | Brak automatycznego członkostwa, zwykła rekrutacja |
+
+Szczebel jest osobisty, niezależny od poziomu wspólnoty. Magnat zostaje najwyższą podstawową rangą **Bandytów**; przykład dowódcy straży oznacza równoważność szczebla, nie kierunek przeniesienia. Połączenie odblokowuje dalsze awanse, nie przyznaje ich bez zadań. Zachować pochodzenie, historyczne obozy/rangi, osiągnięcia, zasoby, sprzęt, historię i tożsamość rekordów. Zmiana frakcji nie daje ani nie odbiera wytrenowanych atrybutów. Wojownik Bractwa może wybrać również szkołę magii, ale nie otrzymuje darmowych treningów. Oczekiwanie na wybór nie zatrzymuje zwykłej gry.
+
+### Równa długość i podwojenie dróg
+
+Propozycja wykonawcza: **4 rangi podstawowe i 4 dodatkowe po Barierze = 8**, bez liczenia stanu „bez frakcji”. Każda gałąź w Kolonii i Khorinis ma tę samą długość przed wydarzeniem; frakcje powstające później mają cztery rangi równoważne dawnym i cztery wyższe. Obecny katalog nie spełnia tej zasady (np. Woda ma pięć węzłów), dlatego #124 najpierw ustala wersjonowane mapowanie bez degradacji osiągnięć i istniejących korzyści.
+
+Przykładowe nazwy do dopracowania w katalogu (nie nowe wymagania poziomów):
+
+| Frakcja | Cztery rangi podstawowe | Cztery wyższe po Barierze |
+| --- | --- | --- |
+| Miasto | Rekrut → Strażnik → Sierżant → Dowódca Straży | Kandydat Zakonu → Paladyn → Dowódca Paladynów → Wielki Mistrz |
+| Ogień | Aspirant → Nowicjusz → Mag Ognia → Arcymag Ognia | Mistrz Płomienia → Strażnik Świętego Ognia → Mistrz Kręgu → Wielki Mag Ognia |
+| Woda | Uczeń → Adept → Mag Wody → Arcymag Wody | Mistrz Przypływu → Strażnik Równowagi → Mistrz Kręgu → Wielki Mag Wody |
+| Bandyci | Pomocnik → Zwiadowca → Bandyta → Herszt | Przywódca Szajki → Dowódca Kompanii → Baron Pogranicza → Władca Podziemia |
+| Najemnicy | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców → Dowódca Łowców → Mistrz Łowców |
+
+### Kolejność małych etapów
+
+Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego rozpoczynania następnego. Poniższe issues pozostają otwarte do rzeczywistego wdrożenia.
+
+| Etap / issue | Minimalny zakres | Kryterium ukończenia |
+| --- | --- | --- |
+| **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
+| **2. #125 — następny**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
+| **3. #126**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
+| **4. #127**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
+| **5. #33**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
+| **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
+
+#32 nadal obejmuje pełniejszy katalog i kampanię G2 NK; pojedyncza paczka Jarkendaru nie zamyka całego zakresu. #30/#111 obejmują integrację następstwa z istniejącym przejściem; nie implementować ponownie wyścigu, kopii i wspólnego serwera. Stare raporty to dowody historycznych wersji, nie obowiązujące wymagania premium.
+
+### Stan realizacji #124
+
+Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. [Szczegóły i wyjątek zgodności](CAMPS.md). Pozostałe etapy125/126/127/33/128 są nadal planowane; nie zostały uruchomione w tej iteracji. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.
+
+### Sprawne iteracje testów
+
+Nowe pakiety `simulate_release --suite quick/campaign/pacing/world/full` oddzielają szybkie kontrole od długich symulacji. Pełne asercje kampanii pozostają, ale transakcje mają zakres jednej tury. [Polecenia, zakresy i pomiary](SOLO_PLAYTEST.md). Zgłoszona awaria GitHuba w tej iteracji nie zastępuje testów: mechanikę sprawdzono lokalnie na SQLite i rzeczywistym PostgreSQL, łącznie z odtwarzaniem starszych kopii i współbieżnością. Handoff pozostaje bez zmian na polecenie użytkownika.

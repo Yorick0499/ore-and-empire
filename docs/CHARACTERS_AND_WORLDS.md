@@ -1,5 +1,8 @@
 # Konto, pięć postaci i droga do dwóch światów
 
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+
+
 ## Dostępne od migracji 0042 — #107–#110
 
 Po rejestracji konto trafia do `/postacie/`. Pierwszy profil jest szkicem: nie może kopać, walczyć ani kupować przed nadaniem imienia i wyborem dostępnego świata. Kreator wykorzystuje jego pojedynczą początkową sakiewkę, nie dopisuje drugiej. Jedno konto ma **pięć slotów łącznie**, również z postaciami archiwalnymi. Imię ma 2–32 znaki i jest unikalne na świecie bez rozróżniania wielkości liter (normalizacja Unicode).
@@ -38,7 +41,7 @@ Premie sumują się z trzema poziomami ulepszeń wspólnoty. Trening kosztuje co
 
 Kolonia i Khorinis działają równolegle. Kreator oferuje oba otwarte serwery, a wybór postaci zmienia cały kontekst gry. Pierwsza paczka Khorinis zawiera 29 definicji historii mieszkańca, trzy frakcje, cztery rozdziały i własne zlecenia, lokacje oraz rynsztunek. [Pełny zakres i instrukcja](KHORINIS.md).
 
-Kolejne etapy epiku [#10](https://github.com/Yorick0499/ore-and-empire/issues/10): pełny katalog G2 (#32), obozowy Śniący (#111), bezpieczne połączenie (#30), balans (#31) i kontrola zarządcy (#35). Jarkendar pozostaje całkowicie zamknięty do połączenia; później dodatkowo wymaga premium konta (#33). Obecny osobisty finał Kolonii nie łączy serwerów.
+Kolejne etapy epiku [#10](https://github.com/Yorick0499/ore-and-empire/issues/10): pełny katalog G2 (#32), obozowy Śniący (#111), bezpieczne połączenie (#30), balans (#31) i kontrola zarządcy (#35). Jarkendar pozostaje całkowicie zamknięty do połączenia; później będzie publiczny, bez kont premium (#33). Obecny osobisty finał Kolonii nie łączy serwerów.
 
 ## Wyniki weryfikacji
 
@@ -81,7 +84,7 @@ Po sukcesie oba rekordy świata otrzymują wspólny identyfikator. **Żadne post
 
 Zwycięski uczestnik z rzeczywistym wkładem odbiera po połączeniu 500 rudy, 1000 PD i 3 odłamki **raz na konto**, przez wybraną postać zwycięskiego obozu. Nagroda ma trwały rekord i ledger; dodatkowe sloty jej nie mnożą.
 
-Pierwszy wspólny fragment fabuły: **Szlak po upadku Bariery** (30) i **Zagrożenie znad szczytu** (35), wyprawa przeciw smokowi ognia Feomatharowi. Statystyki są adaptacją przeglądarkową. To początek etapu po Barierze, **nie pełny katalog G2 NK** (#32). Jarkendar pozostaje zamknięty do osobnego wdrożenia premium konta (#33). Szersze #111/#30/#35 pozostają otwarte; ta paczka nie jest pełnym panelem operatorskim ani całym dodatkiem NK.
+Pierwszy wspólny fragment fabuły: **Szlak po upadku Bariery** (30) i **Zagrożenie znad szczytu** (35), wyprawa przeciw smokowi ognia Feomatharowi. Statystyki są adaptacją przeglądarkową. To początek etapu po Barierze, **nie pełny katalog G2 NK** (#32). Jarkendar pozostaje zamknięty do wdrożenia publicznego regionu (#33). Szersze #111/#30/#35 pozostają otwarte; ta paczka nie jest pełnym panelem operatorskim ani całym dodatkiem NK.
 
 Gdy pieczęć czeka na kolejne konto, ponowny wypad dotychczasowego uczestnika jest blokowany przed pobraniem energii, many czy amunicji. Karta wspólnoty pokazuje ten powód; zerowe obrażenia nie służą nabijaniu wkładu.
 

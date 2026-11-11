@@ -38,7 +38,7 @@ class AutonomousBotTests(TestCase):
             self.assertTrue(bot.story_runs.filter(quest__key="prologue-path",status="claimed").exists())
             self.assertTrue(bot.premium_entries.filter(amount__gt=0).exists())
             self.assertLessEqual(bot.current_energy, bot.max_energy)
-            self.assertLessEqual(bot.current_health, bot.life)
+            self.assertLessEqual(bot.current_health, bot.max_health)
             self.assertGreaterEqual(bot.ore_balance, 0)
             self.assertGreaterEqual(bot.premium_balance, 0)
             self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 12)

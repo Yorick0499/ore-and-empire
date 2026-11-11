@@ -75,7 +75,16 @@ class TwoRealmTests(TestCase):
         state=random.getstate();self.addCleanup(random.setstate,state);random.seed(4926)
         from .bots import tick_bot
         bots=list(PlayerProfile.objects.filter(world=self.island,is_bot=True).order_by('pk'))
-        now=timezone.now();done=set();actions=Counter()
+        # Select a combat mage persona explicitly: PostgreSQL sequences do not
+        # roll back between TestCases, so PK-based assignments are not fixtures.
+        from .realms import camps
+        for bot in bots:
+            if list(camps(self.island))[(bot.pk-1)%3]=='FIRE_ORDER':
+                bot.bot_role='hunter';bot.bot_personality='grinder'
+                bot.save(update_fields=['bot_role','bot_personality'])
+        from datetime import datetime
+        from .world_clock import POLISH_TIME
+        now=datetime(2026,11,11,9,tzinfo=POLISH_TIME);done=set();actions=Counter()
         for step in range(700):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*step)):
                 for bot in bots:
@@ -92,7 +101,7 @@ class TwoRealmTests(TestCase):
         self.assertEqual(len(done),3,(status,actions,{b.pk:list(b.story_runs.exclude(status='claimed').values('snapshot__key','progress')) for b in bots}))
         self.assertEqual({p['camp'] for p in status},{'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'})
         mage=next(b for b in bots if PlayerProfile.objects.get(pk=b.pk).camp=='FIRE_ORDER')
-        self.assertTrue(mage.battles.filter(combat_details__casts__gt=0).exists())
+        self.assertTrue(mage.battles.filter(combat_details__casts__gt=0).exists(),(status,dict(actions),list(mage.inventory.values('blueprint__catalog_key')),PlayerProfile.objects.filter(pk=mage.pk).values('magic_skill','bot_role','bot_personality','prepared_magic_id').first()))
         for bot in bots:
             bot.refresh_from_db();self.assertEqual(bot.camp_tier,3)
             self.assertEqual(bot.story_runs.filter(status='claimed').count(),17)

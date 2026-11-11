@@ -1,8 +1,10 @@
 """Camp branches and original promotion quests for this browser adaptation."""
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from django.utils import timezone
 from .game_logic import player_action
 from .story_gates import missing
+
+RANK_RULES_VERSION = 2
 
 
 @dataclass(frozen=True)
@@ -53,9 +55,9 @@ RANKS = (
          "Kontrakt dla Lee", "Oczyść wschodni trakt i przygotuj się do służby.", (obj("hunt:snapper", 4, "Pokonaj zębacze"), obj("train:strength", 2, "Ukończ trening siły"))),
     Rank("ELITE_MERC", "Gwardzista Lee", "NEW_CAMP", ("MERC",), 3, 18, "strength", 40, 250,
          "Głębia kopalni", "Zabezpiecz wyrobiska i wyeliminuj cieniostwory przy trasie dostaw.", (obj("hunt:minecrawler_warrior", 5, "Pokonaj pełzacze wojowników"), obj("hunt:shadowbeast", 2, "Pokonaj cieniostwory"))),
-    Rank("WATER_MAGE", "Mag Wody", "NEW_CAMP", ("MERC",), 3, 15, "mana", 25, 150,
+    Rank("WATER_MAGE", "Mag Wody", "NEW_CAMP", ("ROGUE",), 2, 15, "mana", 25, 150,
          "Wiedza kręgu", "Ćwicz koncentrację i zbadaj nieumarłych przy kamiennych kręgach.", (obj("train:mana", 3, "Ukończ trening many"), obj("hunt:skeleton_mage", 2, "Pokonaj szkielety magów"))),
-    Rank("ARCH_WATER", "Arcymag Wody", "NEW_CAMP", ("WATER_MAGE",), 4, 25, "mana", 45, 350,
+    Rank("ARCH_WATER", "Arcymag Wody", "NEW_CAMP", ("WATER_MAGE",), 3, 25, "mana", 45, 350,
          "Próba lodu", "Staw czoła lodowym strażnikom oraz demonom.", (obj("hunt:ice_golem", 2, "Pokonaj lodowe golemy"), obj("hunt:demon", 3, "Pokonaj pomniejsze demony"))),
     Rank("PICKER", "Zbieracz", "SWAMP_CAMP", ("NONE",), 0, 0, "strength", 10, 0,
          "Pierwsza przysługa", "Usuń drobne bestie z obrzeża siedziby Bractwa.", (obj("hunt:molerat", 2, "Pokonaj kretoszczury"),)),
@@ -74,19 +76,45 @@ from .khorinis import ranks as khorinis_ranks
 KHORINIS_RANKS,KHORINIS_PATHS=khorinis_ranks(Rank,obj)
 RANKS += KHORINIS_RANKS
 BY_RANK = {rank.key: rank for rank in RANKS}
+# Stable identities keep equipment, completed quests and ledger references intact.
+# Version 1 differs only in these parents, tiers and display labels.
+LEGACY_RANKS = dict(BY_RANK)
+LEGACY_RANKS.update({
+    'WATER_MAGE':replace(BY_RANK['WATER_MAGE'],parents=('MERC',),tier=3),
+    'ARCH_WATER':replace(BY_RANK['ARCH_WATER'],tier=4),
+    **{key:replace(BY_RANK[key],name=name) for key,name in (
+        ('K2_CITIZEN','Obywatel'),('K2_PALADIN','Paladyn'),('K2_COMMANDER','Komendant warty'))},
+})
+
+def rank_mapping():
+    return {key:{'from_version':1,'to_version':RANK_RULES_VERSION,
+                 'old_name':LEGACY_RANKS[key].name,'name':rank.name,
+                 'old_tier':LEGACY_RANKS[key].tier,'tier':rank.tier,
+                 'old_parents':LEGACY_RANKS[key].parents,'parents':rank.parents}
+            for key,rank in BY_RANK.items()}
 CAMP_PATHS = {
     "OLD_CAMP": (("Kopacz", "Cień", "Strażnik", "Magnat"), ("Kopacz", "Cień", "Mag Ognia", "Arcymag Ognia")),
-    "NEW_CAMP": (("Kret", "Szkodnik", "Najemnik", "Gwardzista Lee"), ("Kret", "Szkodnik", "Najemnik", "Mag Wody", "Arcymag Wody")),
+    "NEW_CAMP": (("Kret", "Szkodnik", "Najemnik", "Gwardzista Lee"), ("Kret", "Szkodnik", "Mag Wody", "Arcymag Wody")),
     "SWAMP_CAMP": (("Zbieracz", "Nowicjusz", "Strażnik świątynny", "Templariusz bagien"), ("Zbieracz", "Nowicjusz", "Guru", "Arcyguru")),
 }
 CAMP_PATHS.update(KHORINIS_PATHS)
 ATTRIBUTE_NAMES = {"strength": "Siła", "dexterity": "Zręczność", "mana": "Mana"}
 
 
+def promotion_tier(profile, rank):
+    # Accepted legacy water promotions retain their original story requirements.
+    return LEGACY_RANKS[rank.key].tier if profile.legacy_water_path and rank.key in {'WATER_MAGE','ARCH_WATER'} else rank.tier
+
+
+def promotion_parents(profile, rank):
+    if profile.legacy_water_path and rank.key=='WATER_MAGE':return ('MERC',)
+    return rank.parents
+
+
 def available_rank(profile, rank):
     from .story_gates import missing
     from .realms import camps
-    return rank.camp in camps(profile.world) and profile.camp == rank.camp and profile.guild in rank.parents and not missing(profile,rank.tier)
+    return rank.camp in camps(profile.world) and profile.camp == rank.camp and profile.guild in promotion_parents(profile,rank) and not missing(profile,promotion_tier(profile,rank))
 
 
 def quest_complete(quest, rank):
@@ -164,8 +192,9 @@ def rank_cards(profile, camp=None):
         complete = bool(quest and quest_complete(quest, rank))
         cards.append({
             "rank": rank, "quest": quest, "current": profile.guild == rank.key,
-            "story_missing":missing(profile,rank.tier,rank.camp),
-            "parents": ", ".join(BY_RANK[parent].name if parent in BY_RANK else "Nowy członek obozu" for parent in rank.parents),
+            "ordinal":rank.tier+1,
+            "story_missing":missing(profile,promotion_tier(profile,rank),rank.camp),
+            "parents": ", ".join(BY_RANK[parent].name if parent in BY_RANK else "Nowy członek obozu" for parent in promotion_parents(profile,rank)),
             "attribute_name": ATTRIBUTE_NAMES[rank.attribute],
             "attribute_current": getattr(profile, rank.attribute),
             "eligible": eligible, "can_accept": eligible and not active,

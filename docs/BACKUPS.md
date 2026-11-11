@@ -55,3 +55,7 @@ Aktywny administrator otwiera `/zarzadca/bariera/` z ustawień świata. Panel po
 Pauza i wznowienie korzystają z jednej usługi dla WWW i CLI. Wymagają administratora, zgodnego aktualnego stanu i braku aktywnego wykonawcy. Powtórzona pauza nie dodaje kolejnego zdarzenia. Wznowienie tylko usuwa pauzę: przejście po rzeczywistym zwycięstwie podejmuje worker. Panel nie nadaje zwycięstwa, nie wykonuje długiej kopii w HTTP i nie cofa `joined`.
 
 Podczas przejścia administrator może odczytać ten panel, choć pozostała gra zwraca 503. Zapisy w panelu nadal są wtedy zablokowane. Po przerwaniu procesu odczekaj do wygaśnięcia dzierżawy, sprawdź narzędzia/miejsce/uprawnienia i wznów tę samą operację. Restart, retry i odtwarzanie zachowują dotychczasowe mechanizmy i testy etapu #120.
+
+## Zgodność rang od migracji 0048
+
+Nowe kopie PostgreSQL mają `rank_path_schema=1`, a dowód obejmuje `legacy_water_path`. Dla wcześniejszych kopii PG weryfikator sprawdza poprawne wyliczenie nowego znacznika z dawnej frakcji, rangi i nieodebranego awansu; dopiero potem pomija tę jedną dodaną kolumnę przy porównaniu starego hasha. Pozostałe pola i liczby rekordów nadal muszą być identyczne. Błędny znacznik odrzuca odtworzenie; nie wystarcza zgodność samej rudy. Nowe dowody SQLite również obejmują znacznik. Test0047→0048 porównuje pełny logiczny snapshot oraz wszystkie stare pola i zadania. [Zakres rang](CAMPS.md).
