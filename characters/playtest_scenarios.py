@@ -35,7 +35,7 @@ class OrdinaryBuildSession(TestCase):
         actors=[]
         for name,camp in [('warrior','OLD_CAMP'),('archer','NEW_CAMP'),('mage','SWAMP_CAMP')]:
             user=User.objects.create_user('probe-'+name)
-            p=user.playerprofile;self.assertTrue(game.choose_camp(p,camp))
+            p=user.playerprofile
             client=Client();client.force_login(user)
             actors.append((name,p,client,Counter()))
         bots=list(PlayerProfile.objects.filter(is_bot=True));now=timezone.now();bot_actions=Counter()
@@ -58,10 +58,28 @@ class OrdinaryBuildSession(TestCase):
                     if p.action_end_time:
                         if p.action_end_time<=timezone.now():post('/kopalnia/',action='claim');actions['mine_claim']+=1
                         continue
+                    # Earn the prologue and branch gates through the same forms as a new player.
+                    from .story_quests import bot_story_plan,StoryPlan
+                    from .story_gates import missing
+                    camp={'warrior':'OLD_CAMP','archer':'NEW_CAMP','mage':'SWAMP_CAMP'}[name]
+                    if p.camp=='NONE' and not missing(p):
+                        post('/',camp=camp);self.assertEqual(p.camp,camp);actions['join_camp']+=1;continue
+                    plan=bot_story_plan(p) if missing(p,1,camp) else StoryPlan()
+                    if plan.action:
+                        post('/fabula/',action=plan.action.removeprefix('story_'),target=plan.target,goal=plan.goal,option=plan.option)
+                        actions[plan.action]+=1;continue
+                    if any(kind=='mine' for kind,_ in plan.events) and p.current_energy>=10:
+                        post('/kopalnia/',action='mine');actions['story_mine']+=1;continue
+                    for blueprint_id in plan.missing_items:
+                        bp=ItemBluePrint.objects.get(pk=blueprint_id)
+                        if p.ore_balance>=bp.base_value:
+                            post('/sklep/',action='buy',buy_item_id=bp.pk);actions['story_delivery_buy']+=1;break
+                    else:bp=None
+                    if bp is not None:continue
                     # Camp requirements are earned after accepting the actual promotion quest.
                     rank_key=('PICKER' if p.guild=='NONE' else 'NOVICE' if p.guild=='PICKER' else '') if name=='mage' else ''
                     target=None
-                    if rank_key:
+                    if rank_key and not missing(p,BY_RANK[rank_key].tier):
                         rank=BY_RANK[rank_key];cq=p.camp_quests.filter(rank_key=rank_key,promoted_at__isnull=True).first()
                         if not cq:post('/oboz/',action='accept',rank=rank_key);actions['rank_accept']+=1;continue
                         if quest_complete(cq,rank) and p.level>=rank.level and getattr(p,rank.attribute)>=rank.attribute_value and p.ore_balance>=rank.cost:
@@ -101,12 +119,13 @@ class OrdinaryBuildSession(TestCase):
                             if bp and p.ore_balance>=bp.base_value*10:
                                 post('/sklep/',action='buy',buy_item_id=bp.pk,quantity=10);actions['buy_ammo_pack']+=1;continue
                     # Real loot funds the next weapon; equipped/protected/prepared items stay.
-                    spare=p.inventory.filter(is_equipped=False,is_market_listed=False,is_protected=False,blueprint__tradeable=True,blueprint__kind='weapon').first()
+                    spare=p.inventory.filter(is_equipped=False,is_market_listed=False,is_protected=False,blueprint__tradeable=True,blueprint__kind='weapon').exclude(blueprint_id__in=plan.item_ids).first()
                     if spare:
                         self.assertTrue(game.sell_item_from_npc(p,spare));actions['sell_loot']+=1;continue
                     habitats={key:loc.key for loc in reversed(LOCATIONS) if loc.accessible(p) for key in loc.monsters}
                     preview=hunt_preparation(p,{key:BESTIARY[key] for key in habitats})
                     choices=[key for key in habitats if preview['forecasts'][key]['needed']<=p.current_health]
+                    target=next((key for kind,key in plan.events if kind=='hunt'),target)
                     # Alternate repeatable contracts and hunts to fund all three builds.
                     need_funds=p.ore_balance<50 or (name=='mage' and not p.prepared_magic_id)
                     if not target and (step%4==0 or need_funds or preview['blocks'] or not choices):

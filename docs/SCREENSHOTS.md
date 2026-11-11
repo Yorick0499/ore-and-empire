@@ -93,3 +93,10 @@ Hashe i czas wykonania każdego pliku są w `screenshots/manifest.json`.
 ![Niewykończony](screenshots/rarity-ordinary.jpg)
 ![Mistrzowski](screenshots/rarity-masterwork.jpg)
 ![Nasycony magią](screenshots/rarity-enchanted.jpg)
+
+## Audyt nowego gracza — 11 listopada 2026
+
+Nowa postać Khorinis po zwykłym prologu i zakupie napoju za zarobiony odłamek. Bez nadanych statystyk i portfela; 84 widoki obu światów sprawdzone na 320/390/1440 px.
+
+![Itemshop na telefonie — rozwijana karta postaci](screenshots/itemshop-audit-390.png)
+![Itemshop na komputerze](screenshots/itemshop-audit-1440.png)

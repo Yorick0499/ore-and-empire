@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
-  "date": "2026-11-09",
-  "code_revision": "równoległe Khorinis / #34 i #113",
+  "date": "2026-11-11",
+  "code_revision": "audyt świeżej gry / #115",
   "migration": "0043_rownolegle_khorinis",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -218,6 +218,7 @@
     "docs/reports/gra-solo-buildy-petla-2026-11-08.json",
     "docs/reports/gra-solo-gui-2026-11-08.json",
     "docs/reports/gra-solo-sto-botow-2026-11-08.json",
+    "docs/reports/grywalnosc-2026-11-11.json",
     "docs/reports/khorinis-przed-polaczeniem-2026-11-09.json",
     "docs/reports/lupy-endgame-2026-11-06.json",
     "docs/reports/osobowosci-rynek-kampania-2026-11-09.json",

@@ -4,7 +4,7 @@
 {% block content %}
 {% include 'characters/profile.html' %}
 <section class="main-content guide-frame">
-<span class="eyebrow">Nauczyciel kolonii</span><h2>{{ location.name }}</h2>
+<span class="eyebrow">{% if is_khorinis %}Nauczyciel Khorinis{% else %}Nauczyciel kolonii{% endif %}</span><h2>{{ location.name }}</h2>
 <p class="desc">Ćwicz swoje umiejętności. Każdy punkt atrybutu kosztuje 1 punkt nauki i {{ profile.training_cost }} bryłek rudy.</p>
 <div class="lp-status-panel"><div class="lp-box"><span>Punkty nauki</span><strong>{{ profile.skill_points }}</strong></div><div class="lp-box"><span>Ruda</span><strong>{{ profile.ore_balance }}</strong></div></div>
 <div class="train-list">

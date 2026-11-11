@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "migration": "0043_rownolegle_khorinis",
-  "theme": "rownolegle-khorinis-8; starsze pliki mają własne daty",
+  "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
     {
@@ -347,6 +347,22 @@
       "captured_at_utc": "2026-11-09T21:35:34.280409+00:00",
       "fixture": "Osobna instalacja testowa: Bariera — Kolonia / Latarnia — Khorinis; Darin i Mira poziom 0, 6/12 botów",
       "theme": "rownolegle-khorinis-8"
+    },
+    {
+      "file": "itemshop-audit-390.png",
+      "bytes": 263204,
+      "sha256": "3b15d14d10fce10a4f61b8f32a0b6861149ba479f1a94d38091babbcb3a4387d",
+      "captured_at_utc": "2026-11-11T13:12:34.789379+00:00",
+      "fixture": "Izolowane Khorinis; nowa postać po rzeczywistym prologu, bez nadań; zarobiony zakup napoju",
+      "theme": "audyt-grywalnosci-6"
+    },
+    {
+      "file": "itemshop-audit-1440.png",
+      "bytes": 742569,
+      "sha256": "0542104a90d5f5b4056f701312f9f4fd5204ccf08e467b2c66b049d1dcc0cfbf",
+      "captured_at_utc": "2026-11-11T13:12:43.612496+00:00",
+      "fixture": "Izolowane Khorinis; nowa postać po rzeczywistym prologu, bez nadań; zarobiony zakup napoju",
+      "theme": "audyt-grywalnosci-6"
     }
   ]
 }

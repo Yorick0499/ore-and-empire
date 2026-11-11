@@ -390,3 +390,8 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .adventure-list .eyebrow { margin-bottom:8px; }
 @media(max-width:540px) { .rarity-card .quality-badge { gap:6px; font-size:13px; letter-spacing:0; } .adventure-list form { max-width:100%; } }
 @media(prefers-contrast:more) { .rarity-card::before { opacity:.8; } .rarity-card .quality-badge { background:#080a0c; color:#fff; } }
+
+/* Keep actions close to the top on phones, while preserving the full character card. */
+.profile-details summary { cursor:pointer; padding:14px 18px; color:var(--gold); line-height:1.6; }
+.profile-details summary span { display:block; font-size:14px; color:var(--muted); }
+@media(min-width:701px) { .profile-details summary { font-size:14px; } }
