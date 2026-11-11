@@ -1,4 +1,5 @@
 """Explicit local-world initialization/reset; administrator accounts survive a clean game."""
+from characters.bot_population import DEFAULT_BOTS_PER_WORLD, MAX_BOTS_PER_WORLD
 from pathlib import Path
 from django import forms
 from django.conf import settings
@@ -16,7 +17,7 @@ from .realms import camps
 
 class WorldSetupForm(forms.Form):
     name=forms.CharField(label='Nazwa świata / serwera',max_length=80)
-    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=100,initial=6)
+    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=MAX_BOTS_PER_WORLD,initial=DEFAULT_BOTS_PER_WORLD)
     username=UsernameField(label='Login administratora',max_length=150,validators=[UnicodeUsernameValidator()])
     password=forms.CharField(label='Hasło administratora',widget=forms.PasswordInput)
     def clean(self):
@@ -32,12 +33,12 @@ class WorldSettingsForm(forms.Form):
     bot_personality_cycles=forms.BooleanField(label="Dzienne sesje osobowości botów",required=False,initial=True)
     bot_simulated_purchases=forms.BooleanField(label="Symulowane zakupy odłamków botów",required=False,initial=True)
     name=forms.CharField(label='Nazwa świata / serwera',max_length=80)
-    bot_count=forms.IntegerField(label='Aktywne boty',min_value=0,max_value=100)
+    bot_count=forms.IntegerField(label='Aktywne boty',min_value=0,max_value=MAX_BOTS_PER_WORLD)
 
 
 class WorldResetForm(forms.Form):
     name=forms.CharField(label='Nazwa nowego świata / serwera',max_length=80)
-    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=100,initial=6)
+    bot_count=forms.IntegerField(label='Liczba botów',min_value=0,max_value=MAX_BOTS_PER_WORLD,initial=DEFAULT_BOTS_PER_WORLD)
     password=forms.CharField(label='Twoje obecne hasło administratora',widget=forms.PasswordInput)
     confirmation=forms.CharField(label='Przepisz obecną nazwę świata')
     expected_world=forms.IntegerField(widget=forms.HiddenInput)
@@ -75,7 +76,7 @@ def reset_world(actor,*,name,bot_count,password,confirmation,expected_world):
     if not world.is_current:raise ValidationError('Pełny reset instalacji uruchamiaj z panelu głównej Kolonii.')
     if not actor.is_active or not actor.is_superuser or not actor.check_password(password):raise PermissionDenied('Podaj poprawne hasło administratora.')
     if confirmation!=world.name or expected_world!=world.pk:raise ValidationError('Nazwa potwierdzenia lub wersja świata nie zgadza się. Odśwież formularz.')
-    if not name.strip() or len(name)>80 or type(bot_count)is not int or not 0<=bot_count<=100:raise ValidationError('Niepoprawna nazwa lub liczba botów.')
+    if not name.strip() or len(name)>80 or type(bot_count)is not int or not 0<=bot_count<=MAX_BOTS_PER_WORLD:raise ValidationError('Niepoprawna nazwa lub liczba botów.')
     if connection.vendor!='sqlite':raise ValidationError('Reset dostępny dla lokalnego SQLite; procedura PostgreSQL wymaga osobnego wdrożenia.')
     backup=create_backup(settings.DATABASES['default']['NAME'],settings.BASE_DIR/'backups')
     with transaction.atomic():

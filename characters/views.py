@@ -654,15 +654,21 @@ def tavern_view(request):
 @login_required
 def colony_life_view(request):
     from datetime import timedelta
+    from django.core.paginator import Paginator
     from django.utils import timezone
     from .community import activity_rows
     now = timezone.now()
-    residents = list(PlayerProfile.objects.filter(world=current_world(),is_bot=True, user__is_active=True).select_related('user','world').order_by('pk')[:100])
+    world=current_world()
+    people=PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).order_by('pk')
+    configured=set(people.values_list('pk',flat=True)[:world.bot_count])
+    page=Paginator(people.select_related('user','world'),30).get_page(request.GET.get('page'))
+    residents=list(page.object_list)
     from .bot_personalities import cycle_state
     for resident in residents:
         resident.session=cycle_state(resident,now)
-        resident.scheduler_active = bool(resident.session["online"] and resident.bot_last_tick and now-resident.bot_last_tick < timedelta(seconds=max(180,resident.session["cadence"]*2)))
-    return render(request, 'characters/colony_life.html', {'residents': residents, 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
+        resident.in_population=resident.pk in configured
+        resident.scheduler_active = bool(resident.in_population and resident.session["online"] and resident.bot_last_tick and now-resident.bot_last_tick < timedelta(seconds=max(180,resident.session["cadence"]*2)))
+    return render(request, 'characters/colony_life.html', {'residents': residents,'resident_page':page,'configured_count':len(configured), 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
 
 
 @login_required

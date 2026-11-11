@@ -4,7 +4,7 @@ Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii
 
 ## Co zawiera to wydanie
 
-Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–100 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.
+Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–300 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.
 
 W grze są 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Szczegółowe tabele są w [katalogu zawartości](../GAME_CONTENT.md), a pełna instrukcja w [przewodniku gracza](../GAME_GUIDE.md).
 
@@ -63,7 +63,7 @@ Bezpośrednie użycie interpretera z `.venv` nie wymaga zmiany polityki wykonywa
 
 1. Otwórz `http://127.0.0.1:8001/`. Pierwszy start wykonuje migracje i dodaje brakujące domyślne katalogi.
 2. Na świeżej lokalnej instalacji bez administratora przejdź do `/inicjalizacja/`.
-3. Podaj nazwę świata/serwera (1–80 znaków), liczbę botów 0–100 oraz własny login i hasło administratora.
+3. Podaj nazwę świata/serwera (1–80 znaków), liczbę botów 0–300 oraz własny login i hasło administratora.
 4. Po zatwierdzeniu inicjalizacja zostaje zamknięta. Hasło jest hashowane przez Django; nie ma wspólnego publicznego loginu i hasła.
 5. Zaloguj administratora przez `/konto/logowanie/`, a następnie otwórz `/zarzadca/`.
 6. Do zwykłej gry zarejestruj oddzielne konto przez `/konto/rejestracja/`.
@@ -115,7 +115,7 @@ Zmiana portu nie tworzy nowego świata, jeśli używasz tego samego katalogu i t
 |---|---|
 | `--port 8001` | Port lokalnego HTTP; domyślny port samej komendy to 8000 |
 | `--host 127.0.0.1` | Domyślne nasłuchiwanie wyłącznie na komputerze użytkownika |
-| `--bots 100` | Początkowa liczba kont botów, 0–100; skonfigurowany świat używa wartości z panelu |
+| `--bots 125` | Początkowa liczba kont botów, 0–300; skonfigurowany świat używa wartości z panelu |
 | `--interval 5` | Parametr tempa harmonogramu, nie gwarancja tury każdego bota co pięć sekund |
 | `--history-days 30` | Retencja szczegółowych decyzji botów, pełne dni UTC; agregaty pozostają |
 | `--setup-admin` | Jawna lokalna alternatywa tworząca administratora i prywatny plik danych dostępu |
@@ -169,7 +169,7 @@ W „Ustaw statystyki” dostępne są poziom, doświadczenie, PN, atrybuty, zas
 
 ### Świat i boty bez resetu
 
-Przejdź do `/zarzadca/swiat/reset/` i użyj sekcji **Ustawienia bez resetu**. Zmienisz nazwę świata, populację 0–100, dzienne sesje osobowości i symulowane zakupy odłamków. Zwiększenie populacji tworzy brakujące konta, zmniejszenie wstrzymuje nadmiarowe bez kasowania dobytku. Zmiana odczytywana jest przez launcher, bez potrzeby resetu.
+Przejdź do `/zarzadca/swiat/reset/` i użyj sekcji **Ustawienia bez resetu**. Zmienisz nazwę świata, populację 0–300, dzienne sesje osobowości i symulowane zakupy odłamków. Zwiększenie populacji tworzy brakujące konta, zmniejszenie wstrzymuje nadmiarowe bez kasowania dobytku. Zmiana odczytywana jest przez launcher, bez potrzeby resetu.
 
 Wyłączenie sesji usuwa przerwy według pory dnia, lecz pozostawia minimalny odstęp działań. Wyłączenie symulowanych zakupów zatrzymuje dodatkowe zasilenia premium; zdobywanie odłamków przez wyprawy nadal działa. [Pełna tabela osobowości i limitów](../BOT_PERSONALITIES.md).
 
@@ -199,7 +199,7 @@ Replay odtwarza wybór z zapisanej obserwacji, bez ponownej akcji ani ponownego 
 Ta procedura **usuwa postęp** i nie jest potrzebna do restartu procesu. W bieżącej wersji panelowy pełny reset dotyczy lokalnego SQLite; dla PostgreSQL jest zablokowany.
 
 1. Wejdź aktywnym superuserem do `/zarzadca/swiat/reset/`.
-2. W sekcji „Pełny reset gry” podaj nazwę nowego świata oraz liczbę botów 0–100.
+2. W sekcji „Pełny reset gry” podaj nazwę nowego świata oraz liczbę botów 0–300.
 3. Podaj obecne hasło administratora, przepisz obecną nazwę świata i zaznacz zgodę.
 4. Zatwierdź. Najpierw tworzona jest prywatna spójna kopia.
 5. Po udanym wyczyszczeniu i inicjalizacji zaloguj się ponownie.

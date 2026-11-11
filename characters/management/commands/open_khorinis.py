@@ -1,3 +1,4 @@
+from characters.bot_population import DEFAULT_BOTS_PER_WORLD, MAX_BOTS_PER_WORLD
 from io import StringIO
 from django.core.management import BaseCommand,CommandError,call_command
 from django.db import transaction
@@ -8,10 +9,10 @@ from characters.khorinis import CAMPS
 class Command(BaseCommand):
     help='Otwórz równoległe Khorinis bez zmieniania Kolonii i dorobku. Ponowienie niczego nie resetuje.'
     def add_arguments(self,p):
-        p.add_argument('--bots',type=int,default=24);p.add_argument('--name',default='Latarnia — Khorinis')
+        p.add_argument('--bots',type=int,default=DEFAULT_BOTS_PER_WORLD);p.add_argument('--name',default='Latarnia — Khorinis')
     @transaction.atomic
     def handle(self,*args,**opts):
-        if not 0<=opts['bots']<=100 or not opts['name'].strip() or len(opts['name'])>80:raise CommandError('Niepoprawna nazwa lub liczba botów.')
+        if not 0<=opts['bots']<=MAX_BOTS_PER_WORLD or not opts['name'].strip() or len(opts['name'])>80:raise CommandError('Niepoprawna nazwa lub liczba botów.')
         primary=World.objects.select_for_update().filter(is_current=True,configured=True,status='active').first()
         if not primary:raise CommandError('Najpierw skonfiguruj Kolonię.')
         existing=World.objects.filter(is_open=True,universe='GOTHIC_II').first()

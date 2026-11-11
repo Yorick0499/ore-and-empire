@@ -1,0 +1,371 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "issue": 118,
+  "baseline_revision": "329e430b2ba48a3ce31f5baa438eece9f88aad2b",
+  "measurements": {
+    "baseline-100": {
+      "schema": 2,
+      "isolated_database": true,
+      "engine": "sqlite",
+      "population": 100,
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "source_sha256": {
+        "characters/bot_scheduler.py": "64f6449fc23170ba2bee7a7c1a7cd3d61b049c524cf4fc0c01cb7adbb79876b0",
+        "characters/bots.py": "0d71c4d1923bfb9ace43434df2ec985764cc8ec2858f2af974b49c8aef231689",
+        "characters/models.py": "3d79ca07f16d0d504e77788f430021e348f1d1966d3c6fa4a9e6c23c2e9faa9c"
+      },
+      "realm_populations": [
+        50,
+        50
+      ],
+      "mode": "stress",
+      "mature_fixture": false,
+      "duration_seconds": 120.03,
+      "http_requests": 798,
+      "http_errors": [],
+      "http_p50_ms": 45.44,
+      "http_p95_ms": 91.2,
+      "routes_p95_ms": {
+        "/": 95.37,
+        "/zadania/": 81.1,
+        "/sklep-odlamkow/": 98.68,
+        "/zycie-kolonii/": 72.32
+      },
+      "rss_peak_mib": 68.1,
+      "rss_start_mib": 60.7,
+      "rss_end_mib": 68.1,
+      "cpu_percent_one_core": 37.53,
+      "initial_tick_p50_ms": 31.42,
+      "initial_tick_p95_ms": 35.25,
+      "initial_queries_median": 63.0,
+      "initial_actions": {
+        "stock": 68,
+        "mine": 32,
+        "equip": 68,
+        "wait": 32
+      },
+      "residents_ticked": 100,
+      "ticked_per_realm": [
+        50,
+        50
+      ],
+      "failed_decisions": 0,
+      "limits": [
+        "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+        "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+        "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+        "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+        "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+      ]
+    },
+    "optimized-100": {
+      "schema": 2,
+      "isolated_database": true,
+      "engine": "sqlite",
+      "population": 100,
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "source_sha256": {
+        "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+        "characters/bots.py": "9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1",
+        "characters/models.py": "a56f0dc6749812be9c23351adaa3c1befe8648ec68cf22aff37ca59a420c33aa"
+      },
+      "realm_populations": [
+        50,
+        50
+      ],
+      "mode": "stress",
+      "mature_fixture": false,
+      "duration_seconds": 120.1,
+      "http_requests": 813,
+      "http_errors": [],
+      "http_p50_ms": 44.09,
+      "http_p95_ms": 82.21,
+      "routes_p95_ms": {
+        "/": 95.68,
+        "/zadania/": 67.24,
+        "/sklep-odlamkow/": 80.41,
+        "/zycie-kolonii/": 79.24
+      },
+      "rss_peak_mib": 69.29,
+      "rss_start_mib": 60.62,
+      "rss_end_mib": 69.29,
+      "cpu_percent_one_core": 37.01,
+      "initial_tick_p50_ms": 31.71,
+      "initial_tick_p95_ms": 35.27,
+      "initial_queries_median": 62.0,
+      "initial_actions": {
+        "stock": 68,
+        "mine": 32,
+        "equip": 68,
+        "wait": 32
+      },
+      "residents_ticked": 100,
+      "ticked_per_realm": [
+        50,
+        50
+      ],
+      "failed_decisions": 0,
+      "limits": [
+        "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+        "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+        "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+        "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+        "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+      ]
+    },
+    "optimized-200": {
+      "schema": 2,
+      "isolated_database": true,
+      "engine": "sqlite",
+      "population": 200,
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "source_sha256": {
+        "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+        "characters/bots.py": "9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1",
+        "characters/models.py": "a56f0dc6749812be9c23351adaa3c1befe8648ec68cf22aff37ca59a420c33aa"
+      },
+      "realm_populations": [
+        100,
+        100
+      ],
+      "mode": "stress",
+      "mature_fixture": false,
+      "duration_seconds": 120.13,
+      "http_requests": 810,
+      "http_errors": [],
+      "http_p50_ms": 43.88,
+      "http_p95_ms": 84.69,
+      "routes_p95_ms": {
+        "/": 93.35,
+        "/zadania/": 83.91,
+        "/sklep-odlamkow/": 82.63,
+        "/zycie-kolonii/": 75.54
+      },
+      "rss_peak_mib": 69.12,
+      "rss_start_mib": 61.06,
+      "rss_end_mib": 69.12,
+      "cpu_percent_one_core": 39.21,
+      "initial_tick_p50_ms": 31.4,
+      "initial_tick_p95_ms": 36.2,
+      "initial_queries_median": 62.0,
+      "initial_actions": {
+        "stock": 134,
+        "mine": 66,
+        "equip": 134,
+        "wait": 66
+      },
+      "residents_ticked": 200,
+      "ticked_per_realm": [
+        100,
+        100
+      ],
+      "failed_decisions": 0,
+      "limits": [
+        "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+        "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+        "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+        "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+        "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+      ]
+    },
+    "optimized-300-final": {
+      "schema": 2,
+      "isolated_database": true,
+      "engine": "sqlite",
+      "population": 300,
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "source_sha256": {
+        "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+        "characters/bots.py": "9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1",
+        "characters/models.py": "b4a3dc99ed1588b9f88b824378f45d01ef559999704019cae9da11814264d0f5"
+      },
+      "realm_populations": [
+        150,
+        150
+      ],
+      "mode": "stress",
+      "mature_fixture": false,
+      "duration_seconds": 120.13,
+      "http_requests": 792,
+      "http_errors": [],
+      "started_at": "2026-11-11T14:54:40.443439+00:00",
+      "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+      "http_p50_ms": 45.21,
+      "http_p95_ms": 91.89,
+      "routes_p95_ms": {
+        "/": 97.36,
+        "/zadania/": 83.55,
+        "/sklep-odlamkow/": 90.16,
+        "/zycie-kolonii/": 89.59
+      },
+      "rss_peak_mib": 70.56,
+      "rss_start_mib": 61.43,
+      "rss_end_mib": 70.56,
+      "cpu_percent_one_core": 38.51,
+      "initial_tick_p50_ms": 31.83,
+      "initial_tick_p95_ms": 36.14,
+      "initial_queries_median": 62.0,
+      "initial_actions": {
+        "stock": 200,
+        "mine": 100,
+        "equip": 200,
+        "wait": 100
+      },
+      "residents_ticked": 300,
+      "ticked_per_realm": [
+        150,
+        150
+      ],
+      "failed_decisions": 0,
+      "last_tick_age_p95_seconds": 103.58,
+      "oldest_last_tick_seconds": 117.5,
+      "limits": [
+        "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+        "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+        "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+        "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+        "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+      ]
+    },
+    "mature-300-extended": {
+      "schema": 2,
+      "isolated_database": true,
+      "engine": "sqlite",
+      "population": 300,
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "source_sha256": {
+        "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+        "characters/bots.py": "9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1",
+        "characters/models.py": "b4a3dc99ed1588b9f88b824378f45d01ef559999704019cae9da11814264d0f5"
+      },
+      "realm_populations": [
+        150,
+        150
+      ],
+      "mode": "stress",
+      "mature_fixture": true,
+      "duration_seconds": 240.16,
+      "http_requests": 1493,
+      "http_errors": [],
+      "started_at": "2026-11-11T15:01:57.380479+00:00",
+      "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+      "http_p50_ms": 46.11,
+      "http_p95_ms": 128.61,
+      "routes_p95_ms": {
+        "/": 133.27,
+        "/zadania/": 125.53,
+        "/sklep-odlamkow/": 126.38,
+        "/zycie-kolonii/": 125.68
+      },
+      "rss_peak_mib": 65.21,
+      "rss_start_mib": 62.37,
+      "rss_end_mib": 65.21,
+      "cpu_percent_one_core": 39.72,
+      "initial_tick_p50_ms": 44.66,
+      "initial_tick_p95_ms": 48.34,
+      "initial_queries_median": 89.5,
+      "initial_actions": {
+        "patrol": 300,
+        "equip": 300
+      },
+      "residents_ticked": 300,
+      "ticked_per_realm": [
+        150,
+        150
+      ],
+      "failed_decisions": 0,
+      "last_tick_age_p95_seconds": 175.24,
+      "oldest_last_tick_seconds": 217.0,
+      "limits": [
+        "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+        "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+        "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+        "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+        "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+      ],
+      "validation": {
+        "http_ok": true,
+        "actions_ok": true,
+        "all_residents_ticked": true
+      }
+    },
+    "sessions-250": {
+      "schema": 2,
+      "isolated_database": true,
+      "engine": "sqlite",
+      "population": 250,
+      "python": "3.12.3",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "source_sha256": {
+        "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+        "characters/bots.py": "9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1",
+        "characters/models.py": "b4a3dc99ed1588b9f88b824378f45d01ef559999704019cae9da11814264d0f5"
+      },
+      "realm_populations": [
+        125,
+        125
+      ],
+      "mode": "sessions",
+      "mature_fixture": false,
+      "duration_seconds": 60.08,
+      "http_requests": 403,
+      "http_errors": [],
+      "started_at": "2026-11-11T15:06:18.807687+00:00",
+      "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+      "http_p50_ms": 45.99,
+      "http_p95_ms": 74.5,
+      "routes_p95_ms": {
+        "/": 59.49,
+        "/zadania/": 75.73,
+        "/sklep-odlamkow/": 75.7,
+        "/zycie-kolonii/": 63.86
+      },
+      "rss_peak_mib": 67.39,
+      "rss_start_mib": 58.84,
+      "rss_end_mib": 67.39,
+      "cpu_percent_one_core": 35.62,
+      "initial_tick_p50_ms": 31.68,
+      "initial_tick_p95_ms": 35.56,
+      "initial_queries_median": 62.0,
+      "initial_actions": {
+        "stock": 168,
+        "mine": 82,
+        "equip": 168,
+        "wait": 82
+      },
+      "residents_ticked": 52,
+      "ticked_per_realm": [
+        28,
+        24
+      ],
+      "failed_decisions": 0,
+      "last_tick_age_p95_seconds": 68.2,
+      "oldest_last_tick_seconds": 68.75,
+      "limits": [
+        "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+        "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+        "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+        "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+        "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+      ],
+      "validation": {
+        "http_ok": true,
+        "actions_ok": true,
+        "all_residents_ticked": false
+      }
+    }
+  },
+  "notes": [
+    "Default 125 bots per newly configured realm; 250 across both open realms. Existing settings remain unchanged.",
+    "The 100/200 measurements precede the display-name suffix correction for IDs above 200; scheduler and bot source hashes match the final measurements.",
+    "The first 120-second mature trial did not give every resident a turn. The validation failed before saving its metrics; only the extended 240-second report is included.",
+    "Natural sessions intentionally leave some accounts offline; 52/250 residents acted during the 60-second observation.",
+    "No live database migrated, reset or populated. No proof of sustained production or multi-client PostgreSQL performance."
+  ]
+}

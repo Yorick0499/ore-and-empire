@@ -16,7 +16,11 @@ class BotScheduler:
         ids=set(ids)
         retained=[pk for pk in self.queue if pk in ids]
         self.queue=deque(retained+sorted(ids-set(retained)))
-        self.rest_until={pk:deadline for pk,deadline in self.rest_until.items() if pk in ids}
+        now=self.clock()
+        # A not-yet-due resident disappears briefly from the eligible population.
+        # Keep its unexpired rest deadline across these refreshes, without retaining
+        # expired entries for removed accounts indefinitely.
+        self.rest_until={pk:deadline for pk,deadline in self.rest_until.items() if pk in ids or deadline>now}
 
     @property
     def gap(self):
@@ -35,7 +39,7 @@ class BotScheduler:
             pk=self.queue.popleft();self.queue.append(pk)
             if now>=self.rest_until.get(pk,0):selected=pk;break
         if selected is None:
-            self.next_tick=min(self.rest_until.values());return None
+            self.next_tick=min(self.rest_until[pk] for pk in self.queue);return None
         start=self.clock()
         result=tick(selected)
         elapsed=max(0,self.clock()-start)

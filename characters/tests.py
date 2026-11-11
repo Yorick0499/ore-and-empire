@@ -335,7 +335,7 @@ class ColonyTests(TestCase):
         self.assertFalse(user.playerprofile.is_bot)
 
     def test_bot_command_bounds(self):
-        for options in [{"create": 101}, {"limit": 0}, {"create": -1}]:
+        for options in [{"create": 301}, {"limit": 0}, {"create": -1}]:
             with self.assertRaises(CommandError):
                 call_command("run_bots", stdout=StringIO(), **options)
 
@@ -612,7 +612,7 @@ class LocalWorldTests(TestCase):
 
     def test_invalid_local_server_options(self):
         for options in [
-            {"bots": 101},
+            {"bots": 301},
             {"bots": -1},
             {"port": 0},
             {"interval": 0},

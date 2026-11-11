@@ -1,6 +1,8 @@
+from characters.bot_population import MAX_BOTS_PER_WORLD
 from characters.world_clock import polish_day
 import time
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management import call_command
 from django.contrib.auth.models import User
 from django.db import transaction
 from characters.models import PlayerProfile
@@ -25,10 +27,10 @@ class Command(BaseCommand):
             "--create",
             type=int,
             default=0,
-            help="Create this many missing colony-bot-N accounts (max 100).",
+            help="Create this many missing colony-bot-N accounts (max 300).",
         )
         parser.add_argument(
-            "--limit", type=int, default=20, help="Maximum bots to tick (1-100)."
+            "--limit", type=int, default=None, help="Maximum bots per bounded round (1-300; default 20); not for --loop."
         )
 
     def handle(self,*args,**options):
@@ -41,11 +43,15 @@ class Command(BaseCommand):
     def run_world(self, *args, **options):
         from characters.worlds import current_world
         world=current_world()
-        if not 0 <= options["create"] <= 100 or not 1 <= options["limit"] <= 100:
-            raise CommandError("--create must be 0-100 and --limit 1-100")
+        explicit_limit=options['limit'] is not None
+        if not explicit_limit:options['limit']=20
+        if not 0 <= options["create"] <= MAX_BOTS_PER_WORLD or not 1 <= options["limit"] <= MAX_BOTS_PER_WORLD:
+            raise CommandError("--create must be 0-300 and --limit 1-300")
         if not 1 <= options["interval"] <= 3600 or not 1 <= options["rounds"] <= 100000:
             raise CommandError("--interval must be 1-3600; --rounds must be 1-100000")
         if options["force_active"] and options["loop"]:raise CommandError("--force-active nie działa z --loop")
+        if options['loop'] and (explicit_limit or not world.is_current or not world.configured or options['create_only']):
+            raise CommandError('--loop korzysta ze wspólnego run_worker skonfigurowanej instalacji; nie łącz z --limit, --create-only ani wyborem pobocznego świata.')
         with transaction.atomic():
             for number in range(1, options["create"] + 1):
                 username = ("khorinis-bot-" if world.universe=="GOTHIC_II" else "colony-bot-")+str(number)
@@ -62,11 +68,22 @@ class Command(BaseCommand):
                         bot_role=("hunter", "trader", "miner")[(number - 1) % 3],
                     )
         from characters.bot_personalities import assignment
-        for p in PlayerProfile.objects.filter(is_bot=True,bot_personality=''):
-            p.bot_personality,p.bot_session_shift=assignment(p.pk,p.world_id)
-            p.save(update_fields=['bot_personality','bot_session_shift'])
+        from characters.bot_population import PERSONALITY_BATCH_SIZE
+        # Initialization metadata only. Do not read every stat or change another realm.
+        people=PlayerProfile.objects.filter(world=world,is_bot=True,bot_personality='').only('pk','world_id','bot_personality','bot_session_shift')
+        after=0
+        while True:
+            batch=list(people.filter(pk__gt=after).order_by('pk')[:PERSONALITY_BATCH_SIZE])
+            if not batch:break
+            for p in batch:p.bot_personality,p.bot_session_shift=assignment(p.pk,p.world_id)
+            PlayerProfile.objects.bulk_update(batch,['bot_personality','bot_session_shift'],batch_size=PERSONALITY_BATCH_SIZE)
+            after=batch[-1].pk
         if options["create_only"]:
             self.stdout.write("Bot population initialized without taking actions.")
+            return
+        if options['loop']:
+            self.stdout.write('--loop: wspólna adaptacyjna kolejka run_worker dla otwartych światów.')
+            call_command('run_worker',interval=options['interval'],stdout=self.stdout,stderr=self.stderr)
             return
         from characters.scheduler_lease import SchedulerGuard,LeaseLost
         from characters.worlds import current_world

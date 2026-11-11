@@ -13,13 +13,13 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 @media print{@page{margin:16mm}html{scroll-behavior:auto}body{background:#fff;color:#191919;font-size:11pt;line-height:1.6}.topbar,.rail,.quick-grid,.copy-code,.bar-actions,.status,.download,dialog,.no-results{display:none!important}.layout{display:block;max-width:none;padding:0;margin:0}.hero{min-height:0;background:none;color:#111;box-shadow:none;border-color:#999;padding:20px;margin-bottom:20px}.hero h1,.hero .lead,.hero .eyebrow,.hero .meta,.hero .hero-foot{color:#111;text-shadow:none}.tag{color:#111;background:none;border-color:#aaa}.chapter{background:none;box-shadow:none;border:0;border-top:1px solid #999;padding:15px 0;margin:0;break-before:page}.chapter h2,.chapter h3,.chapter h4,.chapter h5,.chapter h6{color:#222;text-shadow:none;break-after:avoid}.chapter p,.chapter li{font-size:11pt}.chapter-meta,.section-note,.history-note{color:#444}.table-wrap{overflow:visible;border-color:#bbb}table{font-size:9pt}th,td{border-color:#bbb;background:none!important;min-width:0}tr{break-inside:avoid}a{color:#333}pre,code{background:#f4f4f4;color:#111;border-color:#bbb;font-size:9pt}pre{padding:12px;white-space:pre-wrap;max-height:none!important}pre code{color:#111}.gallery{grid-template-columns:1fr 1fr}.gallery figure{background:none;break-inside:avoid}.gallery img{max-height:180px;object-fit:contain}.gallery figcaption,.gallery strong{color:#222}.report{background:none;break-inside:auto}.report summary{color:#111}.history-note{background:none;border-color:#bbb}.footer{color:#444;border-color:#aaa}.chapter[hidden]{display:block!important}}
 </style></head>
 <body><a class="skip" href="#main">Przejdź do treści dokumentacji</a><header class="topbar"><a class="brand" href="#top">Ore &amp; Empire<small>Publiczna księga projektu</small></a><div class="bar-actions"><span class="edition">GOTHIC I · EDYCJA PIERWSZA</span><a href="https://github.com/Yorick0499/ore-and-empire" target="_blank" rel="noopener noreferrer">Repozytorium ↗</a><button type="button" id="menu-toggle" class="menu-button" aria-expanded="false" aria-controls="book-navigation">Spis treści</button><button type="button" id="print-book">Drukuj / PDF</button></div></header>
-<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 46.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, progi fabuły i dwa światy</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li></ol></details><details open><summary>Obozy i życie kolonii</summary><ol><li><a href="#doc-camps">Rangi i awanse obozowe</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">100 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-first-playable">Droga do pierwszej grywalnej edycji</a></li><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 48 ekranów</a></li><li><a href="#reports">Publiczne raporty (30)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-11<br>Kod gry: fundament przygotowania połączenia / #30 i #35<br>Migracja: 0044<br>Odczyt offline · bez usług zewnętrznych</p></aside>
-<main id="main"><section class="hero" id="top"><span class="eyebrow">Archiwum Górniczej Doliny</span><h1>Kronika projektu.<br>Wszystko o Kolonii.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">0–100 botów</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-11 · kod fundament przygotowania połączenia / #30 i #35 · migracja 0044 · fanowska adaptacja Gothic</p></section>
+<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 46.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, progi fabuły i dwa światy</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li></ol></details><details open><summary>Obozy i życie kolonii</summary><ol><li><a href="#doc-camps">Rangi i awanse obozowe</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-first-playable">Droga do pierwszej grywalnej edycji</a></li><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 48 ekranów</a></li><li><a href="#reports">Publiczne raporty (31)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-11<br>Kod gry: populacja 250 botów / #118<br>Migracja: 0045<br>Odczyt offline · bez usług zewnętrznych</p></aside>
+<main id="main"><section class="hero" id="top"><span class="eyebrow">Archiwum Górniczej Doliny</span><h1>Kronika projektu.<br>Wszystko o Kolonii.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">0–100 botów</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-11 · kod populacja 250 botów / #118 · migracja 0045 · fanowska adaptacja Gothic</p></section>
 <div class="quick-grid"><a href="#doc-operator-guide--wymagania-i-instalacja-lokalna"><b>Uruchom grę</b><span>Instalacja, pierwsze konto i zapis świata</span></a><a href="#doc-operator-guide--zatrzymanie-i-restart-bez-kasowania-swiata"><b>Wróć do Kolonii</b><span>Bezpieczny restart bez utraty postępu</span></a><a href="#doc-operator-guide--panel-zarzadcy-krok-po-kroku"><b>Zarządzaj światem</b><span>Przedmioty, rzadkości, boty i administrator</span></a></div>
-<p class="book-intro">Dokumenty źródłowe: 43. Dalej: pełne zależności i komendy, 48 zrzutów oraz 30 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
+<p class="book-intro">Dokumenty źródłowe: 43. Dalej: pełne zależności i komendy, 48 zrzutów oraz 31 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
 <p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan funkcji: 9 listopada 2026, etap równoległego Khorinis, migracja 0043. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
 <h3 id="doc-operator-guide--co-zawiera-to-wydanie">Co zawiera to wydanie</h3>
-<p>Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–100 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.</p>
+<p>Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–300 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.</p>
 <p>W grze są 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Szczegółowe tabele są w <a href="#doc-game-content">katalogu zawartości</a>, a pełna instrukcja w <a href="#doc-game-guide">przewodniku gracza</a>.</p>
 <p>Nie ma realnych płatności ani gotowego transferu do Gothic II: Noc Kruka. Dwa równoległe serwery już działają. Jarkendar, smoki i połączenie po obozowym Śniącym pozostają dalszym etapem. <a href="#doc-khorinis">Pierwsza paczka Khorinis i instrukcja otwarcia</a>. Projekt jest fanowski; grafiki i font mają osobno wskazane źródła i prawa.</p>
 <h3 id="doc-operator-guide--stack-i-architektura">Stack i architektura</h3>
@@ -102,7 +102,7 @@ py -3.12 -m venv .venv
 <ol>
 <li>Otwórz <code>http://127.0.0.1:8001/</code>. Pierwszy start wykonuje migracje i dodaje brakujące domyślne katalogi.</li>
 <li>Na świeżej lokalnej instalacji bez administratora przejdź do <code>/inicjalizacja/</code>.</li>
-<li>Podaj nazwę świata/serwera (1–80 znaków), liczbę botów 0–100 oraz własny login i hasło administratora.</li>
+<li>Podaj nazwę świata/serwera (1–80 znaków), liczbę botów 0–300 oraz własny login i hasło administratora.</li>
 <li>Po zatwierdzeniu inicjalizacja zostaje zamknięta. Hasło jest hashowane przez Django; nie ma wspólnego publicznego loginu i hasła.</li>
 <li>Zaloguj administratora przez <code>/konto/logowanie/</code>, a następnie otwórz <code>/zarzadca/</code>.</li>
 <li>Do zwykłej gry zarejestruj oddzielne konto przez <code>/konto/rejestracja/</code>.</li>
@@ -149,8 +149,8 @@ python play.py --port 8001
 <td>Domyślne nasłuchiwanie wyłącznie na komputerze użytkownika</td>
 </tr>
 <tr>
-<td><code>--bots 100</code></td>
-<td>Początkowa liczba kont botów, 0–100; skonfigurowany świat używa wartości z panelu</td>
+<td><code>--bots 125</code></td>
+<td>Początkowa liczba kont botów, 0–300; skonfigurowany świat używa wartości z panelu</td>
 </tr>
 <tr>
 <td><code>--interval 5</code></td>
@@ -212,7 +212,7 @@ python play.py --port 8001
 <p>Odłamki: podaj 1–10 000 i zatwierdź. Księga rozróżnia nadanie administratora od zdobycia waluty w grze i symulowanego zakupu bota.</p>
 <p>W „Ustaw statystyki” dostępne są poziom, doświadczenie, PN, atrybuty, zasoby, ruda, obóz, kod rangi, ochrony i umiejętności. Poziom i doświadczenie są niezależnymi polami; ustawiaj spójne wartości. Aktualne zasoby nie mogą przekraczać maksimów, a kod rangi musi pasować do obozu. <a href="#doc-camps">Drabinka i kody rang</a>.</p>
 <h4 id="doc-operator-guide--swiat-i-boty-bez-resetu">Świat i boty bez resetu</h4>
-<p>Przejdź do <code>/zarzadca/swiat/reset/</code> i użyj sekcji <strong>Ustawienia bez resetu</strong>. Zmienisz nazwę świata, populację 0–100, dzienne sesje osobowości i symulowane zakupy odłamków. Zwiększenie populacji tworzy brakujące konta, zmniejszenie wstrzymuje nadmiarowe bez kasowania dobytku. Zmiana odczytywana jest przez launcher, bez potrzeby resetu.</p>
+<p>Przejdź do <code>/zarzadca/swiat/reset/</code> i użyj sekcji <strong>Ustawienia bez resetu</strong>. Zmienisz nazwę świata, populację 0–300, dzienne sesje osobowości i symulowane zakupy odłamków. Zwiększenie populacji tworzy brakujące konta, zmniejszenie wstrzymuje nadmiarowe bez kasowania dobytku. Zmiana odczytywana jest przez launcher, bez potrzeby resetu.</p>
 <p>Wyłączenie sesji usuwa przerwy według pory dnia, lecz pozostawia minimalny odstęp działań. Wyłączenie symulowanych zakupów zatrzymuje dodatkowe zasilenia premium; zdobywanie odłamków przez wyprawy nadal działa. <a href="#doc-bot-personalities">Pełna tabela osobowości i limitów</a>.</p>
 <h4 id="doc-operator-guide--pena-administracja-trescia">Pełna administracja treścią</h4>
 <p><code>/admin/</code> umożliwia zarządzanie modelami udostępnionymi w Django admin: kontami, wydarzeniami, zleceniami, ofertami sklepu i inną treścią. Część rejestrów jest tylko do odczytu. Zmiana szablonu przedmiotu może wpłynąć na wszystkie jego egzemplarze; korzystaj z nadania egzemplarza, gdy chcesz podarować rzecz jednej osobie.</p>
@@ -265,7 +265,7 @@ python play.py --port 8001
 <p>Ta procedura <strong>usuwa postęp</strong> i nie jest potrzebna do restartu procesu. W bieżącej wersji panelowy pełny reset dotyczy lokalnego SQLite; dla PostgreSQL jest zablokowany.</p>
 <ol>
 <li>Wejdź aktywnym superuserem do <code>/zarzadca/swiat/reset/</code>.</li>
-<li>W sekcji „Pełny reset gry” podaj nazwę nowego świata oraz liczbę botów 0–100.</li>
+<li>W sekcji „Pełny reset gry” podaj nazwę nowego świata oraz liczbę botów 0–300.</li>
 <li>Podaj obecne hasło administratora, przepisz obecną nazwę świata i zaznacz zgodę.</li>
 <li>Zatwierdź. Najpierw tworzona jest prywatna spójna kopia.</li>
 <li>Po udanym wyczyszczeniu i inicjalizacji zaloguj się ponownie.</li>
@@ -398,7 +398,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 python play.py --bots 6 --port 8001
 </code></pre>
-<p>Otwórz <a href="http://127.0.0.1:8001/" target="_blank" rel="noopener noreferrer">grę lokalną</a>. Nowa instalacja udostępnia <code>/inicjalizacja/</code>: wybierz nazwę serwera, 0–100 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; <code>--bots</code> służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.</p>
+<p>Otwórz <a href="http://127.0.0.1:8001/" target="_blank" rel="noopener noreferrer">grę lokalną</a>. Nowa instalacja udostępnia <code>/inicjalizacja/</code>: wybierz nazwę serwera, 0–300 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; <code>--bots</code> służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.</p>
 <p>Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Opcjonalny profil produkcyjny, PostgreSQL i procedury wdrożenia są w <a href="#doc-production">dokumentacji operatora</a>.</p>
 <p>Nowość: <strong>pięć postaci na konto</strong>, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. <a href="#doc-characters-and-worlds">Zasady oraz plan Kolonia + Khorinis</a>. <strong>Khorinis jest już grywalne przed połączeniem</strong>: 29 definicji fabuły, trzy frakcje i własna pętla. <a href="#doc-khorinis">Zakres paczki i otwarcie serwera</a>. Jarkendar pozostaje zamknięty do przyszłego połączenia po obozowym Śniącym.</p>
 <h3 id="doc-readme--co-mozesz-przejsc">Co możesz przejść</h3>
@@ -682,12 +682,12 @@ python manage.py prepare_convergence --resume UUID_OPERACJI --operator LOGIN_ADM
 <h3 id="doc-khorinis--jarkendar-i-poaczenie">Jarkendar i połączenie</h3>
 <p><strong>Jarkendar nie jest dostępny przed połączeniem, nawet przy dużym saldzie odłamków.</strong> Ta paczka nie dodaje portalu, celów Jarkendaru, Kruka ani smoków. Po przyszłym obozowym zwycięstwie nad Śniącym i bezpiecznym połączeniu (#111/#30) otworzy się dalszy etap; wejście do Jarkendaru będzie dodatkowo wymagało uprawnienia premium <strong>konta</strong> (#33). Obecne odłamki i osobowość „Gracz itemshopu” nie są takim uprawnieniem.</p>
 <h3 id="doc-khorinis--uruchomienie-i-zarzadzanie">Uruchomienie i zarządzanie</h3>
-<p>Po migracji i konfiguracji Kolonii administrator może otworzyć wyspę przyciskiem <strong>Otwórz Khorinis</strong> w panelu ustawień świata. Domyślnie powstają 24 boty. Alternatywnie, przy zatrzymanej grze:</p>
+<p>Po migracji i konfiguracji Kolonii administrator może otworzyć wyspę przyciskiem <strong>Otwórz Khorinis</strong> w panelu ustawień świata. Domyślnie powstaje 125 botów; razem z domyślnymi 125 w Kolonii daje to 250 mieszkańców dwóch serwerów. Alternatywnie, przy zatrzymanej grze:</p>
 <pre><code class="language-bash">python manage.py migrate
-python manage.py open_khorinis --bots 24 --name 'Latarnia — Khorinis'
+python manage.py open_khorinis --bots 125 --name 'Latarnia — Khorinis'
 python play.py --port 8001
 </code></pre>
-<p>Ponowienie <code>open_khorinis</code> nie resetuje ani nie nadpisuje istniejącej populacji, nazwy i dorobku. Później wybierz serwer w panelu i zapisz nazwę/liczbę botów (0–100 na serwer). Odczyt panelu nie tworzy administratorowi dodatkowej postaci. Pełny reset całej instalacji jest dostępny z panelu głównej Kolonii i obejmuje <strong>oba serwery</strong>; zachowuje konta administratorów i tworzy prywatny backup.</p>
+<p>Ponowienie <code>open_khorinis</code> nie resetuje ani nie nadpisuje istniejącej populacji, nazwy i dorobku. Później wybierz serwer w panelu i zapisz nazwę/liczbę botów (0–300 na serwer). Odczyt panelu nie tworzy administratorowi dodatkowej postaci. Pełny reset całej instalacji jest dostępny z panelu głównej Kolonii i obejmuje <strong>oba serwery</strong>; zachowuje konta administratorów i tworzy prywatny backup.</p>
 <p>Lokalny launcher oraz produkcyjny worker mają <strong>jedną wspólną adaptacyjną kolejkę</strong>, z oddzielną dzierżawą dla każdego serwera. Dodanie drugiego świata nie uruchamia drugiej równoległej fali akcji. Cel pacingu pozostaje około 20% czasu kolejki, maksymalnie pięć akcji/s; to nie twarda gwarancja CPU. Sesje i kadencje osobowości nadal obowiązują. Healthcheck wymaga dostępnego schedulera dla każdego otwartego świata z botami. Samodzielne ograniczone testy: <code>python manage.py run_bots --world ID --rounds 1 --limit 10</code>; nie uruchamiaj ich równolegle z właścicielem dzierżawy.</p>
 <p>Importer jest opcjonalnym narzędziem autora: <code>python manage.py import_khorinis_assets --skip-existing</code>. Używa wyłącznie jawnej listy plików z Gothicpedii, weryfikuje obraz i publikuje manifest po walidacji. Nie wymaga go gracz.</p>
 <h3 id="doc-khorinis--weryfikacja">Weryfikacja</h3>
@@ -1989,7 +1989,7 @@ zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.</p>
 </ul>
 <h3 id="doc-events--pozostae-cele-okresowe">Pozostałe cele okresowe</h3>
 <p>Dzienne/tygodniowe wyzwania i zlecenia obozu nie są eventami premiującymi wszystkie nagrody. Resetują się według polskiej daty; tydzień zaczyna się w poniedziałek. Tak samo dobowa wyprawa obozowa i limit pięciu napojowych odnowień energii. Doby zmiany czasu mają odpowiednio 23 lub 25 godzin, ale nadal jeden reset o lokalnej północy.</p></article><article id="doc-world-management" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/WORLD_MANAGEMENT.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD_MANAGEMENT.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world-management--swiat-konto-i-kontrolowany-reset">Świat, konto i kontrolowany reset</h2>
-<p>Instalacja ma główną Kolonię i opcjonalne równolegle grywalne Khorinis. Każdy serwer ma: nazwę serwera (1–80 znaków), numer edycji, uniwersum, wersję zasad, stan i 0–100 aktywnych botów. Konto i postać są osobnymi bytami: maksymalnie pięć postaci na konto, także kilka na tym samym świecie. <code>/postacie/</code> pokazuje postacie i pozwala wybrać własną w bieżącym świecie. Archiwalna postać pozostaje na liście i zajmuje slot; nie można wybrać jej do gry ani wykonać akcji. Serwisy otrzymują profil z <code>world_id</code>, rynek nie pozwala przekazywać dóbr między światami, widoki/karczma/rankingi/wspólnoty/monitoring/kalendarz filtrują bieżący kontekst. Izolacja serwerów #34 działa od migracji 0043; ich połączenie nadal wymaga #111/#30. <a href="#doc-khorinis">Khorinis i zarządzanie</a>.</p>
+<p>Instalacja ma główną Kolonię i opcjonalne równolegle grywalne Khorinis. Każdy serwer ma: nazwę serwera (1–80 znaków), numer edycji, uniwersum, wersję zasad, stan i 0–300 aktywnych botów. Konto i postać są osobnymi bytami: maksymalnie pięć postaci na konto, także kilka na tym samym świecie. <code>/postacie/</code> pokazuje postacie i pozwala wybrać własną w bieżącym świecie. Archiwalna postać pozostaje na liście i zajmuje slot; nie można wybrać jej do gry ani wykonać akcji. Serwisy otrzymują profil z <code>world_id</code>, rynek nie pozwala przekazywać dóbr między światami, widoki/karczma/rankingi/wspólnoty/monitoring/kalendarz filtrują bieżący kontekst. Izolacja serwerów #34 działa od migracji 0043; ich połączenie nadal wymaga #111/#30. <a href="#doc-khorinis">Khorinis i zarządzanie</a>.</p>
 <p>Migracja przypisuje dotychczasowe profile, wspólnoty i eventy do I edycji, zachowując ID, portfele i historię. Dotychczasowe konta admina i ich hasła nie zmieniają się. Istniejące <code>user.playerprofile</code> rozwiązuje profil bieżącego świata dla zgodności serwisów; konto ma kolekcję <code>characters</code>.</p>
 <p>Pierwszy start bez superusera: <code>/inicjalizacja/</code> dostępna lokalnie, wymaga nazwy świata, liczby botów i własnych, walidowanych danych administratora. Hasło jest wyłącznie hashowane przez Django, nie trafia do pliku ani komunikatu. Po utworzeniu superusera inicjalizacja zostaje zamknięta. Instalację skonfiguruj z localhost przed udostępnieniem jej w LAN; osobny profil PostgreSQL/HTTPS opisuje <a href="#doc-production">PRODUCTION.md</a>.</p>
 <p><code>/zarzadca/swiat/reset/</code> wymaga aktywnego superusera i CSRF. Zwykła zmiana nazwy/liczby aktywnych botów nie resetuje gry. Zmniejszenie liczby botów wstrzymuje nadmiarowych, nie kasuje ich dorobku. Launcher odczytuje liczbę ze świata w każdej rundzie; restart nie przywraca domyślnej liczby. <code>--bots</code> określa początkową liczbę przed zapisaniem konfiguracji.</p>
@@ -2094,19 +2094,19 @@ zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.</p>
 <p>Retencja nie usuwa ledgerów, transakcji, walk ani questów. Dzienne agregaty i surowe decyzje są rozłączne; sumy PD/liczby decyzji pozostają zgodne przed i po archiwizacji. Akcje historyczne są dostępne w sekcji agregatów dziennych. Same archiwa nie zastępują backup_world: kopiuj również katalog archiwów, jeśli potrzebujesz zachować wszystkie dawne obserwacje po awarii dysku.</p>
 <p>Testy obejmują zgodność sum, replay bez mutacji, idempotencję, rollback archiwizacji, autoryzację i budżet liczby zapytań dla 2000 dawnych decyzji. Jest to ochrona przed N+1, nie obietnica czasu odpowiedzi na niezmierzonym produkcyjnym PostgreSQL.</p>
 <h3 id="doc-world-monitor--odczyt-po-dodaniu-sesji-osobowosci">Odczyt po dodaniu sesji osobowości</h3>
-<p>Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny <code>/zycie-kolonii/</code> uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 22, a polityka domyślna baseline-21; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.</p></article><article id="doc-bot-performance" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/BOT_PERFORMANCE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/BOT_PERFORMANCE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><aside class="history-note">Rozdział zawiera datowane wyniki i modele. Wynik historyczny nie jest prognozą obecnego świata; aktualne reguły są opisane w odpowiednich sekcjach.</aside><h2 id="doc-bot-performance--zywy-swiat-do-100-botow">Żywy świat: do 100 botów</h2>
-<p>Nazwę i liczbę <strong>0–100</strong> mieszkańców ustawisz w panelu Zarządca → Świat → Ustawienia bez resetu (<code>/zarzadca/swiat/reset/</code>). Zapis tworzy brakujące konta i zmienia aktywną populację bez kasowania postępu. Zmniejszenie liczby usypia nadmiarowe konta; nie usuwa ich dobytku. W nowej instalacji liczbę wybierasz podczas inicjalizacji; <code>play.py --bots 100</code> jest wartością początkową, a dla skonfigurowanej instalacji obowiązuje zapis panelu. Konto techniczne bota nie ma używalnego hasła.</p>
+<p>Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny <code>/zycie-kolonii/</code> uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 22, a polityka domyślna baseline-21; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.</p></article><article id="doc-bot-performance" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/BOT_PERFORMANCE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/BOT_PERFORMANCE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><aside class="history-note">Rozdział zawiera datowane wyniki i modele. Wynik historyczny nie jest prognozą obecnego świata; aktualne reguły są opisane w odpowiednich sekcjach.</aside><h2 id="doc-bot-performance--zywy-swiat-domyslnie-250-botow-w-dwoch-swiatach">Żywy świat: domyślnie 250 botów w dwóch światach</h2>
+<p>Nazwę i liczbę <strong>0–300</strong> mieszkańców ustawisz w panelu Zarządca → Świat → Ustawienia bez resetu (<code>/zarzadca/swiat/reset/</code>). Zapis tworzy brakujące konta i zmienia aktywną populację bez kasowania postępu. Zmniejszenie liczby usypia nadmiarowe konta; nie usuwa ich dobytku. W nowej instalacji liczbę wybierasz podczas inicjalizacji; <code>play.py --bots 100</code> jest wartością początkową, a dla skonfigurowanej instalacji obowiązuje zapis panelu. Konto techniczne bota nie ma używalnego hasła.</p>
 <h3 id="doc-bot-performance--jak-rozkadamy-prace">Jak rozkładamy pracę</h3>
-<p>Lokalny launcher <code>play.py</code> obsługuje HTTP i boty jednym procesem; nie uruchamiaj drugiego <code>run_bots --loop</code> na tej samej bazie. Między żądaniami wykonuje <strong>najwyżej jedną turę</strong>, a nie 100 akcji w jednej fali. Zachowuje kolejność mieszkańców także po odświeżeniu populacji co 5 sekund. Nie nadrabia setek zaległych tur po wyłączeniu komputera. Odpoczywający bot ma co najmniej 30 sekund przerwy przed ponownym sprawdzeniem.</p>
+<p>Lokalny launcher <code>play.py</code> obsługuje HTTP i boty jednym procesem; nie uruchamiaj drugiego workera na tej samej bazie. <code>run_bots --loop</code> jest zgodnym skrótem do wspólnego <code>run_worker</code>; <code>--limit</code> dotyczy tylko skończonych rund. Między żądaniami wykonuje <strong>najwyżej jedną turę</strong>, a nie setki akcji w jednej fali. Zachowuje kolejność mieszkańców także po odświeżeniu populacji co 5 sekund. Nie nadrabia setek zaległych tur po wyłączeniu komputera. Odpoczywający bot ma co najmniej 30 sekund przerwy przed ponownym sprawdzeniem.</p>
 <p>Minimalny odstęp to maksimum z 0,2 sekundy, <code>--interval / liczba_botów</code> oraz czterokrotności średniego kosztu ostatnich tur. Dla 100 mieszkańców pełny obieg wynosi co najmniej około 20 sekund plus czas samych akcji i obsługi HTTP. Dla sześciu zachowana jest częstotliwość zbliżona do dawnego obiegu. Dłuższe tury automatycznie spowalniają kolejkę: cel to około 20% czasu na boty, <strong>nie twardy limit CPU</strong>. Nie ma LLM, płatnego API, treningu modeli ani obliczeń na GPU.</p>
 <p>Polityka <strong>baseline-21 / schema 22</strong> wykorzystuje łupy, wspólny rynek, wyposażenie, rzemiosło, kampanię i cele po finale. Wersje 7–20 pozostają odtwarzalne. Miękki próg zapasu ogranicza zakupy; łupy mogą go przekroczyć, a nadmiar sprzętu jest rozbierany przez zwykły serwis. Pył do ulepszeń jest rezerwowany przed automatyczną wyprzedażą. Imiona są rozróżnialne także przy 100 botach.</p>
 <p>Szczegółowe decyzje pozostają ograniczane retencją (<code>--history-days</code>, domyślnie 30 pełnych dni UTC) z zachowaniem agregatów. Powtarzane czekanie nie zapisuje nowej decyzji częściej niż co pięć minut. Backup obejmuje przedmioty z poziomami ulepszeń, prace kuźni, postęp i historię wart.</p>
-<h3 id="doc-bot-performance--odtwarzalny-pomiar">Odtwarzalny pomiar</h3>
+<h3 id="doc-bot-performance--historyczne-pomiary-69-listopada-2026">Historyczne pomiary — 6–9 listopada 2026</h3>
 <p>Po audycie transakcji i prognoz przygotowano <a href="#report-audyt-stu-botow-2026-11-06">osobny pomiar baseline-16</a>. Poprzednie raporty i wartości liczbowe niżej zachowano jako wyniki baseline-15; nie nadpisujemy historycznych pomiarów.</p>
 <pre><code class="language-bash">python scripts/benchmark_bots.py --seconds 60 --report /tmp/sto-botow.json
 python scripts/benchmark_bots.py --mature --seconds 60 --report /tmp/sto-botow-endgame.json
 </code></pre>
-<p>Skrypt zawsze tworzy osobną tymczasową bazę i lokalny launcher na wolnym porcie, a na końcu zamyka tylko swój proces. Nie korzysta z zapisu użytkownika. Mierzy RSS procesu serwera, wykorzystanie jednego rdzenia CPU oraz rzeczywiste odpowiedzi HTTP ekranu logowania podczas działania botów. Kontrolowana opcja <code>--mature</code> nadaje poziom 30 i zakończenie kampanii wyłącznie do pomiaru kosztu rozwiniętej populacji; nie udaje przejścia gry. Autentyczny przebieg od zera oraz dalsza gra tych samych postaci są oddzielnie w <code>simulate_release</code>.</p>
+<p>Ówczesny skrypt tworzył osobną tymczasową bazę i lokalny launcher na wolnym porcie, a na końcu zamyka tylko swój proces. Nie korzysta z zapisu użytkownika. Mierzył RSS procesu serwera, wykorzystanie jednego rdzenia CPU oraz rzeczywiste odpowiedzi HTTP ekranu logowania podczas działania botów. Ówczesna opcja <code>--mature</code> nadawała poziom 30 i zakończenie kampanii wyłącznie do pomiaru kosztu rozwiniętej populacji; nie udaje przejścia gry. Autentyczny przebieg od zera oraz dalsza gra tych samych postaci są oddzielnie w <code>simulate_release</code>.</p>
 <p>Raporty: <a href="#report-sto-botow-2026-11-06">nowa populacja</a>, <a href="#report-sto-botow-endgame-2026-11-06">populacja po finale</a>. To krótkie pomiary na maszynie wykonującej zadanie, nie obietnica parametrów komputera gracza. Nie zastępują obciążenia uwierzytelnionych ekranów, wielodniowej gospodarki ani wdrożenia PostgreSQL/publicznego hostingu. Lokalny SQLite i pojedynczy proces pozostają świadomym zakresem pierwszej wersji.</p>
 <p>Pomiar 6 listopada 2026, po 60 sekund: nowa populacja — 55,61 MiB RSS, 17,25% jednego rdzenia, p95 HTTP 36,90 ms, 505 żądań bez błędów; rozwinięta — 55,77 MiB, 20,08%, p95 48,48 ms, 490 żądań bez błędów. W obu próbach wszystkie 100 botów miało turę w działającym launcherze i nie zapisano odrzuconych decyzji. Wyniki nie obejmują pamięci procesu przygotowania fixture ani przeglądarki.</p>
 <p>Pomiar po rozszerzeniu katalogu: <a href="#report-rynsztunek-sto-botow-2026-11-07">100 botów, baseline-17</a>. Jedna runda trwała 3,247 s w izolowanym świecie. To krótki test nowej populacji; nie symuluje wielodniowej gospodarki. Kuźnia działa przed finałem, a regeneracja przed walką fabularną ma pierwszeństwo przed patrolem.</p>
@@ -2117,7 +2117,83 @@ python scripts/benchmark_bots.py --mature --seconds 60 --report /tmp/sto-botow-e
 <h3 id="doc-bot-performance--harmonogram-osobowosci">Harmonogram osobowości</h3>
 <p>Od baseline-21 kolejka uwzględnia sesje i odstęp 15–120 s danego stylu. Nie wszystkie ze 100 kont są online jednocześnie. Historyczne wyniki powyżej pochodzą z poprzednich polityk. <code>--force-active</code> służy wyłącznie do ograniczonych testów aktywnych tur; pomija sesje i symulowane zakupy. Nie działa z <code>--loop</code>. Kampanie testowe wymuszają aktywne tury, a osobny test 48 godzin respektuje sesje i audyt premium.</p>
 <p>Pomiar 9 listopada 2026: <a href="#report-osobowosci-sto-botow-2026-11-09">populacja z sesjami</a>, 30 sekund, 285 odpowiedzi HTTP bez błędów, p95 6,33 ms, szczyt 58,36 MiB RSS, 6,09% jednego rdzenia. Launcher wykonał turę 13 mieszkańców, pozostałe konta miały przerwę lub nie osiągnęły kolejnego terminu. Wstępna osobna runda wymuszonych aktywnych tur objęła wszystkie 100 kont (p95 34,52 ms). To krótki pomiar lokalny, nie długoterminowa prognoza gospodarki ani publicznego serwera.</p>
-<p>Od migracji 0043: <a href="#doc-khorinis">równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów</a>. Jarkendar jest zamknięty do połączenia światów.</p></article><article id="doc-local-ai-policies" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/LOCAL_AI_POLICIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOCAL_AI_POLICIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-local-ai-policies--opcjonalne-lokalne-polityki-ai-28">Opcjonalne lokalne polityki AI (#28)</h2>
+<p>Od migracji 0043: <a href="#doc-khorinis">równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów</a>. Jarkendar jest zamknięty do połączenia światów.</p>
+<h3 id="doc-bot-performance--populacja-250-i-pomiary-skalowania-11-listopada-2026">Populacja 250 i pomiary skalowania — 11 listopada 2026</h3>
+<p>Migracja 0045 podnosi limit do 300 na serwer i ustawia domyślną nową konfigurację na 125. Kolonia oraz Khorinis otwarte z domyślnymi ustawieniami dają 250 botów łącznie. Sama Kolonia ma 125 do czasu otwarcia drugiego serwera. Administrator może jawnie wybrać inne wartości; nie ma globalnego limitu 300 sumującego oba serwery. Migracja i ponowne otwarcie Khorinis nie nadpisują istniejących liczebności ani nie dopisują ich automatycznie do 125. Podniesienie populacji istniejącego świata odbywa się przez jego ustawienia, bez resetu.</p>
+<p>Kolejka nadal wykonuje jedną turę naraz, maksymalnie pięć akcji na sekundę, z adaptacyjnym celem około 20% czasu pracy. Zachowuje 30-sekundowy odpoczynek bota również wtedy, gdy chwilowo znika on z listy gotowych kont. Wygasłe wpisy nie gromadzą się dla usuniętych mieszkańców. Ciągły <code>run_bots --loop</code> używa tej samej kolejki <code>run_worker</code>; wybór pobocznego świata lub jawny limit rund jest w tym trybie odrzucany przed tworzeniem kont.</p>
+<p>Inicjalizacja osobowości działa tylko w wybranym świecie i partiami po najwyżej 100 profili. Tura pobiera świat wraz z profilem, ograniczając dodatkowe zapytania. Lista mieszkańców renderuje po 30 kont ze stronicowaniem i oznacza konta uśpione poza skonfigurowaną populacją. Starsze wyniki powyżej są historyczne.</p>
+<p>Aktualny benchmark zawsze wybiera własny tymczasowy SQLite, nawet przy ustawionym PostgreSQL w środowisku, i odmawia pracy przy niewłaściwej bazie. Korzysta z dwóch światów, uwierzytelnionych żądań do czterech ekranów, sesji i wspólnego lokalnego launchera. Nie uruchamia drugiego schedulera na istniejącym zapisie.</p>
+<pre><code class="language-bash">python scripts/benchmark_bots.py --population 100 --seconds 120 --report /tmp/populacja-100.json
+python scripts/benchmark_bots.py --population 200 --seconds 120 --report /tmp/populacja-200.json
+python scripts/benchmark_bots.py --population 300 --seconds 120 --report /tmp/populacja-300.json
+</code></pre>
+<p>Domyślny <code>--mode stress</code> wyłącza okna sesji i ustawia wszystkie konta jako początkowo gotowe, ale zachowuje kadencje i zwykłe reguły akcji. <code>--mode sessions</code> respektuje normalne okna gry. <code>--mature</code> to jawnie syntetyczna konfiguracja statystyk do pomiaru, nie dowód przejścia fabuły. Raport mierzy pamięć procesu serwera, nie przeglądarki ani procesu przygotowania fixture. Wyniki lokalne nie są SLA ani dowodem wielodniowego balansu gospodarki.</p>
+<p><a href="#report-populacja-250-2026-11-11">Raport pomiarów i metodyka</a>. Każdy przypadek korzystał z osobnej bazy; podczas pomiarów nie uruchamiano regresji. CPU obejmuje kolejkę <strong>i HTTP</strong>, więc nie jest miarą samego celu 20% schedulera.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Próba</th>
+<th style="text-align: right;">Czas</th>
+<th style="text-align: right;">RSS szczyt MiB</th>
+<th style="text-align: right;">CPU jednego rdzenia</th>
+<th style="text-align: right;">HTTP p95 ms</th>
+<th style="text-align: right;">Boty z turą</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main przed zmianą, 100</td>
+<td style="text-align: right;">120 s</td>
+<td style="text-align: right;">68,10</td>
+<td style="text-align: right;">37,53%</td>
+<td style="text-align: right;">91,20</td>
+<td style="text-align: right;">100/100</td>
+</tr>
+<tr>
+<td>Nowa, 100</td>
+<td style="text-align: right;">120 s</td>
+<td style="text-align: right;">69,29</td>
+<td style="text-align: right;">37,01%</td>
+<td style="text-align: right;">82,21</td>
+<td style="text-align: right;">100/100</td>
+</tr>
+<tr>
+<td>Nowa, 200</td>
+<td style="text-align: right;">120 s</td>
+<td style="text-align: right;">69,12</td>
+<td style="text-align: right;">39,21%</td>
+<td style="text-align: right;">84,69</td>
+<td style="text-align: right;">200/200</td>
+</tr>
+<tr>
+<td>Nowa, 300</td>
+<td style="text-align: right;">120 s</td>
+<td style="text-align: right;">70,56</td>
+<td style="text-align: right;">38,51%</td>
+<td style="text-align: right;">91,89</td>
+<td style="text-align: right;">300/300</td>
+</tr>
+<tr>
+<td>Rozwinięta, 300</td>
+<td style="text-align: right;">240 s</td>
+<td style="text-align: right;">65,21</td>
+<td style="text-align: right;">39,72%</td>
+<td style="text-align: right;">128,61</td>
+<td style="text-align: right;">300/300</td>
+</tr>
+<tr>
+<td>Naturalne sesje, 250</td>
+<td style="text-align: right;">60 s</td>
+<td style="text-align: right;">67,39</td>
+<td style="text-align: right;">35,62%</td>
+<td style="text-align: right;">74,50</td>
+<td style="text-align: right;">52/250</td>
+</tr>
+</tbody>
+</table></div>
+<p>Wszystkie zapisane próby: zero błędów HTTP i odrzuconych decyzji. Mediana zapytań przygotowawczej tury świeżego bota zmalała z 63 do 62. Nie stwierdzono spadku RAM względem starej populacji 100; koszt pamięci pozostawał podobny przy wzroście do 300. Są to pojedyncze próby lokalne, bez statystycznej gwarancji różnic opóźnienia.</p>
+<p>Pierwsze 120 s dla rozwiniętych postaci nie wystarczyło na turę wszystkich kont; walidacja to wykryła. Próba wydłużona do 240 s objęła 150/150 w obu światach. Kolejka ogranicza koszt zamiast nadrabiać zaległości falą akcji, dlatego cięższe tury oznaczają dłuższe oczekiwanie. W naturalnych sesjach część botów celowo nie gra; 52/250 w minutę nie oznacza utraty pozostałych kont.</p>
+<p>Nazwy publiczne rozróżniają teraz także 600 kont (dwa maksymalne serwery), bez przepisywania loginów ani postępu. Obciążenie 600 kont nie było mierzone. Import do pustej bazy PostgreSQL nadal akceptuje historyczny, nieskonfigurowany szablon z liczbą 6; odmowa importu do bazy z postępem pozostaje zachowana.</p></article><article id="doc-local-ai-policies" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/LOCAL_AI_POLICIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOCAL_AI_POLICIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-local-ai-policies--opcjonalne-lokalne-polityki-ai-28">Opcjonalne lokalne polityki AI (#28)</h2>
 <p><strong>Domyślnie działają boty regułowe baseline-21.</strong> Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment <code>ollama-1</code> jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.</p>
 <h3 id="doc-local-ai-policies--co-model-moze-wybrac">Co model może wybrać</h3>
 <p>Gra buduje małą listę dozwolonych par akcja/cel na podstawie niemutowalnej obserwacji. Model zwraca wyłącznie numer pozycji. Może wybrać zwykłą pracę w kopalni, zaplanowane bezpieczne polowanie albo dostępną wyprawę. Może podejmować te zwykłe zajęcia także w trakcie realizacji celów łowieckich/wydobywczych. Nie wybiera dowolnego ID, ceny, statystyk, nagrody ani SQL.</p>
@@ -4834,10 +4910,10 @@ python scripts/benchmark_bots.py --seconds 60 --report /tmp/audyt-stu-botow.json
 <li>Rejestracja zapowiada konto, wybór świata i pięć slotów; cel treningu w dzienniku ma bezpośredni odsyłacz do nauczyciela.</li>
 </ul>
 <p><a href="#report-grywalnosc-2026-11-11">Raport z aktualnego uruchomienia</a> rozdziela przejścia, model czasu i GUI. Jego sekcja kompletności potwierdza, że <strong>pełnego G2 NK nadal nie ma</strong>; dokładny zakres i brakujące etapy opisuje <a href="#doc-khorinis">audyt Khorinis</a>.</p></article><article id="doc-roadmap" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/ROADMAP.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-roadmap--biezaca-roadmapa">Bieżąca roadmapa</h2>
-<p>Stan: 9 listopada 2026. Kanoniczna lista zadań: <a href="https://github.com/Yorick0499/ore-and-empire/issues/9" target="_blank" rel="noopener noreferrer">GitHub #9</a>. Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.</p>
+<p>Stan: 11 listopada 2026. Kanoniczna lista zadań: <a href="https://github.com/Yorick0499/ore-and-empire/issues/9" target="_blank" rel="noopener noreferrer">GitHub #9</a>. Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.</p>
 <h3 id="doc-roadmap--wdrozone">Wdrożone</h3>
 <ul>
-<li>Lokalny launcher, trwałe konto i do pięciu postaci, dwa równoległe nazwane światy, 0–100 botów.</li>
+<li>Lokalny launcher, trwałe konto i do pięciu postaci, dwa równoległe nazwane światy, 0–300 botów na serwer (domyślnie 125+125).</li>
 <li>Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.</li>
 <li>41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.</li>
 <li>Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.</li>
@@ -10721,7 +10797,377 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     &quot;Ten sam zapis i ziarno startowe; odmienne decyzje zmieniają kolejne losowania. Czas przyspieszony o 30 minut na krok, bez grantów.&quot;,
     &quot;Warmup jest osobnym, jawnym kosztem lokalnego modelu. Wywołania polityki są ograniczone wspólnym budżetem próby.&quot;
   ]
-}</code></pre><button type="button" class="download" data-report-download="polityki-lokalne-ai-2026-11-07.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-postacie-fabula-przywileje-2026-11-09"><summary>postacie-fabula-przywileje-2026-11-09.json</summary><pre><code>{
+}</code></pre><button type="button" class="download" data-report-download="polityki-lokalne-ai-2026-11-07.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-populacja-250-2026-11-11"><summary>populacja-250-2026-11-11.json</summary><pre><code>{
+  &quot;schema&quot;: 1,
+  &quot;date&quot;: &quot;2026-11-11&quot;,
+  &quot;issue&quot;: 118,
+  &quot;baseline_revision&quot;: &quot;329e430b2ba48a3ce31f5baa438eece9f88aad2b&quot;,
+  &quot;measurements&quot;: {
+    &quot;baseline-100&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;isolated_database&quot;: true,
+      &quot;engine&quot;: &quot;sqlite&quot;,
+      &quot;population&quot;: 100,
+      &quot;python&quot;: &quot;3.12.3&quot;,
+      &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+      &quot;source_sha256&quot;: {
+        &quot;characters/bot_scheduler.py&quot;: &quot;64f6449fc23170ba2bee7a7c1a7cd3d61b049c524cf4fc0c01cb7adbb79876b0&quot;,
+        &quot;characters/bots.py&quot;: &quot;0d71c4d1923bfb9ace43434df2ec985764cc8ec2858f2af974b49c8aef231689&quot;,
+        &quot;characters/models.py&quot;: &quot;3d79ca07f16d0d504e77788f430021e348f1d1966d3c6fa4a9e6c23c2e9faa9c&quot;
+      },
+      &quot;realm_populations&quot;: [
+        50,
+        50
+      ],
+      &quot;mode&quot;: &quot;stress&quot;,
+      &quot;mature_fixture&quot;: false,
+      &quot;duration_seconds&quot;: 120.03,
+      &quot;http_requests&quot;: 798,
+      &quot;http_errors&quot;: [],
+      &quot;http_p50_ms&quot;: 45.44,
+      &quot;http_p95_ms&quot;: 91.2,
+      &quot;routes_p95_ms&quot;: {
+        &quot;/&quot;: 95.37,
+        &quot;/zadania/&quot;: 81.1,
+        &quot;/sklep-odlamkow/&quot;: 98.68,
+        &quot;/zycie-kolonii/&quot;: 72.32
+      },
+      &quot;rss_peak_mib&quot;: 68.1,
+      &quot;rss_start_mib&quot;: 60.7,
+      &quot;rss_end_mib&quot;: 68.1,
+      &quot;cpu_percent_one_core&quot;: 37.53,
+      &quot;initial_tick_p50_ms&quot;: 31.42,
+      &quot;initial_tick_p95_ms&quot;: 35.25,
+      &quot;initial_queries_median&quot;: 63.0,
+      &quot;initial_actions&quot;: {
+        &quot;stock&quot;: 68,
+        &quot;mine&quot;: 32,
+        &quot;equip&quot;: 68,
+        &quot;wait&quot;: 32
+      },
+      &quot;residents_ticked&quot;: 100,
+      &quot;ticked_per_realm&quot;: [
+        50,
+        50
+      ],
+      &quot;failed_decisions&quot;: 0,
+      &quot;limits&quot;: [
+        &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+        &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+        &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+        &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+        &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+      ]
+    },
+    &quot;optimized-100&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;isolated_database&quot;: true,
+      &quot;engine&quot;: &quot;sqlite&quot;,
+      &quot;population&quot;: 100,
+      &quot;python&quot;: &quot;3.12.3&quot;,
+      &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+      &quot;source_sha256&quot;: {
+        &quot;characters/bot_scheduler.py&quot;: &quot;4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a&quot;,
+        &quot;characters/bots.py&quot;: &quot;9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1&quot;,
+        &quot;characters/models.py&quot;: &quot;a56f0dc6749812be9c23351adaa3c1befe8648ec68cf22aff37ca59a420c33aa&quot;
+      },
+      &quot;realm_populations&quot;: [
+        50,
+        50
+      ],
+      &quot;mode&quot;: &quot;stress&quot;,
+      &quot;mature_fixture&quot;: false,
+      &quot;duration_seconds&quot;: 120.1,
+      &quot;http_requests&quot;: 813,
+      &quot;http_errors&quot;: [],
+      &quot;http_p50_ms&quot;: 44.09,
+      &quot;http_p95_ms&quot;: 82.21,
+      &quot;routes_p95_ms&quot;: {
+        &quot;/&quot;: 95.68,
+        &quot;/zadania/&quot;: 67.24,
+        &quot;/sklep-odlamkow/&quot;: 80.41,
+        &quot;/zycie-kolonii/&quot;: 79.24
+      },
+      &quot;rss_peak_mib&quot;: 69.29,
+      &quot;rss_start_mib&quot;: 60.62,
+      &quot;rss_end_mib&quot;: 69.29,
+      &quot;cpu_percent_one_core&quot;: 37.01,
+      &quot;initial_tick_p50_ms&quot;: 31.71,
+      &quot;initial_tick_p95_ms&quot;: 35.27,
+      &quot;initial_queries_median&quot;: 62.0,
+      &quot;initial_actions&quot;: {
+        &quot;stock&quot;: 68,
+        &quot;mine&quot;: 32,
+        &quot;equip&quot;: 68,
+        &quot;wait&quot;: 32
+      },
+      &quot;residents_ticked&quot;: 100,
+      &quot;ticked_per_realm&quot;: [
+        50,
+        50
+      ],
+      &quot;failed_decisions&quot;: 0,
+      &quot;limits&quot;: [
+        &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+        &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+        &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+        &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+        &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+      ]
+    },
+    &quot;optimized-200&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;isolated_database&quot;: true,
+      &quot;engine&quot;: &quot;sqlite&quot;,
+      &quot;population&quot;: 200,
+      &quot;python&quot;: &quot;3.12.3&quot;,
+      &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+      &quot;source_sha256&quot;: {
+        &quot;characters/bot_scheduler.py&quot;: &quot;4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a&quot;,
+        &quot;characters/bots.py&quot;: &quot;9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1&quot;,
+        &quot;characters/models.py&quot;: &quot;a56f0dc6749812be9c23351adaa3c1befe8648ec68cf22aff37ca59a420c33aa&quot;
+      },
+      &quot;realm_populations&quot;: [
+        100,
+        100
+      ],
+      &quot;mode&quot;: &quot;stress&quot;,
+      &quot;mature_fixture&quot;: false,
+      &quot;duration_seconds&quot;: 120.13,
+      &quot;http_requests&quot;: 810,
+      &quot;http_errors&quot;: [],
+      &quot;http_p50_ms&quot;: 43.88,
+      &quot;http_p95_ms&quot;: 84.69,
+      &quot;routes_p95_ms&quot;: {
+        &quot;/&quot;: 93.35,
+        &quot;/zadania/&quot;: 83.91,
+        &quot;/sklep-odlamkow/&quot;: 82.63,
+        &quot;/zycie-kolonii/&quot;: 75.54
+      },
+      &quot;rss_peak_mib&quot;: 69.12,
+      &quot;rss_start_mib&quot;: 61.06,
+      &quot;rss_end_mib&quot;: 69.12,
+      &quot;cpu_percent_one_core&quot;: 39.21,
+      &quot;initial_tick_p50_ms&quot;: 31.4,
+      &quot;initial_tick_p95_ms&quot;: 36.2,
+      &quot;initial_queries_median&quot;: 62.0,
+      &quot;initial_actions&quot;: {
+        &quot;stock&quot;: 134,
+        &quot;mine&quot;: 66,
+        &quot;equip&quot;: 134,
+        &quot;wait&quot;: 66
+      },
+      &quot;residents_ticked&quot;: 200,
+      &quot;ticked_per_realm&quot;: [
+        100,
+        100
+      ],
+      &quot;failed_decisions&quot;: 0,
+      &quot;limits&quot;: [
+        &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+        &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+        &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+        &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+        &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+      ]
+    },
+    &quot;optimized-300-final&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;isolated_database&quot;: true,
+      &quot;engine&quot;: &quot;sqlite&quot;,
+      &quot;population&quot;: 300,
+      &quot;python&quot;: &quot;3.12.3&quot;,
+      &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+      &quot;source_sha256&quot;: {
+        &quot;characters/bot_scheduler.py&quot;: &quot;4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a&quot;,
+        &quot;characters/bots.py&quot;: &quot;9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1&quot;,
+        &quot;characters/models.py&quot;: &quot;b4a3dc99ed1588b9f88b824378f45d01ef559999704019cae9da11814264d0f5&quot;
+      },
+      &quot;realm_populations&quot;: [
+        150,
+        150
+      ],
+      &quot;mode&quot;: &quot;stress&quot;,
+      &quot;mature_fixture&quot;: false,
+      &quot;duration_seconds&quot;: 120.13,
+      &quot;http_requests&quot;: 792,
+      &quot;http_errors&quot;: [],
+      &quot;started_at&quot;: &quot;2026-11-11T14:54:40.443439+00:00&quot;,
+      &quot;warmup&quot;: &quot;Two forced ordinary decisions per bot before the measured launcher.&quot;,
+      &quot;http_p50_ms&quot;: 45.21,
+      &quot;http_p95_ms&quot;: 91.89,
+      &quot;routes_p95_ms&quot;: {
+        &quot;/&quot;: 97.36,
+        &quot;/zadania/&quot;: 83.55,
+        &quot;/sklep-odlamkow/&quot;: 90.16,
+        &quot;/zycie-kolonii/&quot;: 89.59
+      },
+      &quot;rss_peak_mib&quot;: 70.56,
+      &quot;rss_start_mib&quot;: 61.43,
+      &quot;rss_end_mib&quot;: 70.56,
+      &quot;cpu_percent_one_core&quot;: 38.51,
+      &quot;initial_tick_p50_ms&quot;: 31.83,
+      &quot;initial_tick_p95_ms&quot;: 36.14,
+      &quot;initial_queries_median&quot;: 62.0,
+      &quot;initial_actions&quot;: {
+        &quot;stock&quot;: 200,
+        &quot;mine&quot;: 100,
+        &quot;equip&quot;: 200,
+        &quot;wait&quot;: 100
+      },
+      &quot;residents_ticked&quot;: 300,
+      &quot;ticked_per_realm&quot;: [
+        150,
+        150
+      ],
+      &quot;failed_decisions&quot;: 0,
+      &quot;last_tick_age_p95_seconds&quot;: 103.58,
+      &quot;oldest_last_tick_seconds&quot;: 117.5,
+      &quot;limits&quot;: [
+        &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+        &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+        &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+        &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+        &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+      ]
+    },
+    &quot;mature-300-extended&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;isolated_database&quot;: true,
+      &quot;engine&quot;: &quot;sqlite&quot;,
+      &quot;population&quot;: 300,
+      &quot;python&quot;: &quot;3.12.3&quot;,
+      &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+      &quot;source_sha256&quot;: {
+        &quot;characters/bot_scheduler.py&quot;: &quot;4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a&quot;,
+        &quot;characters/bots.py&quot;: &quot;9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1&quot;,
+        &quot;characters/models.py&quot;: &quot;b4a3dc99ed1588b9f88b824378f45d01ef559999704019cae9da11814264d0f5&quot;
+      },
+      &quot;realm_populations&quot;: [
+        150,
+        150
+      ],
+      &quot;mode&quot;: &quot;stress&quot;,
+      &quot;mature_fixture&quot;: true,
+      &quot;duration_seconds&quot;: 240.16,
+      &quot;http_requests&quot;: 1493,
+      &quot;http_errors&quot;: [],
+      &quot;started_at&quot;: &quot;2026-11-11T15:01:57.380479+00:00&quot;,
+      &quot;warmup&quot;: &quot;Two forced ordinary decisions per bot before the measured launcher.&quot;,
+      &quot;http_p50_ms&quot;: 46.11,
+      &quot;http_p95_ms&quot;: 128.61,
+      &quot;routes_p95_ms&quot;: {
+        &quot;/&quot;: 133.27,
+        &quot;/zadania/&quot;: 125.53,
+        &quot;/sklep-odlamkow/&quot;: 126.38,
+        &quot;/zycie-kolonii/&quot;: 125.68
+      },
+      &quot;rss_peak_mib&quot;: 65.21,
+      &quot;rss_start_mib&quot;: 62.37,
+      &quot;rss_end_mib&quot;: 65.21,
+      &quot;cpu_percent_one_core&quot;: 39.72,
+      &quot;initial_tick_p50_ms&quot;: 44.66,
+      &quot;initial_tick_p95_ms&quot;: 48.34,
+      &quot;initial_queries_median&quot;: 89.5,
+      &quot;initial_actions&quot;: {
+        &quot;patrol&quot;: 300,
+        &quot;equip&quot;: 300
+      },
+      &quot;residents_ticked&quot;: 300,
+      &quot;ticked_per_realm&quot;: [
+        150,
+        150
+      ],
+      &quot;failed_decisions&quot;: 0,
+      &quot;last_tick_age_p95_seconds&quot;: 175.24,
+      &quot;oldest_last_tick_seconds&quot;: 217.0,
+      &quot;limits&quot;: [
+        &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+        &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+        &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+        &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+        &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+      ],
+      &quot;validation&quot;: {
+        &quot;http_ok&quot;: true,
+        &quot;actions_ok&quot;: true,
+        &quot;all_residents_ticked&quot;: true
+      }
+    },
+    &quot;sessions-250&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;isolated_database&quot;: true,
+      &quot;engine&quot;: &quot;sqlite&quot;,
+      &quot;population&quot;: 250,
+      &quot;python&quot;: &quot;3.12.3&quot;,
+      &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+      &quot;source_sha256&quot;: {
+        &quot;characters/bot_scheduler.py&quot;: &quot;4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a&quot;,
+        &quot;characters/bots.py&quot;: &quot;9aec128ee1dced3f0fa99a915a8654c19573b64854bb163538a12a6f616aaee1&quot;,
+        &quot;characters/models.py&quot;: &quot;b4a3dc99ed1588b9f88b824378f45d01ef559999704019cae9da11814264d0f5&quot;
+      },
+      &quot;realm_populations&quot;: [
+        125,
+        125
+      ],
+      &quot;mode&quot;: &quot;sessions&quot;,
+      &quot;mature_fixture&quot;: false,
+      &quot;duration_seconds&quot;: 60.08,
+      &quot;http_requests&quot;: 403,
+      &quot;http_errors&quot;: [],
+      &quot;started_at&quot;: &quot;2026-11-11T15:06:18.807687+00:00&quot;,
+      &quot;warmup&quot;: &quot;Two forced ordinary decisions per bot before the measured launcher.&quot;,
+      &quot;http_p50_ms&quot;: 45.99,
+      &quot;http_p95_ms&quot;: 74.5,
+      &quot;routes_p95_ms&quot;: {
+        &quot;/&quot;: 59.49,
+        &quot;/zadania/&quot;: 75.73,
+        &quot;/sklep-odlamkow/&quot;: 75.7,
+        &quot;/zycie-kolonii/&quot;: 63.86
+      },
+      &quot;rss_peak_mib&quot;: 67.39,
+      &quot;rss_start_mib&quot;: 58.84,
+      &quot;rss_end_mib&quot;: 67.39,
+      &quot;cpu_percent_one_core&quot;: 35.62,
+      &quot;initial_tick_p50_ms&quot;: 31.68,
+      &quot;initial_tick_p95_ms&quot;: 35.56,
+      &quot;initial_queries_median&quot;: 62.0,
+      &quot;initial_actions&quot;: {
+        &quot;stock&quot;: 168,
+        &quot;mine&quot;: 82,
+        &quot;equip&quot;: 168,
+        &quot;wait&quot;: 82
+      },
+      &quot;residents_ticked&quot;: 52,
+      &quot;ticked_per_realm&quot;: [
+        28,
+        24
+      ],
+      &quot;failed_decisions&quot;: 0,
+      &quot;last_tick_age_p95_seconds&quot;: 68.2,
+      &quot;oldest_last_tick_seconds&quot;: 68.75,
+      &quot;limits&quot;: [
+        &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+        &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+        &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+        &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+        &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+      ],
+      &quot;validation&quot;: {
+        &quot;http_ok&quot;: true,
+        &quot;actions_ok&quot;: true,
+        &quot;all_residents_ticked&quot;: false
+      }
+    }
+  },
+  &quot;notes&quot;: [
+    &quot;Default 125 bots per newly configured realm; 250 across both open realms. Existing settings remain unchanged.&quot;,
+    &quot;The 100/200 measurements precede the display-name suffix correction for IDs above 200; scheduler and bot source hashes match the final measurements.&quot;,
+    &quot;The first 120-second mature trial did not give every resident a turn. The validation failed before saving its metrics; only the extended 240-second report is included.&quot;,
+    &quot;Natural sessions intentionally leave some accounts offline; 52/250 residents acted during the 60-second observation.&quot;,
+    &quot;No live database migrated, reset or populated. No proof of sustained production or multi-client PostgreSQL performance.&quot;
+  ]
+}</code></pre><button type="button" class="download" data-report-download="populacja-250-2026-11-11.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-postacie-fabula-przywileje-2026-11-09"><summary>postacie-fabula-przywileje-2026-11-09.json</summary><pre><code>{
   &quot;date&quot;: &quot;2026-11-09&quot;,
   &quot;scope&quot;: &quot;#107–#110 / migracja 0042&quot;,
   &quot;full_sqlite_regression&quot;: {

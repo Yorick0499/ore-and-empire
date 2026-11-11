@@ -335,7 +335,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
     from .locations import LOCATIONS
     from .economy import start_adventure, claim_adventure, purchase_product
-    profile = type(profile).objects.get(pk=profile.pk)
+    profile = type(profile).objects.select_related('world').get(pk=profile.pk)
     from .worlds import playable
     if not playable(profile):return "wait",False
     if not profile.is_bot:
