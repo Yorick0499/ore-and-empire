@@ -63,7 +63,8 @@ class CharacterSelectionMiddleware:
         from .models import SleeperRace
         from django.utils import timezone
         from django.http import HttpResponse
-        if not request.path.startswith('/health/') and SleeperRace.objects.filter(state='merging',lease_expires_at__gt=timezone.now()).exists():
+        operator_read=request.path=='/zarzadca/bariera/' and request.method=='GET' and request.user.is_authenticated and request.user.is_active and request.user.is_superuser
+        if not operator_read and not request.path.startswith('/health/') and SleeperRace.objects.filter(state='merging',lease_expires_at__gt=timezone.now()).exists():
             response=HttpResponse('Trwa zabezpieczanie zapisu i upadek Bariery. Spróbuj ponownie za chwilę.',status=503)
             response['Retry-After']='5';return response
         # Bind before view dispatch and template context processing; reset on every response/exception.
@@ -97,6 +98,6 @@ class CharacterSelectionMiddleware:
             request.user._server_profile=selected
             if request.session.get('active_character')!=selected.pk:request.session['active_character']=selected.pk
         name=request.resolver_match.url_name if request.resolver_match else None
-        if not selected and not request.path.startswith('/admin/') and name not in {'characters_page','register','login','logout','world_setup','health_live','health_ready','credits_page'}:
+        if not selected and not request.path.startswith('/admin/') and name not in {'barrier_admin','characters_page','register','login','logout','world_setup','health_live','health_ready','credits_page'}:
             return redirect('characters_page')
         return None

@@ -991,3 +991,19 @@ def barrier_view(request):
         return redirect('barrier_page')
     race=SleeperRace.objects.filter(Q(colony_id=profile.world_id)|Q(khorinis_id=profile.world_id)).select_related('winner').first()
     return render(request,'characters/barrier.html',{'race':race,'regions':World.objects.filter(pk__in=region_ids(profile.world_id)),'profile':profile,'joined':joined(profile.world_id),'visited':region(profile)})
+
+
+@login_required
+def barrier_admin_view(request):
+    from .barrier_admin import projection,set_paused,authorize
+    from .models import SleeperRace
+    from django.core.exceptions import ValidationError
+    authorize(request.user)
+    if request.method=='POST':
+        action=request.POST.get('action')
+        if action not in {'pause','unpause'}:raise PermissionDenied('Nieznana operacja panelu.')
+        try:set_paused(request.user,positive_id(request.POST.get('race')),action=='pause',request.POST.get('expected_state'))
+        except (ValidationError,SleeperRace.DoesNotExist):messages.error(request,'Nie zapisano zmiany. Odśwież panel i sprawdź stan oraz dzierżawę.')
+        else:messages.success(request,'Zapisano pauzę.' if action=='pause' else 'Wznowiono. Oczekujące przejście podejmie worker.')
+        return redirect('barrier_admin')
+    return render(request,'characters/barrier_admin.html',projection(request.user))

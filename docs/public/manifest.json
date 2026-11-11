@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "Śniący i atomowe połączenie / #120",
+  "code_revision": "panel wyścigu i audytu / #35",
   "migration": "0047_wspolna_hierarchia_najemnikow",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
