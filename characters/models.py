@@ -92,6 +92,7 @@ class PlayerProfile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
     alliance_rank = models.PositiveSmallIntegerField(default=0)
+    legacy_water_path = models.BooleanField(default=False, editable=False)
     visiting_world = models.ForeignKey(World,on_delete=models.PROTECT,null=True,blank=True,related_name='visitors')
     origin_world = models.ForeignKey(World,on_delete=models.PROTECT,null=True,editable=False,related_name='native_characters')
 
@@ -271,6 +272,8 @@ class PlayerProfile(models.Model):
         from .camp_progression import BY_RANK
         rank = BY_RANK.get(self.guild)
         tier=rank.tier if rank and rank.camp == self.camp else 0
+        if self.legacy_water_path and self.camp=='NEW_CAMP':
+            tier=max(tier,{'WATER_MAGE':3,'ARCH_WATER':4}.get(self.guild,0))
         if self.alliance_rank and self.camp in {'NEW_CAMP','ONAR_MERCS'}:
             from .barrier import joined
             if joined(self.world_id):tier=max(tier,self.alliance_rank)

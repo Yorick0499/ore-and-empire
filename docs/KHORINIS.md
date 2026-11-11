@@ -1,5 +1,8 @@
 # Khorinis przed połączeniem światów
 
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+
+
 Migracja 0043 i zadania #34/#113 otwierają drugi, równolegle grywalny serwer. **Latarnia — Khorinis** oraz istniejąca Kolonia mają osobne postacie, rynki, rankingi, frakcje, karczmy, wydarzenia i populacje botów. Pięć slotów konta jest wspólne dla obu serwerów. Przełączanie postaci wybiera także cały kontekst świata; stare formularze tracą ważność. Nie można przenosić przedmiotów ani przyjmować cudzych zadań przez podmienione ID.
 
 To **pierwsza grywalna paczka Khorinis**, nie pełny katalog całego oryginalnego Gothic II. Balans i chronologia są adaptacją MMORPG: mieszkańcy wyspy żyją równolegle do Kolonii, gdy Bariera jeszcze stoi. Postać nie jest Bezimiennym. Dołączenie do frakcji jest trwałe.
@@ -40,7 +43,7 @@ Grafiki: 36 przypisań do 25 odrębnych obrazów G2 z Gothicpedii. Ikony kategor
 
 ## Jarkendar i połączenie
 
-**Jarkendar nie jest dostępny przed połączeniem, nawet przy dużym saldzie odłamków.** Ta paczka nie dodaje portalu, celów Jarkendaru, Kruka ani smoków. Po przyszłym obozowym zwycięstwie nad Śniącym i bezpiecznym połączeniu (#111/#30) otworzy się dalszy etap; wejście do Jarkendaru będzie dodatkowo wymagało uprawnienia premium **konta** (#33). Obecne odłamki i osobowość „Gracz itemshopu” nie są takim uprawnieniem.
+**Jarkendar nie jest dostępny przed połączeniem, nawet przy dużym saldzie odłamków.** Ta paczka nie dodaje portalu, celów Jarkendaru, Kruka ani smoków. Po przyszłym obozowym zwycięstwie nad Śniącym i bezpiecznym połączeniu (#111/#30) otworzy się dalszy etap; wejście do Jarkendaru będzie publiczne, bez uprawnienia premium (#33). Obecne odłamki i osobowość „Gracz itemshopu” nie są takim uprawnieniem.
 
 ## Uruchomienie i zarządzanie
 
@@ -76,7 +79,7 @@ Testy obejmują pełne przejście 17 zadań gracza przez formularze i zwykłe se
 | Frakcje i NPC | 3 wspólnoty z rangami; kontakty NPC w rozmowach fabuły. Nie ma kompletnej sieci oryginalnych NPC, dialogów, pobocznych gildii i ich zadań. |
 | Regiony późniejszej gry | Brak kampanii Górniczej Doliny w wersji G2, Jarkendaru i Irdorath. Lokacje G1 nie zastępują tych regionów. |
 | Smoki, Kruk, finał NK | Niezaimplementowane; brak etapów fabuły i nagród po połączeniu. |
-| Dostęp | Połączenie światów, obozowy wyścig Śniącego i premium konta pozostają otwarte (#30/#111/#33/#35). Saldo odłamków niczego tutaj nie odblokowuje. |
+| Dostęp | Połączenie światów, obozowy wyścig Śniącego i publiczny Jarkendar pozostają otwarte (#30/#111/#33/#35). Saldo odłamków niczego tutaj nie odblokowuje. |
 | Grafiki | 36 przypisań / 25 obrazów G2. Grafika kategorii nie jest osobną wierną ilustracją każdego wzoru. |
 
 Nie ustalono pełnego referencyjnego indeksu kodów G2 NK, dlatego nie podajemy procentu kompletności. Dalsza realizacja #32 wymaga takiego indeksu i kolejnych paczek; #32 pozostaje otwarte. Zawartość za bramką połączenia musi zostać wdrożona razem z jej rzeczywistymi warunkami, a nie przez odblokowanie samego adresu.
@@ -87,8 +90,12 @@ Aktualny [raport audytu i tempa gry](reports/grywalnosc-2026-11-11.json) oraz [o
 
 ## Aktualizacja 0046–0047: po obozowym zwycięstwie
 
-Powyższy katalog opisuje paczkę **przed** upadkiem Bariery. Po potwierdzonym obozowym zwycięstwie i zweryfikowanej świeżej kopii dostępne są teraz wspólny rynek/ranking, podróże oraz dwa pierwsze wspólne przydziały i wyprawa przeciw smokowi ognia (35). Najemnicy Onara tworzą wspólnotę z ludźmi Lee, zachowując historyczne członkostwo. Dawne zadania, prace i nagrody nie są resetowane. [Pełne reguły przejścia](CHARACTERS_AND_WORLDS.md). Jarkendar nadal pozostaje zamknięty; pełna zawartość NK i premium wymagają kolejnych etapów.
+Powyższy katalog opisuje paczkę **przed** upadkiem Bariery. Po potwierdzonym obozowym zwycięstwie i zweryfikowanej świeżej kopii dostępne są teraz wspólny rynek/ranking, podróże oraz dwa pierwsze wspólne przydziały i wyprawa przeciw smokowi ognia (35). Najemnicy Onara tworzą wspólnotę z ludźmi Lee, zachowując historyczne członkostwo. Dawne zadania, prace i nagrody nie są resetowane. [Pełne reguły przejścia](CHARACTERS_AND_WORLDS.md). Jarkendar nadal pozostaje zamknięty; pełna zawartość NK i publiczny Jarkendar wymagają kolejnych etapów.
 
 ## Nowy gracz po połączeniu — #31
 
 Kreator pozwala zacząć bezpośrednio w Khorinis również po globalnym wydarzeniu. Własny prolog i frakcje pozostają dostępne od początku, bez wymogu ukończenia kampanii Kolonii. Wspólny katalog wyposażenia daje dostęp do rynsztunku obu regionów według zwykłych wymagań i cen. [Porównanie nowych postaci i weteranów](SOLO_PLAYTEST.md). Historyczna tabela powyżej opisuje paczkę przed połączeniem; obecny smok ognia nie oznacza kompletnej kampanii NK.
+
+## Podstawowa straż po #124
+
+Katalog0048 nie nazywa już podstawowej rangi Paladynem: Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży. Zachowano tożsamości rekordów, wymagania i korzyści; dawne nazwy są w mapie wersji. Paladyni jako wyższe awanse pozostają w #127, po połączeniu. [Zasady zgodności](CAMPS.md).

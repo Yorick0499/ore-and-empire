@@ -2,7 +2,8 @@
 {% block title %}Ore &amp; Empire — Obóz i zadania{% endblock %}
 {% block content %}
 <span class="eyebrow">Przynależność i obowiązki</span><h1>Droga przez szeregi obozu</h1>
-<section class="colony-panel"><h2>Twoja pozycja</h2><p>{{ profile.get_camp_display }} · <strong>{{ profile.guild_name }}</strong> · Szczebel {{ profile.camp_tier }}</p>
+<section class="colony-panel"><h2>Twoja pozycja</h2><p>{{ profile.get_camp_display }} · <strong>{{ profile.guild_name }}</strong> · Poziom przywilejów {{ profile.camp_tier }}</p>
+{% if profile.legacy_water_path and profile.camp == 'NEW_CAMP' %}<p class="requirements">Zachowano twoją dawną drogę Magów Wody: możesz dokończyć awans z Najemnika, a zdobyte przywileje pozostają bez zmian. Nowa podstawowa ścieżka ma cztery rangi; dawny dodatkowy etap nie jest wymagany od nowych postaci.</p>{% endif %}
 <p>Poziom {{ profile.level }} · Ruda {{ profile.ore_balance }} · Siła {{ profile.strength }} · Zręczność {{ profile.dexterity }} · Mana {{ profile.mana }}</p>
 {% if profile.camp == 'NONE' %}<p>Najpierw <a href="{% url 'locations_page' %}">wybierz obóz w kolonii</a>. Poniżej możesz porównać ścieżki.</p>{% endif %}
 <p>Wybór obozu i awans na jedną z gałęzi są stałe. Możesz mieć jedno aktywne zadanie awansu. Postęp liczy się od przyjęcia zadania; porażki i wcześniejsze osiągnięcia się nie zaliczają. Porzucenie usuwa postęp zadania.</p>
@@ -13,7 +14,7 @@
 <section class="colony-panel"><h3>Dostępne ścieżki</h3>{% for path in paths %}<ol class="camp-path">{% for name in path %}<li>{{ name }}</li>{% endfor %}</ol>{% endfor %}</section>
 <div class="rank-grid">
 {% for card in cards %}<article class="colony-panel rank-card {% if card.current %}rank-current{% endif %}">
-<span class="eyebrow">Szczebel {{ card.rank.tier }} · {% if card.current %}Twoja ranga{% elif card.quest.promoted_at %}Ukończono{% elif card.eligible %}Następny krok{% else %}Dalsza ścieżka{% endif %}</span>
+<span class="eyebrow">Ranga {{ card.ordinal }} z 4 · {% if card.current %}Twoja ranga{% elif card.quest.promoted_at %}Ukończono{% elif card.eligible %}Następny krok{% else %}Dalsza ścieżka{% endif %}</span>
 <h2>{{ card.rank.name }}</h2><p class="requirements">Droga od: {{ card.parents }}</p>
 <dl class="rank-requirements"><div><dt>Poziom</dt><dd>{{ profile.level }} / {{ card.rank.level }}</dd></div><div><dt>{{ card.attribute_name }}</dt><dd>{{ card.attribute_current }} / {{ card.rank.attribute_value }}</dd></div><div><dt>Koszt awansu</dt><dd>{{ card.rank.cost }} rudy</dd></div></dl>
 {% if card.story_missing %}<p class="requirements">Wymagana fabuła: {% for gate in card.story_missing %}{{ gate.title }}{% if not forloop.last %}, {% endif %}{% endfor %}. <a href="{% url 'story_page' %}">Przejdź do dziennika</a>.</p>{% endif %}<h3>{{ card.rank.quest_name }}</h3><p>{{ card.rank.description }}</p>

@@ -1,0 +1,638 @@
+{
+  "date": "2026-11-11",
+  "issue": 124,
+  "rules_version": 2,
+  "migration": "0048_rowne_podstawowe_rangi",
+  "scope": "Cztery podstawowe rangi; bez wdrażania sukcesji frakcji i ośmiu rang",
+  "paths": {
+    "OLD_CAMP": [
+      [
+        "Kopacz",
+        "Cień",
+        "Strażnik",
+        "Magnat"
+      ],
+      [
+        "Kopacz",
+        "Cień",
+        "Mag Ognia",
+        "Arcymag Ognia"
+      ]
+    ],
+    "NEW_CAMP": [
+      [
+        "Kret",
+        "Szkodnik",
+        "Najemnik",
+        "Gwardzista Lee"
+      ],
+      [
+        "Kret",
+        "Szkodnik",
+        "Mag Wody",
+        "Arcymag Wody"
+      ]
+    ],
+    "SWAMP_CAMP": [
+      [
+        "Zbieracz",
+        "Nowicjusz",
+        "Strażnik świątynny",
+        "Templariusz bagien"
+      ],
+      [
+        "Zbieracz",
+        "Nowicjusz",
+        "Guru",
+        "Arcyguru"
+      ]
+    ],
+    "CITY_WATCH": [
+      [
+        "Rekrut straży",
+        "Strażnik miejski",
+        "Sierżant straży",
+        "Dowódca straży"
+      ]
+    ],
+    "FIRE_ORDER": [
+      [
+        "Nowicjusz Ognia",
+        "Adept Ognia",
+        "Mag Ognia Khorinis",
+        "Arcymag klasztoru"
+      ]
+    ],
+    "ONAR_MERCS": [
+      [
+        "Pracownik farmy",
+        "Zbrojny Onara",
+        "Najemnik Onara",
+        "Dowódca najemników"
+      ]
+    ]
+  },
+  "mapping": {
+    "DIGGER": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Kopacz",
+      "name": "Kopacz",
+      "old_tier": 0,
+      "tier": 0,
+      "old_parents": [
+        "NONE"
+      ],
+      "parents": [
+        "NONE"
+      ]
+    },
+    "SHADOW": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Cień",
+      "name": "Cień",
+      "old_tier": 1,
+      "tier": 1,
+      "old_parents": [
+        "DIGGER"
+      ],
+      "parents": [
+        "DIGGER"
+      ]
+    },
+    "GUARD": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Strażnik",
+      "name": "Strażnik",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "SHADOW"
+      ],
+      "parents": [
+        "SHADOW"
+      ]
+    },
+    "FIRE_MAGE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Mag Ognia",
+      "name": "Mag Ognia",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "SHADOW"
+      ],
+      "parents": [
+        "SHADOW"
+      ]
+    },
+    "ARCH_FIRE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Arcymag Ognia",
+      "name": "Arcymag Ognia",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "FIRE_MAGE"
+      ],
+      "parents": [
+        "FIRE_MAGE"
+      ]
+    },
+    "BARON": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Magnat",
+      "name": "Magnat",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "GUARD"
+      ],
+      "parents": [
+        "GUARD"
+      ]
+    },
+    "MOLE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Kret",
+      "name": "Kret",
+      "old_tier": 0,
+      "tier": 0,
+      "old_parents": [
+        "NONE"
+      ],
+      "parents": [
+        "NONE"
+      ]
+    },
+    "ROGUE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Szkodnik",
+      "name": "Szkodnik",
+      "old_tier": 1,
+      "tier": 1,
+      "old_parents": [
+        "MOLE"
+      ],
+      "parents": [
+        "MOLE"
+      ]
+    },
+    "MERC": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Najemnik",
+      "name": "Najemnik",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "ROGUE"
+      ],
+      "parents": [
+        "ROGUE"
+      ]
+    },
+    "ELITE_MERC": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Gwardzista Lee",
+      "name": "Gwardzista Lee",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "MERC"
+      ],
+      "parents": [
+        "MERC"
+      ]
+    },
+    "WATER_MAGE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Mag Wody",
+      "name": "Mag Wody",
+      "old_tier": 3,
+      "tier": 2,
+      "old_parents": [
+        "MERC"
+      ],
+      "parents": [
+        "ROGUE"
+      ]
+    },
+    "ARCH_WATER": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Arcymag Wody",
+      "name": "Arcymag Wody",
+      "old_tier": 4,
+      "tier": 3,
+      "old_parents": [
+        "WATER_MAGE"
+      ],
+      "parents": [
+        "WATER_MAGE"
+      ]
+    },
+    "PICKER": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Zbieracz",
+      "name": "Zbieracz",
+      "old_tier": 0,
+      "tier": 0,
+      "old_parents": [
+        "NONE"
+      ],
+      "parents": [
+        "NONE"
+      ]
+    },
+    "NOVICE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Nowicjusz",
+      "name": "Nowicjusz",
+      "old_tier": 1,
+      "tier": 1,
+      "old_parents": [
+        "PICKER"
+      ],
+      "parents": [
+        "PICKER"
+      ]
+    },
+    "SWAMP_GUARD": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Strażnik świątynny",
+      "name": "Strażnik świątynny",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "NOVICE"
+      ],
+      "parents": [
+        "NOVICE"
+      ]
+    },
+    "TEMPLAR": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Templariusz bagien",
+      "name": "Templariusz bagien",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "SWAMP_GUARD"
+      ],
+      "parents": [
+        "SWAMP_GUARD"
+      ]
+    },
+    "GURU": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Guru",
+      "name": "Guru",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "NOVICE"
+      ],
+      "parents": [
+        "NOVICE"
+      ]
+    },
+    "ARCH_GURU": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Arcyguru",
+      "name": "Arcyguru",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "GURU"
+      ],
+      "parents": [
+        "GURU"
+      ]
+    },
+    "K2_CITIZEN": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Obywatel",
+      "name": "Rekrut straży",
+      "old_tier": 0,
+      "tier": 0,
+      "old_parents": [
+        "NONE"
+      ],
+      "parents": [
+        "NONE"
+      ]
+    },
+    "K2_MILITIA": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Strażnik miejski",
+      "name": "Strażnik miejski",
+      "old_tier": 1,
+      "tier": 1,
+      "old_parents": [
+        "K2_CITIZEN"
+      ],
+      "parents": [
+        "K2_CITIZEN"
+      ]
+    },
+    "K2_PALADIN": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Paladyn",
+      "name": "Sierżant straży",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "K2_MILITIA"
+      ],
+      "parents": [
+        "K2_MILITIA"
+      ]
+    },
+    "K2_COMMANDER": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Komendant warty",
+      "name": "Dowódca straży",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "K2_PALADIN"
+      ],
+      "parents": [
+        "K2_PALADIN"
+      ]
+    },
+    "K2_NOVICE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Nowicjusz Ognia",
+      "name": "Nowicjusz Ognia",
+      "old_tier": 0,
+      "tier": 0,
+      "old_parents": [
+        "NONE"
+      ],
+      "parents": [
+        "NONE"
+      ]
+    },
+    "K2_ADEPT": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Adept Ognia",
+      "name": "Adept Ognia",
+      "old_tier": 1,
+      "tier": 1,
+      "old_parents": [
+        "K2_NOVICE"
+      ],
+      "parents": [
+        "K2_NOVICE"
+      ]
+    },
+    "K2_MAGE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Mag Ognia Khorinis",
+      "name": "Mag Ognia Khorinis",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "K2_ADEPT"
+      ],
+      "parents": [
+        "K2_ADEPT"
+      ]
+    },
+    "K2_ARCHMAGE": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Arcymag klasztoru",
+      "name": "Arcymag klasztoru",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "K2_MAGE"
+      ],
+      "parents": [
+        "K2_MAGE"
+      ]
+    },
+    "K2_LABORER": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Pracownik farmy",
+      "name": "Pracownik farmy",
+      "old_tier": 0,
+      "tier": 0,
+      "old_parents": [
+        "NONE"
+      ],
+      "parents": [
+        "NONE"
+      ]
+    },
+    "K2_RECRUIT": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Zbrojny Onara",
+      "name": "Zbrojny Onara",
+      "old_tier": 1,
+      "tier": 1,
+      "old_parents": [
+        "K2_LABORER"
+      ],
+      "parents": [
+        "K2_LABORER"
+      ]
+    },
+    "K2_MERC": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Najemnik Onara",
+      "name": "Najemnik Onara",
+      "old_tier": 2,
+      "tier": 2,
+      "old_parents": [
+        "K2_RECRUIT"
+      ],
+      "parents": [
+        "K2_RECRUIT"
+      ]
+    },
+    "K2_CAPTAIN": {
+      "from_version": 1,
+      "to_version": 2,
+      "old_name": "Dowódca najemników",
+      "name": "Dowódca najemników",
+      "old_tier": 3,
+      "tier": 3,
+      "old_parents": [
+        "K2_MERC"
+      ],
+      "parents": [
+        "K2_MERC"
+      ]
+    }
+  },
+  "compatibility": {
+    "stable_rank_keys": true,
+    "legacy_water_path": "MERC/WATER_MAGE/ARCH_WATER w Nowym Obozie albo nieodebrany awans na te rangi w chwili migracji",
+    "preserved": "Wszystkie wcześniejsze kolumny i zadania, koszty i cele awansu, dawna gałąź Najemnik→Mag Wody i poziomy przywilejów3/4",
+    "historical_paladin_key": "K2_PALADIN pozostaje technicznym ID Sierżanta; nazwa dawnego Paladyna dostępna w mapie v1→v2. Wyższa ścieżka paladynów wymaga #127."
+  },
+  "verification": {
+    "targeted_tests": 49,
+    "full_tests": 527,
+    "full_skipped_postgresql": 23,
+    "real_old_schema_upgrade": true,
+    "fixture": "Testowe postacie; rzeczywisty zapis użytkownika nietknięty"
+  },
+  "gui": {
+    "isolated_database": true,
+    "synthetic_attributes": true,
+    "organic_progression": false,
+    "errors": [],
+    "pages": [
+      {
+        "camp": "NEW_CAMP",
+        "legacy": false,
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "paths": [
+          4,
+          4
+        ]
+      },
+      {
+        "camp": "NEW_CAMP",
+        "legacy": false,
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "paths": [
+          4,
+          4
+        ]
+      },
+      {
+        "camp": "NEW_CAMP",
+        "legacy": false,
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "paths": [
+          4,
+          4
+        ]
+      },
+      {
+        "camp": "NEW_CAMP",
+        "legacy": true,
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "paths": [
+          4,
+          4
+        ]
+      },
+      {
+        "camp": "NEW_CAMP",
+        "legacy": true,
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "paths": [
+          4,
+          4
+        ]
+      },
+      {
+        "camp": "NEW_CAMP",
+        "legacy": true,
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "paths": [
+          4,
+          4
+        ]
+      },
+      {
+        "camp": "CITY_WATCH",
+        "legacy": false,
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "paths": [
+          4
+        ]
+      },
+      {
+        "camp": "CITY_WATCH",
+        "legacy": false,
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "paths": [
+          4
+        ]
+      },
+      {
+        "camp": "CITY_WATCH",
+        "legacy": false,
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "paths": [
+          4
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Nie wdraża pięciu frakcji, wyboru Bractwa, wyższych awansów ani Jarkendaru.",
+    "GUI używa syntetycznych atrybutów, nie jest pomiarem organicznego czasu gry.",
+    "Zachowana ścieżka v1 jest wyjątkiem zgodności dla dawnych postaci; nowe ścieżki mają po cztery rangi.",
+    "Historyczne raporty czasów sprzed tej zmiany nie mierzą nowej ścieżki Wody."
+  ]
+}

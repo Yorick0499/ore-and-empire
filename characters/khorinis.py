@@ -39,7 +39,7 @@ CHAPTERS=((1,'Miejsce na wyspie','k2_harbor'),(2,'Zaufanie trzech wspólnot','k2
 def ranks(Rank,obj):
     result=[]
     branches={
-      'CITY_WATCH':(('K2_CITIZEN','Obywatel'),('K2_MILITIA','Strażnik miejski'),('K2_PALADIN','Paladyn'),('K2_COMMANDER','Komendant warty')),
+      'CITY_WATCH':(('K2_CITIZEN','Rekrut straży'),('K2_MILITIA','Strażnik miejski'),('K2_PALADIN','Sierżant straży'),('K2_COMMANDER','Dowódca straży')),
       'FIRE_ORDER':(('K2_NOVICE','Nowicjusz Ognia'),('K2_ADEPT','Adept Ognia'),('K2_MAGE','Mag Ognia Khorinis'),('K2_ARCHMAGE','Arcymag klasztoru')),
       'ONAR_MERCS':(('K2_LABORER','Pracownik farmy'),('K2_RECRUIT','Zbrojny Onara'),('K2_MERC','Najemnik Onara'),('K2_CAPTAIN','Dowódca najemników')),
     }

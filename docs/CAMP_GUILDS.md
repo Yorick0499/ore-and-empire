@@ -1,5 +1,8 @@
 # Obozy jako gildie — etap 1
 
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+
+
 Gildią jest istniejący Stary Obóz, Nowy Obóz albo Bractwo na bagnie. Nie ma oddzielnej rekrutacji, drużyn ani wymogu jednoczesnej obecności. Przynależność `camp` daje członkostwo; dotychczasowe `guild` oznacza **osobistą rangę** (np. Cień), nie nową organizację. Dołączenie do obozu nie zmienia wcześniejszych questów, sprzętu i poziomu. Na razie istnieje jeden lokalny świat; zakres edycji pozostaje #15/#34, współbieżność serwera #19.
 
 `/wspolnota/` pokazuje wspólny poziom 1–10, PD, skarbiec, dzienne zlecenie, ulepszenia i 30 ostatnich wkładów. Każde 100 PD wspólnoty daje kolejny poziom do 10. Rotacja trzech małych zleceń jest deterministyczna na dzień i obóz. Reset o północy czasu polskiego; cele są zamrażane przy pierwszym zaliczonym działaniu, a stary postęp pozostaje w historii. GET nie tworzy ani nie rozlicza projektu. Bez retroaktywnego zaliczania dawnych sukcesów. Wygrane polowanie i odbiór zmiany w kopalni przechodzą przez serwis gry i automatycznie liczą wkład członka; porażka ani ponowienie rozliczonego request_key nie dodają go ponownie. Działania bez obozu i członków innych obozów nie zasilają projektu. Liczą się wszystkie wygrane polowania, żeby nowe postacie miały użyteczne zajęcie.

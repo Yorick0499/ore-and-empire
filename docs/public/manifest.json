@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "świeży start i balans po połączeniu / #31",
-  "migration": "0047_wspolna_hierarchia_najemnikow",
+  "code_revision": "cztery podstawowe rangi / #124; plan pięciu frakcji",
+  "migration": "0048_rowne_podstawowe_rangi",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -230,6 +230,7 @@
     "docs/reports/populacja-250-2026-11-11.json",
     "docs/reports/postacie-fabula-przywileje-2026-11-09.json",
     "docs/reports/postgresql-wspolbieznosc-2026-11-07.json",
+    "docs/reports/rowne-rangi-2026-11-11.json",
     "docs/reports/rynsztunek-mmorpg-2026-11-07.json",
     "docs/reports/rynsztunek-sto-botow-2026-11-07.json",
     "docs/reports/rynsztunek-targ-gui-2026-11-07.json",

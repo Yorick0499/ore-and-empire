@@ -1,5 +1,8 @@
 # Camp progression
 
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+
+
 These ranks, quests and thresholds are original Ore & Empire progression inspired
 by Gothic I. They do not reproduce the original game's recruitment scripts.
 Choosing a camp is permanent. Promotions follow one branch; another branch cannot
@@ -18,7 +21,7 @@ abandoning erases its progress. Past actions do not count retroactively.
 | NEW_CAMP | Szkodnik | Kret | 3 | Zręczność 12 | 30 | Pokonaj kretoszczury: 3; Pokonaj krwiopijce: 3 |
 | NEW_CAMP | Najemnik | Szkodnik | 8 | Siła 25 | 100 | Pokonaj zębacze: 4; Ukończ trening siły: 2 |
 | NEW_CAMP | Gwardzista Lee | Najemnik | 18 | Siła 40 | 250 | Pokonaj pełzacze wojowników: 5; Pokonaj cieniostwory: 2 |
-| NEW_CAMP | Mag Wody | Najemnik | 15 | Mana 25 | 150 | Ukończ trening many: 3; Pokonaj szkielety magów: 2 |
+| NEW_CAMP | Mag Wody | Szkodnik | 15 | Mana 25 | 150 | Ukończ trening many: 3; Pokonaj szkielety magów: 2 |
 | NEW_CAMP | Arcymag Wody | Mag Wody | 25 | Mana 45 | 350 | Pokonaj lodowe golemy: 2; Pokonaj pomniejsze demony: 3 |
 | SWAMP_CAMP | Zbieracz | New camp member | 0 | Siła 10 | 0 | Pokonaj kretoszczury: 2 |
 | SWAMP_CAMP | Nowicjusz | Zbieracz | 3 | Mana 12 | 30 | Pokonaj krwiopijce: 3; Ukończ trening many: 1 |
@@ -53,3 +56,13 @@ Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywi
 
 
 Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+
+## Cztery rangi podstawowe — #124, migracja 0048
+
+Katalog awansów ma wersję 2. Każda nowa gałąź ma cztery rangi (indeksy techniczne 0–3), bez liczenia braku członkostwa. Nowa droga Wody: **Kret → Szkodnik → Mag Wody → Arcymag Wody**. Wybór Najemnika prowadzi nową postać drogą wojownika, bez późniejszej zmiany gałęzi. Koszty, cele, poziomy i wymagane atrybuty rang pozostają takie same; progi fabuły odpowiadają nowym podstawowym szczeblom 2/3.
+
+Migracja oznacza dawną drogę Wody wyłącznie dla istniejących członków Nowego Obozu na rangach Najemnik/Mag Wody/Arcymag Wody lub z nieodebranym awansem na te rangi. Te postacie zachowują dawną możliwość Najemnik → Mag Wody, stare progi fabuły i poziomy przywilejów 3/4. Nie tracą zapłaconych awansów ani postępu. To wyjątek zgodności, nie piąta wymagana ranga dla nowych postaci. Nowe postacie nie mogą nadać sobie tego uprawnienia formularzem. Nie są przepisywane stare pola ani zadania; dodawany jest tylko znacznik zgodności. Ci sami następcy i koszty obowiązują boty.
+
+Straż Khorinis: **Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży**. Paladyni należą do przyszłej wyższej ścieżki #127. Techniczne klucze starych rang pozostają, w tym `K2_PALADIN` jako tożsamość obecnego Sierżanta; mapa wersji zachowuje dawną nazwę. Zachowane poziomy, wyposażenie, korzyści i ukończenia nie są zerowane. Ekran osobno pokazuje numer rangi „z 4” i poziom przywilejów (może być historycznie wyższy).
+
+Mapa wszystkich 30 tożsamości oraz [dowody testów i GUI](reports/rowne-rangi-2026-11-11.json) opisują zakres tej zmiany. Dziewięć nowych testów obejmuje cztery rangi każdej gałęzi, stare awanse, bramki fabuły, przywileje, boty, ponowienia i rzeczywisty zapis0047→0048. Pełna lokalna regresja:527testów,23 wymagające PostgreSQL pominięte. Nie wdraża to jeszcze pięciu frakcji ani ośmiu rang.
