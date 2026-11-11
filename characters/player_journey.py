@@ -1,3 +1,4 @@
+from .realms import profile_scope
 """Read-only next steps from a character's actual contracts and resources."""
 from django.db.models import F
 from django.urls import reverse
@@ -8,17 +9,23 @@ from .story_quests import available,progress_for,ready
 from .locations import LOCATIONS
 
 
+@profile_scope
 def journey(profile):
     if profile.world.universe=='GOTHIC_II':
         from .khorinis import CHAPTERS as realm_chapters
     else:realm_chapters=CHAPTERS
+    from .barrier import joined
+    merged=joined(profile.world_id)
+    if merged:realm_chapters=(*realm_chapters,(7,'Po upadku Bariery','old_camp'))
     steps=[];now=timezone.now()
     def add(title,route,description='',ends_at=None,query=''):
         steps.append({'title':title,'url':reverse(route)+query,'description':description,'ends_at':ends_at})
+    if merged:add('Podróże po upadku Bariery','barrier_page','Oba regiony mają wspólny rynek i ranking; odkrywaj nowe przydziały.')
+    elif profile.level>=30 and profile.world.universe=='GOTHIC_I':add('Przygotuj wspólnotę do walki ze Śniącym','camp_guild','Potrzebny poziom wspólnoty 10 i wspólny wkład mieszkańców.')
     runs=list(profile.story_runs.select_related('quest').order_by('-accepted_at','-pk')[:100])
     claimed=[r for r in runs if r.status=='claimed'];active=next((r for r in runs if r.status!='claimed'),None)
     chapter=max([1,*[r.snapshot.get('chapter',1) for r in runs]])
-    chapter=max(1,min(len(realm_chapters),chapter));name=next(n for number,n,_ in realm_chapters if number==chapter)
+    chapter=max(number for number,_,_ in realm_chapters if number<=chapter);name=next(n for number,n,_ in realm_chapters if number==chapter)
     island_complete=profile.world.universe=='GOTHIC_II' and any(r.snapshot.get('key')=='k2-supply-8' for r in claimed)
     finished=hasattr(profile,'campaign_completion')
     if profile.action_end_time:

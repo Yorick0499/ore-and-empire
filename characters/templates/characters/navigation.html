@@ -4,6 +4,7 @@
   {% if user.is_authenticated %}{% with current=request.resolver_match.url_name %}
     <a href="{% url 'locations_page' %}" {% if current == 'locations_page' %}aria-current="page"{% endif %}>{{ realm_title }}</a>
     <a href="{% url 'camp_guild' %}" {% if current == 'camp_guild' %}aria-current="page"{% endif %}>Wspólnota obozu</a>
+    <a href="{% url 'barrier_page' %}">Bariera i podróże</a>
     <a href="{% url 'story_page' %}" {% if current == 'story_page' %}aria-current="page"{% endif %}>Dziennik fabuły</a>
     <details class="nav-group"><summary>Droga postaci</summary><div>
       <a href="{% url 'mine_page' %}" {% if current == 'mine_page' %}aria-current="page"{% endif %}>Kopalnia</a>

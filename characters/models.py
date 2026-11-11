@@ -16,6 +16,7 @@ def default_world_id():
 
 
 class World(models.Model):
+    union_key = models.UUIDField(null=True,blank=True,db_index=True)
     is_open = models.BooleanField(default=False)
     bot_personality_cycles = models.BooleanField(default=True)
     bot_simulated_purchases = models.BooleanField(default=True)
@@ -90,6 +91,8 @@ class PlayerProfile(models.Model):
     is_draft = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
+    alliance_rank = models.PositiveSmallIntegerField(default=0)
+    visiting_world = models.ForeignKey(World,on_delete=models.PROTECT,null=True,blank=True,related_name='visitors')
     origin_world = models.ForeignKey(World,on_delete=models.PROTECT,null=True,editable=False,related_name='native_characters')
 
     # camp and guild list
@@ -205,6 +208,7 @@ class PlayerProfile(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=["user","slot"],name="one_character_per_account_slot"),
+            models.CheckConstraint(condition=models.Q(alliance_rank__lte=4),name="alliance_rank_bounds"),
             models.UniqueConstraint(fields=["world","name_key"],condition=~models.Q(name_key=""),name="unique_character_name_per_world"),
             models.CheckConstraint(condition=models.Q(slot__gte=1,slot__lte=5),name="character_slot_bounds"),
             models.CheckConstraint(condition=models.Q(current_energy__gte=0) & models.Q(current_energy__lte=models.F("max_energy")), name="profile_energy_bounds"),
@@ -253,7 +257,8 @@ class PlayerProfile(models.Model):
     @property
     def camp_perks(self):
         if not hasattr(self,'_camp_perks'):
-            self._camp_perks=(CampGuild.objects.filter(camp=self.camp,world_id=self.world_id).values('training_level','supply_level','defense_level').first() if self.camp!='NONE' else None) or dict(training_level=0,supply_level=0,defense_level=0)
+            from .barrier import guild_identity
+            self._camp_perks=(CampGuild.objects.filter(**guild_identity(self)).values('training_level','supply_level','defense_level').first() if self.camp!='NONE' else None) or dict(training_level=0,supply_level=0,defense_level=0)
         from .camp_privileges import privileges
         personal=privileges(self)
         return {key:self._camp_perks[key]+personal[bonus] for key,bonus in [('training_level','training'),('supply_level','supply'),('defense_level','defense')]}
@@ -265,7 +270,11 @@ class PlayerProfile(models.Model):
     def camp_tier(self):
         from .camp_progression import BY_RANK
         rank = BY_RANK.get(self.guild)
-        return rank.tier if rank and rank.camp == self.camp else 0
+        tier=rank.tier if rank and rank.camp == self.camp else 0
+        if self.alliance_rank and self.camp in {'NEW_CAMP','ONAR_MERCS'}:
+            from .barrier import joined
+            if joined(self.world_id):tier=max(tier,self.alliance_rank)
+        return tier
 
     @property
     def guild_name(self):
@@ -1067,3 +1076,61 @@ class CampSupplyUse(models.Model):
     health=models.PositiveSmallIntegerField()
     class Meta:
         constraints=[models.UniqueConstraint(fields=['profile','day'],name='one_camp_resupply_per_day'),models.UniqueConstraint(fields=['profile','request_key'],name='one_camp_resupply_request')]
+
+
+class SleeperRace(models.Model):
+    colony=models.OneToOneField(World,on_delete=models.PROTECT,related_name='sleeper_race')
+    khorinis=models.ForeignKey(World,on_delete=models.PROTECT,related_name='+')
+    winner=models.ForeignKey(CampGuild,on_delete=models.PROTECT,null=True,blank=True)
+    state=models.CharField(max_length=12,default='racing',choices=[('racing', 'Wyścig obozów'), ('pending', 'Oczekuje na zabezpieczenie zapisu'), ('merging', 'Trwa połączenie'), ('failed', 'Próba nieudana — oczekuje na wznowienie'), ('joined', 'Bariera upadła')])
+    paused=models.BooleanField(default=False)
+    lease_owner=models.UUIDField(null=True,blank=True)
+    lease_expires_at=models.DateTimeField(null=True,blank=True)
+    backup_path=models.TextField(blank=True)
+    backup_digest=models.CharField(max_length=64,blank=True)
+    proof=models.JSONField(default=dict)
+    won_at=models.DateTimeField(null=True,blank=True)
+    joined_at=models.DateTimeField(null=True,blank=True)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=~models.Q(colony=models.F('khorinis')),name='sleeper_distinct_regions'),models.CheckConstraint(condition=(models.Q(state='racing',winner__isnull=True)|(~models.Q(state='racing')&models.Q(winner__isnull=False))),name='sleeper_winner_state')]
+
+
+class SleeperSiege(models.Model):
+    race=models.ForeignKey(SleeperRace,on_delete=models.PROTECT,related_name='sieges')
+    guild=models.OneToOneField(CampGuild,on_delete=models.PROTECT,related_name='sleeper_siege')
+    maximum_health=models.PositiveIntegerField(default=120000)
+    health=models.PositiveIntegerField(default=120000)
+    attack=models.PositiveIntegerField(default=140)
+    protection=models.PositiveIntegerField(default=90)
+    completed_at=models.DateTimeField(null=True,blank=True)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(health__lte=models.F('maximum_health'),maximum_health__gte=1),name='sleeper_health_bounds')]
+
+
+class SleeperStrike(models.Model):
+    siege=models.ForeignKey(SleeperSiege,on_delete=models.PROTECT,related_name='strikes')
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    account=models.ForeignKey(User,on_delete=models.PROTECT)
+    request_key=models.UUIDField()
+    damage=models.PositiveIntegerField()
+    log=models.JSONField(default=list)
+    created_at=models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['account','request_key'],name='sleeper_account_request')]
+        indexes=[models.Index(fields=['account','-created_at'])]
+
+
+class SleeperReward(models.Model):
+    race=models.ForeignKey(SleeperRace,on_delete=models.PROTECT)
+    account=models.ForeignKey(User,on_delete=models.PROTECT)
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT)
+    created_at=models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['race','account'],name='sleeper_one_account_reward')]
+
+
+class BarrierEvent(models.Model):
+    race=models.ForeignKey(SleeperRace,on_delete=models.PROTECT,related_name='events')
+    kind=models.CharField(max_length=24)
+    details=models.JSONField(default=dict)
+    created_at=models.DateTimeField(default=timezone.now)

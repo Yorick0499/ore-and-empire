@@ -35,10 +35,17 @@ def profile_for(user):
 def playable(profile):
     world=profile.world
     from .realms import is_open
-    return not profile.is_draft and is_open(world)
+    from .models import SleeperRace
+    from django.db.models import Q
+    from django.utils import timezone
+    merging=SleeperRace.objects.filter(Q(colony_id=profile.world_id)|Q(khorinis_id=profile.world_id),state='merging',lease_expires_at__gt=timezone.now()).exists()
+    return not merging and not profile.is_draft and is_open(world)
 
 
 def world_context(request):
     world=current_world()
     from .world_clock import clock_state
-    return {'is_khorinis':world.universe=='GOTHIC_II','realm_title':'Khorinis' if world.universe=='GOTHIC_II' else 'Kolonia','active_character':getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None,'world_clock':clock_state(),'server_world':world,'world_needs_setup':not world.configured}
+    from .barrier import joined,region
+    profile=getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None
+    visited=region(profile) if profile and not request.path.startswith('/zarzadca/') else world
+    return {'world_joined':joined(world), 'visited_region':visited, 'is_khorinis':visited.universe=='GOTHIC_II','realm_title':'Khorinis' if visited.universe=='GOTHIC_II' else 'Kolonia','active_character':getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None,'world_clock':clock_state(),'server_world':visited,'world_needs_setup':not world.configured}

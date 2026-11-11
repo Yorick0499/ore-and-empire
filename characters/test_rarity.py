@@ -217,21 +217,21 @@ class RareBotEquipmentTests(TestCase):
     def test_physical_boss_forecast_matches_no_critical_combat_phases(self):
         from .equipment import physical_survival_health
         from .bosses import BOSSES
-        self.p.strength=100;self.p.life=3000;self.p.current_health=3000;self.p.save()
+        self.p.strength=100;self.p.life=30000;self.p.current_health=30000;self.p.save()
         for boss in BOSSES.values():
             forecast=physical_survival_health(self.p,boss.monster)
             with patch('characters.game_logic.random.randint',return_value=100):
                 result=game.simulate_combat(self.p,boss.key,monster=boss.monster)
             self.assertTrue(result.won)
-            self.assertEqual(forecast,3000-result.remaining_health+10)
+            self.assertEqual(forecast,30000-result.remaining_health+10)
 
     def test_magic_forecast_matches_each_boss_with_real_spell_and_fallback(self):
         from .magic import survival_health, MagicPlan, BY_KEY
         from .bosses import BOSSES
-        self.p.strength=100;self.p.life=5000;self.p.current_health=5000;self.p.mana=80;self.p.current_mana=80;self.p.save()
+        self.p.strength=100;self.p.life=30000;self.p.current_health=30000;self.p.mana=80;self.p.current_mana=80;self.p.save()
         plan=MagicPlan(BY_KEY['icewave'],None,False,1)
         for boss in BOSSES.values():
             with patch('characters.game_logic.random.randint',return_value=100):
                 result=game.simulate_combat(self.p,boss.key,monster=boss.monster,magic_plan=plan)
             self.assertTrue(result.won)
-            self.assertEqual(survival_health(self.p,boss.monster,plan),5000-result.remaining_health+10)
+            self.assertEqual(survival_health(self.p,boss.monster,plan),30000-result.remaining_health+10)

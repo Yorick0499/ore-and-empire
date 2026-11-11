@@ -1,3 +1,4 @@
+from .barrier import region_ids,source_games,region,joined
 from .text_search import literal_pattern
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_GET
@@ -284,7 +285,7 @@ def report_action(request, success):
 
 
 def current_location(request, profile, default, route):
-    if profile.world.universe=="GOTHIC_II":
+    if region(profile).universe=="GOTHIC_II":
         default={"old_mine":"k2_quarry","forest":"k2_fields","exchange":"k2_fields","old_camp":"k2_market","new_camp":"k2_onar","crawler_nest":"k2_bandit_boss"}.get(default,default)
     key = request.GET.get("location", default)
     location = BY_KEY.get(key)
@@ -323,7 +324,7 @@ def locations_view(request):
         else:report_action(request, choose_camp(profile, camp))
         return redirect("locations_page")
     cards = [
-        {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS if loc.universe==profile.world.universe
+        {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS if loc.universe==region(profile).universe and (not loc.post_barrier or joined(profile.world_id))
     ]
     availability = request.GET.get("availability", "all")
     activity = request.GET.get("activity", "all")
@@ -331,11 +332,11 @@ def locations_view(request):
         max_level = max(0, min(1000, int(request.GET.get("level", 1000))))
     except (ValueError, TypeError):
         max_level = 1000
-    edition = request.GET.get("edition", str(profile.world.edition))
+    edition = request.GET.get("edition", str(region(profile).edition))
     cards = [card for card in cards if card["location"].level <= max_level
              and (availability == "all" or card["unlocked"] == (availability == "open"))
              and (activity == "all" or card["location"].route == activity)
-             and edition == str(profile.world.edition)]
+             and edition == str(region(profile).edition)]
     from .player_journey import journey
     next_steps=journey(profile)
     from .story_gates import missing
@@ -385,7 +386,7 @@ def market_monitor_view(request):
                 json.dumps(decision.observation, sort_keys=True), decision.policy_version, decision.reason, decision.experience_delta,
             ])
         return response
-    trades = MarketTrade.objects.filter(seller__world=current_world()).select_related(
+    trades = MarketTrade.objects.filter(seller__world_id__in=region_ids(current_world())).select_related(
         "blueprint", "seller__user", "buyer__user"
     )
     if request.GET.get("format") == "csv":
@@ -507,7 +508,7 @@ def bestiary_view(request):
     for key, monster in sorted(BESTIARY.items(), key=lambda entry: (entry[1]["level"], entry[1]["nazwa"])):
         if query.casefold() not in monster["nazwa"].casefold():
             continue
-        habitats = [loc for loc in LOCATIONS if key in loc.monsters and loc.universe==request.user.playerprofile.world.universe]
+        habitats = [loc for loc in LOCATIONS if key in loc.monsters and loc.universe==region(request.user.playerprofile).universe]
         if not habitats:continue
         entries.append({"key": key, "monster": monster, "habitats": habitats})
     return render(request, "characters/bestiary.html", {
@@ -575,7 +576,7 @@ def itemshop_view(request):
     from .itemshop_rules import unavailable_reason,remaining
     limits=remaining(profile)
     from django.db.models import Q
-    offers=StoreProduct.objects.filter(enabled=True).filter(Q(blueprint__isnull=True)|Q(blueprint__source_game__in=['adaptation',profile.world.universe])).select_related('blueprint')
+    offers=StoreProduct.objects.filter(enabled=True).filter(Q(blueprint__isnull=True)|Q(blueprint__source_game__in=source_games(profile))).select_related('blueprint')
     products=[]
     for product in offers:
         reason=unavailable_reason(profile,product,energy_left,limits)
@@ -597,9 +598,10 @@ def rankings_view(request):
     population = request.GET.get("population", "all")
     camp = request.GET.get("camp", "")
     camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key in realm_camps(current_world())]
+    if joined(current_world()):camps=PlayerProfile.CAMP_LIST[1:]
     if population not in populations or camp not in {"", *(key for key, _ in camps)}:
         raise Http404("Nieznany ranking")
-    profiles = PlayerProfile.objects.filter(world=current_world(),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user")
+    profiles = PlayerProfile.objects.filter(world_id__in=region_ids(current_world()),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user")
     if population != "all":
         profiles = profiles.filter(is_bot=population == "bots")
     totals = {row["camp"]: row for row in profiles.values("camp").annotate(players=Count("pk"), experience=Sum("experience"), average=Avg("level"))}
@@ -711,6 +713,7 @@ def story_view(request):
     chapter = run.snapshot['chapter'] if run else max((r.snapshot['chapter'] for r in history), default=1)
     if profile.world.universe=='GOTHIC_II':
         from .khorinis import CHAPTERS
+    if joined(profile.world_id):CHAPTERS=(*CHAPTERS,(7,'Po upadku Bariery','old_camp'))
     chapter_rows = [{'number': number, 'name': name, 'art': art, 'current': number == chapter} for number, name, art in CHAPTERS]
     return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})
 
@@ -791,13 +794,21 @@ def camp_guild_view(request):
         if action=='resupply':
             from .camp_privileges import claim_resupply
             result=claim_resupply(profile,request.POST.get('request_key'))
+        elif action=='alliance_promote':
+            from .barrier import promote_alliance
+            result=promote_alliance(profile,positive_id(request.POST.get('expected_rank')))
+        elif action in {'sleeper_rally','sleeper_strike','sleeper_claim'}:
+            from .sleeper import rally,strike,claim_reward
+            result=rally(profile) if action=='sleeper_rally' else strike(profile,positive_id(request.POST.get('siege')),request.POST.get('request_key')) if action=='sleeper_strike' else claim_reward(profile)
         elif action=='rally':result=rally_camp_raid(profile)
         elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
         elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
         else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
         (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
         return redirect('camp_guild')
-    return render(request,'characters/camp_guild.html',{'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
+    from .sleeper import card as sleeper_card
+    from .barrier import alliance_card
+    return render(request,'characters/camp_guild.html',{'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
 
 
 @sensitive_post_parameters("password")
@@ -945,7 +956,7 @@ def hall_view(request):
             messages.success(request,"Zapisano podsumowanie edycji. Gra pozostaje otwarta.")
         except ValidationError as exc:messages.error(request," ".join(exc.messages))
         return redirect("hall_page")
-    return render(request,"characters/hall.html",{"finishers":CampaignCompletion.objects.filter(profile__world=world).order_by("created_at","pk"),"conclusion":EditionConclusion.objects.filter(world=world).first()})
+    return render(request,"characters/hall.html",{"finishers":CampaignCompletion.objects.filter(profile__world_id__in=region_ids(world)).order_by("created_at","pk"),"conclusion":EditionConclusion.objects.filter(world=world).first()})
 
 
 @login_required
@@ -964,3 +975,19 @@ def frontier_view(request):
     names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[r['profile_id'] for r in rows]).select_related('user')}
     for row in rows:row['name']=names[row['profile_id']]
     return render(request,'characters/frontier.html',{'profile':profile,'ready':frontier_unlocked(profile),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})
+
+
+@login_required
+def barrier_view(request):
+    from .models import SleeperRace,World
+    from django.db.models import Q
+    from .barrier import travel
+    from django.middleware.csrf import rotate_token
+    profile=request.user.playerprofile
+    if request.method=='POST':
+        success=travel(profile,positive_id(request.POST.get('destination')))
+        if success:rotate_token(request)
+        (messages.success if success else messages.error)(request,'Podróż zakończona.' if success else 'Podróż wymaga połączenia światów i zakończenia aktywnej czynności.')
+        return redirect('barrier_page')
+    race=SleeperRace.objects.filter(Q(colony_id=profile.world_id)|Q(khorinis_id=profile.world_id)).select_related('winner').first()
+    return render(request,'characters/barrier.html',{'race':race,'regions':World.objects.filter(pk__in=region_ids(profile.world_id)),'profile':profile,'joined':joined(profile.world_id),'visited':region(profile)})

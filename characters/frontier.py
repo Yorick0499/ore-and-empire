@@ -1,3 +1,4 @@
+from .barrier import region_ids
 """Repeatable post-campaign challenges; the server never advances its edition."""
 from datetime import timedelta
 from uuid import UUID
@@ -25,7 +26,7 @@ def enemy(depth):
 
 
 def board(world):
-    return FrontierRecord.objects.filter(profile__world=world,profile__user__is_active=True,profile__user__is_staff=False,season=season_key(),won=True).values('profile_id','profile__user__username','profile__is_bot','profile__camp').annotate(points=Sum('points'),depth=Max('depth')).order_by('-points','-depth','profile_id')[:30]
+    return FrontierRecord.objects.filter(profile__world_id__in=region_ids(world),profile__user__is_active=True,profile__user__is_staff=False,season=season_key(),won=True).values('profile_id','profile__user__username','profile__is_bot','profile__camp').annotate(points=Sum('points'),depth=Max('depth')).order_by('-points','-depth','profile_id')[:30]
 
 
 @player_action

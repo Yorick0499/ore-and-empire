@@ -40,9 +40,10 @@ def worlds(colony_id,khorinis_id):
 def dry_run(colony_id,khorinis_id):
     """Read-only, observational plan. It is not a transactional inventory snapshot."""
     colony,island=worlds(colony_id,khorinis_id)
+    merged=bool(colony.union_key and colony.union_key==island.union_key)
     profiles=PlayerProfile.objects.filter(world_id__in=[colony.pk,island.pk])
     return {
-        'schema':1,'phase':'separate','observational':True,
+        'schema':1,'phase':'joined' if merged else 'separate','observational':True,
         'worlds':[colony.pk,island.pk],'market':'shared','ranking':'shared',
         'identity_policy':'preserve_worlds_as_regions_and_all_record_ids',
         'activity_policy':'preserve_offers_timers_snapshots_rewards_and_cooldowns',
@@ -53,7 +54,7 @@ def dry_run(colony_id,khorinis_id):
         'unclaimed_adventures':AdventureRun.objects.filter(profile__in=profiles,claimed_at__isnull=True).count(),
         'market_offers':OwnedItem.objects.filter(owner__in=profiles,is_market_listed=True).count(),
         'account_slot_conflicts':profiles.values('user_id').annotate(n=Count('pk')).filter(n__gt=5).count(),
-        'activation_available':False,'blocked_by':['camp_sleeper_victory','activation_implementation'],
+        'activation_available':False,'blocked_by':[] if merged else ['camp_sleeper_victory','verified_activation'],
         'jarkendar_open':False,
     }
 

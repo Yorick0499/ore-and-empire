@@ -83,3 +83,11 @@ Pierwsze 120 s dla rozwiniętych postaci nie wystarczyło na turę wszystkich ko
 Nazwy publiczne rozróżniają teraz także 600 kont (dwa maksymalne serwery), bez przepisywania loginów ani postępu. Obciążenie 600 kont nie było mierzone. Import do pustej bazy PostgreSQL nadal akceptuje historyczny, nieskonfigurowany szablon z liczbą 6; odmowa importu do bazy z postępem pozostaje zachowana.
 
 Chromium sprawdził pierwszą i ostatnią stronę listy 125 mieszkańców przy 320, 390 i 1440 px: poprawne 30/5 kart, brak poziomego przewijania i błędów JavaScript, działający odnośnik następnej strony. Próba odbyła się na osobnej bazie.
+
+## Śniący i połączenie — #120
+
+[Pomiar nowej wersji](reports/sniacy-polaczenie-2026-11-11.json): 250 świeżych botów (125+125), 120 s, 797 uwierzytelnionych odpowiedzi HTTP bez błędów, p95 88,15 ms, szczyt RSS 70,50 MiB, 39,85% jednego rdzenia. Turę wykonały wszystkie 250 kont; brak odrzuconych decyzji. Kontrole stanu Bariery nie wprowadziły rosnącego zapytania na każde zadanie; zakres połączenia jest buforowany na czas akcji/żądania, bez współdzielonego między użytkownikami wyboru regionu.
+
+To pomiar niepołączonej świeżej populacji, nie kosztu samej aktywacji, dojrzałego wyścigu ani publicznego hostingu. W trakcie próby nie uruchamiano regresji. Ostatnia poprawka powtórzeń awansu Związku dotyczy ścieżki, której świeże konta nie wykonują. Reguły walki i awansu dla botów korzystają z tych samych serwisów co gracze; nie tworzą drugiej kolejki ani darmowych zasobów.
+
+Mediana przygotowawczej tury wyniosła 66 zapytań SQL (w poprzednim etapie 62). Dodatkowe kontrole stanu przejścia i zakresu świata mają stały koszt; nie przedstawiamy tej zmiany jako obniżenia liczby zapytań.

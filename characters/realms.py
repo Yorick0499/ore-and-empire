@@ -5,6 +5,7 @@ from functools import wraps
 from django.db.models import Q
 
 _scope=ContextVar('ore_world_id',default=None)
+_union_cache=ContextVar('ore_union_cache',default=None)
 G1=('OLD_CAMP','NEW_CAMP','SWAMP_CAMP')
 G2=('CITY_WATCH','FIRE_ORDER','ONAR_MERCS')
 
@@ -18,9 +19,12 @@ def is_open(world):return world.status=='active' and (world.is_current or world.
 
 @contextmanager
 def world_scope(world):
-    token=_scope.set(world.pk if hasattr(world,'pk') else world)
+    pk=world.pk if hasattr(world,'pk') else world
+    cache_token=_union_cache.set({} if _scope.get()!=pk or _union_cache.get() is None else _union_cache.get())
+    token=_scope.set(pk)
     try:yield
-    finally:_scope.reset(token)
+    finally:
+        _scope.reset(token);_union_cache.reset(cache_token)
 
 def profile_scope(fn):
     @wraps(fn)

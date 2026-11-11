@@ -1,3 +1,4 @@
+from .barrier import source_games
 """Player-facing catalog filters without changing the purchase rules."""
 from .text_search import literal_pattern
 from .models import ItemBluePrint
@@ -12,7 +13,7 @@ def merchant_context(profile,params):
              'weapon':params.get('weapon','') if params.get('weapon') in weapons else '',
              'affordable':'1' if params.get('affordable')=='1' else '',
              'usable':'1' if params.get('usable')=='1' else ''}
-    stock=ItemBluePrint.objects.filter(source_game__in=["adaptation",profile.world.universe],merchant=True,base_value__gte=0,min_level__lte=profile.level,
+    stock=ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True,base_value__gte=0,min_level__lte=profile.level,
         required_camp__in=['',profile.camp],min_camp_tier__lte=profile.camp_tier)
     if filters['q']:stock=stock.filter(name__iregex=literal_pattern(filters['q']))
     if filters['kind']:stock=stock.filter(kind=filters['kind'])

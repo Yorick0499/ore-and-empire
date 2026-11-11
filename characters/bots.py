@@ -1,3 +1,4 @@
+from .barrier import source_games,region_ids,joined,region
 """Autonomous local players. Policies see immutable data and an action allowlist.
 
 No policy receives ORM objects, resource grants or an administrator capability.
@@ -387,10 +388,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .economic_ledger import refills_remaining
     energy_refills_left = refills_remaining(profile)
     consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
-    stock = ItemBluePrint.objects.filter(source_game__in=["adaptation",profile.world.universe],merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id=profile.world_id, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
     offers=[o for o in offers if o.market_price<=market.quote(o.owner,o).price]
     upgrade = None
     if equipped and combat_equipment:
@@ -528,6 +529,24 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 if privileges(profile)['can_rally']:raid_action='raid_rally'
             elif raid_status['can_attack'] and profile.current_health>=min(profile.max_health,(raid.attack+10)*3+10) and (not profile.prepared_magic_id or (active_magic and profile.current_mana>=active_magic.cost)):
                 raid_action='raid_strike';raid_target=raid.pk
+    if profile.level>=30 and profile.camp in {'OLD_CAMP','NEW_CAMP','SWAMP_CAMP'} and profile.bot_turn%13==0:
+        from .sleeper import card as sleeper_card
+        from .models import SleeperReward
+        sc=sleeper_card(profile)
+        if sc['race'] and sc['race'].state=='joined' and sc['race'].winner and sc['race'].winner.camp==profile.camp and not SleeperReward.objects.filter(race=sc['race'],account_id=profile.user_id).exists():
+            if sc['siege'] and sc['siege'].strikes.filter(account_id=profile.user_id,damage__gt=0).exists():raid_action='sleeper_claim';raid_target=None
+        elif sc['eligible'] and sc['guild_ready']:
+            if not sc['siege']:raid_action='sleeper_rally';raid_target=None
+            elif sc['can_strike'] and profile.current_health>=min(profile.max_health,460):raid_action='sleeper_strike';raid_target=sc['siege'].pk
+    if joined(profile.world_id) and not profile.is_busy:
+        from .barrier import alliance_card
+        if alliance_card(profile)['can_promote']:raid_action='alliance_promote';raid_target=None
+        from .locations import BY_KEY
+        desired=next((BY_KEY.get(key) for kind,key in story.events if kind in {'boss','travel'} and BY_KEY.get(key) and BY_KEY[key].universe!=region(profile).universe),None)
+        if desired:
+            from .models import World
+            destination=World.objects.filter(pk__in=region_ids(profile.world_id),universe=desired.universe).first()
+            if destination:raid_action='region_travel';raid_target=destination.pk
     from .challenges import bot_personal_plan
     personal_action,personal_target=bot_personal_plan(profile)
     from .crafting import bot_craft_plan
@@ -630,8 +649,17 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             success=bool(learn_craft(profile,('smithing','alchemy')[target-1]) if action=='craft_learn' else buy_craft_material(profile,target) if action=='craft_material' else craft_item(profile,target,uuid4()))
         elif action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
             success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
-        elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim'}:
-            success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
+        elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim','sleeper_rally','sleeper_strike','sleeper_claim','region_travel','alliance_promote'}:
+            if action.startswith('sleeper_'):
+                from .sleeper import rally,strike,claim_reward
+                success=bool(rally(profile) if action=='sleeper_rally' else strike(profile,target,uuid4()) if action=='sleeper_strike' else claim_reward(profile))
+            elif action=='alliance_promote':
+                from .barrier import promote_alliance
+                success=bool(promote_alliance(profile,profile.camp_tier))
+            elif action=='region_travel':
+                from .barrier import travel
+                success=bool(travel(profile,target))
+            else:success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
         elif action=='camp_donate' and obs.camp_action==action and target is None:
             success=donate_to_camp(profile,10,uuid4())
         elif action=='camp_upgrade' and obs.camp_action==action and target==obs.camp_target_id:

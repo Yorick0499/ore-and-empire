@@ -9,6 +9,7 @@ ACTION_NAMES = {
     'improve':'ulepszył wyposażenie w kuźni', 'salvage':'odzyskał pył z łupów', 'patrol':'podjął wartę za Przełęczą',
     'craft':'wytworzył przedmiot z materiałów','craft_material':'kupił materiały warsztatowe','craft_learn':'uczył się rzemiosła',
     'market_buy':'kupił potrzebne zapasy na targu','market_reprice':'obniżył cenę zalegającej oferty','market_cancel':'wycofał niesprzedany towar','market_sell':'upłynnił niesprzedane zapasy',
+    'sleeper_rally':'ogłosił wyprawę przeciw Śniącemu','sleeper_strike':'wsparł przełamanie pieczęci Śniącego','sleeper_claim':'odebrał nagrodę za upadek Bariery','region_travel':'wyruszył do drugiego regionu',
     'raid_strike':'wsparł wspólną wyprawę obozu','camp_donate':'wpłacił rudę do wspólnego skarbca','challenge_claim':'rozliczył osobisty przydział',
     'consume': 'zużył zapasy z plecaka',
     'story_accept': 'przyjął zadanie fabularne', 'story_start': 'rozpoczął zadanie fabularne',

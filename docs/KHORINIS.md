@@ -84,3 +84,7 @@ Nie ustalono pełnego referencyjnego indeksu kodów G2 NK, dlatego nie podajemy 
 `validate_content` sprawdza teraz również grafiki lokacji i gatunków Khorinis, unikalność kluczy, zależności zadań oraz cele podróży, walk i bossów. Wypisuje wprost, że waliduje częściową adaptację sprzed połączenia. Kontrola celowo nie nazywa tej walidacji dowodem pełnego G2 NK.
 
 Aktualny [raport audytu i tempa gry](reports/grywalnosc-2026-11-11.json) oraz [opis prób nowego gracza](SOLO_PLAYTEST.md).
+
+## Aktualizacja 0046–0047: po obozowym zwycięstwie
+
+Powyższy katalog opisuje paczkę **przed** upadkiem Bariery. Po potwierdzonym obozowym zwycięstwie i zweryfikowanej świeżej kopii dostępne są teraz wspólny rynek/ranking, podróże oraz dwa pierwsze wspólne przydziały i wyprawa przeciw smokowi ognia (35). Najemnicy Onara tworzą wspólnotę z ludźmi Lee, zachowując historyczne członkostwo. Dawne zadania, prace i nagrody nie są resetowane. [Pełne reguły przejścia](CHARACTERS_AND_WORLDS.md). Jarkendar nadal pozostaje zamknięty; pełna zawartość NK i premium wymagają kolejnych etapów.

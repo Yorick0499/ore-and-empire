@@ -50,3 +50,5 @@ separately. Current README screenshots show the expanded local Gothicpedia asset
 
 
 Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+
+Etap #120 dodaje dwie lokalne ilustracje G2: Wulkan oraz Feomathara, wybrane jawnie w `khorinis-asset-selections.json` i pobrane istniejącym importerem. Manifest zawiera SHA-256, MIME, wymiary i atrybucję Gothicpedii; łącznie 670 wpisów. Smok jest umieszczony przy Wulkanie w Górniczej Dolinie, a jego statystyki pozostają autorskim balansem MMORPG. Źródła: [Wulkan](https://gothic.fandom.com/pl/wiki/Wulkan), [Feomathar](https://gothic.fandom.com/pl/wiki/Feomathar).

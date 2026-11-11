@@ -73,8 +73,13 @@ def validate_definition(quest):
         if not isinstance(item, dict) or not bounded_int(item.get('blueprint'), 1) or not bounded_int(item.get('count', 1), 1, 6) or not ItemBluePrint.objects.filter(pk=item['blueprint']).exists(): invalid()
 
 
+def story_universes(profile):
+    from .barrier import joined
+    return [profile.world.universe,'JOINED'] if joined(profile.world_id) else [profile.world.universe]
+
+
 def available(profile, quest, *, completed=None):
-    if not quest.enabled or quest.universe != profile.world.universe or profile.level < quest.level or (quest.camp and profile.camp != quest.camp):
+    if not quest.enabled or quest.universe not in story_universes(profile) or profile.level < quest.level or (quest.camp and profile.camp != quest.camp):
         return False
     if completed is None:
         completed = {run.snapshot['key']: run for run in profile.story_runs.filter(status='claimed')}
@@ -234,7 +239,7 @@ class StoryPlan:
 def bot_story_plan(profile):
     run = profile.story_runs.exclude(status='claimed').first()
     if not run:
-        for quest in StoryQuest.objects.filter(enabled=True, universe=profile.world.universe):
+        for quest in StoryQuest.objects.filter(enabled=True, universe__in=story_universes(profile)):
             try:
                 validate_definition(quest)
             except ValidationError:

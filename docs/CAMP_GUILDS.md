@@ -21,3 +21,11 @@ Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywi
 
 
 Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+
+## Związek najemników po upadku Bariery — 0046/0047
+
+Nowy Obóz i Najemnicy Onara tworzą wspólną wspólnotę Lee i Onara. Kody historycznego członkostwa, osobiste rangi, osiągnięcia oraz oba rekordy gildii zostają zachowane. Nowe projekty, wpłaty, premie i wyprawy korzystają z głównej wspólnoty Nowego Obozu. Przy jednorazowym połączeniu skarbce są sumowane, dawny skarbiec Onara zerowany (bez zmiany łącznej rudy), PD łączone, a ulepszenia zachowują wyższy dotychczasowy poziom. Audyt zapisuje kwotę i identyfikatory. Stare wyprawy i ich nagrody pozostają rozliczalne pod dawnymi ID.
+
+Wspólna hierarchia odpowiada szczeblom 0–4: **Robotnik wspólnoty → Zbrojny → Najemnik → Weteran szlaków → Dowódca Związku**. Dotychczasowy wyższy szczebel nie jest odbierany. Dalsza ranga `alliance_rank` nie przepisuje historycznego kodu rangi. Najpierw wymagany jest co najmniej drugi szczebel pierwotnej frakcji. Przejście na 3 wymaga poziomu 35, odebranego **Szlaku po upadku Bariery** i 500 rudy; na 4: poziomu 40, **Zagrożenia znad szczytu** i 1000 rudy. Awans działa dla graczy i botów przez ten sam serwis; daje zwykłe przywileje danego szczebla, bez powielania portfeli. Pozostałe wspólnoty zachowują własną historię i rozwój.
+
+Formularz awansu Związku przesyła oczekiwany dotychczasowy szczebel. Powtórzenie starego formularza nie kupuje kolejnej rangi ani nie pobiera opłaty po raz drugi.

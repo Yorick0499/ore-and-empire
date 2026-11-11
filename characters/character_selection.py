@@ -14,9 +14,9 @@ class CharacterForm(forms.Form):
     world=forms.ModelChoiceField(label='Świat / serwer',queryset=World.objects.none(),empty_label=None)
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        from .realms import open_worlds
-        self.fields['world'].queryset=open_worlds().order_by('edition','pk')
-        self.fields['world'].label_from_instance=lambda world: f'{world.name} · '+('Khorinis (Gothic II)' if world.universe=='GOTHIC_II' else 'Kolonia (Gothic I)')
+        from .barrier import creation_worlds
+        self.fields['world'].queryset=creation_worlds().order_by('edition','pk')
+        self.fields['world'].label_from_instance=lambda world: ('Połączony świat — Kolonia i Khorinis' if world.union_key else f'{world.name} · '+('Khorinis (Gothic II)' if world.universe=='GOTHIC_II' else 'Kolonia (Gothic I)'))
     def clean_name(self):
         value=unicodedata.normalize('NFKC',' '.join(self.cleaned_data['name'].split()))
         if not re.fullmatch(r"[\w][\w .'-]{1,31}",value):raise ValidationError('Użyj 2–32 liter, cyfr, spacji lub znaków _ . - i apostrofu.')
@@ -30,9 +30,11 @@ def create_character(user,name,world_id):
     if not form.is_valid():raise ValidationError(' '.join(str(error) for errors in form.errors.values() for error in errors))
     world=form.cleaned_data['world'];name=form.cleaned_data['name']
     name_key=unicodedata.normalize('NFKC',name).casefold()
-    legacy_names=PlayerProfile.objects.filter(world=world,name='',is_bot=False,is_draft=False).values_list('user__username',flat=True)
+    from .barrier import region_ids
+    worlds=region_ids(world)
+    legacy_names=PlayerProfile.objects.filter(world_id__in=worlds,name='',is_bot=False,is_draft=False).values_list('user__username',flat=True)
     reserved=any(unicodedata.normalize('NFKC',legacy).casefold()==name_key for legacy in legacy_names)
-    if reserved or PlayerProfile.objects.filter(world=world,name_key=name_key).exists():raise ValidationError('To imię jest już zajęte na tym świecie.')
+    if reserved or PlayerProfile.objects.filter(world_id__in=worlds,name_key=name_key).exists():raise ValidationError('To imię jest już zajęte na tym świecie.')
     draft=owner.characters.filter(is_draft=True).order_by('slot').first()
     if draft:
         draft.name=name;draft.world=world;draft.origin_world=world;draft.is_draft=False;draft.save(update_fields=['name','world','origin_world','is_draft'])
@@ -58,8 +60,15 @@ class CharacterSelectionMiddleware:
     def __init__(self,get_response):self.get_response=get_response
     def __call__(self,request):
         from .realms import world_scope
+        from .models import SleeperRace
+        from django.utils import timezone
+        from django.http import HttpResponse
+        if not request.path.startswith('/health/') and SleeperRace.objects.filter(state='merging',lease_expires_at__gt=timezone.now()).exists():
+            response=HttpResponse('Trwa zabezpieczanie zapisu i upadek Bariery. Spróbuj ponownie za chwilę.',status=503)
+            response['Retry-After']='5';return response
         # Bind before view dispatch and template context processing; reset on every response/exception.
         with world_scope(None):
+            if request.path.startswith('/health/'):return self.get_response(request)
             if request.user.is_authenticated:
                 from .realms import open_worlds
                 ready=request.user.characters.filter(world__in=open_worlds(),is_draft=False).select_related('world')
@@ -79,7 +88,7 @@ class CharacterSelectionMiddleware:
                     _scope.set(selected_world.pk)
             return self.get_response(request)
     def process_view(self,request,view,args,kwargs):
-        if not request.user.is_authenticated:return None
+        if request.path.startswith('/health/') or not request.user.is_authenticated:return None
         world=current_world()
         from .realms import open_worlds
         ready=request.user.characters.filter(world__in=open_worlds(),is_draft=False).select_related('world')

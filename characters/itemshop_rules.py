@@ -1,3 +1,4 @@
+from .barrier import source_games
 """Shared Polish-day purchase caps and useful, personality-aware choices."""
 from datetime import datetime,time,timedelta
 from django.db.models import Count
@@ -7,7 +8,7 @@ from .models import StorePurchase
 LIMITS={'mana':5,'xp':3,'weapon':2,'item':2}
 def unavailable_reason(p,q,energy_left,limits=None):
     """The same eligibility decision serves the purchase, bots and visible UI."""
-    if q.blueprint and q.blueprint.source_game not in {'adaptation',p.world.universe}:return 'Przedmiot pochodzi z innego świata.'
+    if q.blueprint and q.blueprint.source_game not in source_games(p):return 'Przedmiot pochodzi z innego świata.'
     if not q.enabled:return 'Oferta jest wyłączona.'
     if p.level<q.level:return f'Wymagany poziom: {q.level}.'
     if q.kind in LIMITS and not (limits if limits is not None else remaining(p))[q.kind]:return 'Wykorzystano limit zakupów na dziś (czas polski).'

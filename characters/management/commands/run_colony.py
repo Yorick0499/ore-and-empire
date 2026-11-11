@@ -110,6 +110,8 @@ class Command(BaseCommand):
                 while True:
                     now=time.monotonic()
                     if now>=refresh_at:
+                        from characters.barrier_activation import activate_pending
+                        activate_pending()
                         world=current_world()
                         if world.pk!=guard.world_id:
                             guard.release()
