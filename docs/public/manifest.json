@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "panel wyścigu i audytu / #35",
+  "code_revision": "świeży start i balans po połączeniu / #31",
   "migration": "0047_wspolna_hierarchia_najemnikow",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -213,6 +213,7 @@
     "docs/reports/ai-budzet-po-restarcie-2026-11-07.json",
     "docs/reports/audyt-bledow-2026-11-06.json",
     "docs/reports/audyt-stu-botow-2026-11-06.json",
+    "docs/reports/balans-po-polaczeniu-2026-11-11.json",
     "docs/reports/czas-polski-2026-11-06.json",
     "docs/reports/economy-baseline-v1.json",
     "docs/reports/gra-solo-buildy-petla-2026-11-08.json",

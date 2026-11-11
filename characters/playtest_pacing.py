@@ -10,6 +10,7 @@ import random
 from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.core.management import call_command
+from .barrier import region,source_games
 from django.test import TestCase
 from . import game_logic as game
 from .models import StoryQuest,ItemBluePrint,World,AdventureTemplate
@@ -34,12 +35,28 @@ class CampaignPacingTests(TestCase):
     def test_colony_contract_income(self):self.play('GOTHIC_I',None,support=True,income_first=True)
     def test_island_contract_income(self):self.play('GOTHIC_II',None,support=True,income_first=True)
 
-    def play(self,universe,session_minutes,*,support=False,income_first=False):
-        seed_clean_world();world=current_world();world.configured=True;world.bot_count=0;world.save()
-        if universe=='GOTHIC_II':
-            call_command('open_khorinis',bots=0,stdout=StringIO());world=World.objects.get(universe=universe)
+    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None):
+        with patch('django.utils.timezone.now',return_value=datetime(2026,11,11,9,tzinfo=POLISH_TIME)):
+            seed_clean_world();world=current_world();world.configured=True;world.bot_count=0;world.save()
+            if universe=='GOTHIC_II':
+                call_command('open_khorinis',bots=0,stdout=StringIO());world=World.objects.get(universe=universe)
+            if joined_start:
+                from uuid import uuid4
+                call_command('open_khorinis',bots=0,stdout=StringIO())
+                World.objects.filter(is_current=True).update(configured=True)
+                World.objects.filter(status='active').update(union_key=uuid4())
+                from .post_barrier import seed
+                seed()
         state=random.getstate();self.addCleanup(random.setstate,state);random.seed(111126)
         start=datetime(2026,11,11,9,tzinfo=POLISH_TIME);now=start;session_start=start
+        event_days=set()
+        def calendar():
+            if after_campaign and now.date() not in event_days:
+                from .realms import world_scope
+                from .world_events import ensure_world_events
+                for realm in World.objects.filter(status='active'):
+                    with world_scope(realm):ensure_world_events(now)
+                event_days.add(now.date())
         actions=Counter();active_seconds=0;recovery_seconds=0;timed_seconds=0;offline_seconds=0
         def advance(seconds,kind='action'):
             nonlocal now,session_start,active_seconds,recovery_seconds,timed_seconds,offline_seconds
@@ -50,14 +67,16 @@ class CampaignPacingTests(TestCase):
                     if kind=='recovery':recovery_seconds+=remaining
                     else:timed_seconds+=remaining
                     offline_seconds+=(next_start-now).total_seconds()-remaining;now=next_start;session_start=now
-                    return
+                    calendar();return
                 offline_seconds+=(next_start-now).total_seconds();now=next_start;session_start=now
             now+=timedelta(seconds=seconds)
+            calendar()
             if kind=='action':active_seconds+=seconds
             elif kind=='recovery':recovery_seconds+=seconds
             else:timed_seconds+=seconds
         with patch('django.utils.timezone.now',side_effect=lambda:now):
-            user=User.objects.create_user('pacing-player');hero=create_character(user,'Nowy mieszkaniec',world.pk)
+            calendar()
+            user=User.objects.create_user('pacing-player');hero=create_character(user,'Nowy mieszkaniec',current_world().pk if joined_start else world.pk,start_region=world.pk if joined_start else None)
             self.client.force_login(user);self.client.post('/postacie/',{'profile':hero.pk})
             def resupply():
                 if not support:return
@@ -94,7 +113,7 @@ class CampaignPacingTests(TestCase):
                     if hero.ore_balance>=amount:return
                     if income_first:
                         from .economy import start_adventure,claim_adventure
-                        template=AdventureTemplate.objects.filter(universe=universe,enabled=True,level__lte=hero.level).order_by('-ore_reward','duration_seconds').first()
+                        template=AdventureTemplate.objects.filter(universe=region(hero).universe,enabled=True,level__lte=hero.level).order_by('-ore_reward','duration_seconds').first()
                         run=do('income_adventure',lambda:start_adventure(hero,template.pk))
                         advance(max(0,int((run.ends_at-now).total_seconds())),'timer')
                         do('income_claim',lambda:claim_adventure(hero,run.pk))
@@ -105,7 +124,7 @@ class CampaignPacingTests(TestCase):
                 while hero.skill_points:
                     count=min(hero.skill_points,10);funds(hero.training_cost*count)
                     do('train_strength',lambda:game.train_attribute(hero,'strength',count));hero.refresh_from_db()
-                choices=ItemBluePrint.objects.filter(source_game=universe,merchant=True,kind='weapon',weapon_type='onehand',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-damage','base_value','pk')
+                choices=ItemBluePrint.objects.filter(source_game__in=source_games(hero),merchant=True,kind='weapon',weapon_type='onehand',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-damage','base_value','pk')
                 bp=next((b for b in choices if allowed(hero,b)),None);self.assertIsNotNone(bp)
                 equipped=hero.inventory.filter(is_equipped=True,equipped_slot='weapon').first()
                 if not equipped or equipped.effective_stats['damage']<bp.damage:
@@ -114,7 +133,7 @@ class CampaignPacingTests(TestCase):
                         funds(bp.base_value);do('buy_weapon',lambda:game.buy_item_from_npc(hero,bp));owned=hero.inventory.filter(blueprint=bp,is_equipped=False).first()
                     do('equip_weapon',lambda:game.equip_item(hero,owned))
                 if support:
-                    armor=next((b for b in ItemBluePrint.objects.filter(source_game=universe,merchant=True,kind='armor',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-weapon_prot','base_value','pk') if allowed(hero,b)),None)
+                    armor=next((b for b in ItemBluePrint.objects.filter(source_game__in=source_games(hero),merchant=True,kind='armor',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-weapon_prot','base_value','pk') if allowed(hero,b)),None)
                     worn=hero.inventory.filter(is_equipped=True,equipped_slot='armor').first()
                     if armor and (not worn or worn.effective_stats['weapon_prot']<armor.weapon_prot):
                         funds(armor.base_value);do('buy_armor',lambda:game.buy_item_from_npc(hero,armor))
@@ -124,7 +143,7 @@ class CampaignPacingTests(TestCase):
                 hero.refresh_from_db()
                 if hero.current_health<hero.max_health:advance((hero.max_health-hero.current_health)*60,'recovery')
             def grind_level():
-                template=AdventureTemplate.objects.filter(universe=universe,enabled=True,level__lte=hero.level).order_by('-experience_reward').first()
+                template=AdventureTemplate.objects.filter(universe=region(hero).universe,enabled=True,level__lte=hero.level).order_by('-experience_reward').first()
                 run=do('adventure_start',lambda:__import__('characters.economy',fromlist=['start_adventure']).start_adventure(hero,template.pk))
                 advance(max(0,int((run.ends_at-now).total_seconds())),'timer')
                 do('adventure_claim',lambda:__import__('characters.economy',fromlist=['claim_adventure']).claim_adventure(hero,run.pk))
@@ -168,4 +187,5 @@ class CampaignPacingTests(TestCase):
             if universe=='GOTHIC_I':
                 prepare();self.assertTrue(do('personal_finale',lambda:game.execute_boss(hero,'sleeper_sanctum')).won)
             hero.refresh_from_db()
-            record_scenario('tempo-kampanii',{'universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})
+            if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start})
+            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})

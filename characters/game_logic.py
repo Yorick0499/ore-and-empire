@@ -526,7 +526,7 @@ def execute_boss(profile, boss_key, request_key=None):
         combat_log=combat_log,
     )
 
-    save_battle(profile, request_key, boss_key, boss_key, won, combat_log, experience, ore, attempt, details={"magic":plan.spell.key if plan else None,"casts":getattr(result,"spell_casts",0),"mana_after":profile.current_mana})
+    save_battle(profile, request_key, boss_key, boss_key, won, combat_log, experience, ore, attempt, details={"balance_version":boss.balance_version,"encounter_stats":boss.monster,"energy_cost":boss.energy_cost,"cooldown_minutes":boss.cooldown_minutes,"magic":plan.spell.key if plan else None,"casts":getattr(result,"spell_casts",0),"mana_after":profile.current_mana})
     if won and boss_key == "sleeper_sanctum":
         from .finale import record_completion
         record_completion(profile, attempt)

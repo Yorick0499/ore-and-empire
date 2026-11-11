@@ -879,7 +879,7 @@ def characters_view(request):
         try:
             if request.POST.get('action')=='create':
                 if form.is_valid():
-                    selected=create_character(request.user,form.cleaned_data['name'],form.cleaned_data['world'].pk)
+                    selected=create_character(request.user,form.cleaned_data['name'],form.cleaned_data['world'].pk,start_region=form.cleaned_data['start_region'].pk if form.cleaned_data.get('start_region') else None)
                     select_character(request,selected)
                     return redirect('locations_page')
             else:

@@ -1,0 +1,1115 @@
+{
+  "date": "2026-11-11",
+  "issue": 31,
+  "scope": "Obecna połączona adaptacja, nie pełny Gothic II NK",
+  "isolated_database": true,
+  "global_join_fixture": true,
+  "admin_grants": false,
+  "balance_version": 1,
+  "bosses": {
+    "sleeper_sanctum": {
+      "key": "sleeper_sanctum",
+      "name": "Echo Śniącego",
+      "level": 30,
+      "life": 1400,
+      "strength": 80,
+      "protection": 45,
+      "experience": 3000,
+      "ore": 500,
+      "cooldown_minutes": 30,
+      "energy_cost": 25,
+      "balance_version": 1
+    },
+    "crawler_nest": {
+      "key": "crawler_nest",
+      "name": "Królowa pełzaczy",
+      "level": 5,
+      "life": 150,
+      "strength": 20,
+      "protection": 8,
+      "experience": 300,
+      "ore": 60,
+      "cooldown_minutes": 30,
+      "energy_cost": 25,
+      "balance_version": 1
+    },
+    "swamp_den": {
+      "key": "swamp_den",
+      "name": "Prastary błotny wąż",
+      "level": 8,
+      "life": 220,
+      "strength": 25,
+      "protection": 10,
+      "experience": 500,
+      "ore": 100,
+      "cooldown_minutes": 30,
+      "energy_cost": 25,
+      "balance_version": 1
+    },
+    "k2_bandit_boss": {
+      "key": "k2_bandit_boss",
+      "name": "Poborcy haraczu",
+      "level": 10,
+      "life": 220,
+      "strength": 25,
+      "protection": 10,
+      "experience": 1000,
+      "ore": 100,
+      "cooldown_minutes": 30,
+      "energy_cost": 25,
+      "balance_version": 1
+    },
+    "k2_harbor_boss": {
+      "key": "k2_harbor_boss",
+      "name": "Wódz rozbójników z wybrzeża",
+      "level": 18,
+      "life": 500,
+      "strength": 42,
+      "protection": 20,
+      "experience": 2200,
+      "ore": 200,
+      "cooldown_minutes": 30,
+      "energy_cost": 25,
+      "balance_version": 1
+    },
+    "k2_dragon_fire": {
+      "key": "k2_dragon_fire",
+      "name": "Feomathar — smok ognia",
+      "level": 35,
+      "life": 2400,
+      "strength": 120,
+      "protection": 75,
+      "experience": 5000,
+      "ore": 750,
+      "cooldown_minutes": 60,
+      "energy_cost": 30,
+      "balance_version": 1
+    }
+  },
+  "frontier": {
+    "snapshot_version": 1,
+    "life": "600 + 60 * depth",
+    "strength": "55 + 3 * depth",
+    "weapon_protection": "25 + 2 * depth",
+    "ore_base": "50 + 10 * depth",
+    "experience_base": "400 + 80 * depth",
+    "energy_cost": 20,
+    "cooldown_minutes": 5,
+    "depth_range": [
+      1,
+      100
+    ]
+  },
+  "method": {
+    "clock_start": "2026-11-11T09:00:00+01:00",
+    "calendar": "Zwykłe wydarzenia inicjowane we wszystkich otwartych regionach przy zmianie dnia",
+    "pacing": "Zarobione treningi, zlecenia, sprzęt NPC i napoje za zdobyte odłamki; brak konkurencji rynku",
+    "combat_sensitivity": "25 prognoz na zdobytym zestawie, bez zapisu, przed osobną płatną walką"
+  },
+  "decisions": [
+    "Zachowujemy dorobek; brak podstaw do limitu transferu, resetu lub obniżania sprzętu. Połączenie nie jest ręcznym transferem.",
+    "Nie zmieniamy liczbowo nagród ani statystyk na podstawie jednej strategii.",
+    "Dodajemy wybór historii startowej i jawny numer balansu bossów."
+  ],
+  "limits": [
+    "Czas świata z regeneracją i timerami, nie czas samego klikania.",
+    "Endgame zmierzono dla wojownika; mag i łucznik mają organiczną próbę wczesnej gry, nie pełną krzywą do 40.",
+    "Trzy boty reprezentują obozy Kolonii, nie trzy różne buildy endgame.",
+    "Globalne połączenie jest przygotowanym stanem otoczenia; testy wyścigu i realnego odtworzenia są osobną regresją.",
+    "Brak pomiaru kompletnego NK, Jarkendaru, wszystkich 100 wart i każdej losowej nagrody."
+  ],
+  "scenarios": [
+    {
+      "scenario": "tempo-po-barierze",
+      "case": "test_colony_veteran",
+      "origin": "GOTHIC_I",
+      "checkpoints": [
+        {
+          "target": 30,
+          "level": 31,
+          "hours": 11.26,
+          "strength": 320,
+          "health": 422,
+          "ore": 227
+        },
+        {
+          "target": 35,
+          "level": 35,
+          "hours": 25.14,
+          "strength": 360,
+          "health": 470,
+          "ore": 1585,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 180,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        },
+        {
+          "target": 40,
+          "level": 40,
+          "hours": 45.26,
+          "strength": 410,
+          "health": 530,
+          "ore": 8144,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 325,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        }
+      ],
+      "organic_character": true,
+      "global_join_fixture": true,
+      "admin_grants": false,
+      "limits": [
+        "Deterministyczna strategia wojownika z dochodem ze zleceń i zarobionym itemshopem.",
+        "Globalne połączenie jest stanem otoczenia testu, nie symulacją zwycięstwa całej wspólnoty.",
+        "Alternatywna postać ma nowy start bez kopiowania dorobku; inne buildy wymagają osobnych prób."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 45.38,
+      "active_minutes": 300.5,
+      "recovery_minutes": 1436.0,
+      "timers_minutes": 986.2,
+      "offline_hours": 0.0,
+      "calendar_days": 3,
+      "level": 40,
+      "strength": 410,
+      "quests": 27,
+      "ore": 8931,
+      "shards": 325,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 5,
+        "mine_claim": 5,
+        "buy_weapon": 8,
+        "equip_weapon": 8,
+        "income_adventure": 215,
+        "income_claim": 29,
+        "buy_armor": 6,
+        "equip_armor": 6,
+        "hunt": 105,
+        "travel_energy": 25,
+        "story_travel": 16,
+        "join_camp": 1,
+        "buy_delivery": 2,
+        "train_strength": 40,
+        "earned_shop_energy": 15,
+        "train_goal": 1,
+        "boss": 19,
+        "earned_shop_health": 24,
+        "personal_finale": 1,
+        "adventure_start": 1057,
+        "adventure_claim": 84,
+        "dragon": 15
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    {
+      "scenario": "tempo-po-barierze",
+      "case": "test_fresh_joined_colony",
+      "origin": "GOTHIC_I",
+      "checkpoints": [
+        {
+          "target": 30,
+          "level": 31,
+          "hours": 11.54,
+          "strength": 320,
+          "health": 422,
+          "ore": 46
+        },
+        {
+          "target": 35,
+          "level": 35,
+          "hours": 25.45,
+          "strength": 360,
+          "health": 470,
+          "ore": 1404,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 180,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        },
+        {
+          "target": 40,
+          "level": 40,
+          "hours": 45.56,
+          "strength": 410,
+          "health": 530,
+          "ore": 7925,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 325,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        }
+      ],
+      "organic_character": true,
+      "global_join_fixture": true,
+      "admin_grants": false,
+      "limits": [
+        "Deterministyczna strategia wojownika z dochodem ze zleceń i zarobionym itemshopem.",
+        "Globalne połączenie jest stanem otoczenia testu, nie symulacją zwycięstwa całej wspólnoty.",
+        "Alternatywna postać ma nowy start bez kopiowania dorobku; inne buildy wymagają osobnych prób."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 45.66,
+      "active_minutes": 306.7,
+      "recovery_minutes": 1443.0,
+      "timers_minutes": 990.0,
+      "offline_hours": 0.0,
+      "calendar_days": 3,
+      "level": 40,
+      "strength": 410,
+      "quests": 27,
+      "ore": 8712,
+      "shards": 328,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 5,
+        "mine_claim": 5,
+        "buy_weapon": 8,
+        "equip_weapon": 8,
+        "income_adventure": 226,
+        "income_claim": 30,
+        "buy_armor": 8,
+        "equip_armor": 8,
+        "hunt": 126,
+        "travel_energy": 27,
+        "story_travel": 16,
+        "join_camp": 1,
+        "buy_delivery": 2,
+        "train_strength": 40,
+        "earned_shop_energy": 15,
+        "train_goal": 1,
+        "boss": 19,
+        "earned_shop_health": 22,
+        "personal_finale": 1,
+        "adventure_start": 1059,
+        "adventure_claim": 84,
+        "dragon": 13
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    {
+      "scenario": "tempo-po-barierze",
+      "case": "test_fresh_joined_island",
+      "origin": "GOTHIC_II",
+      "checkpoints": [
+        {
+          "target": 30,
+          "level": 30,
+          "hours": 15.61,
+          "strength": 310,
+          "health": 410,
+          "ore": 1850
+        },
+        {
+          "target": 35,
+          "level": 35,
+          "hours": 24.96,
+          "strength": 360,
+          "health": 470,
+          "ore": 6315,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 180,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        },
+        {
+          "target": 40,
+          "level": 40,
+          "hours": 44.24,
+          "strength": 410,
+          "health": 530,
+          "ore": 12622,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 325,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        }
+      ],
+      "organic_character": true,
+      "global_join_fixture": true,
+      "admin_grants": false,
+      "limits": [
+        "Deterministyczna strategia wojownika z dochodem ze zleceń i zarobionym itemshopem.",
+        "Globalne połączenie jest stanem otoczenia testu, nie symulacją zwycięstwa całej wspólnoty.",
+        "Alternatywna postać ma nowy start bez kopiowania dorobku; inne buildy wymagają osobnych prób."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_II",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 44.36,
+      "active_minutes": 292.5,
+      "recovery_minutes": 1450.0,
+      "timers_minutes": 919.0,
+      "offline_hours": 0.0,
+      "calendar_days": 3,
+      "level": 40,
+      "strength": 410,
+      "quests": 17,
+      "ore": 13409,
+      "shards": 235,
+      "actions": {
+        "story_accept": 17,
+        "story_energy": 17,
+        "story_start": 17,
+        "story_talk": 2,
+        "story_claim": 17,
+        "mine": 48,
+        "mine_claim": 8,
+        "buy_weapon": 6,
+        "equip_weapon": 6,
+        "income_adventure": 191,
+        "income_claim": 28,
+        "buy_armor": 6,
+        "equip_armor": 6,
+        "hunt": 159,
+        "travel_energy": 14,
+        "story_travel": 8,
+        "join_camp": 1,
+        "train_strength": 40,
+        "earned_shop_health": 17,
+        "earned_shop_energy": 15,
+        "train_goal": 1,
+        "boss": 16,
+        "adventure_start": 1020,
+        "adventure_claim": 81,
+        "dragon": 14
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    {
+      "scenario": "tempo-po-barierze",
+      "case": "test_island_veteran",
+      "origin": "GOTHIC_II",
+      "checkpoints": [
+        {
+          "target": 30,
+          "level": 30,
+          "hours": 13.47,
+          "strength": 310,
+          "health": 410,
+          "ore": 2246
+        },
+        {
+          "target": 35,
+          "level": 35,
+          "hours": 22.66,
+          "strength": 360,
+          "health": 470,
+          "ore": 6636,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 180,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        },
+        {
+          "target": 40,
+          "level": 40,
+          "hours": 42.35,
+          "strength": 410,
+          "health": 530,
+          "ore": 13105,
+          "combat_sensitivity": {
+            "seeds": 25,
+            "wins": 25,
+            "minimum_remaining_health": 325,
+            "read_only_forecast": true
+          },
+          "dragon_won": true
+        }
+      ],
+      "organic_character": true,
+      "global_join_fixture": true,
+      "admin_grants": false,
+      "limits": [
+        "Deterministyczna strategia wojownika z dochodem ze zleceń i zarobionym itemshopem.",
+        "Globalne połączenie jest stanem otoczenia testu, nie symulacją zwycięstwa całej wspólnoty.",
+        "Alternatywna postać ma nowy start bez kopiowania dorobku; inne buildy wymagają osobnych prób."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_II",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 42.47,
+      "active_minutes": 279.5,
+      "recovery_minutes": 1372.0,
+      "timers_minutes": 896.5,
+      "offline_hours": 0.0,
+      "calendar_days": 3,
+      "level": 40,
+      "strength": 410,
+      "quests": 17,
+      "ore": 13892,
+      "shards": 231,
+      "actions": {
+        "story_accept": 17,
+        "story_energy": 17,
+        "story_start": 17,
+        "story_talk": 2,
+        "story_claim": 17,
+        "mine": 48,
+        "mine_claim": 8,
+        "buy_weapon": 4,
+        "equip_weapon": 4,
+        "income_adventure": 58,
+        "income_claim": 17,
+        "buy_armor": 6,
+        "equip_armor": 6,
+        "hunt": 184,
+        "travel_energy": 17,
+        "story_travel": 8,
+        "join_camp": 1,
+        "train_strength": 40,
+        "earned_shop_energy": 15,
+        "train_goal": 1,
+        "boss": 16,
+        "earned_shop_health": 16,
+        "adventure_start": 1060,
+        "adventure_claim": 84,
+        "dragon": 14
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 444,
+      "simulated_hours": 221.5,
+      "actions": {
+        "stock": 39,
+        "mine": 21,
+        "equip": 49,
+        "claim": 21,
+        "sell": 40,
+        "story_accept": 87,
+        "story_start": 87,
+        "story_talk": 30,
+        "story_claim": 87,
+        "finance": 3,
+        "ammo": 2,
+        "challenge_accept": 33,
+        "story_travel": 49,
+        "hunt": 61,
+        "camp": 3,
+        "accept": 6,
+        "promote": 3,
+        "challenge_claim": 13,
+        "train": 569,
+        "camp_donate": 25,
+        "improve": 38,
+        "boss": 6,
+        "salvage": 12,
+        "achievement_claim": 3,
+        "patrol": 17,
+        "list": 3,
+        "market_buy": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 31,
+          "experience": 249477,
+          "ore_balance": 5368,
+          "premium_balance": 7
+        },
+        {
+          "camp": "OLD_CAMP",
+          "level": 30,
+          "experience": 247516,
+          "ore_balance": 5198,
+          "premium_balance": 7
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 31,
+          "experience": 250681,
+          "ore_balance": 4038,
+          "premium_balance": 8
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "hunt": 9,
+        "improve": 27,
+        "equip": 8,
+        "patrol": 61,
+        "market_buy": 4,
+        "salvage": 50,
+        "train": 6,
+        "sell": 3,
+        "promote": 3,
+        "challenge_accept": 1,
+        "list": 3,
+        "learn_circle": 2,
+        "accept": 1,
+        "camp_supply": 1,
+        "market_cancel": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 29,
+          "upgrades": 23
+        },
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 19,
+          "upgrades": 20
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 30,
+          "upgrades": 22
+        }
+      ]
+    },
+    {
+      "scenario": "boty-po-polaczeniu",
+      "global_join_fixture": true,
+      "admin_grants": false,
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "guild": "NOVICE",
+          "level": 32,
+          "strength": 203,
+          "dexterity": 10,
+          "mana": 12
+        },
+        {
+          "camp": "OLD_CAMP",
+          "guild": "DIGGER",
+          "level": 32,
+          "strength": 198,
+          "dexterity": 10,
+          "mana": 10
+        },
+        {
+          "camp": "NEW_CAMP",
+          "guild": "MERC",
+          "level": 32,
+          "strength": 198,
+          "dexterity": 12,
+          "mana": 10
+        }
+      ],
+      "limits": [
+        "Krok testowy 30 minut nie jest pomiarem czasu człowieka.",
+        "Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu."
+      ]
+    },
+    {
+      "scenario": "trzy-buildy-z-finansowaniem",
+      "strategy": "zlecenia na rudę przy brakach",
+      "seed": 71,
+      "ticks": 162,
+      "simulated_hours": 40.25,
+      "minutes_per_tick": 15,
+      "characters": [
+        {
+          "build": "warrior",
+          "level": 6,
+          "xp": 10623,
+          "ore": 178,
+          "strength": 45,
+          "dexterity": 10,
+          "mana": 10,
+          "mastery": 15,
+          "actions": {
+            "story_accept": 9,
+            "story_start": 9,
+            "story_talk": 3,
+            "story_claim": 9,
+            "story_mine": 3,
+            "mine_claim": 3,
+            "story_travel": 2,
+            "buy_weapon": 5,
+            "equip": 5,
+            "melee_hunt": 21,
+            "join_camp": 1,
+            "story_delivery_buy": 1,
+            "train_onehand_skill": 15,
+            "train_strength": 35,
+            "adventure_start": 15,
+            "adventure_claim": 15,
+            "sell_loot": 8
+          },
+          "defeats": 0
+        },
+        {
+          "build": "archer",
+          "level": 6,
+          "xp": 10816,
+          "ore": 171,
+          "strength": 10,
+          "dexterity": 45,
+          "mana": 10,
+          "mastery": 15,
+          "actions": {
+            "story_accept": 9,
+            "story_start": 9,
+            "story_talk": 3,
+            "story_claim": 9,
+            "story_mine": 3,
+            "mine_claim": 3,
+            "story_travel": 3,
+            "buy_weapon": 3,
+            "equip": 3,
+            "buy_ammo_pack": 3,
+            "ranged_hunt": 23,
+            "join_camp": 1,
+            "story_delivery_buy": 1,
+            "train_bow_skill": 15,
+            "train_dexterity": 35,
+            "adventure_start": 14,
+            "adventure_claim": 14,
+            "sell_loot": 2
+          },
+          "defeats": 0
+        },
+        {
+          "build": "mage",
+          "level": 6,
+          "xp": 10735,
+          "ore": 234,
+          "strength": 10,
+          "dexterity": 10,
+          "mana": 55,
+          "mastery": 1,
+          "actions": {
+            "story_accept": 9,
+            "story_start": 9,
+            "story_talk": 3,
+            "story_claim": 9,
+            "story_mine": 3,
+            "mine_claim": 3,
+            "story_travel": 2,
+            "buy_weapon": 1,
+            "equip": 1,
+            "melee_hunt": 6,
+            "join_camp": 1,
+            "story_delivery_buy": 1,
+            "rank_accept": 2,
+            "train_mana": 45,
+            "rank_promote": 2,
+            "learn_circle": 1,
+            "adventure_start": 21,
+            "adventure_claim": 21,
+            "buy_rune": 1,
+            "prepare_rune": 1,
+            "magic_hunt": 20,
+            "sell_loot": 1
+          },
+          "defeats": 0
+        }
+      ],
+      "bot_actions": {
+        "stock": 27,
+        "mine": 25,
+        "equip": 21,
+        "claim": 25,
+        "list": 15,
+        "story_accept": 45,
+        "story_start": 45,
+        "story_talk": 15,
+        "story_claim": 44,
+        "market_cancel": 15,
+        "market_sell": 12,
+        "finance": 6,
+        "ammo": 6,
+        "story_travel": 13,
+        "hunt": 22,
+        "camp": 3,
+        "accept": 6,
+        "promote": 3,
+        "challenge_accept": 9,
+        "train": 92,
+        "challenge_claim": 6,
+        "sell": 13,
+        "improve": 5,
+        "craft_learn": 1,
+        "achievement_claim": 1,
+        "camp_donate": 6,
+        "craft_material": 1,
+        "boss": 3,
+        "salvage": 1
+      },
+      "bots": 3,
+      "admin_grants": false,
+      "limits": "Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji."
+    }
+  ],
+  "gui": {
+    "isolated_database": true,
+    "grants": false,
+    "errors": [],
+    "pages": [
+      {
+        "realm": "Khorinis",
+        "route": "/postacie/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/fabula/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/sklep-odlamkow/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": false
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/postacie/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/fabula/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/sklep-odlamkow/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": false
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/postacie/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/fabula/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Khorinis",
+        "route": "/sklep-odlamkow/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": true
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/postacie/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/fabula/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/sklep-odlamkow/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": false
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/postacie/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/fabula/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/sklep-odlamkow/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": false
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/postacie/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/fabula/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": null
+      },
+      {
+        "realm": "Kolonia",
+        "route": "/sklep-odlamkow/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440,
+        "broken": [],
+        "overflow": [],
+        "profileOpen": true
+      }
+    ],
+    "steps": [
+      "registration_character_khorinis",
+      "arrival_claimed",
+      "real_15s_mining_claimed",
+      "npc_weapon_bought_equipped",
+      "first_hunt",
+      "prologue_completed_fire_order_joined",
+      "earned_shard_energy_purchase",
+      "mobile_profile_keyboard_native_toggle"
+    ]
+  }
+}
