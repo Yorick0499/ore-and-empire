@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0043_rownolegle_khorinis",
+  "migration": "0047_wspolna_hierarchia_najemnikow",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -363,6 +363,22 @@
       "captured_at_utc": "2026-11-11T13:12:43.612496+00:00",
       "fixture": "Izolowane Khorinis; nowa postać po rzeczywistym prologu, bez nadań; zarobiony zakup napoju",
       "theme": "audyt-grywalnosci-6"
+    },
+    {
+      "file": "bariera-390.png",
+      "bytes": 269180,
+      "sha256": "4cd6d3e0a4327cfb5836bb8108dc8edd4cd1c148607360f121dfe035e6b8ebc2",
+      "captured_at_utc": "2026-11-11T16:12:53.626365+00:00",
+      "fixture": "Oddzielna baza; syntetyczny uczestnik końca gry. Zwycięstwo przez formularz, świeża kopia/odtworzenie, podróż po atomowym połączeniu.",
+      "theme": "Śniący i połączenie 0046/0047"
+    },
+    {
+      "file": "bariera-1440.png",
+      "bytes": 623881,
+      "sha256": "a731e607bc8eb68e035eb00745316fdb3dacc0b6da793c3df0dee2e110db1bea",
+      "captured_at_utc": "2026-11-11T16:12:53.627238+00:00",
+      "fixture": "Oddzielna baza; syntetyczny uczestnik końca gry. Zwycięstwo przez formularz, świeża kopia/odtworzenie, podróż po atomowym połączeniu.",
+      "theme": "Śniący i połączenie 0046/0047"
     }
   ]
 }

@@ -14969,5 +14969,47 @@
       "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
       "license_reported": "not specified"
     }
+  },
+  "k2_dragon_fire": {
+    "title": "Wulkan",
+    "path": "characters/art/packs/gothic_ii_nk/ae5db78466859836ccea831c69aa40300532bce386a44fca928355eef5f6aac5.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Wulkan",
+    "original": "https://static.wikia.nocookie.net/gothic/images/9/9e/GD_Wulkan.png/revision/latest?cb=20200926211356&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/9/9e/GD_Wulkan.png/revision/latest/scale-to-width-down/640?cb=20200926211356&path-prefix=pl",
+    "selected_file": "GD Wulkan.png",
+    "game": "GOTHIC_II_NK",
+    "pack_version": 1,
+    "type": "illustration",
+    "mapping": "direct",
+    "sha256": "ae5db78466859836ccea831c69aa40300532bce386a44fca928355eef5f6aac5",
+    "width": 640,
+    "height": 478,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
+  },
+  "k2_dragon_fire_boss": {
+    "title": "Feomathar",
+    "path": "characters/art/packs/gothic_ii_nk/b5574b0f9388bbf6e25d79379b0a97b562f9bbc13e0ae8932422a04f8b3265a3.webp",
+    "source": "https://gothic.fandom.com/pl/wiki/Feomathar",
+    "original": "https://static.wikia.nocookie.net/gothic/images/7/7f/Feomathar_%28by_Ossowski21%29.png/revision/latest?cb=20150818182329&path-prefix=pl",
+    "download": "https://static.wikia.nocookie.net/gothic/images/7/7f/Feomathar_%28by_Ossowski21%29.png/revision/latest/scale-to-width-down/640?cb=20150818182329&path-prefix=pl",
+    "selected_file": "Feomathar (by Ossowski21).png",
+    "game": "GOTHIC_II_NK",
+    "pack_version": 1,
+    "type": "illustration",
+    "mapping": "direct",
+    "sha256": "b5574b0f9388bbf6e25d79379b0a97b562f9bbc13e0ae8932422a04f8b3265a3",
+    "width": 640,
+    "height": 473,
+    "mime": "image/webp",
+    "attribution": {
+      "source": "Gothicpedia",
+      "rights": "Game artwork: Piranha Bytes / respective rights holders. Fan reference; no license grant.",
+      "license_reported": "not specified"
+    }
   }
 }

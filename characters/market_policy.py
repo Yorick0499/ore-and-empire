@@ -1,3 +1,4 @@
+from .barrier import region_ids
 """Observed prices, bounded budgets and disposal of unsold stock; no balance setters."""
 from datetime import timedelta
 from statistics import median
@@ -14,7 +15,7 @@ def record_market_event(profile,item,action,price=0,quantity=None,reason=''):
 
 
 def reference_price(blueprint,world_id):
-    rows=MarketTrade.objects.filter(blueprint=blueprint,seller__world_id=world_id,quantity__gt=0).order_by('-created_at','-pk').values_list('price','quantity')[:20]
+    rows=MarketTrade.objects.filter(blueprint=blueprint,seller__world_id__in=region_ids(world_id),quantity__gt=0).order_by('-created_at','-pk').values_list('price','quantity')[:20]
     observed=median([price/quantity for price,quantity in rows]) if rows else blueprint.base_value
     return max(1,round(max(blueprint.base_value*.6,min(blueprint.base_value*1.4,observed))))
 
@@ -79,9 +80,9 @@ def list_bot_surplus(profile,item,reserved=()):
 
 
 def market_effectiveness(world):
-    trades=MarketTrade.objects.filter(seller__world=world)
-    events=MarketEvent.objects.filter(profile__world=world)
+    trades=MarketTrade.objects.filter(seller__world_id__in=region_ids(world))
+    events=MarketEvent.objects.filter(profile__world_id__in=region_ids(world))
     return {'trades':trades.count(),'bot_turnover':trades.filter(seller__is_bot=True,buyer__is_bot=True).aggregate(total=Sum('price'))['total'] or 0,
         'listed':events.filter(action='listing').count(),'cancelled':events.filter(action='cancellation').count(),'repriced':events.filter(action='repricing').count(),
         'used_units':events.filter(action__in=['consumption','craft_input']).aggregate(total=Sum('quantity'))['total'] or 0,
-        'age_unknown':OwnedItem.objects.filter(owner__world=world,is_market_listed=True,listed_at__isnull=True).count()}
+        'age_unknown':OwnedItem.objects.filter(owner__world_id__in=region_ids(world),is_market_listed=True,listed_at__isnull=True).count()}

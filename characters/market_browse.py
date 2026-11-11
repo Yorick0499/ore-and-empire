@@ -1,3 +1,4 @@
+from .barrier import region_ids
 """Bounded market pages; filters affect browsing, never trading permissions."""
 from .text_search import literal_pattern
 from urllib.parse import urlencode
@@ -48,7 +49,7 @@ def browse_market(profile, params):
         else:
             error = 'Maksymalna cena musi wynosić od 1 do 1000000 rudy. Pominięto ten filtr.'
     # Joining the owner's user prevents one query per displayed seller's name.
-    all_offers = OwnedItem.objects.filter(owner__world_id=profile.world_id, is_market_listed=True).select_related('blueprint', 'owner__user')
+    all_offers = OwnedItem.objects.filter(owner__world_id__in=region_ids(profile.world_id), is_market_listed=True).select_related('blueprint', 'owner__user')
     offers = all_offers
     if filters['q']:
         offers = offers.filter(blueprint__name__iregex=literal_pattern(filters['q']))

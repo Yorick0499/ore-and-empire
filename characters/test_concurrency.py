@@ -21,7 +21,7 @@ class DatabaseConfigTests(SimpleTestCase):
         from ore_empire.database import database_config,sqlite_environment
         from pathlib import Path
         with patch.dict('os.environ',{'DATABASE_URL':'postgresql://private:secret@db/world','ORE_DATABASE_ENGINE':'postgresql'}):env=sqlite_environment('/tmp/separate.sqlite3')
-        self.assertNotIn('DATABASE_URL',env)
+        self.assertEqual(env['DATABASE_URL'],'')  # Explicit empty value also blocks .env reload.
         self.assertEqual(database_config(env,Path('/tmp'))['NAME'],'/tmp/separate.sqlite3')
     def test_save_serializer_keeps_microseconds_and_zero_fraction(self):
         import json

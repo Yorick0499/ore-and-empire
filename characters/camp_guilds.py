@@ -1,3 +1,4 @@
+from .barrier import guild_for,joined,region_ids
 from .world_clock import POLISH_TIME
 """An existing camp is the guild; rank, membership and shared progress are separate."""
 from uuid import UUID,uuid4
@@ -31,7 +32,7 @@ def credit_guild(guild,experience,treasury):
 def record_guild_event(profile,kind,target=''):
     """Internal hook inside successful, atomic player actions, never a form-supplied event."""
     if profile.camp not in CAMPS or kind not in {'mine','hunt'}:return
-    guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
+    guild=guild_for(profile,lock=True)
     project=current_project(guild)
     if project.completed_at:return
     changed=False
@@ -53,7 +54,7 @@ def donate_to_camp(profile,amount,request_key):
     except (ValueError,TypeError,AttributeError):return False
     prior=CampContribution.objects.filter(profile=profile,source=key).first()
     if prior:return prior.kind=='donation' and prior.amount==amount and prior.guild.camp==profile.camp
-    guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
+    guild=guild_for(profile,lock=True)
     if profile.ore_balance<amount:return False
     profile.ore_balance-=amount;profile.save(update_fields=['ore_balance'])
     guild.treasury+=amount;guild.save(update_fields=['treasury'])
@@ -64,7 +65,7 @@ def donate_to_camp(profile,amount,request_key):
 @player_action
 def upgrade_camp(profile,key,expected_level):
     if profile.camp not in CAMPS or key not in UPGRADES or type(expected_level) is not int:return False
-    guild=CampGuild.objects.select_for_update().get(camp=profile.camp,world_id=profile.world_id)
+    guild=guild_for(profile,lock=True)
     field=UPGRADES[key][0];level=getattr(guild,field)
     # A stale/retried form cannot purchase another level or spend twice.
     if level!=expected_level or level>=3 or guild.level<level+2:return False
@@ -78,7 +79,7 @@ def upgrade_camp(profile,key,expected_level):
 
 
 def guild_cards(profile):
-    guild=CampGuild.objects.filter(camp=profile.camp,world_id=profile.world_id).first()
+    guild=guild_for(profile)
     if not guild:return None
     day=timezone.now().astimezone(POLISH_TIME).date()
     project=CampProject.objects.filter(guild=guild,day=day).first()
@@ -89,4 +90,4 @@ def guild_cards(profile):
     personal=privileges(profile)
     return {'resupply_available':resupply_available(profile),'privileges':personal,'guild':guild,'project':project,'title':title,'day':day,'goals':[{'label':'Odebrane zmiany w kopalni' if g['kind']=='mine' else 'Wygrane polowania','count':g['count'],'progress':progress.get(g['id'],0)} for g in objectives],
         'upgrades':[{'key':key,'name':name,'description':description,'level':getattr(guild,field),'cost':100*(getattr(guild,field)+1),'required_rank':getattr(guild,field)+1,'can_buy':personal['upgrade_limit']>=getattr(guild,field)+1 and getattr(guild,field)<3 and guild.level>=getattr(guild,field)+2 and guild.treasury>=100*(getattr(guild,field)+1)} for key,(field,name,description) in UPGRADES.items()],
-        'members':PlayerProfile.objects.filter(camp=profile.camp,world_id=profile.world_id,user__is_active=True).count(),'history':CampContribution.objects.filter(guild=guild).select_related('profile__user')[:30]}
+        'members':PlayerProfile.objects.filter(camp__in=['NEW_CAMP','ONAR_MERCS'] if profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id) else [profile.camp],world_id__in=region_ids(profile.world_id),user__is_active=True).count(),'history':CampContribution.objects.filter(guild=guild).select_related('profile__user')[:30]}

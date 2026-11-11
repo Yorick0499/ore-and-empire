@@ -1,0 +1,90 @@
+"""Region identities survive the Barrier; only access and social scopes change."""
+from django.db.models import Q
+from .models import World
+
+
+def region_ids(world):
+    from .realms import _union_cache
+    pk=getattr(world,'pk',world);cache=_union_cache.get()
+    if cache is not None and pk in cache:return cache[pk]
+    union=World.objects.filter(pk=pk).values_list('union_key',flat=True).first()
+    ids=list(World.objects.filter(union_key=union).values_list('pk',flat=True)) if union else [pk]
+    if cache is not None:
+        for key in ids:cache[key]=ids
+    return ids
+
+
+def joined(world):return len(region_ids(world))>1
+
+
+def source_games(profile):return ['adaptation','GOTHIC_I','GOTHIC_II'] if joined(profile.world_id) else ['adaptation',profile.world.universe]
+
+
+def region(profile):return profile.visiting_world if profile.visiting_world_id else profile.world
+
+
+def creation_worlds():
+    from .realms import open_worlds
+    return open_worlds().filter(Q(union_key__isnull=True)|Q(is_current=True))
+
+
+def same_world(a,b):return getattr(b,'pk',b) in region_ids(a)
+
+
+from .game_logic import player_action
+@player_action
+def travel(profile,destination):
+    if profile.is_busy or not joined(profile.world_id) or destination not in region_ids(profile.world_id):return False
+    profile.visiting_world_id=destination;profile.save(update_fields=['visiting_world'])
+    return True
+
+
+def guild_identity(profile):
+    if profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id):
+        colony=World.objects.get(pk__in=region_ids(profile.world_id),universe='GOTHIC_I')
+        return {'world_id':colony.pk,'camp':'NEW_CAMP'}
+    return {'world_id':profile.world_id,'camp':profile.camp}
+
+
+def guild_for(profile,lock=False):
+    from .models import CampGuild
+    rows=CampGuild.objects.select_for_update() if lock else CampGuild.objects
+    return rows.filter(**guild_identity(profile)).first()
+
+
+def raid_guild_ids(profile):
+    from .models import CampGuild
+    own=CampGuild.objects.filter(world_id=profile.world_id,camp=profile.camp).values_list('pk',flat=True).first()
+    shared=guild_for(profile)
+    return {pk for pk in (own,shared.pk if shared else None) if pk}
+
+
+def unify_mercenaries(race):
+    from .models import CampGuild,BarrierEvent
+    from .camp_guilds import level_for
+    lee=CampGuild.objects.get(world_id=race.colony_id,camp='NEW_CAMP')
+    onar=CampGuild.objects.get(world_id=race.khorinis_id,camp='ONAR_MERCS')
+    transferred=onar.treasury;lee.treasury+=transferred;onar.treasury=0
+    lee.experience+=onar.experience;lee.level=max(lee.level,onar.level,level_for(lee.experience))
+    for field in ('training_level','supply_level','defense_level'):setattr(lee,field,max(getattr(lee,field),getattr(onar,field)))
+    lee.save();onar.save(update_fields=['treasury'])
+    BarrierEvent.objects.create(race=race,kind='mercenaries_united',details={'shared_guild':lee.pk,'historical_guild':onar.pk,'treasury_transferred':transferred})
+
+
+def alliance_card(profile):
+    member=profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id)
+    tier=profile.camp_tier;next_tier=tier+1
+    quest='barrier-fire-dragon' if next_tier==4 else 'barrier-new-road'
+    fee=500*max(1,next_tier-2);level=20+5*next_tier
+    ready=member and 2<=tier<4 and profile.level>=level and profile.ore_balance>=fee and profile.story_runs.filter(status='claimed',quest__key=quest).exists() and not profile.is_busy
+    names=('Robotnik wspólnoty','Zbrojny','Najemnik','Weteran szlaków','Dowódca Związku')
+    return {'member':member,'rank':names[min(4,tier)],'can_promote':ready,'fee':fee,'level':level,'next_tier':next_tier,'quest':quest}
+
+
+@player_action
+def promote_alliance(profile,expected_rank):
+    if type(expected_rank)is not int or profile.camp_tier!=expected_rank:return False
+    card=alliance_card(profile)
+    if not card['can_promote']:return False
+    profile.ore_balance-=card['fee'];profile.alliance_rank=card['next_tier'];profile.save(update_fields=['ore_balance','alliance_rank'])
+    return True

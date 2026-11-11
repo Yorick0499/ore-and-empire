@@ -75,4 +75,10 @@ def encounter_round(monster, health, turn):
         if turn % 3 == 0:
             kind = "magic"
             messages.append("Fala echa uderza w magiczną ochronę warty.")
+    if key=='k2_dragon_fire' and turn%3==0:
+        kind='fire';strength+=15;messages.append('Ognisty oddech smoka!')
     return stage, max(0, protection), strength, kind, messages
+
+# First post-Barrier expedition. Browser balance, not canonical G2 statistics.
+BOSSES['k2_dragon_fire']=Boss('k2_dragon_fire','Feomathar — smok ognia',35,2400,120,75,5000,750,60,30)
+MECHANICS['k2_dragon_fire']='Ognisty oddech co trzecią rundę; przygotuj ochronę przed ogniem. Dostęp dopiero po upadku Bariery.'

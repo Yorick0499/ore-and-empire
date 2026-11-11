@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "populacja 250 botów / #118",
-  "migration": "0045_populacja_do_trzystu_botow",
+  "code_revision": "Śniący i atomowe połączenie / #120",
+  "migration": "0047_wspolna_hierarchia_najemnikow",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -236,6 +236,7 @@
     "docs/reports/rzadkosc-kuznia-gui-2026-11-07.json",
     "docs/reports/rzadkosc-kuznia-petla-2026-11-07.json",
     "docs/reports/rzadkosc-migracja-2026-11-07.json",
+    "docs/reports/sniacy-polaczenie-2026-11-11.json",
     "docs/reports/staging-https-2026-11-07.json",
     "docs/reports/sto-botow-2026-11-06.json",
     "docs/reports/sto-botow-endgame-2026-11-06.json",

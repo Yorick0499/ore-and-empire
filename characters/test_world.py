@@ -45,7 +45,7 @@ class WorldAccessTests(TestCase):
 
     def test_each_level_gate_blocks_get_post_and_allows_boundary(self):
         for loc in LOCATIONS:
-            if not loc.level or loc.min_tier or loc.universe!="GOTHIC_I":
+            if not loc.level or loc.min_tier or loc.post_barrier or loc.universe!="GOTHIC_I":
                 continue
             with self.subTest(location=loc.key):
                 self.profile.camp = loc.camps[0] if loc.camps else "NONE"

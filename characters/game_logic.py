@@ -92,6 +92,7 @@ def player_action(fn):
             )
             profile.refresh_from_db()
             if hasattr(profile, '_gear_stats_cache'): del profile._gear_stats_cache
+            if hasattr(profile, '_camp_perks'):del profile._camp_perks
             recover_energy(profile)
             for arg in action_arguments:
                 if isinstance(arg, (OwnedItem, ItemBluePrint)):
@@ -312,7 +313,8 @@ def buy_item_on_market(buyer_profile, owned_item, expected_price=None):
     if expected_price is not None and (type(expected_price) is not int or expected_price != owned_item.market_price):
         return False
     current_owner = owned_item.owner
-    if current_owner.world_id!=buyer_profile.world_id:return False
+    from .barrier import same_world
+    if not same_world(buyer_profile.world_id,current_owner.world_id):return False
     if not owned_item.is_market_listed:
         return False
     if owned_item.owner == buyer_profile:

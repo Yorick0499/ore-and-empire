@@ -8,6 +8,8 @@ def live(request):return JsonResponse({'status':'ok'})
 def ready(request):
     try:
         with connection.cursor() as cursor:cursor.execute('SELECT 1');cursor.fetchone()
+        from .models import SleeperRace
+        if SleeperRace.objects.filter(state='merging',lease_expires_at__gt=Now()).exists():return JsonResponse({'status':'barrier-transition'},status=503)
         world=World.objects.filter(is_current=True,status='active',configured=True).first()
         if not world:return JsonResponse({'status':'setup-required'},status=503)
         from .realms import open_worlds

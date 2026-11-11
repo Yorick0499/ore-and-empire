@@ -95,7 +95,7 @@ class MarketBrowseTests(TestCase):
         for _ in range(100): self.offer()
         self.offer(owner=self.profile)
         OwnedItem.objects.create(blueprint=self.sword, owner=self.profile)
-        with self.assertNumQueries(6):
+        with self.assertNumQueries(7):  # One union-scope lookup, still independent of offer count.
             context = browse_market(self.profile, {})
             for item in context['market_all_items']:
                 _ = item.owner.display_name, item.blueprint.name, item.effective_stats, item.unit_price

@@ -12,6 +12,11 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_sleeperrace':['id','colony_id','khorinis_id','winner_id','state','paused','lease_owner','lease_expires_at','backup_path','backup_digest','proof','won_at','joined_at'],
+    'characters_sleepersiege':['id','race_id','guild_id','maximum_health','health','attack','protection','completed_at'],
+    'characters_sleeperstrike':['id','siege_id','profile_id','account_id','request_key','damage','log','created_at'],
+    'characters_sleeperreward':['id','race_id','account_id','profile_id','created_at'],
+    'characters_barrierevent':['id','race_id','kind','details','created_at'],
     'characters_bossattempt':['id','profile_id','boss_key','created_at','won','experience_reward','ore_reward','combat_log'],
     'characters_realmconvergence':['id','colony_id','khorinis_id','phase','paused','operator_id','lease_owner','lease_expires_at','attempts','plan','backup_path','backup_digest','snapshot'],
     'characters_convergenceevent':['id','operation_id','kind','attempt','details'],
@@ -29,7 +34,7 @@ STABLE = {
     'characters_playerachievement':['id','profile_id','key','progress','completed_at','claimed_at'],
     'characters_storepurchase':['id','profile_id','product_id','request_key','price','effect','kind_snapshot'],
     'characters_adventuretemplate':['id','key','universe','name','level','duration_seconds','energy_cost','ore_reward','experience_reward','premium_reward','enabled'],
-    'characters_world':['is_open','bot_personality_cycles','bot_simulated_purchases','id','name','edition','universe','rules_version','status','is_current','bot_count'],
+    'characters_world':['union_key','is_open','bot_personality_cycles','bot_simulated_purchases','id','name','edition','universe','rules_version','status','is_current','bot_count'],
     'characters_campraid':['id','guild_id','day','name','maximum_health','health','attack','protection','minimum_level','completed_at'],
     'characters_campraidstrike':['id','raid_id','profile_id','request_key','damage','health_cost','mana_cost','casts','log'],
     'characters_campraidreward':['id','raid_id','profile_id','ore','experience','premium'],
@@ -37,7 +42,7 @@ STABLE = {
     'characters_campproject':['id','guild_id','day','title','objectives','progress','experience_reward','treasury_reward','completed_at'],
     'characters_campcontribution':['id','guild_id','profile_id','project_id','source','kind','amount'],
     'characters_campsupplyuse':['id','profile_id','day','request_key','energy','health'],
-    'characters_playerprofile': ['action_end_time','current_energy','current_health','energy_updated_at','health_updated_at','mana_updated_at','origin_world_id','slot','name','name_key','is_draft','bot_personality','bot_session_shift','id','user_id','world_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','onehand_skill','twohand_skill','bow_skill','crossbow_skill','smithing_skill','alchemy_skill','current_mana','equipment_mana','prepared_magic_id'],
+    'characters_playerprofile': ['alliance_rank','visiting_world_id','action_end_time','current_energy','current_health','energy_updated_at','health_updated_at','mana_updated_at','origin_world_id','slot','name','name_key','is_draft','bot_personality','bot_session_shift','id','user_id','world_id','ore_balance','premium_balance','experience','skill_points','level','camp','guild','strength','dexterity','mana','life','magic_skill','onehand_skill','twohand_skill','bow_skill','crossbow_skill','smithing_skill','alchemy_skill','current_mana','equipment_mana','prepared_magic_id'],
     'characters_owneditem': ['id','owner_id','blueprint_id','is_market_listed','market_price','is_equipped','equipped_slot','quantity','listed_at','upgrade_level','origin','is_protected','rarity'],
     'characters_storyrun': ['id','profile_id','quest_id','status','progress','snapshot','choices','claimed_at'],
     'characters_adventurerun': ['started_at','ends_at','id','profile_id','template_id','claimed_at','ore_reward','experience_reward','premium_reward','event_names','briefing'],

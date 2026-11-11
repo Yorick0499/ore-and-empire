@@ -100,3 +100,7 @@ Nowa postać Khorinis po zwykłym prologu i zakupie napoju za zarobiony odłamek
 
 ![Itemshop na telefonie — rozwijana karta postaci](screenshots/itemshop-audit-390.png)
 ![Itemshop na komputerze](screenshots/itemshop-audit-1440.png)
+
+## Bariera i podróże — etap #120
+
+Aktualne widoki [telefon 390 px](screenshots/bariera-390.png) i [desktop 1440 px](screenshots/bariera-1440.png) po rzeczywistym ostatnim ciosie przez formularz i atomowym przejściu na osobnej bazie. Statystyki końca gry oraz wcześniejszy wkład były przygotowanym syntetycznym fixture, nie organicznym przejściem kampanii. [Raport](reports/sniacy-polaczenie-2026-11-11.json) obejmuje również 320 px, podróże, kreator, wspólnotę, ranking, targ i fabułę.

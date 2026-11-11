@@ -15,8 +15,11 @@ class Location:
     min_tier: int = 0
     universe: str = "GOTHIC_I"
 
+    post_barrier: bool = False
+
     def accessible(self, profile):
-        return profile.world.universe == self.universe and profile.level >= self.level and (
+        from .barrier import region,joined
+        return (not self.post_barrier or joined(profile.world_id)) and region(profile).universe == self.universe and profile.level >= self.level and (
             not self.camps or profile.camp in self.camps
         ) and profile.camp_tier >= self.min_tier
 
@@ -72,5 +75,6 @@ LOCATIONS = (
 )
 from .khorinis import DESTINATIONS
 LOCATIONS += tuple(Location(key,name,description,level,route=route,monsters=monsters,wiki=wiki,universe="GOTHIC_II") for key,name,description,level,route,monsters,wiki in DESTINATIONS)
+LOCATIONS += (Location('k2_dragon_fire','Szczyt smoka ognia','Wyprawa mieszkańców po upadku Bariery; przygotuj ochronę przed ogniem.',35,route='boss_page',universe='GOTHIC_I',wiki='Wulkan',post_barrier=True),)
 LOCATIONS = tuple(sorted(LOCATIONS, key=lambda location: location.level))
 BY_KEY = {location.key: location for location in LOCATIONS}

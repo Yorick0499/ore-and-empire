@@ -46,6 +46,8 @@ class Command(BaseCommand):
                         with guard.work():pass
                         heartbeat=now+15
                     if now>=refresh_at:
+                        from characters.barrier_activation import activate_pending
+                        activate_pending()
                         world.refresh_from_db()
                         if not world.is_current or world.status!='active':raise LeaseLost('Świat został zatrzymany lub zmieniony.')
                         scheduler.population(parallel.sync(guard,cleanup));refresh_at=now+5

@@ -1,3 +1,4 @@
+from .barrier import source_games
 """Explicitly balanced browser adaptation; source prices remain in the item catalog."""
 from dataclasses import dataclass
 from django.utils import timezone
@@ -82,7 +83,7 @@ def learn_circle(profile):
 @player_action
 def purchase_magic(profile,blueprint_id):
     blueprint=ItemBluePrint.objects.filter(pk=blueprint_id,catalog_key__in=BY_CODE).first()
-    if not blueprint or blueprint.source_game not in {"adaptation",profile.world.universe} or blueprint.base_value<=0 or profile.ore_balance<blueprint.base_value or profile.is_busy:return False
+    if not blueprint or blueprint.source_game not in source_games(profile) or blueprint.base_value<=0 or profile.ore_balance<blueprint.base_value or profile.is_busy:return False
     spell,scroll=BY_CODE[blueprint.catalog_key]
     if not scroll and not rune_allowed(profile,spell):return False
     from .equipment import add_item
@@ -113,7 +114,7 @@ def apply_combat_magic(profile,plan,result):
 
 
 def offers(profile):
-    return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in ItemBluePrint.objects.filter(source_game__in=["adaptation",profile.world.universe],catalog_key__in=BY_CODE).order_by('base_value','pk')]
+    return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in ItemBluePrint.objects.filter(source_game__in=source_games(profile),catalog_key__in=BY_CODE).order_by('base_value','pk')]
 
 
 def survival_health(profile,monster,plan,mana=None):

@@ -98,5 +98,13 @@
   "k2_item_scroll": [
     "Kula ognia",
     "Kula ognia (zwój) (ikonka) (G2).png"
+  ],
+  "k2_dragon_fire": [
+    "Wulkan",
+    "GD Wulkan.png"
+  ],
+  "k2_dragon_fire_boss": [
+    "Feomathar",
+    "Feomathar (by Ossowski21).png"
   ]
 }

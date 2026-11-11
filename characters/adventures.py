@@ -1,3 +1,4 @@
+from .barrier import region
 """Expandable timed quest pool and local event calendar (original game balance)."""
 ADVENTURES = (
     ("courier", "Przesyłka dla Diega", "Dostarcz zapieczętowany list przez obozowy trakt.", 0, 45, 5, 12, 80, 1),
@@ -77,7 +78,7 @@ ADVENTURES += tuple(row[:9] for row in EXTRA_ADVENTURES)
 def choose_adventure(profile):
     """Rotate level-appropriate jobs using a bot's role, never a fabricated reward."""
     from .models import AdventureTemplate
-    options=list(AdventureTemplate.objects.filter(enabled=True,universe=profile.world.universe,level__lte=profile.level,
+    options=list(AdventureTemplate.objects.filter(enabled=True,universe=region(profile).universe,level__lte=profile.level,
         energy_cost__lte=profile.current_energy).order_by('-level','-experience_reward','pk')[:12])
     if not options:return None
     # Stay in the newest earned band; older jobs remain available to human players.

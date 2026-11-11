@@ -30,5 +30,6 @@ def database_config(env,base):
 
 def sqlite_environment(path):
     env={**os.environ,'ORE_ENV':'local','ORE_DATABASE_ENGINE':'sqlite','ORE_DATABASE_PATH':str(path)}
-    env.pop('DATABASE_URL',None)
+    # Empty prevents load_dotenv from restoring a live database URL in a drill.
+    env['DATABASE_URL']=''
     return env

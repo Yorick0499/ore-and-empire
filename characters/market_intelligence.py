@@ -10,8 +10,7 @@ from .equipment import allowed
 
 _cache={}
 def invalidate(world_id):
-    for key in list(_cache):
-        if key[-1]==world_id:_cache.pop(key,None)
+    _cache.clear()
 def usable(p,b):return allowed(p,b) and p.strength>=b.required_strength and p.dexterity>=b.required_dexterity
 def score(p,item):
     b=item.blueprint if isinstance(item,OwnedItem) else item
@@ -47,15 +46,17 @@ class Quote:
 class MarketState:
     def __init__(self,world_id):
         self.now=timezone.now();self.world_id=world_id
-        self.people=list(PlayerProfile.objects.filter(world_id=world_id,user__is_active=True,is_draft=False))
+        from .barrier import region_ids
+        worlds=region_ids(world_id)
+        self.people=list(PlayerProfile.objects.filter(world_id__in=worlds,user__is_active=True,is_draft=False))
         self.items=defaultdict(list);self.listings=[]
-        for i in OwnedItem.objects.filter(owner__world_id=world_id,owner__user__is_active=True).select_related('blueprint','owner'):
+        for i in OwnedItem.objects.filter(owner__world_id__in=worlds,owner__user__is_active=True).select_related('blueprint','owner'):
             self.items[i.owner_id].append(i)
             if i.is_market_listed:self.listings.append(i)
         self.merchants=list(ItemBluePrint.objects.filter(merchant=True))
         self.recipes=list(CraftRecipe.objects.filter(enabled=True).select_related("output"))
         self.history=defaultdict(dict);self._need={};self._value={};self._ceil={}
-        for row in MarketTrade.objects.filter(seller__world_id=world_id,buyer__world_id=world_id,created_at__gte=self.now-timedelta(days=7),rarity__isnull=False,quantity__gt=0).order_by('-created_at','-pk').values('blueprint_id','rarity','upgrade_level','buyer__user_id','price','quantity')[:2000]:
+        for row in MarketTrade.objects.filter(seller__world_id__in=worlds,buyer__world_id__in=worlds,created_at__gte=self.now-timedelta(days=7),rarity__isnull=False,quantity__gt=0).order_by('-created_at','-pk').values('blueprint_id','rarity','upgrade_level','buyer__user_id','price','quantity')[:2000]:
             h=self.history[(row['blueprint_id'],row['rarity'],row['upgrade_level'])]
             if len(h)<20:h.setdefault(row['buyer__user_id'],row['price']/row['quantity'])
     def value(self,p,i):

@@ -31,3 +31,19 @@ Nowe kopie SQLite obejmują utrwaloną treść i kwoty nagród wypraw. Starsza k
 ## Pochodzenie i przygotowanie połączenia (0044)
 
 Kopie SQLite i ich próby odtworzenia weryfikują dodatkowo pochodzenie postaci, stan przygotowania połączenia i jego dziennik, timery pracy/wypraw, bieżące zasoby oraz próby bossów używane przez cooldowny. Stare manifesty pozostają obsługiwane według zapisanych w nich kolumn. PostgreSQL zapisuje `origin_schema: 1`; przy porównywaniu kopii sprzed 0044 pomija wyłącznie nowo wyliczone pole pochodzenia. Nowe kopie wymagają jego pełnej zgodności. Procedurę operatora i ograniczenia `ready` opisuje [przygotowanie połączenia](CHARACTERS_AND_WORLDS.md).
+
+## Przejście po obozowym Śniącym
+
+Od 0046 kopie obejmują wyścig, uderzenia, wkład kont, nagrody i audyt Bariery; 0047 dodaje dalszą rangę Związku najemników. Stare kopie nadal sprawdza się według ich własnej specyfikacji. PostgreSQL rozróżnia `barrier_schema`, aby dopisane puste pola nie unieważniały dawnego dowodu.
+
+Worker tworzy nową prywatną kopię w `backups/barrier/ID_WYSCIGU/` pod blokadą zapisu i sprawdza odtworzenie do osobnej bazy. Połączenie zostaje zatwierdzone dopiero po powodzeniu obu operacji. PostgreSQL wymaga zgodnych `pg_dump`/`pg_restore` oraz uprawnień utworzenia/usunięcia bazy próbnej. W czasie operacji występuje krótka przerwa 503. Ciężki zapis może odroczyć próbę; nie omija ona kopii przy błędzie lub braku miejsca.
+
+```bash
+# Odczyt stanu. ID wyścigu pochodzi z własnej bazy, nie jest UUID przygotowania 0044.
+python manage.py barrier_transition ID_WYSCIGU
+python manage.py barrier_transition ID_WYSCIGU --pause --operator LOGIN_ADMINA
+python manage.py barrier_transition ID_WYSCIGU --unpause --operator LOGIN_ADMINA
+python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
+```
+
+CLI nie potrafi nadać zwycięstwa ani ominąć jego dowodu. Po zabiciu wykonawcy poczekaj na wygaśnięcie 10-minutowej dzierżawy. Ostatni cios i zwycięzca pozostają zapisani; nie odtwarzaj historycznego przygotowania 0044 na nowszy postęp. Po awarii sprawdź narzędzia bazy, wolne miejsce i uprawnienia, następnie wznów tę samą operację. Zakończonego połączenia nie cofa się flagą pauzy. Rzeczywisty rollback całej instalacji wymaga zatrzymania wszystkich pisarzy i osobnej, uzgodnionej procedury odtworzenia świeżej kopii; CLI nigdy automatycznie nie nadpisuje żywej bazy.
