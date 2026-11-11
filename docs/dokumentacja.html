@@ -87,7 +87,7 @@ cd ore-and-empire
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python play.py --port 8001 --bots 100
+python play.py --port 8001 --bots 125
 </code></pre>
 <p>Na systemie z kilkoma interpreterami wybierz jawnie Python 3.12 lub 3.13 przy tworzeniu środowiska, np. <code>python3.12 -m venv .venv</code>. Gdy system nie ma modułu <code>venv</code>, doinstaluj pakiet odpowiedni dla swojej dystrybucji i wersji Pythona.</p>
 <h4 id="doc-operator-guide--windows-powershell">Windows — PowerShell</h4>
@@ -95,7 +95,7 @@ python play.py --port 8001 --bots 100
 cd ore-and-empire
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe play.py --port 8001 --bots 100
+.\.venv\Scripts\python.exe play.py --port 8001 --bots 125
 </code></pre>
 <p>Bezpośrednie użycie interpretera z <code>.venv</code> nie wymaga zmiany polityki wykonywania skryptów PowerShell. Dalsze przykłady z <code>python</code> oznaczają interpreter tego środowiska. Produkcyjny profil Docker/systemd opisuje środowisko Linux; lokalna instrukcja Windows nie jest deklaracją pełnego testu tego systemu w CI.</p>
 <h3 id="doc-operator-guide--pierwszy-start-i-logowanie">Pierwszy start i logowanie</h3>
@@ -303,7 +303,7 @@ python play.py --port 8001
 <pre><code class="language-bash">docker compose --env-file .env.production -f deploy/compose.production.yml config --quiet
 docker compose --env-file .env.production -f deploy/compose.production.yml build
 docker compose --env-file .env.production -f deploy/compose.production.yml up -d db migrate
-docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name &quot;Moja Kolonia&quot; --username TWOJ_LOGIN --bots 100
+docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name &quot;Moja Kolonia&quot; --username TWOJ_LOGIN --bots 125
 docker compose --env-file .env.production -f deploy/compose.production.yml up -d web worker proxy
 </code></pre>
 <p>Poczekaj na pomyślne zakończenie migracji przed bootstrapem. Hasło admina wpisuje się interaktywnie dwa razy, nie jako argument polecenia. Bootstrap odmawia ponownej inicjalizacji istniejącego skonfigurowanego świata. W produkcji <code>/inicjalizacja/</code> jest wyłączona.</p>
@@ -396,7 +396,7 @@ python manage.py simulate_release --report /tmp/nowy-raport.json
 <pre><code class="language-bash">python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python play.py --bots 6 --port 8001
+python play.py --bots 125 --port 8001
 </code></pre>
 <p>Otwórz <a href="http://127.0.0.1:8001/" target="_blank" rel="noopener noreferrer">grę lokalną</a>. Nowa instalacja udostępnia <code>/inicjalizacja/</code>: wybierz nazwę serwera, 0–300 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; <code>--bots</code> służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.</p>
 <p>Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Opcjonalny profil produkcyjny, PostgreSQL i procedury wdrożenia są w <a href="#doc-production">dokumentacji operatora</a>.</p>

@@ -42,7 +42,7 @@ cd ore-and-empire
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python play.py --port 8001 --bots 100
+python play.py --port 8001 --bots 125
 ```
 
 Na systemie z kilkoma interpreterami wybierz jawnie Python 3.12 lub 3.13 przy tworzeniu środowiska, np. `python3.12 -m venv .venv`. Gdy system nie ma modułu `venv`, doinstaluj pakiet odpowiedni dla swojej dystrybucji i wersji Pythona.
@@ -54,7 +54,7 @@ git clone https://github.com/Yorick0499/ore-and-empire.git
 cd ore-and-empire
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe play.py --port 8001 --bots 100
+.\.venv\Scripts\python.exe play.py --port 8001 --bots 125
 ```
 
 Bezpośrednie użycie interpretera z `.venv` nie wymaga zmiany polityki wykonywania skryptów PowerShell. Dalsze przykłady z `python` oznaczają interpreter tego środowiska. Produkcyjny profil Docker/systemd opisuje środowisko Linux; lokalna instrukcja Windows nie jest deklaracją pełnego testu tego systemu w CI.
@@ -260,7 +260,7 @@ Przykładowa kolejność pierwszego wdrożenia, z katalogu repozytorium po przyg
 docker compose --env-file .env.production -f deploy/compose.production.yml config --quiet
 docker compose --env-file .env.production -f deploy/compose.production.yml build
 docker compose --env-file .env.production -f deploy/compose.production.yml up -d db migrate
-docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name "Moja Kolonia" --username TWOJ_LOGIN --bots 100
+docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name "Moja Kolonia" --username TWOJ_LOGIN --bots 125
 docker compose --env-file .env.production -f deploy/compose.production.yml up -d web worker proxy
 ```
 
