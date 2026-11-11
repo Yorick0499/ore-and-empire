@@ -27,3 +27,7 @@ PostgreSQL ma natywny backup MVCC i próbne odtworzenie do nowej bazy, z pełnym
 ## Zapis treści wypraw — migracja 0038
 
 Nowe kopie SQLite obejmują utrwaloną treść i kwoty nagród wypraw. Starsza kopia jest sprawdzana według pierwotnych kolumn, a migracja dopisuje treść z zachowanego szablonu. Nowe kopie PostgreSQL mają `adventure_schema: 1`; starsze porównuje się bez czterech dodanych pól opisowych. Kwoty, własność i pozostałe dane nadal podlegają ścisłej kontroli. Import SQLite najpierw migruje prywatną kopię i porównuje pełny aktualny zapis.
+
+## Pochodzenie i przygotowanie połączenia (0044)
+
+Kopie SQLite i ich próby odtworzenia weryfikują dodatkowo pochodzenie postaci, stan przygotowania połączenia i jego dziennik, timery pracy/wypraw, bieżące zasoby oraz próby bossów używane przez cooldowny. Stare manifesty pozostają obsługiwane według zapisanych w nich kolumn. PostgreSQL zapisuje `origin_schema: 1`; przy porównywaniu kopii sprzed 0044 pomija wyłącznie nowo wyliczone pole pochodzenia. Nowe kopie wymagają jego pełnej zgodności. Procedurę operatora i ograniczenia `ready` opisuje [przygotowanie połączenia](CHARACTERS_AND_WORLDS.md).

@@ -35,7 +35,7 @@ def create_character(user,name,world_id):
     if reserved or PlayerProfile.objects.filter(world=world,name_key=name_key).exists():raise ValidationError('To imię jest już zajęte na tym świecie.')
     draft=owner.characters.filter(is_draft=True).order_by('slot').first()
     if draft:
-        draft.name=name;draft.world=world;draft.is_draft=False;draft.save(update_fields=['name','world','is_draft'])
+        draft.name=name;draft.world=world;draft.origin_world=world;draft.is_draft=False;draft.save(update_fields=['name','world','origin_world','is_draft'])
         return draft
     used=set(owner.characters.values_list('slot',flat=True))
     slot=next((n for n in range(1,6) if n not in used),None)

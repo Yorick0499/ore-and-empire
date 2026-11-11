@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "audyt świeżej gry / #115",
-  "migration": "0043_rownolegle_khorinis",
+  "code_revision": "fundament przygotowania połączenia / #30 i #35",
+  "migration": "0044_fundament_polaczenia",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {

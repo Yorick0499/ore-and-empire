@@ -43,3 +43,28 @@ Kolejne etapy epiku [#10](https://github.com/Yorick0499/ore-and-empire/issues/10
 ## Wyniki weryfikacji
 
 [Publiczny raport](reports/postacie-fabula-przywileje-2026-11-09.json): pełna regresja SQLite 438 testów (14 wymagających PostgreSQL pominięto), następnie 34 testy granic i wskazówek. Przebieg gracza obejmuje cały prolog, dołączenie przez formularz i kampanię bez nadań; trzy obozy botów przechodzą całość i grają dalej. Chromium sprawdził 12 wariantów czterech ekranów; kopia migracyjna zachowała 151 107 istniejących wierszy we wszystkich dawnych kolumnach. Oddzielne CI PostgreSQL sprawdza prawdziwe blokady przy piątym slocie i zaopatrzeniu. To nie jest jeszcze próba połączenia dwóch serwerów.
+
+## Fundament przygotowania połączenia — migracja 0044, #30/#35
+
+Etap przygotowawczy zachowuje rekordy światów jako tożsamości regionów. Pole `origin_world` utrwala pochodzenie postaci: migracja wypełnia je dotychczasowym światem, a nowe postacie otrzymują je przy zapisie. Zmiana bieżącego świata nie zmienia pochodzenia. Nie zmieniają się istniejące identyfikatory, sloty, gildie, hasła ani portfele.
+
+`RealmConvergence` jest trwałym dziennikiem przygotowania dla konkretnej pary Kolonia–Khorinis. Plan zakłada **wspólny rynek i ranking postaci**, zachowanie regionów pochodzenia oraz pozostawienie ofert, czasów pracy, przyjętych nagród i cooldownów pod dotychczasowymi ID. Nie kopiuje postaci ani aktywności. Odczytowy dry-run pokazuje liczbę postaci/kont, ofert i nierozliczonych aktywności oraz konflikty pochodzenia/slotów. Te liczniki są obserwacją żywej bazy; spójny snapshot pochodzi z właściwego backupu.
+
+Komenda operatorska (ID światów należy odczytać z własnej instalacji):
+
+```bash
+# Domyślnie tylko odczyt, bez tworzenia dziennika lub plików.
+python manage.py prepare_convergence --colony 1 --khorinis 2
+# Jawne przygotowanie: aktywny administrator, prywatna kopia i próba odtworzenia.
+python manage.py prepare_convergence --colony 1 --khorinis 2 --prepare --operator LOGIN_ADMINA
+python manage.py prepare_convergence --status UUID_OPERACJI
+python manage.py prepare_convergence --pause UUID_OPERACJI --operator LOGIN_ADMINA
+python manage.py prepare_convergence --unpause UUID_OPERACJI --operator LOGIN_ADMINA
+python manage.py prepare_convergence --resume UUID_OPERACJI --operator LOGIN_ADMINA
+```
+
+Stany przygotowania: `planned` → `backing_up` → `ready`, albo `failed`. Osobna flaga umożliwia wstrzymanie. Próby i przejścia są zapisywane w `ConvergenceEvent`. Dzierżawa trwa 15 minut: drugi wykonawca nie rozpocznie równoległej próby, a po wygaśnięciu stary nie zapisze wyniku. Po awarii procesu należy poczekać na wygaśnięcie dzierżawy i wznowić tę samą operację. Powtórzenie poprawnego `ready` sprawdza checksum i dowód odtworzenia, bez kolejnego backupu; uszkodzona kopia wymaga nowej próby. Nieudane próby nie zapisują prywatnych szczegółów błędów w dzienniku.
+
+Kopie są prywatne, domyślnie w `backups/convergence/UUID_OPERACJI/`. Weryfikacja korzysta z istniejącej procedury odtworzenia do osobnej bazy; tymczasowa baza jest usuwana po sukcesie. SQLite wymaga plikowej bazy, PostgreSQL klienta `pg_dump`/`pg_restore` i uprawnień do utworzenia oraz usunięcia bazy próbnej. Komenda nie może działać wewnątrz transakcji aplikacji.
+
+**`ready` oznacza sprawdzoną historyczną kopię przygotowania, nie połączony świat ani aktualny snapshot gotowy do migracji.** Gracze mogą dalej zdobywać postęp. Przyszła aktywacja wymaga świeżego snapshotu i blokad zapisu na czas przejścia, potwierdzonego zwycięstwa wspólnoty oraz osobnej implementacji #111/#30. Ta paczka nie udostępnia aktywatora, wspólnego handlu w grze, podróży, Jarkendaru ani dalszej fabuły. Panel wyścigu pozostaje w #35. Oba issues pozostają otwarte.

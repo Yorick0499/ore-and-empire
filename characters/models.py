@@ -1,4 +1,5 @@
 from django.utils import timezone
+from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
@@ -37,6 +38,35 @@ class SchedulerLease(models.Model):
     expires_at=models.DateTimeField(default=timezone.now,db_index=True)
 
 
+class RealmConvergence(models.Model):
+    """Preparation journal only; a ready backup does not open the Barrier."""
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    colony = models.OneToOneField(World, on_delete=models.PROTECT, related_name='colony_convergence')
+    khorinis = models.OneToOneField(World, on_delete=models.PROTECT, related_name='khorinis_convergence')
+    phase = models.CharField(max_length=16, default='planned', choices=[(v,v) for v in ('planned','backing_up','ready','failed')])
+    paused = models.BooleanField(default=False)
+    operator = models.ForeignKey(User, on_delete=models.PROTECT)
+    lease_owner = models.UUIDField(null=True, editable=False)
+    lease_expires_at = models.DateTimeField(null=True, editable=False)
+    attempts = models.PositiveIntegerField(default=0)
+    plan = models.JSONField(default=dict)
+    backup_path = models.TextField(blank=True)
+    backup_digest = models.CharField(max_length=64, blank=True)
+    snapshot = models.JSONField(default=dict)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints = [models.CheckConstraint(condition=~models.Q(colony=models.F('khorinis')), name='convergence_distinct_worlds')]
+
+
+class ConvergenceEvent(models.Model):
+    operation = models.ForeignKey(RealmConvergence, on_delete=models.PROTECT, related_name='events')
+    kind = models.CharField(max_length=24)
+    attempt = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(default=timezone.now)
+    details = models.JSONField(default=dict)
+
+
 class AuthRateBucket(models.Model):
     key=models.CharField(max_length=64,unique=True)
     window_started=models.DateTimeField(default=timezone.now,db_index=True)
@@ -59,6 +89,7 @@ class PlayerProfile(models.Model):
     is_draft = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="characters")
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
+    origin_world = models.ForeignKey(World,on_delete=models.PROTECT,null=True,editable=False,related_name='native_characters')
 
     # camp and guild list
     CAMP_LIST = [
@@ -184,6 +215,10 @@ class PlayerProfile(models.Model):
 
     def save(self,*args,**kwargs):
         import unicodedata
+        if self.origin_world_id is None:
+            self.origin_world_id = self.world_id
+            if kwargs.get('update_fields'):
+                kwargs['update_fields'] = [*kwargs['update_fields'], 'origin_world']
         self.name_key=unicodedata.normalize('NFKC',self.name).casefold() if self.name else ''
         if kwargs.get('update_fields') and 'name' in kwargs['update_fields']:
             kwargs['update_fields']=[*kwargs['update_fields'],'name_key']
