@@ -8,7 +8,7 @@ from django.utils import timezone
 from .models import CampGuild,CampProject,CampContribution,PlayerProfile
 from .game_logic import player_action
 
-CAMPS=('OLD_CAMP','NEW_CAMP','SWAMP_CAMP','CITY_WATCH','FIRE_ORDER','ONAR_MERCS')
+CAMPS=('OLD_CAMP','NEW_CAMP','SWAMP_CAMP','CITY_WATCH','FIRE_ORDER','ONAR_MERCS','BANDITS','WATER_CIRCLE','MERCENARIES')
 UPGRADES={'training':('training_level','Szkoła obozowa','Trening atrybutu tańszy o 1 rudę na poziom (maks. 3).'),'supply':('supply_level','Magazyn kopaczy','Każdy odebrany urobek: +1 rudy na poziom (maks. 3).'),'defense':('defense_level','Warty przy bramach','Ochrona przed bronią i pociskami: +1 na poziom (maks. 3).')}
 PROJECTS=(('Zapasy na kolejną zmianę',[{'id':'mine','kind':'mine','target':'','count':2},{'id':'hunt','kind':'hunt','target':'','count':4}]),('Bezpieczne ścieżki',[{'id':'hunt','kind':'hunt','target':'','count':6}]),('Wspólny urobek',[{'id':'mine','kind':'mine','target':'','count':4}]))
 
@@ -25,7 +25,7 @@ def current_project(guild,now=None):
 
 
 def credit_guild(guild,experience,treasury):
-    guild.experience+=experience;guild.treasury+=treasury;guild.level=level_for(guild.experience)
+    guild.experience+=experience;guild.treasury+=treasury;guild.level=max(guild.level,level_for(guild.experience))
     guild.save(update_fields=['experience','treasury','level'])
 
 
@@ -53,7 +53,7 @@ def donate_to_camp(profile,amount,request_key):
     try:key=UUID(str(request_key))
     except (ValueError,TypeError,AttributeError):return False
     prior=CampContribution.objects.filter(profile=profile,source=key).first()
-    if prior:return prior.kind=='donation' and prior.amount==amount and prior.guild.camp==profile.camp
+    if prior:return prior.kind=='donation' and prior.amount==amount
     guild=guild_for(profile,lock=True)
     if profile.ore_balance<amount:return False
     profile.ore_balance-=amount;profile.save(update_fields=['ore_balance'])
@@ -88,6 +88,9 @@ def guild_cards(profile):
     progress=project.progress if project else {}
     from .camp_privileges import privileges,resupply_available
     personal=privileges(profile)
+    from .factions import membership
+    member=membership(profile)
+    members=(PlayerProfile.objects.filter(faction_membership__guild=guild,user__is_active=True).count() if member else PlayerProfile.objects.filter(camp__in=['NEW_CAMP','ONAR_MERCS'] if profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id) else [profile.camp],world_id__in=region_ids(profile.world_id),user__is_active=True).count())
     return {'resupply_available':resupply_available(profile),'privileges':personal,'guild':guild,'project':project,'title':title,'day':day,'goals':[{'label':'Odebrane zmiany w kopalni' if g['kind']=='mine' else 'Wygrane polowania','count':g['count'],'progress':progress.get(g['id'],0)} for g in objectives],
         'upgrades':[{'key':key,'name':name,'description':description,'level':getattr(guild,field),'cost':100*(getattr(guild,field)+1),'required_rank':getattr(guild,field)+1,'can_buy':personal['upgrade_limit']>=getattr(guild,field)+1 and getattr(guild,field)<3 and guild.level>=getattr(guild,field)+2 and guild.treasury>=100*(getattr(guild,field)+1)} for key,(field,name,description) in UPGRADES.items()],
-        'members':PlayerProfile.objects.filter(camp__in=['NEW_CAMP','ONAR_MERCS'] if profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id) else [profile.camp],world_id__in=region_ids(profile.world_id),user__is_active=True).count(),'history':CampContribution.objects.filter(guild=guild).select_related('profile__user')[:30]}
+        'members':members,'history':CampContribution.objects.filter(guild=guild).select_related('profile__user')[:30]}

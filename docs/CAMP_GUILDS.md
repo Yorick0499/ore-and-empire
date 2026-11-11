@@ -1,6 +1,6 @@
 # Obozy jako gildie — etap 1
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji jest wdrożona w0049; wybór Bractwa, wyższe awanse i portal nadal są planowane. Starsze sekcje poniżej opisują historię.
 
 
 Gildią jest istniejący Stary Obóz, Nowy Obóz albo Bractwo na bagnie. Nie ma oddzielnej rekrutacji, drużyn ani wymogu jednoczesnej obecności. Przynależność `camp` daje członkostwo; dotychczasowe `guild` oznacza **osobistą rangę** (np. Cień), nie nową organizację. Dołączenie do obozu nie zmienia wcześniejszych questów, sprzętu i poziomu. Na razie istnieje jeden lokalny świat; zakres edycji pozostaje #15/#34, współbieżność serwera #19.
@@ -32,3 +32,27 @@ Nowy Obóz i Najemnicy Onara tworzą wspólną wspólnotę Lee i Onara. Kody his
 Wspólna hierarchia odpowiada szczeblom 0–4: **Robotnik wspólnoty → Zbrojny → Najemnik → Weteran szlaków → Dowódca Związku**. Dotychczasowy wyższy szczebel nie jest odbierany. Dalsza ranga `alliance_rank` nie przepisuje historycznego kodu rangi. Najpierw wymagany jest co najmniej drugi szczebel pierwotnej frakcji. Przejście na 3 wymaga poziomu 35, odebranego **Szlaku po upadku Bariery** i 500 rudy; na 4: poziomu 40, **Zagrożenia znad szczytu** i 1000 rudy. Awans działa dla graczy i botów przez ten sam serwis; daje zwykłe przywileje danego szczebla, bez powielania portfeli. Pozostałe wspólnoty zachowują własną historię i rozwój.
 
 Formularz awansu Związku przesyła oczekiwany dotychczasowy szczebel. Powtórzenie starego formularza nie kupuje kolejnej rangi ani nie pobiera opłaty po raz drugi.
+
+## Sukcesja pięciu frakcji — 0049
+
+Bieżąca wspólnota jest zapisana w `FactionMembership`; rodzime `camp` i `guild` nadal prowadzą historyczne questy, wyposażenie i szkołę magii. Snapshot członkostwa przechowuje obóz i rangę z chwili sukcesji. Ogień z Kolonii i klasztoru współdzieli gildię Khorinis, Miasto zachowuje swoją, a Woda, Bandyci i Najemnicy otrzymują osobne wspólnoty przy historycznym regionie Kolonii. Ranking filtruje pięć bieżących frakcji, nie dawne obozy. Konto bez frakcji nie zostaje automatycznie wcielone.
+
+Ruda i PD dzielą się proporcjonalnie do liczby dotychczasowych postaci przechodzących do każdego następcy (ludzie i boty, także postacie nieaktywne). Reszta całkowitoliczbowa trafia według największej reszty, przy remisie według kodu frakcji. Pusty Stary Obóz przekazuje środki Bandytom, pusty Nowy i Onar Najemnikom. Poziom wspólnoty i zakupione ulepszenia są dziedziczone bez obniżenia; przy łączeniu obowiązuje maksimum, nie suma. Zachowane historyczne rekordy gildii nie otrzymują już nowych wpłat/projektów. Ich przekazana ruda i PD są zerowane, stan sprzed operacji pozostaje w audycie.
+
+W starszych zapisach Lee i Onar mają już połączony skarbiec: dzieli się go według łącznej liczby członków obu wspólnot. Historyczne PD Onara były już w puli Lee — nie naliczają się ponownie. Bractwo ma stan `PENDING`; jego skarbiec i wspólnota pozostają w depozycie do #126, zwykłe akcje nadal działają. Nie rekrutuje nowych członków po upadku Bariery.
+
+Projekty, wpłaty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują bieżące projekty i niedokończone wyprawy; następcy zaczynają własne, bez kopiowania postępu i nagród. Miasto i klasztor zachowują własne projekty. Za zakończoną dawną wyprawę można nadal odebrać nagrodę wyłącznie przy rzeczywistym dodatnim wkładzie; retry pozostaje jednokrotne. Nowe ataki/bonusy/wpłaty trafiają do bieżącej wspólnoty. Niedokończony dawny projekt nie wypłaca rekompensaty.
+
+Historyczna ścieżka podstawowych questów pozostaje grywalna. Dojście do jej istniejącej gałęzi maga aktualizuje bieżącą frakcję na Ogień/Wodę; nie wykonuje ponownie sukcesji skarbców. Nie jest to swobodna zmiana gildii. Ukończone awanse Związku i dawnej drogi Wody zachowują przywileje; nowe zakupy awansu Związku są dostępne tylko Najemnikom. Osiem docelowych nazw jest pokazane w GUI, lecz nowe awanse5–8 realizuje dopiero #127. Bandyci istnieją jako frakcja, nie otwierają jeszcze regionu Jarkendar.
+
+`FactionSuccession` jest unikalne dla wyścigu. Transakcja blokuje postacie i gildie w ustalonej kolejności, a audyt zapisuje liczby członków, stany źródeł i przydziały. Błąd cofa całość. Aktywacja nowego połączenia korzysta z istniejącej kopii i blokady zapisu. Uaktualnienie już połączonego zapisu wymaga kolejnej świeżej kopii z próbą odtworzenia i jest wznawialne przez worker lub polecenie `barrier_transition ID --resume --operator LOGIN`. Migracja0049 dodaje tylko schemat; nie dotyka danych osobistych ani nie pomija mechanizmu kopii. Wdrożenie na prywatnej bazie nie jest częścią tej iteracji.
+
+Weryfikacja #125: [raport testów i ograniczeń](reports/sukcesja-frakcji-2026-11-11.json). Pakiet `quick` obejmuje teraz także sukcesję. Bieżące zadanie awansu jest przed historycznymi kartami, a porównanie frakcji można rozwinąć. Listy rankingów i mieszkańców pobierają członkostwo wraz z postaciami. Dzierżawa chroni aktualizację starego serwera przed równoczesną kopią, a błąd daje audyt i 60 sekund przerwy przed retry.
+
+Początek widoku po sukcesji, komputer1440px:
+
+![Bieżące awanse i frakcje po Barierze](screenshots/frakcje-po-barierze-1440.jpg)
+
+Telefon390px:
+
+![Bieżący awans na telefonie](screenshots/frakcje-po-barierze-390.jpg)

@@ -40,6 +40,9 @@ def travel(profile,destination):
 
 
 def guild_identity(profile):
+    from .factions import membership
+    member=membership(profile)
+    if member:return {'pk':member.guild_id}
     if profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id):
         colony=World.objects.get(pk__in=region_ids(profile.world_id),universe='GOTHIC_I')
         return {'world_id':colony.pk,'camp':'NEW_CAMP'}
@@ -53,26 +56,20 @@ def guild_for(profile,lock=False):
 
 
 def raid_guild_ids(profile):
+    from .factions import membership
+    member=membership(profile)
+    if member:return {member.guild_id}
     from .models import CampGuild
     own=CampGuild.objects.filter(world_id=profile.world_id,camp=profile.camp).values_list('pk',flat=True).first()
     shared=guild_for(profile)
     return {pk for pk in (own,shared.pk if shared else None) if pk}
 
 
-def unify_mercenaries(race):
-    from .models import CampGuild,BarrierEvent
-    from .camp_guilds import level_for
-    lee=CampGuild.objects.get(world_id=race.colony_id,camp='NEW_CAMP')
-    onar=CampGuild.objects.get(world_id=race.khorinis_id,camp='ONAR_MERCS')
-    transferred=onar.treasury;lee.treasury+=transferred;onar.treasury=0
-    lee.experience+=onar.experience;lee.level=max(lee.level,onar.level,level_for(lee.experience))
-    for field in ('training_level','supply_level','defense_level'):setattr(lee,field,max(getattr(lee,field),getattr(onar,field)))
-    lee.save();onar.save(update_fields=['treasury'])
-    BarrierEvent.objects.create(race=race,kind='mercenaries_united',details={'shared_guild':lee.pk,'historical_guild':onar.pk,'treasury_transferred':transferred})
-
-
 def alliance_card(profile):
     member=profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id)
+    from .factions import membership
+    current=membership(profile)
+    if current:member=current.faction=='MERCENARIES'
     tier=profile.camp_tier;next_tier=tier+1
     quest='barrier-fire-dragon' if next_tier==4 else 'barrier-new-road'
     fee=500*max(1,next_tier-2);level=20+5*next_tier

@@ -71,13 +71,20 @@ class JoinedBotCampaignTests(TransactionTestCase):
         original=campaign_tests.tick_bot;started=False
         def joined_tick(profile,*args,**kwargs):
             nonlocal started
-            if not started:
+            if not started and not PlayerProfile.objects.filter(is_bot=True,camp="NONE").exists():
                 world=current_world();world.configured=True;world.bot_count=3;world.save()
                 call_command('open_khorinis',bots=0,stdout=StringIO())
                 World.objects.filter(status='active').update(union_key=uuid4())
                 from .post_barrier import seed
+                from .models import SleeperRace,CampGuild
+                from .faction_succession_v1 import apply
+                from django.apps import apps
+                race=SleeperRace.objects.create(colony=world,khorinis=World.objects.get(is_open=True,universe='GOTHIC_II'),winner=CampGuild.objects.get(world=world,camp='OLD_CAMP'),state='joined')
+                apply(apps,race)
                 seed();started=True
             return original(profile,*args,**kwargs)
         with patch.object(campaign_tests,'tick_bot',side_effect=joined_tick):
             campaign_tests.CampaignBotTests.test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self)
-        record_scenario('boty-po-polaczeniu',{'global_join_fixture':True,'admin_grants':False,'characters':list(PlayerProfile.objects.filter(is_bot=True).values('camp','guild','level','strength','dexterity','mana')),'limits':['Krok testowy 30 minut nie jest pomiarem czasu człowieka.','Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu.']})
+        from .models import FactionMembership
+        self.assertTrue(started);self.assertEqual(FactionMembership.objects.filter(profile__is_bot=True).count(),3)
+        record_scenario('boty-po-polaczeniu',{'global_join_fixture':True,'join_after_ordinary_recruitment':True,'faction_succession':True,'admin_grants':False,'characters':list(PlayerProfile.objects.filter(is_bot=True).values('camp','guild','faction_membership__faction','level','strength','dexterity','mana')),'limits':['Krok testowy 30 minut nie jest pomiarem czasu człowieka.','Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu.']})

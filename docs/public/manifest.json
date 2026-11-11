@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "cztery rangi i pakiety symulacji / #124",
-  "migration": "0048_rowne_podstawowe_rangi",
+  "code_revision": "pięć frakcji i sukcesja skarbców / #125",
+  "migration": "0049_faction_succession",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -243,6 +243,7 @@
     "docs/reports/staging-https-2026-11-07.json",
     "docs/reports/sto-botow-2026-11-06.json",
     "docs/reports/sto-botow-endgame-2026-11-06.json",
+    "docs/reports/sukcesja-frakcji-2026-11-11.json",
     "docs/reports/zlecenia-buildy-petla-2026-11-08.json",
     "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json"
   ]

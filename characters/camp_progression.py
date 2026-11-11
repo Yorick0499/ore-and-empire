@@ -154,6 +154,8 @@ def promote_in_camp(profile, rank_key):
     profile.ore_balance -= rank.cost
     profile.guild = rank.key
     profile.save(update_fields=["ore_balance", "guild"])
+    from .factions import enroll
+    enroll(profile)
     quest.promoted_at = timezone.now()
     quest.save(update_fields=["promoted_at"])
     return True

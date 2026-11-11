@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0048_rowne_podstawowe_rangi",
+  "migration": "0049_faction_succession",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -411,6 +411,22 @@
       "captured_at_utc": "2026-11-11T19:37:10.078373+00:00",
       "fixture": "Oddzielna baza0048; syntetyczne postacie poziomu25/mana55, stara droga Wody oraz Sierżant Khorinis; zero botów; nie organiczna kampania",
       "theme": "rowne-rangi-124"
+    },
+    {
+      "file": "frakcje-po-barierze-390.jpg",
+      "bytes": 152213,
+      "sha256": "e588a97507a49ef0b94466c47c8fb53adfc83af1ac9dd2e51d550e5524bb7f0d",
+      "captured_at_utc": "2026-11-11T22:45:36.809594+00:00",
+      "fixture": "Oddzielna baza0049; syntetyczna przynależność Magów Wody, poziom0; początek widoku. Nie organiczna kampania.",
+      "theme": "sukcesja-frakcji-125"
+    },
+    {
+      "file": "frakcje-po-barierze-1440.jpg",
+      "bytes": 241779,
+      "sha256": "3beda05819a36945a6b79fe32eb787faf58a6deec115c6b58e3eb6c9d16adda2",
+      "captured_at_utc": "2026-11-11T22:45:36.809856+00:00",
+      "fixture": "Oddzielna baza0049; syntetyczna przynależność Magów Wody, poziom0; początek widoku. Nie organiczna kampania.",
+      "theme": "sukcesja-frakcji-125"
     }
   ]
 }

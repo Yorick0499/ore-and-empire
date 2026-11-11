@@ -280,7 +280,16 @@ class PlayerProfile(models.Model):
         return tier
 
     @property
+    def faction_name(self):
+        from .factions import faction_name
+        return faction_name(self)
+
+    @property
     def guild_name(self):
+        from .factions import rank_name
+        current=rank_name(self)
+        if current:return current
+
         from .camp_progression import BY_RANK
         rank = BY_RANK.get(self.guild)
         return rank.name if rank and rank.camp == self.camp else "Bez rangi"
@@ -854,7 +863,7 @@ class BotDailySummary(models.Model):
 
 class CampGuild(models.Model):
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
-    camp = models.CharField(max_length=20,choices=PlayerProfile.CAMP_LIST[1:])
+    camp = models.CharField(max_length=20,choices=PlayerProfile.CAMP_LIST[1:]+[('BANDITS','Bandyci — Jarkendar'),('WATER_CIRCLE','Krąg Magów Wody'),('MERCENARIES','Najemnicy — Łowcy Smoków')])
     experience = models.PositiveIntegerField(default=0)
     level = models.PositiveSmallIntegerField(default=1)
     treasury = models.PositiveIntegerField(default=0)
@@ -862,9 +871,11 @@ class CampGuild(models.Model):
     supply_level = models.PositiveSmallIntegerField(default=0)
     defense_level = models.PositiveSmallIntegerField(default=0)
     class Meta:
-        constraints=[models.UniqueConstraint(fields=['world','camp'],name='one_camp_guild_per_world'),models.CheckConstraint(condition=models.Q(camp__in=['OLD_CAMP','NEW_CAMP','SWAMP_CAMP','CITY_WATCH','FIRE_ORDER','ONAR_MERCS']),name='valid_camp_guild'),models.CheckConstraint(condition=models.Q(training_level__lte=3,supply_level__lte=3,defense_level__lte=3,level__gte=1,level__lte=10),name='camp_guild_upgrade_bounds')]
+        constraints=[models.UniqueConstraint(fields=['world','camp'],name='one_camp_guild_per_world'),models.CheckConstraint(condition=models.Q(camp__in=['OLD_CAMP','NEW_CAMP','SWAMP_CAMP','CITY_WATCH','FIRE_ORDER','ONAR_MERCS','BANDITS','WATER_CIRCLE','MERCENARIES']),name='valid_camp_guild'),models.CheckConstraint(condition=models.Q(training_level__lte=3,supply_level__lte=3,defense_level__lte=3,level__gte=1,level__lte=10),name='camp_guild_upgrade_bounds')]
     @property
-    def name(self):return dict(PlayerProfile.CAMP_LIST)[self.camp]
+    def name(self):
+        from .factions import FACTIONS
+        return dict(FACTIONS).get(self.camp,dict(PlayerProfile.CAMP_LIST).get(self.camp,self.camp))
 
 
 class CampProject(models.Model):
@@ -1137,3 +1148,20 @@ class BarrierEvent(models.Model):
     kind=models.CharField(max_length=24)
     details=models.JSONField(default=dict)
     created_at=models.DateTimeField(default=timezone.now)
+
+
+class FactionSuccession(models.Model):
+    race=models.OneToOneField(SleeperRace,on_delete=models.PROTECT,related_name='faction_succession')
+    details=models.JSONField(default=dict)
+    created_at=models.DateTimeField(default=timezone.now)
+
+
+class FactionMembership(models.Model):
+    profile=models.OneToOneField(PlayerProfile,on_delete=models.PROTECT,related_name='faction_membership')
+    succession=models.ForeignKey(FactionSuccession,on_delete=models.PROTECT)
+    faction=models.CharField(max_length=20,choices=[('CITY_WATCH','Miasto Khorinis'),('FIRE_ORDER','Klasztor Magów Ognia'),('WATER_CIRCLE','Krąg Magów Wody'),('BANDITS','Bandyci'),('MERCENARIES','Najemnicy'),('PENDING','Oczekuje na wybór')])
+    guild=models.ForeignKey(CampGuild,on_delete=models.PROTECT)
+    historical_camp=models.CharField(max_length=20)
+    historical_rank=models.CharField(max_length=20)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(faction__in=['CITY_WATCH','FIRE_ORDER','WATER_CIRCLE','BANDITS','MERCENARIES','PENDING']),name='valid_successor_faction')]
