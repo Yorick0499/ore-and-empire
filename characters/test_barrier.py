@@ -63,6 +63,9 @@ class BarrierTests(TestCase):
         siege=self.siege();self.p.strength=100000;self.p.save()
         self.assertTrue(sleeper.strike(self.p,siege.pk,uuid4()));siege.refresh_from_db()
         self.assertEqual(siege.health,80000);self.assertEqual(SleeperRace.objects.get(pk=siege.race_id).state,'racing')
+        SleeperStrike.objects.update(created_at=timezone.now()-timedelta(minutes=2));self.p.refresh_from_db();energy=self.p.current_energy
+        self.assertFalse(sleeper.strike(self.p,siege.pk,uuid4()));self.p.refresh_from_db();self.assertEqual(self.p.current_energy,energy)
+        self.assertTrue(sleeper.card(self.p)['seal_blocked'])
     def test_winner_is_durable_and_other_camp_cannot_finish(self):
         race=self.won();self.assertEqual(race.state,'pending');self.assertEqual(race.winner_id,self.guild.pk)
         self.assertEqual(BarrierEvent.objects.filter(race=race,kind='victory').count(),1)

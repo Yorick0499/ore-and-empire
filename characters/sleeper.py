@@ -49,6 +49,9 @@ def strike(profile,siege_id,request_key):
     if not siege or siege.completed_at or profile.is_busy or profile.current_energy<25 or profile.current_health<50:return False
     last=SleeperStrike.objects.filter(account_id=profile.user_id).order_by('-created_at','-pk').first()
     if last and now<last.created_at+timedelta(seconds=60):return False
+    accounts=set(siege.strikes.filter(damage__gt=0).values_list('account_id',flat=True));accounts.add(profile.user_id)
+    floor=siege.maximum_health*max(0,MINIMUM_ACCOUNTS-len(accounts))//MINIMUM_ACCOUNTS
+    if siege.health<=floor:return False  # Wait for another account, without spending resources.
     from .magic import combat_plan,apply_combat_magic
     from .equipment import consume_ammo
     from .camp_raids import exchange
@@ -58,8 +61,6 @@ def strike(profile,siege_id,request_key):
     before=siege.health
     result,damage=exchange(profile,siege,plan)
     # Three distinct accounts must contribute before the seal can be broken.
-    accounts=set(siege.strikes.filter(damage__gt=0).values_list('account_id',flat=True));accounts.add(profile.user_id)
-    floor=siege.maximum_health*max(0,MINIMUM_ACCOUNTS-len(accounts))//MINIMUM_ACCOUNTS
     siege.health=max(siege.health,min(before,floor));damage=before-siege.health
     if floor and siege.health==floor:
         result.log[:]=[line for line in result.log if 'pokonał zagrożenie' not in line]
@@ -94,6 +95,9 @@ def card(profile):
     guild=CampGuild.objects.filter(world_id=profile.world_id,camp=profile.camp).first()
     last=SleeperStrike.objects.filter(account_id=profile.user_id).order_by('-created_at','-pk').first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)
+    accounts=set(siege.strikes.filter(damage__gt=0).values_list('account_id',flat=True)) if siege else set()
+    floor=siege.maximum_health*max(0,MINIMUM_ACCOUNTS-len(accounts|{profile.user_id}))//MINIMUM_ACCOUNTS if siege else 0
+    seal_blocked=bool(siege and race.state=='racing' and floor and siege.health<=floor)
     return {'race':race,'siege':siege,'eligible':eligible(profile),'guild_ready':bool(guild and guild.level==10),'cooldown_ready':ready,
-            'can_strike':bool(siege and race.state=='racing' and not race.paused and eligible(profile) and ready and not profile.is_busy and profile.current_energy>=25 and profile.current_health>=50),
+            'seal_blocked':seal_blocked,'can_strike':bool(siege and not seal_blocked and race.state=='racing' and not race.paused and eligible(profile) and ready and not profile.is_busy and profile.current_energy>=25 and profile.current_health>=50),
             'contributions':list(siege.strikes.filter(damage__gt=0).values('account_id').distinct()) if siege else [],'logs':siege.strikes.select_related('profile__user')[:10] if siege else []}

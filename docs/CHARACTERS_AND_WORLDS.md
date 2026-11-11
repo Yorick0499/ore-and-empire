@@ -82,3 +82,5 @@ Po sukcesie oba rekordy świata otrzymują wspólny identyfikator. **Żadne post
 Zwycięski uczestnik z rzeczywistym wkładem odbiera po połączeniu 500 rudy, 1000 PD i 3 odłamki **raz na konto**, przez wybraną postać zwycięskiego obozu. Nagroda ma trwały rekord i ledger; dodatkowe sloty jej nie mnożą.
 
 Pierwszy wspólny fragment fabuły: **Szlak po upadku Bariery** (30) i **Zagrożenie znad szczytu** (35), wyprawa przeciw smokowi ognia Feomatharowi. Statystyki są adaptacją przeglądarkową. To początek etapu po Barierze, **nie pełny katalog G2 NK** (#32). Jarkendar pozostaje zamknięty do osobnego wdrożenia premium konta (#33). Szersze #111/#30/#35 pozostają otwarte; ta paczka nie jest pełnym panelem operatorskim ani całym dodatkiem NK.
+
+Gdy pieczęć czeka na kolejne konto, ponowny wypad dotychczasowego uczestnika jest blokowany przed pobraniem energii, many czy amunicji. Karta wspólnoty pokazuje ten powód; zerowe obrażenia nie służą nabijaniu wkładu.
