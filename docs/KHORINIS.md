@@ -63,3 +63,24 @@ Importer jest opcjonalnym narzędziem autora: `python manage.py import_khorinis_
 Testy obejmują pełne przejście 17 zadań gracza przez formularze i zwykłe serwisy bez nadań; trzy boty kończą ścieżki wszystkich frakcji. Próby nadużyć sprawdzają obce oferty/questy/cele, zlecenia innego uniwersum i zamknięte regiony. Osobne testy kontrolują dzierżawy i równoległe konteksty. Chromium sprawdza pięć ekranów przy 320/390/1440 px, odrzucenie starego formularza po zmianie serwera i rzeczywiste wykonanie pierwszego zadania.
 
 [Publiczny raport grywalności, GUI i migracji](reports/khorinis-przed-polaczeniem-2026-11-09.json). W kontynuacji po kampanii wszystkie trzy boty osiągnęły szczebel 3; Krąg Ognia rzeczywiście walczył zaklęciami (131 many / 27 siły), a wojownicy rozwijali siłę.
+
+## Audyt kompletności G2 NK — 11 listopada 2026
+
+**Pełny content G2 NK nie jest zaimplementowany.** Odczytano aktualne #30–#35 i #111 oraz definicje uruchamiane przez `seed_khorinis`. Zielone testy pierwszej kampanii nie oznaczają kompletnego oryginalnego katalogu.
+
+| Obszar | Zweryfikowany stan |
+|---|---|
+| Kampania mieszkańca | 29 definicji / 17 zadań na wybraną frakcję, 4 rozdziały. Własna adaptacja, nie komplet zadań oryginalnego G2. |
+| Miejsca i stworzenia | 16 lokacji, 8 gatunków i 2 lokalnych bossów. Brakuje pełnego zestawu regionów i przeciwników G2 NK. |
+| Sprzęt | 35 wzorów warty, 18 run/zwojów, 2 amunicje i 2 trofea: 57 tożsamości G2. To adaptacje, nie pełny katalog oryginalnych przedmiotów. |
+| Frakcje i NPC | 3 wspólnoty z rangami; kontakty NPC w rozmowach fabuły. Nie ma kompletnej sieci oryginalnych NPC, dialogów, pobocznych gildii i ich zadań. |
+| Regiony późniejszej gry | Brak kampanii Górniczej Doliny w wersji G2, Jarkendaru i Irdorath. Lokacje G1 nie zastępują tych regionów. |
+| Smoki, Kruk, finał NK | Niezaimplementowane; brak etapów fabuły i nagród po połączeniu. |
+| Dostęp | Połączenie światów, obozowy wyścig Śniącego i premium konta pozostają otwarte (#30/#111/#33/#35). Saldo odłamków niczego tutaj nie odblokowuje. |
+| Grafiki | 36 przypisań / 25 obrazów G2. Grafika kategorii nie jest osobną wierną ilustracją każdego wzoru. |
+
+Nie ustalono pełnego referencyjnego indeksu kodów G2 NK, dlatego nie podajemy procentu kompletności. Dalsza realizacja #32 wymaga takiego indeksu i kolejnych paczek; #32 pozostaje otwarte. Zawartość za bramką połączenia musi zostać wdrożona razem z jej rzeczywistymi warunkami, a nie przez odblokowanie samego adresu.
+
+`validate_content` sprawdza teraz również grafiki lokacji i gatunków Khorinis, unikalność kluczy, zależności zadań oraz cele podróży, walk i bossów. Wypisuje wprost, że waliduje częściową adaptację sprzed połączenia. Kontrola celowo nie nazywa tej walidacji dowodem pełnego G2 NK.
+
+Aktualny [raport audytu i tempa gry](reports/grywalnosc-2026-11-11.json) oraz [opis prób nowego gracza](SOLO_PLAYTEST.md).

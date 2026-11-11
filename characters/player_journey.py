@@ -19,6 +19,7 @@ def journey(profile):
     claimed=[r for r in runs if r.status=='claimed'];active=next((r for r in runs if r.status!='claimed'),None)
     chapter=max([1,*[r.snapshot.get('chapter',1) for r in runs]])
     chapter=max(1,min(len(realm_chapters),chapter));name=next(n for number,n,_ in realm_chapters if number==chapter)
+    island_complete=profile.world.universe=='GOTHIC_II' and any(r.snapshot.get('key')=='k2-supply-8' for r in claimed)
     finished=hasattr(profile,'campaign_completion')
     if profile.action_end_time:
         if profile.action_end_time<=now:add('Odbierz urobek','mine_page','Zmiana w kopalni już się skończyła.')
@@ -44,6 +45,8 @@ def journey(profile):
         if quest:add('Dostępny przydział: '+quest.title,'story_page','Etapy fabuły otwierają członkostwo i awanse obozowe; pomiędzy nimi możesz rozwijać się przez polowania i wspólnotę.')
     if profile.challenges.filter(claimed_at__isnull=True,progress__gte=F('required')).exists():add('Odbierz nagrodę wyzwania','challenges_page')
     if profile.skill_points:
+        if profile.ore_balance < profile.training_cost*min(10,profile.skill_points):
+            add('Zarób na kolejne lekcje','adventures_page','Zlecenia dają rudę, PD i odłamki na zapasy. Dobierz dochód do kosztu treningu i wyposażenia.')
         add(f'Wydaj punkty nauki: {profile.skill_points}','train_page','Wybierz atrybut lub umiejętność broni; pamiętaj o koszcie rudy.')
     if not profile.inventory.filter(is_equipped=True,equipped_slot='weapon').exists() and not profile.prepared_magic_id:
         add('Znajdź i załóż pierwszą broń','shop_page','Kupno nie zakłada sprzętu — potem otwórz Ekwipunek.',query='?kind=weapon&usable=1&affordable=1')
@@ -53,7 +56,9 @@ def journey(profile):
         else:add('Wybierz obóz i wspólne cele','locations_page','Obóz jest twoją gildią. Wybór przynależności jest stały.')
     else:add('Sprawdź wspólne cele swojego obozu','camp_guild','Twój wkład oraz działania mieszkańców rozwijają tę samą wspólnotę.')
     if finished:add('Dalsza droga: Warty za Przełęczą','frontier_page','Szukaj lepszego łupu i walcz o wynik miesiąca.')
+    if island_complete:
+        add('Warta Khorinis ukończona — dalsze zlecenia','adventures_page','Rozwijaj postać i wspólnotę. Dalsza fabuła NK, smoki i Jarkendar nie są jeszcze dostępne; osobista kampania nie łączy światów.')
     previous=250*profile.level*(profile.level+1);span=max(1,profile.required_exp-previous)
-    return {'steps':steps[:7],'chapter':chapter,'chapter_name':name,'finished':finished,
+    return {'steps':steps[:7],'chapter':chapter,'chapter_name':name,'finished':finished,'island_complete':island_complete,
             'xp_value':max(0,min(span,profile.experience-previous)),'xp_span':span,
             'xp_remaining':max(0,profile.required_exp-profile.experience),'next_level':profile.level+1}

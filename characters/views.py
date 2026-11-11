@@ -572,9 +572,14 @@ def itemshop_view(request):
         return redirect("itemshop_page")
     from .economic_ledger import refills_remaining
     energy_left = refills_remaining(profile)
-    from .itemshop_rules import helpful,remaining
+    from .itemshop_rules import unavailable_reason,remaining
     limits=remaining(profile)
-    products = [{"product": product, "available":helpful(profile,product,energy_left,limits), "request_key": uuid4()} for product in StoreProduct.objects.filter(enabled=True).select_related("blueprint")]
+    from django.db.models import Q
+    offers=StoreProduct.objects.filter(enabled=True).filter(Q(blueprint__isnull=True)|Q(blueprint__source_game__in=['adaptation',profile.world.universe])).select_related('blueprint')
+    products=[]
+    for product in offers:
+        reason=unavailable_reason(profile,product,energy_left,limits)
+        products.append({'product':product,'available':not reason,'unavailable_reason':reason,'request_key':uuid4()})
     return render(request, "characters/itemshop.html", {"energy_refills_left": energy_left,"profile": profile, "products": products, "entries": profile.premium_entries.all()[:15]})
 
 

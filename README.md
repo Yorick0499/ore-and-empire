@@ -94,7 +94,7 @@ Symulacja używa izolowanej bazy. Przechodzi kampanię graczem i trzema obozami 
 
 Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic. Statystyki i fabuła są adaptacją przeglądarkową, nie wierną kopią oryginalnej gry.
 
-Nazwane rangi sprzętu i pełny katalog 522 kodów G1 opisano w [katalogu i grafikach](docs/ITEM_PACKS.md). Fabuła pozostaje opcjonalnym przydziałem mieszkańca; rozwój rynsztunku zaczyna się od pierwszych łupów.
+Nazwane rangi sprzętu i pełny katalog 522 kodów G1 opisano w [katalogu i grafikach](docs/ITEM_PACKS.md). Fabuła wyznacza wymagania członkostwa i awansów; jest też osobistym przydziałem mieszkańca; rozwój rynsztunku zaczyna się od pierwszych łupów.
 
 ![Kuźnia i ranga runiczna](docs/screenshots/forge.jpg)
 

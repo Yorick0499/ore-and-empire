@@ -23,7 +23,7 @@ Sześć ekranów (kolonia, kupiec, trening, polowanie, karczma i wspólnota) spr
 
 ## Symulacje rozwoju
 
-`python manage.py simulate_release --report /tmp/nowa-proba.json` obejmuje obecnie 138 testów i scenariuszy, w tym trzy zwykłe buildy w dwóch strategiach finansowania z `characters.playtest_scenarios`. Ta wolniejsza symulacja jest uruchamiana jawnie, poza standardowym wykrywaniem testów.
+`python manage.py simulate_release --report /tmp/nowa-proba.json` obejmuje testy i scenariusze, w tym trzy zwykłe buildy w dwóch strategiach finansowania z `characters.playtest_scenarios` oraz model tempa z `characters.playtest_pacing`. Aktualną listę testów i liczbę zapisanych scenariuszy zawiera wygenerowany raport. Ta wolniejsza symulacja jest uruchamiana jawnie, poza standardowym wykrywaniem testów.
 
 Wojownik Starego Obozu, łucznik Nowego Obozu i mag Bractwa zaczynają od normalnych parametrów. Używają formularzy zakupów, treningu, polowania, wypraw i awansu; wyposażenie, sprzedaż i regeneracja korzystają ze zwykłych serwisów. Za zasoby płacą sami. Trzej botowi współmieszkańcy równolegle wykonują normalne tury. Bez nadania XP, statystyk, przedmiotów i walut; bez podmieniania wyników walk.
 
@@ -48,3 +48,29 @@ Pełna regresja lokalna: 386 testów, 12 pominiętych świadomie przez wymagania
 ## Rozbudowa po próbie — 8 listopada 2026
 
 44 zlecenia w sześciu kategoriach różnią się proporcjami czasu, energii, rudy i PD. Dziennik ma filtry, strony oraz osobne zakończenia, a przyjęta treść pozostaje stała. Pięć rzadkości wyposażenia ma własne gotyckie ramy i plakietki. [Ponowna symulacja: 138 scenariuszy](reports/zlecenia-buildy-petla-2026-11-08.json), [GUI i rzeczywiste nowe zlecenie](reports/zlecenia-rzadkosc-gui-2026-11-08.json). To większy wybór prac czasowych; nie zmienia ich w ręcznie sterowane walki ani rozmowy oparte na modelu językowym.
+
+## Ponowna próba i model tempa — 11 listopada 2026
+
+Pierwsze uruchomienie `simulate_release` odtworzyło dwa błędy: oba scenariusze trzech buildów wybierały obóz przed wymaganym prologiem. Poprawiono je tak, by przechodziły prolog i niezbędne bramki własnej frakcji zwykłymi formularzami. Nie dopisują ukończonych questów ani nie nadają zasobów. Błąd testu lokalnego serwera polityk wymagał osobno uruchomienia z dostępem do localhost.
+
+Dodano osiem scenariuszy `characters.playtest_pacing`. Każdy tworzy świeżą postać i przechodzi obecną kampanię wojownikiem, płacąc zarobioną rudą. Zegar przesuwa się o 10 sekund na próbę akcji oraz o rzeczywiste timery i czas regeneracji; nie dodaje 30 minut do każdego kliknięcia. Porównuje kopalnię, zakup pancerzy i napoje za zarobione odłamki oraz finansowanie zleceniami. Osobny wariant ma godzinę gry dziennie i regenerację podczas przerw. Sesje nie wykorzystują prawdziwego zapisu.
+
+| Strategia modelu | Kolonia: obecna fabuła + osobisty finał | Khorinis: obecna kampania mieszkańca |
+|---|---:|---:|
+| Kopalnia i broń, bez itemshopu, ciągła sesja | 23,16 h | 11,24 h |
+| Ta sama droga, godzina dziennie | 12. sesja / 12. dzień kalendarzowy | 6. sesja / 6. dzień kalendarzowy |
+| Kopalnia + kolejne pancerze + zarobione napoje | 32,15 h | 10,36 h |
+| Finansowanie zleceniami + pancerze + zarobione napoje | 12,00 h | 6,50 h |
+
+Są to **godziny czasu świata z oczekiwaniem**, nie godziny samego klikania ani obietnica czasu dla każdego gracza. Wszystkie warianty znały cele, trenowały siłę i korzystały z NPC, bez awansów rang oraz handlu łupami. Brak konkurencji rynku. Zwyciężyły we wszystkich swoich walkach. Drogi kończą się na poziomach 30–31 w Kolonii (310 siły) i 26–27 w Khorinis (240 siły); to mocni wojownicy względem obecnej kampanii, a nie maksymalne postacie. Pełne 100 stopni wart, wszystkie rzadkości, rozwój wspólnot i przyszła fabuła NK nie są objęte tym czasem. Nie ma skończonego czasu na zebranie każdego losowego łupu.
+
+Wyniki pokazują praktyczny problem: koncentracja wyłącznie na kopalni i kupowanie każdego kolejnego pancerza mogą wydłużyć drogę, bo zużywają energię na zarobek. Warto mieszać fabułę, dochodowe zlecenia i znalezione wyposażenie. W modelu zleceń Kolonia kupiła 5 napojów energii i 12 zdrowia, Khorinis 5 energii i 7 zdrowia, wyłącznie za uzyskane odłamki. Dzienne ograniczenie energii nadal obowiązuje. Nie zmieniano globalnych nagród na podstawie jednej strategii.
+
+### Poprawki UX po próbie
+
+- Itemshop ukrywa przedmioty innego świata, wyjaśnia każdy niedostępny zakup i pokazuje cenę na przycisku. Te same warunki obsługują zakup i boty. Ponowienie zakupu pozostaje idempotentne; pełny zasób nie pobiera opłaty.
+- Khorinis ma właściwą etykietę gry, kupca, kartę mieszkańca, powrót do wyspy i odsyłacz do własnej kampanii. Zakończenie warty prowadzi do zleceń i jawnie opisuje brak dalszego NK.
+- Karta postaci na telefonie startuje zwinięta. Nadal widać poziom, energię i zdrowie; natywny przycisk rozwija wszystkie atrybuty. Na komputerze startuje otwarta. Bez JavaScript pozostaje otwarta.
+- Rejestracja zapowiada konto, wybór świata i pięć slotów; cel treningu w dzienniku ma bezpośredni odsyłacz do nauczyciela.
+
+[Raport z aktualnego uruchomienia](reports/grywalnosc-2026-11-11.json) rozdziela przejścia, model czasu i GUI. Jego sekcja kompletności potwierdza, że **pełnego G2 NK nadal nie ma**; dokładny zakres i brakujące etapy opisuje [audyt Khorinis](KHORINIS.md).

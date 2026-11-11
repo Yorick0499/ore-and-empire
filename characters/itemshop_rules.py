@@ -5,21 +5,32 @@ from django.utils import timezone
 from .world_clock import POLISH_TIME
 from .models import StorePurchase
 LIMITS={'mana':5,'xp':3,'weapon':2,'item':2}
+def unavailable_reason(p,q,energy_left,limits=None):
+    """The same eligibility decision serves the purchase, bots and visible UI."""
+    if q.blueprint and q.blueprint.source_game not in {'adaptation',p.world.universe}:return 'Przedmiot pochodzi z innego świata.'
+    if not q.enabled:return 'Oferta jest wyłączona.'
+    if p.level<q.level:return f'Wymagany poziom: {q.level}.'
+    if q.kind in LIMITS and not (limits if limits is not None else remaining(p))[q.kind]:return 'Wykorzystano limit zakupów na dziś (czas polski).'
+    if q.kind=='energy' and energy_left<=0:return 'Wykorzystano limit odnowień energii na dziś (czas polski).'
+    if q.kind in {'energy','health','mana'}:
+        if q.effect<=0:return 'Oferta nie ma aktywnego efektu.'
+        if getattr(p,'current_'+q.kind)>=getattr(p,'max_'+q.kind):return {'energy':'Masz pełną energię.','health':'Masz pełne zdrowie.','mana':'Masz pełną manę.'}[q.kind]
+    elif q.kind=='xp':
+        if not 1<=q.effect<=300:return 'Oferta nie ma aktywnego efektu.'
+    elif q.kind=='weapon':
+        if not q.blueprint or not q.blueprint.equippable:return 'Brak dostępnego sprzętu.'
+    elif q.kind=='item':
+        if not q.blueprint or q.blueprint.equippable or not 1<=q.effect<=100:return 'Brak dostępnego materiału.'
+    else:return 'Nieznany rodzaj oferty.'
+    if p.premium_balance<q.price:return f'Brakuje {q.price-p.premium_balance} odłamków. Zdobędziesz je za zlecenia.'
+    return ''
+
 def remaining(p):
     start=datetime.combine(timezone.now().astimezone(POLISH_TIME).date(),time(),tzinfo=POLISH_TIME)
     used={r['kind_snapshot']:r['n'] for r in StorePurchase.objects.filter(profile=p,created_at__gte=start,created_at__lt=start+timedelta(days=1)).values('kind_snapshot').annotate(n=Count('pk'))}
     return {kind:max(0,limit-used.get(kind,0)) for kind,limit in LIMITS.items()}
 def helpful(p,q,energy_left,limits=None):
-    if q.blueprint and q.blueprint.source_game not in {"adaptation",p.world.universe}:return False
-    if not q.enabled or p.level<q.level or p.premium_balance<q.price:return False
-    if q.kind in LIMITS and not (limits if limits is not None else remaining(p))[q.kind]:return False
-    if q.kind=='energy':return energy_left>0 and q.effect>0 and p.current_energy<p.max_energy
-    if q.kind=='health':return q.effect>0 and p.current_health<p.max_health
-    if q.kind=='mana':return q.effect>0 and p.current_mana<p.max_mana
-    if q.kind=='xp':return 1<=q.effect<=300
-    if q.kind=='weapon':return bool(q.blueprint and q.blueprint.equippable)
-    if q.kind=='item':return bool(q.blueprint and not q.blueprint.equippable and 1<=q.effect<=100)
-    return False
+    return not unavailable_reason(p,q,energy_left,limits)
 
 def choose(p,items,products,energy_left):
     from .market_intelligence import score,usable,fists

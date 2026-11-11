@@ -1,6 +1,6 @@
 <aside class="sidebar" aria-label="Karta postaci">
-  <div class="sidebar-header"><span class="eyebrow">Dziennik skazańca</span><h2>{{ profile.display_name }}</h2><p>{{ profile.get_camp_display }} · {{ profile.guild_name }}</p></div>
-  <div class="nav-section">
+  <div class="sidebar-header"><span class="eyebrow">{% if is_khorinis %}Dziennik mieszkańca{% else %}Dziennik skazańca{% endif %}</span><h2>{{ profile.display_name }}</h2><p>{{ profile.get_camp_display }} · {{ profile.guild_name }}</p></div>
+  <details class="profile-details" open><summary>Poziom {{ profile.level }} · Energia {{ profile.current_energy }}/{{ profile.max_energy }} · Zdrowie {{ profile.current_health }}/{{ profile.max_health }}<span>Rozwiń lub zwiń kartę postaci</span></summary><div class="nav-section">
     <h3 class="nav-category">Postać</h3>
     <div class="stat-item">Poziom <span class="val">{{ profile.level }}</span></div>
     <div class="stat-item">Doświadczenie <span class="val">{{ profile.experience }} PD</span></div>
@@ -17,6 +17,6 @@
     <div class="stat-item">Zręczność <span class="val">{{ profile.dexterity }}</span></div>
     <div class="stat-item">Życie <span class="val">{{ profile.life }}</span></div>
     <div class="stat-item">Punkty nauki <span class="gold-val">{{ profile.skill_points }}</span></div>
-    <a class="nav-link-btn" href="{% url 'locations_page' %}">« Wróć do Górniczej Doliny</a>
-  </div>
+    <a class="nav-link-btn" href="{% url 'locations_page' %}">« {% if is_khorinis %}Wróć do Khorinis{% else %}Wróć do Górniczej Doliny{% endif %}</a>
+  </div></details>
 </aside>
