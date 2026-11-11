@@ -84,6 +84,17 @@ class PreparationTests(TransactionTestCase):
         self.p.world=self.island;self.p.save(update_fields=['world'])
         self.p.refresh_from_db();self.assertEqual(self.p.origin_world_id,self.colony.pk)
 
+    def test_first_character_uses_chosen_region_instead_of_registration_draft(self):
+        from .character_selection import create_character
+        self.p.is_draft=True;self.p.save(update_fields=['is_draft'])
+        self.assertEqual(self.p.origin_world_id,self.colony.pk)
+        created=create_character(self.user,'Pierwszy wybór',self.island.pk)
+        self.assertEqual(created.pk,self.p.pk)
+        self.assertEqual(created.origin_world_id,self.island.pk)
+        self.assertEqual(created.ore_balance,50)
+        created.world=self.colony;created.save(update_fields=['world'])
+        created.refresh_from_db();self.assertEqual(created.origin_world_id,self.island.pk)
+
     def test_plan_and_successful_preparation_are_idempotent(self):
         first=self.plan();self.assertEqual(self.plan().pk,first.pk)
         with patch.object(service,'snapshot',side_effect=self.fake_snapshot) as capture:
