@@ -7,7 +7,7 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.db import connection,transaction,close_old_connections
+from django.db import connection,connections,transaction,close_old_connections
 from django.test import TestCase,TransactionTestCase,SimpleTestCase,skipUnlessDBFeature
 from django.utils import timezone
 from .models import World,CampGuild,PlayerProfile,StoryQuest,StoryRun,SleeperRace,SleeperSiege,SleeperStrike,SleeperReward,BarrierEvent,OwnedItem,ItemBluePrint
@@ -171,7 +171,8 @@ class SleeperConcurrencyTests(TransactionTestCase):
         def execute(call):
             close_old_connections()
             try:gate.wait(timeout=10);return call()
-            finally:close_old_connections()
+            # Healthy CONN_MAX_AGE connections also belong to this finished thread.
+            finally:connections.close_all()
         with ThreadPoolExecutor(max_workers=len(calls)) as pool:return list(pool.map(execute,calls))
     def test_two_camps_final_strikes_choose_one_winner(self):
         first=sleeper.rally(self.people[0]);enemy=self.people[1];enemy.camp='NEW_CAMP';enemy.guild='MERC';enemy.save()
@@ -321,7 +322,7 @@ class ActivationContentionTests(TransactionTestCase):
             try:
                 started.set();PlayerProfile.objects.filter(pk=p.pk).update(ore_balance=F('ore_balance')+7)
             except Exception as exc:errors.append(type(exc).__name__)
-            finally:finished.set();close_old_connections()
+            finally:connections.close_all();finished.set()
         thread=Thread(target=writer,daemon=True)
         def snapshot(root):
             thread.start();self.assertTrue(started.wait(2));self.assertFalse(finished.wait(.2));return '/private/new','f'*64,{}
@@ -335,7 +336,7 @@ class ActivationContentionTests(TransactionTestCase):
         def execute(n):
             close_old_connections()
             try:gate.wait(timeout=10);return activate(self.race.pk)
-            finally:close_old_connections()
+            finally:connections.close_all()
         with patch('characters.barrier_activation.fresh_snapshot',return_value=('/private/new','f'*64,{})) as backup:
             with ThreadPoolExecutor(max_workers=2) as pool:results=list(pool.map(execute,range(2)))
         self.assertTrue(any(results));self.assertEqual(backup.call_count,1);self.assertEqual(BarrierEvent.objects.filter(race=self.race,kind='joined').count(),1)

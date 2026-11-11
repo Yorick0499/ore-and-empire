@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from characters.views import (
-    barrier_view, equipment_comparison_view,
+    barrier_admin_view, barrier_view, equipment_comparison_view,
     frontier_view, register_view,
     item_catalog_view, economy_balance_view, world_monitor_view, magic_view, camp_guild_view,world_setup_view,world_control_view,characters_view,challenges_view,crafting_view,
     tavern_view, colony_life_view, story_view,
@@ -46,6 +46,7 @@ from characters.views import journal_view, battle_detail_view, hall_view
 from characters.health import live,ready
 
 urlpatterns = [
+    path('zarzadca/bariera/', barrier_admin_view, name='barrier_admin'),
     path('bariera/', barrier_view, name='barrier_page'),
     path('health/live/',live,name='health_live'),
     path('health/ready/',ready,name='health_ready'),

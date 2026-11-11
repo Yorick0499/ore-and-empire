@@ -47,3 +47,11 @@ python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
 ```
 
 CLI nie potrafi nadać zwycięstwa ani ominąć jego dowodu. Po zabiciu wykonawcy poczekaj na wygaśnięcie 10-minutowej dzierżawy. Ostatni cios i zwycięzca pozostają zapisani; nie odtwarzaj historycznego przygotowania 0044 na nowszy postęp. Po awarii sprawdź narzędzia bazy, wolne miejsce i uprawnienia, następnie wznów tę samą operację. Zakończonego połączenia nie cofa się flagą pauzy. Rzeczywisty rollback całej instalacji wymaga zatrzymania wszystkich pisarzy i osobnej, uzgodnionej procedury odtworzenia świeżej kopii; CLI nigdy automatycznie nie nadpisuje żywej bazy.
+
+## Panel wyścigu i audytu — #35
+
+Aktywny administrator otwiera `/zarzadca/bariera/` z ustawień świata. Panel pokazuje trzy obozy, poziom i kwalifikację, wspólne HP, sumę obrażeń oraz liczbę różnych kont z dodatnim wkładem. Plan odczytowy pokazuje postacie, konta, oferty, nierozliczone aktywności i konflikty, bez tworzenia wyścigu ani kopii. Audyt jest ograniczony do ostatnich 40 zdarzeń; prywatne ścieżki plików nie trafiają do strony.
+
+Pauza i wznowienie korzystają z jednej usługi dla WWW i CLI. Wymagają administratora, zgodnego aktualnego stanu i braku aktywnego wykonawcy. Powtórzona pauza nie dodaje kolejnego zdarzenia. Wznowienie tylko usuwa pauzę: przejście po rzeczywistym zwycięstwie podejmuje worker. Panel nie nadaje zwycięstwa, nie wykonuje długiej kopii w HTTP i nie cofa `joined`.
+
+Podczas przejścia administrator może odczytać ten panel, choć pozostała gra zwraca 503. Zapisy w panelu nadal są wtedy zablokowane. Po przerwaniu procesu odczekaj do wygaśnięcia dzierżawy, sprawdź narzędzia/miejsce/uprawnienia i wznów tę samą operację. Restart, retry i odtwarzanie zachowują dotychczasowe mechanizmy i testy etapu #120.

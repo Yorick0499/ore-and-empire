@@ -16,10 +16,10 @@ class Command(BaseCommand):
             user=User.objects.filter(username=opts['operator'],is_active=True,is_superuser=True).first()
             if not user:raise CommandError('Wymagany aktywny administrator --operator LOGIN.')
             if opts['pause'] or opts['unpause']:
-                with transaction.atomic():
-                    race=SleeperRace.objects.select_for_update().get(pk=race.pk)
-                    if race.state=='joined':raise CommandError('Zakończonego połączenia nie można cofnąć flagą pauzy.')
-                    race.paused=opts['pause'];race.save(update_fields=['paused']);BarrierEvent.objects.create(race=race,kind='paused' if race.paused else 'unpaused',details={'operator':user.pk})
+                from characters.barrier_admin import set_paused
+                from django.core.exceptions import ValidationError
+                try:set_paused(user,race.pk,opts['pause'],race.state)
+                except ValidationError as exc:raise CommandError(str(exc)) from exc
             elif opts['resume']:
                 from characters.barrier_activation import activate
                 if not activate(race.pk):raise CommandError('Przejście nieukończone: sprawdź pauzę, dzierżawę, zwycięstwo, kopie i narzędzia bazy.')

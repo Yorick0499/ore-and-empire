@@ -69,3 +69,7 @@ Jedna ilustracja/nazwa na karcie itemshopu, prolog przed dołączeniem i kolejne
 ## Wspólny Śniący i połączenie — #120
 
 Migracje 0046–0047 dodają wyścig wspólnot, trwałe zlecenie przejścia, świeżą zweryfikowaną kopię pod blokadą zapisu oraz atomowe otwarcie wspólnego rynku/rankingu i podróży. Najemnicy Lee/Onara otrzymują wspólną wspólnotę i dalszą hierarchię. Dwa pierwsze przydziały po Barierze prowadzą do smoka ognia. [Reguły](CHARACTERS_AND_WORLDS.md) · [wznowienie i kopie](BACKUPS.md). Nie oznacza to pełnego katalogu G2 NK, premium/Jarkendaru ani ukończonego panelu wyścigu; #32/#33/#35 i szersze #111/#30 pozostają otwarte.
+
+## Panel operatorski — #35
+
+Odczytowy plan, kwalifikacja obozów, HP i wkład kont, stan świeżej kopii i ostatnie 40 zdarzeń są dostępne w `/zarzadca/bariera/`. Administrator może wstrzymać lub wznowić oczekujące przejście; panel nie pomija zwycięstwa i nie wykonuje kopii w żądaniu HTTP. Podgląd działa również podczas blokady gry. [Instrukcja](BACKUPS.md).
