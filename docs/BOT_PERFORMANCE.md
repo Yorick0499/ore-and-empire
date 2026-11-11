@@ -81,3 +81,5 @@ Wszystkie zapisane próby: zero błędów HTTP i odrzuconych decyzji. Mediana za
 Pierwsze 120 s dla rozwiniętych postaci nie wystarczyło na turę wszystkich kont; walidacja to wykryła. Próba wydłużona do 240 s objęła 150/150 w obu światach. Kolejka ogranicza koszt zamiast nadrabiać zaległości falą akcji, dlatego cięższe tury oznaczają dłuższe oczekiwanie. W naturalnych sesjach część botów celowo nie gra; 52/250 w minutę nie oznacza utraty pozostałych kont.
 
 Nazwy publiczne rozróżniają teraz także 600 kont (dwa maksymalne serwery), bez przepisywania loginów ani postępu. Obciążenie 600 kont nie było mierzone. Import do pustej bazy PostgreSQL nadal akceptuje historyczny, nieskonfigurowany szablon z liczbą 6; odmowa importu do bazy z postępem pozostaje zachowana.
+
+Chromium sprawdził pierwszą i ostatnią stronę listy 125 mieszkańców przy 320, 390 i 1440 px: poprawne 30/5 kart, brak poziomego przewijania i błędów JavaScript, działający odnośnik następnej strony. Próba odbyła się na osobnej bazie.

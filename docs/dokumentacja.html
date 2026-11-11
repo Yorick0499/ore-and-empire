@@ -14,7 +14,7 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 </style></head>
 <body><a class="skip" href="#main">Przejdź do treści dokumentacji</a><header class="topbar"><a class="brand" href="#top">Ore &amp; Empire<small>Publiczna księga projektu</small></a><div class="bar-actions"><span class="edition">GOTHIC I · EDYCJA PIERWSZA</span><a href="https://github.com/Yorick0499/ore-and-empire" target="_blank" rel="noopener noreferrer">Repozytorium ↗</a><button type="button" id="menu-toggle" class="menu-button" aria-expanded="false" aria-controls="book-navigation">Spis treści</button><button type="button" id="print-book">Drukuj / PDF</button></div></header>
 <div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 46.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, progi fabuły i dwa światy</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li></ol></details><details open><summary>Obozy i życie kolonii</summary><ol><li><a href="#doc-camps">Rangi i awanse obozowe</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-first-playable">Droga do pierwszej grywalnej edycji</a></li><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 48 ekranów</a></li><li><a href="#reports">Publiczne raporty (31)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-11<br>Kod gry: populacja 250 botów / #118<br>Migracja: 0045<br>Odczyt offline · bez usług zewnętrznych</p></aside>
-<main id="main"><section class="hero" id="top"><span class="eyebrow">Archiwum Górniczej Doliny</span><h1>Kronika projektu.<br>Wszystko o Kolonii.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">0–100 botów</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-11 · kod populacja 250 botów / #118 · migracja 0045 · fanowska adaptacja Gothic</p></section>
+<main id="main"><section class="hero" id="top"><span class="eyebrow">Archiwum Górniczej Doliny</span><h1>Kronika projektu.<br>Wszystko o Kolonii.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa światy</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-11 · kod populacja 250 botów / #118 · migracja 0045 · fanowska adaptacja Gothic</p></section>
 <div class="quick-grid"><a href="#doc-operator-guide--wymagania-i-instalacja-lokalna"><b>Uruchom grę</b><span>Instalacja, pierwsze konto i zapis świata</span></a><a href="#doc-operator-guide--zatrzymanie-i-restart-bez-kasowania-swiata"><b>Wróć do Kolonii</b><span>Bezpieczny restart bez utraty postępu</span></a><a href="#doc-operator-guide--panel-zarzadcy-krok-po-kroku"><b>Zarządzaj światem</b><span>Przedmioty, rzadkości, boty i administrator</span></a></div>
 <p class="book-intro">Dokumenty źródłowe: 43. Dalej: pełne zależności i komendy, 48 zrzutów oraz 31 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
 <p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan funkcji: 9 listopada 2026, etap równoległego Khorinis, migracja 0043. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
@@ -2193,7 +2193,8 @@ python scripts/benchmark_bots.py --population 300 --seconds 120 --report /tmp/po
 </table></div>
 <p>Wszystkie zapisane próby: zero błędów HTTP i odrzuconych decyzji. Mediana zapytań przygotowawczej tury świeżego bota zmalała z 63 do 62. Nie stwierdzono spadku RAM względem starej populacji 100; koszt pamięci pozostawał podobny przy wzroście do 300. Są to pojedyncze próby lokalne, bez statystycznej gwarancji różnic opóźnienia.</p>
 <p>Pierwsze 120 s dla rozwiniętych postaci nie wystarczyło na turę wszystkich kont; walidacja to wykryła. Próba wydłużona do 240 s objęła 150/150 w obu światach. Kolejka ogranicza koszt zamiast nadrabiać zaległości falą akcji, dlatego cięższe tury oznaczają dłuższe oczekiwanie. W naturalnych sesjach część botów celowo nie gra; 52/250 w minutę nie oznacza utraty pozostałych kont.</p>
-<p>Nazwy publiczne rozróżniają teraz także 600 kont (dwa maksymalne serwery), bez przepisywania loginów ani postępu. Obciążenie 600 kont nie było mierzone. Import do pustej bazy PostgreSQL nadal akceptuje historyczny, nieskonfigurowany szablon z liczbą 6; odmowa importu do bazy z postępem pozostaje zachowana.</p></article><article id="doc-local-ai-policies" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/LOCAL_AI_POLICIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOCAL_AI_POLICIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-local-ai-policies--opcjonalne-lokalne-polityki-ai-28">Opcjonalne lokalne polityki AI (#28)</h2>
+<p>Nazwy publiczne rozróżniają teraz także 600 kont (dwa maksymalne serwery), bez przepisywania loginów ani postępu. Obciążenie 600 kont nie było mierzone. Import do pustej bazy PostgreSQL nadal akceptuje historyczny, nieskonfigurowany szablon z liczbą 6; odmowa importu do bazy z postępem pozostaje zachowana.</p>
+<p>Chromium sprawdził pierwszą i ostatnią stronę listy 125 mieszkańców przy 320, 390 i 1440 px: poprawne 30/5 kart, brak poziomego przewijania i błędów JavaScript, działający odnośnik następnej strony. Próba odbyła się na osobnej bazie.</p></article><article id="doc-local-ai-policies" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/LOCAL_AI_POLICIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOCAL_AI_POLICIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-local-ai-policies--opcjonalne-lokalne-polityki-ai-28">Opcjonalne lokalne polityki AI (#28)</h2>
 <p><strong>Domyślnie działają boty regułowe baseline-21.</strong> Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment <code>ollama-1</code> jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.</p>
 <h3 id="doc-local-ai-policies--co-model-moze-wybrac">Co model może wybrać</h3>
 <p>Gra buduje małą listę dozwolonych par akcja/cel na podstawie niemutowalnej obserwacji. Model zwraca wyłącznie numer pozycji. Może wybrać zwykłą pracę w kopalni, zaplanowane bezpieczne polowanie albo dostępną wyprawę. Może podejmować te zwykłe zajęcia także w trakcie realizacji celów łowieckich/wydobywczych. Nie wybiera dowolnego ID, ceny, statystyk, nagrody ani SQL.</p>
@@ -11166,7 +11167,62 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     &quot;The first 120-second mature trial did not give every resident a turn. The validation failed before saving its metrics; only the extended 240-second report is included.&quot;,
     &quot;Natural sessions intentionally leave some accounts offline; 52/250 residents acted during the 60-second observation.&quot;,
     &quot;No live database migrated, reset or populated. No proof of sustained production or multi-client PostgreSQL performance.&quot;
-  ]
+  ],
+  &quot;gui&quot;: {
+    &quot;isolated_database&quot;: true,
+    &quot;errors&quot;: [],
+    &quot;pages&quot;: [
+      {
+        &quot;viewport&quot;: 320,
+        &quot;page&quot;: 1,
+        &quot;cards&quot;: 30,
+        &quot;status&quot;: 200,
+        &quot;width&quot;: 320,
+        &quot;scroll&quot;: 320
+      },
+      {
+        &quot;viewport&quot;: 320,
+        &quot;page&quot;: 5,
+        &quot;cards&quot;: 5,
+        &quot;status&quot;: 200,
+        &quot;width&quot;: 320,
+        &quot;scroll&quot;: 320
+      },
+      {
+        &quot;viewport&quot;: 390,
+        &quot;page&quot;: 1,
+        &quot;cards&quot;: 30,
+        &quot;status&quot;: 200,
+        &quot;width&quot;: 390,
+        &quot;scroll&quot;: 390
+      },
+      {
+        &quot;viewport&quot;: 390,
+        &quot;page&quot;: 5,
+        &quot;cards&quot;: 5,
+        &quot;status&quot;: 200,
+        &quot;width&quot;: 390,
+        &quot;scroll&quot;: 390
+      },
+      {
+        &quot;viewport&quot;: 1440,
+        &quot;page&quot;: 1,
+        &quot;cards&quot;: 30,
+        &quot;status&quot;: 200,
+        &quot;width&quot;: 1440,
+        &quot;scroll&quot;: 1440
+      },
+      {
+        &quot;viewport&quot;: 1440,
+        &quot;page&quot;: 5,
+        &quot;cards&quot;: 5,
+        &quot;status&quot;: 200,
+        &quot;width&quot;: 1440,
+        &quot;scroll&quot;: 1440
+      }
+    ],
+    &quot;next_link_works&quot;: true
+  }
 }</code></pre><button type="button" class="download" data-report-download="populacja-250-2026-11-11.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-postacie-fabula-przywileje-2026-11-09"><summary>postacie-fabula-przywileje-2026-11-09.json</summary><pre><code>{
   &quot;date&quot;: &quot;2026-11-09&quot;,
   &quot;scope&quot;: &quot;#107–#110 / migracja 0042&quot;,

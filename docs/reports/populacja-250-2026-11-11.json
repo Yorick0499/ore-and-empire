@@ -367,5 +367,60 @@
     "The first 120-second mature trial did not give every resident a turn. The validation failed before saving its metrics; only the extended 240-second report is included.",
     "Natural sessions intentionally leave some accounts offline; 52/250 residents acted during the 60-second observation.",
     "No live database migrated, reset or populated. No proof of sustained production or multi-client PostgreSQL performance."
-  ]
+  ],
+  "gui": {
+    "isolated_database": true,
+    "errors": [],
+    "pages": [
+      {
+        "viewport": 320,
+        "page": 1,
+        "cards": 30,
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "viewport": 320,
+        "page": 5,
+        "cards": 5,
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "viewport": 390,
+        "page": 1,
+        "cards": 30,
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "viewport": 390,
+        "page": 5,
+        "cards": 5,
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "viewport": 1440,
+        "page": 1,
+        "cards": 30,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "viewport": 1440,
+        "page": 5,
+        "cards": 5,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      }
+    ],
+    "next_link_works": true
+  }
 }
