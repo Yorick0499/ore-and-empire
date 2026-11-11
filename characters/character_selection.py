@@ -22,8 +22,9 @@ class CharacterForm(forms.Form):
         chosen=self.fields['world'].queryset.filter(pk=int(raw)).first() if raw and str(raw).isdigit() and len(str(raw))<19 else self.fields['world'].queryset.first()
         if chosen and chosen.union_key:
             from .barrier import region_ids
+            from .realms import open_worlds
             self.fields['start_region'].widget=forms.Select()
-            self.fields['start_region'].queryset=World.objects.filter(pk__in=region_ids(chosen),status='active')
+            self.fields['start_region'].queryset=open_worlds().filter(pk__in=region_ids(chosen))
             self.fields['start_region'].initial=chosen.pk
             self.fields['start_region'].label_from_instance=lambda region: 'Khorinis' if region.universe=='GOTHIC_II' else 'Górnicza Dolina (Kolonia)'
 

@@ -54,6 +54,9 @@ class JoinedStartBalanceTests(TestCase):
         alien=World.objects.create(name='Zamknięty region')
         from django.core.exceptions import ValidationError
         with self.assertRaises(ValidationError):create_character(user,'Obcy region',c.pk,start_region=alien.pk)
+        i.is_open=False;i.save(update_fields=['is_open'])
+        self.assertEqual(CharacterForm().fields['start_region'].queryset.count(),1)
+        with self.assertRaises(ValidationError):create_character(user,'Zamknięty start',c.pk,start_region=i.pk)
 
 from django.test import TransactionTestCase,skipUnlessDBFeature
 from django.db import connections
