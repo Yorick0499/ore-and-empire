@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "cztery podstawowe rangi / #124; plan pięciu frakcji",
+  "code_revision": "cztery rangi i pakiety symulacji / #124",
   "migration": "0048_rowne_podstawowe_rangi",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -224,6 +224,7 @@
     "docs/reports/lupy-endgame-2026-11-06.json",
     "docs/reports/osobowosci-rynek-kampania-2026-11-09.json",
     "docs/reports/osobowosci-sto-botow-2026-11-09.json",
+    "docs/reports/pakiety-symulacji-2026-11-11.json",
     "docs/reports/petla-po-fundamentach-ai-2026-11-07.json",
     "docs/reports/pierwsza-pelna-edycja-2026-11-05.json",
     "docs/reports/polityki-lokalne-ai-2026-11-07.json",

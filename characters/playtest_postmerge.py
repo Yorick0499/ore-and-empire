@@ -1,9 +1,10 @@
 """Opt-in continuation of earned campaigns, not synthetic veteran attributes."""
 from io import StringIO
 from uuid import uuid4
-from django.test import TestCase
+from django.test import TestCase,TransactionTestCase
 from django.core.management import call_command
 from . import playtest_pacing as campaign_pacing
+from . import test_campaign as native_campaign
 from .models import World,PlayerProfile
 from .barrier import travel
 from . import game_logic as game
@@ -59,7 +60,8 @@ class JoinedEarlyBuildTests(TestCase):
         from . import playtest_scenarios
         playtest_scenarios.OrdinaryBuildSession.run_session(self,income_first=True,joined_start=True)
 
-class JoinedBotCampaignTests(TestCase):
+class JoinedBotCampaignTests(TransactionTestCase):
+    setUp=native_campaign.CampaignBotTests.setUp
     def test_three_earned_camp_bots_finish_and_continue_in_joined_world(self):
         from . import test_campaign as campaign_tests
         from unittest.mock import patch
@@ -77,5 +79,5 @@ class JoinedBotCampaignTests(TestCase):
                 seed();started=True
             return original(profile,*args,**kwargs)
         with patch.object(campaign_tests,'tick_bot',side_effect=joined_tick):
-            campaign_tests.CampaignTests.test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self)
+            campaign_tests.CampaignBotTests.test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self)
         record_scenario('boty-po-polaczeniu',{'global_join_fixture':True,'admin_grants':False,'characters':list(PlayerProfile.objects.filter(is_bot=True).values('camp','guild','level','strength','dexterity','mana')),'limits':['Krok testowy 30 minut nie jest pomiarem czasu człowieka.','Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu.']})

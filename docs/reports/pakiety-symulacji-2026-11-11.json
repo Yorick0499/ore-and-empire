@@ -1,0 +1,580 @@
+{
+  "date": "2026-11-11",
+  "scope": "Etap124 i szybsze pakiety lokalnej walidacji",
+  "isolated_databases": true,
+  "real_save_untouched": true,
+  "gameplay_regression_before_harness_change": {
+    "code_revision": "5d5c1dc (kod gry identyczny z db9aea4)",
+    "sqlite": {
+      "tests": 529,
+      "skipped_postgresql": 23,
+      "seconds": 444.104
+    },
+    "postgresql": {
+      "tests": 299,
+      "seconds": 1514.414,
+      "success": true
+    },
+    "concurrency": {
+      "tests": 20,
+      "skipped_sqlite_only": 1,
+      "seconds": 16.192,
+      "success": true
+    }
+  },
+  "suite_contract_tests": {
+    "tests": 4,
+    "success": true
+  },
+  "quick": {
+    "schema": 2,
+    "suite": "quick",
+    "success": true,
+    "elapsed_seconds": 18.38,
+    "isolated_database": true,
+    "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+    "test_labels": [
+      "characters.test_rank_paths",
+      "characters.test_new_progression",
+      "characters.test_release_abuse",
+      "characters.test_playability_audit",
+      "characters.test_release_suites"
+    ],
+    "recorded_scenarios": 0,
+    "scenarios": [],
+    "time_models": {},
+    "limits": [
+      "Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.",
+      "Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.",
+      "Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu."
+    ]
+  },
+  "campaign": {
+    "schema": 2,
+    "suite": "campaign",
+    "success": true,
+    "elapsed_seconds": 290.55,
+    "isolated_database": true,
+    "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+    "test_labels": [
+      "characters.test_campaign.CampaignTests.test_human_can_play_whole_campaign_via_forms_and_ordinary_game_services",
+      "characters.test_campaign.CampaignBotTests",
+      "characters.test_khorinis.TwoRealmTests.test_three_factions_finish_story_by_ordinary_bot_actions",
+      "characters.playtest_postmerge.JoinedBotCampaignTests",
+      "characters.playtest_postmerge.JoinedEarlyBuildTests"
+    ],
+    "recorded_scenarios": 9,
+    "scenarios": [
+      {
+        "scenario": "gracz-od-zera-do-finalu",
+        "steps": 3666,
+        "simulated_hours": 1833.0,
+        "chapters": 6,
+        "claimed_quests": 27,
+        "level": 30,
+        "experience": 242408,
+        "ore": 5890,
+        "premium": 1,
+        "completion": true
+      },
+      {
+        "scenario": "gracz-po-finale",
+        "upgraded_item": "Legendary Heavy Sword of Burning",
+        "upgrade_level": 1,
+        "patrol_wins": 1,
+        "unlocked": 2,
+        "admin_grants": false
+      },
+      {
+        "scenario": "khorinis-trzy-frakcje",
+        "ticks": 325,
+        "quests_each": 17,
+        "actions": {
+          "stock": 9,
+          "mine": 49,
+          "equip": 27,
+          "claim": 49,
+          "story_accept": 51,
+          "story_start": 51,
+          "story_talk": 6,
+          "story_claim": 51,
+          "story_travel": 24,
+          "hunt": 120,
+          "camp": 3,
+          "accept": 12,
+          "train": 376,
+          "challenge_accept": 31,
+          "promote": 12,
+          "challenge_claim": 15,
+          "craft_learn": 5,
+          "raid_rally": 21,
+          "finance": 2,
+          "list": 11,
+          "achievement_claim": 8,
+          "raid_strike": 37,
+          "improve": 30,
+          "learn_circle": 6,
+          "raid_claim": 8,
+          "market_reprice": 12,
+          "sell": 6,
+          "adventure": 15,
+          "adventure_claim": 15,
+          "camp_upgrade": 6,
+          "boss": 6,
+          "salvage": 3,
+          "buy_magic": 3,
+          "prepare_magic": 5,
+          "clear_magic": 2,
+          "market_cancel": 3,
+          "camp_donate": 8,
+          "market_buy": 3,
+          "camp_supply": 6,
+          "shop": 6,
+          "patrol": 5
+        },
+        "characters": [
+          {
+            "id": 1,
+            "camp": "CITY_WATCH",
+            "guild": "K2_COMMANDER",
+            "level": 30,
+            "strength": 135,
+            "mana": 10,
+            "ore_balance": 5841
+          },
+          {
+            "id": 2,
+            "camp": "FIRE_ORDER",
+            "guild": "K2_ARCHMAGE",
+            "level": 28,
+            "strength": 27,
+            "mana": 127,
+            "ore_balance": 299
+          },
+          {
+            "id": 3,
+            "camp": "ONAR_MERCS",
+            "guild": "K2_CAPTAIN",
+            "level": 28,
+            "strength": 127,
+            "mana": 10,
+            "ore_balance": 1426
+          }
+        ],
+        "ordinary_services_without_grants": true
+      },
+      {
+        "scenario": "trzy-buildy-z-finansowaniem",
+        "strategy": "zlecenia na rudę przy brakach",
+        "seed": 71,
+        "ticks": 162,
+        "simulated_hours": 40.25,
+        "minutes_per_tick": 15,
+        "characters": [
+          {
+            "build": "warrior",
+            "level": 6,
+            "xp": 10635,
+            "ore": 135,
+            "strength": 45,
+            "dexterity": 10,
+            "mana": 10,
+            "mastery": 15,
+            "actions": {
+              "story_accept": 9,
+              "story_start": 9,
+              "story_talk": 3,
+              "story_claim": 9,
+              "story_mine": 3,
+              "mine_claim": 3,
+              "story_travel": 2,
+              "buy_weapon": 5,
+              "equip": 5,
+              "melee_hunt": 21,
+              "join_camp": 1,
+              "story_delivery_buy": 1,
+              "train_onehand_skill": 15,
+              "train_strength": 35,
+              "adventure_start": 15,
+              "adventure_claim": 15,
+              "sell_loot": 6
+            },
+            "defeats": 0
+          },
+          {
+            "build": "archer",
+            "level": 6,
+            "xp": 10699,
+            "ore": 180,
+            "strength": 10,
+            "dexterity": 45,
+            "mana": 10,
+            "mastery": 15,
+            "actions": {
+              "story_accept": 9,
+              "story_start": 9,
+              "story_talk": 3,
+              "story_claim": 9,
+              "story_mine": 3,
+              "mine_claim": 3,
+              "story_travel": 3,
+              "buy_weapon": 4,
+              "equip": 4,
+              "buy_ammo_pack": 3,
+              "ranged_hunt": 22,
+              "join_camp": 1,
+              "story_delivery_buy": 1,
+              "train_bow_skill": 15,
+              "train_dexterity": 35,
+              "adventure_start": 15,
+              "adventure_claim": 15,
+              "sell_loot": 4
+            },
+            "defeats": 0
+          },
+          {
+            "build": "mage",
+            "level": 6,
+            "xp": 10794,
+            "ore": 224,
+            "strength": 10,
+            "dexterity": 10,
+            "mana": 55,
+            "mastery": 1,
+            "actions": {
+              "story_accept": 9,
+              "story_start": 9,
+              "story_talk": 3,
+              "story_claim": 9,
+              "story_mine": 3,
+              "mine_claim": 3,
+              "story_travel": 2,
+              "buy_weapon": 1,
+              "equip": 1,
+              "melee_hunt": 6,
+              "join_camp": 1,
+              "story_delivery_buy": 1,
+              "rank_accept": 2,
+              "train_mana": 45,
+              "rank_promote": 2,
+              "learn_circle": 1,
+              "adventure_start": 21,
+              "adventure_claim": 21,
+              "buy_rune": 1,
+              "prepare_rune": 1,
+              "magic_hunt": 20,
+              "sell_loot": 1
+            },
+            "defeats": 0
+          }
+        ],
+        "bot_actions": {
+          "stock": 27,
+          "mine": 24,
+          "equip": 21,
+          "claim": 24,
+          "list": 13,
+          "story_accept": 46,
+          "story_start": 46,
+          "story_talk": 15,
+          "story_claim": 45,
+          "market_cancel": 13,
+          "market_sell": 10,
+          "finance": 6,
+          "ammo": 6,
+          "story_travel": 14,
+          "hunt": 22,
+          "camp": 3,
+          "accept": 6,
+          "promote": 3,
+          "challenge_accept": 9,
+          "train": 100,
+          "challenge_claim": 6,
+          "sell": 13,
+          "improve": 4,
+          "camp_donate": 6,
+          "boss": 3,
+          "craft_learn": 1
+        },
+        "bots": 3,
+        "admin_grants": false,
+        "limits": "Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji."
+      },
+      {
+        "scenario": "trzy-obozy-botow",
+        "ticks": 443,
+        "simulated_hours": 221.0,
+        "actions": {
+          "stock": 36,
+          "mine": 20,
+          "equip": 46,
+          "claim": 20,
+          "sell": 39,
+          "story_accept": 84,
+          "story_start": 84,
+          "story_talk": 27,
+          "story_claim": 84,
+          "finance": 3,
+          "ammo": 2,
+          "challenge_accept": 33,
+          "story_travel": 49,
+          "hunt": 61,
+          "camp": 3,
+          "accept": 6,
+          "promote": 3,
+          "challenge_claim": 13,
+          "train": 552,
+          "adventure": 8,
+          "adventure_claim": 8,
+          "craft_learn": 2,
+          "craft_material": 4,
+          "camp_donate": 30,
+          "craft": 2,
+          "improve": 38,
+          "boss": 6,
+          "salvage": 12,
+          "achievement_claim": 3,
+          "patrol": 15,
+          "list": 3,
+          "market_buy": 2
+        },
+        "characters": [
+          {
+            "camp": "SWAMP_CAMP",
+            "level": 31,
+            "experience": 254605,
+            "ore_balance": 4384,
+            "premium_balance": 23
+          },
+          {
+            "camp": "OLD_CAMP",
+            "level": 30,
+            "experience": 247541,
+            "ore_balance": 4459,
+            "premium_balance": 7
+          },
+          {
+            "camp": "NEW_CAMP",
+            "level": 30,
+            "experience": 245810,
+            "ore_balance": 5135,
+            "premium_balance": 7
+          }
+        ],
+        "finishers": 3
+      },
+      {
+        "scenario": "po-finale-dalsze-zycie",
+        "ticks_per_bot": 60,
+        "actions": {
+          "hunt": 10,
+          "improve": 31,
+          "patrol": 53,
+          "salvage": 43,
+          "market_buy": 5,
+          "sell": 6,
+          "equip": 11,
+          "list": 4,
+          "train": 6,
+          "promote": 3,
+          "challenge_accept": 2,
+          "learn_circle": 2,
+          "raid_rally": 1,
+          "accept": 2,
+          "boss": 1
+        },
+        "characters": [
+          {
+            "camp": "SWAMP_CAMP",
+            "patrol_wins": 25,
+            "upgrades": 24
+          },
+          {
+            "camp": "OLD_CAMP",
+            "patrol_wins": 19,
+            "upgrades": 23
+          },
+          {
+            "camp": "NEW_CAMP",
+            "patrol_wins": 24,
+            "upgrades": 22
+          }
+        ]
+      },
+      {
+        "scenario": "trzy-obozy-botow",
+        "ticks": 464,
+        "simulated_hours": 231.5,
+        "actions": {
+          "stock": 36,
+          "mine": 20,
+          "equip": 46,
+          "claim": 20,
+          "sell": 39,
+          "story_accept": 87,
+          "story_start": 87,
+          "story_talk": 30,
+          "story_claim": 87,
+          "finance": 3,
+          "ammo": 2,
+          "challenge_accept": 34,
+          "story_travel": 49,
+          "hunt": 61,
+          "camp": 3,
+          "accept": 6,
+          "promote": 3,
+          "challenge_claim": 13,
+          "train": 552,
+          "adventure": 9,
+          "adventure_claim": 9,
+          "craft_learn": 3,
+          "craft_material": 4,
+          "camp_donate": 30,
+          "craft": 2,
+          "improve": 43,
+          "boss": 6,
+          "salvage": 19,
+          "achievement_claim": 3,
+          "patrol": 21,
+          "list": 1,
+          "market_buy": 1
+        },
+        "characters": [
+          {
+            "camp": "SWAMP_CAMP",
+            "level": 31,
+            "experience": 255451,
+            "ore_balance": 5041,
+            "premium_balance": 27
+          },
+          {
+            "camp": "OLD_CAMP",
+            "level": 31,
+            "experience": 255339,
+            "ore_balance": 3204,
+            "premium_balance": 7
+          },
+          {
+            "camp": "NEW_CAMP",
+            "level": 31,
+            "experience": 248596,
+            "ore_balance": 4814,
+            "premium_balance": 7
+          }
+        ],
+        "finishers": 3
+      },
+      {
+        "scenario": "po-finale-dalsze-zycie",
+        "ticks_per_bot": 60,
+        "actions": {
+          "improve": 23,
+          "hunt": 14,
+          "patrol": 38,
+          "salvage": 33,
+          "equip": 7,
+          "list": 5,
+          "market_buy": 4,
+          "train": 28,
+          "challenge_claim": 1,
+          "promote": 3,
+          "learn_circle": 2,
+          "market_cancel": 1,
+          "raid_rally": 3,
+          "buy_magic": 1,
+          "market_sell": 1,
+          "accept": 3,
+          "boss": 1,
+          "prepare_magic": 2,
+          "clear_magic": 1,
+          "sell": 4,
+          "raid_strike": 1,
+          "raid_claim": 1,
+          "achievement_claim": 1,
+          "challenge_accept": 2
+        },
+        "characters": [
+          {
+            "camp": "SWAMP_CAMP",
+            "patrol_wins": 12,
+            "upgrades": 17
+          },
+          {
+            "camp": "OLD_CAMP",
+            "patrol_wins": 26,
+            "upgrades": 31
+          },
+          {
+            "camp": "NEW_CAMP",
+            "patrol_wins": 21,
+            "upgrades": 18
+          }
+        ]
+      },
+      {
+        "scenario": "boty-po-polaczeniu",
+        "global_join_fixture": true,
+        "admin_grants": false,
+        "characters": [
+          {
+            "camp": "SWAMP_CAMP",
+            "guild": "NOVICE",
+            "level": 31,
+            "strength": 191,
+            "dexterity": 10,
+            "mana": 25
+          },
+          {
+            "camp": "OLD_CAMP",
+            "guild": "SHADOW",
+            "level": 33,
+            "strength": 198,
+            "dexterity": 10,
+            "mana": 10
+          },
+          {
+            "camp": "NEW_CAMP",
+            "guild": "ROGUE",
+            "level": 32,
+            "strength": 191,
+            "dexterity": 12,
+            "mana": 21
+          }
+        ],
+        "limits": [
+          "Krok testowy 30 minut nie jest pomiarem czasu człowieka.",
+          "Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu."
+        ]
+      }
+    ],
+    "time_models": {
+      "regression": "Kampanie: 30 minut na krok; trzy buildy: 15 minut. To kroki testowe, nie czas przejścia."
+    },
+    "limits": [
+      "Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.",
+      "Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.",
+      "Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu."
+    ]
+  },
+  "postgresql_campaign_after_harness_change": {
+    "tests": 1,
+    "seconds": 120.79,
+    "success": true,
+    "transactions": "Krótka transakcja każdej tury, zgodnie z SchedulerGuard.work; bez transakcji całej kampanii",
+    "ordinary_earned_progress": true
+  },
+  "postgresql_setup": {
+    "major": 16,
+    "locale": "pl_PL.utf8",
+    "temporary_tools_and_cluster": true,
+    "public_tcp_port": false,
+    "jit": "Wyłączony w tymczasowym klastrze podczas końcowego testu; nie zmieniono konfiguracji gry."
+  },
+  "limits": [
+    "Quick nie zastępuje kampanii ani pełnej regresji.",
+    "Czasy to pomiary konkretnych uruchomień, także przy równoległych testach; nie benchmark ani SLA gry.",
+    "Wyniki 529/299 dotyczą mechaniki przed zmianą oprawy testów; nowe pakiety i transakcje tur zweryfikowano osobno.",
+    "Pakiet kampanii nie dowodzi pełnego katalogu G2 NK. Połączenie w scenariuszu botów jest fixture otoczenia, a nie zarobionym globalnym zwycięstwem.",
+    "GitHub Actions nie uruchamiało końcowych zadań podczas zgłoszonej przez użytkownika awarii."
+  ]
+}

@@ -120,8 +120,8 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 
 | Etap / issue | Minimalny zakres | Kryterium ukończenia |
 | --- | --- | --- |
-| **1. #124 — najbliższy** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
-| **2. #125**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
+| **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
+| **2. #125 — następny**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
 | **3. #126**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
 | **4. #127**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
 | **5. #33**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
@@ -132,3 +132,7 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 ### Stan realizacji #124
 
 Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. [Szczegóły i wyjątek zgodności](CAMPS.md). Pozostałe etapy125/126/127/33/128 są nadal planowane; nie zostały uruchomione w tej iteracji. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.
+
+### Sprawne iteracje testów
+
+Nowe pakiety `simulate_release --suite quick/campaign/pacing/world/full` oddzielają szybkie kontrole od długich symulacji. Pełne asercje kampanii pozostają, ale transakcje mają zakres jednej tury. [Polecenia, zakresy i pomiary](SOLO_PLAYTEST.md). Zgłoszona awaria GitHuba w tej iteracji nie zastępuje testów: mechanikę sprawdzono lokalnie na SQLite i rzeczywistym PostgreSQL, łącznie z odtwarzaniem starszych kopii i współbieżnością. Handoff pozostaje bez zmian na polecenie użytkownika.

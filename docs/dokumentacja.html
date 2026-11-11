@@ -13,10 +13,10 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 @media print{@page{margin:16mm}html{scroll-behavior:auto}body{background:#fff;color:#191919;font-size:11pt;line-height:1.6}.topbar,.rail,.quick-grid,.copy-code,.bar-actions,.status,.download,dialog,.no-results{display:none!important}.layout{display:block;max-width:none;padding:0;margin:0}.hero{min-height:0;background:none;color:#111;box-shadow:none;border-color:#999;padding:20px;margin-bottom:20px}.hero h1,.hero .lead,.hero .eyebrow,.hero .meta,.hero .hero-foot{color:#111;text-shadow:none}.tag{color:#111;background:none;border-color:#aaa}.chapter{background:none;box-shadow:none;border:0;border-top:1px solid #999;padding:15px 0;margin:0;break-before:page}.chapter h2,.chapter h3,.chapter h4,.chapter h5,.chapter h6{color:#222;text-shadow:none;break-after:avoid}.chapter p,.chapter li{font-size:11pt}.chapter-meta,.section-note,.history-note{color:#444}.table-wrap{overflow:visible;border-color:#bbb}table{font-size:9pt}th,td{border-color:#bbb;background:none!important;min-width:0}tr{break-inside:avoid}a{color:#333}pre,code{background:#f4f4f4;color:#111;border-color:#bbb;font-size:9pt}pre{padding:12px;white-space:pre-wrap;max-height:none!important}pre code{color:#111}.gallery{grid-template-columns:1fr 1fr}.gallery figure{background:none;break-inside:avoid}.gallery img{max-height:180px;object-fit:contain}.gallery figcaption,.gallery strong{color:#222}.report{background:none;break-inside:auto}.report summary{color:#111}.history-note{background:none;border-color:#bbb}.footer{color:#444;border-color:#aaa}.chapter[hidden]{display:block!important}}
 </style></head>
 <body><a class="skip" href="#main">Przejdź do treści dokumentacji</a><header class="topbar"><a class="brand" href="#top">Ore &amp; Empire<small>Publiczna księga projektu</small></a><div class="bar-actions"><span class="edition">GOTHIC I · EDYCJA PIERWSZA</span><a href="https://github.com/Yorick0499/ore-and-empire" target="_blank" rel="noopener noreferrer">Repozytorium ↗</a><button type="button" id="menu-toggle" class="menu-button" aria-expanded="false" aria-controls="book-navigation">Spis treści</button><button type="button" id="print-book">Drukuj / PDF</button></div></header>
-<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 46.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, progi fabuły i dwa światy</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li></ol></details><details open><summary>Obozy i życie kolonii</summary><ol><li><a href="#doc-camps">Rangi i awanse obozowe</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-first-playable">Droga do pierwszej grywalnej edycji</a></li><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 54 ekranów</a></li><li><a href="#reports">Publiczne raporty (34)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-11<br>Kod gry: cztery podstawowe rangi / #124; plan pięciu frakcji<br>Migracja: 0048<br>Odczyt offline · bez usług zewnętrznych</p></aside>
-<main id="main"><section class="hero" id="top"><span class="eyebrow">Archiwum Górniczej Doliny</span><h1>Kronika projektu.<br>Wszystko o Kolonii.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa światy</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-11 · kod cztery podstawowe rangi / #124; plan pięciu frakcji · migracja 0048 · fanowska adaptacja Gothic</p></section>
+<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 46.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, progi fabuły i dwa światy</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li></ol></details><details open><summary>Obozy i życie kolonii</summary><ol><li><a href="#doc-camps">Rangi i awanse obozowe</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-first-playable">Droga do pierwszej grywalnej edycji</a></li><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 54 ekranów</a></li><li><a href="#reports">Publiczne raporty (35)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-11<br>Kod gry: cztery rangi i pakiety symulacji / #124<br>Migracja: 0048<br>Odczyt offline · bez usług zewnętrznych</p></aside>
+<main id="main"><section class="hero" id="top"><span class="eyebrow">Archiwum Górniczej Doliny</span><h1>Kronika projektu.<br>Wszystko o Kolonii.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa światy</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-11 · kod cztery rangi i pakiety symulacji / #124 · migracja 0048 · fanowska adaptacja Gothic</p></section>
 <div class="quick-grid"><a href="#doc-operator-guide--wymagania-i-instalacja-lokalna"><b>Uruchom grę</b><span>Instalacja, pierwsze konto i zapis świata</span></a><a href="#doc-operator-guide--zatrzymanie-i-restart-bez-kasowania-swiata"><b>Wróć do Kolonii</b><span>Bezpieczny restart bez utraty postępu</span></a><a href="#doc-operator-guide--panel-zarzadcy-krok-po-kroku"><b>Zarządzaj światem</b><span>Przedmioty, rzadkości, boty i administrator</span></a></div>
-<p class="book-intro">Dokumenty źródłowe: 43. Dalej: pełne zależności i komendy, 54 zrzutów oraz 34 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
+<p class="book-intro">Dokumenty źródłowe: 43. Dalej: pełne zależności i komendy, 54 zrzutów oraz 35 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
 <p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan funkcji: 9 listopada 2026, etap równoległego Khorinis, migracja 0043. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
 <h3 id="doc-operator-guide--co-zawiera-to-wydanie">Co zawiera to wydanie</h3>
 <p>Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–300 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.</p>
@@ -5028,7 +5028,45 @@ python scripts/benchmark_bots.py --seconds 60 --report /tmp/audyt-stu-botow.json
 </table></div>
 <p>To godziny czasu świata z oczekiwaniem, nie samego klikania. Różnice obejmują dostęp do wspólnego wyposażenia i kalendarz. Na 35/40 wszystkie cztery ścieżki pokonały smoka w rzeczywistej płatnej walce. Osobne 25 prognoz z różnymi ziarnami na każdym zdobytym zestawie również dało zwycięstwa; prognozy nie wypłacały nagród.</p>
 <p>Trzy zwykłe buildy (wojownik, łucznik, mag) sprawdzono do poziomu 6 z faktycznymi atakami i kosztem amunicji/many. Trzy boty obozowe zdobyły kampanię oraz grały dalej w połączonym świecie. Nie jest to pomiar trzech buildów endgame. Pełne NK, premium, wszystkie warty i konkurencja rynku pozostają poza tym pomiarem. Brak podstaw do resetu lub limitowania dorobku; liczbowych nagród i statystyk nie zmieniono.</p>
-<p>Chromium przeszedł rejestrację, wybór Khorinis, prolog, zakup i założenie broni, polowanie, frakcję i zakup napoju za zdobyte odłamki; następnie utworzył postać Kolonii. 24 widoki (dwa regiony, cztery strony, 320/390/1440 px) nie wykazały przewijania poziomego, brakujących obrazów ani błędów JS. Wszystko na osobnej bazie.</p></article><article id="doc-roadmap" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/ROADMAP.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-roadmap--biezaca-roadmapa">Bieżąca roadmapa</h2>
+<p>Chromium przeszedł rejestrację, wybór Khorinis, prolog, zakup i założenie broni, polowanie, frakcję i zakup napoju za zdobyte odłamki; następnie utworzył postać Kolonii. 24 widoki (dwa regiony, cztery strony, 320/390/1440 px) nie wykazały przewijania poziomego, brakujących obrazów ani błędów JS. Wszystko na osobnej bazie.</p>
+<h3 id="doc-solo-playtest--krotkie-rozdzielone-pakiety-symulacji">Krótkie, rozdzielone pakiety symulacji</h3>
+<p>W aktywnym środowisku wirtualnym zwykłą iterację zaczynamy od:</p>
+<pre><code class="language-sh">python manage.py simulate_release --suite quick --report /tmp/ore-quick-01.json
+</code></pre>
+<p>Każdy przebieg wymaga nowej nazwy raportu; istniejący plik nie jest nadpisywany. Polecenie zawsze uruchamia oddzielną bazę SQLite, także gdy środowisko operatora wskazuje PostgreSQL. Raport schema2 zawiera wybrany <code>suite</code>, rzeczywistą listę testów, scenariusze i wynik.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Pakiet <code>--suite</code></th>
+<th>Zakres i zastosowanie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>quick</code></td>
+<td>Rangi, bramki, nadużycia, podstawowy UX i kontrakt polecenia; bez długich kampanii. 42 testy, około18s w opisanej próbie.</td>
+</tr>
+<tr>
+<td><code>campaign</code></td>
+<td>Gracz G1, trzy obozy botów, trzy frakcje Khorinis, boty po połączeniu i trzy wczesne buildy. 5 przypadków, około5min w opisanej próbie; zwykłe zasoby i usługi, bez nadawania postępu.</td>
+</tr>
+<tr>
+<td><code>pacing</code></td>
+<td>Osobne modele czasu wojownika, rzeczywiste koszty/regeneracja i wirtualnie przesuwany zegar; nie czekamy fizycznie na upływ godzin świata.</td>
+</tr>
+<tr>
+<td><code>world</code></td>
+<td>Osobowości botów, rynek i cykle życia świata.</td>
+</tr>
+<tr>
+<td><code>full</code></td>
+<td>Dotychczasowy pełny zestaw symulacyjny plus szybkie kontrole; nadal domyślny dla zgodności starszych wywołań.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Po zmianie konkretnego modułu uruchamiamy jego testy i <code>quick</code>, następnie tylko właściwy pakiet (<code>campaign</code>, <code>pacing</code> lub <code>world</code>). Pełny przebieg symulacyjny pozostaje kontrolą przed wydaniem. <strong>Pełna automatyczna regresja to osobno <code>python manage.py test --noinput</code>; <code>--suite full</code> nie oznacza wszystkich testów repozytorium.</strong> Rzeczywiste blokady i współbieżność nadal sprawdzamy na PostgreSQL, nie zastępujemy ich SQLite.</p>
+<p>Długie kampanie botów używają <code>TransactionTestCase</code>: planowanie i wykonanie jednej tury mają krótką transakcję jak worker, po turze następuje commit. Cała wielodniowa symulacja nie jest jedną rosnącą transakcją. Zachowano asercje ukończeń, zasobów, łupów, późniejszych wart i kuźni. Kampania trzech obozów na PostgreSQL przeszła w około2min. Preferencje aktorów są jawne i niezależne od przypadkowych sekwencji ID; nie nadają statystyk ani nagród.</p>
+<p><a href="#report-pakiety-symulacji-2026-11-11">Raport pakietów, pełnej regresji i PostgreSQL</a> odróżnia wyniki mechaniki sprzed zmiany oprawy od końcowej walidacji pakietów. Czasy zależą od maszyny i obciążenia, nie są obietnicą wydajności serwera ani czasem przejścia gry.</p></article><article id="doc-roadmap" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/ROADMAP.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-roadmap--biezaca-roadmapa">Bieżąca roadmapa</h2>
 <p>Stan: 11 listopada 2026. Kanoniczna lista zadań: <a href="https://github.com/Yorick0499/ore-and-empire/issues/9" target="_blank" rel="noopener noreferrer">GitHub #9</a>. Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.</p>
 <h3 id="doc-roadmap--wdrozone">Wdrożone</h3>
 <ul>
@@ -5184,12 +5222,12 @@ aktualne reguły są w <a href="#doc-loot-and-endgame">LOOT_AND_ENDGAME.md</a>.<
 </thead>
 <tbody>
 <tr>
-<td><strong>1. #124 — najbliższy</strong></td>
+<td><strong>1. #124 — PR #129</strong></td>
 <td>Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów</td>
 <td>Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat</td>
 </tr>
 <tr>
-<td><strong>2. #125</strong>, po #124</td>
+<td><strong>2. #125 — następny</strong>, po #124</td>
 <td>Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji</td>
 <td>Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu</td>
 </tr>
@@ -5217,7 +5255,9 @@ aktualne reguły są w <a href="#doc-loot-and-endgame">LOOT_AND_ENDGAME.md</a>.<
 </table></div>
 <h2 id="doc-roadmap--32-nadal-obejmuje-peniejszy-katalog-i-kampanie-g2-nk-pojedyncza-paczka-jarkendaru-nie-zamyka-caego-zakresu-30111-obejmuja-integracje-nastepstwa-z-istniejacym-przejsciem-nie-implementowac-ponownie-wyscigu-kopii-i-wspolnego-serwera-stare-raporty-to-dowody-historycznych-wersji-nie-obowiazujace-wymagania-premium">32 nadal obejmuje pełniejszy katalog i kampanię G2 NK; pojedyncza paczka Jarkendaru nie zamyka całego zakresu. #30/#111 obejmują integrację następstwa z istniejącym przejściem; nie implementować ponownie wyścigu, kopii i wspólnego serwera. Stare raporty to dowody historycznych wersji, nie obowiązujące wymagania premium.</h2>
 <h4 id="doc-roadmap--stan-realizacji-124">Stan realizacji #124</h4>
-<p>Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. <a href="#doc-camps">Szczegóły i wyjątek zgodności</a>. Pozostałe etapy125/126/127/33/128 są nadal planowane; nie zostały uruchomione w tej iteracji. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.</p></article><article id="doc-index" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/INDEX.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/INDEX.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-index--dokumentacja-indeks">Dokumentacja — indeks</h2>
+<p>Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. <a href="#doc-camps">Szczegóły i wyjątek zgodności</a>. Pozostałe etapy125/126/127/33/128 są nadal planowane; nie zostały uruchomione w tej iteracji. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.</p>
+<h4 id="doc-roadmap--sprawne-iteracje-testow">Sprawne iteracje testów</h4>
+<p>Nowe pakiety <code>simulate_release --suite quick/campaign/pacing/world/full</code> oddzielają szybkie kontrole od długich symulacji. Pełne asercje kampanii pozostają, ale transakcje mają zakres jednej tury. <a href="#doc-solo-playtest">Polecenia, zakresy i pomiary</a>. Zgłoszona awaria GitHuba w tej iteracji nie zastępuje testów: mechanikę sprawdzono lokalnie na SQLite i rzeczywistym PostgreSQL, łącznie z odtwarzaniem starszych kopii i współbieżnością. Handoff pozostaje bez zmian na polecenie użytkownika.</p></article><article id="doc-index" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/INDEX.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/INDEX.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-index--dokumentacja-indeks">Dokumentacja — indeks</h2>
 <p>Stan najnowszej wersji: 9 listopada 2026. <a href="#doc-readme">README</a> zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.</p>
 <p><strong><a href="#top">Jednoplikowa publiczna księga HTML</a></strong> — pełna treść, wyszukiwarka, 46 ekranów i publiczne raporty; działa offline. Źródła i odtwarzanie: <code>docs/public/</code>, <code>requirements-docs.txt</code>, <code>python scripts/build_public_docs.py</code>.</p>
 <h3 id="doc-index--dla-gracza">Dla gracza</h3>
@@ -11601,7 +11641,586 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     }
   ],
   &quot;failed_decisions&quot;: 0
-}</code></pre><button type="button" class="download" data-report-download="osobowosci-sto-botow-2026-11-09.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-petla-po-fundamentach-ai-2026-11-07"><summary>petla-po-fundamentach-ai-2026-11-07.json</summary><pre><code>{
+}</code></pre><button type="button" class="download" data-report-download="osobowosci-sto-botow-2026-11-09.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-pakiety-symulacji-2026-11-11"><summary>pakiety-symulacji-2026-11-11.json</summary><pre><code>{
+  &quot;date&quot;: &quot;2026-11-11&quot;,
+  &quot;scope&quot;: &quot;Etap124 i szybsze pakiety lokalnej walidacji&quot;,
+  &quot;isolated_databases&quot;: true,
+  &quot;real_save_untouched&quot;: true,
+  &quot;gameplay_regression_before_harness_change&quot;: {
+    &quot;code_revision&quot;: &quot;5d5c1dc (kod gry identyczny z db9aea4)&quot;,
+    &quot;sqlite&quot;: {
+      &quot;tests&quot;: 529,
+      &quot;skipped_postgresql&quot;: 23,
+      &quot;seconds&quot;: 444.104
+    },
+    &quot;postgresql&quot;: {
+      &quot;tests&quot;: 299,
+      &quot;seconds&quot;: 1514.414,
+      &quot;success&quot;: true
+    },
+    &quot;concurrency&quot;: {
+      &quot;tests&quot;: 20,
+      &quot;skipped_sqlite_only&quot;: 1,
+      &quot;seconds&quot;: 16.192,
+      &quot;success&quot;: true
+    }
+  },
+  &quot;suite_contract_tests&quot;: {
+    &quot;tests&quot;: 4,
+    &quot;success&quot;: true
+  },
+  &quot;quick&quot;: {
+    &quot;schema&quot;: 2,
+    &quot;suite&quot;: &quot;quick&quot;,
+    &quot;success&quot;: true,
+    &quot;elapsed_seconds&quot;: 18.38,
+    &quot;isolated_database&quot;: true,
+    &quot;world_clock&quot;: &quot;Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy&quot;,
+    &quot;test_labels&quot;: [
+      &quot;characters.test_rank_paths&quot;,
+      &quot;characters.test_new_progression&quot;,
+      &quot;characters.test_release_abuse&quot;,
+      &quot;characters.test_playability_audit&quot;,
+      &quot;characters.test_release_suites&quot;
+    ],
+    &quot;recorded_scenarios&quot;: 0,
+    &quot;scenarios&quot;: [],
+    &quot;time_models&quot;: {},
+    &quot;limits&quot;: [
+      &quot;Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.&quot;,
+      &quot;Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.&quot;,
+      &quot;Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu.&quot;
+    ]
+  },
+  &quot;campaign&quot;: {
+    &quot;schema&quot;: 2,
+    &quot;suite&quot;: &quot;campaign&quot;,
+    &quot;success&quot;: true,
+    &quot;elapsed_seconds&quot;: 290.55,
+    &quot;isolated_database&quot;: true,
+    &quot;world_clock&quot;: &quot;Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy&quot;,
+    &quot;test_labels&quot;: [
+      &quot;characters.test_campaign.CampaignTests.test_human_can_play_whole_campaign_via_forms_and_ordinary_game_services&quot;,
+      &quot;characters.test_campaign.CampaignBotTests&quot;,
+      &quot;characters.test_khorinis.TwoRealmTests.test_three_factions_finish_story_by_ordinary_bot_actions&quot;,
+      &quot;characters.playtest_postmerge.JoinedBotCampaignTests&quot;,
+      &quot;characters.playtest_postmerge.JoinedEarlyBuildTests&quot;
+    ],
+    &quot;recorded_scenarios&quot;: 9,
+    &quot;scenarios&quot;: [
+      {
+        &quot;scenario&quot;: &quot;gracz-od-zera-do-finalu&quot;,
+        &quot;steps&quot;: 3666,
+        &quot;simulated_hours&quot;: 1833.0,
+        &quot;chapters&quot;: 6,
+        &quot;claimed_quests&quot;: 27,
+        &quot;level&quot;: 30,
+        &quot;experience&quot;: 242408,
+        &quot;ore&quot;: 5890,
+        &quot;premium&quot;: 1,
+        &quot;completion&quot;: true
+      },
+      {
+        &quot;scenario&quot;: &quot;gracz-po-finale&quot;,
+        &quot;upgraded_item&quot;: &quot;Legendary Heavy Sword of Burning&quot;,
+        &quot;upgrade_level&quot;: 1,
+        &quot;patrol_wins&quot;: 1,
+        &quot;unlocked&quot;: 2,
+        &quot;admin_grants&quot;: false
+      },
+      {
+        &quot;scenario&quot;: &quot;khorinis-trzy-frakcje&quot;,
+        &quot;ticks&quot;: 325,
+        &quot;quests_each&quot;: 17,
+        &quot;actions&quot;: {
+          &quot;stock&quot;: 9,
+          &quot;mine&quot;: 49,
+          &quot;equip&quot;: 27,
+          &quot;claim&quot;: 49,
+          &quot;story_accept&quot;: 51,
+          &quot;story_start&quot;: 51,
+          &quot;story_talk&quot;: 6,
+          &quot;story_claim&quot;: 51,
+          &quot;story_travel&quot;: 24,
+          &quot;hunt&quot;: 120,
+          &quot;camp&quot;: 3,
+          &quot;accept&quot;: 12,
+          &quot;train&quot;: 376,
+          &quot;challenge_accept&quot;: 31,
+          &quot;promote&quot;: 12,
+          &quot;challenge_claim&quot;: 15,
+          &quot;craft_learn&quot;: 5,
+          &quot;raid_rally&quot;: 21,
+          &quot;finance&quot;: 2,
+          &quot;list&quot;: 11,
+          &quot;achievement_claim&quot;: 8,
+          &quot;raid_strike&quot;: 37,
+          &quot;improve&quot;: 30,
+          &quot;learn_circle&quot;: 6,
+          &quot;raid_claim&quot;: 8,
+          &quot;market_reprice&quot;: 12,
+          &quot;sell&quot;: 6,
+          &quot;adventure&quot;: 15,
+          &quot;adventure_claim&quot;: 15,
+          &quot;camp_upgrade&quot;: 6,
+          &quot;boss&quot;: 6,
+          &quot;salvage&quot;: 3,
+          &quot;buy_magic&quot;: 3,
+          &quot;prepare_magic&quot;: 5,
+          &quot;clear_magic&quot;: 2,
+          &quot;market_cancel&quot;: 3,
+          &quot;camp_donate&quot;: 8,
+          &quot;market_buy&quot;: 3,
+          &quot;camp_supply&quot;: 6,
+          &quot;shop&quot;: 6,
+          &quot;patrol&quot;: 5
+        },
+        &quot;characters&quot;: [
+          {
+            &quot;id&quot;: 1,
+            &quot;camp&quot;: &quot;CITY_WATCH&quot;,
+            &quot;guild&quot;: &quot;K2_COMMANDER&quot;,
+            &quot;level&quot;: 30,
+            &quot;strength&quot;: 135,
+            &quot;mana&quot;: 10,
+            &quot;ore_balance&quot;: 5841
+          },
+          {
+            &quot;id&quot;: 2,
+            &quot;camp&quot;: &quot;FIRE_ORDER&quot;,
+            &quot;guild&quot;: &quot;K2_ARCHMAGE&quot;,
+            &quot;level&quot;: 28,
+            &quot;strength&quot;: 27,
+            &quot;mana&quot;: 127,
+            &quot;ore_balance&quot;: 299
+          },
+          {
+            &quot;id&quot;: 3,
+            &quot;camp&quot;: &quot;ONAR_MERCS&quot;,
+            &quot;guild&quot;: &quot;K2_CAPTAIN&quot;,
+            &quot;level&quot;: 28,
+            &quot;strength&quot;: 127,
+            &quot;mana&quot;: 10,
+            &quot;ore_balance&quot;: 1426
+          }
+        ],
+        &quot;ordinary_services_without_grants&quot;: true
+      },
+      {
+        &quot;scenario&quot;: &quot;trzy-buildy-z-finansowaniem&quot;,
+        &quot;strategy&quot;: &quot;zlecenia na rudę przy brakach&quot;,
+        &quot;seed&quot;: 71,
+        &quot;ticks&quot;: 162,
+        &quot;simulated_hours&quot;: 40.25,
+        &quot;minutes_per_tick&quot;: 15,
+        &quot;characters&quot;: [
+          {
+            &quot;build&quot;: &quot;warrior&quot;,
+            &quot;level&quot;: 6,
+            &quot;xp&quot;: 10635,
+            &quot;ore&quot;: 135,
+            &quot;strength&quot;: 45,
+            &quot;dexterity&quot;: 10,
+            &quot;mana&quot;: 10,
+            &quot;mastery&quot;: 15,
+            &quot;actions&quot;: {
+              &quot;story_accept&quot;: 9,
+              &quot;story_start&quot;: 9,
+              &quot;story_talk&quot;: 3,
+              &quot;story_claim&quot;: 9,
+              &quot;story_mine&quot;: 3,
+              &quot;mine_claim&quot;: 3,
+              &quot;story_travel&quot;: 2,
+              &quot;buy_weapon&quot;: 5,
+              &quot;equip&quot;: 5,
+              &quot;melee_hunt&quot;: 21,
+              &quot;join_camp&quot;: 1,
+              &quot;story_delivery_buy&quot;: 1,
+              &quot;train_onehand_skill&quot;: 15,
+              &quot;train_strength&quot;: 35,
+              &quot;adventure_start&quot;: 15,
+              &quot;adventure_claim&quot;: 15,
+              &quot;sell_loot&quot;: 6
+            },
+            &quot;defeats&quot;: 0
+          },
+          {
+            &quot;build&quot;: &quot;archer&quot;,
+            &quot;level&quot;: 6,
+            &quot;xp&quot;: 10699,
+            &quot;ore&quot;: 180,
+            &quot;strength&quot;: 10,
+            &quot;dexterity&quot;: 45,
+            &quot;mana&quot;: 10,
+            &quot;mastery&quot;: 15,
+            &quot;actions&quot;: {
+              &quot;story_accept&quot;: 9,
+              &quot;story_start&quot;: 9,
+              &quot;story_talk&quot;: 3,
+              &quot;story_claim&quot;: 9,
+              &quot;story_mine&quot;: 3,
+              &quot;mine_claim&quot;: 3,
+              &quot;story_travel&quot;: 3,
+              &quot;buy_weapon&quot;: 4,
+              &quot;equip&quot;: 4,
+              &quot;buy_ammo_pack&quot;: 3,
+              &quot;ranged_hunt&quot;: 22,
+              &quot;join_camp&quot;: 1,
+              &quot;story_delivery_buy&quot;: 1,
+              &quot;train_bow_skill&quot;: 15,
+              &quot;train_dexterity&quot;: 35,
+              &quot;adventure_start&quot;: 15,
+              &quot;adventure_claim&quot;: 15,
+              &quot;sell_loot&quot;: 4
+            },
+            &quot;defeats&quot;: 0
+          },
+          {
+            &quot;build&quot;: &quot;mage&quot;,
+            &quot;level&quot;: 6,
+            &quot;xp&quot;: 10794,
+            &quot;ore&quot;: 224,
+            &quot;strength&quot;: 10,
+            &quot;dexterity&quot;: 10,
+            &quot;mana&quot;: 55,
+            &quot;mastery&quot;: 1,
+            &quot;actions&quot;: {
+              &quot;story_accept&quot;: 9,
+              &quot;story_start&quot;: 9,
+              &quot;story_talk&quot;: 3,
+              &quot;story_claim&quot;: 9,
+              &quot;story_mine&quot;: 3,
+              &quot;mine_claim&quot;: 3,
+              &quot;story_travel&quot;: 2,
+              &quot;buy_weapon&quot;: 1,
+              &quot;equip&quot;: 1,
+              &quot;melee_hunt&quot;: 6,
+              &quot;join_camp&quot;: 1,
+              &quot;story_delivery_buy&quot;: 1,
+              &quot;rank_accept&quot;: 2,
+              &quot;train_mana&quot;: 45,
+              &quot;rank_promote&quot;: 2,
+              &quot;learn_circle&quot;: 1,
+              &quot;adventure_start&quot;: 21,
+              &quot;adventure_claim&quot;: 21,
+              &quot;buy_rune&quot;: 1,
+              &quot;prepare_rune&quot;: 1,
+              &quot;magic_hunt&quot;: 20,
+              &quot;sell_loot&quot;: 1
+            },
+            &quot;defeats&quot;: 0
+          }
+        ],
+        &quot;bot_actions&quot;: {
+          &quot;stock&quot;: 27,
+          &quot;mine&quot;: 24,
+          &quot;equip&quot;: 21,
+          &quot;claim&quot;: 24,
+          &quot;list&quot;: 13,
+          &quot;story_accept&quot;: 46,
+          &quot;story_start&quot;: 46,
+          &quot;story_talk&quot;: 15,
+          &quot;story_claim&quot;: 45,
+          &quot;market_cancel&quot;: 13,
+          &quot;market_sell&quot;: 10,
+          &quot;finance&quot;: 6,
+          &quot;ammo&quot;: 6,
+          &quot;story_travel&quot;: 14,
+          &quot;hunt&quot;: 22,
+          &quot;camp&quot;: 3,
+          &quot;accept&quot;: 6,
+          &quot;promote&quot;: 3,
+          &quot;challenge_accept&quot;: 9,
+          &quot;train&quot;: 100,
+          &quot;challenge_claim&quot;: 6,
+          &quot;sell&quot;: 13,
+          &quot;improve&quot;: 4,
+          &quot;camp_donate&quot;: 6,
+          &quot;boss&quot;: 3,
+          &quot;craft_learn&quot;: 1
+        },
+        &quot;bots&quot;: 3,
+        &quot;admin_grants&quot;: false,
+        &quot;limits&quot;: &quot;Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji.&quot;
+      },
+      {
+        &quot;scenario&quot;: &quot;trzy-obozy-botow&quot;,
+        &quot;ticks&quot;: 443,
+        &quot;simulated_hours&quot;: 221.0,
+        &quot;actions&quot;: {
+          &quot;stock&quot;: 36,
+          &quot;mine&quot;: 20,
+          &quot;equip&quot;: 46,
+          &quot;claim&quot;: 20,
+          &quot;sell&quot;: 39,
+          &quot;story_accept&quot;: 84,
+          &quot;story_start&quot;: 84,
+          &quot;story_talk&quot;: 27,
+          &quot;story_claim&quot;: 84,
+          &quot;finance&quot;: 3,
+          &quot;ammo&quot;: 2,
+          &quot;challenge_accept&quot;: 33,
+          &quot;story_travel&quot;: 49,
+          &quot;hunt&quot;: 61,
+          &quot;camp&quot;: 3,
+          &quot;accept&quot;: 6,
+          &quot;promote&quot;: 3,
+          &quot;challenge_claim&quot;: 13,
+          &quot;train&quot;: 552,
+          &quot;adventure&quot;: 8,
+          &quot;adventure_claim&quot;: 8,
+          &quot;craft_learn&quot;: 2,
+          &quot;craft_material&quot;: 4,
+          &quot;camp_donate&quot;: 30,
+          &quot;craft&quot;: 2,
+          &quot;improve&quot;: 38,
+          &quot;boss&quot;: 6,
+          &quot;salvage&quot;: 12,
+          &quot;achievement_claim&quot;: 3,
+          &quot;patrol&quot;: 15,
+          &quot;list&quot;: 3,
+          &quot;market_buy&quot;: 2
+        },
+        &quot;characters&quot;: [
+          {
+            &quot;camp&quot;: &quot;SWAMP_CAMP&quot;,
+            &quot;level&quot;: 31,
+            &quot;experience&quot;: 254605,
+            &quot;ore_balance&quot;: 4384,
+            &quot;premium_balance&quot;: 23
+          },
+          {
+            &quot;camp&quot;: &quot;OLD_CAMP&quot;,
+            &quot;level&quot;: 30,
+            &quot;experience&quot;: 247541,
+            &quot;ore_balance&quot;: 4459,
+            &quot;premium_balance&quot;: 7
+          },
+          {
+            &quot;camp&quot;: &quot;NEW_CAMP&quot;,
+            &quot;level&quot;: 30,
+            &quot;experience&quot;: 245810,
+            &quot;ore_balance&quot;: 5135,
+            &quot;premium_balance&quot;: 7
+          }
+        ],
+        &quot;finishers&quot;: 3
+      },
+      {
+        &quot;scenario&quot;: &quot;po-finale-dalsze-zycie&quot;,
+        &quot;ticks_per_bot&quot;: 60,
+        &quot;actions&quot;: {
+          &quot;hunt&quot;: 10,
+          &quot;improve&quot;: 31,
+          &quot;patrol&quot;: 53,
+          &quot;salvage&quot;: 43,
+          &quot;market_buy&quot;: 5,
+          &quot;sell&quot;: 6,
+          &quot;equip&quot;: 11,
+          &quot;list&quot;: 4,
+          &quot;train&quot;: 6,
+          &quot;promote&quot;: 3,
+          &quot;challenge_accept&quot;: 2,
+          &quot;learn_circle&quot;: 2,
+          &quot;raid_rally&quot;: 1,
+          &quot;accept&quot;: 2,
+          &quot;boss&quot;: 1
+        },
+        &quot;characters&quot;: [
+          {
+            &quot;camp&quot;: &quot;SWAMP_CAMP&quot;,
+            &quot;patrol_wins&quot;: 25,
+            &quot;upgrades&quot;: 24
+          },
+          {
+            &quot;camp&quot;: &quot;OLD_CAMP&quot;,
+            &quot;patrol_wins&quot;: 19,
+            &quot;upgrades&quot;: 23
+          },
+          {
+            &quot;camp&quot;: &quot;NEW_CAMP&quot;,
+            &quot;patrol_wins&quot;: 24,
+            &quot;upgrades&quot;: 22
+          }
+        ]
+      },
+      {
+        &quot;scenario&quot;: &quot;trzy-obozy-botow&quot;,
+        &quot;ticks&quot;: 464,
+        &quot;simulated_hours&quot;: 231.5,
+        &quot;actions&quot;: {
+          &quot;stock&quot;: 36,
+          &quot;mine&quot;: 20,
+          &quot;equip&quot;: 46,
+          &quot;claim&quot;: 20,
+          &quot;sell&quot;: 39,
+          &quot;story_accept&quot;: 87,
+          &quot;story_start&quot;: 87,
+          &quot;story_talk&quot;: 30,
+          &quot;story_claim&quot;: 87,
+          &quot;finance&quot;: 3,
+          &quot;ammo&quot;: 2,
+          &quot;challenge_accept&quot;: 34,
+          &quot;story_travel&quot;: 49,
+          &quot;hunt&quot;: 61,
+          &quot;camp&quot;: 3,
+          &quot;accept&quot;: 6,
+          &quot;promote&quot;: 3,
+          &quot;challenge_claim&quot;: 13,
+          &quot;train&quot;: 552,
+          &quot;adventure&quot;: 9,
+          &quot;adventure_claim&quot;: 9,
+          &quot;craft_learn&quot;: 3,
+          &quot;craft_material&quot;: 4,
+          &quot;camp_donate&quot;: 30,
+          &quot;craft&quot;: 2,
+          &quot;improve&quot;: 43,
+          &quot;boss&quot;: 6,
+          &quot;salvage&quot;: 19,
+          &quot;achievement_claim&quot;: 3,
+          &quot;patrol&quot;: 21,
+          &quot;list&quot;: 1,
+          &quot;market_buy&quot;: 1
+        },
+        &quot;characters&quot;: [
+          {
+            &quot;camp&quot;: &quot;SWAMP_CAMP&quot;,
+            &quot;level&quot;: 31,
+            &quot;experience&quot;: 255451,
+            &quot;ore_balance&quot;: 5041,
+            &quot;premium_balance&quot;: 27
+          },
+          {
+            &quot;camp&quot;: &quot;OLD_CAMP&quot;,
+            &quot;level&quot;: 31,
+            &quot;experience&quot;: 255339,
+            &quot;ore_balance&quot;: 3204,
+            &quot;premium_balance&quot;: 7
+          },
+          {
+            &quot;camp&quot;: &quot;NEW_CAMP&quot;,
+            &quot;level&quot;: 31,
+            &quot;experience&quot;: 248596,
+            &quot;ore_balance&quot;: 4814,
+            &quot;premium_balance&quot;: 7
+          }
+        ],
+        &quot;finishers&quot;: 3
+      },
+      {
+        &quot;scenario&quot;: &quot;po-finale-dalsze-zycie&quot;,
+        &quot;ticks_per_bot&quot;: 60,
+        &quot;actions&quot;: {
+          &quot;improve&quot;: 23,
+          &quot;hunt&quot;: 14,
+          &quot;patrol&quot;: 38,
+          &quot;salvage&quot;: 33,
+          &quot;equip&quot;: 7,
+          &quot;list&quot;: 5,
+          &quot;market_buy&quot;: 4,
+          &quot;train&quot;: 28,
+          &quot;challenge_claim&quot;: 1,
+          &quot;promote&quot;: 3,
+          &quot;learn_circle&quot;: 2,
+          &quot;market_cancel&quot;: 1,
+          &quot;raid_rally&quot;: 3,
+          &quot;buy_magic&quot;: 1,
+          &quot;market_sell&quot;: 1,
+          &quot;accept&quot;: 3,
+          &quot;boss&quot;: 1,
+          &quot;prepare_magic&quot;: 2,
+          &quot;clear_magic&quot;: 1,
+          &quot;sell&quot;: 4,
+          &quot;raid_strike&quot;: 1,
+          &quot;raid_claim&quot;: 1,
+          &quot;achievement_claim&quot;: 1,
+          &quot;challenge_accept&quot;: 2
+        },
+        &quot;characters&quot;: [
+          {
+            &quot;camp&quot;: &quot;SWAMP_CAMP&quot;,
+            &quot;patrol_wins&quot;: 12,
+            &quot;upgrades&quot;: 17
+          },
+          {
+            &quot;camp&quot;: &quot;OLD_CAMP&quot;,
+            &quot;patrol_wins&quot;: 26,
+            &quot;upgrades&quot;: 31
+          },
+          {
+            &quot;camp&quot;: &quot;NEW_CAMP&quot;,
+            &quot;patrol_wins&quot;: 21,
+            &quot;upgrades&quot;: 18
+          }
+        ]
+      },
+      {
+        &quot;scenario&quot;: &quot;boty-po-polaczeniu&quot;,
+        &quot;global_join_fixture&quot;: true,
+        &quot;admin_grants&quot;: false,
+        &quot;characters&quot;: [
+          {
+            &quot;camp&quot;: &quot;SWAMP_CAMP&quot;,
+            &quot;guild&quot;: &quot;NOVICE&quot;,
+            &quot;level&quot;: 31,
+            &quot;strength&quot;: 191,
+            &quot;dexterity&quot;: 10,
+            &quot;mana&quot;: 25
+          },
+          {
+            &quot;camp&quot;: &quot;OLD_CAMP&quot;,
+            &quot;guild&quot;: &quot;SHADOW&quot;,
+            &quot;level&quot;: 33,
+            &quot;strength&quot;: 198,
+            &quot;dexterity&quot;: 10,
+            &quot;mana&quot;: 10
+          },
+          {
+            &quot;camp&quot;: &quot;NEW_CAMP&quot;,
+            &quot;guild&quot;: &quot;ROGUE&quot;,
+            &quot;level&quot;: 32,
+            &quot;strength&quot;: 191,
+            &quot;dexterity&quot;: 12,
+            &quot;mana&quot;: 21
+          }
+        ],
+        &quot;limits&quot;: [
+          &quot;Krok testowy 30 minut nie jest pomiarem czasu człowieka.&quot;,
+          &quot;Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu.&quot;
+        ]
+      }
+    ],
+    &quot;time_models&quot;: {
+      &quot;regression&quot;: &quot;Kampanie: 30 minut na krok; trzy buildy: 15 minut. To kroki testowe, nie czas przejścia.&quot;
+    },
+    &quot;limits&quot;: [
+      &quot;Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.&quot;,
+      &quot;Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.&quot;,
+      &quot;Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu.&quot;
+    ]
+  },
+  &quot;postgresql_campaign_after_harness_change&quot;: {
+    &quot;tests&quot;: 1,
+    &quot;seconds&quot;: 120.79,
+    &quot;success&quot;: true,
+    &quot;transactions&quot;: &quot;Krótka transakcja każdej tury, zgodnie z SchedulerGuard.work; bez transakcji całej kampanii&quot;,
+    &quot;ordinary_earned_progress&quot;: true
+  },
+  &quot;postgresql_setup&quot;: {
+    &quot;major&quot;: 16,
+    &quot;locale&quot;: &quot;pl_PL.utf8&quot;,
+    &quot;temporary_tools_and_cluster&quot;: true,
+    &quot;public_tcp_port&quot;: false,
+    &quot;jit&quot;: &quot;Wyłączony w tymczasowym klastrze podczas końcowego testu; nie zmieniono konfiguracji gry.&quot;
+  },
+  &quot;limits&quot;: [
+    &quot;Quick nie zastępuje kampanii ani pełnej regresji.&quot;,
+    &quot;Czasy to pomiary konkretnych uruchomień, także przy równoległych testach; nie benchmark ani SLA gry.&quot;,
+    &quot;Wyniki 529/299 dotyczą mechaniki przed zmianą oprawy testów; nowe pakiety i transakcje tur zweryfikowano osobno.&quot;,
+    &quot;Pakiet kampanii nie dowodzi pełnego katalogu G2 NK. Połączenie w scenariuszu botów jest fixture otoczenia, a nie zarobionym globalnym zwycięstwem.&quot;,
+    &quot;GitHub Actions nie uruchamiało końcowych zadań podczas zgłoszonej przez użytkownika awarii.&quot;
+  ]
+}</code></pre><button type="button" class="download" data-report-download="pakiety-symulacji-2026-11-11.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-petla-po-fundamentach-ai-2026-11-07"><summary>petla-po-fundamentach-ai-2026-11-07.json</summary><pre><code>{
   &quot;schema&quot;: 1,
   &quot;success&quot;: true,
   &quot;elapsed_seconds&quot;: 102.61,

@@ -4,7 +4,7 @@ from io import StringIO
 from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.test import TestCase
+from django.test import TestCase,TransactionTestCase
 from django.utils import timezone
 from .models import StoryQuest, StoryRun, PlayerProfile, PremiumEntry, BotDecision, CampaignCompletion
 from .story_quests import validate_definition, available
@@ -43,68 +43,6 @@ class CampaignTests(TestCase):
         quest.refresh_from_db()
         self.assertEqual((quest.rewards, quest.version), ({'ore': 17}, 7))
         self.assertEqual(StoryQuest.objects.count(), 41)
-
-    def test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self):
-        call_command('seed_equipment', stdout=StringIO())
-        call_command('seed_catalog', stdout=StringIO())
-        # Stable IDs exercise two mage branches and all three camps on both databases.
-        # Only fixture identity/randomness is controlled, never stats, resources or outcomes.
-        import random
-        from django.db import connection
-        state=random.getstate();self.addCleanup(random.setstate,state);random.seed(19)
-        self.assertFalse(PlayerProfile.objects.exists())
-        with connection.cursor() as cursor:
-            if connection.vendor=='postgresql':
-                cursor.execute("SELECT setval(pg_get_serial_sequence('characters_playerprofile','id'),221,true)")
-            else:
-                cursor.execute("UPDATE sqlite_sequence SET seq=221 WHERE name='characters_playerprofile'")
-                if not cursor.rowcount:cursor.execute("INSERT INTO sqlite_sequence(name,seq) VALUES ('characters_playerprofile',221)")
-        # Simulated elapsed time grants only the ordinary capped resource recovery.
-        # No combat mocks, forced progress, stat/XP grants or injected quest outcomes.
-        call_command('run_bots', create=3, create_only=True, stdout=StringIO())
-        bots = list(PlayerProfile.objects.filter(is_bot=True).order_by('pk'))
-        now = timezone.now()
-        completed = set()
-        actions = Counter()
-        for step in range(700):
-            with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30*step)):
-                for bot in bots:
-                    if bot.pk in completed: continue
-                    action, success = tick_bot(bot, force_active=True)
-                    self.assertTrue(success, (step, bot.pk, action))
-                    actions[action] += 1
-                    if bot.story_runs.filter(quest__key='ritual-ready', status='claimed').exists() and CampaignCompletion.objects.filter(profile=bot).exists():
-                        completed.add(bot.pk)
-            if len(completed) == 3: break
-        status = {b.pk: list(b.story_runs.exclude(status='claimed').values('quest__key', 'progress', 'status')) for b in bots}
-        self.assertEqual(len(completed), 3, (status, actions, list(PlayerProfile.objects.filter(is_bot=True).values('id','guild','level','strength','mana','current_mana','current_health','life','prepared_magic_id','skill_points')), list(BotDecision.objects.values('profile_id','reason','observation')[:1])))
-        for bot in bots:
-            bot.refresh_from_db()
-            self.assertGreaterEqual(bot.level, 30)
-            self.assertEqual(bot.story_runs.filter(status='claimed', quest__camp=bot.camp).count(), 6)
-            self.assertEqual(bot.story_runs.filter(status='claimed').exclude(quest__camp__in=['', bot.camp]).count(), 0)
-            self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 12)
-            self.assertIn(bot.story_runs.filter(status='claimed',quest__universe='GOTHIC_I').count(), (27,28))
-            self.assertTrue(hasattr(bot,'campaign_completion'))
-        from .release_probe import record_scenario
-        record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})
-        # Continue the same earned characters after the finale: no stat/material grants.
-        after=Counter()
-        for extra in range(60):
-            with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*(step+extra+1))):
-                for bot in bots:
-                    action,success=tick_bot(bot, force_active=True)
-                    self.assertTrue(success,(extra,bot.pk,action))
-                    after[action]+=1
-        for bot in bots:
-            self.assertTrue(bot.patrols.filter(won=True).exists(),(bot.pk,after))
-            self.assertTrue(bot.equipment_work.filter(action='improve').exists(),(bot.pk,after))
-            self.assertLessEqual(bot.inventory.exclude(blueprint__kind='quest',blueprint__tradeable=False).count(),12)
-        record_scenario('po-finale-dalsze-zycie',{'ticks_per_bot':60,'actions':dict(after),'characters':[{'camp':b.camp,'patrol_wins':b.patrols.filter(won=True).count(),'upgrades':b.equipment_work.filter(action='improve').count()} for b in bots]})
-        self.assertFalse(BotDecision.objects.filter(success=False).exists())
-        for action in ('story_accept', 'story_start', 'story_claim', 'story_talk', 'story_travel', 'hunt', 'boss', 'mine', 'claim', 'stock'):
-            self.assertGreater(actions[action], 0)
-        self.assertTrue(PremiumEntry.objects.filter(reference__startswith='story:').exists())
 
     def test_human_can_play_whole_campaign_via_forms_and_ordinary_game_services(self):
         from . import game_logic as game
@@ -222,3 +160,78 @@ class CampaignTests(TestCase):
         self.assertTrue(hero.patrols.get(request_key=key).won)
         self.assertEqual(FrontierProgress.objects.get(profile=hero).unlocked,2)
         record_scenario('gracz-po-finale',{'upgraded_item':weapon.blueprint.name,'upgrade_level':weapon.upgrade_level,'patrol_wins':hero.patrols.filter(won=True).count(),'unlocked':2,'admin_grants':False})
+
+
+class CampaignBotTests(TransactionTestCase):
+    """Commit ordinary actions as production does, not one multi-day transaction."""
+    def setUp(self):
+        from .world_management import seed_clean_world
+        from .worlds import current_world
+        seed_clean_world()
+        world=current_world();world.configured=True;world.bot_count=3
+        world.save(update_fields=['configured','bot_count'])
+
+    def test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self):
+        # Stable IDs exercise two mage branches and all three camps on both databases.
+        # Only fixture identity/randomness is controlled, never stats, resources or outcomes.
+        import random
+        from django.db import connection,transaction
+        state=random.getstate();self.addCleanup(random.setstate,state);random.seed(19)
+        self.assertFalse(PlayerProfile.objects.exists())
+        with connection.cursor() as cursor:
+            if connection.vendor=='postgresql':
+                cursor.execute("SELECT setval(pg_get_serial_sequence('characters_playerprofile','id'),221,true)")
+            else:
+                cursor.execute("UPDATE sqlite_sequence SET seq=221 WHERE name='characters_playerprofile'")
+                if not cursor.rowcount:cursor.execute("INSERT INTO sqlite_sequence(name,seq) VALUES ('characters_playerprofile',221)")
+        # Simulated elapsed time grants only the ordinary capped resource recovery.
+        # No combat mocks, forced progress, stat/XP grants or injected quest outcomes.
+        call_command('run_bots', create=3, create_only=True, stdout=StringIO())
+        bots = list(PlayerProfile.objects.filter(is_bot=True).order_by('pk'))
+        # Fix preferences independently of backend sequence/world IDs.
+        for bot,personality in zip(bots,('casual','grinder','grinder')):
+            bot.bot_personality=personality;bot.save(update_fields=['bot_personality'])
+        now = timezone.now()
+        completed = set()
+        actions = Counter()
+        for step in range(700):
+            with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30*step)):
+                for bot in bots:
+                    if bot.pk in completed: continue
+                    with transaction.atomic():
+                        action, success = tick_bot(bot, force_active=True)
+                    self.assertTrue(success, (step, bot.pk, action))
+                    actions[action] += 1
+                    if bot.story_runs.filter(quest__key='ritual-ready', status='claimed').exists() and CampaignCompletion.objects.filter(profile=bot).exists():
+                        completed.add(bot.pk)
+            if len(completed) == 3: break
+        status = {b.pk: list(b.story_runs.exclude(status='claimed').values('quest__key', 'progress', 'status')) for b in bots}
+        self.assertEqual(len(completed), 3, (status, actions, list(PlayerProfile.objects.filter(is_bot=True).values('id','guild','level','strength','mana','current_mana','current_health','life','prepared_magic_id','skill_points')), list(BotDecision.objects.values('profile_id','reason','observation')[:1])))
+        for bot in bots:
+            bot.refresh_from_db()
+            self.assertGreaterEqual(bot.level, 30)
+            self.assertEqual(bot.story_runs.filter(status='claimed', quest__camp=bot.camp).count(), 6)
+            self.assertEqual(bot.story_runs.filter(status='claimed').exclude(quest__camp__in=['', bot.camp]).count(), 0)
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).count(), 12)
+            self.assertIn(bot.story_runs.filter(status='claimed',quest__universe='GOTHIC_I').count(), (27,28))
+            self.assertTrue(hasattr(bot,'campaign_completion'))
+        from .release_probe import record_scenario
+        record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})
+        # Continue the same earned characters after the finale: no stat/material grants.
+        after=Counter()
+        for extra in range(60):
+            with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*(step+extra+1))):
+                for bot in bots:
+                    with transaction.atomic():
+                        action,success=tick_bot(bot, force_active=True)
+                    self.assertTrue(success,(extra,bot.pk,action))
+                    after[action]+=1
+        for bot in bots:
+            self.assertTrue(bot.patrols.filter(won=True).exists(),(bot.pk,after))
+            self.assertTrue(bot.equipment_work.filter(action='improve').exists(),(bot.pk,after))
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind='quest',blueprint__tradeable=False).count(),12)
+        record_scenario('po-finale-dalsze-zycie',{'ticks_per_bot':60,'actions':dict(after),'characters':[{'camp':b.camp,'patrol_wins':b.patrols.filter(won=True).count(),'upgrades':b.equipment_work.filter(action='improve').count()} for b in bots]})
+        self.assertFalse(BotDecision.objects.filter(success=False).exists())
+        for action in ('story_accept', 'story_start', 'story_claim', 'story_talk', 'story_travel', 'hunt', 'boss', 'mine', 'claim', 'stock'):
+            self.assertGreater(actions[action], 0)
+        self.assertTrue(PremiumEntry.objects.filter(reference__startswith='story:').exists())

@@ -91,3 +91,27 @@ To godziny czasu świata z oczekiwaniem, nie samego klikania. Różnice obejmuj�
 Trzy zwykłe buildy (wojownik, łucznik, mag) sprawdzono do poziomu 6 z faktycznymi atakami i kosztem amunicji/many. Trzy boty obozowe zdobyły kampanię oraz grały dalej w połączonym świecie. Nie jest to pomiar trzech buildów endgame. Pełne NK, premium, wszystkie warty i konkurencja rynku pozostają poza tym pomiarem. Brak podstaw do resetu lub limitowania dorobku; liczbowych nagród i statystyk nie zmieniono.
 
 Chromium przeszedł rejestrację, wybór Khorinis, prolog, zakup i założenie broni, polowanie, frakcję i zakup napoju za zdobyte odłamki; następnie utworzył postać Kolonii. 24 widoki (dwa regiony, cztery strony, 320/390/1440 px) nie wykazały przewijania poziomego, brakujących obrazów ani błędów JS. Wszystko na osobnej bazie.
+
+## Krótkie, rozdzielone pakiety symulacji
+
+W aktywnym środowisku wirtualnym zwykłą iterację zaczynamy od:
+
+```sh
+python manage.py simulate_release --suite quick --report /tmp/ore-quick-01.json
+```
+
+Każdy przebieg wymaga nowej nazwy raportu; istniejący plik nie jest nadpisywany. Polecenie zawsze uruchamia oddzielną bazę SQLite, także gdy środowisko operatora wskazuje PostgreSQL. Raport schema2 zawiera wybrany `suite`, rzeczywistą listę testów, scenariusze i wynik.
+
+| Pakiet `--suite` | Zakres i zastosowanie |
+| --- | --- |
+| `quick` | Rangi, bramki, nadużycia, podstawowy UX i kontrakt polecenia; bez długich kampanii. 42 testy, około18s w opisanej próbie. |
+| `campaign` | Gracz G1, trzy obozy botów, trzy frakcje Khorinis, boty po połączeniu i trzy wczesne buildy. 5 przypadków, około5min w opisanej próbie; zwykłe zasoby i usługi, bez nadawania postępu. |
+| `pacing` | Osobne modele czasu wojownika, rzeczywiste koszty/regeneracja i wirtualnie przesuwany zegar; nie czekamy fizycznie na upływ godzin świata. |
+| `world` | Osobowości botów, rynek i cykle życia świata. |
+| `full` | Dotychczasowy pełny zestaw symulacyjny plus szybkie kontrole; nadal domyślny dla zgodności starszych wywołań. |
+
+Po zmianie konkretnego modułu uruchamiamy jego testy i `quick`, następnie tylko właściwy pakiet (`campaign`, `pacing` lub `world`). Pełny przebieg symulacyjny pozostaje kontrolą przed wydaniem. **Pełna automatyczna regresja to osobno `python manage.py test --noinput`; `--suite full` nie oznacza wszystkich testów repozytorium.** Rzeczywiste blokady i współbieżność nadal sprawdzamy na PostgreSQL, nie zastępujemy ich SQLite.
+
+Długie kampanie botów używają `TransactionTestCase`: planowanie i wykonanie jednej tury mają krótką transakcję jak worker, po turze następuje commit. Cała wielodniowa symulacja nie jest jedną rosnącą transakcją. Zachowano asercje ukończeń, zasobów, łupów, późniejszych wart i kuźni. Kampania trzech obozów na PostgreSQL przeszła w około2min. Preferencje aktorów są jawne i niezależne od przypadkowych sekwencji ID; nie nadają statystyk ani nagród.
+
+[Raport pakietów, pełnej regresji i PostgreSQL](reports/pakiety-symulacji-2026-11-11.json) odróżnia wyniki mechaniki sprzed zmiany oprawy od końcowej walidacji pakietów. Czasy zależą od maszyny i obciążenia, nie są obietnicą wydajności serwera ani czasem przejścia gry.
