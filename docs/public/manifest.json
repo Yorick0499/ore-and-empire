@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-11",
-  "code_revision": "fundament przygotowania połączenia / #30 i #35",
-  "migration": "0044_fundament_polaczenia",
+  "code_revision": "populacja 250 botów / #118",
+  "migration": "0045_populacja_do_trzystu_botow",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -138,7 +138,7 @@
         ],
         [
           "docs/BOT_PERFORMANCE.md",
-          "100 botów i wydajność"
+          "250 botów i wydajność"
         ],
         [
           "docs/LOCAL_AI_POLICIES.md",
@@ -226,6 +226,7 @@
     "docs/reports/petla-po-fundamentach-ai-2026-11-07.json",
     "docs/reports/pierwsza-pelna-edycja-2026-11-05.json",
     "docs/reports/polityki-lokalne-ai-2026-11-07.json",
+    "docs/reports/populacja-250-2026-11-11.json",
     "docs/reports/postacie-fabula-przywileje-2026-11-09.json",
     "docs/reports/postgresql-wspolbieznosc-2026-11-07.json",
     "docs/reports/rynsztunek-mmorpg-2026-11-07.json",

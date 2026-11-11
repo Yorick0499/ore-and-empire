@@ -1,3 +1,4 @@
+from characters.bot_population import DEFAULT_BOTS_PER_WORLD, MAX_BOTS_PER_WORLD
 from characters.world_clock import polish_day
 """Single-process local world: HTTP requests and bot rounds never overlap."""
 
@@ -22,15 +23,15 @@ class Command(BaseCommand):
         parser.add_argument("--setup-admin", action="store_true", help="Create the local administrator and a private credential file.")
         parser.add_argument("--host", default="127.0.0.1")
         parser.add_argument("--port", type=int, default=8000)
-        parser.add_argument("--bots", type=int, default=6)
+        parser.add_argument("--bots", type=int, default=DEFAULT_BOTS_PER_WORLD)
         parser.add_argument("--interval", type=float, default=5)
         parser.add_argument("--history-days",type=int,default=30,help="Retain raw bot decisions for this many complete UTC days; daily aggregates remain.")
 
     def handle(self, *args, **options):
         if not 1 <= options["history_days"] <= 3650:
             raise CommandError("--history-days must be 1-3650")
-        if not 0 <= options["bots"] <= 100:
-            raise CommandError("--bots must be 0-100")
+        if not 0 <= options["bots"] <= MAX_BOTS_PER_WORLD:
+            raise CommandError("--bots must be 0-300")
         if not 1 <= options["port"] <= 65535:
             raise CommandError("--port must be 1-65535")
         if not 1 <= options["interval"] <= 3600:

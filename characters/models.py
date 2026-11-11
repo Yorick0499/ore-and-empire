@@ -1,5 +1,6 @@
 from django.utils import timezone
 from uuid import uuid4
+from .bot_population import DEFAULT_BOTS_PER_WORLD, MAX_BOTS_PER_WORLD
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
@@ -25,10 +26,10 @@ class World(models.Model):
     status = models.CharField(max_length=12,default='active',choices=[('active','Aktywny'),('archived','Archiwalny')])
     is_current = models.BooleanField(default=False)
     configured = models.BooleanField(default=False)
-    bot_count = models.PositiveSmallIntegerField(default=6)
+    bot_count = models.PositiveSmallIntegerField(default=DEFAULT_BOTS_PER_WORLD)
     created_at = models.DateTimeField(default=timezone.now)
     class Meta:
-        constraints=[models.UniqueConstraint(fields=['is_current'],condition=models.Q(is_current=True),name='one_current_world'),models.CheckConstraint(condition=models.Q(bot_count__lte=100),name='world_bot_count_bounds')]
+        constraints=[models.UniqueConstraint(fields=['is_current'],condition=models.Q(is_current=True),name='one_current_world'),models.CheckConstraint(condition=models.Q(bot_count__lte=MAX_BOTS_PER_WORLD),name='world_bot_count_bounds')]
 
 
 class SchedulerLease(models.Model):
@@ -282,7 +283,8 @@ class PlayerProfile(models.Model):
         if group:
             name += " z " + ("Kopalni", "Przełęczy", "Bagien", "Kanionu", "Warty")[(group-1)%5]
             if self.pk>120:
-                name += f" {((self.pk-1)//120)+1}"
+                # Surnames repeat every 100 IDs (20 names × 5 places), not 120.
+                name += f" {((self.pk-1)//100)+1}"
         return name
 
     @property

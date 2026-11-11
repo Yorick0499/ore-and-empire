@@ -1,3 +1,4 @@
+from characters.bot_population import DEFAULT_BOTS_PER_WORLD
 import getpass
 from django.core.management import BaseCommand,CommandError
 from django.core.exceptions import ValidationError,PermissionDenied
@@ -8,7 +9,7 @@ class Command(BaseCommand):
     def add_arguments(self,parser):
         parser.add_argument('--name',required=True)
         parser.add_argument('--username',required=True)
-        parser.add_argument('--bots',type=int,default=100)
+        parser.add_argument('--bots',type=int,default=DEFAULT_BOTS_PER_WORLD)
     def handle(self,*args,**options):
         first=getpass.getpass('Hasło administratora: ');second=getpass.getpass('Powtórz hasło: ')
         if first!=second:raise CommandError('Hasła nie są zgodne.')

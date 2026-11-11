@@ -44,15 +44,15 @@ Grafiki: 36 przypisań do 25 odrębnych obrazów G2 z Gothicpedii. Ikony kategor
 
 ## Uruchomienie i zarządzanie
 
-Po migracji i konfiguracji Kolonii administrator może otworzyć wyspę przyciskiem **Otwórz Khorinis** w panelu ustawień świata. Domyślnie powstają 24 boty. Alternatywnie, przy zatrzymanej grze:
+Po migracji i konfiguracji Kolonii administrator może otworzyć wyspę przyciskiem **Otwórz Khorinis** w panelu ustawień świata. Domyślnie powstaje 125 botów; razem z domyślnymi 125 w Kolonii daje to 250 mieszkańców dwóch serwerów. Alternatywnie, przy zatrzymanej grze:
 
 ```bash
 python manage.py migrate
-python manage.py open_khorinis --bots 24 --name 'Latarnia — Khorinis'
+python manage.py open_khorinis --bots 125 --name 'Latarnia — Khorinis'
 python play.py --port 8001
 ```
 
-Ponowienie `open_khorinis` nie resetuje ani nie nadpisuje istniejącej populacji, nazwy i dorobku. Później wybierz serwer w panelu i zapisz nazwę/liczbę botów (0–100 na serwer). Odczyt panelu nie tworzy administratorowi dodatkowej postaci. Pełny reset całej instalacji jest dostępny z panelu głównej Kolonii i obejmuje **oba serwery**; zachowuje konta administratorów i tworzy prywatny backup.
+Ponowienie `open_khorinis` nie resetuje ani nie nadpisuje istniejącej populacji, nazwy i dorobku. Później wybierz serwer w panelu i zapisz nazwę/liczbę botów (0–300 na serwer). Odczyt panelu nie tworzy administratorowi dodatkowej postaci. Pełny reset całej instalacji jest dostępny z panelu głównej Kolonii i obejmuje **oba serwery**; zachowuje konta administratorów i tworzy prywatny backup.
 
 Lokalny launcher oraz produkcyjny worker mają **jedną wspólną adaptacyjną kolejkę**, z oddzielną dzierżawą dla każdego serwera. Dodanie drugiego świata nie uruchamia drugiej równoległej fali akcji. Cel pacingu pozostaje około 20% czasu kolejki, maksymalnie pięć akcji/s; to nie twarda gwarancja CPU. Sesje i kadencje osobowości nadal obowiązują. Healthcheck wymaga dostępnego schedulera dla każdego otwartego świata z botami. Samodzielne ograniczone testy: `python manage.py run_bots --world ID --rounds 1 --limit 10`; nie uruchamiaj ich równolegle z właścicielem dzierżawy.
 

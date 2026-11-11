@@ -50,7 +50,10 @@ def clear_migration_scaffold():
     worlds=list(World.objects.all())
     if len(worlds)>1:raise CommandError('Baza docelowa zawiera światy.')
     for world in worlds:
-        if any(getattr(world,f.attname)!=f.get_default() for f in World._meta.fields if f.name not in {'id','created_at','is_current'}) or not world.is_current:raise CommandError('Docelowy świat został skonfigurowany; import odmówiony.')
+        # Historical migrations create an empty six-bot placeholder. Changing the
+        # runtime default must not make that exact empty scaffold unimportable.
+        mismatch=any(getattr(world,f.attname)!=f.get_default() for f in World._meta.fields if f.name not in {'id','created_at','is_current','bot_count'})
+        if mismatch or world.bot_count not in {6,World._meta.get_field('bot_count').get_default()} or not world.is_current:raise CommandError('Docelowy świat został skonfigurowany; import odmówiony.')
     for guild in CampGuild.objects.all():
         if not worlds or guild.world_id!=worlds[0].pk or guild.camp not in {'OLD_CAMP','NEW_CAMP','SWAMP_CAMP'} or any(getattr(guild,f.attname)!=f.get_default() for f in CampGuild._meta.fields if f.name not in {'id','world','camp'}):raise CommandError('Obozy docelowe zawierają postęp; import odmówiony.')
     CampGuild.objects.all().delete();World.objects.all().delete()

@@ -121,16 +121,16 @@ class EndgameTests(TestCase):
             def choose(policy,observation):return 'list',self.dust.pk
         self.assertEqual(tick_bot(self.p,DumpDust(), force_active=True),('rejected',False))
 
-    def test_population_100_and_validator_101(self):
+    def test_population_100_and_validator_301(self):
         from .world_management import WorldSettingsForm
         call_command('run_bots',create=100,create_only=True,limit=100,stdout=StringIO())
         bots=list(PlayerProfile.objects.filter(is_bot=True).select_related('user'))
         self.assertEqual(len(bots),100);self.assertEqual(len({p.display_name for p in bots}),100)
         self.assertTrue(all(not p.user.has_usable_password() for p in bots))
-        self.assertTrue(WorldSettingsForm({'name':'Kolonia','bot_count':100}).is_valid())
-        self.assertFalse(WorldSettingsForm({'name':'Kolonia','bot_count':101}).is_valid())
+        self.assertTrue(WorldSettingsForm({'name':'Kolonia','bot_count':300}).is_valid())
+        self.assertFalse(WorldSettingsForm({'name':'Kolonia','bot_count':301}).is_valid())
         with transaction.atomic():
-            with self.assertRaises(IntegrityError):World.objects.filter(pk=self.p.world_id).update(bot_count=101)
+            with self.assertRaises(IntegrityError):World.objects.filter(pk=self.p.world_id).update(bot_count=301)
 
 
 class SchedulerTests(SimpleTestCase):

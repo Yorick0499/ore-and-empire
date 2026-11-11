@@ -1,10 +1,10 @@
 # Bieżąca roadmapa
 
-Stan: 9 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
+Stan: 11 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
 
 ## Wdrożone
 
-- Lokalny launcher, trwałe konto i do pięciu postaci, dwa równoległe nazwane światy, 0–100 botów.
+- Lokalny launcher, trwałe konto i do pięciu postaci, dwa równoległe nazwane światy, 0–300 botów na serwer (domyślnie 125+125).
 - Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
 - 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
 - Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
