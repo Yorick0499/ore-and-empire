@@ -89,7 +89,7 @@ class CharacterSelectionMiddleware:
                     _scope.set(selected_world.pk)
             return self.get_response(request)
     def process_view(self,request,view,args,kwargs):
-        if request.path.startswith('/health/') or not request.user.is_authenticated:return None
+        if request.path.startswith('/health/') or request.path=='/zarzadca/bariera/' or not request.user.is_authenticated:return None
         world=current_world()
         from .realms import open_worlds
         ready=request.user.characters.filter(world__in=open_worlds(),is_draft=False).select_related('world')

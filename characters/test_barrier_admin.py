@@ -42,7 +42,9 @@ class BarrierAdminTests(TestCase):
         with self.assertRaises(ValidationError):set_paused(self.admin,race.pk,True,'racing')
     def test_operator_can_read_during_merging_but_cannot_write(self):
         race=self.race();race.winner=self.guild;race.state='merging';race.lease_expires_at=timezone.now()+timedelta(minutes=5);race.save()
+        self.assertNotIn('active_character',self.client.session)
         self.assertEqual(self.client.get('/zarzadca/bariera/').status_code,200)
+        self.assertNotIn('active_character',self.client.session)
         self.assertEqual(self.client.post('/zarzadca/bariera/',{'action':'pause'}).status_code,503)
         self.client.force_login(self.people[0].user);self.assertEqual(self.client.get('/zarzadca/bariera/').status_code,503)
     def test_audit_is_bounded_and_hides_private_paths(self):
