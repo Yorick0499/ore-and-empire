@@ -32,6 +32,29 @@ class RankPathCatalogTests(SimpleTestCase):
         self.assertEqual(mapping['K2_PALADIN']['old_name'],'Paladyn')
         self.assertEqual(mapping['K2_PALADIN']['name'],'Sierżant straży')
 
+class RankProofTests(SimpleTestCase):
+    def test_old_proof_checks_derived_flag_and_every_old_field(self):
+        import json
+        from .management.commands.import_sqlite_world import canonical
+        old=[{'model':'characters.playerprofile','pk':1,'fields':{'camp':'NEW_CAMP','guild':'ROGUE','ore_balance':5432}},
+             {'model':'characters.campquest','pk':1,'fields':{'profile':1,'rank_key':'MERC','promoted_at':None,'progress':{'mine':1}}}]
+        new=json.loads(json.dumps(old));new[0]['fields']['legacy_water_path']=True
+        self.assertEqual(canonical(json.dumps(old)),canonical(json.dumps(new),legacy_rank_paths=True))
+        new[0]['fields']['ore_balance']+=1
+        self.assertNotEqual(canonical(json.dumps(old)),canonical(json.dumps(new),legacy_rank_paths=True))
+        new[0]['fields']['legacy_water_path']=False
+        with self.assertRaises(ValueError):canonical(json.dumps(new),legacy_rank_paths=True)
+    def test_current_proof_protects_the_flag_and_old_proof_accepts_only_its_derivation(self):
+        import json
+        from .management.commands.import_sqlite_world import canonical
+        old=[{'model':'characters.playerprofile','pk':1,'fields':{'camp':'NONE','guild':'NONE'}}]
+        new=json.loads(json.dumps(old));new[0]['fields']['legacy_water_path']=False
+        self.assertEqual(canonical(json.dumps(old)),canonical(json.dumps(new),legacy_rank_paths=True))
+        before=canonical(json.dumps(new));new[0]['fields']['legacy_water_path']=True
+        self.assertNotEqual(before,canonical(json.dumps(new)))
+        with self.assertRaises(ValueError):canonical(json.dumps(new),legacy_rank_paths=True)
+
+
 class RankPathTests(TestCase):
     def setUp(self):
         from .world_management import seed_clean_world
@@ -118,10 +141,14 @@ class RankSchemaMigrationTests(TransactionTestCase):
                 ids.append(p.pk)
             Quest.objects.create(profile_id=ids[3],rank_key='MERC',progress={'train:strength':1})
             before=list(Profile.objects.filter(pk__in=ids).order_by('pk').values());quests=list(Quest.objects.values())
+            from .migration_testing import historical_fixture
+            from .management.commands.import_sqlite_world import canonical,EXCLUDES
+            old_proof=canonical(historical_fixture(old,EXCLUDES))
             executor=MigrationExecutor(connection);executor.migrate(latest)
             new=executor.loader.project_state(latest).apps
             rows=list(new.get_model('characters','PlayerProfile').objects.filter(pk__in=ids).order_by('pk').values())
             self.assertEqual([row['legacy_water_path'] for row in rows],[True,True,True,True,False])
             self.assertEqual([{key:row[key] for key in before[0]} for row in rows],before)
             self.assertEqual(list(new.get_model('characters','CampQuest').objects.values()),quests)
+            self.assertEqual(canonical(historical_fixture(new,EXCLUDES),legacy_rank_paths=True),old_proof)
         finally:MigrationExecutor(connection).migrate(latest)

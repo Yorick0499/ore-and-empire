@@ -502,10 +502,21 @@
   },
   "verification": {
     "targeted_tests": 49,
-    "full_tests": 527,
-    "full_skipped_postgresql": 23,
     "real_old_schema_upgrade": true,
-    "fixture": "Testowe postacie; rzeczywisty zapis użytkownika nietknięty"
+    "fixture": "Testowe postacie; rzeczywisty zapis użytkownika nietknięty",
+    "baseline_full_tests": 527,
+    "baseline_full_revision": "2d498ec",
+    "baseline_postgresql_skipped": 23,
+    "final_rank_and_proof_tests": 11,
+    "restore_campaign_and_rank_tests": 15,
+    "earned_campaign_offset_scenarios": 3,
+    "offsets": [
+      999,
+      1000,
+      1001
+    ],
+    "final_full_regression": "Wynik końcowego commita w PR #129; bazowy przebieg powyżej poprzedza poprawki zgodności kopii i fixture maga.",
+    "bot_fixture": "Khorinis: bojowa osobowość maga jawnie wybrana jako hunter/grinder, data2026-11-11 09:00PL; bez nadawania rozwoju. Sprawdzono3przesunięciaID, wszystkie3frakcje kończą, mag naprawdę rzuca zaklęcia."
   },
   "gui": {
     "isolated_database": true,
@@ -634,5 +645,10 @@
     "GUI używa syntetycznych atrybutów, nie jest pomiarem organicznego czasu gry.",
     "Zachowana ścieżka v1 jest wyjątkiem zgodności dla dawnych postaci; nowe ścieżki mają po cztery rangi.",
     "Historyczne raporty czasów sprzed tej zmiany nie mierzą nowej ścieżki Wody."
-  ]
+  ],
+  "backup_protocol": {
+    "rank_path_schema": 1,
+    "old_pg_backups": "Porównanie wszystkich starych pól; dodany znacznik sprawdzany względem dawnej rangi i nieodebranego awansu przed pominięciem nowej kolumny w starym hashu.",
+    "current_backups": "Nowe kopie PG i SQLite chronią także wartość legacy_water_path."
+  }
 }

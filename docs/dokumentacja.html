@@ -1532,7 +1532,7 @@ rollback and location rank gates. SQLite tests do not validate production row lo
 <p>Katalog awansów ma wersję 2. Każda nowa gałąź ma cztery rangi (indeksy techniczne 0–3), bez liczenia braku członkostwa. Nowa droga Wody: <strong>Kret → Szkodnik → Mag Wody → Arcymag Wody</strong>. Wybór Najemnika prowadzi nową postać drogą wojownika, bez późniejszej zmiany gałęzi. Koszty, cele, poziomy i wymagane atrybuty rang pozostają takie same; progi fabuły odpowiadają nowym podstawowym szczeblom 2/3.</p>
 <p>Migracja oznacza dawną drogę Wody wyłącznie dla istniejących członków Nowego Obozu na rangach Najemnik/Mag Wody/Arcymag Wody lub z nieodebranym awansem na te rangi. Te postacie zachowują dawną możliwość Najemnik → Mag Wody, stare progi fabuły i poziomy przywilejów 3/4. Nie tracą zapłaconych awansów ani postępu. To wyjątek zgodności, nie piąta wymagana ranga dla nowych postaci. Nowe postacie nie mogą nadać sobie tego uprawnienia formularzem. Nie są przepisywane stare pola ani zadania; dodawany jest tylko znacznik zgodności. Ci sami następcy i koszty obowiązują boty.</p>
 <p>Straż Khorinis: <strong>Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży</strong>. Paladyni należą do przyszłej wyższej ścieżki #127. Techniczne klucze starych rang pozostają, w tym <code>K2_PALADIN</code> jako tożsamość obecnego Sierżanta; mapa wersji zachowuje dawną nazwę. Zachowane poziomy, wyposażenie, korzyści i ukończenia nie są zerowane. Ekran osobno pokazuje numer rangi „z 4” i poziom przywilejów (może być historycznie wyższy).</p>
-<p>Mapa wszystkich 30 tożsamości oraz <a href="#report-rowne-rangi-2026-11-11">dowody testów i GUI</a> opisują zakres tej zmiany. Dziewięć nowych testów obejmuje cztery rangi każdej gałęzi, stare awanse, bramki fabuły, przywileje, boty, ponowienia i rzeczywisty zapis0047→0048. Pełna lokalna regresja:527testów,23 wymagające PostgreSQL pominięte. Nie wdraża to jeszcze pięciu frakcji ani ośmiu rang.</p></article><article id="doc-camp-guilds" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Obozy i życie kolonii</span><span>docs/CAMP_GUILDS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CAMP_GUILDS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-camp-guilds--obozy-jako-gildie-etap-1">Obozy jako gildie — etap 1</h2>
+<p>Mapa wszystkich 30 tożsamości oraz <a href="#report-rowne-rangi-2026-11-11">dowody testów i GUI</a> opisują zakres tej zmiany. Jedenaście nowych testów obejmuje cztery rangi każdej gałęzi, stare awanse, bramki fabuły, przywileje, boty, ponowienia i rzeczywisty zapis0047→0048. Bazowa pełna lokalna regresja:527testów/23PG-pominięcia; po poprawce zgodności kopii11testów rang/dowodu oraz15testów rang/kopii/kampanii OK. Trzy dodatkowe przebiegi kampanii z przesuniętymi ID również OK; końcową pełną regresję wskazuje PR #129. Nie wdraża to jeszcze pięciu frakcji ani ośmiu rang.</p></article><article id="doc-camp-guilds" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Obozy i życie kolonii</span><span>docs/CAMP_GUILDS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CAMP_GUILDS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-camp-guilds--obozy-jako-gildie-etap-1">Obozy jako gildie — etap 1</h2>
 <blockquote>
 <p><strong>Decyzja projektowa 11 XI 2026:</strong> konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje <a href="#doc-roadmap">aktualna roadmapa</a>. Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.</p>
 </blockquote>
@@ -2076,7 +2076,9 @@ python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
 <h3 id="doc-backups--panel-wyscigu-i-audytu-35">Panel wyścigu i audytu — #35</h3>
 <p>Aktywny administrator otwiera <code>/zarzadca/bariera/</code> z ustawień świata. Panel pokazuje trzy obozy, poziom i kwalifikację, wspólne HP, sumę obrażeń oraz liczbę różnych kont z dodatnim wkładem. Plan odczytowy pokazuje postacie, konta, oferty, nierozliczone aktywności i konflikty, bez tworzenia wyścigu ani kopii. Audyt jest ograniczony do ostatnich 40 zdarzeń; prywatne ścieżki plików nie trafiają do strony.</p>
 <p>Pauza i wznowienie korzystają z jednej usługi dla WWW i CLI. Wymagają administratora, zgodnego aktualnego stanu i braku aktywnego wykonawcy. Powtórzona pauza nie dodaje kolejnego zdarzenia. Wznowienie tylko usuwa pauzę: przejście po rzeczywistym zwycięstwie podejmuje worker. Panel nie nadaje zwycięstwa, nie wykonuje długiej kopii w HTTP i nie cofa <code>joined</code>.</p>
-<p>Podczas przejścia administrator może odczytać ten panel, choć pozostała gra zwraca 503. Zapisy w panelu nadal są wtedy zablokowane. Po przerwaniu procesu odczekaj do wygaśnięcia dzierżawy, sprawdź narzędzia/miejsce/uprawnienia i wznów tę samą operację. Restart, retry i odtwarzanie zachowują dotychczasowe mechanizmy i testy etapu #120.</p></article><article id="doc-production" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/PRODUCTION.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/PRODUCTION.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-production--profil-serwera-staging-i-operacje-24">Profil serwera, staging i operacje (#24)</h2>
+<p>Podczas przejścia administrator może odczytać ten panel, choć pozostała gra zwraca 503. Zapisy w panelu nadal są wtedy zablokowane. Po przerwaniu procesu odczekaj do wygaśnięcia dzierżawy, sprawdź narzędzia/miejsce/uprawnienia i wznów tę samą operację. Restart, retry i odtwarzanie zachowują dotychczasowe mechanizmy i testy etapu #120.</p>
+<h3 id="doc-backups--zgodnosc-rang-od-migracji-0048">Zgodność rang od migracji 0048</h3>
+<p>Nowe kopie PostgreSQL mają <code>rank_path_schema=1</code>, a dowód obejmuje <code>legacy_water_path</code>. Dla wcześniejszych kopii PG weryfikator sprawdza poprawne wyliczenie nowego znacznika z dawnej frakcji, rangi i nieodebranego awansu; dopiero potem pomija tę jedną dodaną kolumnę przy porównaniu starego hasha. Pozostałe pola i liczby rekordów nadal muszą być identyczne. Błędny znacznik odrzuca odtworzenie; nie wystarcza zgodność samej rudy. Nowe dowody SQLite również obejmują znacznik. Test0047→0048 porównuje pełny logiczny snapshot oraz wszystkie stare pola i zadania. <a href="#doc-camps">Zakres rang</a>.</p></article><article id="doc-production" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/PRODUCTION.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/PRODUCTION.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-production--profil-serwera-staging-i-operacje-24">Profil serwera, staging i operacje (#24)</h2>
 <p>Domyślna gra lokalna pozostaje przy SQLite i <code>play.py</code>. Ten profil dotyczy <strong>osobnej instalacji PostgreSQL</strong>. Gotowy kod i staging nie oznaczają, że prywatny świat został opublikowany. Potrzebne są własna domena, prywatne sekrety i konfiguracja hosta. Nie uruchamiamy tu realnych płatności ani Gothic II.</p>
 <h3 id="doc-production--procesy-i-konfiguracja">Procesy i konfiguracja</h3>
 <ul>
@@ -13752,10 +13754,21 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
   },
   &quot;verification&quot;: {
     &quot;targeted_tests&quot;: 49,
-    &quot;full_tests&quot;: 527,
-    &quot;full_skipped_postgresql&quot;: 23,
     &quot;real_old_schema_upgrade&quot;: true,
-    &quot;fixture&quot;: &quot;Testowe postacie; rzeczywisty zapis użytkownika nietknięty&quot;
+    &quot;fixture&quot;: &quot;Testowe postacie; rzeczywisty zapis użytkownika nietknięty&quot;,
+    &quot;baseline_full_tests&quot;: 527,
+    &quot;baseline_full_revision&quot;: &quot;2d498ec&quot;,
+    &quot;baseline_postgresql_skipped&quot;: 23,
+    &quot;final_rank_and_proof_tests&quot;: 11,
+    &quot;restore_campaign_and_rank_tests&quot;: 15,
+    &quot;earned_campaign_offset_scenarios&quot;: 3,
+    &quot;offsets&quot;: [
+      999,
+      1000,
+      1001
+    ],
+    &quot;final_full_regression&quot;: &quot;Wynik końcowego commita w PR #129; bazowy przebieg powyżej poprzedza poprawki zgodności kopii i fixture maga.&quot;,
+    &quot;bot_fixture&quot;: &quot;Khorinis: bojowa osobowość maga jawnie wybrana jako hunter/grinder, data2026-11-11 09:00PL; bez nadawania rozwoju. Sprawdzono3przesunięciaID, wszystkie3frakcje kończą, mag naprawdę rzuca zaklęcia.&quot;
   },
   &quot;gui&quot;: {
     &quot;isolated_database&quot;: true,
@@ -13884,7 +13897,12 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     &quot;GUI używa syntetycznych atrybutów, nie jest pomiarem organicznego czasu gry.&quot;,
     &quot;Zachowana ścieżka v1 jest wyjątkiem zgodności dla dawnych postaci; nowe ścieżki mają po cztery rangi.&quot;,
     &quot;Historyczne raporty czasów sprzed tej zmiany nie mierzą nowej ścieżki Wody.&quot;
-  ]
+  ],
+  &quot;backup_protocol&quot;: {
+    &quot;rank_path_schema&quot;: 1,
+    &quot;old_pg_backups&quot;: &quot;Porównanie wszystkich starych pól; dodany znacznik sprawdzany względem dawnej rangi i nieodebranego awansu przed pominięciem nowej kolumny w starym hashu.&quot;,
+    &quot;current_backups&quot;: &quot;Nowe kopie PG i SQLite chronią także wartość legacy_water_path.&quot;
+  }
 }</code></pre><button type="button" class="download" data-report-download="rowne-rangi-2026-11-11.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-rynsztunek-mmorpg-2026-11-07"><summary>rynsztunek-mmorpg-2026-11-07.json</summary><pre><code>{
   &quot;schema&quot;: 1,
   &quot;success&quot;: true,

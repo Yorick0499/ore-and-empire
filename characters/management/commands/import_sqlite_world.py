@@ -11,8 +11,20 @@ from ore_empire.database import sqlite_environment
 
 EXCLUDES=['contenttypes','auth.permission','sessions.session','characters.schedulerlease']
 
-def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False, legacy_characters=False, legacy_realms=False, legacy_origins=False, legacy_barrier=False):
+def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False, legacy_characters=False, legacy_realms=False, legacy_origins=False, legacy_barrier=False, legacy_rank_paths=False):
     rows=json.loads(raw)
+    if legacy_rank_paths:
+        # A pre-0048 proof has no flag. Verify its derivation before omitting
+        # just that added column; all original fields still enter the digest.
+        ranks={'MERC','WATER_MAGE','ARCH_WATER'}
+        pending={row['fields']['profile'] for row in rows if row['model']=='characters.campquest'
+                 and row['fields']['rank_key'] in ranks and row['fields']['promoted_at'] is None}
+        for row in rows:
+            if row['model']=='characters.playerprofile':
+                fields=row['fields']
+                expected=fields['camp']=='NEW_CAMP' and (fields['guild'] in ranks or row['pk'] in pending)
+                if fields.get('legacy_water_path') is not expected:raise ValueError('Niepoprawne zachowanie dawnej drogi Wody w kopii.')
+                fields.pop('legacy_water_path')
     if legacy_barrier:
         for row in rows:
             if row['model']=='characters.playerprofile':
