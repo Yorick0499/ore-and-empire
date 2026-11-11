@@ -59,7 +59,7 @@ def dry_run(colony_id,khorinis_id):
 
 
 def event(operation,kind,**details):
-    ConvergenceEvent.objects.create(operation=operation,kind=kind,attempt=operation.attempts,details=details)
+    ConvergenceEvent.objects.create(operation=operation,kind=kind,attempt=operation.attempts,details={'operator':operation.operator_id,**details})
 
 
 @transaction.atomic

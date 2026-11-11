@@ -93,6 +93,7 @@ class PreparationTests(TransactionTestCase):
         self.assertEqual(again.phase,'ready');self.assertEqual(again.attempts,1)
         self.assertEqual(first.events.filter(kind='planned').count(),1)
         self.assertEqual(first.events.filter(kind='snapshot_verified').count(),1)
+        self.assertTrue(all(e.details['operator']==self.admin.pk for e in first.events.all()))
         self.assertEqual(self.p.world_id,self.colony.pk)
         self.assertEqual(World.objects.filter(is_open=True).count(),1)
 
