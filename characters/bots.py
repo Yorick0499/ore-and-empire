@@ -86,6 +86,7 @@ class Observation:
     forge_target: int | None = None
     forge_level: int = 0
     patrol_depth: int | None = None
+    patrol_track: str = "legacy"
     ammo_id: int | None = None
     ammo_blocked: bool = False
     resupply_ready: bool = False
@@ -301,7 +302,12 @@ class BaselinePolicyV23(BaselinePolicyV22):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV23):pass
+class BaselinePolicyV24(BaselinePolicyV23):
+    def choose(self,o):
+        action,target=super().choose(o)
+        return ('regional_patrol',target) if action=='patrol' and o.patrol_track!='legacy' else (action,target)
+
+class BaselinePolicy(BaselinePolicyV24):pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -564,6 +570,17 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 if privileges(profile)['can_rally']:raid_action='raid_rally'
             elif raid_status['can_attack'] and profile.current_health>=min(profile.max_health,(raid.attack+10)*3+10) and (not profile.prepared_magic_id or (active_magic and profile.current_mana>=active_magic.cost)):
                 raid_action='raid_strike';raid_target=raid.pk
+    from .regional_endgame import unlocked as regional_unlocked
+    if regional_unlocked(profile):
+        weekly=raid_card(profile,'weekly');pending=next(iter(weekly['rewards']),None)
+        if pending:raid_action='raid_claim';raid_target=pending.pk
+        elif profile.bot_turn%13==0:
+            raid=weekly['raid']
+            if not raid:
+                from .camp_privileges import privileges
+                if privileges(profile)['can_rally']:raid_action='raid_weekly_rally';raid_target=None
+            elif weekly['can_attack'] and profile.current_health>=min(profile.max_health,(raid.attack+10)*3+10) and (not profile.prepared_magic_id or (active_magic and profile.current_mana>=active_magic.cost)):
+                raid_action='raid_weekly_strike';raid_target=raid.pk
     if profile.level>=30 and profile.camp in {'OLD_CAMP','NEW_CAMP','SWAMP_CAMP'} and profile.bot_turn%13==0:
         from .sleeper import card as sleeper_card
         from .models import SleeperReward
@@ -594,7 +611,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     craft_action,craft_target=bot_craft_plan(profile)
     from .market_policy import bot_market_plan
     market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'},inventory=inventory,market=market)
-    forge_action='';forge_target=None;forge_level=0;patrol_depth=None
+    forge_action='';forge_target=None;forge_level=0;patrol_depth=None;patrol_track='legacy'
     if not profile.is_busy:
         from .enhancements import upgrade_cost
         dust=sum(i.quantity for i in inventory if i.blueprint.catalog_key=='rune-dust' and not i.is_market_listed)
@@ -605,14 +622,18 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         obsolete=next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.can_salvage and (i.blueprint.kind!='weapon' or i.effective_stats['damage']<=damage)),None)
         if not forge_action and obsolete:forge_action='salvage';forge_target=obsolete.pk
         from .frontier import enemy,COOLDOWN,frontier_unlocked
-        from .models import FrontierProgress
+        from .models import FrontierProgress,RegionalFrontierProgress
+        from .regional_endgame import TRACKS,accessible,unlocked,fee,rewarded_today,DAILY_REWARDS
         progress=FrontierProgress.objects.filter(profile=profile).first() if frontier_unlocked(profile) else None
         if frontier_unlocked(profile) and not ammo_blocked and (not progress or not progress.last_attempt_at or timezone.now()>=progress.last_attempt_at+COOLDOWN):
-            # Farm an easier unlocked challenge when the next guardian is unsafe.
-            base_damage=combat_damage
-            for depth in range(progress.unlocked if progress else 1,0,-1):
-                foe=enemy(depth)
-                if safe_to_hunt(profile,foe,base_damage):patrol_depth=depth;break
+            choices=[k for k in TRACKS if accessible(profile,k)] if unlocked(profile) and rewarded_today(profile)<DAILY_REWARDS else []
+            if choices:
+                selected=choices[profile.bot_turn%len(choices)];rp=RegionalFrontierProgress.objects.filter(profile=profile,track=selected).first()
+                for depth in range(rp.unlocked if rp else 1,0,-1):
+                    if profile.ore_balance>=fee(depth) and safe_to_hunt(profile,enemy(depth,selected),combat_damage):patrol_depth=depth;patrol_track=selected;break
+            if patrol_depth is None:
+                for depth in range(progress.unlocked if progress else 1,0,-1):
+                    if safe_to_hunt(profile,enemy(depth),combat_damage):patrol_depth=depth;break
     if not forge_action and len(inventory)>=8 and not profile.is_busy:
         excess=next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.can_salvage and (not equipment or i.pk!=equipment.pk)),None)
         if excess:forge_action='salvage';forge_target=excess.pk
@@ -626,7 +647,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         finance_id=financed.pk if financed else None,finance_old_id=equipped.pk if financed else None,finance_price=financed.base_value if financed else 0,
         personality=profile.bot_personality,
         ammo_id=ammo_stock.pk if ammo_stock else None,ammo_blocked=ammo_blocked,
-        forge_action=forge_action,forge_target=forge_target,forge_level=forge_level,patrol_depth=patrol_depth,
+        forge_action=forge_action,forge_target=forge_target,forge_level=forge_level,patrol_depth=patrol_depth,patrol_track=patrol_track,
         energy=profile.current_energy, ore=profile.ore_balance, busy=profile.is_busy, experience=profile.experience,
         reward_ready=profile.action_end_time is not None and profile.action_end_time <= timezone.now(),
         offer_id=offer.pk if offer else None, inventory_id=item.pk if item else None,
@@ -656,10 +677,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-23" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-24" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
     if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
-        policy=None;policy_version="baseline-23"
+        policy=None;policy_version="baseline-24"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
     if isinstance(policy,OllamaPolicy):policy_version=policy.version
@@ -680,9 +701,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         elif action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
             from .enhancements import improve_item,salvage_item
             success=bool(improve_item(profile,target,obs.forge_level,uuid4()) if action=='improve' else salvage_item(profile,target,uuid4()))
-        elif action=='patrol' and target==obs.patrol_depth:
+        elif action in {'patrol','regional_patrol'} and target==obs.patrol_depth:
             from .frontier import patrol
-            success=bool(patrol(profile,target,uuid4()))
+            success=bool(patrol(profile,target,uuid4(),obs.patrol_track if action=='regional_patrol' else 'legacy'))
         elif action==obs.market_action and target==obs.market_target and action in {'market_observe','market_reprice','market_cancel','market_sell','market_buy'}:
             market_item=OwnedItem.objects.filter(pk=target).first()
             success=bool(market_item and (observe_legacy_listing(profile,market_item) if action=='market_observe' else reprice_listing(profile,market_item,obs.market_price,market_item.market_price) if action=='market_reprice' else game.delist_item_from_market(profile,market_item,'stale') if action=='market_cancel' else game.sell_item_from_npc(profile,market_item) if action=='market_sell' else game.buy_item_on_market(profile,market_item,obs.market_price)))
@@ -690,7 +711,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             success=bool(learn_craft(profile,('smithing','alchemy')[target-1]) if action=='craft_learn' else buy_craft_material(profile,target) if action=='craft_material' else craft_item(profile,target,uuid4()))
         elif action==obs.personal_action and target==obs.personal_target and action in {'challenge_accept','challenge_claim','achievement_claim'}:
             success=bool(accept_challenge(profile,('daily','weekly')[target-1]) if action=='challenge_accept' else claim_challenge(profile,target) if action=='challenge_claim' else claim_achievement(profile,list(ACHIEVEMENTS)[target-1]))
-        elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_claim','sleeper_rally','sleeper_strike','sleeper_claim','region_travel','alliance_promote'}:
+        elif action==obs.raid_action and target==obs.raid_target and action in {'raid_rally','raid_strike','raid_weekly_rally','raid_weekly_strike','raid_claim','sleeper_rally','sleeper_strike','sleeper_claim','region_travel','alliance_promote'}:
             if action.startswith('sleeper_'):
                 from .sleeper import rally,strike,claim_reward
                 success=bool(rally(profile) if action=='sleeper_rally' else strike(profile,target,uuid4()) if action=='sleeper_strike' else claim_reward(profile))
@@ -700,7 +721,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             elif action=='region_travel':
                 from .barrier import travel
                 success=bool(travel(profile,target))
-            else:success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
+            else:success=bool(rally_camp_raid(profile,'weekly' if action=='raid_weekly_rally' else 'daily') if action in {'raid_rally','raid_weekly_rally'} else strike_camp_raid(profile,target,uuid4()) if action in {'raid_strike','raid_weekly_strike'} else claim_camp_raid(profile,target))
         elif action=='choose_faction' and obs.camp_action==action and target==obs.camp_target_id:
             from .faction_choice import choose
             success=choose(profile,FACTIONS[target-1][0])

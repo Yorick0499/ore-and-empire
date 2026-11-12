@@ -844,6 +844,7 @@ def camp_guild_view(request):
             from .sleeper import rally,strike,claim_reward
             result=rally(profile) if action=='sleeper_rally' else strike(profile,positive_id(request.POST.get('siege')),request.POST.get('request_key')) if action=='sleeper_strike' else claim_reward(profile)
         elif action=='rally':result=rally_camp_raid(profile)
+        elif action=='weekly_rally':result=rally_camp_raid(profile,'weekly')
         elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
         elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
         else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
@@ -851,7 +852,9 @@ def camp_guild_view(request):
         return redirect('camp_guild')
     from .sleeper import card as sleeper_card
     from .barrier import alliance_card
-    return render(request,'characters/camp_guild.html',{'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
+    from .regional_endgame import unlocked as endgame_unlocked
+    weekly_eligible=endgame_unlocked(profile)
+    return render(request,'characters/camp_guild.html',{'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
 
 
 @sensitive_post_parameters("password")
@@ -1005,19 +1008,32 @@ def hall_view(request):
 @login_required
 def frontier_view(request):
     from .frontier import patrol,board,season_key,enemy,COOLDOWN,frontier_unlocked,presentation
-    from .models import CampaignCompletion,FrontierProgress
-    profile=request.user.playerprofile
-    refresh_player(profile)
+    from .models import FrontierProgress,RegionalFrontierProgress
+    from .regional_endgame import TRACKS,accessible,unlocked,fee,rewarded_today,DAILY_REWARDS
+    from urllib.parse import urlencode
+    from django.urls import reverse
+    from django.utils import timezone
+    profile=request.user.playerprofile;refresh_player(profile)
+    track=request.POST.get('track','legacy') if request.method=='POST' else request.GET.get('track','legacy')
+    if track not in {'legacy',*TRACKS}:raise PermissionDenied('Nieznany szlak warty.')
     if request.method=='POST':
-        depth=positive_id(request.POST.get('depth'))
-        report_action(request,patrol(profile,depth,request.POST.get('request_key')))
-        return redirect('frontier_page')
-    progress=FrontierProgress.objects.filter(profile=profile).first()
-    depth=progress.unlocked if progress else 1
-    rows=list(board(profile.world))
+        report_action(request,patrol(profile,positive_id(request.POST.get('depth')),request.POST.get('request_key'),track))
+        return redirect(reverse('frontier_page')+'?'+urlencode({'track':track}))
+    common=FrontierProgress.objects.filter(profile=profile).first()
+    regional={p.track:p for p in RegionalFrontierProgress.objects.filter(profile=profile)}
+    progress=common if track=='legacy' else regional.get(track);depth=progress.unlocked if progress else 1
+    can_enter=unlocked(profile);cards=[{'key':t.key,'name':t.name,'art':t.art,'unlocked':can_enter,'accessible':accessible(profile,t.key) if can_enter else False,'depth':regional[t.key].unlocked if t.key in regional else 1,'universe':t.universe} for t in TRACKS.values()]
+    ranking=request.GET.get('ranking','all')
+    if ranking not in {'all','legacy',*TRACKS}:ranking='all'
+    rows=list(board(profile.world,None if ranking=='all' else ranking))
     names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[r['profile_id'] for r in rows]).select_related('user')}
     for row in rows:row['name']=names[row['profile_id']]
-    return render(request,'characters/frontier.html',{'profile':profile,'ready':frontier_unlocked(profile),'frontier_theme':presentation(profile),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})
+    theme=presentation(profile)
+    if track!='legacy':theme={'title':TRACKS[track].name,'label':'Regionalny endgame NK','art':TRACKS[track].art,'description':'Osiągnij poziom 45, odbierz finał NK i udaj się do właściwego regionu. Postęp tego szlaku jest niezależny od dawnych wart.'}
+    ready=frontier_unlocked(profile) if track=='legacy' else accessible(profile,track)
+    cooldown_ready=not common or not common.last_attempt_at or timezone.now()>=common.last_attempt_at+COOLDOWN
+    can_attempt=ready and cooldown_ready and not profile.is_busy and profile.current_energy>=20 and profile.current_health>=10 and profile.ore_balance>=(fee(depth) if track!='legacy' else 0)
+    return render(request,'characters/frontier.html',{'profile':profile,'ready':ready,'can_attempt':can_attempt,'progress':progress,'depth':depth,'enemy':enemy(depth,track),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':common.last_attempt_at+COOLDOWN if common and common.last_attempt_at else None,'frontier_theme':theme,'track':track,'tracks':cards,'regional':track!='legacy','regional_unlocked':can_enter,'entry_fee':fee(depth) if track!='legacy' else 0,'rewards_left':max(0,DAILY_REWARDS-rewarded_today(profile)) if can_enter else 0,'ranking':ranking,'ranking_name':'Wszystkie szlaki' if ranking=='all' else 'Dawne warty' if ranking=='legacy' else TRACKS[ranking].name})
 
 
 @login_required

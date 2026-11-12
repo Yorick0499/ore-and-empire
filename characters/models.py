@@ -938,6 +938,8 @@ class CampContribution(models.Model):
 
 
 class CampRaid(models.Model):
+    cycle=models.CharField(max_length=8,default='daily')
+    rule_version=models.PositiveSmallIntegerField(default=1)
     guild = models.ForeignKey(CampGuild,on_delete=models.PROTECT,related_name='raids')
     day = models.DateField()
     name = models.CharField(max_length=120)
@@ -949,7 +951,7 @@ class CampRaid(models.Model):
     minimum_level = models.PositiveSmallIntegerField(default=3)
     completed_at = models.DateTimeField(null=True,blank=True)
     class Meta:
-        constraints=[models.UniqueConstraint(fields=['guild','day'],name='one_camp_raid_per_day'),models.CheckConstraint(condition=models.Q(health__lte=models.F('maximum_health'),maximum_health__gte=1),name='camp_raid_health_bounds')]
+        constraints=[models.UniqueConstraint(fields=['guild','day','cycle'],name='one_camp_raid_per_cycle'),models.CheckConstraint(condition=models.Q(cycle__in=['daily','weekly'],rule_version__gte=1),name='camp_raid_cycle_valid'),models.CheckConstraint(condition=models.Q(health__lte=models.F('maximum_health'),maximum_health__gte=1),name='camp_raid_health_bounds')]
 
 
 class CampRaidStrike(models.Model):
@@ -1096,7 +1098,21 @@ class FrontierProgress(models.Model):
     last_attempt_at = models.DateTimeField(null=True, blank=True)
 
 
+class RegionalFrontierProgress(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.CASCADE,related_name='regional_frontiers')
+    track=models.CharField(max_length=12)
+    unlocked=models.PositiveIntegerField(default=1)
+    wins=models.PositiveIntegerField(default=0)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','track'],name='one_regional_frontier'),models.CheckConstraint(condition=models.Q(track__in=['khorinis','valley','jarkendar','irdorath'],unlocked__gte=1,unlocked__lte=100),name='regional_frontier_bounds')]
+
+
 class FrontierRecord(models.Model):
+    track=models.CharField(max_length=12,default='legacy')
+    @property
+    def track_name(self):
+        from .regional_endgame import TRACKS
+        return TRACKS[self.track].name if self.track in TRACKS else 'Dawne warty'
     profile = models.ForeignKey(PlayerProfile, on_delete=models.CASCADE, related_name='patrols')
     request_key = models.UUIDField()
     depth = models.PositiveIntegerField()
@@ -1106,9 +1122,9 @@ class FrontierRecord(models.Model):
     snapshot = models.JSONField(default=dict)
     created_at = models.DateTimeField(default=timezone.now)
     class Meta:
-        constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='frontier_request')]
+        constraints = [models.UniqueConstraint(fields=['profile','request_key'], name='frontier_request'),models.CheckConstraint(condition=models.Q(track__in=['legacy','khorinis','valley','jarkendar','irdorath']),name='frontier_track_valid')]
         ordering = ['-created_at','-pk']
-        indexes = [models.Index(fields=['profile','season'], name='frontier_profile_season')]
+        indexes = [models.Index(fields=['profile','season'], name='frontier_profile_season'),models.Index(fields=['profile','created_at'],name='frontier_profile_created')]
 
 
 class CampSupplyUse(models.Model):

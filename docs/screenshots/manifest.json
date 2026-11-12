@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0052_nk_belts",
+  "migration": "0053_regional_endgame",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -539,6 +539,38 @@
       "captured_at_utc": "2026-11-12T21:18:05.361662+00:00",
       "fixture": "Wyłącznie lokalna baza GUI; syntetyczny weteran45 z odebranym finałem NK, rzeczywisty formularz warty; pełna zarobiona droga testowana osobno",
       "theme": "pelna-droga-i-lokacje-nk-128"
+    },
+    {
+      "file": "regional-patrol-390.png",
+      "bytes": 271248,
+      "sha256": "664279920cc8a3174fefea43e9b7ffee3ad9ce31bba9672f981590f798f53d9f",
+      "captured_at_utc": "2026-11-12T21:55:51.519046+00:00",
+      "fixture": "Prywatna baza testowa: syntetyczny weteran45 po finale NK; zwykłe formularze i lokalne assety",
+      "theme": "regionalny-endgame-136"
+    },
+    {
+      "file": "regional-patrol-1440.png",
+      "bytes": 599105,
+      "sha256": "9e5d7ba8ed3ebbb5afc5bddb2e8ec0f82b95cb32e8b719900e6311a17bd76448",
+      "captured_at_utc": "2026-11-12T21:55:52.385205+00:00",
+      "fixture": "Prywatna baza testowa: syntetyczny weteran45 po finale NK; zwykłe formularze i lokalne assety",
+      "theme": "regionalny-endgame-136"
+    },
+    {
+      "file": "weekly-raid-390.png",
+      "bytes": 239095,
+      "sha256": "7d40a0004569e83b989c96c98e47fc877b5e6111b4926384f0160337e6cca0f3",
+      "captured_at_utc": "2026-11-12T21:55:58.941647+00:00",
+      "fixture": "Prywatna baza testowa: syntetyczny weteran45 po finale NK; zwykłe formularze i lokalne assety",
+      "theme": "regionalny-endgame-136"
+    },
+    {
+      "file": "weekly-raid-1440.png",
+      "bytes": 512525,
+      "sha256": "16980ec9bac4a40c07b3dcbaa047564c9cea82eabad56cf8fbde409dd3fd39bb",
+      "captured_at_utc": "2026-11-12T21:55:59.132141+00:00",
+      "fixture": "Prywatna baza testowa: syntetyczny weteran45 po finale NK; zwykłe formularze i lokalne assety",
+      "theme": "regionalny-endgame-136"
     }
   ]
 }

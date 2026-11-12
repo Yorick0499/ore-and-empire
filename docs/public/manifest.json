@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-12",
-  "code_revision": "pełna droga i lokacje NK / #128/#32",
-  "migration": "0052_nk_belts",
+  "code_revision": "regionalny endgame / #136",
+  "migration": "0053_regional_endgame",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -85,6 +85,10 @@
         [
           "docs/JOURNAL.md",
           "Dziennik i powiadomienia"
+        ],
+        [
+          "docs/REGIONAL_ENDGAME.md",
+          "Regionalny endgame i tygodniowy cel wspólnoty"
         ]
       ]
     },
@@ -263,6 +267,7 @@
     "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json",
     "docs/reports/gothic2-nk-content-2026-11-12.json",
     "docs/reports/gothic2-nk-assets-2026-11-12.json",
-    "docs/reports/pelna-droga-2026-11-12.json"
+    "docs/reports/pelna-droga-2026-11-12.json",
+    "docs/reports/regionalny-endgame-2026-11-12.json"
   ]
 }

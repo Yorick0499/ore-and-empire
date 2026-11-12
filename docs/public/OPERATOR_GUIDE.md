@@ -1,6 +1,6 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 12 listopada 2026, wspólny świat po Barierze, migracja0052. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 12 listopada 2026, wspólny świat po Barierze, migracja0053. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
@@ -20,7 +20,7 @@ Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwyci�
 | Opcjonalny serwer | PostgreSQL, psycopg 3.3.8; szablon Compose używa PostgreSQL 17 |
 | Procesy produkcyjne | Gunicorn 26.2.0, osobny `run_worker`, WhiteNoise 6.12.0, Caddy 2, Docker Compose / szablony systemd |
 | Reguły gry | Wspólne usługi domenowe i transakcje Django dla ludzi oraz botów |
-| Boty | Reguły `baseline-23`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
+| Boty | Reguły `baseline-24`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
 | Opcjonalny eksperyment AI | Lokalny adapter Ollama, jawny opt-in; model i GPU nie są wymagane do normalnej gry |
 | Zegar | `zoneinfo`, `Europe/Warsaw`, Astral 3.2; automatyczne CET/CEST |
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |
@@ -318,3 +318,5 @@ Wyszukiwarka przeszukuje tekst rozdziałów i raportów. Spis treści działa ta
 
 
 Od migracji 0042: [pięć postaci, fabuła i przywileje rang](../CHARACTERS_AND_WORLDS.md). Kreator pojawia się po rejestracji; w zarządcy wybierz imię postaci wraz z kontem i slotem. Konta administratorów i hasła pozostają.
+
+Regionalny endgame po NK i zgodność migracji0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat23; stare odtworzenia pozostają zgodne.

@@ -1,10 +1,10 @@
 from .barrier import guild_for,raid_guild_ids
 from .world_clock import POLISH_TIME
 """One shared opponent per camp and Polish calendar day, paid asynchronous three-round sorties."""
-from datetime import timezone as utc,timedelta
+from datetime import datetime,time,timezone as utc,timedelta
 from uuid import UUID
 import random
-from django.db.models import Sum
+from django.db.models import Sum,Q
 from django.utils import timezone
 from .models import CampGuild,CampRaid,CampRaidStrike,CampRaidReward
 from .game_logic import player_action,CombatResult,check_level_up
@@ -22,13 +22,19 @@ def phase(raid):
 
 
 @player_action
-def rally_camp_raid(profile):
+def rally_camp_raid(profile,cycle="daily"):
+    if cycle not in {"daily","weekly"}:return False
+    from .regional_endgame import unlocked,week_start,weekly_track
+    if cycle=="weekly" and not unlocked(profile):return False
     from .camp_privileges import privileges
     if not privileges(profile)["can_rally"]:return False
     if profile.camp not in CAMPS:return False
     guild=guild_for(profile,lock=True)
     name,art=ENCOUNTERS[guild.camp];health=500+guild.level*100
-    raid,_=CampRaid.objects.get_or_create(guild=guild,day=timezone.now().astimezone(POLISH_TIME).date(),defaults={'name':name,'art_key':art,'health':health,'maximum_health':health,'attack':10+guild.level*2,'protection':4+guild.level*2})
+    day=timezone.now().astimezone(POLISH_TIME).date()
+    if cycle=='weekly':
+        day=week_start();track=weekly_track(day);name='Tygodniowy cel: '+track.name;art=track.species[-1];health=10000+guild.level*1000
+    raid,_=CampRaid.objects.get_or_create(guild=guild,day=day,cycle=cycle,defaults={'name':name,'art_key':art,'health':health,'maximum_health':health,'attack':100 if cycle=='weekly' else 10+guild.level*2,'protection':60 if cycle=='weekly' else 4+guild.level*2,'minimum_level':45 if cycle=='weekly' else 3})
     return raid
 
 
@@ -68,7 +74,10 @@ def strike_camp_raid(profile,raid_id,request_key):
     if prior:return prior if prior.raid_id==raid_id and (prior.raid.guild_id in raid_guild_ids(profile) or prior.damage>0) else False
     if profile.camp not in CAMPS:return False
     guild=guild_for(profile,lock=True)
-    raid=CampRaid.objects.select_for_update().filter(pk=raid_id,guild_id__in=raid_guild_ids(profile),day=timezone.now().astimezone(POLISH_TIME).date()).first()
+    from .regional_endgame import week_start,unlocked
+    active=Q(cycle='daily',day=timezone.now().astimezone(POLISH_TIME).date())|Q(cycle='weekly',day=week_start())
+    raid=CampRaid.objects.select_for_update().filter(active,pk=raid_id,guild_id__in=raid_guild_ids(profile)).first()
+    if raid and raid.cycle=='weekly' and (raid.rule_version!=1 or not unlocked(profile)):return False
     if not raid or raid.completed_at or profile.level<raid.minimum_level or profile.is_busy or profile.current_energy<20 or profile.current_health<10:return False
     last=CampRaidStrike.objects.filter(raid=raid,profile=profile).first()
     if last and timezone.now()<last.created_at+timedelta(seconds=60):return False
@@ -92,7 +101,12 @@ def claim_camp_raid(profile,raid_id):
     raid=CampRaid.objects.filter(pk=raid_id,completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).first()
     if not raid or not raid.strikes.filter(profile=profile,damage__gt=0).exists():return False
     if CampRaidReward.objects.filter(raid=raid,profile=profile).exists():return True
-    reward=CampRaidReward.objects.create(raid=raid,profile=profile)
+    values={'ore':100,'experience':1000,'premium':0} if raid.cycle=='weekly' else {}
+    reward=CampRaidReward.objects.create(raid=raid,profile=profile,**values)
+    if raid.cycle=='weekly':
+        from .equipment import add_item
+        from .models import ItemBluePrint
+        add_item(profile,ItemBluePrint.objects.get(catalog_key='rune-dust'),5,origin='reward')
     profile.ore_balance+=reward.ore;profile.experience+=reward.experience
     from .economy import change_premium
     if reward.premium:
@@ -102,15 +116,19 @@ def claim_camp_raid(profile,raid_id):
     check_level_up(profile);profile.save();return True
 
 
-def raid_card(profile):
-    raid=CampRaid.objects.filter(guild_id__in=raid_guild_ids(profile),day=timezone.now().astimezone(POLISH_TIME).date()).first()
-    rewards=CampRaid.objects.filter(completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
-    if not raid:return {'raid':None,'rewards':rewards}
+def raid_card(profile,cycle='daily'):
+    from .regional_endgame import week_start,weekly_track,unlocked
+    allowed=cycle=='daily' or (cycle=='weekly' and unlocked(profile))
+    day=week_start() if cycle=='weekly' else timezone.now().astimezone(POLISH_TIME).date()
+    raid=CampRaid.objects.filter(guild_id__in=raid_guild_ids(profile),day=day,cycle=cycle).first() if allowed else None
+    rewards=CampRaid.objects.filter(cycle=cycle,completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
+    ends=datetime.combine(day+timedelta(days=7 if cycle=='weekly' else 1),time.min,tzinfo=POLISH_TIME)
+    if not raid:return {'raid':None,'rewards':rewards,'ends_at':ends,'preview':weekly_track(day) if cycle=='weekly' else None}
     last=raid.strikes.filter(profile=profile).first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)
     contributions=list(raid.strikes.values('profile_id','profile__user__username','profile__name','profile__is_bot').annotate(damage=Sum('damage')).order_by('-damage')[:30])
     from .models import PlayerProfile
     names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[row['profile_id'] for row in contributions]).select_related('user')}
     for row in contributions:row['name']=names[row['profile_id']]
-    return {'raid':raid,'phase':phase(raid),'can_attack':not raid.completed_at and ready and profile.level>=raid.minimum_level and profile.current_energy>=20 and profile.current_health>=10 and not profile.is_busy,
+    return {'raid':raid,'ends_at':ends,'phase':phase(raid),'can_attack':allowed and not raid.completed_at and ready and profile.level>=raid.minimum_level and profile.current_energy>=20 and profile.current_health>=10 and not profile.is_busy,
         'rewards':rewards,'contributions':contributions,'logs':raid.strikes.select_related('profile__user')[:10]}

@@ -1,0 +1,682 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "stage": "#136 regionalny endgame",
+  "migration": "0053_regional_endgame",
+  "isolated_databases_only": true,
+  "verification": {
+    "sqlite_regression": {
+      "tests": 141,
+      "skipped": 4,
+      "seconds": 49.339
+    },
+    "postgresql_regression": {
+      "tests": 50,
+      "seconds": 24.947
+    },
+    "postgresql_latest_races_http_bots": {
+      "tests": 7,
+      "seconds": 8.548
+    },
+    "prepared_builds": [
+      {
+        "scenario": "prepared-regional-endgame-archer",
+        "synthetic_veteran_fixture": true,
+        "ordinary_paid_gear_and_lessons": true,
+        "grants_during_play": false,
+        "regional_wins": 8,
+        "weekly_strikes": 6,
+        "ore_remaining": 27212,
+        "level": 45,
+        "limits": [
+          "Prepared level45/attributes/ore, not organic progression.",
+          "Two-hour recovery steps, not a player-time measurement."
+        ]
+      },
+      {
+        "scenario": "prepared-regional-endgame-fire",
+        "synthetic_veteran_fixture": true,
+        "ordinary_paid_gear_and_lessons": true,
+        "grants_during_play": false,
+        "regional_wins": 8,
+        "weekly_strikes": 16,
+        "ore_remaining": 24682,
+        "level": 45,
+        "limits": [
+          "Prepared level45/attributes/ore, not organic progression.",
+          "Two-hour recovery steps, not a player-time measurement."
+        ]
+      },
+      {
+        "scenario": "prepared-regional-endgame-warrior",
+        "synthetic_veteran_fixture": true,
+        "ordinary_paid_gear_and_lessons": true,
+        "grants_during_play": false,
+        "regional_wins": 8,
+        "weekly_strikes": 6,
+        "ore_remaining": 24912,
+        "level": 45,
+        "limits": [
+          "Prepared level45/attributes/ore, not organic progression.",
+          "Two-hour recovery steps, not a player-time measurement."
+        ]
+      },
+      {
+        "scenario": "prepared-regional-endgame-water",
+        "synthetic_veteran_fixture": true,
+        "ordinary_paid_gear_and_lessons": true,
+        "grants_during_play": false,
+        "regional_wins": 8,
+        "weekly_strikes": 18,
+        "ore_remaining": 25682,
+        "level": 45,
+        "limits": [
+          "Prepared level45/attributes/ore, not organic progression.",
+          "Two-hour recovery steps, not a player-time measurement."
+        ]
+      }
+    ],
+    "optional_policy_replay": {
+      "tests": 12,
+      "seconds": 1.25
+    },
+    "latest_http_release_suite": {
+      "tests": 6,
+      "seconds": 1.481
+    },
+    "validate_content": "passed; archived identities not claimed as active gameplay"
+  },
+  "complete_earned_journey": {
+    "schema": 1,
+    "success": true,
+    "seconds": 76.98,
+    "isolated_file_database": true,
+    "real_barrier_activation": true,
+    "scenarios": [
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 13.97,
+        "active_minutes": 109.0,
+        "recovery_minutes": 478.0,
+        "timers_minutes": 250.9,
+        "offline_hours": 0.0,
+        "calendar_days": 1,
+        "level": 31,
+        "strength": 320,
+        "quests": 27,
+        "ore": 134,
+        "shards": 7,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 5,
+          "mine_claim": 5,
+          "buy_weapon": 7,
+          "equip_weapon": 7,
+          "income_adventure": 169,
+          "income_claim": 28,
+          "buy_armor": 5,
+          "equip_armor": 5,
+          "hunt": 98,
+          "travel_energy": 22,
+          "story_travel": 16,
+          "join_camp": 1,
+          "buy_delivery": 2,
+          "train_strength": 31,
+          "train_goal": 1,
+          "earned_shop_energy": 5,
+          "boss": 1,
+          "earned_shop_health": 13,
+          "personal_finale": 1,
+          "guard_accept": 3,
+          "guard_mine": 1,
+          "guard_mine_claim": 1,
+          "guard_promote": 3,
+          "guard_hunt": 107,
+          "guard_boss": 1
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      },
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 14.3,
+        "active_minutes": 116.0,
+        "recovery_minutes": 486.0,
+        "timers_minutes": 255.8,
+        "offline_hours": 0.0,
+        "calendar_days": 2,
+        "level": 31,
+        "strength": 320,
+        "quests": 27,
+        "ore": 232,
+        "shards": 8,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 5,
+          "mine_claim": 5,
+          "buy_weapon": 7,
+          "equip_weapon": 7,
+          "income_adventure": 182,
+          "income_claim": 29,
+          "buy_armor": 5,
+          "equip_armor": 5,
+          "hunt": 108,
+          "travel_energy": 25,
+          "story_travel": 16,
+          "join_camp": 1,
+          "buy_delivery": 2,
+          "train_strength": 31,
+          "train_goal": 1,
+          "earned_shop_energy": 5,
+          "boss": 1,
+          "earned_shop_health": 14,
+          "personal_finale": 12,
+          "guard_accept": 3,
+          "guard_mine": 1,
+          "guard_mine_claim": 1,
+          "guard_promote": 3,
+          "guard_hunt": 110,
+          "guard_boss": 1
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      },
+      {
+        "scenario": "earned-community-barrier",
+        "accounts": 3,
+        "synthetic_progression_grants": false,
+        "real_siege": true,
+        "real_backup_restore_activation": true,
+        "strikes": 124,
+        "guild_level": 10,
+        "world_days": 16.19,
+        "preserved_progression": true,
+        "preserved_inventory": true,
+        "one_server_two_regions": true,
+        "joined_events": 1
+      },
+      {
+        "scenario": "earned-nk-resident-campaign",
+        "admin_grants": false,
+        "global_join_fixture": false,
+        "new_contracts": 23,
+        "checkpoints": [
+          {
+            "quest": "jark-portal",
+            "level": 31,
+            "world_hours": 0.27,
+            "ore": 245
+          },
+          {
+            "quest": "jark-supplies",
+            "level": 31,
+            "world_hours": 0.79,
+            "ore": 403
+          },
+          {
+            "quest": "jark-pirates",
+            "level": 31,
+            "world_hours": 0.81,
+            "ore": 603
+          },
+          {
+            "quest": "jark-canyon",
+            "level": 33,
+            "world_hours": 3.27,
+            "ore": 508
+          },
+          {
+            "quest": "jark-workers",
+            "level": 34,
+            "world_hours": 4.09,
+            "ore": 908
+          },
+          {
+            "quest": "jark-swamp-watch",
+            "level": 36,
+            "world_hours": 7.79,
+            "ore": 733
+          },
+          {
+            "quest": "jark-stones",
+            "level": 37,
+            "world_hours": 8.55,
+            "ore": 1243
+          },
+          {
+            "quest": "jark-crypt-watch",
+            "level": 38,
+            "world_hours": 8.99,
+            "ore": 2323
+          },
+          {
+            "quest": "nk-scouts",
+            "level": 39,
+            "world_hours": 9.78,
+            "ore": 2483
+          },
+          {
+            "quest": "nk-supplies",
+            "level": 39,
+            "world_hours": 10.78,
+            "ore": 2740
+          },
+          {
+            "quest": "nk-seekers",
+            "level": 40,
+            "world_hours": 10.84,
+            "ore": 3090
+          },
+          {
+            "quest": "nk-tablets",
+            "level": 41,
+            "world_hours": 11.12,
+            "ore": 3350
+          },
+          {
+            "quest": "nk-raven",
+            "level": 42,
+            "world_hours": 11.49,
+            "ore": 4340
+          },
+          {
+            "quest": "nk-eye",
+            "level": 43,
+            "world_hours": 11.58,
+            "ore": 4700
+          },
+          {
+            "quest": "nk-swamp-dragon",
+            "level": 44,
+            "world_hours": 12.37,
+            "ore": 5862
+          },
+          {
+            "quest": "nk-stone-dragon",
+            "level": 46,
+            "world_hours": 12.6,
+            "ore": 7157
+          },
+          {
+            "quest": "nk-fire-dragon",
+            "level": 47,
+            "world_hours": 13.04,
+            "ore": 8514
+          },
+          {
+            "quest": "nk-ice-dragon",
+            "level": 49,
+            "world_hours": 13.46,
+            "ore": 10139
+          },
+          {
+            "quest": "nk-ship",
+            "level": 50,
+            "world_hours": 14.62,
+            "ore": 10747
+          },
+          {
+            "quest": "nk-sailing",
+            "level": 51,
+            "world_hours": 14.85,
+            "ore": 7157
+          },
+          {
+            "quest": "nk-island-dragon",
+            "level": 53,
+            "world_hours": 15.08,
+            "ore": 9367
+          },
+          {
+            "quest": "nk-archol",
+            "level": 55,
+            "world_hours": 15.39,
+            "ore": 11662
+          },
+          {
+            "quest": "nk-undead",
+            "level": 58,
+            "world_hours": 15.58,
+            "ore": 14532
+          }
+        ],
+        "level": 58,
+        "expedition_world_hours": 15.58,
+        "total_world_hours": 375.95,
+        "limits": [
+          "Warrior strategy, no PvP/player-market competition.",
+          "Three earned accounts, actual siege and verified backup activation.",
+          "Does not mean all original hero quests, every item effect or guild rank8 completed.",
+          "Virtual timers use seconds; active operations are modelled, not human playtime."
+        ]
+      },
+      {
+        "scenario": "complete-earned-journey",
+        "accounts": 3,
+        "initial_level_each": 0,
+        "all_joined_steps_real": true,
+        "nk_contracts": 23,
+        "post_nk_patrols": 3,
+        "regional_patrols": 4,
+        "weekly_strikes": 10,
+        "regional_backup_restore_verified": true,
+        "level": 58,
+        "world_days": 17.2,
+        "limits": [
+          "Three sequential knowledgeable warrior strategies, not human elapsed time.",
+          "No competing player market/PvP or live 250-bot population in this scenario.",
+          "Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank."
+        ]
+      },
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 384.44,
+        "active_minutes": 252.0,
+        "recovery_minutes": 8963.0,
+        "timers_minutes": 13851.5,
+        "offline_hours": 0.0,
+        "calendar_days": 17,
+        "level": 58,
+        "strength": 590,
+        "quests": 50,
+        "ore": 15137,
+        "shards": 0,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 5,
+          "mine_claim": 5,
+          "buy_weapon": 9,
+          "equip_weapon": 9,
+          "income_adventure": 314,
+          "income_claim": 44,
+          "buy_armor": 7,
+          "equip_armor": 7,
+          "hunt": 108,
+          "travel_energy": 25,
+          "story_travel": 16,
+          "join_camp": 1,
+          "buy_delivery": 2,
+          "train_strength": 58,
+          "train_goal": 1,
+          "earned_shop_energy": 28,
+          "boss": 1,
+          "earned_shop_health": 67,
+          "personal_finale": 1,
+          "guard_accept": 3,
+          "guard_mine": 1,
+          "guard_mine_claim": 1,
+          "guard_promote": 3,
+          "guard_hunt": 79,
+          "guard_boss": 1,
+          "community_raid": 26,
+          "community_mine": 18,
+          "community_mine_claim": 18,
+          "community_hunt": 30,
+          "community_strike": 124,
+          "nk_accept": 23,
+          "nk_start": 23,
+          "nk_region": 5,
+          "nk_visit": 22,
+          "nk_talk": 3,
+          "nk_claim": 23,
+          "nk_mine": 15,
+          "nk_mine_claim": 10,
+          "nk_hunt": 186,
+          "nk_boss": 46,
+          "nk_material_buy": 2,
+          "post_nk_patrol": 3,
+          "regional_endgame": 7,
+          "weekly_endgame_strike": 16
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      }
+    ],
+    "limits": [
+      "Model trzech strategii wojownika; wirtualny czas i zwykłe koszty, nie pomiar czasu człowieka.",
+      "Bez konkurencji PvP i rynku innych graczy; pozostałe buildy/populację testują oddzielne pakiety."
+    ]
+  },
+  "population_probe": {
+    "schema": 2,
+    "isolated_database": true,
+    "engine": "sqlite",
+    "population": 250,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+      "characters/bots.py": "0d90a42bdaaed924147048f6621027bcdb7717e776ba7b5b8b9a761f7c4fb6f7",
+      "characters/models.py": "1561f8d7a0bfc0e05ecd3cdd99bcab3230998a0efccb3353b8da0c9599a44f5a"
+    },
+    "realm_populations": [
+      125,
+      125
+    ],
+    "mode": "sessions",
+    "mature_fixture": true,
+    "global_join_fixture": true,
+    "endgame_fixture": true,
+    "duration_seconds": 20.14,
+    "http_requests": 129,
+    "http_errors": [],
+    "started_at": "2026-11-12T21:54:19.015527+00:00",
+    "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+    "http_p50_ms": 48.51,
+    "http_p95_ms": 121.68,
+    "routes_p95_ms": {
+      "/": 71.03,
+      "/zadania/": 156.96,
+      "/sklep-odlamkow/": 104.37,
+      "/zycie-kolonii/": 99.49,
+      "/warty/?track=khorinis": 145.25,
+      "/wspolnota/": 88.41
+    },
+    "rss_peak_mib": 76.4,
+    "rss_start_mib": 65.44,
+    "rss_end_mib": 76.4,
+    "cpu_percent_one_core": 37.65,
+    "initial_tick_p50_ms": 56.02,
+    "initial_tick_p95_ms": 63.52,
+    "initial_queries_median": 107.5,
+    "initial_actions": {
+      "regional_patrol": 250,
+      "equip": 239,
+      "improve": 11
+    },
+    "residents_ticked": 24,
+    "ticked_per_realm": [
+      15,
+      9
+    ],
+    "failed_decisions": 0,
+    "last_tick_age_p95_seconds": 32.8,
+    "oldest_last_tick_seconds": 33.57,
+    "limits": [
+      "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+      "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+      "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+      "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+      "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+    ],
+    "validation": {
+      "http_ok": true,
+      "actions_ok": true,
+      "all_residents_ticked": false
+    }
+  },
+  "gui": {
+    "isolated_database": true,
+    "synthetic_veteran_fixture": true,
+    "pages": [
+      {
+        "page": "khorinis",
+        "width": 320,
+        "scroll": 320,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "khorinis",
+        "width": 390,
+        "scroll": 390,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "khorinis",
+        "width": 1440,
+        "scroll": 1440,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "valley",
+        "width": 320,
+        "scroll": 320,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "valley",
+        "width": 390,
+        "scroll": 390,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "valley",
+        "width": 1440,
+        "scroll": 1440,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "jarkendar",
+        "width": 320,
+        "scroll": 320,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "jarkendar",
+        "width": 390,
+        "scroll": 390,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "jarkendar",
+        "width": 1440,
+        "scroll": 1440,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "irdorath",
+        "width": 320,
+        "scroll": 320,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "irdorath",
+        "width": 390,
+        "scroll": 390,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "irdorath",
+        "width": 1440,
+        "scroll": 1440,
+        "decoded_local_images": 2
+      },
+      {
+        "page": "weekly",
+        "width": 320,
+        "scroll": 320,
+        "decoded_local_images": 1
+      },
+      {
+        "page": "weekly",
+        "width": 390,
+        "scroll": 390,
+        "decoded_local_images": 1
+      },
+      {
+        "page": "weekly",
+        "width": 1440,
+        "scroll": 1440,
+        "decoded_local_images": 1
+      }
+    ],
+    "errors": []
+  },
+  "actual_browser_forms": [
+    "CSRF patrol creates one record",
+    "Switching track retains cooldown and disables attempt",
+    "CSRF weekly rally and strike create one strike"
+  ],
+  "regional_base_reward_bounds": {
+    "wins_per_polish_day": 8,
+    "ore_before_fees_events_resale": 2240,
+    "xp_before_events": 22400,
+    "rune_dust": 56,
+    "weekly_per_contributor": {
+      "ore": 100,
+      "xp": 1000,
+      "dust": 5,
+      "shards": 0
+    }
+  },
+  "limits": [
+    "Pakiety częściowo nakładają się; nie sumować jako unikalnych testów.",
+    "Wojownik od0 w rzeczywistej kampanii; pozostałe buildy to przygotowani weterani.",
+    "17,20 dnia to wirtualny czas strategii znającej cele, nie prognoza zachowania człowieka.",
+    "Nie przeprowadzono wszystkich400 stopni ani wielodniowej gospodarki250 botów.",
+    "Krótki lokalny pomiar SQLite nie jest SLA produkcyjnym.",
+    "Dawne warty zachowują wcześniejsze nagrody; limit regionalny nie ogranicza całej gospodarki.",
+    "Nie wdrożono produkcyjnej bazy ani wydarzeń #137; #128 pozostaje otwarte."
+  ]
+}

@@ -111,8 +111,24 @@ class CompleteJourney(unittest.TestCase):
             steps['prepare']();steps['advance'](301,'timer');key=uuid4();row=steps['do']('post_nk_patrol',lambda:patrol(p,depth,key))
             self.assertTrue(row.won,(depth,row.snapshot));before=(p.experience,p.ore_balance)
             self.assertEqual(patrol(p,depth,key).pk,row.pk);p.refresh_from_db();self.assertEqual(before,(p.experience,p.ore_balance))
+        from .regional_endgame import TRACKS
+        from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid
+        from .barrier import travel
+        colony=World.objects.get(is_current=True);island=World.objects.get(universe='GOTHIC_II',is_open=True)
+        for track in TRACKS:
+            self.assertTrue(travel(p,colony.pk if track=='valley' else island.pk))
+            steps['prepare']();steps['advance'](301,'timer');row=steps['do']('regional_endgame',lambda:patrol(p,1,uuid4(),track));self.assertTrue(row.won,(track,row.snapshot))
+        weekly=rally_camp_raid(p,'weekly');self.assertTrue(weekly)
+        for _ in range(100):
+            weekly.refresh_from_db()
+            if weekly.completed_at:break
+            steps['prepare']();steps['advance'](61,'timer');self.assertTrue(steps['do']('weekly_endgame_strike',lambda:strike_camp_raid(p,weekly.pk,uuid4())))
+        self.assertIsNotNone(weekly.completed_at);self.assertTrue(claim_camp_raid(p,weekly.pk));self.assertTrue(claim_camp_raid(p,weekly.pk))
+        from .convergence import snapshot
+        with tempfile.TemporaryDirectory(prefix='ore-journey-endgame-backup-') as root:
+            _,digest,proof=snapshot(Path(root));self.assertTrue(digest);self.assertTrue(proof)
         self.assertTrue(board(p.world));self.clock=steps['now']()
-        record_scenario('complete-earned-journey',{'accounts':3,'initial_level_each':0,'all_joined_steps_real':True,'nk_contracts':23,'post_nk_patrols':3,'level':p.level,'world_days':round((self.clock-self.start).total_seconds()/86400,2),'limits':['Three sequential knowledgeable warrior strategies, not human elapsed time.','No competing player market/PvP or live 250-bot population in this scenario.','Repeatable patrols use the existing service; expanded regional endgame is planned separately.']})
+        record_scenario('complete-earned-journey',{'accounts':3,'initial_level_each':0,'all_joined_steps_real':True,'nk_contracts':23,'post_nk_patrols':3,'regional_patrols':4,'weekly_strikes':weekly.strikes.count(),'regional_backup_restore_verified':True,'level':p.level,'world_days':round((self.clock-self.start).total_seconds()/86400,2),'limits':['Three sequential knowledgeable warrior strategies, not human elapsed time.','No competing player market/PvP or live 250-bot population in this scenario.','Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank.']})
 
     def test_colony_to_real_barrier_nk_and_repeatable_endgame(self):
         from datetime import datetime
