@@ -138,7 +138,8 @@ class TwoRealmTests(TestCase):
             for _ in range(self.p.skill_points):
                 if self.p.ore_balance<30:mine()
                 with advance():self.assertTrue(game.train_attribute(self.p,'strength'))
-            bp=ItemBluePrint.objects.filter(source_game='GOTHIC_II',kind='weapon',weapon_type='onehand',min_level__lte=self.p.level,required_strength__lte=self.p.strength).order_by('-damage').first()
+            from .equipment import allowed
+            bp=next(b for b in ItemBluePrint.objects.filter(source_game='GOTHIC_II',merchant=True,kind='weapon',weapon_type='onehand',min_level__lte=self.p.level,required_strength__lte=self.p.strength).order_by('-damage') if allowed(self.p,b))
             equipped=self.p.inventory.filter(is_equipped=True,equipped_slot='weapon').first()
             if not equipped or equipped.blueprint.damage<bp.damage:
                 while self.p.ore_balance<bp.base_value:mine()

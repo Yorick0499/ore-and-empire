@@ -12,7 +12,7 @@ from uuid import uuid4
 class FixedBalanceTests(SimpleTestCase):
     def test_encounters_have_explicit_fixed_versioned_statistics(self):
         for boss in BOSSES.values():
-            self.assertEqual(boss.monster['balance_version'],1)
+            self.assertEqual(boss.monster['balance_version'],2 if boss.key=='k2_dragon_fire' else 1)
             self.assertEqual(boss.monster['life'],boss.life)
             self.assertGreater(boss.energy_cost,0)
             self.assertNotIn('player_level',boss.monster)

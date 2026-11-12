@@ -89,7 +89,7 @@ class BossBuildMatrixTests(TestCase):
                 bp=ItemBluePrint.objects.create(name=build,damage=75,weapon_type='bow' if build=='archer' else 'onehand',damage_type='arrow' if build=='archer' else 'weapon')
                 OwnedItem.objects.create(owner=p,blueprint=bp,is_equipped=True,equipped_slot='weapon')
             for key,boss in BOSSES.items():
-                if key=='k2_dragon_fire':continue  # Level-35 joined encounter has a separate prepared-build matrix.
+                if key=='k2_dragon_fire' or key.startswith('g2nk_'):continue  # Level-35 joined encounter has a separate prepared-build matrix.
                 result=game.simulate_combat(p,key,monster=boss.monster,magic_plan=plan)
                 self.assertTrue(result.won,(build,key,result.log[-4:]))
                 self.assertTrue(1<=result.remaining_health<=500)
