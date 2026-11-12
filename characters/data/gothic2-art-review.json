@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "items": {
+    "item_g2nk_irar_orebaron_addon": {"source_revision": 554431, "source_code": "ItAr_OreBaron_Addon", "file": "Zbroja Kruka G2NK ikona.png", "note": "Pinned code index says IrAr; article says ItAr. Artwork alias only; retain the indexed identity and unsupported runtime status."},
+    "item_g2nk_itsc_geyser": {"source_revision": 528984, "source_code": "itru_Geyser", "file": "Gejzer (Gothic II, zwój).png", "note": "Article code names the rune, but its labelled gallery also contains the scroll. Artwork only, no copied rune stats."},
+    "g2nk_dmt_dementorambient": {"source_revision": 583494, "field": "Obraz", "file": "Poszukiwacze DI GII.png", "note": "G2 seekers group photograph, not an individual variant model.", "mapping": "species-reference"}
+  }
+}

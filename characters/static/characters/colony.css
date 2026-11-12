@@ -331,7 +331,7 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 
 .quality-badge{display:inline-block;max-width:100%;margin:.5rem 0;padding:.2rem .6rem;border:1px solid #857457;color:#c6bda4;font-size:.85rem;overflow-wrap:anywhere}
 
-.item-thumbnail{max-width:110px;margin:0 0 .5rem}.item-thumbnail img{height:72px;object-fit:contain}.item-thumbnail figcaption{font-size:.65rem;overflow-wrap:anywhere}
+.item-thumbnail{max-width:110px;margin:0 0 .5rem}.item-thumbnail img{height:72px;object-fit:contain}.item-thumbnail figcaption{font-size:.78rem;overflow-wrap:anywhere}
 
 /* Bounded market and inventory tools. */
 .market-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; }

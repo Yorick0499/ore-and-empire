@@ -491,6 +491,22 @@
       "captured_at_utc": "2026-11-12T20:03:00.249368+00:00",
       "fixture": "Izolowany wspólny serwer, syntetyczny weteran45 i odebrane kamienie fabuły; rzeczywiste formularze pasa i runy",
       "theme": "gothic2-nk-content-32"
+    },
+    {
+      "file": "nk-assets-390.png",
+      "bytes": 122311,
+      "sha256": "7718cc62fd321b38f0fa4bb8d3cda92124b23c6d87cad23485f0358deb6a8a70",
+      "captured_at_utc": "2026-11-12T20:37:30.565945+00:00",
+      "fixture": "Izolowana baza GUI, syntetyczny weteran45; katalog trofeów po uzupełnieniu assetów, bez grantów w produkcji",
+      "theme": "gothic2-nk-assets-32"
+    },
+    {
+      "file": "nk-assets-1440.png",
+      "bytes": 370905,
+      "sha256": "9251466f26d6d56761eaae72d783c0d8fa08e21cb633b8a166b529d8a5aeeb9e",
+      "captured_at_utc": "2026-11-12T20:37:30.566519+00:00",
+      "fixture": "Izolowana baza GUI, syntetyczny weteran45; katalog trofeów po uzupełnieniu assetów, bez grantów w produkcji",
+      "theme": "gothic2-nk-assets-32"
     }
   ]
 }

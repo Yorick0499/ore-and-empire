@@ -26,7 +26,7 @@ def api(params,path):
     return json.loads(path.read_bytes())
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--cache',type=Path,required=True);parser.add_argument('--images',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--cache',type=Path,required=True);parser.add_argument('--images',action='store_true');parser.add_argument('--extra-images-json',type=Path);args=parser.parse_args()
     cache=args.cache.resolve()
     if cache.is_relative_to(ROOT):raise SystemExit('Raw article cache must remain outside the repository.')
     cache.mkdir(parents=True,exist_ok=True);data_root=ROOT/'characters/data'
@@ -34,6 +34,9 @@ def main():
     parsed=api({'action':'parse','oldid':index['revision'],'prop':'text|revid|sections'},cache/'index.json')['parse']
     if parsed['revid']!=index['revision']:raise ValueError('Pinned source index changed')
     ids={i['original_stats']['source_revision'] for i in pack['items'] if i['original_stats'].get('source_revision')}
+    supplement_path=data_root/'gothic2-art-supplement.json'
+    supplement=json.loads(supplement_path.read_text())['items'] if supplement_path.exists() else {}
+    ids.update(row['source_revision'] for row in supplement.values() if row.get('source_revision'))
     world=json.loads((data_root/'gothic2-world-asset-selections.json').read_bytes());ids.update(r['revision'] for r in world.values())
     cached=set()
     for path in cache.glob('pages-*.json'):
@@ -62,7 +65,13 @@ def main():
         fields=reviewed_infobox(text,row['code'],reviewed[code],revision) if code in reviewed else infobox_for(text,row['code'])
         selected=image_selection(fields,row['kind'])
         if selected:names.add(selected)
-    names.update(row['file'] for row in world.values());(cache/'world-image-selections.json').write_text(json.dumps(world,ensure_ascii=False,indent=2)+'\n')
+    names.update(row['file'] for row in world.values());
+    names.update(name for row in supplement.values() for name in row['candidates'])
+    if args.extra_images_json:
+        extra=json.loads(args.extra_images_json.read_text())
+        if not isinstance(extra,list) or any(not isinstance(n,str) for n in extra):raise ValueError('Expected a list of image file names')
+        names.update(extra)
+    (cache/'world-image-selections.json').write_text(json.dumps(world,ensure_ascii=False,indent=2)+'\n')
     image_root=cache/'images';image_root.mkdir(exist_ok=True);infos={}
     old=json.loads((image_root/'results.json').read_text()) if (image_root/'results.json').exists() else {}
     def remember(data):

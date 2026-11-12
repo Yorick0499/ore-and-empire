@@ -8,7 +8,7 @@ Etap #32, 12 XI 2026. [Indeks Gothicpedii](https://gothic.fandom.com/pl/wiki/Lis
 |---|---|
 | Katalog źródłowy | 877 tożsamości przedmiotów, 85 kodów stworzeń, 352 kodów NPC, 35 punktów podróży; stronicowany podgląd z odnośnikami |
 | Parametry | 602 pozycje z jednoznacznymi faktami liczbowymi/efektami; 167 wzorów obsługiwanych przez zwykłego kupca, z bramkami |
-| Ilustracje przedmiotów | 598 przypisań po kodzie i infoboksie; pozostałe mają jawne ilustracje kategorii |
+| Ilustracje przedmiotów | 866 przypisań źródłowych (w tym 2 przejrzane wyjątki); 11 archiwalnych wariantów ma jawne ilustracje kategorii |
 | Wyprawy | 67 populacji polowań w 9 grupach, 8 nowych bossów; istniejący Feomathar pozostaje smokiem ognia |
 | Kampania | 15 nowych kontraktów mieszkańca, rozdziały9–10, połączonych z 8 zadaniami pierwszej wyprawy Jarkendaru |
 | Ekwipunek | Broń, pancerze, zwykłe ozdoby, amunicja, osobny slot pasa i 6 zweryfikowanych połączeń pasa z pancerzem |
@@ -45,3 +45,23 @@ Oddzielne przypadki sprawdzają płatne wyposażenie maga Ognia, maga Wody i łu
 #32 pozostaje otwarte: nie wszystkie efekty specjalne, trwałe mikstury, przyzwania, przemiany, teleporty, komplety ozdób i oryginalne interakcje NPC mają implementację. Całość jednej listy kodów nie oznacza całego G2 NK. #128 nadal obejmuje organiczne przejścia pozostałych buildów, długotrwałą gospodarkę i strojenie satysfakcji z rozwoju.
 
 Końcowa krótka próba250 botów (125+125), połączenie i sesje: 126 żądań HTTP, 0 błędów HTTP/decyzji, szczyt75,53MiB RAM, p95 HTTP155,87ms, CPU39,85% jednego rdzenia. To pomiar lokalny przez20s po rozgrzaniu, nie gwarancja hostingu ani wynik wielodniowej gospodarki.
+
+## Uzupełnienie assetów — 12 XI 2026
+
+[Raport grafiki](reports/gothic2-nk-assets-2026-11-12.json). Osobny importer ilustracji uwzględnia trofea, księgi, zakresy kodów kluczy, warianty czarów i niejednoznaczne liczby w infoboksach. Nie zmienia paczki statystyk, cen, dostępności ani zapisanych egzemplarzy. Wszystkie167 wzorów kupca NK mają lokalną grafikę dopasowaną do źródła. Łącznie866 z877 tożsamości ma takie dopasowanie; liczba nie oznacza tylu unikalnych modeli. Rewizje i dobór są w `gothic2-art-supplement.json`, trzy przejrzane wyjątki w `gothic2-art-review.json`.
+
+Pozostałych11 pozycji to archiwalne warianty talerza/ornamentu, skrzyni, ksiąg i listów bez jednoznacznego osobnego wizerunku w przypiętym źródle. Dostają adekwatny model kategorii zamiast amuletu; podpis nadal informuje o zastępstwie. Nie udajemy potwierdzenia ich statystyk ani funkcji.
+
+Każdy z85 kodów stworzeń ma lokalną ilustrację, także referencyjne przyzwania i zwierzęta Pepego. Wspólne gatunki i grupowe zdjęcie Poszukiwaczy są oznaczone. Indeks stworzeń wyświetla grafiki. Ładowanie preferuje dokładny wpis manifestu przed dawnym aliasem; dzięki temu Jarkendar rzeczywiście pokazuje nowe zdjęcia NK. Podpisy miniaturek są większe.
+
+Odtworzenie suplementu, po bazowym builderze danych/świata:
+
+```sh
+python scripts/cache_gothic2_sources.py --cache /tmp/ore-nk-cache --images
+python scripts/build_gothic2_art.py --cache /tmp/ore-nk-cache
+python manage.py validate_content
+```
+
+Cache uwzględnia rewizje oraz pliki suplementu. Przy przeglądzie nowych źródeł `build_gothic2_art.py --cache /tmp/ore-nk-cache --plan` tworzy dodatkową listę kandydatów poza repo; można ją podać do cache jako `--extra-images-json`. Publikacja jest offline, powtarzalna i waliduje bajty plików. Walidator odrzuca nowy aktywny przedmiot NK z samym placeholderem oraz stworzenie bez grafiki.
+
+Portrety pozostałych NPC referencyjnych i dodatkowe ilustracje szczególnych scen zadań pozostają dalszą pracą w #32. Ten etap nie deklaruje zamknięcia całej biblioteki wizualnej ani wszystkich mechanik oryginału.

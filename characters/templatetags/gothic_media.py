@@ -11,7 +11,8 @@ def _manifest(path,mtime,size):
 
 def artwork(key):
     stat=MANIFEST_PATH.stat()
-    return _manifest(MANIFEST_PATH,stat.st_mtime_ns,stat.st_size).get(ASSET_ALIASES.get(key,key))
+    manifest=_manifest(MANIFEST_PATH,stat.st_mtime_ns,stat.st_size)
+    return manifest.get(key) or manifest.get(ASSET_ALIASES.get(key,key))
 
 @register.inclusion_tag("characters/artwork.html")
 def gothic_art(key):
