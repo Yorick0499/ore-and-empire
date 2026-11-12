@@ -471,5 +471,41 @@
     "ci_run": 43253539590,
     "conclusion": "success",
     "fix": "constant world-report query count; no increased query budget"
+  },
+  "ci_inventory_followup": {
+    "failed_ci_run": 43257408773,
+    "failure": "Unjoined native bot campaign ended with13 inventory rows instead of12, on SQLite and PostgreSQL.",
+    "root_cause": "Melee bot retained obsolete arrow ammunition; disposal handled only weapons/materials/misc.",
+    "fix": "Unused ammunition enters ordinary NPC disposal. Current-weapon ammunition, quest reservations and protected items remain retained. No raised inventory budget or removed assertion.",
+    "sqlite_campaign_seconds": 76.206,
+    "postgres_tests": 3,
+    "postgres_seconds": 109.383,
+    "postgres_success": true,
+    "quick": {
+      "schema": 2,
+      "suite": "quick",
+      "success": true,
+      "elapsed_seconds": 21.71,
+      "isolated_database": true,
+      "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+      "test_labels": [
+        "characters.test_bot_inventory",
+        "characters.test_faction_choice",
+        "characters.test_faction_succession",
+        "characters.test_rank_paths",
+        "characters.test_new_progression",
+        "characters.test_release_abuse",
+        "characters.test_playability_audit",
+        "characters.test_release_suites"
+      ],
+      "recorded_scenarios": 0,
+      "scenarios": [],
+      "time_models": {},
+      "limits": [
+        "Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.",
+        "Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.",
+        "Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu."
+      ]
+    }
   }
 }

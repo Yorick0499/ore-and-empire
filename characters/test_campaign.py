@@ -229,7 +229,7 @@ class CampaignBotTests(TransactionTestCase):
         for bot in bots:
             self.assertTrue(bot.patrols.filter(won=True).exists(),(bot.pk,after))
             self.assertTrue(bot.equipment_work.filter(action='improve').exists(),(bot.pk,after))
-            self.assertLessEqual(bot.inventory.exclude(blueprint__kind='quest',blueprint__tradeable=False).count(),12)
+            self.assertLessEqual(bot.inventory.exclude(blueprint__kind='quest',blueprint__tradeable=False).count(),12,(bot.pk,list(bot.inventory.values('id','blueprint__catalog_key','blueprint__kind','quantity','is_equipped','is_protected','is_market_listed'))))
         record_scenario('po-finale-dalsze-zycie',{'ticks_per_bot':60,'actions':dict(after),'characters':[{'camp':b.camp,'patrol_wins':b.patrols.filter(won=True).count(),'upgrades':b.equipment_work.filter(action='improve').count()} for b in bots]})
         self.assertFalse(BotDecision.objects.filter(success=False).exists())
         for action in ('story_accept', 'story_start', 'story_claim', 'story_talk', 'story_travel', 'hunt', 'boss', 'mine', 'claim', 'stock'):

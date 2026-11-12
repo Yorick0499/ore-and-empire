@@ -16423,6 +16423,42 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     &quot;ci_run&quot;: 43253539590,
     &quot;conclusion&quot;: &quot;success&quot;,
     &quot;fix&quot;: &quot;constant world-report query count; no increased query budget&quot;
+  },
+  &quot;ci_inventory_followup&quot;: {
+    &quot;failed_ci_run&quot;: 43257408773,
+    &quot;failure&quot;: &quot;Unjoined native bot campaign ended with13 inventory rows instead of12, on SQLite and PostgreSQL.&quot;,
+    &quot;root_cause&quot;: &quot;Melee bot retained obsolete arrow ammunition; disposal handled only weapons/materials/misc.&quot;,
+    &quot;fix&quot;: &quot;Unused ammunition enters ordinary NPC disposal. Current-weapon ammunition, quest reservations and protected items remain retained. No raised inventory budget or removed assertion.&quot;,
+    &quot;sqlite_campaign_seconds&quot;: 76.206,
+    &quot;postgres_tests&quot;: 3,
+    &quot;postgres_seconds&quot;: 109.383,
+    &quot;postgres_success&quot;: true,
+    &quot;quick&quot;: {
+      &quot;schema&quot;: 2,
+      &quot;suite&quot;: &quot;quick&quot;,
+      &quot;success&quot;: true,
+      &quot;elapsed_seconds&quot;: 21.71,
+      &quot;isolated_database&quot;: true,
+      &quot;world_clock&quot;: &quot;Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy&quot;,
+      &quot;test_labels&quot;: [
+        &quot;characters.test_bot_inventory&quot;,
+        &quot;characters.test_faction_choice&quot;,
+        &quot;characters.test_faction_succession&quot;,
+        &quot;characters.test_rank_paths&quot;,
+        &quot;characters.test_new_progression&quot;,
+        &quot;characters.test_release_abuse&quot;,
+        &quot;characters.test_playability_audit&quot;,
+        &quot;characters.test_release_suites&quot;
+      ],
+      &quot;recorded_scenarios&quot;: 0,
+      &quot;scenarios&quot;: [],
+      &quot;time_models&quot;: {},
+      &quot;limits&quot;: [
+        &quot;Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.&quot;,
+        &quot;Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.&quot;,
+        &quot;Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu.&quot;
+      ]
+    }
   }
 }</code></pre><button type="button" class="download" data-report-download="wybor-bractwa-2026-11-12.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-zlecenia-buildy-petla-2026-11-08"><summary>zlecenia-buildy-petla-2026-11-08.json</summary><pre><code>{
   &quot;schema&quot;: 1,
