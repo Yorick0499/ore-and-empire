@@ -1,0 +1,2028 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "issue": 128,
+  "migration": "0053_regional_endgame (bez nowej migracji)",
+  "isolated_databases_only": true,
+  "organic_cases": [
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "city-warrior",
+      "build": "warrior",
+      "start_universe": "GOTHIC_II",
+      "native_camp": "CITY_WATCH",
+      "faction": "CITY_WATCH",
+      "rank_ordinal": 8,
+      "level": 61,
+      "strength": 550,
+      "dexterity": 10,
+      "mana": 10,
+      "magic_circle": 0,
+      "magical_battles": 0,
+      "ore": 12494,
+      "world_days": 2.25,
+      "checkpoints": [
+        {
+          "rank": "Rekrut straży",
+          "ordinal": 1,
+          "level": 2,
+          "world_hours": 0.45,
+          "ore": 73
+        },
+        {
+          "rank": "Strażnik miejski",
+          "ordinal": 2,
+          "level": 6,
+          "world_hours": 4.28,
+          "ore": 44
+        },
+        {
+          "rank": "Sierżant straży",
+          "ordinal": 3,
+          "level": 10,
+          "world_hours": 7.31,
+          "ore": 64
+        },
+        {
+          "rank": "Dowódca straży",
+          "ordinal": 4,
+          "level": 19,
+          "world_hours": 11.95,
+          "ore": 499
+        },
+        {
+          "rank": "Kandydat Zakonu",
+          "ordinal": 5,
+          "level": 59,
+          "world_hours": 44.24,
+          "ore": 13824
+        },
+        {
+          "rank": "Rycerz",
+          "ordinal": 6,
+          "level": 60,
+          "world_hours": 46.0,
+          "ore": 13649
+        },
+        {
+          "rank": "Paladyn",
+          "ordinal": 7,
+          "level": 60,
+          "world_hours": 48.0,
+          "ore": 12894
+        },
+        {
+          "rank": "Mistrz Zakonu",
+          "ordinal": 8,
+          "level": 60,
+          "world_hours": 52.66,
+          "ore": 12250
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "monastery-fire",
+      "build": "fire",
+      "start_universe": "GOTHIC_II",
+      "native_camp": "FIRE_ORDER",
+      "faction": "FIRE_ORDER",
+      "rank_ordinal": 8,
+      "level": 62,
+      "strength": 25,
+      "dexterity": 10,
+      "mana": 500,
+      "magic_circle": 6,
+      "magical_battles": 85,
+      "ore": 16382,
+      "world_days": 3.4,
+      "checkpoints": [
+        {
+          "rank": "Nowicjusz Ognia",
+          "ordinal": 1,
+          "level": 2,
+          "world_hours": 0.45,
+          "ore": 73
+        },
+        {
+          "rank": "Adept Ognia",
+          "ordinal": 2,
+          "level": 5,
+          "world_hours": 3.04,
+          "ore": 6
+        },
+        {
+          "rank": "Mag Ognia Khorinis",
+          "ordinal": 3,
+          "level": 10,
+          "world_hours": 6.55,
+          "ore": 35
+        },
+        {
+          "rank": "Arcymag klasztoru",
+          "ordinal": 4,
+          "level": 19,
+          "world_hours": 11.54,
+          "ore": 341
+        },
+        {
+          "rank": "Mistrz Ognia",
+          "ordinal": 5,
+          "level": 61,
+          "world_hours": 63.45,
+          "ore": 17723
+        },
+        {
+          "rank": "Strażnik Świętego Ognia",
+          "ordinal": 6,
+          "level": 61,
+          "world_hours": 65.14,
+          "ore": 17510
+        },
+        {
+          "rank": "Mistrz Kręgu Ognia",
+          "ordinal": 7,
+          "level": 62,
+          "world_hours": 69.68,
+          "ore": 16797
+        },
+        {
+          "rank": "Awatar Innosa",
+          "ordinal": 8,
+          "level": 62,
+          "world_hours": 77.13,
+          "ore": 16070
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "new-archer",
+      "build": "archer",
+      "start_universe": "GOTHIC_I",
+      "native_camp": "NEW_CAMP",
+      "faction": "MERCENARIES",
+      "rank_ordinal": 8,
+      "level": 60,
+      "strength": 52,
+      "dexterity": 498,
+      "mana": 10,
+      "magic_circle": 0,
+      "magical_battles": 0,
+      "ore": 13068,
+      "world_days": 3.08,
+      "checkpoints": [
+        {
+          "rank": "Kret",
+          "ordinal": 1,
+          "level": 1,
+          "world_hours": 0.53,
+          "ore": 55
+        },
+        {
+          "rank": "Szkodnik",
+          "ordinal": 2,
+          "level": 3,
+          "world_hours": 1.37,
+          "ore": 21
+        },
+        {
+          "rank": "Najemnik",
+          "ordinal": 3,
+          "level": 11,
+          "world_hours": 19.87,
+          "ore": 38
+        },
+        {
+          "rank": "Gwardzista Lee",
+          "ordinal": 4,
+          "level": 19,
+          "world_hours": 36.05,
+          "ore": 19
+        },
+        {
+          "rank": "Łowca Smoków",
+          "ordinal": 5,
+          "level": 58,
+          "world_hours": 64.21,
+          "ore": 17451
+        },
+        {
+          "rank": "Weteran Łowców Smoków",
+          "ordinal": 6,
+          "level": 59,
+          "world_hours": 65.98,
+          "ore": 14208
+        },
+        {
+          "rank": "Dowódca Łowców Smoków",
+          "ordinal": 7,
+          "level": 59,
+          "world_hours": 67.98,
+          "ore": 13415
+        },
+        {
+          "rank": "Mistrz Łowców Smoków",
+          "ordinal": 8,
+          "level": 59,
+          "world_hours": 72.64,
+          "ore": 12832
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "new-water",
+      "build": "water",
+      "start_universe": "GOTHIC_I",
+      "native_camp": "NEW_CAMP",
+      "faction": "WATER_CIRCLE",
+      "rank_ordinal": 8,
+      "level": 63,
+      "strength": 26,
+      "dexterity": 12,
+      "mana": 507,
+      "magic_circle": 6,
+      "magical_battles": 90,
+      "ore": 16667,
+      "world_days": 5.43,
+      "checkpoints": [
+        {
+          "rank": "Kret",
+          "ordinal": 1,
+          "level": 1,
+          "world_hours": 0.28,
+          "ore": 46
+        },
+        {
+          "rank": "Szkodnik",
+          "ordinal": 2,
+          "level": 6,
+          "world_hours": 6.27,
+          "ore": 43
+        },
+        {
+          "rank": "Mag Wody",
+          "ordinal": 3,
+          "level": 18,
+          "world_hours": 41.07,
+          "ore": 112
+        },
+        {
+          "rank": "Arcymag Wody",
+          "ordinal": 4,
+          "level": 28,
+          "world_hours": 63.23,
+          "ore": 72
+        },
+        {
+          "rank": "Mistrz Wody",
+          "ordinal": 5,
+          "level": 62,
+          "world_hours": 113.36,
+          "ore": 17926
+        },
+        {
+          "rank": "Strażnik Równowagi",
+          "ordinal": 6,
+          "level": 62,
+          "world_hours": 115.06,
+          "ore": 17713
+        },
+        {
+          "rank": "Mistrz Kręgu Wody",
+          "ordinal": 7,
+          "level": 62,
+          "world_hours": 119.3,
+          "ore": 17038
+        },
+        {
+          "rank": "Awatar Adanosa",
+          "ordinal": 8,
+          "level": 63,
+          "world_hours": 126.15,
+          "ore": 16359
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "old-fire",
+      "build": "fire",
+      "start_universe": "GOTHIC_I",
+      "native_camp": "OLD_CAMP",
+      "faction": "FIRE_ORDER",
+      "rank_ordinal": 8,
+      "level": 62,
+      "strength": 26,
+      "dexterity": 10,
+      "mana": 499,
+      "magic_circle": 6,
+      "magical_battles": 88,
+      "ore": 16558,
+      "world_days": 5.4,
+      "checkpoints": [
+        {
+          "rank": "Kopacz",
+          "ordinal": 1,
+          "level": 1,
+          "world_hours": 0.28,
+          "ore": 46
+        },
+        {
+          "rank": "Cień",
+          "ordinal": 2,
+          "level": 6,
+          "world_hours": 7.24,
+          "ore": 65
+        },
+        {
+          "rank": "Mag Ognia",
+          "ordinal": 3,
+          "level": 12,
+          "world_hours": 21.87,
+          "ore": 113
+        },
+        {
+          "rank": "Arcymag Ognia",
+          "ordinal": 4,
+          "level": 24,
+          "world_hours": 63.2,
+          "ore": 113
+        },
+        {
+          "rank": "Mistrz Ognia",
+          "ordinal": 5,
+          "level": 61,
+          "world_hours": 111.46,
+          "ore": 17848
+        },
+        {
+          "rank": "Strażnik Świętego Ognia",
+          "ordinal": 6,
+          "level": 61,
+          "world_hours": 113.15,
+          "ore": 17635
+        },
+        {
+          "rank": "Mistrz Kręgu Ognia",
+          "ordinal": 7,
+          "level": 61,
+          "world_hours": 117.69,
+          "ore": 16922
+        },
+        {
+          "rank": "Awatar Innosa",
+          "ordinal": 8,
+          "level": 62,
+          "world_hours": 125.14,
+          "ore": 16246
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "old-warrior",
+      "build": "warrior",
+      "start_universe": "GOTHIC_I",
+      "native_camp": "OLD_CAMP",
+      "faction": "BANDITS",
+      "rank_ordinal": 8,
+      "level": 60,
+      "strength": 540,
+      "dexterity": 10,
+      "mana": 10,
+      "magic_circle": 0,
+      "magical_battles": 0,
+      "ore": 12236,
+      "world_days": 3.05,
+      "checkpoints": [
+        {
+          "rank": "Kopacz",
+          "ordinal": 1,
+          "level": 1,
+          "world_hours": 0.28,
+          "ore": 46
+        },
+        {
+          "rank": "Cień",
+          "ordinal": 2,
+          "level": 6,
+          "world_hours": 7.99,
+          "ore": 52
+        },
+        {
+          "rank": "Strażnik",
+          "ordinal": 3,
+          "level": 9,
+          "world_hours": 15.16,
+          "ore": 43
+        },
+        {
+          "rank": "Magnat",
+          "ordinal": 4,
+          "level": 27,
+          "world_hours": 42.69,
+          "ore": 123
+        },
+        {
+          "rank": "Przywódca szajki",
+          "ordinal": 5,
+          "level": 58,
+          "world_hours": 63.34,
+          "ore": 13643
+        },
+        {
+          "rank": "Dowódca bandytów",
+          "ordinal": 6,
+          "level": 59,
+          "world_hours": 65.09,
+          "ore": 13430
+        },
+        {
+          "rank": "Herszt bandytów",
+          "ordinal": 7,
+          "level": 59,
+          "world_hours": 67.08,
+          "ore": 12637
+        },
+        {
+          "rank": "Baron bandytów",
+          "ordinal": 8,
+          "level": 59,
+          "world_hours": 71.76,
+          "ore": 11992
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "onar-archer",
+      "build": "archer",
+      "start_universe": "GOTHIC_II",
+      "native_camp": "ONAR_MERCS",
+      "faction": "MERCENARIES",
+      "rank_ordinal": 8,
+      "level": 60,
+      "strength": 53,
+      "dexterity": 497,
+      "mana": 10,
+      "magic_circle": 0,
+      "magical_battles": 0,
+      "ore": 13269,
+      "world_days": 2.16,
+      "checkpoints": [
+        {
+          "rank": "Pracownik farmy",
+          "ordinal": 1,
+          "level": 2,
+          "world_hours": 0.45,
+          "ore": 43
+        },
+        {
+          "rank": "Zbrojny Onara",
+          "ordinal": 2,
+          "level": 5,
+          "world_hours": 2.76,
+          "ore": 34
+        },
+        {
+          "rank": "Najemnik Onara",
+          "ordinal": 3,
+          "level": 10,
+          "world_hours": 6.35,
+          "ore": 56
+        },
+        {
+          "rank": "Dowódca najemników",
+          "ordinal": 4,
+          "level": 19,
+          "world_hours": 11.0,
+          "ore": 449
+        },
+        {
+          "rank": "Łowca Smoków",
+          "ordinal": 5,
+          "level": 59,
+          "world_hours": 42.05,
+          "ore": 17613
+        },
+        {
+          "rank": "Weteran Łowców Smoków",
+          "ordinal": 6,
+          "level": 59,
+          "world_hours": 43.79,
+          "ore": 14400
+        },
+        {
+          "rank": "Dowódca Łowców Smoków",
+          "ordinal": 7,
+          "level": 60,
+          "world_hours": 45.79,
+          "ore": 13657
+        },
+        {
+          "rank": "Mistrz Łowców Smoków",
+          "ordinal": 8,
+          "level": 60,
+          "world_hours": 50.46,
+          "ore": 12953
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "swamp-guru",
+      "build": "water",
+      "start_universe": "GOTHIC_I",
+      "native_camp": "SWAMP_CAMP",
+      "faction": "WATER_CIRCLE",
+      "rank_ordinal": 8,
+      "level": 62,
+      "strength": 25,
+      "dexterity": 10,
+      "mana": 500,
+      "magic_circle": 6,
+      "magical_battles": 88,
+      "ore": 16419,
+      "world_days": 4.92,
+      "checkpoints": [
+        {
+          "rank": "Zbieracz",
+          "ordinal": 1,
+          "level": 1,
+          "world_hours": 0.5,
+          "ore": 24
+        },
+        {
+          "rank": "Nowicjusz",
+          "ordinal": 2,
+          "level": 6,
+          "world_hours": 7.21,
+          "ore": 64
+        },
+        {
+          "rank": "Guru",
+          "ordinal": 3,
+          "level": 16,
+          "world_hours": 35.25,
+          "ore": 3
+        },
+        {
+          "rank": "Arcyguru",
+          "ordinal": 4,
+          "level": 30,
+          "world_hours": 65.33,
+          "ore": 1193
+        },
+        {
+          "rank": "Mistrz Wody",
+          "ordinal": 5,
+          "level": 61,
+          "world_hours": 101.05,
+          "ore": 17719
+        },
+        {
+          "rank": "Strażnik Równowagi",
+          "ordinal": 6,
+          "level": 61,
+          "world_hours": 102.74,
+          "ore": 17544
+        },
+        {
+          "rank": "Mistrz Kręgu Wody",
+          "ordinal": 7,
+          "level": 61,
+          "world_hours": 106.98,
+          "ore": 16831
+        },
+        {
+          "rank": "Awatar Adanosa",
+          "ordinal": 8,
+          "level": 62,
+          "world_hours": 113.84,
+          "ore": 16107
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    },
+    {
+      "scenario": "earned-build-faction-journey",
+      "case": "swamp-templar",
+      "build": "warrior",
+      "start_universe": "GOTHIC_I",
+      "native_camp": "SWAMP_CAMP",
+      "faction": "CITY_WATCH",
+      "rank_ordinal": 8,
+      "level": 59,
+      "strength": 527,
+      "dexterity": 10,
+      "mana": 13,
+      "magic_circle": 0,
+      "magical_battles": 0,
+      "ore": 12333,
+      "world_days": 2.84,
+      "checkpoints": [
+        {
+          "rank": "Zbieracz",
+          "ordinal": 1,
+          "level": 1,
+          "world_hours": 0.5,
+          "ore": 24
+        },
+        {
+          "rank": "Nowicjusz",
+          "ordinal": 2,
+          "level": 6,
+          "world_hours": 7.96,
+          "ore": 31
+        },
+        {
+          "rank": "Strażnik świątynny",
+          "ordinal": 3,
+          "level": 9,
+          "world_hours": 15.43,
+          "ore": 80
+        },
+        {
+          "rank": "Templariusz bagien",
+          "ordinal": 4,
+          "level": 19,
+          "world_hours": 30.74,
+          "ore": 244
+        },
+        {
+          "rank": "Kandydat Zakonu",
+          "ordinal": 5,
+          "level": 58,
+          "world_hours": 59.27,
+          "ore": 13700
+        },
+        {
+          "rank": "Rycerz",
+          "ordinal": 6,
+          "level": 58,
+          "world_hours": 61.02,
+          "ore": 13487
+        },
+        {
+          "rank": "Paladyn",
+          "ordinal": 7,
+          "level": 59,
+          "world_hours": 63.03,
+          "ore": 12774
+        },
+        {
+          "rank": "Mistrz Zakonu",
+          "ordinal": 8,
+          "level": 59,
+          "world_hours": 66.9,
+          "ore": 12025
+        }
+      ],
+      "earned_personal_progression": true,
+      "external_global_barrier_event": true,
+      "limits": [
+        "Ordinary earned character; global community victory is an external fixture.",
+        "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+        "First regional depths, not all400 or a long-lived economy."
+      ]
+    }
+  ],
+  "pacing": {
+    "old-warrior": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "warrior",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 73.08,
+      "active_minutes": 557.0,
+      "recovery_minutes": 2748.0,
+      "timers_minutes": 1080.0,
+      "offline_hours": 0.0,
+      "calendar_days": 4,
+      "level": 60,
+      "strength": 540,
+      "quests": 50,
+      "ore": 12236,
+      "shards": 238,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 17,
+        "mine_claim": 5,
+        "build_buy_weapon": 10,
+        "build_equip_weapon": 10,
+        "income_adventure": 1358,
+        "income_claim": 146,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "buy_armor": 11,
+        "equip_armor": 11,
+        "hunt": 154,
+        "travel_energy": 27,
+        "story_travel": 16,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 143,
+        "matrix_mine_claim": 24,
+        "matrix_rank_promote": 8,
+        "buy_delivery": 2,
+        "build_train_onehand_skill": 19,
+        "build_train_strength": 59,
+        "earned_shop_energy": 20,
+        "matrix_hunt": 416,
+        "train_goal": 1,
+        "matrix_boss": 89,
+        "boss": 25,
+        "earned_shop_health": 23,
+        "personal_finale": 1,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 22,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 76,
+        "nk_mine_claim": 10,
+        "nk_hunt": 298,
+        "nk_boss": 76,
+        "nk_material_buy": 2,
+        "matrix_regional": 41
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "new-archer": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "archer",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 73.97,
+      "active_minutes": 560.0,
+      "recovery_minutes": 2799.0,
+      "timers_minutes": 1079.1,
+      "offline_hours": 0.0,
+      "calendar_days": 4,
+      "level": 60,
+      "strength": 52,
+      "quests": 50,
+      "ore": 13068,
+      "shards": 236,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 20,
+        "mine_claim": 5,
+        "build_buy_weapon": 9,
+        "build_equip_weapon": 9,
+        "income_adventure": 1475,
+        "income_claim": 150,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "build_ammo": 4,
+        "buy_armor": 11,
+        "equip_armor": 11,
+        "hunt": 160,
+        "travel_energy": 26,
+        "story_travel": 17,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 69,
+        "matrix_mine_claim": 14,
+        "matrix_rank_promote": 8,
+        "buy_delivery": 2,
+        "build_train_strength": 5,
+        "matrix_hunt": 396,
+        "earned_shop_energy": 20,
+        "matrix_rank_attribute": 2,
+        "train_goal": 1,
+        "build_train_bow_skill": 17,
+        "build_train_dexterity": 54,
+        "boss": 19,
+        "matrix_train_goal": 2,
+        "earned_shop_health": 24,
+        "personal_finale": 4,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 25,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 60,
+        "nk_mine_claim": 10,
+        "nk_hunt": 301,
+        "nk_boss": 80,
+        "nk_material_buy": 2,
+        "matrix_boss": 82,
+        "matrix_regional": 44
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "city-warrior": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "warrior",
+      "universe": "GOTHIC_II",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 53.98,
+      "active_minutes": 420.7,
+      "recovery_minutes": 2198.0,
+      "timers_minutes": 620.2,
+      "offline_hours": 0.0,
+      "calendar_days": 3,
+      "level": 61,
+      "strength": 550,
+      "quests": 40,
+      "ore": 12494,
+      "shards": 94,
+      "actions": {
+        "story_accept": 17,
+        "story_energy": 17,
+        "story_start": 17,
+        "story_talk": 2,
+        "story_claim": 17,
+        "mine": 43,
+        "mine_claim": 8,
+        "build_buy_weapon": 6,
+        "build_equip_weapon": 6,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "income_adventure": 734,
+        "income_claim": 70,
+        "buy_armor": 7,
+        "equip_armor": 7,
+        "hunt": 205,
+        "travel_energy": 15,
+        "story_travel": 8,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 120,
+        "matrix_mine_claim": 17,
+        "matrix_rank_promote": 8,
+        "build_train_onehand_skill": 13,
+        "build_train_strength": 59,
+        "earned_shop_health": 16,
+        "earned_shop_energy": 15,
+        "matrix_hunt": 399,
+        "train_goal": 1,
+        "matrix_train_goal": 2,
+        "boss": 3,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_visit": 25,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 54,
+        "nk_mine_claim": 10,
+        "nk_hunt": 298,
+        "nk_boss": 74,
+        "nk_region": 4,
+        "nk_material_buy": 2,
+        "matrix_boss": 81,
+        "matrix_regional": 43
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "onar-archer": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "archer",
+      "universe": "GOTHIC_II",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 51.8,
+      "active_minutes": 399.8,
+      "recovery_minutes": 2131.5,
+      "timers_minutes": 576.4,
+      "offline_hours": 0.0,
+      "calendar_days": 3,
+      "level": 60,
+      "strength": 53,
+      "quests": 40,
+      "ore": 13269,
+      "shards": 73,
+      "actions": {
+        "story_accept": 17,
+        "story_energy": 17,
+        "story_start": 17,
+        "story_talk": 2,
+        "story_claim": 17,
+        "mine": 43,
+        "mine_claim": 8,
+        "build_buy_weapon": 5,
+        "build_equip_weapon": 5,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "build_ammo": 4,
+        "income_adventure": 629,
+        "income_claim": 63,
+        "buy_armor": 7,
+        "equip_armor": 7,
+        "hunt": 198,
+        "travel_energy": 17,
+        "story_travel": 8,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 121,
+        "matrix_mine_claim": 17,
+        "matrix_rank_promote": 8,
+        "build_train_strength": 4,
+        "earned_shop_health": 30,
+        "earned_shop_energy": 15,
+        "matrix_hunt": 356,
+        "train_goal": 1,
+        "build_train_bow_skill": 11,
+        "build_train_dexterity": 53,
+        "matrix_train_goal": 2,
+        "boss": 27,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_visit": 24,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 48,
+        "nk_mine_claim": 10,
+        "nk_hunt": 302,
+        "nk_boss": 65,
+        "nk_region": 4,
+        "nk_material_buy": 2,
+        "matrix_boss": 79,
+        "matrix_regional": 55
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "swamp-templar": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "warrior",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 68.23,
+      "active_minutes": 519.2,
+      "recovery_minutes": 2556.0,
+      "timers_minutes": 1018.8,
+      "offline_hours": 0.0,
+      "calendar_days": 4,
+      "level": 59,
+      "strength": 527,
+      "quests": 50,
+      "ore": 12333,
+      "shards": 217,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 12,
+        "mine_claim": 4,
+        "build_buy_weapon": 10,
+        "build_equip_weapon": 10,
+        "income_adventure": 1235,
+        "income_claim": 138,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "buy_armor": 10,
+        "equip_armor": 10,
+        "hunt": 168,
+        "travel_energy": 26,
+        "story_travel": 16,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_hunt": 370,
+        "matrix_rank_promote": 8,
+        "buy_delivery": 2,
+        "build_train_onehand_skill": 18,
+        "build_train_strength": 58,
+        "earned_shop_energy": 20,
+        "matrix_train_goal": 1,
+        "matrix_rank_attribute": 1,
+        "train_goal": 1,
+        "boss": 18,
+        "matrix_boss": 101,
+        "earned_shop_health": 25,
+        "personal_finale": 6,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 27,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 42,
+        "nk_mine_claim": 10,
+        "nk_hunt": 288,
+        "nk_boss": 97,
+        "nk_material_buy": 2,
+        "matrix_mine": 91,
+        "matrix_mine_claim": 13,
+        "matrix_regional": 55
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "swamp-guru": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "water",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 118.12,
+      "active_minutes": 504.5,
+      "recovery_minutes": 4845.0,
+      "timers_minutes": 1737.6,
+      "offline_hours": 0.0,
+      "calendar_days": 6,
+      "level": 62,
+      "strength": 25,
+      "quests": 50,
+      "ore": 16419,
+      "shards": 432,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 11,
+        "mine_claim": 4,
+        "build_buy_weapon": 8,
+        "build_equip_weapon": 8,
+        "income_adventure": 1569,
+        "income_claim": 178,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "buy_armor": 11,
+        "equip_armor": 11,
+        "hunt": 119,
+        "travel_energy": 22,
+        "story_travel": 16,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_hunt": 51,
+        "matrix_rank_promote": 8,
+        "buy_delivery": 2,
+        "build_train_strength": 2,
+        "earned_shop_energy": 25,
+        "build_train_mana": 52,
+        "train_goal": 1,
+        "build_circle": 6,
+        "build_buy_magic": 34,
+        "build_prepare_magic": 121,
+        "boss": 18,
+        "matrix_train_goal": 3,
+        "earned_shop_health": 60,
+        "adventure_start": 286,
+        "adventure_claim": 45,
+        "personal_finale": 1,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 14,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 11,
+        "nk_mine_claim": 10,
+        "nk_hunt": 53,
+        "nk_boss": 9,
+        "nk_material_buy": 2,
+        "matrix_mine": 13,
+        "matrix_mine_claim": 13,
+        "matrix_boss": 4,
+        "matrix_regional": 4
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "old-fire": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "fire",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 129.56,
+      "active_minutes": 660.5,
+      "recovery_minutes": 5276.5,
+      "timers_minutes": 1836.8,
+      "offline_hours": 0.0,
+      "calendar_days": 6,
+      "level": 62,
+      "strength": 26,
+      "quests": 50,
+      "ore": 16558,
+      "shards": 409,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 18,
+        "mine_claim": 5,
+        "build_buy_weapon": 10,
+        "build_equip_weapon": 10,
+        "income_adventure": 2460,
+        "income_claim": 240,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "buy_armor": 13,
+        "equip_armor": 13,
+        "hunt": 135,
+        "travel_energy": 23,
+        "story_travel": 16,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 14,
+        "matrix_mine_claim": 14,
+        "matrix_rank_promote": 8,
+        "buy_delivery": 2,
+        "build_train_strength": 2,
+        "build_train_mana": 52,
+        "earned_shop_energy": 27,
+        "matrix_hunt": 113,
+        "train_goal": 1,
+        "build_circle": 6,
+        "build_buy_magic": 46,
+        "build_prepare_magic": 121,
+        "boss": 18,
+        "matrix_train_goal": 3,
+        "earned_shop_health": 82,
+        "adventure_start": 167,
+        "adventure_claim": 12,
+        "personal_finale": 3,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 15,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 11,
+        "nk_mine_claim": 10,
+        "nk_hunt": 52,
+        "nk_boss": 9,
+        "nk_material_buy": 2,
+        "matrix_boss": 4,
+        "matrix_regional": 4
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "new-water": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "water",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 130.43,
+      "active_minutes": 653.7,
+      "recovery_minutes": 5267.0,
+      "timers_minutes": 1905.3,
+      "offline_hours": 0.0,
+      "calendar_days": 6,
+      "level": 63,
+      "strength": 26,
+      "quests": 50,
+      "ore": 16667,
+      "shards": 489,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 20,
+        "mine_claim": 5,
+        "build_buy_weapon": 8,
+        "build_equip_weapon": 8,
+        "income_adventure": 2205,
+        "income_claim": 222,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "buy_armor": 14,
+        "equip_armor": 14,
+        "hunt": 126,
+        "travel_energy": 25,
+        "story_travel": 17,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 14,
+        "matrix_mine_claim": 14,
+        "matrix_rank_promote": 8,
+        "buy_delivery": 2,
+        "earned_shop_health": 62,
+        "build_train_strength": 2,
+        "build_train_mana": 53,
+        "matrix_hunt": 109,
+        "earned_shop_energy": 28,
+        "matrix_rank_attribute": 2,
+        "build_circle": 6,
+        "build_buy_magic": 42,
+        "build_prepare_magic": 122,
+        "train_goal": 1,
+        "boss": 18,
+        "matrix_train_goal": 3,
+        "adventure_start": 425,
+        "adventure_claim": 31,
+        "personal_finale": 2,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 14,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 16,
+        "nk_mine_claim": 10,
+        "nk_hunt": 33,
+        "nk_boss": 9,
+        "nk_material_buy": 2,
+        "matrix_boss": 4,
+        "matrix_regional": 4
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    "monastery-fire": {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "build": "fire",
+      "universe": "GOTHIC_II",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 81.55,
+      "active_minutes": 315.0,
+      "recovery_minutes": 3868.0,
+      "timers_minutes": 710.2,
+      "offline_hours": 0.0,
+      "calendar_days": 4,
+      "level": 62,
+      "strength": 25,
+      "quests": 40,
+      "ore": 16382,
+      "shards": 38,
+      "actions": {
+        "story_accept": 17,
+        "story_energy": 17,
+        "story_start": 17,
+        "story_talk": 2,
+        "story_claim": 17,
+        "mine": 28,
+        "mine_claim": 8,
+        "build_buy_weapon": 4,
+        "build_equip_weapon": 4,
+        "build_buy_protection": 10,
+        "build_equip_protection": 10,
+        "income_adventure": 889,
+        "income_claim": 83,
+        "buy_armor": 8,
+        "equip_armor": 8,
+        "hunt": 159,
+        "travel_energy": 11,
+        "story_travel": 8,
+        "join_camp": 1,
+        "matrix_rank_accept": 8,
+        "matrix_mine": 17,
+        "matrix_mine_claim": 17,
+        "matrix_rank_promote": 8,
+        "build_train_strength": 2,
+        "build_train_mana": 51,
+        "earned_shop_health": 83,
+        "earned_shop_energy": 17,
+        "matrix_hunt": 74,
+        "train_goal": 1,
+        "build_circle": 6,
+        "build_buy_magic": 4,
+        "build_prepare_magic": 113,
+        "matrix_train_goal": 2,
+        "boss": 13,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_visit": 14,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 10,
+        "nk_mine_claim": 10,
+        "nk_hunt": 44,
+        "nk_boss": 9,
+        "nk_region": 4,
+        "nk_material_buy": 2,
+        "matrix_boss": 4,
+        "matrix_regional": 4
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    }
+  },
+  "execution_batches": [
+    {
+      "cases": [
+        "old-warrior",
+        "new-archer",
+        "city-warrior",
+        "onar-archer"
+      ],
+      "seconds": 256.47,
+      "success": true,
+      "selected_cases": [
+        "old-warrior",
+        "new-archer",
+        "city-warrior",
+        "onar-archer"
+      ]
+    },
+    {
+      "cases": [
+        "swamp-guru",
+        "swamp-templar"
+      ],
+      "seconds": 156.26,
+      "success": true,
+      "selected_cases": [
+        "swamp-templar"
+      ]
+    },
+    {
+      "cases": [
+        "swamp-guru"
+      ],
+      "seconds": 68.56,
+      "success": true,
+      "selected_cases": [
+        "swamp-guru"
+      ]
+    },
+    {
+      "cases": [
+        "old-fire",
+        "new-water",
+        "monastery-fire"
+      ],
+      "seconds": 197.21,
+      "success": true,
+      "selected_cases": [
+        "old-fire",
+        "new-water",
+        "monastery-fire"
+      ]
+    }
+  ],
+  "actual_community_activation": {
+    "schema": 1,
+    "success": true,
+    "seconds": 93.06,
+    "isolated_file_database": true,
+    "real_barrier_activation": true,
+    "scenarios": [
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "build": "warrior",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 13.86,
+        "active_minutes": 121.2,
+        "recovery_minutes": 548.0,
+        "timers_minutes": 162.4,
+        "offline_hours": 0.0,
+        "calendar_days": 1,
+        "level": 31,
+        "strength": 320,
+        "quests": 27,
+        "ore": 150,
+        "shards": 7,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 5,
+          "mine_claim": 5,
+          "buy_weapon": 7,
+          "equip_weapon": 7,
+          "income_adventure": 201,
+          "income_claim": 28,
+          "buy_armor": 5,
+          "equip_armor": 5,
+          "hunt": 105,
+          "travel_energy": 25,
+          "story_travel": 16,
+          "join_camp": 1,
+          "buy_delivery": 2,
+          "train_strength": 31,
+          "earned_shop_energy": 5,
+          "train_goal": 1,
+          "boss": 19,
+          "earned_shop_health": 13,
+          "personal_finale": 1,
+          "guard_accept": 3,
+          "guard_mine": 1,
+          "guard_mine_claim": 1,
+          "guard_promote": 3,
+          "guard_hunt": 120,
+          "guard_boss": 1
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      },
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "build": "warrior",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 13.69,
+        "active_minutes": 123.2,
+        "recovery_minutes": 530.0,
+        "timers_minutes": 168.4,
+        "offline_hours": 0.0,
+        "calendar_days": 2,
+        "level": 31,
+        "strength": 320,
+        "quests": 27,
+        "ore": 221,
+        "shards": 5,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 5,
+          "mine_claim": 5,
+          "buy_weapon": 7,
+          "equip_weapon": 7,
+          "income_adventure": 199,
+          "income_claim": 29,
+          "buy_armor": 5,
+          "equip_armor": 5,
+          "hunt": 108,
+          "travel_energy": 23,
+          "story_travel": 16,
+          "join_camp": 1,
+          "buy_delivery": 2,
+          "train_strength": 31,
+          "earned_shop_energy": 8,
+          "train_goal": 1,
+          "boss": 14,
+          "earned_shop_health": 14,
+          "personal_finale": 11,
+          "guard_accept": 3,
+          "guard_mine": 1,
+          "guard_mine_claim": 1,
+          "guard_promote": 3,
+          "guard_hunt": 123,
+          "guard_boss": 1
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      },
+      {
+        "scenario": "earned-community-barrier",
+        "accounts": 3,
+        "synthetic_progression_grants": false,
+        "real_siege": true,
+        "real_backup_restore_activation": true,
+        "strikes": 124,
+        "guild_level": 10,
+        "world_days": 15.96,
+        "preserved_progression": true,
+        "preserved_inventory": true,
+        "one_server_two_regions": true,
+        "joined_events": 1
+      },
+      {
+        "scenario": "earned-nk-resident-campaign",
+        "build": "warrior",
+        "admin_grants": false,
+        "global_join_fixture": false,
+        "new_contracts": 23,
+        "checkpoints": [
+          {
+            "quest": "jark-portal",
+            "level": 31,
+            "world_hours": 0.27,
+            "ore": 133
+          },
+          {
+            "quest": "jark-supplies",
+            "level": 31,
+            "world_hours": 0.3,
+            "ore": 291
+          },
+          {
+            "quest": "jark-pirates",
+            "level": 31,
+            "world_hours": 0.32,
+            "ore": 491
+          },
+          {
+            "quest": "jark-canyon",
+            "level": 33,
+            "world_hours": 3.23,
+            "ore": 381
+          },
+          {
+            "quest": "jark-workers",
+            "level": 34,
+            "world_hours": 4.04,
+            "ore": 781
+          },
+          {
+            "quest": "jark-swamp-watch",
+            "level": 36,
+            "world_hours": 7.74,
+            "ore": 711
+          },
+          {
+            "quest": "jark-stones",
+            "level": 37,
+            "world_hours": 8.5,
+            "ore": 1221
+          },
+          {
+            "quest": "jark-crypt-watch",
+            "level": 38,
+            "world_hours": 8.95,
+            "ore": 2301
+          },
+          {
+            "quest": "nk-scouts",
+            "level": 38,
+            "world_hours": 9.73,
+            "ore": 2461
+          },
+          {
+            "quest": "nk-supplies",
+            "level": 39,
+            "world_hours": 10.24,
+            "ore": 2808
+          },
+          {
+            "quest": "nk-seekers",
+            "level": 40,
+            "world_hours": 11.02,
+            "ore": 3068
+          },
+          {
+            "quest": "nk-tablets",
+            "level": 41,
+            "world_hours": 11.8,
+            "ore": 3328
+          },
+          {
+            "quest": "nk-raven",
+            "level": 42,
+            "world_hours": 12.25,
+            "ore": 4318
+          },
+          {
+            "quest": "nk-eye",
+            "level": 43,
+            "world_hours": 12.35,
+            "ore": 4678
+          },
+          {
+            "quest": "nk-swamp-dragon",
+            "level": 44,
+            "world_hours": 12.89,
+            "ore": 5840
+          },
+          {
+            "quest": "nk-stone-dragon",
+            "level": 46,
+            "world_hours": 13.29,
+            "ore": 7135
+          },
+          {
+            "quest": "nk-fire-dragon",
+            "level": 47,
+            "world_hours": 13.79,
+            "ore": 8492
+          },
+          {
+            "quest": "nk-ice-dragon",
+            "level": 49,
+            "world_hours": 14.21,
+            "ore": 10117
+          },
+          {
+            "quest": "nk-ship",
+            "level": 50,
+            "world_hours": 14.9,
+            "ore": 10716
+          },
+          {
+            "quest": "nk-sailing",
+            "level": 51,
+            "world_hours": 15.12,
+            "ore": 7126
+          },
+          {
+            "quest": "nk-island-dragon",
+            "level": 53,
+            "world_hours": 15.38,
+            "ore": 8931
+          },
+          {
+            "quest": "nk-archol",
+            "level": 55,
+            "world_hours": 15.8,
+            "ore": 10798
+          },
+          {
+            "quest": "nk-undead",
+            "level": 58,
+            "world_hours": 16.05,
+            "ore": 13128
+          }
+        ],
+        "level": 58,
+        "expedition_world_hours": 16.05,
+        "total_world_hours": 371.55,
+        "limits": [
+          "Known-goal build strategy, no PvP/player-market competition.",
+          "Three earned accounts, actual siege and verified backup activation.",
+          "Does not mean all original hero quests, every item effect or guild rank8 completed.",
+          "Virtual timers use seconds; active operations are modelled, not human playtime."
+        ]
+      },
+      {
+        "scenario": "complete-earned-journey",
+        "accounts": 3,
+        "initial_level_each": 0,
+        "all_joined_steps_real": true,
+        "nk_contracts": 23,
+        "post_nk_patrols": 3,
+        "regional_patrols": 4,
+        "weekly_strikes": 10,
+        "regional_backup_restore_verified": true,
+        "level": 58,
+        "world_days": 17.0,
+        "limits": [
+          "Three sequential knowledgeable warrior strategies, not human elapsed time.",
+          "No competing player market/PvP or live 250-bot population in this scenario.",
+          "Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank."
+        ]
+      },
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "build": "warrior",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 380.36,
+        "active_minutes": 281.5,
+        "recovery_minutes": 9195.0,
+        "timers_minutes": 13345.1,
+        "offline_hours": 0.0,
+        "calendar_days": 17,
+        "level": 58,
+        "strength": 590,
+        "quests": 50,
+        "ore": 13486,
+        "shards": 0,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 5,
+          "mine_claim": 5,
+          "buy_weapon": 9,
+          "equip_weapon": 9,
+          "income_adventure": 369,
+          "income_claim": 43,
+          "buy_armor": 7,
+          "equip_armor": 7,
+          "hunt": 105,
+          "travel_energy": 25,
+          "story_travel": 16,
+          "join_camp": 1,
+          "buy_delivery": 2,
+          "train_strength": 58,
+          "earned_shop_energy": 28,
+          "train_goal": 1,
+          "boss": 19,
+          "earned_shop_health": 65,
+          "personal_finale": 1,
+          "guard_accept": 3,
+          "guard_mine": 1,
+          "guard_mine_claim": 1,
+          "guard_promote": 3,
+          "guard_hunt": 78,
+          "guard_boss": 1,
+          "community_raid": 25,
+          "community_mine": 18,
+          "community_mine_claim": 18,
+          "community_hunt": 30,
+          "community_strike": 124,
+          "nk_accept": 23,
+          "nk_start": 23,
+          "nk_region": 5,
+          "nk_visit": 27,
+          "nk_talk": 3,
+          "nk_claim": 23,
+          "nk_mine": 63,
+          "nk_mine_claim": 10,
+          "nk_hunt": 223,
+          "nk_boss": 73,
+          "nk_material_buy": 2,
+          "post_nk_patrol": 3,
+          "regional_endgame": 4,
+          "weekly_endgame_strike": 14
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      }
+    ],
+    "limits": [
+      "Model trzech strategii wojownika; wirtualny czas i zwykłe koszty, nie pomiar czasu człowieka.",
+      "Bez konkurencji PvP i rynku innych graczy; pozostałe buildy/populację testują oddzielne pakiety."
+    ]
+  },
+  "verification": {
+    "sqlite_forecasts_magic_contracts": {
+      "tests": 53,
+      "skipped": 1,
+      "seconds": 3.96
+    },
+    "sqlite_campaign_regression": {
+      "tests": 39,
+      "seconds": 136.879
+    },
+    "postgresql_initial_regression": {
+      "tests": 85,
+      "seconds": 47.54
+    },
+    "postgresql_scroll_pool_and_contention": {
+      "tests": 67,
+      "seconds": 30.089
+    },
+    "gui": {
+      "isolated_database": true,
+      "synthetic_veteran_fixture": true,
+      "pages": [
+        {
+          "page": "training",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 0
+        },
+        {
+          "page": "training",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 0
+        },
+        {
+          "page": "training",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 0
+        },
+        {
+          "page": "boss",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "boss",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "boss",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "hunt",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 3
+        },
+        {
+          "page": "hunt",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 3
+        },
+        {
+          "page": "hunt",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 3
+        }
+      ],
+      "errors": [],
+      "actual_training_form": {
+        "mana_delta": 1,
+        "points_spent": 1,
+        "ore_spent": 8
+      }
+    }
+  },
+  "fixes": [
+    "Osobno kupione zwoje G1 są wspólnym zapasem jednej walki; dodatkowe chronione/wystawione egzemplarze nie są zużywane.",
+    "Prognoza bossa i podgląd rzutów/many po odporności, powody blokady wejścia.",
+    "Wskazówki buildów, rezerwy PN, finansowania treningu i magii.",
+    "Model czeka do faktycznego action_end_time kopalni; bez zmiany timera gry."
+  ],
+  "limits": [
+    "Pakiety częściowo się pokrywają; nie sumować jako unikalnych testów.",
+    "Dziewięć dróg to cztery główne buildy i obie drogi Bractwa, nie wszystkie kombinacje broni/wyborów.",
+    "Macierz buildów ma zewnętrzne globalne zwycięstwo społeczności i nie mierzy oczekiwania serwera na Barierę.",
+    "Prawdziwy wspólny Śniący/kopia/aktywacja są osobną próbą trzech organicznych wojowników.",
+    "Strategie znają cele, czas jest wirtualny; bez konkurencji rynku/PvP i bez wielodniowej gospodarki250 botów.",
+    "Pierwsze regionalne stopnie, nie wszystkie400; satysfakcja człowieka wymaga obserwacji rzeczywistej gry.",
+    "Brak wdrożenia na prywatnym lub publicznym serwerze; nie dodano wydarzeń #137 ani NPC/scen questowych."
+  ]
+}

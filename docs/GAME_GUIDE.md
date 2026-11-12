@@ -20,6 +20,8 @@ Zmiana górnicza w UI trwa 15 sekund i kosztuje 10 energii. Wróć po urobek: ba
 
 Zwykła walka kosztuje 15 energii. Wybierz przeciwnika z danej lokacji; jego poziom jest zaleceniem, a poziom wejścia do lokacji obowiązkowy. Walka rozstrzyga się automatycznie do zwycięstwa lub porażki. Broń, atrybuty, typ obrażeń, pancerz, magia i amunicja wpływają na wynik. Przed wyborem celu zobaczysz konserwatywną prognozę utraty HP z rezerwą 10, uwzględniającą własny sprzęt i przygotowaną magię. Pomija losowe krytyki; przy opanowaniu 100% podwojenie jest pewne. Prognoza nie blokuje ryzykownej walki. Brak energii, amunicji, many na pierwszy czar albo zajętość mają osobny komunikat. Raport i łupy są trwałe w kronice. Ponowienie tego samego formularza nie losuje drugiego wyniku.
 
+[Jak poprowadzić różne buildy i frakcje do końca](BUILD_PLAYTHROUGHS.md). Osobno kupione identyczne zwoje tworzą wspólny zapas walki; dodatkowe chronione i wystawione egzemplarze pozostają bezpieczne. Prognoza bossa pokazuje teraz zdrowie, a podgląd magii także zapas rzutów i obrażenia po odporności. U nauczyciela rozwiń „Jak rozwijać swój build?”.
+
 ## Rozwój i wyposażenie
 
 PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Poziom daje 10 PN i +12 maksymalnego zdrowia. Nauczyciel rozwija siłę, zręczność, manę oraz władanie bronią jednoręczną, dwuręczną, łukami i kuszami (do 100%); jeden punkt kosztuje 1 PN i 10 rudy pomniejszone o poziom szkoły obozowej i osobistą premię rangi (do 5 rudy łącznie). Formularz pozwala ćwiczyć 1–10 punktów i płaci za każdy.

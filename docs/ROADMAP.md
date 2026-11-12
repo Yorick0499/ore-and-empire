@@ -174,3 +174,9 @@ Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów
 ### Regionalny endgame — #136
 
 PR #138 pełnej drogi i grafik lokacji scalono po zielonym CI. [Regionalne warty](REGIONAL_ENDGAME.md) dodają cztery ścieżki po100 stopni, wspólny filtrowany ranking i rotacyjny cel wspólnoty co tydzień. Stare100 wart pozostaje; regionalna pętla ma wpisowe, wspólny cooldown i limit8 nagród dziennie. Migracja0053, kopie, boty baseline-24 i odtwarzanie dawnych polityk zachowują dane. [Raport](reports/regionalny-endgame-2026-11-12.json) obejmuje realne przejście, cztery przygotowane buildy, PostgreSQL, GUI i250 botów. Następny etap **#137**: regionalne wydarzenia; organiczne pozostałe buildy, awanse4→8 i dłuższa gospodarka nadal **#128**. Nie wdrożono #137 w tej iteracji; handoff pozostaje bez zmian.
+
+### Organiczne buildy i pięć frakcji — #128
+
+[Dziewięć pełnych dróg](BUILD_PLAYTHROUGHS.md) od0 do finału NK, ósmej rangi i regionalnego endgame: Stary/Nowy Obóz w obu gałęziach, trzy wspólnoty Khorinis oraz Guru/Templariusz z rzeczywistym wyborem następcy. Bez grantów poziomów, atrybutów, ekwipunku i osobistych kamieni milowych. Globalna Bariera jest zewnętrznym zdarzeniem w macierzy; osobna realna próba trzech kont nadal weryfikuje Śniącego, kopię i aktywację.
+
+Naprawiono zapas oddzielnych zwojów G1 w walce z zachowaniem ochrony i ofert rynku, dodano czytelne prognozy bossa/many i wskazówki buildów. Bez nowej migracji ani resetu. [Raport](reports/buildy-frakcje-2026-11-12.json): testy SQLite, PostgreSQL z wyścigiem zwojów i GUI320/390/1440. PR #139 regionalnego endgame scalono po komplecie zielonych kontroli. Następny odrębny etap **#137**: regionalne wydarzenia. Dłuższa gospodarka250 botów i obserwacje rzeczywistych graczy pozostają w backlogu wydania #9; nie twierdzimy, że automatyczna wygrana dowodzi subiektywnej satysfakcji. Handoff bez zmian.

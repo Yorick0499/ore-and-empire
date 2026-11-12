@@ -85,6 +85,12 @@ class MagicPlan:
     def cost(self):return 1 if self.scroll else self.spell.cost
 
 
+def scroll_stacks(profile,item):
+    """Explicitly prepared scroll plus identical unprotected, unlisted stock."""
+    from django.db.models import Q
+    return OwnedItem.objects.filter(owner=profile,blueprint_id=item.blueprint_id,is_market_listed=False).filter(Q(pk=item.pk)|Q(is_protected=False))
+
+
 def combat_plan(profile):
     if not profile.prepared_magic_id:return None
     item=OwnedItem.objects.select_related('blueprint').filter(pk=profile.prepared_magic_id,owner=profile,is_market_listed=False).first()
@@ -94,7 +100,11 @@ def combat_plan(profile):
     if not allowed(profile,item.blueprint):return None
     spell,scroll=entry
     if not scroll and not rune_allowed(profile,spell):return None
-    return MagicPlan(spell,item.pk,scroll,item.quantity)
+    quantity=item.quantity
+    if scroll:
+        from django.db.models import Sum
+        quantity=scroll_stacks(profile,item).aggregate(total=Sum('quantity'))['total'] or 0
+    return MagicPlan(spell,item.pk,scroll,quantity)
 
 
 @player_action
@@ -137,9 +147,17 @@ def apply_combat_magic(profile,plan,result):
         profile.current_mana=result.remaining_mana;profile.mana_updated_at=timezone.now()
     if plan and plan.scroll and result.spell_casts:
         item=OwnedItem.objects.select_for_update().get(pk=plan.item_id,owner=profile,is_market_listed=False)
-        if item.quantity<result.spell_casts:raise ValueError('Scroll quantity changed during battle')
-        if item.quantity==result.spell_casts:item.delete();profile.prepared_magic=None
-        else:item.quantity-=result.spell_casts;item.save(update_fields=['quantity'])
+        stacks=list(scroll_stacks(profile,item).select_for_update().order_by('pk'))
+        stacks.sort(key=lambda row:(row.pk!=item.pk,row.pk))
+        if sum(row.quantity for row in stacks)<result.spell_casts:raise ValueError('Scroll quantity changed during battle')
+        remaining=result.spell_casts;prepared=None
+        for row in stacks:
+            used=min(remaining,row.quantity);remaining-=used
+            if used==row.quantity:row.delete()
+            else:
+                if used:row.quantity-=used;row.save(update_fields=['quantity'])
+                if prepared is None:prepared=row
+        profile.prepared_magic=prepared
 
 
 def offers(profile):

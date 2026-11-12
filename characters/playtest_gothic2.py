@@ -63,9 +63,9 @@ class EarnedNkCampaign(TestCase):
                         steps['funds'](bp.base_value*missing);self.assertTrue(do('nk_material_buy',lambda:game.buy_item_from_npc(p,bp,missing)))
                 else:
                     for _ in range(goal.get('count',1)):
-                        prepare()
+                        prepare(target if kind in {'hunt','boss'} else None)
                         if kind=='mine':
-                            self.assertTrue(do('nk_mine',lambda:game.start_mining(p,15)));advance(15*60,'timer');self.assertTrue(do('nk_mine_claim',lambda:game.claim_ore_reward(p)))
+                            self.assertTrue(do('nk_mine',lambda:game.start_mining(p,15)));advance(max(0,int((p.action_end_time-steps['now']()).total_seconds())),'timer');self.assertTrue(do('nk_mine_claim',lambda:game.claim_ore_reward(p)))
                         elif kind=='hunt':
                             location=next(loc for loc in LOCATIONS if target in loc.monsters);route(location)
                             self.assertIsNot(do('nk_hunt',lambda:game.execute_hunt(p,target,location.key)),False);self.assertTrue(p.battles.first().won)
@@ -75,7 +75,7 @@ class EarnedNkCampaign(TestCase):
             checkpoints.append({'quest':definition['key'],'level':p.level,'world_hours':round((steps['now']()-begin).total_seconds()/3600,2),'ore':p.ore_balance})
         self.assertEqual(p.story_runs.filter(status='claimed',quest__key__in=[q['key'] for q in jark_campaign()+campaign()]).count(),23)
         self.assertEqual(p.battles.filter(won=False).count(),0)
-        record_scenario('earned-nk-resident-campaign',{'admin_grants':False,'global_join_fixture':getattr(self,'global_join_fixture',True),'new_contracts':23,'checkpoints':checkpoints,'level':p.level,'expedition_world_hours':round((steps['now']()-begin).total_seconds()/3600,2),'total_world_hours':round((steps['now']()-steps['start']).total_seconds()/3600,2),'limits':['Warrior strategy, no PvP/player-market competition.','Global community victory is an external event fixture.' if getattr(self,'global_join_fixture',True) else 'Three earned accounts, actual siege and verified backup activation.','Does not mean all original hero quests, every item effect or guild rank8 completed.','Virtual timers use seconds; active operations are modelled, not human playtime.']})
+        record_scenario('earned-nk-resident-campaign',{'build':getattr(self,'build','warrior'),'admin_grants':False,'global_join_fixture':getattr(self,'global_join_fixture',True),'new_contracts':23,'checkpoints':checkpoints,'level':p.level,'expedition_world_hours':round((steps['now']()-begin).total_seconds()/3600,2),'total_world_hours':round((steps['now']()-steps['start']).total_seconds()/3600,2),'limits':['Known-goal build strategy, no PvP/player-market competition.','Global community victory is an external event fixture.' if getattr(self,'global_join_fixture',True) else 'Three earned accounts, actual siege and verified backup activation.','Does not mean all original hero quests, every item effect or guild rank8 completed.','Virtual timers use seconds; active operations are modelled, not human playtime.']})
 
 
 from django.test import TransactionTestCase

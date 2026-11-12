@@ -320,3 +320,5 @@ Wyszukiwarka przeszukuje tekst rozdziałów i raportów. Spis treści działa ta
 Od migracji 0042: [pięć postaci, fabuła i przywileje rang](../CHARACTERS_AND_WORLDS.md). Kreator pojawia się po rejestracji; w zarządcy wybierz imię postaci wraz z kontem i slotem. Konta administratorów i hasła pozostają.
 
 Regionalny endgame po NK i zgodność migracji0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat23; stare odtworzenia pozostają zgodne.
+
+[Dziewięć organicznych dróg buildów i frakcji](../BUILD_PLAYTHROUGHS.md) można sprawdzić przez `simulate_builds --report /tmp/ore-builds.json`; `--case` wybiera pojedyncze drogi. Komenda używa własnej bazy, a pełne CI dzieli macierz na trzy grupy. Poprawka zapasu zwojów nie wymaga migracji ani łączenia historycznych przedmiotów.

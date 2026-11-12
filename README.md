@@ -21,6 +21,8 @@ Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQL
 
 Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. [Zasady oraz plan Kolonia + Khorinis](docs/CHARACTERS_AND_WORLDS.md). **Khorinis jest już grywalne przed połączeniem**: 29 definicji fabuły, trzy frakcje i własna pętla. [Zakres paczki i otwarcie serwera](docs/KHORINIS.md). Globalne zwycięstwo wspólnoty uruchamia bezpieczne połączenie i publiczny Jarkendar. Dalej można przejść wyprawę mieszkańca do Irdorath i kontynuować warty. [Uruchomienie obu regionów, pełna droga i próba integracyjna](docs/COMPLETE_JOURNEY.md).
 
+[Buildy i frakcje od poziomu0](docs/BUILD_PLAYTHROUGHS.md): wojownik, łucznik, Ogień, Woda i obie drogi Bractwa; przygotowanie do bossów i osobna komenda kontroli przejść.
+
 ## Co możesz przejść
 
 - Sześć rozdziałów i 41 jednorazowych definicji fabularnych; 27 zadań prowadzi daną ścieżkę do przygotowania finału, dostępny jest także epilog zależny od wyboru.

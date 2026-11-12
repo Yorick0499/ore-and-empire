@@ -1,0 +1,1 @@
+{% if magic %}<p>Obrażenia czaru po odporności: {{ magic.damage }} na rzut. Do pokonania samym czarem potrzeba około {{ magic.casts }} rzutów i {{ magic.mana }} many. Dostępne rzuty z obecnego zapasu: {{ magic.available }}{% if magic.short %} — potem walczysz pięściami. <a href="{% url 'magic_page' %}">Przygotuj zapas lub inny czar</a>{% endif %}.</p>{% endif %}

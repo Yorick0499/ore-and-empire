@@ -33,7 +33,7 @@ class CompleteJourney(unittest.TestCase):
                 for _ in range(goal.count):
                     prepare()
                     if kind=='mine':
-                        self.assertTrue(do('guard_mine',lambda:game.start_mining(p,15)));advance(900,'timer');self.assertTrue(do('guard_mine_claim',lambda:game.claim_ore_reward(p)))
+                        self.assertTrue(do('guard_mine',lambda:game.start_mining(p,15)));advance(max(0,int((p.action_end_time-steps['now']()).total_seconds())),'timer');self.assertTrue(do('guard_mine_claim',lambda:game.claim_ore_reward(p)))
                     elif kind=='hunt':
                         loc=next(l for l in LOCATIONS if target in l.monsters and l.accessible(p));self.assertTrue(do('guard_hunt',lambda:game.execute_hunt(p,target,loc.key)));self.assertTrue(p.battles.first().won)
                     elif kind=='boss':
@@ -63,7 +63,7 @@ class CompleteJourney(unittest.TestCase):
                     for __ in range(goal['count']-project.progress.get(goal['id'],0)):
                         prepare()
                         if goal['kind']=='mine':
-                            self.assertTrue(do('community_mine',lambda:game.start_mining(p,15)));advance(900,'timer');self.assertTrue(do('community_mine_claim',lambda:game.claim_ore_reward(p)))
+                            self.assertTrue(do('community_mine',lambda:game.start_mining(p,15)));advance(max(0,int((p.action_end_time-steps['now']()).total_seconds())),'timer');self.assertTrue(do('community_mine_claim',lambda:game.claim_ore_reward(p)))
                         else:self.assertTrue(do('community_hunt',lambda:game.execute_hunt(p,'scavenger','forest')))
             raid=rally_camp_raid(p);self.assertTrue(raid)
             for __ in range(30):
