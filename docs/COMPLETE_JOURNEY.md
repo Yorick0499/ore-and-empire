@@ -1,6 +1,6 @@
 # Uruchomienie i pełna droga mieszkańca
 
-Stan: 12 XI 2026, po PR #134/#135. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
+Stan: 12 XI 2026, po PR #138 i z regionalnym endgame #136. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
 
 ## Uruchomienie lokalne
 
@@ -20,7 +20,7 @@ Launcher stosuje migracje i seedery. Po otwarciu Khorinis dodaje także katalog 
 - Zwycięstwo zleca połączenie. Działający launcher/worker automatycznie obsługuje kolejkę: świeża kopia, próba odtworzenia, blokady i jednorazowa aktywacja. Przy błędzie kopii światy nie łączą się na skróty; stan i wznowienie są w panelu Bariery.
 - Po połączeniu kreator pokazuje jeden serwer z dwoma regionami. Zachowujesz postać, ekwipunek, portfele, historię i pochodzenie; działa wspólny rynek/ranking oraz sukcesja pięciu frakcji.
 - Publiczny portal, Jarkendar, kontrakty NK, Kruk, cztery smoki i rejs prowadzą do Irdorath. [Szczegóły progów i zawartości](GOTHIC_II_CONTENT.md). Nie ma kont premium.
-- Po odebraniu finału NK wskazówki prowadzą do „Wart wspólnych szlaków”. Obecne100 stopni, powtarzalne walki, kuźnia, wspólnota i ranking miesiąca pozwalają kontynuować grę. Nowy miesiąc nie kasuje sprzętu i odblokowanych stopni. Rozbudowany regionalny endgame opisano w planie poniżej; nie jest jeszcze wdrożony.
+- Po odebraniu finału NK wskazówki prowadzą do „Wart wspólnych szlaków”. Obecne100 stopni, powtarzalne walki, kuźnia, wspólnota i ranking miesiąca pozwalają kontynuować grę. Nowy miesiąc nie kasuje sprzętu i odblokowanych stopni. [Regionalny endgame](REGIONAL_ENDGAME.md) dodaje cztery osobne ścieżki po100 stopni oraz tygodniowy cel wspólnoty po finale NK.
 
 ## Jedno polecenie do sprawdzenia całej drogi
 
@@ -28,7 +28,7 @@ Launcher stosuje migracje i seedery. Po otwarciu Khorinis dodaje także katalog 
 python manage.py simulate_journey --report /tmp/ore-journey-report.json
 ```
 
-Wybierz nową nazwę raportu. Polecenie zawsze tworzy własną tymczasową bazę plikową SQLite, nie używa bazy z `.env` i nie zmienia istniejących graczy. Trzy konta zaczynają na poziomie0: normalne formularze kampanii, kupno sprzętu, trening, zdobyte odłamki, rangi Kopacza/Cienia/Strażnika, projekty i wyprawy wspólnoty. Potem rzeczywiste uderzenia Śniącego, zweryfikowana kopia/odtworzenie i powtórzona idempotentna aktywacja,23 przydziały Jarkendaru/NK oraz3 wygrane warty z kontrolą powtórzenia żądania.
+Wybierz nową nazwę raportu. Polecenie zawsze tworzy własną tymczasową bazę plikową SQLite, nie używa bazy z `.env` i nie zmienia istniejących graczy. Trzy konta zaczynają na poziomie0: normalne formularze kampanii, kupno sprzętu, trening, zdobyte odłamki, rangi Kopacza/Cienia/Strażnika, projekty i wyprawy wspólnoty. Potem rzeczywiste uderzenia Śniącego, zweryfikowana kopia/odtworzenie i powtórzona idempotentna aktywacja,23 przydziały Jarkendaru/NK oraz3 wygrane dawne warty, cztery ścieżki regionalne, tygodniowy cel i ponowna zweryfikowana kopia/odtworzenie z nowymi rekordami. Żądania mają kontrolę powtórzeń.
 
 Nie ustawia się zwycięstwa, wspólnej tożsamości serwera, wysokiego poziomu, wyposażenia ani salda aktorów przez fiksturę. Czas regeneracji i oczekiwania jest wirtualny. Osobny job CI wykonuje tę próbę raz, niezależnie od szybkich testów modułów i PostgreSQL.
 
@@ -41,8 +41,8 @@ Nie ustawia się zwycięstwa, wspólnej tożsamości serwera, wysokiego poziomu,
 | 1 | **Grafiki potrzebne do gry — #32**: przedmioty/broń, lokacje, moby, bossowie; aktualne uzupełnienie18 lokacji i walidator45 terenów NK | Wszystkie aktywne wzory kupca mają dopasowanie, każdy teren i klucz obrazu bossa istnieje; zastępstwa jawnie oznaczone. NPC i sceny questowe odłożone |
 | 2 | **Pełna droga — #128/#30/#111**: aktualna próba trzech nowych kont z prawdziwą aktywacją | Zero ręcznych grantów progresji, zachowane rekordy/salda/ekwipunek, jedna aktywacja, faktyczny finał i dalsza gra |
 | 3 | **Macierz rozwoju — #128**: organiczny łucznik, obie szkoły magii, szczeble4→8 i start Khorinis | Zarobione zakupy/trening, rzeczywiste bramki, koszty i scenariusze PostgreSQL; bez przenoszenia wyniku wojownika na inne buildy |
-| 4 | **Regionalny endgame — #136**: cztery ścieżki, rotacyjny cel/boss wspólnoty, materiały i ujścia | Dostęp po finale NK, zachowane stare100 wart; bez resetu dorobku i nieskończonej emisji waluty |
+| 4 | **Regionalny endgame — #136, wdrożony**: cztery ścieżki, rotacyjny cel/boss wspólnoty, materiały i ujścia | Dostęp po finale NK, zachowane stare100 wart; bez resetu dorobku; limit8 nagradzanych zwycięstw regionalnych dziennie |
 | 5 | **Żywy większy świat — #137**: regionalne zdarzenia nocne, sezonowe, losowe i święta | Dotychczasowy zegar/CET/CEST, trwałe klucze, ograniczone premie i koszt schedulera; podróż/restart nie dubluje nagród |
 | 6 | **Dłuższa próba wydania — #128**: gospodarka250 botów, odporność restartu, UX i kopie | Pomiar źródeł/ujść i zasobów, brak blokad progresji/duplikacji, sprawdzona instrukcja uruchomienia i jawne ograniczenia |
 
-Samo przejście wojownika nie zamyka #128 ani całego #32. Wydarzenia oraz cztery nowe ścieżki z wierszy4–5 są planem wykonania, nie częścią aktualnego balansu.
+Samo przejście wojownika nie zamyka #128 ani całego #32. Cztery ścieżki z wiersza4 są wdrożone; wydarzenia z wiersza5 pozostają kolejnym etapem. [Aktualny raport endgame](reports/regionalny-endgame-2026-11-12.json) rozszerza historyczny raport pełnej drogi.

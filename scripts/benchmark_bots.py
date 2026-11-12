@@ -24,8 +24,11 @@ def main():
     parser.add_argument('--population',type=int,default=100)
     parser.add_argument('--mode',choices=['stress','sessions'],default='stress')
     parser.add_argument('--mature',action='store_true')
+    parser.add_argument('--endgame',action='store_true',help='Jawna fikstura po finale NK; wymaga --joined i --mature.')
     parser.add_argument('--joined',action='store_true',help='Syntetyczne globalne połączenie obu istniejących regionów; bez resetu postaci.')
-    args=parser.parse_args();target=Path(args.report).resolve()
+    args=parser.parse_args()
+    if args.endgame and not (args.joined and args.mature):raise SystemExit('--endgame wymaga --joined i --mature')
+    target=Path(args.report).resolve()
     if target.exists():raise SystemExit('Raport już istnieje.')
     if not 20<=args.seconds<=300 or not 2<=args.population<=300:raise SystemExit('Wymagane 20–300 sekund oraz 2–300 botów łącznie.')
     sys.path.insert(0,str(ROOT))
@@ -63,7 +66,7 @@ def main():
             from characters import game_logic as game
             for p in actors:
                 p.level=30;p.strength=200;p.life=500;p.current_health=500;p.ore_balance=2000
-                p.camp='OLD_CAMP' if p.world_id==colony.pk else 'CITY_WATCH';p.guild='GUARD' if p.world_id==colony.pk else 'K2_PALADIN';p.save()
+                p.camp='OLD_CAMP' if p.world_id==colony.pk else 'CITY_WATCH';p.guild='GUARD' if p.world_id==colony.pk else 'K2_COMMANDER';p.save()
                 for kind in ('onehand','armor'):
                     key='colony-loot-4-'+kind if p.world_id==colony.pk else 'k2-watch-30-'+kind
                     game.equip_item(p,add_item(p,ItemBluePrint.objects.get(catalog_key=key)))
@@ -76,6 +79,11 @@ def main():
             World.objects.filter(pk__in=[colony.pk,island.pk]).update(union_key=uuid4())
             race=SleeperRace.objects.create(colony=colony,khorinis=island,winner=CampGuild.objects.get(world=colony,camp='OLD_CAMP'),state='joined')
             with transaction.atomic():apply(apps,race)
+        if args.endgame:
+            from characters.testing_story import claimed_milestone
+            for p in actors:
+                p.level=45;p.experience=250*45*46;p.strength=300;p.life=600;p.current_health=600;p.ore_balance=5000;p.save()
+                for key in ('nk-undead','nk-sailing','jark-portal'):claimed_milestone(p,key)
         times=[];queries=[];warm=Counter()
         for turn in range(2):
             for p in actors:
@@ -88,6 +96,11 @@ def main():
             PlayerProfile.objects.filter(is_bot=True).update(bot_last_tick=None)
         human=User.objects.create_user('benchmark-resident')
         other=create_character(human,'Mieszkaniec Khorinis',colony.pk if args.joined else island.pk,start_region=island.pk if args.joined else None)
+        if args.endgame:
+            from characters.factions import enroll
+            for p in (human.playerprofile,other):
+                p.level=45;p.experience=250*45*46;p.life=600;p.current_health=600;p.ore_balance=5000;p.camp='OLD_CAMP' if p.world_id==colony.pk else 'CITY_WATCH';p.guild='GUARD' if p.world_id==colony.pk else 'K2_COMMANDER';p.save();enroll(p)
+                for key in ('nk-undead','nk-sailing','jark-portal'):claimed_milestone(p,key)
         cookies=[]
         for profile in (human.playerprofile,other):
             client=Client();client.force_login(human);session=client.session
@@ -112,7 +125,7 @@ def main():
                     fields=Path(f'/proc/{process.pid}/stat').read_text().split()
                     return (int(fields[13])+int(fields[14]))/os.sysconf('SC_CLK_TCK')
                 live_started=timezone.now();rss=[];latencies=[];route_times={};errors=[]
-                routes=['/','/zadania/','/sklep-odlamkow/','/zycie-kolonii/']
+                routes=['/','/zadania/','/sklep-odlamkow/','/zycie-kolonii/']+(['/warty/?track=khorinis','/wspolnota/'] if args.endgame else [])
                 started=time.monotonic();cpu_start=cpu();n=0
                 while time.monotonic()-started<args.seconds:
                     route=routes[n%len(routes)];cookie=cookies[(n//len(routes))%len(cookies)]
@@ -140,7 +153,7 @@ def main():
             'schema':2,'isolated_database':True,'engine':'sqlite','population':args.population,
             'python':platform.python_version(),'platform':platform.platform(),
             'source_sha256':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ('characters/bot_scheduler.py','characters/bots.py','characters/models.py')},
-            'realm_populations':[first,second],'mode':args.mode,'mature_fixture':args.mature,'global_join_fixture':args.joined,
+            'realm_populations':[first,second],'mode':args.mode,'mature_fixture':args.mature,'global_join_fixture':args.joined,'endgame_fixture':args.endgame,
             'duration_seconds':round(elapsed,2),'http_requests':n,'http_errors':errors,
             'started_at':live_started.isoformat(),
             'warmup':'Two forced ordinary decisions per bot before the measured launcher.',

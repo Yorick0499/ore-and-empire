@@ -170,3 +170,7 @@ Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów
 ### Gotowość pełnej drogi — #128
 
 [Aktualna kolejność i uruchomienie](COMPLETE_JOURNEY.md): podstawowe assety → rzeczywista droga Kolonia/Śniący/połączenie/NK/warty → organiczne pozostałe buildy → regionalny endgame [#136](https://github.com/Yorick0499/ore-and-empire/issues/136) → wydarzenia większego świata [#137](https://github.com/Yorick0499/ore-and-empire/issues/137) → dłuższa gospodarka i próba wydania. Dodano osobne `simulate_journey`: trzy konta od0, zdobyta wspólnota10, prawdziwe uderzenia i zweryfikowana aktywacja, następnie Irdorath i powtarzalne warty. Stare postępy wart zachowane; komunikaty po Barierze i finale NK opisują wspólny świat. #128 pozostaje otwarte dla pełnej macierzy buildów/gospodarki.
+
+### Regionalny endgame — #136
+
+PR #138 pełnej drogi i grafik lokacji scalono po zielonym CI. [Regionalne warty](REGIONAL_ENDGAME.md) dodają cztery ścieżki po100 stopni, wspólny filtrowany ranking i rotacyjny cel wspólnoty co tydzień. Stare100 wart pozostaje; regionalna pętla ma wpisowe, wspólny cooldown i limit8 nagród dziennie. Migracja0053, kopie, boty baseline-24 i odtwarzanie dawnych polityk zachowują dane. [Raport](reports/regionalny-endgame-2026-11-12.json) obejmuje realne przejście, cztery przygotowane buildy, PostgreSQL, GUI i250 botów. Następny etap **#137**: regionalne wydarzenia; organiczne pozostałe buildy, awanse4→8 i dłuższa gospodarka nadal **#128**. Nie wdrożono #137 w tej iteracji; handoff pozostaje bez zmian.

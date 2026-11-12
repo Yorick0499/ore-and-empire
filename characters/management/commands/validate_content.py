@@ -121,6 +121,11 @@ class Command(BaseCommand):
             nk_art=validate_coverage(nk,json.loads(INDEX_PATH.read_bytes()),assets)
             nk_runtime_locations=validate_runtime_locations(assets)
             nk_hunts,nk_bosses,nk_quests=validate_nk_world(assets)
+            from characters.regional_endgame import TRACKS,enemy as regional_enemy
+            for track in TRACKS.values():
+                for key in (track.art,*track.species):
+                    if assets.get(key,{}).get('game')!='GOTHIC_II_NK':raise ValueError('Missing regional endgame art: '+key)
+                regional_enemy(1,track.key);regional_enemy(100,track.key)
             advanced=validate_advancements()
             jquests,jlocations,jcreatures=validate_jarkendar(assets)
         except Exception as exc:raise CommandError(str(exc)) from exc
