@@ -124,9 +124,9 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 | --- | --- | --- |
 | **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
 | **2. #125 — scalone w PR #130**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
-| **3. #126 — implementacja do PR**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
-| **4. #127 — następny**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
-| **5. #33**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
+| **3. #126 — scalone w PR #131**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
+| **4. #127 — implementacja do PR**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
+| **5. #33 — następny**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
 | **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
 
 #32 nadal obejmuje pełniejszy katalog i kampanię G2 NK; pojedyncza paczka Jarkendaru nie zamyka całego zakresu. #30/#111 obejmują integrację następstwa z istniejącym przejściem; nie implementować ponownie wyścigu, kopii i wspólnego serwera. Stare raporty to dowody historycznych wersji, nie obowiązujące wymagania premium.
@@ -150,3 +150,7 @@ Użytkownik zatwierdził podział skarbców według liczby członków; [szczegó
 Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów, dawnej kampanii i zasobów; wspólna usługa ludzi/botów. Przekazywany udział bieżącego depozytu ma równe wagi pozostających członków i deterministyczną resztę. [Dokładne reguły oraz wymagania wyboru](CAMP_GUILDS.md). Migracja0050 dodaje wyłącznie zapis decyzji. Następny etap #127: wyższe rangi i realna progresja po połączeniu; Jarkendar i pełniejsze G2 NK nadal w #33/#32.
 
 #130 scalono po pełnym zielonym CI Python3.12/3.13, PostgreSQL, współbieżności, dokumentacji i obrazu. Przekroczenie16zapytań raportu świata zostało usunięte bez podnoszenia limitu, z testem1/21botów. [Wyniki #126 i wykryte problemy scenariuszy](reports/wybor-bractwa-2026-11-12.json).
+
+### Stan realizacji #127
+
+20zadań czterech wyższych rang w istniejącym systemie awansów, poziomy30/35/40/45, opłaty500/1000/1500/2500, wymagania bazowych atrybutów i przywileje. Stare opłacone szczeble Związku zachowane bez repurchase; nowe postacie niczego nie dostają za samą Barierę. [Reguły, zgodność i boty baseline-22](CAMPS.md). Migracja0051 dodaje tylko tabelę; nie wykonano wdrożenia na prywatnej bazie. #131 scalono po pełnym zielonym CI, po naprawie sprzedaży zbędnych strzał w plecaku bota.

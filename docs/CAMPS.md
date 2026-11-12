@@ -1,6 +1,6 @@
 # Camp progression
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja i bieżące nazwy frakcji działają od0049; wybór Bractwa działa od0050; awanse5–8 pozostają planowane. Niżej opis rodzimych questów i historii.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja i bieżące nazwy frakcji działają od0049; wybór Bractwa działa od0050; wyższe rangi działają od0051. Niżej opis rodzimych questów i historii.
 
 
 These ranks, quests and thresholds are original Ore & Empire progression inspired
@@ -68,3 +68,22 @@ Straż Khorinis: **Rekrut straży → Strażnik miejski → Sierżant straży �
 Mapa wszystkich 30 tożsamości oraz [dowody testów i GUI](reports/rowne-rangi-2026-11-11.json) opisują zakres tej zmiany. Jedenaście nowych testów obejmuje cztery rangi każdej gałęzi, stare awanse, bramki fabuły, przywileje, boty, ponowienia i rzeczywisty zapis0047→0048. Bazowa pełna lokalna regresja:527testów/23PG-pominięcia; po poprawce zgodności kopii11testów rang/dowodu oraz15testów rang/kopii/kampanii OK. Trzy dodatkowe przebiegi kampanii z przesuniętymi ID również OK; końcową pełną regresję wskazuje PR #129. Nie wdraża to jeszcze pięciu frakcji ani ośmiu rang.
 
 Od0049: [sukcesja pięciu frakcji](CAMP_GUILDS.md) zachowuje identyfikatory questów i odpowiadający szczebel podstawowy. Bieżące etykiety rang podaje zatwierdzony katalog w [roadmapie](ROADMAP.md). Zachowany wyższy poziom przywilejów nie przyznaje automatycznie nowej rangi5–8.
+
+## Cztery wyższe rangi — 0051, #127
+
+Pięć połączonych frakcji ma po8rang:4podstawowe i4zdobywane po Barierze. Dokładne nazwy pozostają w [roadmapie](ROADMAP.md). Stan bieżących wyższych rang zapisuje oddzielne `FactionRankProgress`; natywne obozy/rangi i questy zachowują historię. Zadania korzystają z istniejących `CampQuest` i serwerowych zdarzeń wydobycia, wygranych polowań i bossów. Jeden aktywny awans, bez zaliczania działań sprzed przyjęcia. Porzucenie usuwa jego postęp.
+
+| Ranga | Poziom | Opłata w rudzie | Wojownicy: bazowa siła **lub** zręczność | Ogień/Woda: bazowa mana | Zadanie |
+| --- | --- | --- | --- | --- | --- |
+|5|30|500|70|50|3zmiany wydobycia i5orkowych zwiadowców|
+|6|35|1000|90|70|5orkowych wiarusów i1zwycięstwo nad smokiem ognia|
+|7|40|1500|110|90|6pomniejszych demonów i1zwycięstwo nad smokiem ognia|
+|8|45|2500|130|110|8opiekunów świątyni,2zwycięstwa nad smokiem ognia i10zmian wydobycia|
+
+Cele bojowe są w Górniczej Dolinie. Postać startująca w Khorinis może normalnie podróżować; boty rozpoznają region wymagany przez zadanie. Smocze próby respektują energię, zdrowie, ochronę, amunicję/magię oraz60-minutowy cooldown. Podwojenie drogi nie daje rangi za samo połączenie ani nie przyznaje statystyk. Łączna nowa opłata to5500rudy; każda promocja obciąża portfel i ledger dokładnie raz. Wymagane atrybuty są bazowe — bonus pierścienia nie zastępuje treningu. Łucznik może spełnić próg zręcznością.
+
+Przywileje to dotychczasowy model szczebli: dla rang5/6/7/8 odpowiednio+4/5/6/7rudy do urobku i+2/2/3/3ochrony. Osobista zniżka treningu pozostaje maksymalnie2; sumuje się ze szkołą gildii maksymalnie3, więc cena nie spada poniżej5. Dzienne zaopatrzenie za10rudy daje do30/35/40/45energii i40/45/50/55zdrowia; globalny limit odnowień nadal obowiązuje. Wyższy szczebel otwiera istniejący sprzęt z odpowiednią bramką. Magiczne uprawnienia są ograniczone do6kręgów; trzeba się ich nauczyć za własne PN i rudę, bez przydziału darmowych run.
+
+Zgodność0047: opłacony `alliance_rank=3` jest uznawany jako zdobyty szczebel podstawowy4; `alliance_rank=4` zachowuje opłacony piąty szczebel jako nową rangę5bez ponownej opłaty. Pozostaje historyczny kod i pole osiągnięcia. Ten wyjątek nie dotyczy nowych postaci ani samego połączenia. Zachowane korzyści dawnej dłuższej drogi Wody nie są odbierane. Stary zakup awansu Związku jest zamknięty dla nowych członkostw, aby nie omijać nowych zadań.
+
+Baseline-22 nadaje priorytet wyborowi Bractwa i awansom przed opcjonalnym handlem, uwzględnia cele i regenerację potrzebną do przydziału oraz podróż do jego regionu. Replay baseline-21 i starszych korzysta z zachowanych implementacji. Migracja0051 dodaje wyłącznie tabelę; nie przepisuje postaci, nie pobiera środków i nie nadaje nowych awansów.

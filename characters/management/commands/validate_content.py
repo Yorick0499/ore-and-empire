@@ -29,6 +29,26 @@ def validate_khorinis(assets):
     return len(quests),len(locations),len(creatures)
 
 
+def validate_advancements():
+    from characters.faction_advancement import RANKS
+    from characters.factions import FACTIONS,RANK_NAMES
+    from characters.bestiary import BESTIARY
+    from characters.bosses import BOSSES
+    keys=set()
+    for rank in RANKS:
+        if rank.key in keys or len(rank.key)>20 or rank.attribute not in {'mana','martial'}:raise ValueError('Invalid advanced rank: '+rank.key)
+        keys.add(rank.key)
+        if rank.name!=RANK_NAMES[rank.camp][rank.tier] or rank.cost<=0:raise ValueError('Invalid rank requirements: '+rank.key)
+        for goal in rank.objectives:
+            kind,_,target=goal.event.partition(':')
+            if goal.count<1 or kind not in {'mine','hunt','boss'}:raise ValueError('Invalid advanced objective: '+rank.key)
+            if kind=='hunt' and target not in BESTIARY:raise ValueError('Unknown rank hunt: '+target)
+            if kind=='boss' and target not in BOSSES:raise ValueError('Unknown rank boss: '+target)
+    for faction,_ in FACTIONS:
+        if [r.tier for r in RANKS if r.camp==faction]!=[4,5,6,7]:raise ValueError('Incomplete advanced path: '+faction)
+    return len(RANKS)
+
+
 class Command(BaseCommand):
     help='Verify offline item data, attribution, hashes and decoded images; no network.'
     def handle(self,*args,**options):
@@ -46,6 +66,9 @@ class Command(BaseCommand):
                 if any(asset.get(k)!=meta[k] for k in ('sha256','width','height','mime')):raise ValueError('Asset hash/metadata mismatch: '+key)
             if any(item.get('art_key') and item['art_key'] not in assets for item in data['items']):raise ValueError('Missing item artwork')
             quests,locations,creatures=validate_khorinis(assets)
+            advanced=validate_advancements()
         except Exception as exc:raise CommandError(str(exc)) from exc
         self.stdout.write(f'Validated {len(data["items"])} item identities and {len(assets)} local images.')
         self.stdout.write(f'Khorinis: {quests} quest definitions, {locations} locations, {creatures} creatures. Partial pre-convergence adaptation; NOT a complete G2 NK catalogue.')
+
+        self.stdout.write(f'Joined factions: {advanced} earned promotion quests, ranks5–8 in each of five factions.')

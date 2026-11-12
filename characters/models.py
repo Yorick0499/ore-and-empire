@@ -268,6 +268,9 @@ class PlayerProfile(models.Model):
         return getattr(self, kind + '_prot') + self.equipment_stats[kind + '_prot'] + (self.camp_perks['defense_level'] if kind in {'weapon','arrow'} else 0)
 
     @property
+    def martial(self):return max(self.strength,self.dexterity)
+
+    @property
     def camp_tier(self):
         from .camp_progression import BY_RANK
         rank = BY_RANK.get(self.guild)
@@ -277,7 +280,9 @@ class PlayerProfile(models.Model):
         if self.alliance_rank and self.camp in {'NEW_CAMP','ONAR_MERCS'}:
             from .barrier import joined
             if joined(self.world_id):tier=max(tier,self.alliance_rank)
-        return tier
+        from .faction_advancement import advanced_tier
+        advanced=advanced_tier(self)
+        return max(tier,advanced) if advanced is not None else tier
 
     @property
     def faction_name(self):
@@ -1178,3 +1183,10 @@ class FactionChoice(models.Model):
     created_at=models.DateTimeField(default=timezone.now)
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(destination__in=['CITY_WATCH','FIRE_ORDER','WATER_CIRCLE','BANDITS','MERCENARIES']),name='valid_brotherhood_choice')]
+
+
+class FactionRankProgress(models.Model):
+    membership=models.OneToOneField(FactionMembership,on_delete=models.PROTECT,related_name='rank_progress')
+    tier=models.PositiveSmallIntegerField()
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(tier__gte=4,tier__lte=7),name='advanced_faction_rank_bounds')]

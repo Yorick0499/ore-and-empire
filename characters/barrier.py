@@ -75,7 +75,7 @@ def alliance_card(profile):
     member=profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id)
     from .factions import membership
     current=membership(profile)
-    if current:member=current.faction=='MERCENARIES'
+    if current:member=False  # New members use the four earned faction advances.
     tier=profile.camp_tier;next_tier=tier+1
     quest='barrier-fire-dragon' if next_tier==4 else 'barrier-new-road'
     fee=500*max(1,next_tier-2);level=20+5*next_tier

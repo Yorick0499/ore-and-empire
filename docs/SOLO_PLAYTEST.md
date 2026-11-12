@@ -119,3 +119,11 @@ Długie kampanie botów używają `TransactionTestCase`: planowanie i wykonanie 
 ### Scenariusze po sukcesji — #126
 
 Świeży adept magii po połączeniu nie dołącza do rozwiązanego Bractwa: test zaczyna historyczną drogą Starego Obozu do Cienia, zdobywa wymagane15siły i naukę pierwszego kręgu za rzeczywiste PN/rudę, kupuje Ognisty pocisk. To wczesny build do poziomu6, nie pełna kampania maga. Trzy dotychczasowe obozy botów dołączają przed zewnętrznym globalnym wydarzeniem, a następnie korzystają z sukcesji i jednorazowego wyboru Bractwa. Test wymaga ukończenia kampanii i dalszych zwykłych aktywności. Samo zwycięstwo całej wspólnoty nie jest odgrywane w tej symulacji.
+
+### Osiem rang zdobytych od nowej postaci — #127
+
+Model wojownika z normalnie zarobionymi zasobami/PN, sprzętem NPC i itemshopem wyłącznie za zdobyte odłamki osiągnął rangę8/poziom45po80,35hczasu świata. Obejmuje to9,15hmodelowych operacji (także prób niedostępnych akcji),45,42hregeneracji i25,79htimerów. To nie jest80haktywnego klikania ani pomiar czasu człowieka. W wariancie godziny dziennie cel osiągnięto w34.dniu kalendarza. Strategia najpierw kończy kampanię, potem zdobywa rangi — sprawniejsza gra równoległa może być krótsza. Brak konkurencji rynku i botów, brak pełnego G2NK/Jarkendaru. Globalne połączenie jest zewnętrzną fiksturą, nie nadaniem progresji aktorowi.
+
+Przygotowany bot poziomu45 zdobył cztery nowe rangi przez zwykłe decyzje i usługi w176turach; jego początkowe statystyki/sprzęt są jawnie syntetyczną fiksturą, a dwugodzinny krok nie jest pomiarem czasu gry. To test autonomii, nie drugie organiczne przejście.
+
+[Raport ośmiu rang, PostgreSQL, kopii zapisu i GUI](reports/osiem-rang-2026-11-12.json). Dziewięć widoków w szerokościach320/390/1440 bez poziomego przewijania i błędów JS. Próba formularza awansu korzysta z jawnie przygotowanych celów; odrębny scenariusz zdobywa cele prawdziwymi akcjami.

@@ -1,6 +1,6 @@
 # Obozy jako gildie — etap 1
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji jest wdrożona w0049; wybór Bractwa działa od0050, wyższe awanse i portal nadal są planowane. Starsze sekcje poniżej opisują historię.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji jest wdrożona w0049; wybór Bractwa działa od0050, wyższe rangi działają od0051, portal nadal jest planowany. Starsze sekcje poniżej opisują historię.
 
 
 Gildią jest istniejący Stary Obóz, Nowy Obóz albo Bractwo na bagnie. Nie ma oddzielnej rekrutacji, drużyn ani wymogu jednoczesnej obecności. Przynależność `camp` daje członkostwo; dotychczasowe `guild` oznacza **osobistą rangę** (np. Cień), nie nową organizację. Dołączenie do obozu nie zmienia wcześniejszych questów, sprzętu i poziomu. Na razie istnieje jeden lokalny świat; zakres edycji pozostaje #15/#34, współbieżność serwera #19.
@@ -78,3 +78,5 @@ Początek widoku, telefon390px:
 Komputer1440px:
 
 ![Jednorazowy wybór Bractwa na komputerze](screenshots/wybor-bractwa-1440.jpg)
+
+Od0051 działają [cztery dalsze awanse każdej z pięciu frakcji](CAMPS.md), ich zadania/opłaty i przywileje. Stare opłacone szczeble Związku nie wymagają zakupu drugi raz; nowe awanse nie są już kupowane starym formularzem Związku. Osiągnięcie rangi8nie otwiera automatycznie Jarkendaru — jego publiczny portal i zawartość są osobnym etapem #33.

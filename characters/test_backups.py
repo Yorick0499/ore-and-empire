@@ -66,3 +66,33 @@ class WorldBackupTests(SimpleTestCase):
             snapshot['rewards']['ore']=999
             with sqlite3.connect(source) as db:db.execute('UPDATE characters_storyrun SET snapshot=?',(json.dumps(snapshot),))
             self.assertNotEqual(inspect_database(source),before)
+
+    def test_faction_membership_choice_and_earned_rank_survive_real_restore(self):
+        script="""
+import django
+django.setup()
+from django.core.management import call_command
+from django.db import transaction
+from characters.test_faction_succession import fixture,person,succeed
+from characters.faction_choice import choose
+from characters.faction_advancement import BY_KEY
+from characters.camp_progression import accept_camp_quest,promote_in_camp,record_camp_event
+call_command('migrate',interactive=False,verbosity=0)
+c,i,race=fixture();p=person(c,'SWAMP_CAMP','TEMPLAR');p.level=45;p.strength=180;p.ore_balance=20000;p.save();succeed(race)
+assert choose(p,'BANDITS');rank=BY_KEY['ADV_BANDITS_4'];assert accept_camp_quest(p,rank.key)
+for goal in rank.objectives:
+    for _ in range(goal.count):
+        with transaction.atomic():record_camp_event(p,goal.event)
+assert promote_in_camp(p,rank.key)
+"""
+        from ore_empire.database import sqlite_environment
+        with TemporaryDirectory() as directory:
+            root=Path(directory);source=root/'new-rank.sqlite3'
+            result=subprocess.run([sys.executable,'-c',script],env=sqlite_environment(source),cwd=settings.BASE_DIR,capture_output=True)
+            self.assertEqual(result.returncode,0,result.stderr.decode())
+            before=inspect_database(source)
+            for table in ['characters_factionsuccession','characters_factionmembership','characters_factionchoice','characters_factionrankprogress','characters_campquest']:
+                self.assertIn(table,before);self.assertEqual(before[table]['count'],1)
+            backup=create_backup(source,root/'copies');restored=root/'restored.sqlite3'
+            proof=restore_drill(backup,restored,source)
+            self.assertTrue(proof['migration_applied']);self.assertEqual(inspect_database(restored),before)

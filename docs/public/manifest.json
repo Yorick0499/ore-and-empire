@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-12",
-  "code_revision": "jednorazowy wybór Bractwa / #126",
-  "migration": "0050_brotherhood_faction_choice",
+  "code_revision": "osiem zdobywanych rang / #127",
+  "migration": "0051_advanced_faction_ranks",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -222,6 +222,7 @@
     "docs/reports/grywalnosc-2026-11-11.json",
     "docs/reports/khorinis-przed-polaczeniem-2026-11-09.json",
     "docs/reports/lupy-endgame-2026-11-06.json",
+    "docs/reports/osiem-rang-2026-11-12.json",
     "docs/reports/osobowosci-rynek-kampania-2026-11-09.json",
     "docs/reports/osobowosci-sto-botow-2026-11-09.json",
     "docs/reports/pakiety-symulacji-2026-11-11.json",

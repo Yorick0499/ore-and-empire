@@ -1,6 +1,6 @@
 # Konto, pięć postaci i droga do dwóch światów
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji działa od0049; wybór Bractwa działa od0050; wyższe awanse i portal są nadal planowane. Szczegóły bieżących i historycznych reguł poniżej.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji działa od0049; wybór Bractwa działa od0050; wyższe rangi działają od0051; publiczny portal jest nadal planowany. Szczegóły bieżących i historycznych reguł poniżej.
 
 
 ## Dostępne od migracji 0042 — #107–#110
