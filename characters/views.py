@@ -764,6 +764,7 @@ def item_catalog_view(request):
         index=source_index();query=request.GET.get('q','').strip()[:100]
         rows=index[section]
         if query:rows=[r for r in rows if query.casefold() in (r['name']+' '+r['code']).casefold()]
+        if section=='creatures':rows=[{**row,'art_key':'g2nk_'+row['code'].lower()} for row in rows]
         return render(request,'characters/source_catalog.html',{'rows':Paginator(rows,24).get_page(request.GET.get('page')),'source_index':index,'section':section,'query':query,'catalog_game':game})
     items=ItemBluePrint.objects.filter(source_game=game).exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
     query=request.GET.get('q','').strip()[:100]

@@ -162,3 +162,7 @@ Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów
 ### Katalog i wyprawa NK — #32
 
 [Zakres integracji Gothicpedii](GOTHIC_II_CONTENT.md): 877 tożsamości przedmiotów, 85 kodów stworzeń, 352 NPC i 35 punktów z przypiętej listy; 167 aktywnych wzorów kupca, 67 populacji polowań, 8 nowych bossów i 15 kontraktów do Irdorath. Pasy, sześć zestawów pancerza, odnowienie many/zdrowia i dwa czary VI kręgu. Bez powielania serwera ani frakcji. #32 pozostaje otwarte dla nieobsługiwanych efektów/interakcji; następnie #128: organiczne pozostałe buildy, gospodarka i UX. Dawne liczby w historycznych sekcjach nie opisują nowej paczki.
+
+### Assety NK — uzupełnienie #32
+
+[Stan grafiki](GOTHIC_II_CONTENT.md): 866/877 tożsamości z dopasowaniem źródłowym, wszystkie167 wzorów kupca i85 kodów stworzeń z lokalnymi assetami. 11 archiwalnych wariantów ma oznaczone modele kategorii. Naprawiono pierwszeństwo nowych ilustracji Jarkendaru i dodano bramkę walidacji assetów aktywnego contentu. Portrety dalszych NPC i sceny questów pozostają w #32; brak zmian danych progresji i migracji.

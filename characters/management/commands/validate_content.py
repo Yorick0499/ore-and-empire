@@ -117,6 +117,8 @@ class Command(BaseCommand):
             nk=validate_pack(nk_pack.read_bytes())
             nk_counts=validate_index(json.loads(INDEX_PATH.read_bytes()),nk)
             if any(i["art_key"] not in assets for i in nk["items"]):raise ValueError("Missing G2 NK item art")
+            from characters.gothic2_art import validate_coverage
+            nk_art=validate_coverage(nk,json.loads(INDEX_PATH.read_bytes()),assets)
             nk_hunts,nk_bosses,nk_quests=validate_nk_world(assets)
             advanced=validate_advancements()
             jquests,jlocations,jcreatures=validate_jarkendar(assets)
@@ -130,4 +132,5 @@ class Command(BaseCommand):
 
         self.stdout.write(f'Pinned NK source identities: {nk_counts}. Identity coverage is not full gameplay/quest coverage.')
 
+        self.stdout.write(f'NK asset coverage: {nk_art}. Archived category references remain explicitly labelled.')
         self.stdout.write(f'NK resident expeditions: {nk_hunts} hunt populations, {nk_bosses} new bosses, {nk_quests} new quests; browser adaptation, not a verbatim hero campaign.')

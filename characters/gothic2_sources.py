@@ -94,14 +94,14 @@ def parse_index(html):
     return {name:[rows[k] for k in sorted(rows)] for name,rows in groups.items()}
 
 
-def templates(text):
+def templates(text,extra_names=()):
     stack=[]
     for match in re.finditer(r'\{\{|\}\}',text):
         if match.group()=='{{':stack.append(match.start())
         elif stack:
             start=stack.pop();body=text[start+2:match.start()]
             name=re.split(r'[|\n]',body,1)[0].strip().lower()
-            if name in {'broń','pancerz','przedmiot','potwór','bestia','npc','czar','napój','roślina','żywność','dokument','postać','lokacja','region','jedzenie'}:
+            if name in {'broń','pancerz','przedmiot','potwór','bestia','npc','czar','napój','roślina','żywność','dokument','postać','lokacja','region','jedzenie'} | set(extra_names):
                 fields={m.group(1).strip():m.group(2).strip() for m in re.finditer(r'^[ \t]*\|[ \t]*([^=|\n]+?)[ \t]*=[ \t]*(.*?)(?=^[ \t]*\||\Z)',body,re.M|re.S)}
                 yield name,fields
 

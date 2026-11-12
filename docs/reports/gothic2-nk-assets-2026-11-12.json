@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "issue": 32,
+  "scope": "Artwork-only supplement; gameplay data and existing saves unchanged.",
+  "base_pr": 134,
+  "coverage": {
+    "indexed_items": 877,
+    "source_matched_items": 866,
+    "active_items_with_source_matched_art": 167,
+    "remaining_archived_category_references": 11,
+    "source_creatures_with_local_art": 85,
+    "supplemented_source_art_entries": 280,
+    "species_aliases": 2,
+    "jarkendar_specific_aliases": 7
+  },
+  "gameplay_pack_sha256": "687351996d44c7a6fc99df3baca1e4fe8961a643517233a39dfa667582523545",
+  "checks": {
+    "sqlite": {
+      "tests": 51,
+      "skipped": 1,
+      "seconds": 6.607,
+      "success": true
+    },
+    "idempotent_rebuild": true,
+    "validate_content": {
+      "local_asset_entries": 1674,
+      "success": true
+    },
+    "gui": {
+      "isolated_database": true,
+      "synthetic_veteran_fixture": true,
+      "pages": [
+        {
+          "page": "trophies",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 2
+        },
+        {
+          "page": "trophies",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 2
+        },
+        {
+          "page": "trophies",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 2
+        },
+        {
+          "page": "transformation",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "transformation",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "transformation",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "axe",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "axe",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "axe",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "golem",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "golem",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "golem",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "archive-book",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "archive-book",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "archive-book",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "jarkendar",
+          "width": 320,
+          "scroll": 320,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "jarkendar",
+          "width": 390,
+          "scroll": 390,
+          "decoded_local_images": 1
+        },
+        {
+          "page": "jarkendar",
+          "width": 1440,
+          "scroll": 1440,
+          "decoded_local_images": 1
+        }
+      ],
+      "errors": []
+    }
+  },
+  "limits": [
+    "11 archived/testing item variants have labelled category references, not exact model claims.",
+    "The two reviewed item aliases do not verify stats or unlock mechanics.",
+    "Summoned variants and encounter adaptations can use labelled species references.",
+    "NPC reference portraits and additional quest-specific illustrations remain future work; no claim that the entire G2 NK visual library is complete.",
+    "No migration, gameplay price/stat changes, production reset or handoff edit."
+  ]
+}

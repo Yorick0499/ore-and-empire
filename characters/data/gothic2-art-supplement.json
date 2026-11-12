@@ -1,0 +1,4023 @@
+{
+  "schema": 1,
+  "scope": "Artwork only; never verified stats or runtime unlocks.",
+  "items": {
+    "item_g2nk_fakescroll": {
+      "code": "FakeScroll",
+      "title": "List",
+      "page": "List",
+      "source": "https://gothic.fandom.com/pl/wiki/List",
+      "source_revision": 589507,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "List otwarty.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_hosh4": {
+      "code": "Hosh4",
+      "title": "Sumpfdrache immortal machen",
+      "page": "Greg wrócił",
+      "source": "https://gothic.fandom.com/pl/wiki/Greg_wr%C3%B3ci%C5%82",
+      "source_revision": 553992,
+      "candidates": [
+        "Księga 1 G2 ikona.png",
+        "Zebrane doświadczenie (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 1 G2 ikona.png"
+    },
+    "item_g2nk_irar_orebaron_addon": {
+      "code": "IrAr_OreBaron_Addon",
+      "title": "Zbroja magnata",
+      "page": "Zbroja magnata",
+      "source": "https://gothic.fandom.com/pl/wiki/Zbroja_magnata",
+      "source_revision": 554431,
+      "candidates": [
+        "Zbroja Kruka G2NK ikona.png"
+      ],
+      "active": false,
+      "review_note": "Pinned code index says IrAr; article says ItAr. Artwork alias only; retain the indexed identity and unsupported runtime status.",
+      "mapping": "reviewed-source-art",
+      "status": "code-matched-art",
+      "selected_file": "Zbroja Kruka G2NK ikona.png"
+    },
+    "item_g2nk_itam_mana_angar_mis": {
+      "code": "ItAm_Mana_Angar_Mis",
+      "title": "Magiczny amulet Angara",
+      "page": "Magiczny amulet Angara",
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczny_amulet_Angara",
+      "source_revision": 551063,
+      "candidates": [
+        "Amulet magii GII ikona.png",
+        "Amulet szukającego ognika.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Amulet magii GII ikona.png"
+    },
+    "item_g2nk_itam_prot_blackeye_mis": {
+      "code": "ItAm_Prot_BlackEye_Mis",
+      "title": "Amulet przyzywania dusz",
+      "page": "Amulet przyzywania dusz",
+      "source": "https://gothic.fandom.com/pl/wiki/Amulet_przyzywania_dusz",
+      "source_revision": 585368,
+      "candidates": [
+        "Amulet oświecenia GII ikona.png",
+        "Amulet przyzywania dusz (G2NK).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Amulet oświecenia GII ikona.png"
+    },
+    "item_g2nk_itar_corangar": {
+      "code": "ItAr_CorAngar",
+      "title": "Pancerz Cor Angara",
+      "page": "Pancerz Cor Angara",
+      "source": "https://gothic.fandom.com/pl/wiki/Pancerz_Cor_Angara",
+      "source_revision": 546838,
+      "candidates": [
+        "Pancerz Cor Angara G2 ikona.png",
+        "Pancerz Cor Angara (by Cassidy005).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pancerz Cor Angara G2 ikona.png"
+    },
+    "item_g2nk_itar_smith": {
+      "code": "ItAr_Smith",
+      "title": "Strój kowala",
+      "page": "Strój kowala",
+      "source": "https://gothic.fandom.com/pl/wiki/Str%C3%B3j_kowala",
+      "source_revision": 561072,
+      "candidates": [
+        "Strój kowala G2 ikona.png",
+        "G2NK Strój kowala.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Strój kowala G2 ikona.png"
+    },
+    "item_g2nk_itat_addon_bckopf": {
+      "code": "ItAt_Addon_BCKopf",
+      "title": "Głowa polnego pełzacza",
+      "page": "Głowa polnego pełzacza",
+      "source": "https://gothic.fandom.com/pl/wiki/G%C5%82owa_polnego_pe%C5%82zacza",
+      "source_revision": 585263,
+      "candidates": [
+        "Głowa polnego pełzacza G2NK ikona.png",
+        "POLNY PELZACZ HEAD FIX.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Głowa polnego pełzacza G2NK ikona.png"
+    },
+    "item_g2nk_itat_addon_keilerfur": {
+      "code": "ItAt_Addon_KeilerFur",
+      "title": "Skóra dzika",
+      "page": "Skóra dzika",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_dzika",
+      "source_revision": 585313,
+      "candidates": [
+        "Skóra warga G2 ikona.png",
+        "Skóra Warga.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra warga G2 ikona.png"
+    },
+    "item_g2nk_itat_bugmandibles": {
+      "code": "ItAt_BugMandibles",
+      "title": "Żuwaczki polnej bestii",
+      "page": "Żuwaczki polnej bestii",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BBuwaczki_polnej_bestii",
+      "source_revision": 585271,
+      "candidates": [
+        "Żuwaczki polnej bestii G2 ikona.png",
+        "Zuwaczki pełzacza (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Żuwaczki polnej bestii G2 ikona.png"
+    },
+    "item_g2nk_itat_claw": {
+      "code": "ItAt_Claw",
+      "title": "Pazury",
+      "page": "Pazury",
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury",
+      "source_revision": 585347,
+      "candidates": [
+        "Pazury G2 ikona.png",
+        "Pazury (GII) (by Kubar906).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pazury G2 ikona.png"
+    },
+    "item_g2nk_itat_clawleader": {
+      "code": "ItAt_ClawLeader",
+      "title": "Pazury przywódcy stada",
+      "page": "Pazury przywódcy stada",
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury_przyw%C3%B3dcy_stada",
+      "source_revision": 585351,
+      "candidates": [
+        "Pazury G2 ikona.png",
+        "Pazury (GII) (by Kubar906).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pazury G2 ikona.png"
+    },
+    "item_g2nk_itat_crawlermandibles": {
+      "code": "ItAt_CrawlerMandibles",
+      "title": "Żuwaczki pełzacza",
+      "page": "Żuwaczki pełzacza",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BBuwaczki_pe%C5%82zacza",
+      "source_revision": 585362,
+      "candidates": [
+        "Żuwaczki pełzacza (ikonka) (G2).png",
+        "Zuwaczki pełzacza (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Żuwaczki pełzacza (ikonka) (G2).png"
+    },
+    "item_g2nk_itat_crawlerplate": {
+      "code": "ItAt_CrawlerPlate",
+      "title": "Płytka z pancerza pełzacza",
+      "page": "Płytka z pancerza pełzacza",
+      "source": "https://gothic.fandom.com/pl/wiki/P%C5%82ytka_z_pancerza_pe%C5%82zacza",
+      "source_revision": 585344,
+      "candidates": [
+        "Płytka z pancerza pełzacza G2 ikona.png",
+        "Płytka z pancerza pełzacza.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Płytka z pancerza pełzacza G2 ikona.png"
+    },
+    "item_g2nk_itat_demonheart": {
+      "code": "ItAt_Demonheart",
+      "title": "Serce demona",
+      "page": "Serce demona",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_demona",
+      "source_revision": 585327,
+      "candidates": [
+        "Serce ognistego golema G2 ikona.png",
+        "Serce ognistego golema (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Serce ognistego golema G2 ikona.png"
+    },
+    "item_g2nk_itat_dragonblood": {
+      "code": "ItAt_DragonBlood",
+      "title": "Smocza krew",
+      "page": "Smocza krew",
+      "source": "https://gothic.fandom.com/pl/wiki/Smocza_krew",
+      "source_revision": 587353,
+      "candidates": [
+        "Smocza krew (ikonka) (G2).png",
+        "Smocza krew.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Smocza krew (ikonka) (G2).png"
+    },
+    "item_g2nk_itat_dragonscale": {
+      "code": "ItAt_DragonScale",
+      "title": "Smocze łuski",
+      "page": "Smocze łuski",
+      "source": "https://gothic.fandom.com/pl/wiki/Smocze_%C5%82uski",
+      "source_revision": 590830,
+      "candidates": [
+        "Smocze łuski G2 ikona.png",
+        "Smocza łuska (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Smocze łuski G2 ikona.png"
+    },
+    "item_g2nk_itat_drgsnapperhorn": {
+      "code": "ItAt_DrgSnapperHorn",
+      "title": "Róg smoczego zębacza",
+      "page": "Róg smoczego zębacza",
+      "source": "https://gothic.fandom.com/pl/wiki/R%C3%B3g_smoczego_z%C4%99bacza",
+      "source_revision": 585330,
+      "candidates": [
+        "Róg smoczego zębacza G2 ikona.png",
+        "Róg smoczego zębacza G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Róg smoczego zębacza G2 ikona.png"
+    },
+    "item_g2nk_itat_firedragonheart": {
+      "code": "ItAt_FireDragonHeart",
+      "title": "Serce ognistego smoka",
+      "page": "Serce ognistego smoka",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_ognistego_smoka",
+      "source_revision": 571226,
+      "candidates": [
+        "Serce ognistego golema G2 ikona.png",
+        "Serce ognistego golema (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Serce ognistego golema G2 ikona.png"
+    },
+    "item_g2nk_itat_firegolemheart": {
+      "code": "ItAt_FireGolemHeart",
+      "title": "Serce ognistego golema",
+      "page": "Serce ognistego golema",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_ognistego_golema",
+      "source_revision": 585323,
+      "candidates": [
+        "Serce ognistego golema G2 ikona.png",
+        "Serce ognistego golema (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Serce ognistego golema G2 ikona.png"
+    },
+    "item_g2nk_itat_goblinbone": {
+      "code": "ItAt_GoblinBone",
+      "title": "Kość goblina",
+      "page": "Kość goblina",
+      "source": "https://gothic.fandom.com/pl/wiki/Ko%C5%9B%C4%87_goblina",
+      "source_revision": 585322,
+      "candidates": [
+        "Kość goblina G2 ikona.png",
+        "Kość goblina.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kość goblina G2 ikona.png"
+    },
+    "item_g2nk_itat_icedragonheart": {
+      "code": "ItAt_IceDragonHeart",
+      "title": "Serce lodowego smoka",
+      "page": "Serce lodowego smoka",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_lodowego_smoka",
+      "source_revision": 553427,
+      "candidates": [
+        "Ikona serce lodwego golema g2 (by Ossowski21).png",
+        "Serce lodowego golema g2 (by Ossowski21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ikona serce lodwego golema g2 (by Ossowski21).png"
+    },
+    "item_g2nk_itat_icegolemheart": {
+      "code": "ItAt_IceGolemHeart",
+      "title": "Serce lodowego golema",
+      "page": "Serce lodowego golema",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_lodowego_golema",
+      "source_revision": 585361,
+      "candidates": [
+        "Serce lodowego golema G2 ikona.png",
+        "Serce lodowego golema g2 (by Ossowski21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Serce lodowego golema G2 ikona.png"
+    },
+    "item_g2nk_itat_lurkerclaw": {
+      "code": "ItAt_LurkerClaw",
+      "title": "Pazur topielca",
+      "page": "Pazury topielca",
+      "source": "https://gothic.fandom.com/pl/wiki/Pazury_topielca",
+      "source_revision": 585350,
+      "candidates": [
+        "Pazur topielca G2 ikona.png",
+        "Pazur topielca GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pazur topielca G2 ikona.png"
+    },
+    "item_g2nk_itat_lurkerskin": {
+      "code": "ItAt_LurkerSkin",
+      "title": "Skóra topielca",
+      "page": "Skóra topielca",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_topielca",
+      "source_revision": 585300,
+      "candidates": [
+        "Skóra topielca G2NK ikona.png",
+        "Skóra topielca NK.png",
+        "Skóra topielca G2 ikona.png",
+        "Skóra topielca.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra topielca G2NK ikona.png"
+    },
+    "item_g2nk_itat_rockdragonheart": {
+      "code": "ItAt_RockDragonHeart",
+      "title": "Serce kamiennego smoka",
+      "page": "Serce kamiennego smoka",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_kamiennego_smoka",
+      "source_revision": 553528,
+      "candidates": [
+        "Ikona serce kamiennego golema (by Ossowski21).png",
+        "Serce kamiennego golema (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ikona serce kamiennego golema (by Ossowski21).png"
+    },
+    "item_g2nk_itat_shadowfur": {
+      "code": "ItAt_ShadowFur",
+      "title": "Skóra cieniostwora",
+      "page": "Skóra cieniostwora",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_cieniostwora",
+      "source_revision": 585316,
+      "candidates": [
+        "Skóra cieniostwora G2 ikona.png",
+        "Skóra cieniostwora (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra cieniostwora G2 ikona.png"
+    },
+    "item_g2nk_itat_shadowhorn": {
+      "code": "ItAt_ShadowHorn",
+      "title": "Róg cieniostwora",
+      "page": "Róg cieniostwora",
+      "source": "https://gothic.fandom.com/pl/wiki/R%C3%B3g_cieniostwora",
+      "source_revision": 585337,
+      "candidates": [
+        "Róg cieniostwora (ikonka) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Róg cieniostwora (ikonka) (G2).png"
+    },
+    "item_g2nk_itat_sharkskin": {
+      "code": "ItAt_SharkSkin",
+      "title": "Skóra błotnego węża",
+      "page": "Skóra błotnego węża",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_b%C5%82otnego_w%C4%99%C5%BCa",
+      "source_revision": 585317,
+      "candidates": [
+        "Skóra błotnego węża G2 ikona.png",
+        "Skóra błotnego węża.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra błotnego węża G2 ikona.png"
+    },
+    "item_g2nk_itat_sharkteeth": {
+      "code": "ItAt_SharkTeeth",
+      "title": "Kły błotnego węża",
+      "page": "Kły błotnego węża",
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82y_b%C5%82otnego_w%C4%99%C5%BCa",
+      "source_revision": 585329,
+      "candidates": [
+        "Kły błotnego węża (ikonka) (G2NK).png",
+        "Kiel blotnego weza.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kły błotnego węża (ikonka) (G2NK).png"
+    },
+    "item_g2nk_itat_sheepfur": {
+      "code": "ItAt_SheepFur",
+      "title": "Owcza skóra",
+      "page": "Owcza skóra",
+      "source": "https://gothic.fandom.com/pl/wiki/Owcza_sk%C3%B3ra",
+      "source_revision": 585265,
+      "candidates": [
+        "Owcza skóra G2 ikona.png",
+        "Owcza skóra.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Owcza skóra G2 ikona.png"
+    },
+    "item_g2nk_itat_skeletonbone": {
+      "code": "ItAt_SkeletonBone",
+      "title": "Kość szkieletu",
+      "page": "Kość szkieletu",
+      "source": "https://gothic.fandom.com/pl/wiki/Ko%C5%9B%C4%87_szkieletu",
+      "source_revision": 585325,
+      "candidates": [
+        "Kość szkieletu (ikonka) (G2).png",
+        "Kość szkieletu (G2NK).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kość szkieletu (ikonka) (G2).png"
+    },
+    "item_g2nk_itat_sting": {
+      "code": "ItAt_Sting",
+      "title": "Żądło krwiopijcy",
+      "page": "Żądło krwiopijcy",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%BB%C4%85d%C5%82o_krwiopijcy",
+      "source_revision": 585660,
+      "candidates": [
+        "Żądło krwiopijcy G2 ikona.png",
+        "Żądło krwiopijcy (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Żądło krwiopijcy G2 ikona.png"
+    },
+    "item_g2nk_itat_stonegolemheart": {
+      "code": "ItAt_StoneGolemHeart",
+      "title": "Serce kamiennego golema",
+      "page": "Serce kamiennego golema",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_kamiennego_golema",
+      "source_revision": 585326,
+      "candidates": [
+        "Serce kamiennego golema G2 ikona.png",
+        "Serce kamiennego golema (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Serce kamiennego golema G2 ikona.png"
+    },
+    "item_g2nk_itat_swampdragonheart": {
+      "code": "ItAt_SwampDragonHeart",
+      "title": "Serce błotnego smoka",
+      "page": "Serce błotnego smoka",
+      "source": "https://gothic.fandom.com/pl/wiki/Serce_b%C5%82otnego_smoka",
+      "source_revision": 553424,
+      "candidates": [
+        "Serce błotnego smoka (ikonka) (G2).png",
+        "Serce błotnego smoka (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Serce błotnego smoka (ikonka) (G2).png"
+    },
+    "item_g2nk_itat_talbinslurkerskin": {
+      "code": "ItAt_TalbinsLurkerSkin",
+      "title": "Skóra topielca należąca do Talbina",
+      "page": "Skóra topielca",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_topielca",
+      "source_revision": 585300,
+      "candidates": [
+        "Skóra topielca G2NK ikona.png",
+        "Skóra topielca NK.png",
+        "Skóra topielca G2 ikona.png",
+        "Skóra topielca.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra topielca G2NK ikona.png"
+    },
+    "item_g2nk_itat_teeth": {
+      "code": "ItAt_Teeth",
+      "title": "Kły",
+      "page": "Kły",
+      "source": "https://gothic.fandom.com/pl/wiki/K%C5%82y",
+      "source_revision": 585328,
+      "candidates": [
+        "Kły G2 ikona.png",
+        "Kły (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kły G2 ikona.png"
+    },
+    "item_g2nk_itat_trollblackfur": {
+      "code": "ItAt_TrollBlackFur",
+      "title": "Skóra czarnego trolla",
+      "page": "Skóra czarnego trolla",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_czarnego_trolla",
+      "source_revision": 585315,
+      "candidates": [
+        "Skóra trolla G2 ikona.png",
+        "Skóra Trolla (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra trolla G2 ikona.png"
+    },
+    "item_g2nk_itat_trollfur": {
+      "code": "ItAt_TrollFur",
+      "title": "Skóra trolla",
+      "page": "Skóra trolla",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_trolla",
+      "source_revision": 585298,
+      "candidates": [
+        "Skóra trolla G2 ikona.png",
+        "Skóra Trolla (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra trolla G2 ikona.png"
+    },
+    "item_g2nk_itat_trolltooth": {
+      "code": "ItAt_TrollTooth",
+      "title": "Kieł trolla",
+      "page": "Kieł trolla",
+      "source": "https://gothic.fandom.com/pl/wiki/Kie%C5%82_trolla",
+      "source_revision": 585310,
+      "candidates": [
+        "Kieł trolla (ikonka) (G2).png",
+        "Kieł trolla.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kieł trolla (ikonka) (G2).png"
+    },
+    "item_g2nk_itat_undeaddragonsoulstone": {
+      "code": "ItAt_UndeadDragonSoulstone",
+      "title": "Kamień duszy smoka-ożywieńca",
+      "page": "Kamień duszy smoka-ożywieńca",
+      "source": "https://gothic.fandom.com/pl/wiki/Kamie%C5%84_duszy_smoka-o%C5%BCywie%C5%84ca",
+      "source_revision": 553930,
+      "candidates": [
+        "Czarna perła ikona G2NK.png",
+        "Czarna perła G2NK.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Czarna perła ikona G2NK.png"
+    },
+    "item_g2nk_itat_waranfiretongue": {
+      "code": "ItAt_WaranFiretongue",
+      "title": "Język ognistego jaszczura",
+      "page": "Język ognistego jaszczura",
+      "source": "https://gothic.fandom.com/pl/wiki/J%C4%99zyk_ognistego_jaszczura",
+      "source_revision": 585352,
+      "candidates": [
+        "Język ognistego jaszczura G2 ikona.png",
+        "Język ognistego jaszczura GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Język ognistego jaszczura G2 ikona.png"
+    },
+    "item_g2nk_itat_wargfur": {
+      "code": "ItAt_WargFur",
+      "title": "Skóra warga",
+      "page": "Skóra warga",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_warga",
+      "source_revision": 585588,
+      "candidates": [
+        "Skóra warga G2 ikona.png",
+        "Skóra Warga.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra warga G2 ikona.png"
+    },
+    "item_g2nk_itat_wing": {
+      "code": "ItAt_Wing",
+      "title": "Skrzydła krwiopijcy",
+      "page": "Skrzydła krwiopijcy",
+      "source": "https://gothic.fandom.com/pl/wiki/Skrzyd%C5%82a_krwiopijcy",
+      "source_revision": 585321,
+      "candidates": [
+        "Skrzydła krwiopijcy G2 ikona.png",
+        "Skrzydła krwiopijcy (G2) (by Kubar906).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skrzydła krwiopijcy G2 ikona.png"
+    },
+    "item_g2nk_itat_wolffur": {
+      "code": "ItAt_WolfFur",
+      "title": "Skóra wilka",
+      "page": "Skóra wilka",
+      "source": "https://gothic.fandom.com/pl/wiki/Sk%C3%B3ra_wilka",
+      "source_revision": 585295,
+      "candidates": [
+        "Skóra wilka ikonka.png",
+        "Skóra wilka (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Skóra wilka ikonka.png"
+    },
+    "item_g2nk_itfo_addon_shellflesh": {
+      "code": "ItFo_Addon_Shellflesh",
+      "title": "Ostryga",
+      "page": "Ostryga",
+      "source": "https://gothic.fandom.com/pl/wiki/Ostryga",
+      "source_revision": 519683,
+      "candidates": [
+        "Owadzie mięso (ikonka) (G2).png",
+        "Owadzie mięso (G2).png"
+      ],
+      "active": true,
+      "status": "code-matched-art",
+      "selected_file": "Owadzie mięso (ikonka) (G2).png"
+    },
+    "item_g2nk_itfo_fishsoup": {
+      "code": "ItFo_FishSoup",
+      "title": "Zupa rybna",
+      "page": "Zupa rybna",
+      "source": "https://gothic.fandom.com/pl/wiki/Zupa_rybna",
+      "source_revision": 575327,
+      "candidates": [
+        "Zupa rybna (ikonka) (G2).png",
+        "Parujący gulasz (by Kubar906).png"
+      ],
+      "active": true,
+      "status": "code-matched-art",
+      "selected_file": "Zupa rybna (ikonka) (G2).png"
+    },
+    "item_g2nk_itfo_xpstew": {
+      "code": "ItFo_XPStew",
+      "title": "Gulasz Thekli",
+      "page": "Gulasz Thekli",
+      "source": "https://gothic.fandom.com/pl/wiki/Gulasz_Thekli",
+      "source_revision": 580834,
+      "candidates": [
+        "Gulasz (ikonka) (G2).png",
+        "Gulasz (G2) (by Kubar906).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Gulasz (ikonka) (G2).png"
+    },
+    "item_g2nk_itke_city_tower_02": {
+      "code": "ItKe_City_Tower_02",
+      "title": "Klucz do wieży (Rangar)",
+      "page": "Klucz do wieży",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_wie%C5%BCy",
+      "source_revision": 576193,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_city_tower_03": {
+      "code": "ItKe_City_Tower_03",
+      "title": "Klucz do wieży (Ruga)",
+      "page": "Klucz do wieży",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_wie%C5%BCy",
+      "source_revision": 576193,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_city_tower_04": {
+      "code": "ItKe_City_Tower_04",
+      "title": "Klucz do wieży (Wambo)",
+      "page": "Klucz do wieży",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_wie%C5%BCy",
+      "source_revision": 576193,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_city_tower_05": {
+      "code": "ItKe_City_Tower_05",
+      "title": "Klucz do wieży (Peck)",
+      "page": "Klucz do wieży",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_wie%C5%BCy",
+      "source_revision": 576193,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_city_tower_06": {
+      "code": "ItKe_City_Tower_06",
+      "title": "Klucz do wieży (z koszar)",
+      "page": "Klucz do wieży",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz_do_wie%C5%BCy",
+      "source_revision": 576193,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_evt_crypt_02": {
+      "code": "ItKe_EVT_Crypt_02",
+      "title": "Stary mosiężny klucz (2)",
+      "page": "Stary mosiężny klucz",
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_mosi%C4%99%C5%BCny_klucz",
+      "source_revision": 576290,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_evt_crypt_03": {
+      "code": "ItKe_EVT_Crypt_03",
+      "title": "Stary mosiężny klucz (3)",
+      "page": "Stary mosiężny klucz",
+      "source": "https://gothic.fandom.com/pl/wiki/Stary_mosi%C4%99%C5%BCny_klucz",
+      "source_revision": 576290,
+      "candidates": [
+        "Klucz 1 ikona G2.png",
+        "Klucz 1 G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_key_02": {
+      "code": "ItKe_Key_02",
+      "title": "Klucz",
+      "page": "Klucz",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz",
+      "source_revision": 579697,
+      "candidates": [
+        "Klucz 1 ikona G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itke_key_03": {
+      "code": "ItKe_Key_03",
+      "title": "Klucz",
+      "page": "Klucz",
+      "source": "https://gothic.fandom.com/pl/wiki/Klucz",
+      "source_revision": 579697,
+      "candidates": [
+        "Klucz 1 ikona G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Klucz 1 ikona G2.png"
+    },
+    "item_g2nk_itlstorch": {
+      "code": "ItLsTorch",
+      "title": "Pochodnia",
+      "page": "Pochodnia",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "source_revision": 581755,
+      "candidates": [
+        "Pochodnia G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pochodnia G2 ikona.png"
+    },
+    "item_g2nk_itlstorchburned": {
+      "code": "ItLsTorchBurned",
+      "title": "Wypalona pochodnia",
+      "page": "Pochodnia",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "source_revision": 581755,
+      "candidates": [
+        "Pochodnia G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pochodnia G2 ikona.png"
+    },
+    "item_g2nk_itlstorchburning": {
+      "code": "ItLsTorchBurning",
+      "title": "Płonąca pochodnia",
+      "page": "Pochodnia",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "source_revision": 581755,
+      "candidates": [
+        "Pochodnia G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pochodnia G2 ikona.png"
+    },
+    "item_g2nk_itlstorchfirespit": {
+      "code": "ItLsTorchFirespit",
+      "title": "Pochodnia do ziania ogniem",
+      "page": "Pochodnia",
+      "source": "https://gothic.fandom.com/pl/wiki/Pochodnia",
+      "source_revision": 581755,
+      "candidates": [
+        "Pochodnia G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pochodnia G2 ikona.png"
+    },
+    "item_g2nk_itmi_bromorsgeld_addon": {
+      "code": "ItMi_BromorsGeld_Addon",
+      "title": "Złota misa Bromora",
+      "page": "Złota misa Bromora (przedmiot)",
+      "source": "https://gothic.fandom.com/pl/wiki/Z%C5%82ota_misa_Bromora_(przedmiot)",
+      "source_revision": 569973,
+      "candidates": [
+        "Złote naczynie (ikonka) (G2NK).png",
+        "Złote naczynie (G2NK).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Złote naczynie (ikonka) (G2NK).png"
+    },
+    "item_g2nk_itmi_goldplate": {
+      "code": "ItMi_GoldPlate",
+      "title": "Złoty talerz",
+      "page": "Złoty talerz",
+      "source": "https://gothic.fandom.com/pl/wiki/Z%C5%82oty_talerz",
+      "source_revision": 570219,
+      "candidates": [
+        "Złoty talerz G2 ikona.png",
+        "Złoty talerz (góra) (Gothic II) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Złoty talerz G2 ikona.png"
+    },
+    "item_g2nk_itmi_goldplate_mis": {
+      "code": "ItMi_GoldPlate_Mis",
+      "title": "Złoty talerz",
+      "page": "Złoty talerz",
+      "source": "https://gothic.fandom.com/pl/wiki/Z%C5%82oty_talerz",
+      "source_revision": 570219,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_itmi_goldplate"
+    },
+    "item_g2nk_itmi_ornament_addon": {
+      "code": "ItMi_Ornament_Addon",
+      "title": "Fragment ornamentu",
+      "page": "Ozdobny pierścień",
+      "source": "https://gothic.fandom.com/pl/wiki/Ozdobny_pier%C5%9Bcie%C5%84",
+      "source_revision": 585417,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_itmi_portalring_addon"
+    },
+    "item_g2nk_itmi_ornament_addon_vatras": {
+      "code": "ItMi_Ornament_Addon_Vatras",
+      "title": "Fragment ornamentu od Vatrasa",
+      "page": "Ozdobny pierścień",
+      "source": "https://gothic.fandom.com/pl/wiki/Ozdobny_pier%C5%9Bcie%C5%84",
+      "source_revision": 585417,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_itmi_portalring_addon"
+    },
+    "item_g2nk_itmi_tempeltorkey": {
+      "code": "ItMi_TempelTorKey",
+      "title": "Kamienna tablica Quarhodrona",
+      "page": "Kamienna tablica Quarhodrona",
+      "source": "https://gothic.fandom.com/pl/wiki/Kamienna_tablica_Quarhodrona",
+      "source_revision": 573148,
+      "candidates": [
+        "Kamienna tablica Quarhodrona ikona (GII).png",
+        "Kamienna tablica Quarhodrona (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kamienna tablica Quarhodrona ikona (GII).png"
+    },
+    "item_g2nk_itmi_ultharsholywater_mis": {
+      "code": "ItMi_UltharsHolyWater_Mis",
+      "title": "Woda święcona Ulthara",
+      "page": "Woda święcona Ulthara",
+      "source": "https://gothic.fandom.com/pl/wiki/Woda_%C5%9Bwi%C4%99cona_Ulthara",
+      "source_revision": 570591,
+      "candidates": [
+        "Woda święcona G2 ikona.png",
+        "Woda święcona (by Cassidy005).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Woda święcona G2 ikona.png"
+    },
+    "item_g2nk_itmiswordrawhot": {
+      "code": "ItMiSwordRawHot",
+      "title": "Gorąca stal",
+      "page": "Rozgrzana stal",
+      "source": "https://gothic.fandom.com/pl/wiki/Rozgrzana_stal",
+      "source_revision": 570227,
+      "candidates": [
+        "Gorąca stal G2 ikona.png",
+        "Gorąca stal (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Gorąca stal G2 ikona.png"
+    },
+    "item_g2nk_itmw_1h_blessed_01": {
+      "code": "ItMw_1H_Blessed_01",
+      "title": "Kiepskie ostrze magiczne (broń jednoręczna)",
+      "page": "Kiepskie ostrze magiczne (broń jednoręczna)",
+      "source": "https://gothic.fandom.com/pl/wiki/Kiepskie_ostrze_magiczne_(bro%C5%84_jednor%C4%99czna)",
+      "source_revision": 550281,
+      "candidates": [
+        "Kiepskie ostrze magiczne (1H) (ikonka) (G2).png",
+        "Gniew Innosa (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kiepskie ostrze magiczne (1H) (ikonka) (G2).png"
+    },
+    "item_g2nk_itmw_1h_mil_sword": {
+      "code": "ItMw_1H_Mil_Sword",
+      "title": "Kiepski szeroki miecz",
+      "page": "Kiepski szeroki miecz",
+      "source": "https://gothic.fandom.com/pl/wiki/Kiepski_szeroki_miecz",
+      "source_revision": 588507,
+      "candidates": [
+        "Kiepski szeroki miecz G2 ikona.png",
+        "Kiepski szeroki miecz (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kiepski szeroki miecz G2 ikona.png"
+    },
+    "item_g2nk_itmw_1h_misc_sword": {
+      "code": "ItMw_1H_Misc_Sword",
+      "title": "Zardzewiały krótki miecz",
+      "page": "Zardzewiały krótki miecz",
+      "source": "https://gothic.fandom.com/pl/wiki/Zardzewia%C5%82y_kr%C3%B3tki_miecz",
+      "source_revision": 580216,
+      "candidates": [
+        "Zardzewiały krótki miecz G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zardzewiały krótki miecz G2 ikona.png"
+    },
+    "item_g2nk_itmw_1h_pal_sword": {
+      "code": "ItMw_1H_Pal_Sword",
+      "title": "Miecz paladyna",
+      "page": "Miecz paladyna",
+      "source": "https://gothic.fandom.com/pl/wiki/Miecz_paladyna",
+      "source_revision": 579099,
+      "candidates": [
+        "Miecz paladyna G2 ikona.png",
+        "Miecz Świstaka (by Cassidy005).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Miecz paladyna G2 ikona.png"
+    },
+    "item_g2nk_itmw_1h_vlk_dagger": {
+      "code": "ItMw_1H_Vlk_Dagger",
+      "title": "Sztylet",
+      "page": "Sztylet",
+      "source": "https://gothic.fandom.com/pl/wiki/Sztylet",
+      "source_revision": 579096,
+      "candidates": [
+        "Sztylet (ikonka) (G2).png",
+        "Sztylet (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Sztylet (ikonka) (G2).png"
+    },
+    "item_g2nk_itmw_2h_bau_axe": {
+      "code": "ItMw_2H_Bau_Axe",
+      "title": "Topór drwala",
+      "page": "Topór drwala",
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_drwala",
+      "source_revision": 567166,
+      "candidates": [
+        "Topór drwala (ikonka) (G2).png",
+        "Topór drwala (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Topór drwala (ikonka) (G2).png"
+    },
+    "item_g2nk_itmw_2h_blessed_01": {
+      "code": "ItMw_2H_Blessed_01",
+      "title": "Kiepskie ostrze magiczne (broń dwuręczna)",
+      "page": "Kiepskie ostrze magiczne (broń dwuręczna)",
+      "source": "https://gothic.fandom.com/pl/wiki/Kiepskie_ostrze_magiczne_(bro%C5%84_dwur%C4%99czna)",
+      "source_revision": 568400,
+      "candidates": [
+        "Kiepskie ostrze magiczne (2H) (ikonka) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kiepskie ostrze magiczne (2H) (ikonka) (G2).png"
+    },
+    "item_g2nk_itmw_2h_orcaxe_03": {
+      "code": "ItMw_2H_Orcaxe_03",
+      "title": "Ciężki orkowy topór",
+      "page": "Ciężki orkowy topór",
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCki_orkowy_top%C3%B3r",
+      "source_revision": 571065,
+      "candidates": [
+        "Ciężki orkowy topór G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ciężki orkowy topór G2 ikona.png"
+    },
+    "item_g2nk_itmw_2h_orcsword_02": {
+      "code": "ItMw_2H_OrcSword_02",
+      "title": "Orkowy miecz wojenny",
+      "page": "Orkowy miecz wojenny",
+      "source": "https://gothic.fandom.com/pl/wiki/Orkowy_miecz_wojenny",
+      "source_revision": 579106,
+      "candidates": [
+        "Orkowy miecz wojenny (ikonka) (G2).png",
+        "Orkowy miecz wojenny (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Orkowy miecz wojenny (ikonka) (G2).png"
+    },
+    "item_g2nk_itmw_2h_special_02": {
+      "code": "ItMw_2H_Special_02",
+      "title": "Ciężki magiczny miecz dwuręczny",
+      "page": "Ciężki magiczny miecz dwuręczny",
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCki_magiczny_miecz_dwur%C4%99czny",
+      "source_revision": 571062,
+      "candidates": [
+        "Ciężki magiczny miecz dwuręczny G2 ikona.png",
+        "Ciężki magiczny miecz dwuręczny.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ciężki magiczny miecz dwuręczny G2 ikona.png"
+    },
+    "item_g2nk_itmw_2h_special_03": {
+      "code": "ItMw_2H_Special_03",
+      "title": "Ciężkie magiczne ostrze bojowe",
+      "page": "Ciężkie magiczne ostrze bojowe",
+      "source": "https://gothic.fandom.com/pl/wiki/Ci%C4%99%C5%BCkie_magiczne_ostrze_bojowe",
+      "source_revision": 571061,
+      "candidates": [
+        "Ciężkie magiczne ostrze bojowe G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ciężkie magiczne ostrze bojowe G2 ikona.png"
+    },
+    "item_g2nk_itmw_addon_stab05": {
+      "code": "ItMw_Addon_Stab05",
+      "title": "Tajfun",
+      "page": "Tajfun",
+      "source": "https://gothic.fandom.com/pl/wiki/Tajfun",
+      "source_revision": 522880,
+      "candidates": [
+        "Kostur maga wody (ikonka) (G2NK).png",
+        "Tajfun (G2NK) (by Kubar906).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kostur maga wody (ikonka) (G2NK).png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_02": {
+      "code": "ItMw_BeliarWeapon_1H_02",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_03": {
+      "code": "ItMw_BeliarWeapon_1H_03",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_04": {
+      "code": "ItMw_BeliarWeapon_1H_04",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_05": {
+      "code": "ItMw_BeliarWeapon_1H_05",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_06": {
+      "code": "ItMw_BeliarWeapon_1H_06",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_07": {
+      "code": "ItMw_BeliarWeapon_1H_07",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_08": {
+      "code": "ItMw_BeliarWeapon_1H_08",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_09": {
+      "code": "ItMw_BeliarWeapon_1H_09",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_10": {
+      "code": "ItMw_BeliarWeapon_1H_10",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_11": {
+      "code": "ItMw_BeliarWeapon_1H_11",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_12": {
+      "code": "ItMw_BeliarWeapon_1H_12",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_13": {
+      "code": "ItMw_BeliarWeapon_1H_13",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_14": {
+      "code": "ItMw_BeliarWeapon_1H_14",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_15": {
+      "code": "ItMw_BeliarWeapon_1H_15",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_16": {
+      "code": "ItMw_BeliarWeapon_1H_16",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_17": {
+      "code": "ItMw_BeliarWeapon_1H_17",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_18": {
+      "code": "ItMw_BeliarWeapon_1H_18",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_19": {
+      "code": "ItMw_BeliarWeapon_1H_19",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_1h_20": {
+      "code": "ItMw_BeliarWeapon_1H_20",
+      "title": "Jednoręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_02": {
+      "code": "ItMw_BeliarWeapon_2H_02",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_03": {
+      "code": "ItMw_BeliarWeapon_2H_03",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_04": {
+      "code": "ItMw_BeliarWeapon_2H_04",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_05": {
+      "code": "ItMw_BeliarWeapon_2H_05",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_06": {
+      "code": "ItMw_BeliarWeapon_2H_06",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_07": {
+      "code": "ItMw_BeliarWeapon_2H_07",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_08": {
+      "code": "ItMw_BeliarWeapon_2H_08",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_09": {
+      "code": "ItMw_BeliarWeapon_2H_09",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_10": {
+      "code": "ItMw_BeliarWeapon_2H_10",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_11": {
+      "code": "ItMw_BeliarWeapon_2H_11",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_12": {
+      "code": "ItMw_BeliarWeapon_2H_12",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_13": {
+      "code": "ItMw_BeliarWeapon_2H_13",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_14": {
+      "code": "ItMw_BeliarWeapon_2H_14",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_15": {
+      "code": "ItMw_BeliarWeapon_2H_15",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_16": {
+      "code": "ItMw_BeliarWeapon_2H_16",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_17": {
+      "code": "ItMw_BeliarWeapon_2H_17",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_18": {
+      "code": "ItMw_BeliarWeapon_2H_18",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_19": {
+      "code": "ItMw_BeliarWeapon_2H_19",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_beliarweapon_2h_20": {
+      "code": "ItMw_BeliarWeapon_2H_20",
+      "title": "Dwuręczny Szpon Beliara (wartości 01-20 określają liczbę zadawanych obrażeń)",
+      "page": "Szpon Beliara",
+      "source": "https://gothic.fandom.com/pl/wiki/Szpon_Beliara",
+      "source_revision": 583976,
+      "candidates": [
+        "Szpon Beliara dwuręczny G2NK ikona.png",
+        "Szpon Beliara (dwuręczny) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szpon Beliara dwuręczny G2NK ikona.png"
+    },
+    "item_g2nk_itmw_inquisitor": {
+      "code": "ItMw_Inquisitor",
+      "title": "Inkwizytor",
+      "page": "Inkwizytor (Gothic II)",
+      "source": "https://gothic.fandom.com/pl/wiki/Inkwizytor_(Gothic_II)",
+      "source_revision": 573187,
+      "candidates": [
+        "Inkwizytor G2 ikona.png",
+        "Łamacz serc (Gothic I) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Inkwizytor G2 ikona.png"
+    },
+    "item_g2nk_itmw_rabenschnabel": {
+      "code": "ItMw_Rabenschnabel",
+      "title": "Kruczy dziób",
+      "page": "Kruczy dziób",
+      "source": "https://gothic.fandom.com/pl/wiki/Kruczy_dzi%C3%B3b",
+      "source_revision": 554074,
+      "candidates": [
+        "Kruczy dziób G2 ikona.png",
+        "Kruczy dziób (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kruczy dziób G2 ikona.png"
+    },
+    "item_g2nk_itmw_schlachtaxt": {
+      "code": "ItMw_Schlachtaxt",
+      "title": "Topór wojenny",
+      "page": "Topór wojenny",
+      "source": "https://gothic.fandom.com/pl/wiki/Top%C3%B3r_wojenny",
+      "source_revision": 569307,
+      "candidates": [
+        "Miażdżydeska (ikonka) (G2NK).png"
+      ],
+      "active": true,
+      "status": "code-matched-art",
+      "selected_file": "Miażdżydeska (ikonka) (G2NK).png"
+    },
+    "item_g2nk_itmw_schwert2": {
+      "code": "ItMw_Schwert2",
+      "title": "Długi miecz",
+      "page": "Długi miecz",
+      "source": "https://gothic.fandom.com/pl/wiki/D%C5%82ugi_miecz",
+      "source_revision": 581346,
+      "candidates": [
+        "Długi miecz G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Długi miecz G2 ikona.png"
+    },
+    "item_g2nk_itpo_healhilda_mis": {
+      "code": "ItPo_HealHilda_Mis",
+      "title": "Uzdrowienie czarnej gorączki",
+      "page": "Uzdrowienie czarnej gorączki",
+      "source": "https://gothic.fandom.com/pl/wiki/Uzdrowienie_czarnej_gor%C4%85czki",
+      "source_revision": 571371,
+      "candidates": [
+        "Łzy Innosa (ikonka) (G2).png",
+        "Menzurka (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Łzy Innosa (ikonka) (G2).png"
+    },
+    "item_g2nk_itpo_healobsession_mis": {
+      "code": "ItPo_HealObsession_Mis",
+      "title": "Uleczenie z opętania",
+      "page": "Uleczenie z opętania",
+      "source": "https://gothic.fandom.com/pl/wiki/Uleczenie_z_op%C4%99tania",
+      "source_revision": 563497,
+      "candidates": [
+        "Łzy Innosa (ikonka) (G2).png",
+        "Menzurka (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Łzy Innosa (ikonka) (G2).png"
+    },
+    "item_g2nk_itpo_perm_mana": {
+      "code": "ItPo_Perm_Mana",
+      "title": "Eliksir ducha",
+      "page": "Eliksir ducha",
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_ducha",
+      "source_revision": 579774,
+      "candidates": [
+        "Eliksir ducha G2 ikona.png",
+        "Eliksir ducha (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Eliksir ducha G2 ikona.png"
+    },
+    "item_g2nk_itpo_perm_str": {
+      "code": "ItPo_Perm_Str",
+      "title": "Eliksir siły",
+      "page": "Eliksir siły",
+      "source": "https://gothic.fandom.com/pl/wiki/Eliksir_si%C5%82y",
+      "source_revision": 583651,
+      "candidates": [
+        "Eliksir siły G2 ikona.png",
+        "Mikstura wydzieliny ze smoczych jaj (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Eliksir siły G2 ikona.png"
+    },
+    "item_g2nk_itpo_story": {
+      "code": "ItPo_Story",
+      "title": "Szczęście",
+      "page": "Szczęście",
+      "source": "https://gothic.fandom.com/pl/wiki/Szcz%C4%99%C5%9Bcie",
+      "source_revision": 552922,
+      "candidates": [
+        "Mikstura wydzieliny ze smoczych jaj (ikonka) (G2).png",
+        "Mikstura wydzieliny ze smoczych jaj (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Mikstura wydzieliny ze smoczych jaj (ikonka) (G2).png"
+    },
+    "item_g2nk_itri_addon_bandittrader": {
+      "code": "ItRi_Addon_BanditTrader",
+      "title": "Rzeźbiony pierścień zamorskiej gildii Araxos",
+      "page": "Rzeźbiony pierścień zamorskiej gildii Araxos",
+      "source": "https://gothic.fandom.com/pl/wiki/Rze%C5%BAbiony_pier%C5%9Bcie%C5%84_zamorskiej_gildii_Araxos",
+      "source_revision": 551092,
+      "candidates": [
+        "Pierścień kamiennej skóry (ikonka) (G2).png",
+        "Pierścień kamiennej skóry (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień kamiennej skóry (ikonka) (G2).png"
+    },
+    "item_g2nk_itri_dex_01": {
+      "code": "ItRi_Dex_01",
+      "title": "Pierścień zdolności",
+      "page": "Pierścień zdolności",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_zdolno%C5%9Bci",
+      "source_revision": 580872,
+      "candidates": [
+        "Pierścień zdolności G2 ikona.png",
+        "Pierścień zdolności.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień zdolności G2 ikona.png"
+    },
+    "item_g2nk_itri_dex_02": {
+      "code": "ItRi_Dex_02",
+      "title": "Pierścień zręczności",
+      "page": "Pierścień zręczności",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_zr%C4%99czno%C5%9Bci",
+      "source_revision": 551130,
+      "candidates": [
+        "Pierścień zręczności G2 ikona.png",
+        "Pierścień zręczności.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień zręczności G2 ikona.png"
+    },
+    "item_g2nk_itri_dex_strg_01": {
+      "code": "ItRi_Dex_Strg_01",
+      "title": "Pierścień mocy (+4 do siły i zręczności)",
+      "page": "Pierścień mocy",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_mocy",
+      "source_revision": 575391,
+      "candidates": [
+        "Pierścień mocy typ 1 G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień mocy typ 1 G2 ikona.png"
+    },
+    "item_g2nk_itri_hp_02": {
+      "code": "ItRi_HP_02",
+      "title": "Pierścień żywotności",
+      "page": "Pierścień żywotności",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_%C5%BCywotno%C5%9Bci",
+      "source_revision": 551131,
+      "candidates": [
+        "Pierścień żywotności G2 ikona.png",
+        "Pierścień żywotności.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień żywotności G2 ikona.png"
+    },
+    "item_g2nk_itri_mana_02": {
+      "code": "ItRi_Mana_02",
+      "title": "Pierścień gwiezdnej mocy",
+      "page": "Pierścień gwiezdnej mocy",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_gwiezdnej_mocy",
+      "source_revision": 551043,
+      "candidates": [
+        "Ikona pierścień gwiezdnej mocy.png",
+        "Pierścień gwiezdnej mocy (by Ossowski21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ikona pierścień gwiezdnej mocy.png"
+    },
+    "item_g2nk_itri_prot_fire_02": {
+      "code": "ItRi_Prot_Fire_02",
+      "title": "Pierścień ognia",
+      "page": "Pierścień ognia",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_ognia",
+      "source_revision": 560013,
+      "candidates": [
+        "Pierścień ognia G2 ikona.png",
+        "Pierścień ognia.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień ognia G2 ikona.png"
+    },
+    "item_g2nk_itri_prot_mage_01": {
+      "code": "ItRi_Prot_Mage_01",
+      "title": "Pierścień ducha",
+      "page": "Pierścień ducha",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_ducha",
+      "source_revision": 560014,
+      "candidates": [
+        "Pierścień ducha G2 ikona.png",
+        "Pierścień ducha.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień ducha G2 ikona.png"
+    },
+    "item_g2nk_itri_prot_point_01_mis": {
+      "code": "ItRi_Prot_Point_01_Mis",
+      "title": "Pierścień Constantina",
+      "page": "Pierścień Constantina (przedmiot)",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_Constantina_(przedmiot)",
+      "source_revision": 560010,
+      "candidates": [
+        "Pierścień drewnianej skóry G2 ikona.png",
+        "Pierścień drewnianej skóry G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień drewnianej skóry G2 ikona.png"
+    },
+    "item_g2nk_itri_prot_total_01": {
+      "code": "ItRi_Prot_Total_01",
+      "title": "Pierścień wiecznych zwycięstw",
+      "page": "Pierścień wiecznych zwycięstw",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_wiecznych_zwyci%C4%99stw",
+      "source_revision": 570074,
+      "candidates": [
+        "Pierścień wiecznych zwycięstw G2 ikona.png",
+        "Pierścień wiecznych zwycięstw.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień wiecznych zwycięstw G2 ikona.png"
+    },
+    "item_g2nk_itri_prot_total_02": {
+      "code": "ItRi_Prot_Total_02",
+      "title": "Pierścień nietykalności",
+      "page": "Pierścień nietykalności",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_nietykalno%C5%9Bci",
+      "source_revision": 560015,
+      "candidates": [
+        "Pierścień Morgana (ikona) (by SpY).png",
+        "Pierścień Morgana (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień Morgana (ikona) (by SpY).png"
+    },
+    "item_g2nk_itri_str_01": {
+      "code": "ItRi_Str_01",
+      "title": "Pierścień mocy (+3 do siły)",
+      "page": "Pierścień mocy",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_mocy",
+      "source_revision": 575391,
+      "candidates": [
+        "Pierścień mocy typ 1 G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień mocy typ 1 G2 ikona.png"
+    },
+    "item_g2nk_itri_valentinosring": {
+      "code": "ItRi_ValentinosRing",
+      "title": "Pierścień Valentina",
+      "page": "Pierścień Valentina",
+      "source": "https://gothic.fandom.com/pl/wiki/Pier%C5%9Bcie%C5%84_Valentina",
+      "source_revision": 559797,
+      "candidates": [
+        "Pierścień żelaznej skóry G2 ikona.png",
+        "Pierścień żelaznej skóry G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pierścień żelaznej skóry G2 ikona.png"
+    },
+    "item_g2nk_itru_breathofdeath": {
+      "code": "ItRu_BreathOfDeath",
+      "title": "Tchnienie śmierci",
+      "page": "Tchnienie śmierci",
+      "source": "https://gothic.fandom.com/pl/wiki/Tchnienie_%C5%9Bmierci",
+      "source_revision": 573430,
+      "candidates": [
+        "Tchnienie śmierci (ikona).png",
+        "Tchnienie śmierci.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Tchnienie śmierci (ikona).png"
+    },
+    "item_g2nk_itru_chargefireball": {
+      "code": "ItRu_ChargeFireball",
+      "title": "Duża kula ognia",
+      "page": "Duża kula ognia",
+      "source": "https://gothic.fandom.com/pl/wiki/Du%C5%BCa_kula_ognia",
+      "source_revision": 528891,
+      "candidates": [
+        "Duża kula ognia (runa) (ikonka) (G2).png",
+        "Duża kula ognia (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Duża kula ognia (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_deathbolt": {
+      "code": "ItRu_Deathbolt",
+      "title": "Pocisk śmierci",
+      "page": "Pocisk śmierci",
+      "source": "https://gothic.fandom.com/pl/wiki/Pocisk_%C5%9Bmierci",
+      "source_revision": 528973,
+      "candidates": [
+        "Szkodzenie złu runa G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szkodzenie złu runa G2 ikona.png"
+    },
+    "item_g2nk_itru_fear": {
+      "code": "ItRu_Fear",
+      "title": "Strach",
+      "page": "Strach",
+      "source": "https://gothic.fandom.com/pl/wiki/Strach",
+      "source_revision": 581481,
+      "candidates": [
+        "Strach (runa) (ikona).png",
+        "Strach Runa Gothic II.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Strach (runa) (ikona).png"
+    },
+    "item_g2nk_itru_firebolt": {
+      "code": "ItRu_FireBolt",
+      "title": "Ognista strzała",
+      "page": "Ognisty pocisk",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognisty_pocisk",
+      "source_revision": 583336,
+      "candidates": [
+        "Ognista strzała runa G2 ikona.png",
+        "Ognista strzała runa (G2) (by Ossowski21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ognista strzała runa G2 ikona.png"
+    },
+    "item_g2nk_itru_firestorm": {
+      "code": "ItRu_Firestorm",
+      "title": "Mała burza ognista",
+      "page": "Mała burza ognista",
+      "source": "https://gothic.fandom.com/pl/wiki/Ma%C5%82a_burza_ognista",
+      "source_revision": 528975,
+      "candidates": [
+        "Mała burza ognista (runa) (ikona).png",
+        "MałaBurzaOgnistaByGaroK.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Mała burza ognista (runa) (ikona).png"
+    },
+    "item_g2nk_itru_fullheal": {
+      "code": "ItRu_FullHeal",
+      "title": "Leczenie ciężkich ran",
+      "page": "Leczenie ciężkich ran",
+      "source": "https://gothic.fandom.com/pl/wiki/Leczenie_ci%C4%99%C5%BCkich_ran",
+      "source_revision": 589606,
+      "candidates": [
+        "Leczenie ciężkich ran (runa) (ikonka) (G2).png",
+        "Leczenie ciężkich ran (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Leczenie ciężkich ran (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_harmundead": {
+      "code": "ItRu_HarmUndead",
+      "title": "Zniszczenie ożywieńca",
+      "page": "Śmierć ożywieńcom",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amier%C4%87_o%C5%BCywie%C5%84com",
+      "source_revision": 579575,
+      "candidates": [
+        "Zniszczenie ożywieńca runa G2 ikona.png",
+        "Zniszczenie ożywieńca runa G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zniszczenie ożywieńca runa G2 ikona.png"
+    },
+    "item_g2nk_itru_icebolt": {
+      "code": "ItRu_Icebolt",
+      "title": "Lodowa strzała",
+      "page": "Lodowa strzała",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_strza%C5%82a",
+      "source_revision": 575358,
+      "candidates": [
+        "Ikona lodowa strzała (by Ossowski21).png",
+        "lodowa strzała runa (by Ossowski21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ikona lodowa strzała (by Ossowski21).png"
+    },
+    "item_g2nk_itru_icecube": {
+      "code": "ItRu_IceCube",
+      "title": "Bryła lodu",
+      "page": "Bryła lodu",
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82a_lodu",
+      "source_revision": 586607,
+      "candidates": [
+        "Bryła lodu (Gothic II, ikona).png",
+        "Bryła lodu (Gothic II, runa).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Bryła lodu (Gothic II, ikona).png"
+    },
+    "item_g2nk_itru_icewave": {
+      "code": "ItRu_IceWave",
+      "title": "Lodowa fala",
+      "page": "Lodowa fala",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_fala",
+      "source_revision": 529163,
+      "candidates": [
+        "Lodowa fala (runa) (ikonka) (G2).png",
+        "Lodowa fala (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lodowa fala (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_instantfireball": {
+      "code": "ItRu_InstantFireball",
+      "title": "Kula ognia",
+      "page": "Kula ognia",
+      "source": "https://gothic.fandom.com/pl/wiki/Kula_ognia",
+      "source_revision": 575241,
+      "candidates": [
+        "Kula ognia (runa) (ikonka) (G2).png",
+        "Kula ognia (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kula ognia (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_light": {
+      "code": "ItRu_Light",
+      "title": "Światło",
+      "page": "Światło",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiat%C5%82o",
+      "source_revision": 562111,
+      "candidates": [
+        "Światło (runa) (ikonka) (G2).png",
+        "Światło (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Światło (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_lightheal": {
+      "code": "ItRu_LightHeal",
+      "title": "Leczenie lekkich ran",
+      "page": "Leczenie lekkich ran",
+      "source": "https://gothic.fandom.com/pl/wiki/Leczenie_lekkich_ran",
+      "source_revision": 575483,
+      "candidates": [
+        "Leczenie lekkich ran (runa) (ikonka) (G2).png",
+        "Leczenie lekkich ran (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Leczenie lekkich ran (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_lightningflash": {
+      "code": "ItRu_LightningFlash",
+      "title": "Błyskawica (krąg 4.)",
+      "page": "Błyskawica",
+      "source": "https://gothic.fandom.com/pl/wiki/B%C5%82yskawica",
+      "source_revision": 566931,
+      "candidates": [
+        "Byskawica ikona.png",
+        "Byskawica GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Byskawica ikona.png"
+    },
+    "item_g2nk_itru_massdeath": {
+      "code": "ItRu_MassDeath",
+      "title": "Śmiertelna fala",
+      "page": "Śmiertelna fala",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amiertelna_fala",
+      "source_revision": 530210,
+      "candidates": [
+        "Śmiertelna fala runa G2 ikona.png",
+        "Śmiertelna Fala Runa GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Śmiertelna fala runa G2 ikona.png"
+    },
+    "item_g2nk_itru_masterofdisaster": {
+      "code": "ItRu_MasterOfDisaster",
+      "title": "Święty pocisk",
+      "page": "Święty pocisk",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%99ty_pocisk",
+      "source_revision": 562572,
+      "candidates": [
+        "Święty pocisk (runa) (ikonka) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Święty pocisk (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_mediumheal": {
+      "code": "ItRu_MediumHeal",
+      "title": "Leczenie średnich ran",
+      "page": "Leczenie średnich ran",
+      "source": "https://gothic.fandom.com/pl/wiki/Leczenie_%C5%9Brednich_ran",
+      "source_revision": 551440,
+      "candidates": [
+        "Leczenie średnich ran (runa) (ikonka) (G2).png",
+        "Leczenie średnich ran (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Leczenie średnich ran (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_paldestroyevil": {
+      "code": "ItRu_PalDestroyEvil",
+      "title": "Zniszczenie zła",
+      "page": "Zniszczenie zła",
+      "source": "https://gothic.fandom.com/pl/wiki/Zniszczenie_z%C5%82a",
+      "source_revision": 569812,
+      "candidates": [
+        "Zniszczenie zła runa G2 ikona.png",
+        "zniszczenie zła obrocone.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zniszczenie zła runa G2 ikona.png"
+    },
+    "item_g2nk_itru_palfullheal": {
+      "code": "ItRu_PalFullHeal",
+      "title": "Większe uleczenie",
+      "page": "Większe uleczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/Wi%C4%99ksze_uleczenie",
+      "source_revision": 575730,
+      "candidates": [
+        "Większe uleczenie runa G2 ikona.png",
+        "Większe uleczenie.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Większe uleczenie runa G2 ikona.png"
+    },
+    "item_g2nk_itru_palholybolt": {
+      "code": "ItRu_PalHolyBolt",
+      "title": "Święta strzała",
+      "page": "Święta strzała",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%99ta_strza%C5%82a",
+      "source_revision": 569813,
+      "candidates": [
+        "Święta strzała runa G2 ikona.png",
+        "Święta strzała.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Święta strzała runa G2 ikona.png"
+    },
+    "item_g2nk_itru_pallight": {
+      "code": "ItRu_PalLight",
+      "title": "Święty płomień",
+      "page": "Święty płomień",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%99ty_p%C5%82omie%C5%84",
+      "source_revision": 569816,
+      "candidates": [
+        "Święty płomień runa G2 ikona.png",
+        "Runa swięty płomień (by Ossowsk21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Święty płomień runa G2 ikona.png"
+    },
+    "item_g2nk_itru_pallightheal": {
+      "code": "ItRu_PalLightHeal",
+      "title": "Pomniejsze uleczenie",
+      "page": "Pomniejsze uleczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/Pomniejsze_uleczenie",
+      "source_revision": 569814,
+      "candidates": [
+        "Pomniejsze uleczenie runa G2 ikona.png",
+        "Pomniejsze uleczenie (runa).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pomniejsze uleczenie runa G2 ikona.png"
+    },
+    "item_g2nk_itru_palmediumheal": {
+      "code": "ItRu_PalMediumHeal",
+      "title": "Średnie uleczenie",
+      "page": "Średnie uleczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Arednie_uleczenie",
+      "source_revision": 569819,
+      "candidates": [
+        "Średnie uleczenie runa G2 ikona.png",
+        "średnie uleczenie runa.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Średnie uleczenie runa G2 ikona.png"
+    },
+    "item_g2nk_itru_palrepelevil": {
+      "code": "ItRu_PalRepelEvil",
+      "title": "Szkodzenie złu",
+      "page": "Szkodzenie złu",
+      "source": "https://gothic.fandom.com/pl/wiki/Szkodzenie_z%C5%82u",
+      "source_revision": 569811,
+      "candidates": [
+        "Szkodzenie złu runa G2 ikona.png",
+        "Szkodzenie złu runa.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szkodzenie złu runa G2 ikona.png"
+    },
+    "item_g2nk_itru_shrink": {
+      "code": "ItRu_Shrink",
+      "title": "Zmniejszenie potwora",
+      "page": "Zmniejszenie potwora",
+      "source": "https://gothic.fandom.com/pl/wiki/Zmniejszenie_potwora",
+      "source_revision": 579178,
+      "candidates": [
+        "Zmniejszenie potwora (runa) (ikonka) (G2).png",
+        "Zmniejszenie potwora (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zmniejszenie potwora (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_sleep": {
+      "code": "ItRu_Sleep",
+      "title": "Sen",
+      "page": "Sen",
+      "source": "https://gothic.fandom.com/pl/wiki/Sen",
+      "source_revision": 581537,
+      "candidates": [
+        "Sen (runa) (ikona) (G2).png",
+        "Sen Runa Gothic II.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Sen (runa) (ikona) (G2).png"
+    },
+    "item_g2nk_itru_sumdemon": {
+      "code": "ItRu_SumDemon",
+      "title": "Przyzwanie demona",
+      "page": "Przyzwanie demona",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_demona",
+      "source_revision": 562191,
+      "candidates": [
+        "Przyzwanie demona runa G2 ikona.png",
+        "Przyzwanie Demona Runa GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przyzwanie demona runa G2 ikona.png"
+    },
+    "item_g2nk_itru_sumgobskel": {
+      "code": "ItRu_SumGobSkel",
+      "title": "Tworzenie szkieletu goblina",
+      "page": "Tworzenie szkieletu goblina",
+      "source": "https://gothic.fandom.com/pl/wiki/Tworzenie_szkieletu_goblina",
+      "source_revision": 530994,
+      "candidates": [
+        "Tworzenie szkieletu goblina (runa) (ikona).png",
+        "Tworzenie szkieletu goblina (runa).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Tworzenie szkieletu goblina (runa) (ikona).png"
+    },
+    "item_g2nk_itru_sumgol": {
+      "code": "ItRu_SumGol",
+      "title": "Obudzenie golema",
+      "page": "Przyzwanie golema",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_golema",
+      "source_revision": 567179,
+      "candidates": [
+        "Obudzenie golema runa G2 ikona.png",
+        "Obudzenie Golema Runa GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Obudzenie golema runa G2 ikona.png"
+    },
+    "item_g2nk_itru_sumskel": {
+      "code": "ItRu_SumSkel",
+      "title": "Tworzenie szkieletu",
+      "page": "Tworzenie szkieletu",
+      "source": "https://gothic.fandom.com/pl/wiki/Tworzenie_szkieletu",
+      "source_revision": 530301,
+      "candidates": [
+        "Tworzenie szkieletu (runa) (ikonka) (G2).png",
+        "Tworzenie szkieletu (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Tworzenie szkieletu (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_sumwolf": {
+      "code": "ItRu_SumWolf",
+      "title": "Przyzwanie wilka",
+      "page": "Przyzwanie wilka",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_wilka",
+      "source_revision": 555563,
+      "candidates": [
+        "Przyzwanie wilka (runa) (ikona).png",
+        "Przyzwanie wilka (runa).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przyzwanie wilka (runa) (ikona).png"
+    },
+    "item_g2nk_itru_thunderball": {
+      "code": "ItRu_ThunderBall",
+      "title": "Piorun kulisty",
+      "page": "Piorun kulisty",
+      "source": "https://gothic.fandom.com/pl/wiki/Piorun_kulisty",
+      "source_revision": 557114,
+      "candidates": [
+        "Piorun kulisty runa G2 ikona.png",
+        "Piorun Kulisty Runa GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Piorun kulisty runa G2 ikona.png"
+    },
+    "item_g2nk_itru_waterfist": {
+      "code": "ItRu_Waterfist",
+      "title": "Wodna pięść",
+      "page": "Wodna pięść",
+      "source": "https://gothic.fandom.com/pl/wiki/Wodna_pi%C4%99%C5%9B%C4%87",
+      "source_revision": 528988,
+      "candidates": [
+        "Wodna pięść runa G2NK ikona.png",
+        "Wodna pięść (by Bezsumienny).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Wodna pięść runa G2NK ikona.png"
+    },
+    "item_g2nk_itru_whirlwind": {
+      "code": "ItRu_Whirlwind",
+      "title": "Wir",
+      "page": "Wir",
+      "source": "https://gothic.fandom.com/pl/wiki/Wir",
+      "source_revision": 565079,
+      "candidates": [
+        "Wir (runa) (ikonka) (G2NK).png",
+        "Wir (runa) (G2NK).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Wir (runa) (ikonka) (G2NK).png"
+    },
+    "item_g2nk_itru_windfist": {
+      "code": "ItRu_Windfist",
+      "title": "Pięść wichru",
+      "page": "Pięść wichru",
+      "source": "https://gothic.fandom.com/pl/wiki/Pi%C4%99%C5%9B%C4%87_wichru",
+      "source_revision": 579485,
+      "candidates": [
+        "Pięść wichru (runa) (ikonka) (G2).png",
+        "Pięść wichru (runa) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pięść wichru (runa) (ikonka) (G2).png"
+    },
+    "item_g2nk_itru_zap": {
+      "code": "ItRu_Zap",
+      "title": "Mała błyskawica (krąg 1.)",
+      "page": "Mała błyskawica",
+      "source": "https://gothic.fandom.com/pl/wiki/Ma%C5%82a_b%C5%82yskawica",
+      "source_revision": 554854,
+      "candidates": [
+        "Mała błyskawica (runa) (ikona).png",
+        "Mała błyskawica (runa).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Mała błyskawica (runa) (ikona).png"
+    },
+    "item_g2nk_itrw_addon_firearrow": {
+      "code": "ItRw_Addon_FireArrow",
+      "title": "Ognista strzała",
+      "page": "Ognista strzała",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognista_strza%C5%82a",
+      "source_revision": 574104,
+      "candidates": [
+        "Strzała (ikonka) (G2).png",
+        "Ognista strzała (by Cassidy005).jpg"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Strzała (ikonka) (G2).png"
+    },
+    "item_g2nk_itrw_addon_magicarrow": {
+      "code": "ItRw_Addon_MagicArrow",
+      "title": "Magiczna strzała",
+      "page": "Magiczna strzała",
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczna_strza%C5%82a",
+      "source_revision": 576260,
+      "candidates": [
+        "Strzała (ikonka) (G2).png",
+        "Magiczna strzała.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Strzała (ikonka) (G2).png"
+    },
+    "item_g2nk_itrw_addon_magicbolt": {
+      "code": "ItRw_Addon_MagicBolt",
+      "title": "Magiczny bełt",
+      "page": "Magiczny bełt",
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczny_be%C5%82t",
+      "source_revision": 576259,
+      "candidates": [
+        "Bełt (ikonka) (G2).png",
+        "Bełt (G2) (by Kubar906).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Bełt (ikonka) (G2).png"
+    },
+    "item_g2nk_itrw_bow_l_03_mis": {
+      "code": "ItRw_Bow_L_03_Mis",
+      "title": "Łuk myśliwski Bospera",
+      "page": "Łuk myśliwski Bospera",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%81uk_my%C5%9Bliwski_Bospera",
+      "source_revision": 575357,
+      "candidates": [
+        "Łuk myśliwski G2 ikona.png",
+        "Łuk Bospera (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Łuk myśliwski G2 ikona.png"
+    },
+    "item_g2nk_itrw_crossbow_l_01": {
+      "code": "ItRw_Crossbow_L_01",
+      "title": "Kusza myśliwska",
+      "page": "Kusza myśliwska",
+      "source": "https://gothic.fandom.com/pl/wiki/Kusza_my%C5%9Bliwska",
+      "source_revision": 581071,
+      "candidates": [
+        "Lekka kusza G2 ikona.png",
+        "(Lekka) Kusza (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lekka kusza G2 ikona.png"
+    },
+    "item_g2nk_itrw_crossbow_m_01": {
+      "code": "ItRw_Crossbow_M_01",
+      "title": "Mocniejszy rodzaj kuszy",
+      "page": "Kusza",
+      "source": "https://gothic.fandom.com/pl/wiki/Kusza",
+      "source_revision": 581068,
+      "candidates": [
+        "Lekka kusza G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lekka kusza G2 ikona.png"
+    },
+    "item_g2nk_itrw_mil_crossbow": {
+      "code": "ItRw_Mil_Crossbow",
+      "title": "Słabszy rodzaj kuszy",
+      "page": "Kusza",
+      "source": "https://gothic.fandom.com/pl/wiki/Kusza",
+      "source_revision": 581068,
+      "candidates": [
+        "Lekka kusza G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lekka kusza G2 ikona.png"
+    },
+    "item_g2nk_itrw_sengrathsarmbrust_mis": {
+      "code": "ItRw_SengrathsArmbrust_Mis",
+      "title": "Kusza Sengratha",
+      "page": "Kusza Sengratha",
+      "source": "https://gothic.fandom.com/pl/wiki/Kusza_Sengratha",
+      "source_revision": 569323,
+      "candidates": [
+        "Lekka kusza G2 ikona.png",
+        "(Lekka) Kusza (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lekka kusza G2 ikona.png"
+    },
+    "item_g2nk_itsc_breathofdeath": {
+      "code": "ItSc_BreathOfDeath",
+      "title": "Tchnienie śmierci",
+      "page": "Tchnienie śmierci",
+      "source": "https://gothic.fandom.com/pl/wiki/Tchnienie_%C5%9Bmierci",
+      "source_revision": 573430,
+      "candidates": [
+        "Tchnienie śmierci (zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Tchnienie śmierci (zwój).png"
+    },
+    "item_g2nk_itsc_chargefireball": {
+      "code": "ItSc_ChargeFireball",
+      "title": "Duża kula ognia",
+      "page": "Duża kula ognia",
+      "source": "https://gothic.fandom.com/pl/wiki/Du%C5%BCa_kula_ognia",
+      "source_revision": 528891,
+      "candidates": [
+        "Duża Kula Ognia Zwój GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Duża Kula Ognia Zwój GII.png"
+    },
+    "item_g2nk_itsc_fear": {
+      "code": "ItSc_Fear",
+      "title": "Strach",
+      "page": "Strach",
+      "source": "https://gothic.fandom.com/pl/wiki/Strach",
+      "source_revision": 581481,
+      "candidates": [
+        "Strach Zwój Gothic II.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Strach Zwój Gothic II.png"
+    },
+    "item_g2nk_itsc_firebolt": {
+      "code": "ItSc_FireBolt",
+      "title": "Ognista strzała",
+      "page": "Ognisty pocisk",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognisty_pocisk",
+      "source_revision": 583336,
+      "candidates": [
+        "Ognista strzała (zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ognista strzała (zwój).png"
+    },
+    "item_g2nk_itsc_firestorm": {
+      "code": "ItSc_Firestorm",
+      "title": "Mała burza ognista",
+      "page": "Mała burza ognista",
+      "source": "https://gothic.fandom.com/pl/wiki/Ma%C5%82a_burza_ognista",
+      "source_revision": 528975,
+      "candidates": [
+        "MałaBurzaOgnistaZwojByGaroK.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "MałaBurzaOgnistaZwojByGaroK.png"
+    },
+    "item_g2nk_itsc_fullheal": {
+      "code": "ItSc_FullHeal",
+      "title": "Leczenie ciężkich ran",
+      "page": "Leczenie ciężkich ran",
+      "source": "https://gothic.fandom.com/pl/wiki/Leczenie_ci%C4%99%C5%BCkich_ran",
+      "source_revision": 589606,
+      "candidates": [
+        "Leczenie ciężkich ran (G2, zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Leczenie ciężkich ran (G2, zwój).png"
+    },
+    "item_g2nk_itsc_geyser": {
+      "code": "ItSc_Geyser",
+      "title": "Gejzer",
+      "page": "Gejzer",
+      "source": "https://gothic.fandom.com/pl/wiki/Gejzer",
+      "source_revision": 528984,
+      "candidates": [
+        "Gejzer (Gothic II, zwój).png"
+      ],
+      "active": false,
+      "review_note": "Article code names the rune, but its labelled gallery also contains the scroll. Artwork only, no copied rune stats.",
+      "mapping": "reviewed-source-art",
+      "status": "code-matched-art",
+      "selected_file": "Gejzer (Gothic II, zwój).png"
+    },
+    "item_g2nk_itsc_harmundead": {
+      "code": "ItSc_HarmUndead",
+      "title": "Śmierć ożywieńcom",
+      "page": "Śmierć ożywieńcom",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amier%C4%87_o%C5%BCywie%C5%84com",
+      "source_revision": 579575,
+      "candidates": [
+        "Zniszczenie ożywieńca zwój G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zniszczenie ożywieńca zwój G2.png"
+    },
+    "item_g2nk_itsc_icebolt": {
+      "code": "ItSc_Icebolt",
+      "title": "Lodowa strzała",
+      "page": "Lodowa strzała",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_strza%C5%82a",
+      "source_revision": 575358,
+      "candidates": [
+        "Lodowa strzała (GII, zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lodowa strzała (GII, zwój).png"
+    },
+    "item_g2nk_itsc_icecube": {
+      "code": "ItSc_IceCube",
+      "title": "Bryła lodu",
+      "page": "Bryła lodu",
+      "source": "https://gothic.fandom.com/pl/wiki/Bry%C5%82a_lodu",
+      "source_revision": 586607,
+      "candidates": [
+        "Bryła Lodu GII Zwój.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Bryła Lodu GII Zwój.png"
+    },
+    "item_g2nk_itsc_icewave": {
+      "code": "ItSc_IceWave",
+      "title": "Lodowa fala",
+      "page": "Lodowa fala",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_fala",
+      "source_revision": 529163,
+      "candidates": [
+        "Lodowa fala (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Lodowa fala (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_instantfireball": {
+      "code": "ItSc_InstantFireball",
+      "title": "Kula ognia",
+      "page": "Kula ognia",
+      "source": "https://gothic.fandom.com/pl/wiki/Kula_ognia",
+      "source_revision": 575241,
+      "candidates": [
+        "Kula ognia (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kula ognia (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_light": {
+      "code": "ItSc_Light",
+      "title": "Światło",
+      "page": "Światło",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awiat%C5%82o",
+      "source_revision": 562111,
+      "candidates": [
+        "Światło (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Światło (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_lightheal": {
+      "code": "ItSc_LightHeal",
+      "title": "Leczenie lekkich ran",
+      "page": "Leczenie lekkich ran",
+      "source": "https://gothic.fandom.com/pl/wiki/Leczenie_lekkich_ran",
+      "source_revision": 575483,
+      "candidates": [
+        "Leczenie lekkich ran (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Leczenie lekkich ran (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_lightningflash": {
+      "code": "ItSc_LightningFlash",
+      "title": "Błyskawica",
+      "page": "Błyskawica",
+      "source": "https://gothic.fandom.com/pl/wiki/B%C5%82yskawica",
+      "source_revision": 566931,
+      "candidates": [
+        "Byskawica zwoj GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Byskawica zwoj GII.png"
+    },
+    "item_g2nk_itsc_massdeath": {
+      "code": "ItSc_MassDeath",
+      "title": "Śmiertelna fala",
+      "page": "Śmiertelna fala",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Amiertelna_fala",
+      "source_revision": 530210,
+      "candidates": [
+        "Śmiertelna Fala Zwój GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Śmiertelna Fala Zwój GII.png"
+    },
+    "item_g2nk_itsc_mediumheal": {
+      "code": "ItSc_MediumHeal",
+      "title": "Leczenie średnich ran",
+      "page": "Leczenie średnich ran",
+      "source": "https://gothic.fandom.com/pl/wiki/Leczenie_%C5%9Brednich_ran",
+      "source_revision": 551440,
+      "candidates": [
+        "Leczenie średnich ran (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Leczenie średnich ran (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_paldestroyevil": {
+      "code": "ItSc_PalDestroyEvil",
+      "title": "Zniszczenie zła",
+      "page": "Zniszczenie zła",
+      "source": "https://gothic.fandom.com/pl/wiki/Zniszczenie_z%C5%82a",
+      "source_revision": 569812,
+      "candidates": [
+        "Zniszczenie zła zwój G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zniszczenie zła zwój G2.png"
+    },
+    "item_g2nk_itsc_palfullheal": {
+      "code": "ItSc_PalFullHeal",
+      "title": "Większe uleczenie",
+      "page": "Większe uleczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/Wi%C4%99ksze_uleczenie",
+      "source_revision": 575730,
+      "candidates": [
+        "Większe uleczenie (zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Większe uleczenie (zwój).png"
+    },
+    "item_g2nk_itsc_palholybolt": {
+      "code": "ItSc_PalHolyBolt",
+      "title": "Święta strzała",
+      "page": "Święta strzała",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%99ta_strza%C5%82a",
+      "source_revision": 569813,
+      "candidates": [
+        "Święta strzała zwój.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Święta strzała zwój.png"
+    },
+    "item_g2nk_itsc_pallight": {
+      "code": "ItSc_PalLight",
+      "title": "Święty płomień",
+      "page": "Święty płomień",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Awi%C4%99ty_p%C5%82omie%C5%84",
+      "source_revision": 569816,
+      "candidates": [
+        "Zwój święty płomien (by Ossowski21).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zwój święty płomien (by Ossowski21).png"
+    },
+    "item_g2nk_itsc_pallightheal": {
+      "code": "ItSc_PalLightHeal",
+      "title": "Pomniejsze uleczenie",
+      "page": "Pomniejsze uleczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/Pomniejsze_uleczenie",
+      "source_revision": 569814,
+      "candidates": [
+        "Pomniejsze uleczenie (zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pomniejsze uleczenie (zwój).png"
+    },
+    "item_g2nk_itsc_palmediumheal": {
+      "code": "ItSc_PalMediumHeal",
+      "title": "Średnie uleczenie",
+      "page": "Średnie uleczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/%C5%9Arednie_uleczenie",
+      "source_revision": 569819,
+      "candidates": [
+        "średnie uleczenie zwój.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "średnie uleczenie zwój.png"
+    },
+    "item_g2nk_itsc_palrepelevil": {
+      "code": "ItSc_PalRepelEvil",
+      "title": "Szkodzenie złu",
+      "page": "Szkodzenie złu",
+      "source": "https://gothic.fandom.com/pl/wiki/Szkodzenie_z%C5%82u",
+      "source_revision": 569811,
+      "candidates": [
+        "Szkodzenie złu zwój.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Szkodzenie złu zwój.png"
+    },
+    "item_g2nk_itsc_shrink": {
+      "code": "ItSc_Shrink",
+      "title": "Zmniejszenie potwora",
+      "page": "Zmniejszenie potwora",
+      "source": "https://gothic.fandom.com/pl/wiki/Zmniejszenie_potwora",
+      "source_revision": 579178,
+      "candidates": [
+        "Zmniejszenie potwora (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Zmniejszenie potwora (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_sleep": {
+      "code": "ItSc_Sleep",
+      "title": "Sen",
+      "page": "Sen",
+      "source": "https://gothic.fandom.com/pl/wiki/Sen",
+      "source_revision": 581537,
+      "candidates": [
+        "Sen Zwój Gothic II.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Sen Zwój Gothic II.png"
+    },
+    "item_g2nk_itsc_sumdemon": {
+      "code": "ItSc_SumDemon",
+      "title": "Przyzwanie demona",
+      "page": "Przyzwanie demona",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_demona",
+      "source_revision": 562191,
+      "candidates": [
+        "Przyzwanie Demona Zwój GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przyzwanie Demona Zwój GII.png"
+    },
+    "item_g2nk_itsc_sumgobskel": {
+      "code": "ItSc_SumGobSkel",
+      "title": "Tworzenie szkieletu goblina",
+      "page": "Tworzenie szkieletu goblina",
+      "source": "https://gothic.fandom.com/pl/wiki/Tworzenie_szkieletu_goblina",
+      "source_revision": 530994,
+      "candidates": [
+        "Tworzenie szkieletu goblina (zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Tworzenie szkieletu goblina (zwój).png"
+    },
+    "item_g2nk_itsc_sumgol": {
+      "code": "ItSc_SumGol",
+      "title": "Obudzenie golema",
+      "page": "Przyzwanie golema",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_golema",
+      "source_revision": 567179,
+      "candidates": [
+        "Obudzenie Golema Zwój GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Obudzenie Golema Zwój GII.png"
+    },
+    "item_g2nk_itsc_sumskel": {
+      "code": "ItSc_SumSkel",
+      "title": "Tworzenie szkieletu",
+      "page": "Tworzenie szkieletu",
+      "source": "https://gothic.fandom.com/pl/wiki/Tworzenie_szkieletu",
+      "source_revision": 530301,
+      "candidates": [
+        "Tworzenie szkieletu (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Tworzenie szkieletu (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_sumwolf": {
+      "code": "ItSc_SumWolf",
+      "title": "Przyzwanie wilka",
+      "page": "Przyzwanie wilka",
+      "source": "https://gothic.fandom.com/pl/wiki/Przyzwanie_wilka",
+      "source_revision": 555563,
+      "candidates": [
+        "Przyzwanie Wilka GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przyzwanie Wilka GII.png"
+    },
+    "item_g2nk_itsc_thunderball": {
+      "code": "ItSc_ThunderBall",
+      "title": "Piorun kulisty",
+      "page": "Piorun kulisty",
+      "source": "https://gothic.fandom.com/pl/wiki/Piorun_kulisty",
+      "source_revision": 557114,
+      "candidates": [
+        "Piorun Kulisty Zwój GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Piorun Kulisty Zwój GII.png"
+    },
+    "item_g2nk_itsc_trfdragonsnapper": {
+      "code": "ItSc_TrfDragonSnapper",
+      "title": "Przemiana w smoczego zębacza",
+      "page": "Przemiana w smoczego zębacza",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_smoczego_z%C4%99bacza",
+      "source_revision": 529174,
+      "candidates": [
+        "Przemiana w smoczego zębacza (zwój) (ikonka) (G2).png",
+        "Przemiana w smoczego zębacza (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w smoczego zębacza (zwój) (ikonka) (G2).png"
+    },
+    "item_g2nk_itsc_trffirewaran": {
+      "code": "ItSc_TrfFireWaran",
+      "title": "Przemiana w ognistego jaszczura",
+      "page": "Przemiana w ognistego jaszczura",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_ognistego_jaszczura",
+      "source_revision": 530794,
+      "candidates": [
+        "Przemiana w ognistego jaszczura G2 ikona.png",
+        "Przemiana w ognistego jaszczura G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w ognistego jaszczura G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfgiantbug": {
+      "code": "ItSc_TrfGiantBug",
+      "title": "Przemiana w polną bestię",
+      "page": "Przemiana w polną bestię",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_poln%C4%85_besti%C4%99",
+      "source_revision": 530970,
+      "candidates": [
+        "Przemiana w polną bestię G2 ikona.png",
+        "Przemiana w Polną Bestię GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w polną bestię G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfgiantrat": {
+      "code": "ItSc_TrfGiantRat",
+      "title": "Przemiana w olbrzymiego szczura",
+      "page": "Przemiana w olbrzymiego szczura",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_olbrzymiego_szczura",
+      "source_revision": 555676,
+      "candidates": [
+        "Przemiana w olbrzymiego szczura G2 ikona.png",
+        "Przemiana w olbrzymiego szczura G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w olbrzymiego szczura G2 ikona.png"
+    },
+    "item_g2nk_itsc_trflurker": {
+      "code": "ItSc_TrfLurker",
+      "title": "Przemiana w topielca",
+      "page": "Przemiana w topielca",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_topielca",
+      "source_revision": 562227,
+      "candidates": [
+        "Przemiana w topielca G2 ikona.png",
+        "Przemiana w topielca G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w topielca G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfscavenger": {
+      "code": "ItSc_TrfScavenger",
+      "title": "Przemiana w ścierwojada",
+      "page": "Przemiana w ścierwojada",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_%C5%9Bcierwojada",
+      "source_revision": 580240,
+      "candidates": [
+        "Przemiana w ścierwojada G2 ikona.png",
+        "Przemiana w ścierwojada G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w ścierwojada G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfshadowbeast": {
+      "code": "ItSc_TrfShadowbeast",
+      "title": "Przemiana w cieniostwora",
+      "page": "Przemiana w cieniostwora",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_cieniostwora",
+      "source_revision": 562225,
+      "candidates": [
+        "Przemiana w cieniostwora G2 ikona.png",
+        "Przemiana w cieniostwora G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w cieniostwora G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfsheep": {
+      "code": "ItSc_TrfSheep",
+      "title": "Przemiana w owcę",
+      "page": "Przemiana w owcę",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_owc%C4%99",
+      "source_revision": 555677,
+      "candidates": [
+        "Przemiana w owcę G2 ikona.png",
+        "Przemiana w owcę G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w owcę G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfsnapper": {
+      "code": "ItSc_TrfSnapper",
+      "title": "Przemiana w zębacza",
+      "page": "Przemiana w zębacza",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_z%C4%99bacza",
+      "source_revision": 561649,
+      "candidates": [
+        "Przemiana w zębacza G2 ikona.png",
+        "Przemiana w zębacza G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w zębacza G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfwaran": {
+      "code": "ItSc_TrfWaran",
+      "title": "Przemiana w jaszczura",
+      "page": "Przemiana w jaszczura",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_jaszczura",
+      "source_revision": 562226,
+      "candidates": [
+        "Przemiana w jaszczura G2 ikona.png",
+        "Przemiana w jaszczura G2.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w jaszczura G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfwarg": {
+      "code": "ItSc_TrfWarg",
+      "title": "Przemiana w warga",
+      "page": "Przemiana w warga",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_warga",
+      "source_revision": 529176,
+      "candidates": [
+        "Przemiana w warga G2 ikona.png",
+        "Przemiana w Warga GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w warga G2 ikona.png"
+    },
+    "item_g2nk_itsc_trfwolf": {
+      "code": "ItSc_TrfWolf",
+      "title": "Przemiana w wilka",
+      "page": "Przemiana w wilka",
+      "source": "https://gothic.fandom.com/pl/wiki/Przemiana_w_wilka",
+      "source_revision": 562580,
+      "candidates": [
+        "Przemiana w wilka G2 ikona.png",
+        "Przemiana w Wilka GII.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Przemiana w wilka G2 ikona.png"
+    },
+    "item_g2nk_itsc_waterfist": {
+      "code": "ItSc_Waterfist",
+      "title": "Wodna pięść",
+      "page": "Wodna pięść",
+      "source": "https://gothic.fandom.com/pl/wiki/Wodna_pi%C4%99%C5%9B%C4%87",
+      "source_revision": 528988,
+      "candidates": [
+        "Wodna pięść zwój G2NK.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Wodna pięść zwój G2NK.png"
+    },
+    "item_g2nk_itsc_whirlwind": {
+      "code": "ItSc_Whirlwind",
+      "title": "Wir",
+      "page": "Wir",
+      "source": "https://gothic.fandom.com/pl/wiki/Wir",
+      "source_revision": 565079,
+      "candidates": [
+        "Wir zwój G2NK.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Wir zwój G2NK.png"
+    },
+    "item_g2nk_itsc_windfist": {
+      "code": "ItSc_Windfist",
+      "title": "Pięść wichru",
+      "page": "Pięść wichru",
+      "source": "https://gothic.fandom.com/pl/wiki/Pi%C4%99%C5%9B%C4%87_wichru",
+      "source_revision": 579485,
+      "candidates": [
+        "Pięść wichru (zwój) (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Pięść wichru (zwój) (G2).png"
+    },
+    "item_g2nk_itsc_zap": {
+      "code": "ItSc_Zap",
+      "title": "Mała błyskawica",
+      "page": "Mała błyskawica",
+      "source": "https://gothic.fandom.com/pl/wiki/Ma%C5%82a_b%C5%82yskawica",
+      "source_revision": 554854,
+      "candidates": [
+        "Mała błyskawica (zwój).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Mała błyskawica (zwój).png"
+    },
+    "item_g2nk_itse_addon_francischest": {
+      "code": "ItSe_Addon_FrancisChest",
+      "title": "Skrzynia z hebanem",
+      "page": "Skrzynia z hebanem",
+      "source": "https://gothic.fandom.com/pl/wiki/Skrzynia_z_hebanem",
+      "source_revision": 503951,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_itmi_addon_lennar_paket"
+    },
+    "item_g2nk_itwr_addon_axtanleitung": {
+      "code": "ItWr_Addon_AxtAnleitung",
+      "title": "Przepis na bandycki topór",
+      "page": "Przepis na bandycki topór",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_bandycki_top%C3%B3r",
+      "source_revision": 576293,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Przepis na topór bandycki.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_booklp2": {
+      "code": "ItWr_Addon_BookLP2",
+      "title": "Księga wiedzy +2 PN",
+      "page": "Księga wiedzy",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_wiedzy",
+      "source_revision": 576218,
+      "candidates": [
+        "Księga 2 G2 ikona.png",
+        "Księga wiedzy.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 2 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_booklp3": {
+      "code": "ItWr_Addon_BookLP3",
+      "title": "Księga wiedzy +3 PN",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_hosh4"
+    },
+    "item_g2nk_itwr_addon_booklp5": {
+      "code": "ItWr_Addon_BookLP5",
+      "title": "Księga wiedzy +5 PN",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_hosh4"
+    },
+    "item_g2nk_itwr_addon_booklp8": {
+      "code": "ItWr_Addon_BookLP8",
+      "title": "Księga wiedzy +8 PN",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_hosh4"
+    },
+    "item_g2nk_itwr_addon_bookxp1000": {
+      "code": "ItWr_Addon_BookXP1000",
+      "title": "Zebrane doświadczenie +1000",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_hosh4"
+    },
+    "item_g2nk_itwr_addon_bookxp250": {
+      "code": "ItWr_Addon_BookXP250",
+      "title": "Zebrane doświadczenie +250",
+      "page": "Zebrane doświadczenie",
+      "source": "https://gothic.fandom.com/pl/wiki/Zebrane_do%C5%9Bwiadczenie",
+      "source_revision": 576265,
+      "candidates": [
+        "Księga 1 G2 ikona.png",
+        "Zebrane doświadczenie (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 1 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_bookxp500": {
+      "code": "ItWr_Addon_BookXP500",
+      "title": "Zebrane doświadczenie +500",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_hosh4"
+    },
+    "item_g2nk_itwr_addon_francisabrechnung_mis": {
+      "code": "ItWr_Addon_FrancisAbrechnung_Mis",
+      "title": "Wynagrodzenie",
+      "page": "Wynagrodzenie",
+      "source": "https://gothic.fandom.com/pl/wiki/Wynagrodzenie",
+      "source_revision": 553270,
+      "candidates": [
+        "Księga 5 G2 ikona.png",
+        "Wynagrodzenie (książka) (by Wojciech Wawrzyńczak).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 5 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_gregslogbuch_mis": {
+      "code": "ItWr_Addon_GregsLogbuch_Mis",
+      "title": "Dziennik Grega",
+      "page": "Dziennik Grega",
+      "source": "https://gothic.fandom.com/pl/wiki/Dziennik_Grega",
+      "source_revision": 553228,
+      "candidates": [
+        "Księga 1 G2 ikona.png",
+        "Dziennik Grega.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 1 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_health_04": {
+      "code": "ItWr_Addon_Health_04",
+      "title": "Przepis na pełnię życia",
+      "page": "Przepis na pełnię życia",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_pe%C5%82ni%C4%99_%C5%BCycia",
+      "source_revision": 552561,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Pełnia życia (przepis).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_joint_01": {
+      "code": "ItWr_Addon_Joint_01",
+      "title": "Przepis na zielonego nowicjusza",
+      "page": "Zielony nowicjusz (przepis)",
+      "source": "https://gothic.fandom.com/pl/wiki/Zielony_nowicjusz_(przepis)",
+      "source_revision": 553464,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Zielony nowicjusz (przepis).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_lou_rezept": {
+      "code": "ItWr_Addon_Lou_Rezept",
+      "title": "Przepis na Młot Lou",
+      "page": "Przepis na Młot Lou",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_M%C5%82ot_Lou",
+      "source_revision": 582396,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Przepis na Młot Lou.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_lou_rezept2": {
+      "code": "ItWr_Addon_Lou_Rezept2",
+      "title": "Przepis na podwójny Młot Lou",
+      "page": "Przepis na podwójny Młot Lou",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_podw%C3%B3jny_M%C5%82ot_Lou",
+      "source_revision": 576365,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Przepis na podwójny młot Lou.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_mana_04": {
+      "code": "ItWr_Addon_Mana_04",
+      "title": "Przepis na pełnię many",
+      "page": "Przepis na pełnię many",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_pe%C5%82ni%C4%99_many",
+      "source_revision": 589586,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Pełnia many.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_mcelixier_01": {
+      "code": "ItWr_Addon_MCElixier_01",
+      "title": "Przepis na miksturę przemiany duszy",
+      "page": "Przepis na miksturę przemiany duszy",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_mikstur%C4%99_przemiany_duszy",
+      "source_revision": 576467,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Przepis na miksturę duszy.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_piratentod": {
+      "code": "ItWr_Addon_Piratentod",
+      "title": "Przepis na szybkiego śledzia",
+      "page": "Przepis na szybkiego śledzia",
+      "source": "https://gothic.fandom.com/pl/wiki/Przepis_na_szybkiego_%C5%9Bledzia",
+      "source_revision": 552563,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Szybki śledź (przepis).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdf_circ1": {
+      "code": "ItWr_Addon_Runemaking_KdF_Circ1",
+      "title": "Księga runiczna Magów Ognia (1. krąg)",
+      "page": "Księga runiczna Magów Ognia (1. krąg)",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Ognia_(1._kr%C4%85g)",
+      "source_revision": 576391,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Księga runiczna magów ognia (1. krąg) (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdf_circ2": {
+      "code": "ItWr_Addon_Runemaking_KdF_Circ2",
+      "title": "Księga runiczna Magów Ognia (2. krąg)",
+      "page": "Księga runiczna Magów Ognia (2. krąg)",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Ognia_(2._kr%C4%85g)",
+      "source_revision": 576392,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Księga runiczna magów ognia (2. krąg) (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdf_circ3": {
+      "code": "ItWr_Addon_Runemaking_KdF_Circ3",
+      "title": "Księga runiczna Magów Ognia (3. krąg)",
+      "page": "Księga runiczna Magów Ognia (3. krąg)",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Ognia_(3._kr%C4%85g)",
+      "source_revision": 576397,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Księga runiczna magów ognia (3. krąg) (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdf_circ4": {
+      "code": "ItWr_Addon_Runemaking_KdF_Circ4",
+      "title": "Księga runiczna Magów Ognia (4. krąg)",
+      "page": "Księga runiczna Magów Ognia (4. krąg)",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Ognia_(4._kr%C4%85g)",
+      "source_revision": 576394,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Księga runiczna magów ognia (4. krąg) (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdf_circ5": {
+      "code": "ItWr_Addon_Runemaking_KdF_Circ5",
+      "title": "Księga runiczna Magów Ognia (5. krąg)",
+      "page": "Księga runiczna Magów Ognia (5. krąg)",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Ognia_(5._kr%C4%85g)",
+      "source_revision": 576395,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Księga runiczna magów ognia (5. krąg) (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdf_circ6": {
+      "code": "ItWr_Addon_Runemaking_KdF_Circ6",
+      "title": "Księga runiczna Magów Ognia (6. krąg)",
+      "page": "Księga runiczna Magów Ognia (6. krąg)",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Ognia_(6._kr%C4%85g)",
+      "source_revision": 576396,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Księga runiczna magów ognia (6. krąg) (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdw_circ1": {
+      "code": "ItWr_Addon_Runemaking_KdW_Circ1",
+      "title": "Księga runiczna Magów Wody (1. krąg)",
+      "page": "Księga runiczna Magów Wody",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Wody",
+      "source_revision": 581875,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Księga runiczna magów wody (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdw_circ2": {
+      "code": "ItWr_Addon_Runemaking_KdW_Circ2",
+      "title": "Księga runiczna Magów Wody (2. krąg)",
+      "page": "Księga runiczna Magów Wody",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Wody",
+      "source_revision": 581875,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Księga runiczna magów wody (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdw_circ3": {
+      "code": "ItWr_Addon_Runemaking_KdW_Circ3",
+      "title": "Księga runiczna Magów Wody (3. krąg)",
+      "page": "Księga runiczna Magów Wody",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Wody",
+      "source_revision": 581875,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Księga runiczna magów wody (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdw_circ4": {
+      "code": "ItWr_Addon_Runemaking_KdW_Circ4",
+      "title": "Księga runiczna Magów Wody (4. krąg)",
+      "page": "Księga runiczna Magów Wody",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Wody",
+      "source_revision": 581875,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Księga runiczna magów wody (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdw_circ5": {
+      "code": "ItWr_Addon_Runemaking_KdW_Circ5",
+      "title": "Księga runiczna Magów Wody (5. krąg)",
+      "page": "Księga runiczna Magów Wody",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Wody",
+      "source_revision": 581875,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Księga runiczna magów wody (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_addon_runemaking_kdw_circ6": {
+      "code": "ItWr_Addon_Runemaking_KdW_Circ6",
+      "title": "Księga runiczna Magów Wody (6. krąg)",
+      "page": "Księga runiczna Magów Wody",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_runiczna_Mag%C3%B3w_Wody",
+      "source_revision": 581875,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Księga runiczna magów wody (GII).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_astronomy_mis": {
+      "code": "ItWr_Astronomy_Mis",
+      "title": "Boska moc gwiazd",
+      "page": "Boska moc gwiazd",
+      "source": "https://gothic.fandom.com/pl/wiki/Boska_moc_gwiazd",
+      "source_revision": 561963,
+      "candidates": [
+        "Księga 2 G2 ikona.png",
+        "Boska Moc Gwiazd.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 2 G2 ikona.png"
+    },
+    "item_g2nk_itwr_corneliustagebuch_mis": {
+      "code": "ItWr_CorneliusTagebuch_Mis",
+      "title": "Dziennik Corneliusa",
+      "page": "Dziennik Corneliusa",
+      "source": "https://gothic.fandom.com/pl/wiki/Dziennik_Corneliusa",
+      "source_revision": 553227,
+      "candidates": [
+        "Księga 1 G2 ikona.png",
+        "Dziennik Corneliusa.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 1 G2 ikona.png"
+    },
+    "item_g2nk_itwr_diary_blacknovice_mis": {
+      "code": "ItWr_Diary_BlackNovice_Mis",
+      "title": "Dziennik z dworu Irdorath",
+      "page": "Dziennik ucznia czarnego maga",
+      "source": "https://gothic.fandom.com/pl/wiki/Dziennik_ucznia_czarnego_maga",
+      "source_revision": 561970,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Dziennik ucznia czarnego maga.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_einhandbuch": {
+      "code": "ItWr_EinhandBuch",
+      "title": "Kunszt obronny południowców",
+      "page": "Kunszt obronny południowców",
+      "source": "https://gothic.fandom.com/pl/wiki/Kunszt_obronny_po%C5%82udniowc%C3%B3w",
+      "source_revision": 576707,
+      "candidates": [
+        "Księga 4 G2 ikona.png",
+        "Kunszt obronny południowców.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 4 G2 ikona.png"
+    },
+    "item_g2nk_itwr_hallsofirdorath_mis": {
+      "code": "ItWr_HallsofIrdorath_Mis",
+      "title": "Dwór Irdorath (w piątym rozdziale, zamknięta)",
+      "page": "Dwór Irdorath (księga)",
+      "source": "https://gothic.fandom.com/pl/wiki/Dw%C3%B3r_Irdorath_(ksi%C4%99ga)",
+      "source_revision": 553404,
+      "candidates": [
+        "Księga 5 G2 ikona.png",
+        "Dwór Irdorath (księga).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 5 G2 ikona.png"
+    },
+    "item_g2nk_itwr_hallsofirdorath_open_mis": {
+      "code": "ItWr_HallsofIrdorath_Open_Mis",
+      "title": "Dwór Irdorath (w piątym rozdziale, otwarta)",
+      "page": "Dwór Irdorath (księga)",
+      "source": "https://gothic.fandom.com/pl/wiki/Dw%C3%B3r_Irdorath_(ksi%C4%99ga)",
+      "source_revision": 553404,
+      "candidates": [
+        "Księga 5 G2 ikona.png",
+        "Dwór Irdorath (księga).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 5 G2 ikona.png"
+    },
+    "item_g2nk_itwr_permissiontowearinnoseye_mis": {
+      "code": "ItWr_PermissionToWearInnosEye_Mis",
+      "title": "List polecający dla Pyrokara",
+      "page": "List polecający dla Pyrokara",
+      "source": "https://gothic.fandom.com/pl/wiki/List_polecaj%C4%85cy_dla_Pyrokara",
+      "source_revision": 576576,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "List polecający dla Pyrokara (Gothic II) (by ProOski).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_rezept_megadrink_mis": {
+      "code": "ItWr_Rezept_MegaDrink_Mis",
+      "title": "Receptura Embarla Firgasto",
+      "page": "Receptura Embarla Firgasto",
+      "source": "https://gothic.fandom.com/pl/wiki/Receptura_Embarla_Firgasto",
+      "source_revision": 576578,
+      "candidates": [
+        "List otwarty G2 ikona.png",
+        "Embarla Firgasto (przepis).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "List otwarty G2 ikona.png"
+    },
+    "item_g2nk_itwr_saturasfirstmessage_addon_sealed": {
+      "code": "ItWr_SaturasFirstMessage_Addon_Sealed",
+      "title": "Zapieczętowana wiadomość",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_enterbanditcamp"
+    },
+    "item_g2nk_itwr_schuldenbuch": {
+      "code": "ItWr_Schuldenbuch",
+      "title": "Księga długów Lehmara",
+      "page": "Księga długów Lehmara",
+      "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%99ga_d%C5%82ug%C3%B3w_Lehmara",
+      "source_revision": 576355,
+      "candidates": [
+        "Księga 5 G2 ikona.png",
+        "Księga długów Lehmara.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 5 G2 ikona.png"
+    },
+    "item_g2nk_itwr_vatras2saturas_findraven_opened": {
+      "code": "ItWr_Vatras2Saturas_FindRaven_Opened",
+      "title": "Otwarta przesyłka",
+      "page": "Lista kodów do Gothic II: Noc Kruka",
+      "source": "https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka",
+      "source_revision": null,
+      "candidates": [],
+      "active": false,
+      "status": "reference",
+      "reason": "No validated code-matched G2 image in pinned source/cache.",
+      "mapped_from": "item_g2nk_enterbanditcamp"
+    },
+    "item_g2nk_itwr_vinoskellergeister_mis": {
+      "code": "ItWr_VinosKellergeister_Mis",
+      "title": "Duch wina",
+      "page": "Duch wina",
+      "source": "https://gothic.fandom.com/pl/wiki/Duch_wina",
+      "source_revision": 553262,
+      "candidates": [
+        "Księga 5 G2 ikona.png",
+        "Duch wina (G2).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 5 G2 ikona.png"
+    },
+    "item_g2nk_itwr_xardasbookforpyrokar_mis": {
+      "code": "ItWr_XardasBookForPyrokar_Mis",
+      "title": "Dwór Irdorath (w III rozdziale)",
+      "page": "Dwór Irdorath (księga)",
+      "source": "https://gothic.fandom.com/pl/wiki/Dw%C3%B3r_Irdorath_(ksi%C4%99ga)",
+      "source_revision": 553404,
+      "candidates": [
+        "Księga 5 G2 ikona.png",
+        "Dwór Irdorath (księga).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 5 G2 ikona.png"
+    },
+    "item_g2nk_itwr_xardasseamapbook_mis": {
+      "code": "ItWr_XardasSeamapBook_Mis",
+      "title": "Zakurzona księga",
+      "page": "Zakurzona księga",
+      "source": "https://gothic.fandom.com/pl/wiki/Zakurzona_ksi%C4%99ga",
+      "source_revision": 576386,
+      "candidates": [
+        "Księga 1 G2 ikona.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 1 G2 ikona.png"
+    },
+    "item_g2nk_itwr_zweihandbuch": {
+      "code": "ItWr_Zweihandbuch",
+      "title": "Bloki dwuręczne",
+      "page": "Bloki dwuręczne",
+      "source": "https://gothic.fandom.com/pl/wiki/Bloki_dwur%C4%99czne",
+      "source_revision": 576709,
+      "candidates": [
+        "Księga 3 G2 ikona.png",
+        "Bloki dwuręczne.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Księga 3 G2 ikona.png"
+    },
+    "g2nk_dmt_dementorambient": {
+      "code": "dmt_dementorambient",
+      "title": "Poszukiwacz",
+      "page": "Poszukiwacze",
+      "source": "https://gothic.fandom.com/pl/wiki/Poszukiwacze",
+      "source_revision": 583494,
+      "candidates": [
+        "Poszukiwacze DI GII.png"
+      ],
+      "active": false,
+      "review_note": "G2 seekers group photograph, not an individual variant model.",
+      "mapping": "species-reference",
+      "status": "code-matched-art",
+      "selected_file": "Poszukiwacze DI GII.png"
+    },
+    "g2nk_gaans_snapper": {
+      "code": "gaans_snapper",
+      "title": "Prychający smoczy zębacz",
+      "page": "Prychający smoczy zębacz",
+      "source": "https://gothic.fandom.com/pl/wiki/Prychaj%C4%85cy_smoczy_z%C4%99bacz",
+      "source_revision": 557975,
+      "candidates": [
+        "Prychający smoczy zębacz (Gothic II).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Prychający smoczy zębacz (Gothic II).png"
+    },
+    "g2nk_magicgolem": {
+      "code": "magicgolem",
+      "title": "Magiczny golem",
+      "page": "Magiczny golem",
+      "source": "https://gothic.fandom.com/pl/wiki/Magiczny_golem",
+      "source_revision": 585653,
+      "candidates": [
+        "Magiczny golem.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Magiczny golem.png"
+    },
+    "g2nk_orkelite_antipaladinorkoberst": {
+      "code": "orkelite_antipaladinorkoberst",
+      "title": "Ork pułkownik z wyspy Khorinis",
+      "page": "Ork pułkownik z wyspy Khorinis",
+      "source": "https://gothic.fandom.com/pl/wiki/Ork_pu%C5%82kownik_z_wyspy_Khorinis",
+      "source_revision": 578088,
+      "candidates": [
+        "Ork pułkownik z wyspy Khorinis (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ork pułkownik z wyspy Khorinis (by SpY).png"
+    },
+    "g2nk_orkelite_antipaladinorkoberst_di": {
+      "code": "orkelite_antipaladinorkoberst_di",
+      "title": "Ork pułkownik z wyspy Irdorath",
+      "page": "Ork pułkownik z wyspy Irdorath",
+      "source": "https://gothic.fandom.com/pl/wiki/Ork_pu%C5%82kownik_z_wyspy_Irdorath",
+      "source_revision": 569956,
+      "candidates": [
+        "Ork pułkownik z wyspy Irdorath (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ork pułkownik z wyspy Irdorath (by SpY).png"
+    },
+    "g2nk_pepes_ywolf1": {
+      "code": "pepes_ywolf1",
+      "title": "Młody wilk z zadania dla Pepe",
+      "page": "Młody wilk",
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_wilk",
+      "source_revision": 585563,
+      "candidates": [
+        "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+    },
+    "g2nk_pepes_ywolf2": {
+      "code": "pepes_ywolf2",
+      "title": "Młody wilk z zadania dla Pepe",
+      "page": "Młody wilk",
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_wilk",
+      "source_revision": 585563,
+      "candidates": [
+        "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+    },
+    "g2nk_pepes_ywolf3": {
+      "code": "pepes_ywolf3",
+      "title": "Młody wilk z zadania dla Pepe",
+      "page": "Młody wilk",
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_wilk",
+      "source_revision": 585563,
+      "candidates": [
+        "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+    },
+    "g2nk_pepes_ywolf4": {
+      "code": "pepes_ywolf4",
+      "title": "Młody wilk z zadania dla Pepe",
+      "page": "Młody wilk",
+      "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_wilk",
+      "source_revision": 585563,
+      "candidates": [
+        "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png"
+    },
+    "g2nk_summoned_demon": {
+      "code": "summoned_demon",
+      "title": "Przyzwany demon",
+      "page": "Demon",
+      "source": "https://gothic.fandom.com/pl/wiki/Demon",
+      "source_revision": 580841,
+      "candidates": [],
+      "active": false,
+      "status": "species-reference",
+      "reason": "Shared species illustration, not a separate summoned model.",
+      "mapped_from": "g2nk_demon"
+    },
+    "g2nk_summoned_golem": {
+      "code": "summoned_golem",
+      "title": "Przyzwany golem",
+      "page": "Kamienny golem",
+      "source": "https://gothic.fandom.com/pl/wiki/Kamienny_golem",
+      "source_revision": 573970,
+      "candidates": [
+        "Kamienny golem (Gothic II) (by SpY).png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Kamienny golem (Gothic II) (by SpY).png"
+    },
+    "g2nk_summoned_skeleton": {
+      "code": "summoned_skeleton",
+      "title": "Przyzwany szkielet",
+      "page": "Szkielet",
+      "source": "https://gothic.fandom.com/pl/wiki/Szkielet",
+      "source_revision": 591390,
+      "candidates": [
+        "G2NK Szkielet zwykły.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "G2NK Szkielet zwykły.png"
+    },
+    "g2nk_summoned_zombie": {
+      "code": "summoned_zombie",
+      "title": "Przyzwany zombie",
+      "page": "Zombie",
+      "source": "https://gothic.fandom.com/pl/wiki/Zombie",
+      "source_revision": 586433,
+      "candidates": [],
+      "active": false,
+      "status": "species-reference",
+      "reason": "Shared species illustration, not a separate summoned model.",
+      "mapped_from": "g2nk_zombie01"
+    },
+    "g2nk_wisp": {
+      "code": "wisp",
+      "title": "Ognik",
+      "page": "Ognik",
+      "source": "https://gothic.fandom.com/pl/wiki/Ognik",
+      "source_revision": 583828,
+      "candidates": [
+        "Ognik.png"
+      ],
+      "active": false,
+      "status": "code-matched-art",
+      "selected_file": "Ognik.png"
+    }
+  }
+}
