@@ -127,3 +127,7 @@ Model wojownika z normalnie zarobionymi zasobami/PN, sprzętem NPC i itemshopem 
 Przygotowany bot poziomu45 zdobył cztery nowe rangi przez zwykłe decyzje i usługi w176turach; jego początkowe statystyki/sprzęt są jawnie syntetyczną fiksturą, a dwugodzinny krok nie jest pomiarem czasu gry. To test autonomii, nie drugie organiczne przejście.
 
 [Raport ośmiu rang, PostgreSQL, kopii zapisu i GUI](reports/osiem-rang-2026-11-12.json). Dziewięć widoków w szerokościach320/390/1440 bez poziomego przewijania i błędów JS. Próba formularza awansu korzysta z jawnie przygotowanych celów; odrębny scenariusz zdobywa cele prawdziwymi akcjami.
+
+### Publiczny Jarkendar — #33
+
+[Przebieg i ograniczenia](JARKENDAR.md): organiczny wojownik od zera i pięć przygotowanych frakcji botów; osobno 18 widoków GUI, blokady usług/URL oraz rzeczywisty równoczesny odbiór portalu na PostgreSQL. To początkowa wyprawa, nie pełne NK ani pełny test trzech buildów.

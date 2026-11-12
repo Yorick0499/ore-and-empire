@@ -323,9 +323,14 @@ def locations_view(request):
         if blockers:messages.error(request,"Najpierw ukończ i odbierz: "+", ".join(row["title"] for row in blockers))
         else:report_action(request, choose_camp(profile, camp))
         return redirect("locations_page")
+    from .jarkendar import unlocked as jarkendar_unlocked
+    portal_open=jarkendar_unlocked(profile)
     cards = [
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS if loc.universe==region(profile).universe and (not loc.post_barrier or joined(profile.world_id))
     ]
+    area=request.GET.get("area","all")
+    if area=="jarkendar":cards=[c for c in cards if c["location"].key.startswith("jark_")]
+    elif area=="khorinis":cards=[c for c in cards if not c["location"].key.startswith("jark_")]
     availability = request.GET.get("availability", "all")
     activity = request.GET.get("activity", "all")
     try:
@@ -349,6 +354,8 @@ def locations_view(request):
         {
             "profile": profile,
             "cards": cards,
+            "jarkendar_open":portal_open,
+            "worlds_joined":joined(profile.world_id),
             "journey":next_steps,
             "camp_choices":recruitment_choices(profile),
             "membership_missing":missing(profile) if profile.camp=="NONE" else [],

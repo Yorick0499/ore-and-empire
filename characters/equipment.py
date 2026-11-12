@@ -33,6 +33,8 @@ def compare_equipment(profile, item, requested=None):
     requirements = []
     if item.blueprint.source_game not in source_games(profile):requirements.append("Przedmiot pochodzi z innego świata.")
     bp = item.blueprint
+    from .jarkendar import gear_allowed
+    if not gear_allowed(profile,bp):requirements.append("Najpierw odbierz zadanie Droga za portal po upadku Bariery.")
     if profile.level < bp.min_level:
         requirements.append(f'Poziom {bp.min_level} (masz {profile.level}).')
     if not equipment_camp_allowed(profile,bp.required_camp):
@@ -62,7 +64,8 @@ def stats_for(profile):
 
 
 def allowed(profile, blueprint):
-    return (blueprint.source_game in source_games(profile) and profile.level >= blueprint.min_level and
+    from .jarkendar import gear_allowed
+    return (gear_allowed(profile,blueprint) and blueprint.source_game in source_games(profile) and profile.level >= blueprint.min_level and
             equipment_camp_allowed(profile,blueprint.required_camp) and
             profile.camp_tier >= blueprint.min_camp_tier)
 

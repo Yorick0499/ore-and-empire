@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "issue": 33,
+  "scope": "Publiczny portal i początkowa wyprawa Jarkendaru w jednym wspólnym serwerze; bez premium.",
+  "migration": "0051 (bez zmiany schematu w #33)",
+  "content": {
+    "locations": 10,
+    "creatures": 6,
+    "bosses": 1,
+    "quests": 8,
+    "gear_patterns": 4,
+    "materials": 2,
+    "trophies": 1,
+    "canonical_coverage": "Starter adaptation only; full NK remains #32.",
+    "reference": "https://gothic.fandom.com/pl/wiki/Jarkendar",
+    "art": "Existing generic category illustrations, explicitly labelled."
+  },
+  "tests": {
+    "quick_staged": {
+      "tests": 93,
+      "skipped": 3,
+      "seconds": 21.254,
+      "note": "Przed dodaniem jednego testu współbieżności, który osobno przeszedł na PostgreSQL."
+    },
+    "sqlite_module_regression": {
+      "tests": 68,
+      "skipped": 1,
+      "seconds": 6.384
+    },
+    "postgresql_module_regression": {
+      "tests": 58,
+      "skipped": 0,
+      "seconds": 7.822
+    },
+    "postgresql_final_contention_market": {
+      "tests": 14,
+      "skipped": 0,
+      "seconds": 1.285
+    },
+    "sqlite_final_portal_market": {
+      "tests": 22,
+      "skipped": 1,
+      "seconds": 1.696
+    },
+    "population_and_khorinis": {
+      "tests": 35,
+      "seconds": 71.12,
+      "note": "250 botów, limity przy300, brak strat przy zmianie populacji, monitor, osobowości, amunicja i kampania trzech frakcji Khorinis."
+    },
+    "prepared_bots": {
+      "tests": 1,
+      "seconds": 12.448
+    },
+    "organic_warrior": {
+      "tests": 1,
+      "seconds": 14.845
+    },
+    "note": "Pakiety częściowo nakładają się. Pełne CI bieżącego PR jeszcze niewykonane; poprzedni etap #127/PR132 ma wszystkie zadania CI zielone i został scalony."
+  },
+  "gui": {
+    "isolated_database": true,
+    "synthetic_level25_fixture": true,
+    "initial_shards": 0,
+    "errors": [],
+    "pages": [
+      {
+        "state": "locked-map",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "locked-map",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "locked-map",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "portal-journal",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "portal-journal",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "portal-journal",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "open-map",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "open-map",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "open-map",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "public-beach",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "public-beach",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "public-beach",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "crypt",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "crypt",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "crypt",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "barrier",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "barrier",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "barrier",
+        "width": 1440,
+        "scroll": 1440
+      }
+    ],
+    "wait_clock_fixture": true
+  },
+  "organic_scenarios": [
+    {
+      "scenario": "organic-warrior-jarkendar",
+      "admin_grants": false,
+      "global_join_fixture": true,
+      "new_quests": 8,
+      "level": 38,
+      "expedition_world_hours": 10.62,
+      "total_world_hours": 21.37,
+      "limits": [
+        "Ordinary G1 warrior continuation, not a level10/caster/archer walkthrough.",
+        "NPC gear and earned itemshop; no market competition.",
+        "Not the full NK campaign."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 21.37,
+      "active_minutes": 179.3,
+      "recovery_minutes": 820.0,
+      "timers_minutes": 282.7,
+      "offline_hours": 0.0,
+      "calendar_days": 2,
+      "level": 38,
+      "strength": 380,
+      "quests": 35,
+      "ore": 2190,
+      "shards": 25,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 5,
+        "mine_claim": 5,
+        "buy_weapon": 8,
+        "equip_weapon": 8,
+        "income_adventure": 401,
+        "income_claim": 43,
+        "buy_armor": 7,
+        "equip_armor": 7,
+        "hunt": 105,
+        "travel_energy": 25,
+        "story_travel": 16,
+        "join_camp": 1,
+        "buy_delivery": 2,
+        "train_strength": 37,
+        "earned_shop_energy": 10,
+        "train_goal": 1,
+        "boss": 19,
+        "earned_shop_health": 13,
+        "personal_finale": 1,
+        "jark_region": 1,
+        "jark_accept": 8,
+        "jark_start": 8,
+        "jark_visit": 10,
+        "jark_talk": 1,
+        "jark_claim": 9,
+        "jark_mine": 11,
+        "jark_mine_claim": 2,
+        "jark_hunt": 186,
+        "jark_boss": 10
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    }
+  ],
+  "prepared_bot_scenarios": [
+    {
+      "scenario": "jarkendar-five-prepared-factions",
+      "ticks": 73,
+      "completed": 5,
+      "actions": {
+        "raid_rally": 23,
+        "camp_donate": 17,
+        "story_accept": 40,
+        "accept": 4,
+        "story_start": 40,
+        "region_travel": 4,
+        "story_travel": 35,
+        "story_talk": 5,
+        "story_claim": 40,
+        "stock": 5,
+        "equip": 5,
+        "mine": 14,
+        "claim": 14,
+        "challenge_accept": 15,
+        "hunt": 85,
+        "achievement_claim": 5,
+        "boss": 5
+      },
+      "synthetic_veteran_fixture": true,
+      "initial_shards": 0,
+      "grants_during_play": false,
+      "limits": [
+        "Initial level25/attributes/ore are fixtures, not organic growth.",
+        "Native story definitions disabled only in the isolated scenario.",
+        "Two-hour clock steps do not measure human playtime."
+      ]
+    }
+  ],
+  "limitations": [
+    "No full NK catalogue or Raven finale.",
+    "No full organic caster/archer walkthrough.",
+    "Global join is an external fixture; no actor progression grants in organic scenario.",
+    "Prepared bot attributes are fixtures; their ticks do not measure organic pacing.",
+    "No player-market competition or production load measurement.",
+    "World time and modelled operations are not measured human playtime."
+  ]
+}

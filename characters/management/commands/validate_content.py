@@ -29,6 +29,30 @@ def validate_khorinis(assets):
     return len(quests),len(locations),len(creatures)
 
 
+def validate_jarkendar(assets):
+    from characters.jarkendar import CREATURES,DESTINATIONS,campaign,PORTAL_QUEST
+    from characters.locations import BY_KEY
+    from characters.gothic_assets import ASSET_ALIASES
+    from characters.game_logic import BOSSES
+    quests=campaign();keys={q['key'] for q in quests};creatures={row[0] for row in CREATURES}
+    if len(keys)!=8 or len(creatures)!=len(CREATURES) or len({r[0] for r in DESTINATIONS})!=len(DESTINATIONS):raise ValueError('Duplicate Jarkendar identity')
+    for key,*_ in CREATURES:
+        if ASSET_ALIASES.get(key,key) not in assets:raise ValueError('Missing Jarkendar illustrative art: '+key)
+    for key,_,_,_,_,monsters,_ in DESTINATIONS:
+        if set(monsters)-creatures or ASSET_ALIASES.get(key,key) not in assets:raise ValueError('Invalid Jarkendar location: '+key)
+        loc=BY_KEY[key]
+        if not loc.post_barrier or loc.requires_portal!=(key!='jark_portal'):raise ValueError('Invalid Jarkendar gate: '+key)
+    for q in quests:
+        if q['universe']!='JOINED' or set(q['prerequisites'])-keys:raise ValueError('Invalid Jarkendar quest scope')
+        if q['key']!=PORTAL_QUEST and not q['prerequisites']:raise ValueError('Missing portal prerequisite')
+        for g in q['objectives']:
+            target=g.get('target')
+            if g['kind']=='hunt' and target not in creatures:raise ValueError('Unknown Jarkendar hunt')
+            if g['kind']=='travel' and target not in BY_KEY:raise ValueError('Unknown Jarkendar travel')
+            if g['kind']=='boss' and target not in BOSSES:raise ValueError('Unknown Jarkendar boss')
+    return len(quests),len(DESTINATIONS),len(CREATURES)
+
+
 def validate_advancements():
     from characters.faction_advancement import RANKS
     from characters.factions import FACTIONS,RANK_NAMES
@@ -67,8 +91,11 @@ class Command(BaseCommand):
             if any(item.get('art_key') and item['art_key'] not in assets for item in data['items']):raise ValueError('Missing item artwork')
             quests,locations,creatures=validate_khorinis(assets)
             advanced=validate_advancements()
+            jquests,jlocations,jcreatures=validate_jarkendar(assets)
         except Exception as exc:raise CommandError(str(exc)) from exc
         self.stdout.write(f'Validated {len(data["items"])} item identities and {len(assets)} local images.')
         self.stdout.write(f'Khorinis: {quests} quest definitions, {locations} locations, {creatures} creatures. Partial pre-convergence adaptation; NOT a complete G2 NK catalogue.')
 
         self.stdout.write(f'Joined factions: {advanced} earned promotion quests, ranks5–8 in each of five factions.')
+
+        self.stdout.write(f'Public Jarkendar starter: {jquests} quests, {jlocations} locations, {jcreatures} creatures; shared server, no premium entitlement. NOT the complete NK campaign.')

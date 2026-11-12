@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-12",
-  "code_revision": "osiem zdobywanych rang / #127",
+  "code_revision": "publiczny Jarkendar / #33",
   "migration": "0051_advanced_faction_ranks",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -33,6 +33,10 @@
         [
           "docs/KHORINIS.md",
           "Khorinis przed połączeniem — frakcje i kampania"
+        ],
+        [
+          "docs/JARKENDAR.md",
+          "Publiczny Jarkendar — pierwsza wyprawa"
         ],
         [
           "docs/WORLD.md",
@@ -232,6 +236,7 @@
     "docs/reports/populacja-250-2026-11-11.json",
     "docs/reports/postacie-fabula-przywileje-2026-11-09.json",
     "docs/reports/postgresql-wspolbieznosc-2026-11-07.json",
+    "docs/reports/publiczny-jarkendar-2026-11-12.json",
     "docs/reports/rowne-rangi-2026-11-11.json",
     "docs/reports/rynsztunek-mmorpg-2026-11-07.json",
     "docs/reports/rynsztunek-sto-botow-2026-11-07.json",

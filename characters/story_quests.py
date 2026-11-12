@@ -222,6 +222,7 @@ def claim_story(profile, run_id):
     run.claimed_at = timezone.now()
     run.status = 'claimed'
     run.save(update_fields=['claimed_at', 'status'])
+    if hasattr(profile,'_jarkendar_unlocked'):del profile._jarkendar_unlocked
     return True
 
 

@@ -99,3 +99,7 @@ Kreator pozwala zacząć bezpośrednio w Khorinis również po globalnym wydarze
 ## Podstawowa straż po #124
 
 Katalog0048 nie nazywa już podstawowej rangi Paladynem: Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży. Zachowano tożsamości rekordów, wymagania i korzyści; dawne nazwy są w mapie wersji. Paladyni jako wyższe awanse pozostają w #127, po połączeniu. [Zasady zgodności](CAMPS.md).
+
+## Pierwsza publiczna wyprawa po Barierze — #33
+
+[Jarkendar](JARKENDAR.md) jest częścią mapy Khorinis wspólnego serwera, po zadaniu portalu od poziomu10. To osobna początkowa paczka, bez kont premium; nie zmienia zakresu powyższej kampanii sprzed Bariery ani nie zamyka #32.

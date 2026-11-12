@@ -125,8 +125,8 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 | **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
 | **2. #125 — scalone w PR #130**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
 | **3. #126 — scalone w PR #131**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
-| **4. #127 — implementacja do PR**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
-| **5. #33 — następny**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
+| **4. #127 — scalone w PR #132**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
+| **5. #33 — paczka przygotowana do PR**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
 | **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
 
 #32 nadal obejmuje pełniejszy katalog i kampanię G2 NK; pojedyncza paczka Jarkendaru nie zamyka całego zakresu. #30/#111 obejmują integrację następstwa z istniejącym przejściem; nie implementować ponownie wyścigu, kopii i wspólnego serwera. Stare raporty to dowody historycznych wersji, nie obowiązujące wymagania premium.
@@ -154,3 +154,7 @@ Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów
 ### Stan realizacji #127
 
 20zadań czterech wyższych rang w istniejącym systemie awansów, poziomy30/35/40/45, opłaty500/1000/1500/2500, wymagania bazowych atrybutów i przywileje. Stare opłacone szczeble Związku zachowane bez repurchase; nowe postacie niczego nie dostają za samą Barierę. [Reguły, zgodność i boty baseline-22](CAMPS.md). Migracja0051 dodaje tylko tabelę; nie wykonano wdrożenia na prywatnej bazie. #131 scalono po pełnym zielonym CI, po naprawie sprzedaży zbędnych strzał w plecaku bota.
+
+### Publiczny Jarkendar — #33
+
+[Pierwsza grywalna wyprawa](JARKENDAR.md): portal bez premium, 8 zadań, 10 lokacji, przeciwnicy, boss, rynsztunek, zwykłe usługi gracza i botów. Brak nowego serwera i migracji schematu. Zaktualizowano komunikaty o dostępie, naprawiono oscylację podróży botów. Pełne NK pozostaje w #32, zbiorczy audyt buildów/UX w #128. Starsze sekcje opisują historyczne etapy; aktualny dostęp określa dokument Jarkendaru. Handoff pozostaje bez zmian.
