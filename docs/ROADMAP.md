@@ -80,7 +80,7 @@ W połączonym świecie można zacząć w obu regionach bez dawnej kampanii. Bez
 
 ## Obowiązująca zmiana projektu — 11 XI 2026, po PR #123
 
-**To plan do wdrożenia, nie opis aktualnego runtime. Zastępuje wcześniejsze wymagania premium i zachowania frakcji po Barierze.**
+**Docelowy plan zastępujący wcześniejsze wymagania premium i zachowania frakcji po Barierze. Etapy #124 i #125 są opisane w stanie realizacji poniżej; dalsze pozostają planowane.**
 
 Nie ma kont premium ani płatnego uprawnienia Jarkendaru. Region otwiera się dopiero po globalnym połączeniu, dla wszystkich kont i botów, bez warunku salda odłamków. Zwykłe zadania/progi fabularne mogą prowadzić przez portal; nie stanowią płatnego dostępu. Obecny itemshop i odłamki pozostają mechaniką gry; techniczne nazwy `premium_balance` i symulowane zakupy botów nie oznaczają konta premium. Nie dodawać systemu abonamentu ani premium botów.
 
@@ -102,17 +102,19 @@ Szczebel jest osobisty, niezależny od poziomu wspólnoty. Magnat zostaje najwy�
 
 ### Równa długość i podwojenie dróg
 
-Propozycja wykonawcza: **4 rangi podstawowe i 4 dodatkowe po Barierze = 8**, bez liczenia stanu „bez frakcji”. Każda gałąź w Kolonii i Khorinis ma tę samą długość przed wydarzeniem; frakcje powstające później mają cztery rangi równoważne dawnym i cztery wyższe. Obecny katalog nie spełnia tej zasady (np. Woda ma pięć węzłów), dlatego #124 najpierw ustala wersjonowane mapowanie bez degradacji osiągnięć i istniejących korzyści.
+Ustalono z użytkownikiem: **4 rangi podstawowe i 4 dodatkowe po Barierze = 8**, bez liczenia stanu „bez frakcji”. Każda gałąź w Kolonii i Khorinis ma tę samą długość przed wydarzeniem; frakcje powstające później mają cztery rangi równoważne dawnym i cztery wyższe. Katalog podstawowy został wyrównany w #124; dawna dłuższa droga Wody i jej korzyści mają wyjątek zgodności.
 
-Przykładowe nazwy do dopracowania w katalogu (nie nowe wymagania poziomów):
+Nazwy zatwierdzone przez użytkownika 11 XI 2026 (zastępują wcześniejsze przykłady). Katalog nazw 5–8 nie oznacza jeszcze wdrożonych awansów — mechanika należy do #127.
 
-| Frakcja | Cztery rangi podstawowe | Cztery wyższe po Barierze |
+| Frakcja | Cztery rangi podstawowe po Barierze | Cztery wyższe po Barierze |
 | --- | --- | --- |
-| Miasto | Rekrut → Strażnik → Sierżant → Dowódca Straży | Kandydat Zakonu → Paladyn → Dowódca Paladynów → Wielki Mistrz |
-| Ogień | Aspirant → Nowicjusz → Mag Ognia → Arcymag Ognia | Mistrz Płomienia → Strażnik Świętego Ognia → Mistrz Kręgu → Wielki Mag Ognia |
-| Woda | Uczeń → Adept → Mag Wody → Arcymag Wody | Mistrz Przypływu → Strażnik Równowagi → Mistrz Kręgu → Wielki Mag Wody |
-| Bandyci | Pomocnik → Zwiadowca → Bandyta → Herszt | Przywódca Szajki → Dowódca Kompanii → Baron Pogranicza → Władca Podziemia |
-| Najemnicy | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców → Dowódca Łowców → Mistrz Łowców |
+| Miasto | Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży | Kandydat Zakonu → Rycerz → Paladyn → Mistrz Zakonu |
+| Ogień | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru | Mistrz Ognia → Strażnik Świętego Ognia → Mistrz Kręgu Ognia → Awatar Innosa |
+| Woda | Uczeń Wody → Adept Wody → Mag Wody → Arcymag Wody | Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa |
+| Bandyci | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
+| Najemnicy | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków |
+
+Przed Barierą bez zmian: Stary Obóz Kopacz/Cień/Strażnik/Magnat albo Mag Ognia/Arcymag Ognia; Nowy Obóz Kret/Szkodnik/Najemnik/Gwardzista Lee albo Mag Wody/Arcymag Wody; Onar Pracownik farmy/Zbrojny Onara/Najemnik Onara/Dowódca najemników. Ogień Khorinis i Miasto mają powyższe cztery rangi podstawowe. Wspólne etykiety Ognia po Barierze korzystają z nazewnictwa klasztoru; historyczne tytuły kolonistów pozostają zapisane.
 
 ### Kolejność małych etapów
 
@@ -121,8 +123,8 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 | Etap / issue | Minimalny zakres | Kryterium ukończenia |
 | --- | --- | --- |
 | **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
-| **2. #125 — następny**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
-| **3. #126**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
+| **2. #125 — implementacja do PR**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
+| **3. #126 — następny**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
 | **4. #127**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
 | **5. #33**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
 | **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
@@ -131,8 +133,14 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 
 ### Stan realizacji #124
 
-Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. [Szczegóły i wyjątek zgodności](CAMPS.md). Pozostałe etapy125/126/127/33/128 są nadal planowane; nie zostały uruchomione w tej iteracji. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.
+Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. [Szczegóły i wyjątek zgodności](CAMPS.md). Etap #125 opisano niżej; #126/#127/#33/#128 pozostają planowane. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.
 
 ### Sprawne iteracje testów
 
 Nowe pakiety `simulate_release --suite quick/campaign/pacing/world/full` oddzielają szybkie kontrole od długich symulacji. Pełne asercje kampanii pozostają, ale transakcje mają zakres jednej tury. [Polecenia, zakresy i pomiary](SOLO_PLAYTEST.md). Zgłoszona awaria GitHuba w tej iteracji nie zastępuje testów: mechanikę sprawdzono lokalnie na SQLite i rzeczywistym PostgreSQL, łącznie z odtwarzaniem starszych kopii i współbieżnością. Handoff pozostaje bez zmian na polecenie użytkownika.
+
+### Stan realizacji #125
+
+Migracja0049 dodaje oddzielne członkostwo bieżącej frakcji i audyt sukcesji. Rodzime `camp`/`guild` oraz wszystkie osobiste rekordy pozostają bez zmian. Automatyczne przejście działa w transakcji aktywacji Bariery. Już połączone serwery obsługuje ten sam worker albo `barrier_transition ID --resume --operator LOGIN`, ze świeżą zweryfikowaną kopią przed zmianą. Sama migracja schematu nie dzieli skarbców.
+
+Użytkownik zatwierdził podział skarbców według liczby członków; [szczegóły i ograniczenia](CAMP_GUILDS.md). Rangi5–8 są katalogiem planowanym, Bractwo oczekuje na wybór #126, portal Jarkendaru pozostaje zamknięty. Handoff pozostawiono bez zmian zgodnie z poleceniem.

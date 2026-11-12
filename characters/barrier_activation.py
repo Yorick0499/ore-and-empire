@@ -56,7 +56,8 @@ def lock_writes():
 def activate(race_id,root=None):
     if connection.in_atomic_block:raise ValueError('Aktywacja wymaga osobnej transakcji.')
     owner=uuid4();race=claim(race_id,owner)
-    if race is None:return SleeperRace.objects.get(pk=race_id).state=='joined'
+    if race is None:
+        return succeed_joined(race_id,root) if SleeperRace.objects.get(pk=race_id).state=='joined' else False
     root=Path(root or settings.BASE_DIR/'backups'/'barrier'/str(race.pk))
     try:
         with transaction.atomic():
@@ -67,8 +68,9 @@ def activate(race_id,root=None):
             if len(regions)!=2 or any(w.union_key or not w.configured or w.status!='active' for w in regions):raise ValueError('Regiony nie są gotowe do połączenia.')
             path,digest,proof=fresh_snapshot(root)
             if race.lease_owner!=owner or not SleeperRace.objects.filter(pk=race.pk,lease_expires_at__gt=Now()).exists():raise ValueError('Dzierżawa wygasła podczas weryfikacji.')
-            from .barrier import unify_mercenaries
-            unify_mercenaries(race)
+            from django.apps import apps
+            from .faction_succession_v1 import apply
+            apply(apps,race)
             from .post_barrier import seed
             seed()
             union=uuid5(NAMESPACE_URL,'ore-barrier:'+str(race.pk)+':'+str(race.colony_id))
@@ -88,4 +90,39 @@ def activate(race_id,root=None):
 
 def activate_pending():
     # No administrator or client can supply a winning camp or bypass its proof.
-    for pk in SleeperRace.objects.filter(state__in=['pending','failed','merging'],paused=False).values_list('pk',flat=True):activate(pk)
+    from django.db.models import Q
+    for pk in SleeperRace.objects.filter(Q(state__in=['pending','failed','merging'])|Q(state='joined',faction_succession__isnull=True),paused=False).values_list('pk',flat=True):activate(pk)
+
+
+def succeed_joined(race_id,root=None):
+    """Upgrade an already joined save behind the same verified-backup fence."""
+    from .models import FactionSuccession
+    if FactionSuccession.objects.filter(race_id=race_id).exists():return True
+    owner=uuid4()
+    with transaction.atomic():
+        race=SleeperRace.objects.select_for_update().get(pk=race_id)
+        if race.state!='joined' or race.paused:return False
+        if SleeperRace.objects.filter(pk=race_id,lease_expires_at__gt=Now()).exists():return False
+        race.lease_owner=owner;race.lease_expires_at=timezone.now()+timedelta(minutes=10)
+        race.save(update_fields=['lease_owner','lease_expires_at'])
+    root=Path(root or settings.BASE_DIR/'backups'/'barrier'/str(race_id)/'factions-v1')
+    try:
+        with transaction.atomic():
+            lock_writes()
+            race=SleeperRace.objects.select_for_update().get(pk=race_id)
+            if FactionSuccession.objects.filter(race=race).exists():return True
+            regions=list(World.objects.filter(pk__in=[race.colony_id,race.khorinis_id]))
+            if race.paused or race.lease_owner!=owner or race.state!='joined' or len(regions)!=2 or not regions[0].union_key or regions[0].union_key!=regions[1].union_key:raise ValueError('Nieprawidłowy stan sukcesji.')
+            path,digest,proof=fresh_snapshot(root)
+            from django.apps import apps
+            from .faction_succession_v1 import apply
+            if not SleeperRace.objects.filter(pk=race_id,lease_owner=owner,lease_expires_at__gt=Now()).exists():raise ValueError('Dzierżawa wygasła podczas weryfikacji.')
+            result=apply(apps,race)
+            result.details['backup']={'path':path,'digest':digest,'proof':proof};result.save(update_fields=['details'])
+            race.lease_owner=None;race.lease_expires_at=None;race.save(update_fields=['lease_owner','lease_expires_at'])
+        return True
+    except Exception as exc:
+        with transaction.atomic():
+            changed=SleeperRace.objects.filter(pk=race_id,lease_owner=owner).update(lease_owner=None,lease_expires_at=timezone.now()+timedelta(seconds=60))
+            if changed:BarrierEvent.objects.create(race_id=race_id,kind='factions_failed',details={'error':type(exc).__name__})
+        return False

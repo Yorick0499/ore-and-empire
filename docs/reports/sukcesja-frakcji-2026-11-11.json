@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "issue": 125,
+  "date": "2026-11-11",
+  "isolated_databases_only": true,
+  "personal_records_preserved": true,
+  "treasury_policy": "member_count_largest_remainder",
+  "tests": [
+    {
+      "engine": "SQLite",
+      "label": "targeted gameplay regression",
+      "cases": 126,
+      "skipped": 6,
+      "seconds": 107.416,
+      "success": true
+    },
+    {
+      "engine": "SQLite",
+      "label": "final lease/retry and bot population checks",
+      "cases": 29,
+      "skipped": 1,
+      "seconds": 6.475,
+      "success": true
+    },
+    {
+      "engine": "PostgreSQL16",
+      "label": "activation, succession, shared guild/raid regression",
+      "cases": 32,
+      "skipped": 0,
+      "seconds": 17.207,
+      "success": true
+    },
+    {
+      "engine": "PostgreSQL16",
+      "label": "final allocator, old pooled XP and old mercenary regression",
+      "cases": 15,
+      "skipped": 0,
+      "seconds": 3.32,
+      "success": true
+    },
+    {
+      "engine": "SQLite",
+      "label": "three ordinary recruited bots finish and continue after actual succession",
+      "cases": 1,
+      "seconds": 89.29,
+      "success": true,
+      "fixture": "external global join after ordinary recruitment; no character progression grants"
+    },
+    {
+      "engine": "PostgreSQL16",
+      "label": "final joined-save lease and retry",
+      "cases": 14,
+      "skipped": 0,
+      "seconds": 1.47,
+      "success": true
+    }
+  ],
+  "quick_suite": {
+    "schema": 2,
+    "suite": "quick",
+    "success": true,
+    "elapsed_seconds": 22.13,
+    "isolated_database": true,
+    "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+    "test_labels": [
+      "characters.test_faction_succession",
+      "characters.test_rank_paths",
+      "characters.test_new_progression",
+      "characters.test_release_abuse",
+      "characters.test_playability_audit",
+      "characters.test_release_suites"
+    ],
+    "recorded_scenarios": 0,
+    "scenarios": [],
+    "time_models": {},
+    "limits": [
+      "Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.",
+      "Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.",
+      "Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu."
+    ]
+  },
+  "gui": {
+    "isolated_database": true,
+    "synthetic_membership_fixture": true,
+    "errors": [],
+    "pages": [
+      {
+        "route": "/oboz/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "route": "/wspolnota/",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "route": "/rankingi/?camp=WATER_CIRCLE",
+        "viewport": 320,
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "route": "/oboz/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "route": "/wspolnota/",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "route": "/rankingi/?camp=WATER_CIRCLE",
+        "viewport": 390,
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "route": "/oboz/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "route": "/wspolnota/",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "route": "/rankingi/?camp=WATER_CIRCLE",
+        "viewport": 1440,
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      }
+    ]
+  },
+  "limits": [
+    "Test groups overlap; do not sum as unique tests.",
+    "Synthetic GUI fixture tests layout, not organic progression.",
+    "Global join in campaign is an external event fixture; it does not simulate community victory.",
+    "Brotherhood choice is deferred to126; advanced ranks to127; public Jarkendar to33.",
+    "Native camp/rank continue to bind existing personal quests, equipment and magic.",
+    "No production migration/deployment; schema0049 itself does not transfer funds.",
+    "This report does not claim complete G2 Night of the Raven content or new end-to-end campaign timing.",
+    "GitHub CI result will be checked on the PR; local results do not attest remote execution."
+  ],
+  "followup_2026_11_12": {
+    "ci_failure": "1 of547 tests: world-monitor query budget17 instead of16; PostgreSQL and production image passed",
+    "fix": "Load faction membership with resident query; reload absent old memberships only when resolving social guilds. Do not loosen16-query budget.",
+    "local_tests": 20,
+    "local_skipped": 1,
+    "local_seconds": 1.563,
+    "success": true,
+    "scaling_test": "1 versus21 ranked residents: same query count, at most16."
+  }
+}

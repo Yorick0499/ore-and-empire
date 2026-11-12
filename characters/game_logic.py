@@ -537,11 +537,12 @@ def execute_boss(profile, boss_key, request_key=None):
 def choose_camp(profile, camp):
     from .story_gates import missing
     if missing(profile):return False
-    from .realms import camps
-    if profile.camp != "NONE" or camp not in camps(profile.world):
+    from .factions import recruitment_camps,enroll
+    if profile.camp != "NONE" or camp not in recruitment_camps(profile):
         return False
     profile.camp = camp
     profile.save(update_fields=["camp"])
+    enroll(profile)
     return True
 
 

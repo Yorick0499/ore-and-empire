@@ -14,6 +14,9 @@ ENCOUNTERS={'OLD_CAMP':('Matka pełzaczy z bocznego szybu','crawler_queen'),'NEW
 
 ENCOUNTERS.update({'CITY_WATCH':('Banda z leśnego traktu','k2_goblin'),'FIRE_ORDER':('Warg spod klasztoru','k2_warg'),'ONAR_MERCS':('Bestia pustosząca pola','k2_field_raider')})
 
+ENCOUNTERS.update({'BANDITS':ENCOUNTERS['OLD_CAMP'],'WATER_CIRCLE':ENCOUNTERS['NEW_CAMP'],'MERCENARIES':ENCOUNTERS['ONAR_MERCS']})
+
+
 def phase(raid):
     return 1 if raid.health*100>raid.maximum_health*60 else 2 if raid.health*100>raid.maximum_health*25 else 3
 
@@ -62,7 +65,7 @@ def strike_camp_raid(profile,raid_id,request_key):
     try:key=UUID(str(request_key))
     except (ValueError,TypeError,AttributeError):return False
     prior=CampRaidStrike.objects.filter(profile=profile,request_key=key).first()
-    if prior:return prior if prior.raid_id==raid_id and prior.raid.guild_id in raid_guild_ids(profile) else False
+    if prior:return prior if prior.raid_id==raid_id and (prior.raid.guild_id in raid_guild_ids(profile) or prior.damage>0) else False
     if profile.camp not in CAMPS:return False
     guild=guild_for(profile,lock=True)
     raid=CampRaid.objects.select_for_update().filter(pk=raid_id,guild_id__in=raid_guild_ids(profile),day=timezone.now().astimezone(POLISH_TIME).date()).first()
@@ -86,7 +89,7 @@ def strike_camp_raid(profile,raid_id,request_key):
 
 @player_action
 def claim_camp_raid(profile,raid_id):
-    raid=CampRaid.objects.filter(pk=raid_id,guild_id__in=raid_guild_ids(profile),completed_at__isnull=False).first()
+    raid=CampRaid.objects.filter(pk=raid_id,completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).first()
     if not raid or not raid.strikes.filter(profile=profile,damage__gt=0).exists():return False
     if CampRaidReward.objects.filter(raid=raid,profile=profile).exists():return True
     reward=CampRaidReward.objects.create(raid=raid,profile=profile)
@@ -101,7 +104,7 @@ def claim_camp_raid(profile,raid_id):
 
 def raid_card(profile):
     raid=CampRaid.objects.filter(guild_id__in=raid_guild_ids(profile),day=timezone.now().astimezone(POLISH_TIME).date()).first()
-    rewards=CampRaid.objects.filter(guild_id__in=raid_guild_ids(profile),completed_at__isnull=False,strikes__profile=profile).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
+    rewards=CampRaid.objects.filter(completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
     if not raid:return {'raid':None,'rewards':rewards}
     last=raid.strikes.filter(profile=profile).first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)

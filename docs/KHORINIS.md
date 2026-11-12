@@ -1,6 +1,6 @@
 # Khorinis przed połączeniem światów
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji działa od0049; wybór Bractwa, wyższe awanse i portal są nadal planowane. Szczegóły bieżących i historycznych reguł poniżej.
 
 
 Migracja 0043 i zadania #34/#113 otwierają drugi, równolegle grywalny serwer. **Latarnia — Khorinis** oraz istniejąca Kolonia mają osobne postacie, rynki, rankingi, frakcje, karczmy, wydarzenia i populacje botów. Pięć slotów konta jest wspólne dla obu serwerów. Przełączanie postaci wybiera także cały kontekst świata; stare formularze tracą ważność. Nie można przenosić przedmiotów ani przyjmować cudzych zadań przez podmienione ID.

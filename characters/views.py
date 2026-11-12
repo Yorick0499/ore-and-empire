@@ -342,6 +342,7 @@ def locations_view(request):
     from .story_gates import missing
     from .community import activity_rows
     recent_activity=activity_rows(limit=5)
+    from .factions import recruitment_choices
     return render(
         request,
         "characters/locations.html",
@@ -349,7 +350,7 @@ def locations_view(request):
             "profile": profile,
             "cards": cards,
             "journey":next_steps,
-            "camp_choices":[(key,name) for key,name in PlayerProfile.CAMP_LIST if key in realm_camps(profile.world)],
+            "camp_choices":recruitment_choices(profile),
             "membership_missing":missing(profile) if profile.camp=="NONE" else [],
             "recent_activity":recent_activity,
             "population": PlayerProfile.objects.filter(
@@ -533,8 +534,16 @@ def camp_view(request):
     selected = request.GET.get("camp", profile.camp if profile.camp != "NONE" else realm_camps(profile.world)[0])
     if selected not in camps or selected == "NONE":
         raise Http404("Nieznany obóz")
+    from .factions import FACTIONS,RANK_NAMES,membership
+    from .camp_progression import promotion_parents
+    member=membership(profile)
+    cards=rank_cards(profile,selected)
+    if member:
+        cards.sort(key=lambda card:0 if card["quest"] and card["quest"].promoted_at is None else 1 if profile.guild in promotion_parents(profile,card["rank"]) else 2 if card["current"] else 3)
+    faction_paths=[{"key":key,"name":name,"basic":RANK_NAMES[key][:4],"advanced":RANK_NAMES[key][4:]} for key,name in FACTIONS] if member or joined(profile.world_id) else []
     return render(request, "characters/camp.html", {
-        "profile": profile, "cards": rank_cards(profile, selected),
+        "faction_paths":faction_paths,"membership":member,
+        "profile": profile, "cards": cards,
         "selected": selected, "camp_name": camps[selected], "paths": CAMP_PATHS[selected],
         "camps": camp_choices,
     })
@@ -598,16 +607,21 @@ def rankings_view(request):
     population = request.GET.get("population", "all")
     camp = request.GET.get("camp", "")
     camps = [(key, name) for key, name in PlayerProfile.CAMP_LIST if key in realm_camps(current_world())]
-    if joined(current_world()):camps=PlayerProfile.CAMP_LIST[1:]
+    from .factions import FACTIONS
+    from .models import FactionSuccession
+    successor=FactionSuccession.objects.filter(race__colony_id__in=region_ids(current_world())).exists()
+    if successor:camps=list(FACTIONS)
+    elif joined(current_world()):camps=PlayerProfile.CAMP_LIST[1:]
     if population not in populations or camp not in {"", *(key for key, _ in camps)}:
         raise Http404("Nieznany ranking")
-    profiles = PlayerProfile.objects.filter(world_id__in=region_ids(current_world()),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user")
+    profiles = PlayerProfile.objects.filter(world_id__in=region_ids(current_world()),is_draft=False,user__is_active=True, user__is_staff=False).select_related("user","faction_membership")
     if population != "all":
         profiles = profiles.filter(is_bot=population == "bots")
-    totals = {row["camp"]: row for row in profiles.values("camp").annotate(players=Count("pk"), experience=Sum("experience"), average=Avg("level"))}
+    grouping="faction_membership__faction" if successor else "camp"
+    totals = {row[grouping]: row for row in profiles.values(grouping).annotate(players=Count("pk"), experience=Sum("experience"), average=Avg("level"))}
     camp_ranking = sorted([{"key": key, "name": name, **totals.get(key, {"players": 0, "experience": 0, "average": 0})} for key, name in camps], key=lambda row: (-row["experience"], -row["players"], row["key"]))
     if camp:
-        profiles = profiles.filter(camp=camp)
+        profiles = profiles.filter(**{grouping:camp})
     page = Paginator(profiles.order_by("-level", "-experience", "pk"), 50).get_page(request.GET.get("page"))
     return render(request, "characters/rankings.html", {"page": page, "camp_ranking": camp_ranking, "camps": camps, "populations": populations.items(), "population": population, "camp": camp})
 
@@ -663,7 +677,7 @@ def colony_life_view(request):
     world=current_world()
     people=PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).order_by('pk')
     configured=set(people.values_list('pk',flat=True)[:world.bot_count])
-    page=Paginator(people.select_related('user','world'),30).get_page(request.GET.get('page'))
+    page=Paginator(people.select_related('user','world','faction_membership'),30).get_page(request.GET.get('page'))
     residents=list(page.object_list)
     from .bot_personalities import cycle_state
     for resident in residents:
@@ -888,7 +902,7 @@ def characters_view(request):
                 return redirect('locations_page')
         except ValidationError as error:form.add_error(None,error)
         except IntegrityError:form.add_error(None,'Imię lub slot zajęto przed chwilą. Odśwież listę i spróbuj ponownie.')
-    characters=request.user.characters.filter(is_draft=False).select_related('world').order_by('slot')
+    characters=request.user.characters.filter(is_draft=False).select_related('world','faction_membership').order_by('slot')
     return render(request,'characters/characters.html',{'form':form,'characters':characters,'character_count':characters.count(),'active_id':request.session.get('active_character')})
 
 

@@ -697,7 +697,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         elif action == "boss" and boss_key and target is None:
             success = game.execute_boss(profile, boss_key) is not False
         elif action == "camp" and target == camp_target:
-            success = game.choose_camp(profile, realm_camps(profile.world)[camp_target - 1])
+            from .factions import recruitment_camps
+            choices=recruitment_camps(profile)
+            success = game.choose_camp(profile, choices[(camp_target - 1)%len(choices)])
         elif action in ("accept", "promote") and action == rank_action and rank and target == obs.rank_target:
             success = (accept_camp_quest if action == "accept" else promote_in_camp)(profile, rank.key)
         elif action == "adventure" and template and target == template.pk:

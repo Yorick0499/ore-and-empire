@@ -263,7 +263,7 @@ class MercenaryUnionTests(TransactionTestCase):
         total=sum(CampGuild.objects.values_list('treasury',flat=True))
         with patch('characters.barrier_activation.fresh_snapshot',return_value=('/private/new','e'*64,{})):self.assertTrue(activate(s.race_id))
         self.assertEqual(sum(CampGuild.objects.values_list('treasury',flat=True)),total)
-        self.assertEqual(guild_for(onar).pk,lee.pk);self.assertEqual(guild_for(onar).supply_level,3)
+        self.assertEqual(guild_for(onar).camp,'MERCENARIES');self.assertEqual(guild_for(onar).supply_level,3)
         self.assertTrue(claim_camp_raid(onar,oldraid.pk));self.assertTrue(donate_to_camp(onar,10,uuid4()))
         onar.refresh_from_db();self.assertEqual(onar.camp,'ONAR_MERCS');self.assertEqual(onar.camp_tier,3)
         onar.ore_balance=2000;onar.save();seed();q=StoryQuest.objects.get(key='barrier-fire-dragon')

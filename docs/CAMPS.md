@@ -1,6 +1,6 @@
 # Camp progression
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Te zmiany są planowane; poniżej opis dotychczasowego kodu i historii.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja i bieżące nazwy frakcji działają od0049; wybór Bractwa i awanse5–8 pozostają planowane. Niżej opis rodzimych questów i historii.
 
 
 These ranks, quests and thresholds are original Ore & Empire progression inspired
@@ -66,3 +66,5 @@ Migracja oznacza dawną drogę Wody wyłącznie dla istniejących członków Now
 Straż Khorinis: **Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży**. Paladyni należą do przyszłej wyższej ścieżki #127. Techniczne klucze starych rang pozostają, w tym `K2_PALADIN` jako tożsamość obecnego Sierżanta; mapa wersji zachowuje dawną nazwę. Zachowane poziomy, wyposażenie, korzyści i ukończenia nie są zerowane. Ekran osobno pokazuje numer rangi „z 4” i poziom przywilejów (może być historycznie wyższy).
 
 Mapa wszystkich 30 tożsamości oraz [dowody testów i GUI](reports/rowne-rangi-2026-11-11.json) opisują zakres tej zmiany. Jedenaście nowych testów obejmuje cztery rangi każdej gałęzi, stare awanse, bramki fabuły, przywileje, boty, ponowienia i rzeczywisty zapis0047→0048. Bazowa pełna lokalna regresja:527testów/23PG-pominięcia; po poprawce zgodności kopii11testów rang/dowodu oraz15testów rang/kopii/kampanii OK. Trzy dodatkowe przebiegi kampanii z przesuniętymi ID również OK; końcową pełną regresję wskazuje PR #129. Nie wdraża to jeszcze pięciu frakcji ani ośmiu rang.
+
+Od0049: [sukcesja pięciu frakcji](CAMP_GUILDS.md) zachowuje identyfikatory questów i odpowiadający szczebel podstawowy. Bieżące etykiety rang podaje zatwierdzony katalog w [roadmapie](ROADMAP.md). Zachowany wyższy poziom przywilejów nie przyznaje automatycznie nowej rangi5–8.
