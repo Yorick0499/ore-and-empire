@@ -53,6 +53,12 @@
       "combined_runner_seconds": 341.647,
       "result": "2 gameplay tests pass; Khorinis reached all assertions but metrics path initially missing, rerun recorded separately",
       "note": "Measurements overlap; do not sum test counts as unique tests."
+    },
+    "khorinis_three_factions": {
+      "tests": 1,
+      "seconds": 66.592,
+      "result": "pass",
+      "note": "Rerun after creating the optional metrics file, no gameplay changes."
     }
   },
   "organic": [
@@ -471,6 +477,84 @@
           "upgrades": 13
         }
       ]
+    },
+    {
+      "scenario": "khorinis-trzy-frakcje",
+      "ticks": 320,
+      "quests_each": 17,
+      "actions": {
+        "stock": 8,
+        "mine": 47,
+        "equip": 21,
+        "claim": 47,
+        "story_accept": 51,
+        "story_start": 51,
+        "story_talk": 6,
+        "story_claim": 51,
+        "story_travel": 24,
+        "hunt": 122,
+        "camp": 3,
+        "accept": 12,
+        "train": 376,
+        "challenge_accept": 29,
+        "promote": 12,
+        "challenge_claim": 16,
+        "craft_learn": 5,
+        "improve": 29,
+        "raid_rally": 23,
+        "raid_strike": 36,
+        "list": 11,
+        "achievement_claim": 8,
+        "finance": 2,
+        "adventure": 17,
+        "adventure_claim": 17,
+        "learn_circle": 6,
+        "buy_magic": 3,
+        "raid_claim": 8,
+        "market_reprice": 18,
+        "sell": 3,
+        "camp_upgrade": 5,
+        "boss": 6,
+        "salvage": 6,
+        "prepare_magic": 6,
+        "clear_magic": 3,
+        "market_cancel": 6,
+        "camp_donate": 9,
+        "camp_supply": 6,
+        "market_buy": 1,
+        "shop": 10,
+        "patrol": 4
+      },
+      "characters": [
+        {
+          "id": 1,
+          "camp": "CITY_WATCH",
+          "guild": "K2_COMMANDER",
+          "level": 30,
+          "strength": 135,
+          "mana": 10,
+          "ore_balance": 6089
+        },
+        {
+          "id": 2,
+          "camp": "FIRE_ORDER",
+          "guild": "K2_ARCHMAGE",
+          "level": 28,
+          "strength": 27,
+          "mana": 127,
+          "ore_balance": 279
+        },
+        {
+          "id": 3,
+          "camp": "ONAR_MERCS",
+          "guild": "K2_CAPTAIN",
+          "level": 28,
+          "strength": 127,
+          "mana": 10,
+          "ore_balance": 1097
+        }
+      ],
+      "ordinary_services_without_grants": true
     }
   ],
   "gui": {
@@ -719,5 +803,70 @@
     "Prepared bots have explicit starting attributes/ore; no grants during play.",
     "Performance is a short local isolated probe, not a production SLA or long-term economic proof.",
     "No production deployment, database reset or handoff edit."
-  ]
+  ],
+  "population_probe_final": {
+    "schema": 2,
+    "isolated_database": true,
+    "engine": "sqlite",
+    "population": 250,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+      "characters/bots.py": "151c426d0ef5d19533eea50b17cf397b2b6fa8309e1459a63b4dd1a7832c07b8",
+      "characters/models.py": "977ccd31aeddb4ec15d58cb938cea1d678a0b85ef5c657606c937f46b1e77127"
+    },
+    "realm_populations": [
+      125,
+      125
+    ],
+    "mode": "sessions",
+    "mature_fixture": true,
+    "global_join_fixture": true,
+    "duration_seconds": 20.27,
+    "http_requests": 126,
+    "http_errors": [],
+    "started_at": "2026-11-12T20:07:20.780062+00:00",
+    "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+    "http_p50_ms": 48.67,
+    "http_p95_ms": 155.87,
+    "routes_p95_ms": {
+      "/": 181.08,
+      "/zadania/": 148.6,
+      "/sklep-odlamkow/": 68.33,
+      "/zycie-kolonii/": 155.87
+    },
+    "rss_peak_mib": 75.53,
+    "rss_start_mib": 69.72,
+    "rss_end_mib": 75.53,
+    "cpu_percent_one_core": 39.85,
+    "initial_tick_p50_ms": 52.55,
+    "initial_tick_p95_ms": 106.77,
+    "initial_queries_median": 102.0,
+    "initial_actions": {
+      "patrol": 250,
+      "improve": 52,
+      "equip": 198
+    },
+    "residents_ticked": 23,
+    "ticked_per_realm": [
+      15,
+      8
+    ],
+    "failed_decisions": 0,
+    "last_tick_age_p95_seconds": 34.48,
+    "oldest_last_tick_seconds": 35.75,
+    "limits": [
+      "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+      "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+      "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+      "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+      "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+    ],
+    "validation": {
+      "http_ok": true,
+      "actions_ok": true,
+      "all_residents_ticked": false
+    }
+  }
 }

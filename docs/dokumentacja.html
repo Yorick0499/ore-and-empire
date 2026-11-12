@@ -848,7 +848,8 @@ python scripts/build_gothic2_catalog.py --cache /tmp/ore32-source
 <h3 id="doc-gothic-ii-content--weryfikacja-i-granice">Weryfikacja i granice</h3>
 <p><a href="#report-gothic2-nk-content-2026-11-12">Raport zakresu, testów i GUI</a>. Organiczny wojownik bez grantów postaci ukończył Kolonię, Jarkendar i wyprawę NK: poziom58, około30,81h czasu świata, w tym223,3min modelowych operacji. Regeneracja i timery są symulowane zgodnie z usługami gry; globalne zwycięstwo wspólnoty jest osobną fiksturą. To strategia znająca cele, bez konkurencji PvP/rynku, nie obietnica czasu człowieka ani ukończenia wszystkich rang.</p>
 <p>Oddzielne przypadki sprawdzają płatne wyposażenie maga Ognia, maga Wody i łucznika oraz pięć przygotowanych frakcji botów. Szybkie kontrakty są w <code>simulate_release --suite quick</code>, przejścia w <code>campaign</code>, tempo w <code>pacing</code>; nie trzeba uruchamiać całego audytu przy każdej zmianie.</p>
-<h2 id="doc-gothic-ii-content--32-pozostaje-otwarte-nie-wszystkie-efekty-specjalne-trwae-mikstury-przyzwania-przemiany-teleporty-komplety-ozdob-i-oryginalne-interakcje-npc-maja-implementacje-caosc-jednej-listy-kodow-nie-oznacza-caego-g2-nk-128-nadal-obejmuje-organiczne-przejscia-pozostaych-buildow-dugotrwaa-gospodarke-i-strojenie-satysfakcji-z-rozwoju">32 pozostaje otwarte: nie wszystkie efekty specjalne, trwałe mikstury, przyzwania, przemiany, teleporty, komplety ozdób i oryginalne interakcje NPC mają implementację. Całość jednej listy kodów nie oznacza całego G2 NK. #128 nadal obejmuje organiczne przejścia pozostałych buildów, długotrwałą gospodarkę i strojenie satysfakcji z rozwoju.</h2></article><article id="doc-world" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/WORLD.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world--gothic-i-world-catalog">Gothic I world catalog</h2>
+<h2 id="doc-gothic-ii-content--32-pozostaje-otwarte-nie-wszystkie-efekty-specjalne-trwae-mikstury-przyzwania-przemiany-teleporty-komplety-ozdob-i-oryginalne-interakcje-npc-maja-implementacje-caosc-jednej-listy-kodow-nie-oznacza-caego-g2-nk-128-nadal-obejmuje-organiczne-przejscia-pozostaych-buildow-dugotrwaa-gospodarke-i-strojenie-satysfakcji-z-rozwoju">32 pozostaje otwarte: nie wszystkie efekty specjalne, trwałe mikstury, przyzwania, przemiany, teleporty, komplety ozdób i oryginalne interakcje NPC mają implementację. Całość jednej listy kodów nie oznacza całego G2 NK. #128 nadal obejmuje organiczne przejścia pozostałych buildów, długotrwałą gospodarkę i strojenie satysfakcji z rozwoju.</h2>
+<p>Końcowa krótka próba250 botów (125+125), połączenie i sesje: 126 żądań HTTP, 0 błędów HTTP/decyzji, szczyt75,53MiB RAM, p95 HTTP155,87ms, CPU39,85% jednego rdzenia. To pomiar lokalny przez20s po rozgrzaniu, nie gwarancja hostingu ani wynik wielodniowej gospodarki.</p></article><article id="doc-world" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/WORLD.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world--gothic-i-world-catalog">Gothic I world catalog</h2>
 <p>The browser adaptation now includes 53 repeatable creature types and quest
 variants, plus the minecrawler queen, ancient swampshark and echo of the Sleeper as three boss expeditions. The
 roster includes wildlife, goblins, minecrawlers, undead, golems, demons and orc
@@ -17992,6 +17993,12 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
       &quot;combined_runner_seconds&quot;: 341.647,
       &quot;result&quot;: &quot;2 gameplay tests pass; Khorinis reached all assertions but metrics path initially missing, rerun recorded separately&quot;,
       &quot;note&quot;: &quot;Measurements overlap; do not sum test counts as unique tests.&quot;
+    },
+    &quot;khorinis_three_factions&quot;: {
+      &quot;tests&quot;: 1,
+      &quot;seconds&quot;: 66.592,
+      &quot;result&quot;: &quot;pass&quot;,
+      &quot;note&quot;: &quot;Rerun after creating the optional metrics file, no gameplay changes.&quot;
     }
   },
   &quot;organic&quot;: [
@@ -18410,6 +18417,84 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
           &quot;upgrades&quot;: 13
         }
       ]
+    },
+    {
+      &quot;scenario&quot;: &quot;khorinis-trzy-frakcje&quot;,
+      &quot;ticks&quot;: 320,
+      &quot;quests_each&quot;: 17,
+      &quot;actions&quot;: {
+        &quot;stock&quot;: 8,
+        &quot;mine&quot;: 47,
+        &quot;equip&quot;: 21,
+        &quot;claim&quot;: 47,
+        &quot;story_accept&quot;: 51,
+        &quot;story_start&quot;: 51,
+        &quot;story_talk&quot;: 6,
+        &quot;story_claim&quot;: 51,
+        &quot;story_travel&quot;: 24,
+        &quot;hunt&quot;: 122,
+        &quot;camp&quot;: 3,
+        &quot;accept&quot;: 12,
+        &quot;train&quot;: 376,
+        &quot;challenge_accept&quot;: 29,
+        &quot;promote&quot;: 12,
+        &quot;challenge_claim&quot;: 16,
+        &quot;craft_learn&quot;: 5,
+        &quot;improve&quot;: 29,
+        &quot;raid_rally&quot;: 23,
+        &quot;raid_strike&quot;: 36,
+        &quot;list&quot;: 11,
+        &quot;achievement_claim&quot;: 8,
+        &quot;finance&quot;: 2,
+        &quot;adventure&quot;: 17,
+        &quot;adventure_claim&quot;: 17,
+        &quot;learn_circle&quot;: 6,
+        &quot;buy_magic&quot;: 3,
+        &quot;raid_claim&quot;: 8,
+        &quot;market_reprice&quot;: 18,
+        &quot;sell&quot;: 3,
+        &quot;camp_upgrade&quot;: 5,
+        &quot;boss&quot;: 6,
+        &quot;salvage&quot;: 6,
+        &quot;prepare_magic&quot;: 6,
+        &quot;clear_magic&quot;: 3,
+        &quot;market_cancel&quot;: 6,
+        &quot;camp_donate&quot;: 9,
+        &quot;camp_supply&quot;: 6,
+        &quot;market_buy&quot;: 1,
+        &quot;shop&quot;: 10,
+        &quot;patrol&quot;: 4
+      },
+      &quot;characters&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;camp&quot;: &quot;CITY_WATCH&quot;,
+          &quot;guild&quot;: &quot;K2_COMMANDER&quot;,
+          &quot;level&quot;: 30,
+          &quot;strength&quot;: 135,
+          &quot;mana&quot;: 10,
+          &quot;ore_balance&quot;: 6089
+        },
+        {
+          &quot;id&quot;: 2,
+          &quot;camp&quot;: &quot;FIRE_ORDER&quot;,
+          &quot;guild&quot;: &quot;K2_ARCHMAGE&quot;,
+          &quot;level&quot;: 28,
+          &quot;strength&quot;: 27,
+          &quot;mana&quot;: 127,
+          &quot;ore_balance&quot;: 279
+        },
+        {
+          &quot;id&quot;: 3,
+          &quot;camp&quot;: &quot;ONAR_MERCS&quot;,
+          &quot;guild&quot;: &quot;K2_CAPTAIN&quot;,
+          &quot;level&quot;: 28,
+          &quot;strength&quot;: 127,
+          &quot;mana&quot;: 10,
+          &quot;ore_balance&quot;: 1097
+        }
+      ],
+      &quot;ordinary_services_without_grants&quot;: true
     }
   ],
   &quot;gui&quot;: {
@@ -18658,7 +18743,72 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     &quot;Prepared bots have explicit starting attributes/ore; no grants during play.&quot;,
     &quot;Performance is a short local isolated probe, not a production SLA or long-term economic proof.&quot;,
     &quot;No production deployment, database reset or handoff edit.&quot;
-  ]
+  ],
+  &quot;population_probe_final&quot;: {
+    &quot;schema&quot;: 2,
+    &quot;isolated_database&quot;: true,
+    &quot;engine&quot;: &quot;sqlite&quot;,
+    &quot;population&quot;: 250,
+    &quot;python&quot;: &quot;3.12.3&quot;,
+    &quot;platform&quot;: &quot;Linux-7.0.0-42-generic-x86_64-with-glibc2.39&quot;,
+    &quot;source_sha256&quot;: {
+      &quot;characters/bot_scheduler.py&quot;: &quot;4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a&quot;,
+      &quot;characters/bots.py&quot;: &quot;151c426d0ef5d19533eea50b17cf397b2b6fa8309e1459a63b4dd1a7832c07b8&quot;,
+      &quot;characters/models.py&quot;: &quot;977ccd31aeddb4ec15d58cb938cea1d678a0b85ef5c657606c937f46b1e77127&quot;
+    },
+    &quot;realm_populations&quot;: [
+      125,
+      125
+    ],
+    &quot;mode&quot;: &quot;sessions&quot;,
+    &quot;mature_fixture&quot;: true,
+    &quot;global_join_fixture&quot;: true,
+    &quot;duration_seconds&quot;: 20.27,
+    &quot;http_requests&quot;: 126,
+    &quot;http_errors&quot;: [],
+    &quot;started_at&quot;: &quot;2026-11-12T20:07:20.780062+00:00&quot;,
+    &quot;warmup&quot;: &quot;Two forced ordinary decisions per bot before the measured launcher.&quot;,
+    &quot;http_p50_ms&quot;: 48.67,
+    &quot;http_p95_ms&quot;: 155.87,
+    &quot;routes_p95_ms&quot;: {
+      &quot;/&quot;: 181.08,
+      &quot;/zadania/&quot;: 148.6,
+      &quot;/sklep-odlamkow/&quot;: 68.33,
+      &quot;/zycie-kolonii/&quot;: 155.87
+    },
+    &quot;rss_peak_mib&quot;: 75.53,
+    &quot;rss_start_mib&quot;: 69.72,
+    &quot;rss_end_mib&quot;: 75.53,
+    &quot;cpu_percent_one_core&quot;: 39.85,
+    &quot;initial_tick_p50_ms&quot;: 52.55,
+    &quot;initial_tick_p95_ms&quot;: 106.77,
+    &quot;initial_queries_median&quot;: 102.0,
+    &quot;initial_actions&quot;: {
+      &quot;patrol&quot;: 250,
+      &quot;improve&quot;: 52,
+      &quot;equip&quot;: 198
+    },
+    &quot;residents_ticked&quot;: 23,
+    &quot;ticked_per_realm&quot;: [
+      15,
+      8
+    ],
+    &quot;failed_decisions&quot;: 0,
+    &quot;last_tick_age_p95_seconds&quot;: 34.48,
+    &quot;oldest_last_tick_seconds&quot;: 35.75,
+    &quot;limits&quot;: [
+      &quot;Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.&quot;,
+      &quot;RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.&quot;,
+      &quot;HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.&quot;,
+      &quot;Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.&quot;,
+      &quot;Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.&quot;
+    ],
+    &quot;validation&quot;: {
+      &quot;http_ok&quot;: true,
+      &quot;actions_ok&quot;: true,
+      &quot;all_residents_ticked&quot;: false
+    }
+  }
 }</code></pre><button type="button" class="download" data-report-download="gothic2-nk-content-2026-11-12.json">Pobierz publiczny raport JSON</button></details></article></main></div>
 <footer class="footer">Ore &amp; Empire ◆ Kroniki Kolonii<br>Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic.<br>Ilustracje Gothicpedii i font Gothic II mają wskazane źródła w rozdziale o grafikach. Dokumentacja nie nadaje praw do oryginalnych materiałów gry.</footer><dialog id="screen-dialog" aria-label="Powiększony zrzut ekranu"><div class="dialog-header"><span>Archiwum obrazów Kolonii</span><button type="button">Zamknij</button></div><p></p><img alt="Powiększony ekran gry"></dialog><div id="action-status" class="status" role="status" aria-live="polite"></div><script>'use strict';
 (() => {

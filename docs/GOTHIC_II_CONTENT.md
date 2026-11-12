@@ -43,3 +43,5 @@ Pierwszy skrypt przypina rewizje i waliduje pobrane ilustracje; cache artykułó
 Oddzielne przypadki sprawdzają płatne wyposażenie maga Ognia, maga Wody i łucznika oraz pięć przygotowanych frakcji botów. Szybkie kontrakty są w `simulate_release --suite quick`, przejścia w `campaign`, tempo w `pacing`; nie trzeba uruchamiać całego audytu przy każdej zmianie.
 
 #32 pozostaje otwarte: nie wszystkie efekty specjalne, trwałe mikstury, przyzwania, przemiany, teleporty, komplety ozdób i oryginalne interakcje NPC mają implementację. Całość jednej listy kodów nie oznacza całego G2 NK. #128 nadal obejmuje organiczne przejścia pozostałych buildów, długotrwałą gospodarkę i strojenie satysfakcji z rozwoju.
+
+Końcowa krótka próba250 botów (125+125), połączenie i sesje: 126 żądań HTTP, 0 błędów HTTP/decyzji, szczyt75,53MiB RAM, p95 HTTP155,87ms, CPU39,85% jednego rdzenia. To pomiar lokalny przez20s po rozgrzaniu, nie gwarancja hostingu ani wynik wielodniowej gospodarki.
