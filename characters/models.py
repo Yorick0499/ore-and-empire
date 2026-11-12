@@ -338,7 +338,7 @@ class ItemBluePrint(models.Model):
     base_value = models.IntegerField(default=0)
 
     catalog_key = models.SlugField(max_length=100, unique=True, null=True, blank=True)
-    kind = models.CharField(max_length=15, default='weapon', choices=[(k,k) for k in ('weapon','armor','ring','amulet','consumable','material','ammo','rune','scroll','quest','misc')])
+    kind = models.CharField(max_length=15, default='weapon', choices=[(k,k) for k in ('weapon','armor','ring','amulet','belt','consumable','material','ammo','rune','scroll','quest','misc')])
     weapon_type = models.CharField(max_length=12, default='onehand', choices=[(k,k) for k in ('onehand','twohand','bow','crossbow')])
     damage_type = models.CharField(max_length=8, default='weapon', choices=[(k,k) for k in ('weapon','arrow','fire','magic')])
     required_dexterity = models.PositiveIntegerField(default=0)
@@ -374,11 +374,13 @@ class ItemBluePrint(models.Model):
     @property
     def original_rows(self):
         names = {'damage':'Obrażenia','requirement':'Wymagany atrybut broni','reach':'Zasięg','cut_damage':'Obrażenia sieczne','blunt_damage':'Obrażenia obuchowe','value':'Cena G1','base_value':'Cena G1','availability':'Najwcześniejszy rozdział G1','weapon_prot':'Ochrona przed bronią','arrow_prot':'Ochrona przed pociskami','fire_prot':'Ochrona przed ogniem','magic_prot':'Ochrona przed magią','life_bonus':'Bonus życia','mana_bonus':'Bonus many','strength_bonus':'Bonus siły','dexterity_bonus':'Bonus zręczności','effect':'Efekt G1','browser_price':'Cena adaptacji (nie G1)'}
+        if self.source_game=="GOTHIC_II":
+            names.update(value="Cena źródłowa G2 NK (złoto)",base_value="Cena źródłowa G2 NK (złoto)",effect="Efekt źródłowy G2 NK",browser_price="Cena adaptacji (ruda)",required_strength="Wymagana siła",required_dexterity="Wymagana zręczność")
         return [(label,self.original_stats[key]) for key,label in names.items() if key in self.original_stats]
 
     @property
     def kind_name(self):
-        return {'weapon':'Broń','armor':'Pancerz','ring':'Pierścień','amulet':'Amulet','consumable':'Pożywienie / mikstura','material':'Materiał / trofeum','ammo':'Amunicja','rune':'Runa','scroll':'Zwój','quest':'Przedmiot fabularny','misc':'Pozostałe'}.get(self.kind,self.kind)
+        return {'weapon':'Broń','armor':'Pancerz','belt':'Pas','ring':'Pierścień','amulet':'Amulet','consumable':'Pożywienie / mikstura','material':'Materiał / trofeum','ammo':'Amunicja','rune':'Runa','scroll':'Zwój','quest':'Przedmiot fabularny','misc':'Pozostałe'}.get(self.kind,self.kind)
 
     @property
     def damage_name(self):
@@ -389,13 +391,35 @@ class ItemBluePrint(models.Model):
         return {'onehand':'Jednoręczna','twohand':'Dwuręczna','bow':'Łuk','crossbow':'Kusza'}.get(self.weapon_type,self.weapon_type)
 
     @property
+    def faction_requirement(self):
+        from .factions import FACTIONS
+        return dict(FACTIONS).get(self.original_stats.get('browser_faction'),'')
+
+    @property
+    def restoration_rows(self):
+        from .consumables import effect
+        data=effect(self)
+        result=[]
+        if self.heal_amount:result.append(f'{self.heal_amount} zdrowia')
+        if self.energy_amount:result.append(f'{self.energy_amount} energii')
+        labels={'health':'zdrowia','mana':'many','health_percent':'% maksymalnego zdrowia','mana_percent':'% maksymalnej many'}
+        result.extend(f'{amount} {labels[key]}' for key,amount in data.items())
+        return result
+
+    @property
+    def magic_card(self):
+        from .magic import BY_CODE
+        entry=BY_CODE.get(self.catalog_key)
+        return {'spell':entry[0],'scroll':entry[1]} if entry else None
+
+    @property
     def magic_supported(self):
         from .magic import BY_CODE
         return self.catalog_key in BY_CODE
 
     @property
     def equippable(self):
-        return self.kind in {'weapon','armor','ring','amulet'}
+        return self.kind in {'weapon','armor','ring','amulet','belt'}
 
 
 class OwnedItem(models.Model):
@@ -444,7 +468,7 @@ class OwnedItem(models.Model):
 
     @property
     def slot_name(self):
-        return {'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II'}.get(self.equipped_slot,'Plecak')
+        return {'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II','belt':'Pas'}.get(self.equipped_slot,'Plecak')
 
     def save(self, *args, **kwargs):
         previous = type(self).objects.filter(pk=self.pk).values('owner_id','is_equipped','rarity').first() if self.pk else None
@@ -455,7 +479,7 @@ class OwnedItem(models.Model):
         if not self.is_equipped:
             self.equipped_slot = ''
         elif not self.equipped_slot:
-            self.equipped_slot = {'ring': 'ring1', 'amulet': 'amulet', 'armor': 'armor'}.get(self.blueprint.kind, 'weapon')
+            self.equipped_slot = {'ring': 'ring1', 'amulet': 'amulet', 'armor': 'armor','belt':'belt'}.get(self.blueprint.kind, 'weapon')
         if kwargs.get('update_fields') and ('is_equipped' in kwargs['update_fields'] or 'equipped_slot' in kwargs['update_fields']):
             kwargs['update_fields'] = list(set(kwargs['update_fields']) | {'equipped_slot'})
         super().save(*args, **kwargs)
@@ -471,7 +495,7 @@ class OwnedItem(models.Model):
             models.CheckConstraint(condition=models.Q(quantity__gte=1), name='owned_quantity_positive'),
             models.CheckConstraint(condition=models.Q(upgrade_level__lte=3,rarity__lte=4) & (models.Q(upgrade_level=0,rarity=0) | models.Q(quantity=1)), name='owned_upgrade_bounds'),
             models.UniqueConstraint(fields=['owner','equipped_slot'], condition=models.Q(is_equipped=True), name='one_equipment_per_slot'),
-            models.CheckConstraint(condition=(models.Q(is_equipped=False, equipped_slot='') | (models.Q(is_equipped=True) & models.Q(equipped_slot__in=['weapon','armor','amulet','ring1','ring2']))), name='equipment_slot_consistent'),
+            models.CheckConstraint(condition=(models.Q(is_equipped=False, equipped_slot='') | (models.Q(is_equipped=True) & models.Q(equipped_slot__in=['weapon','armor','amulet','ring1','ring2','belt']))), name='equipment_slot_consistent'),
         ]
 
 

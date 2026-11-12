@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0051_advanced_faction_ranks",
+  "migration": "0052_nk_belts",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -475,6 +475,22 @@
       "captured_at_utc": "2026-11-12T18:00:12.058075+00:00",
       "fixture": "Izolowana baza, syntetyczny poziom25, portal odebrany prawdziwymi formularzami; przyspieszony wyłącznie zegar oczekiwania",
       "theme": "publiczny-jarkendar-33"
+    },
+    {
+      "file": "nk-catalog-mobile.png",
+      "bytes": 159722,
+      "sha256": "61e17783b24fbcbb0bfaeac7cabeb5c91c0b8a30734aa8c00003b6e009b79fbf",
+      "captured_at_utc": "2026-11-12T20:03:00.248180+00:00",
+      "fixture": "Izolowany wspólny serwer, syntetyczny weteran45 i odebrane kamienie fabuły; rzeczywiste formularze pasa i runy",
+      "theme": "gothic2-nk-content-32"
+    },
+    {
+      "file": "nk-irdorath-map.png",
+      "bytes": 898849,
+      "sha256": "9df855e4983c04401340d96f6315a8219999e7e4f93cdcbee9bd04fd687c5756",
+      "captured_at_utc": "2026-11-12T20:03:00.249368+00:00",
+      "fixture": "Izolowany wspólny serwer, syntetyczny weteran45 i odebrane kamienie fabuły; rzeczywiste formularze pasa i runy",
+      "theme": "gothic2-nk-content-32"
     }
   ]
 }

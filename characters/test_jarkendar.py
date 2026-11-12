@@ -46,8 +46,8 @@ class PublicJarkendarTests(TestCase):
         self.client.force_login(self.p.user)
         response=self.client.get(reverse("locations_page")+"?area=jarkendar")
         self.assertEqual(response.status_code,200)
-        self.assertEqual(len(response.context["cards"]),10)
-        self.assertTrue(all(c["location"].key.startswith("jark_") for c in response.context["cards"]))
+        self.assertEqual(len(response.context["cards"]),14)
+        self.assertTrue(all(c["location"].requires_portal or c["location"].key=="jark_portal" for c in response.context["cards"]))
     def test_barrier_level_and_region_are_enforced_on_services_and_urls(self):
         World.objects.filter(pk__in=[self.c.pk,self.i.pk]).update(union_key=None)
         self.p.premium_balance=100000;self.p.save()
@@ -137,7 +137,7 @@ class PortalContentionTests(TransactionTestCase):
     def test_two_workers_award_portal_only_once(self):
         from concurrent.futures import ThreadPoolExecutor
         from threading import Barrier
-        from django.db import close_old_connections
+        from django.db import connections
         from .barrier import travel
         c,i,race=fixture();call_command('seed_jarkendar',stdout=StringIO())
         p=person(c,'OLD_CAMP','BARON');p.level=10;p.premium_balance=0;p.save();succeed(race)
@@ -146,11 +146,11 @@ class PortalContentionTests(TransactionTestCase):
         self.assertTrue(travel_story(p,run.pk,'journey-jark_portal'));self.assertTrue(choose_story(p,run.pk,'conversation','agree'))
         now=timezone.now()+timedelta(minutes=2);ore=p.ore_balance;gate=Barrier(2)
         def worker():
-            close_old_connections()
+            connections.close_all()
             try:
                 actor=PlayerProfile.objects.get(pk=p.pk);gate.wait(timeout=10)
                 return claim_story(actor,run.pk)
-            finally:close_old_connections()
+            finally:connections.close_all()
         with patch('django.utils.timezone.now',return_value=now),ThreadPoolExecutor(max_workers=2) as pool:
             results=list(pool.map(lambda _:worker(),range(2)))
         self.assertEqual(sorted(results),[False,True]);p.refresh_from_db()

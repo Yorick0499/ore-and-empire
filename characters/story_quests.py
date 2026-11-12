@@ -223,6 +223,7 @@ def claim_story(profile, run_id):
     run.status = 'claimed'
     run.save(update_fields=['claimed_at', 'status'])
     if hasattr(profile,'_jarkendar_unlocked'):del profile._jarkendar_unlocked
+    if hasattr(profile,'_nk_claimed'):del profile._nk_claimed
     return True
 
 

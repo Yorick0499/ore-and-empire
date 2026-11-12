@@ -329,8 +329,9 @@ def locations_view(request):
         {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS if loc.universe==region(profile).universe and (not loc.post_barrier or joined(profile.world_id))
     ]
     area=request.GET.get("area","all")
-    if area=="jarkendar":cards=[c for c in cards if c["location"].key.startswith("jark_")]
-    elif area=="khorinis":cards=[c for c in cards if not c["location"].key.startswith("jark_")]
+    if area=="jarkendar":cards=[c for c in cards if c["location"].requires_portal or c["location"].key=="jark_portal"]
+    elif area=="khorinis":cards=[c for c in cards if not c["location"].requires_portal and c["location"].key!="jark_portal" and c["location"].required_story!="nk-sailing"]
+    elif area=="irdorath":cards=[c for c in cards if c["location"].required_story=="nk-sailing"]
     availability = request.GET.get("availability", "all")
     activity = request.GET.get("activity", "all")
     try:
@@ -740,7 +741,9 @@ def story_view(request):
     chapter = run.snapshot['chapter'] if run else max((r.snapshot['chapter'] for r in history), default=1)
     if profile.world.universe=='GOTHIC_II':
         from .khorinis import CHAPTERS
-    if joined(profile.world_id):CHAPTERS=(*CHAPTERS,(7,'Po upadku Bariery','old_camp'))
+    if joined(profile.world_id):
+        from .gothic2_world import JOINED_CHAPTERS
+        CHAPTERS=(*CHAPTERS,*JOINED_CHAPTERS)
     chapter_rows = [{'number': number, 'name': name, 'art': art, 'current': number == chapter} for number, name, art in CHAPTERS]
     return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})
 
@@ -750,13 +753,25 @@ def item_catalog_view(request):
     from django.core.paginator import Paginator
     from django.db.models import Q
     from .models import ContentPack
-    items=ItemBluePrint.objects.filter(source_game=request.user.playerprofile.world.universe).exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
+    profile=request.user.playerprofile
+    allowed_games=[g for g in source_games(profile) if g!='adaptation']
+    game=request.GET.get('game',region(profile).universe)
+    if game not in allowed_games:raise PermissionDenied('Ten katalog należy do innego świata.')
+    section=request.GET.get('section','items')
+    if section in {'creatures','npcs','waypoints'}:
+        if game!='GOTHIC_II':raise PermissionDenied('Ten indeks dotyczy G2 NK.')
+        from .gothic2_content import source_index
+        index=source_index();query=request.GET.get('q','').strip()[:100]
+        rows=index[section]
+        if query:rows=[r for r in rows if query.casefold() in (r['name']+' '+r['code']).casefold()]
+        return render(request,'characters/source_catalog.html',{'rows':Paginator(rows,24).get_page(request.GET.get('page')),'source_index':index,'section':section,'query':query,'catalog_game':game})
+    items=ItemBluePrint.objects.filter(source_game=game).exclude(catalog_key__in=['g1-bab-armor-bikini','g1-bab-armor-nude','g1-fonttestbook','g1-altesschwertaltesschwertvm','g1-itkekey1itkekey2itkekey3itkekey4']).order_by('kind','name','catalog_key')
     query=request.GET.get('q','').strip()[:100]
     kind=request.GET.get('kind','')
     if query:items=items.filter(Q(name__iregex=literal_pattern(query))|Q(catalog_key__iregex=literal_pattern(query)))
     if kind in {c[0] for c in ItemBluePrint._meta.get_field('kind').choices}:items=items.filter(kind=kind)
     if request.GET.get('verified')=='1':items=items.filter(original_stats__verified=True)
-    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','packs':ContentPack.objects.filter(game=request.user.playerprofile.world.universe).order_by('-version')[:1],'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
+    return render(request,'characters/item_catalog.html',{'items':Paginator(items,24).get_page(request.GET.get('page')),'query':query,'kind':kind,'verified':request.GET.get('verified')=='1','catalog_is_khorinis':game=='GOTHIC_II','catalog_game':game,'catalog_games':allowed_games,'packs':ContentPack.objects.filter(game='GOTHIC_II_NK' if game=='GOTHIC_II' else game).order_by('-version')[:1],'kinds':[(k,ItemBluePrint(kind=k).kind_name) for k,_ in ItemBluePrint._meta.get_field('kind').choices]})
 
 
 @login_required

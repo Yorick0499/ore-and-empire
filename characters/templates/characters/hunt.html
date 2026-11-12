@@ -34,7 +34,7 @@
                             <div class="monster-stats">
                                 <span>❤️ Życie: {{ monster.life }}</span>
                                 <span>⚔️ Siła: {{ monster.strength }}</span>
-                                <span>🛡️ Pancerz: {{ monster.weapon_prot }}</span>
+                                <span>🛡️ Pancerz: {{ monster.weapon_prot }}</span>{% if monster.fire_prot or monster.magic_prot %}<span>Odporność: ogień {{ monster.fire_prot|default:0 }} · magia {{ monster.magic_prot|default:0 }}</span>{% endif %}
                                 <span style="color: var(--gothic-gold-bright);">⭐ Nagroda: +{{ monster.current_reward }} PD</span>
                             </div>
                         </div>

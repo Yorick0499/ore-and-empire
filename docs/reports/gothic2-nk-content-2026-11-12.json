@@ -1,0 +1,872 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "issue": 32,
+  "scope": "Pinned Gothicpedia identities and playable resident expedition to Irdorath; partial original mechanics coverage.",
+  "migration": "0052_nk_belts",
+  "source": {
+    "items": 877,
+    "creatures": 85,
+    "npcs": 352,
+    "waypoints": 35
+  },
+  "source_index_revision": 587356,
+  "content": {
+    "verified_scalar_facts": 602,
+    "merchant_patterns": 167,
+    "direct_item_illustrations": 598,
+    "hunt_populations": 67,
+    "new_bosses": 8,
+    "new_quests": 15,
+    "preceding_jarkendar_quests": 8,
+    "magic_adaptations": 2,
+    "reviewed_belt_armor_sets": 6,
+    "world_illustration_selections": 76,
+    "missing_selected_image_files": 11
+  },
+  "tests": {
+    "sqlite_targeted": {
+      "tests": 47,
+      "seconds": 10.729,
+      "result": "pass",
+      "note": "Before one new PostgreSQL-only contention case."
+    },
+    "sqlite_regression": {
+      "tests": 117,
+      "skipped": 2,
+      "seconds": 33.842,
+      "result": "pass"
+    },
+    "postgresql_regression": {
+      "tests": 83,
+      "seconds": 29.346,
+      "result": "pass",
+      "includes": "Real concurrent portal claim and single mana-potion consumption."
+    },
+    "earned_warrior": {
+      "tests": 1,
+      "seconds": 21.906,
+      "result": "pass"
+    },
+    "prepared_factions_and_native_colony": {
+      "tests_passed": 2,
+      "combined_runner_seconds": 341.647,
+      "result": "2 gameplay tests pass; Khorinis reached all assertions but metrics path initially missing, rerun recorded separately",
+      "note": "Measurements overlap; do not sum test counts as unique tests."
+    },
+    "khorinis_three_factions": {
+      "tests": 1,
+      "seconds": 66.592,
+      "result": "pass",
+      "note": "Rerun after creating the optional metrics file, no gameplay changes."
+    }
+  },
+  "organic": [
+    {
+      "scenario": "earned-nk-resident-campaign",
+      "admin_grants": false,
+      "global_join_fixture": true,
+      "new_contracts": 23,
+      "checkpoints": [
+        {
+          "quest": "jark-portal",
+          "level": 31,
+          "world_hours": 1.53,
+          "ore": 61
+        },
+        {
+          "quest": "jark-supplies",
+          "level": 31,
+          "world_hours": 2.05,
+          "ore": 212
+        },
+        {
+          "quest": "jark-pirates",
+          "level": 31,
+          "world_hours": 2.46,
+          "ore": 412
+        },
+        {
+          "quest": "jark-canyon",
+          "level": 34,
+          "world_hours": 6.21,
+          "ore": 607
+        },
+        {
+          "quest": "jark-workers",
+          "level": 36,
+          "world_hours": 10.37,
+          "ore": 527
+        },
+        {
+          "quest": "jark-swamp-watch",
+          "level": 36,
+          "world_hours": 11.15,
+          "ore": 927
+        },
+        {
+          "quest": "jark-stones",
+          "level": 37,
+          "world_hours": 11.89,
+          "ore": 1427
+        },
+        {
+          "quest": "jark-crypt-watch",
+          "level": 38,
+          "world_hours": 12.35,
+          "ore": 2617
+        },
+        {
+          "quest": "nk-scouts",
+          "level": 39,
+          "world_hours": 13.13,
+          "ore": 2767
+        },
+        {
+          "quest": "nk-supplies",
+          "level": 39,
+          "world_hours": 14.13,
+          "ore": 3034
+        },
+        {
+          "quest": "nk-seekers",
+          "level": 40,
+          "world_hours": 14.42,
+          "ore": 3284
+        },
+        {
+          "quest": "nk-tablets",
+          "level": 41,
+          "world_hours": 15.19,
+          "ore": 3634
+        },
+        {
+          "quest": "nk-raven",
+          "level": 42,
+          "world_hours": 15.65,
+          "ore": 4614
+        },
+        {
+          "quest": "nk-eye",
+          "level": 43,
+          "world_hours": 15.79,
+          "ore": 4964
+        },
+        {
+          "quest": "nk-swamp-dragon",
+          "level": 45,
+          "world_hours": 16.78,
+          "ore": 6023
+        },
+        {
+          "quest": "nk-stone-dragon",
+          "level": 46,
+          "world_hours": 17.0,
+          "ore": 7343
+        },
+        {
+          "quest": "nk-fire-dragon",
+          "level": 48,
+          "world_hours": 17.23,
+          "ore": 8818
+        },
+        {
+          "quest": "nk-ice-dragon",
+          "level": 49,
+          "world_hours": 17.67,
+          "ore": 10373
+        },
+        {
+          "quest": "nk-ship",
+          "level": 51,
+          "world_hours": 19.0,
+          "ore": 11045
+        },
+        {
+          "quest": "nk-sailing",
+          "level": 51,
+          "world_hours": 19.42,
+          "ore": 7345
+        },
+        {
+          "quest": "nk-island-dragon",
+          "level": 53,
+          "world_hours": 19.46,
+          "ore": 9285
+        },
+        {
+          "quest": "nk-archol",
+          "level": 55,
+          "world_hours": 19.82,
+          "ore": 11180
+        },
+        {
+          "quest": "nk-undead",
+          "level": 58,
+          "world_hours": 20.06,
+          "ore": 13550
+        }
+      ],
+      "level": 58,
+      "expedition_world_hours": 20.06,
+      "total_world_hours": 30.81,
+      "limits": [
+        "Warrior strategy, no PvP/player-market competition.",
+        "Global community victory is an external event fixture.",
+        "Does not mean all original hero quests, every item effect or guild rank8 completed.",
+        "Virtual timers use seconds; active operations are modelled, not human playtime."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 30.81,
+      "active_minutes": 223.3,
+      "recovery_minutes": 1125.0,
+      "timers_minutes": 500.4,
+      "offline_hours": 0.0,
+      "calendar_days": 2,
+      "level": 58,
+      "strength": 560,
+      "quests": 50,
+      "ore": 13550,
+      "shards": 15,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 5,
+        "mine_claim": 5,
+        "buy_weapon": 9,
+        "equip_weapon": 9,
+        "income_adventure": 423,
+        "income_claim": 48,
+        "buy_armor": 7,
+        "equip_armor": 7,
+        "hunt": 105,
+        "travel_energy": 25,
+        "story_travel": 16,
+        "join_camp": 1,
+        "buy_delivery": 2,
+        "train_strength": 55,
+        "earned_shop_energy": 10,
+        "train_goal": 1,
+        "boss": 19,
+        "earned_shop_health": 66,
+        "personal_finale": 1,
+        "nk_accept": 23,
+        "nk_start": 23,
+        "nk_region": 5,
+        "nk_visit": 22,
+        "nk_talk": 3,
+        "nk_claim": 23,
+        "nk_mine": 10,
+        "nk_mine_claim": 10,
+        "nk_hunt": 245,
+        "nk_boss": 45,
+        "nk_material_buy": 1
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    }
+  ],
+  "prepared_bots": [
+    {
+      "scenario": "five-prepared-nk-factions",
+      "ticks": 814,
+      "completed": 5,
+      "actions": {
+        "patrol": 353,
+        "raid_rally": 160,
+        "improve": 197,
+        "learn_circle": 12,
+        "train": 1021,
+        "equip": 81,
+        "accept": 5,
+        "salvage": 356,
+        "story_accept": 115,
+        "story_start": 115,
+        "region_travel": 24,
+        "buy_magic": 2,
+        "story_travel": 70,
+        "prepare_magic": 11,
+        "story_talk": 15,
+        "camp_donate": 45,
+        "challenge_accept": 118,
+        "list": 53,
+        "market_buy": 35,
+        "story_claim": 115,
+        "mine": 55,
+        "claim": 55,
+        "achievement_claim": 10,
+        "adventure": 20,
+        "adventure_claim": 20,
+        "market_cancel": 17,
+        "hunt": 130,
+        "stock": 56,
+        "buy": 1,
+        "sell": 45,
+        "market_reprice": 45,
+        "boss": 45,
+        "clear_magic": 11,
+        "camp_supply": 84
+      },
+      "synthetic_veteran_fixture": true,
+      "ordinary_paid_equipment_and_lessons": true,
+      "grants_during_play": false,
+      "state": [
+        {
+          "role": "melee",
+          "id": 1,
+          "run": [],
+          "level": 73
+        },
+        {
+          "role": "mage",
+          "id": 2,
+          "run": [],
+          "level": 71
+        },
+        {
+          "role": "mage",
+          "id": 3,
+          "run": [],
+          "level": 71
+        },
+        {
+          "role": "archer",
+          "id": 4,
+          "run": [],
+          "level": 71
+        },
+        {
+          "role": "melee",
+          "id": 5,
+          "run": [],
+          "level": 74
+        }
+      ],
+      "limits": [
+        "Prepared level45/attributes/ore, not an organic bot campaign.",
+        "Only new expedition definitions enabled in isolated fixture.",
+        "Two-hour steps are not human playtime."
+      ]
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 435,
+      "simulated_hours": 217.0,
+      "actions": {
+        "stock": 37,
+        "mine": 22,
+        "equip": 42,
+        "claim": 22,
+        "sell": 42,
+        "story_accept": 84,
+        "story_start": 84,
+        "story_talk": 27,
+        "story_claim": 84,
+        "finance": 4,
+        "ammo": 2,
+        "challenge_accept": 32,
+        "story_travel": 49,
+        "hunt": 61,
+        "camp": 3,
+        "accept": 6,
+        "promote": 3,
+        "train": 525,
+        "challenge_claim": 12,
+        "list": 2,
+        "market_cancel": 1,
+        "market_sell": 1,
+        "adventure": 4,
+        "adventure_claim": 4,
+        "craft_learn": 3,
+        "camp_donate": 25,
+        "craft_material": 5,
+        "improve": 25,
+        "craft": 3,
+        "boss": 6,
+        "salvage": 8,
+        "achievement_claim": 3,
+        "patrol": 8
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 30,
+          "experience": 245828,
+          "ore_balance": 6462,
+          "premium_balance": 14
+        },
+        {
+          "camp": "OLD_CAMP",
+          "level": 30,
+          "experience": 246012,
+          "ore_balance": 4880,
+          "premium_balance": 8
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 30,
+          "experience": 246568,
+          "ore_balance": 5315,
+          "premium_balance": 7
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "improve": 16,
+        "salvage": 16,
+        "market_buy": 4,
+        "train": 40,
+        "equip": 5,
+        "craft_learn": 1,
+        "hunt": 22,
+        "challenge_claim": 2,
+        "sell": 8,
+        "patrol": 9,
+        "list": 3,
+        "promote": 6,
+        "accept": 6,
+        "raid_rally": 4,
+        "challenge_accept": 4,
+        "learn_circle": 8,
+        "buy_magic": 2,
+        "boss": 1,
+        "raid_strike": 3,
+        "raid_claim": 2,
+        "achievement_claim": 3,
+        "prepare_magic": 2,
+        "mine": 6,
+        "clear_magic": 1,
+        "claim": 6
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 3,
+          "upgrades": 14
+        },
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 7,
+          "upgrades": 14
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 7,
+          "upgrades": 13
+        }
+      ]
+    },
+    {
+      "scenario": "khorinis-trzy-frakcje",
+      "ticks": 320,
+      "quests_each": 17,
+      "actions": {
+        "stock": 8,
+        "mine": 47,
+        "equip": 21,
+        "claim": 47,
+        "story_accept": 51,
+        "story_start": 51,
+        "story_talk": 6,
+        "story_claim": 51,
+        "story_travel": 24,
+        "hunt": 122,
+        "camp": 3,
+        "accept": 12,
+        "train": 376,
+        "challenge_accept": 29,
+        "promote": 12,
+        "challenge_claim": 16,
+        "craft_learn": 5,
+        "improve": 29,
+        "raid_rally": 23,
+        "raid_strike": 36,
+        "list": 11,
+        "achievement_claim": 8,
+        "finance": 2,
+        "adventure": 17,
+        "adventure_claim": 17,
+        "learn_circle": 6,
+        "buy_magic": 3,
+        "raid_claim": 8,
+        "market_reprice": 18,
+        "sell": 3,
+        "camp_upgrade": 5,
+        "boss": 6,
+        "salvage": 6,
+        "prepare_magic": 6,
+        "clear_magic": 3,
+        "market_cancel": 6,
+        "camp_donate": 9,
+        "camp_supply": 6,
+        "market_buy": 1,
+        "shop": 10,
+        "patrol": 4
+      },
+      "characters": [
+        {
+          "id": 1,
+          "camp": "CITY_WATCH",
+          "guild": "K2_COMMANDER",
+          "level": 30,
+          "strength": 135,
+          "mana": 10,
+          "ore_balance": 6089
+        },
+        {
+          "id": 2,
+          "camp": "FIRE_ORDER",
+          "guild": "K2_ARCHMAGE",
+          "level": 28,
+          "strength": 27,
+          "mana": 127,
+          "ore_balance": 279
+        },
+        {
+          "id": 3,
+          "camp": "ONAR_MERCS",
+          "guild": "K2_CAPTAIN",
+          "level": 28,
+          "strength": 127,
+          "mana": 10,
+          "ore_balance": 1097
+        }
+      ],
+      "ordinary_services_without_grants": true
+    }
+  ],
+  "gui": {
+    "isolated_database": true,
+    "synthetic_veteran_and_story_milestones": true,
+    "real_csrf_forms": true,
+    "errors": [],
+    "pages": [
+      {
+        "state": "catalog",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "catalog",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "catalog",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "creatures",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "creatures",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "creatures",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "npcs",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "npcs",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "npcs",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "waypoints",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "waypoints",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "waypoints",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "locked-map",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "locked-map",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "locked-map",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "joined-map",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "joined-map",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "joined-map",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "resident-story",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "resident-story",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "resident-story",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "final-boss",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "final-boss",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "final-boss",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "belts-shop",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "belts-shop",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "belts-shop",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "inventory",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "inventory",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "inventory",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "sixth-circle",
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "sixth-circle",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "sixth-circle",
+        "width": 1440,
+        "scroll": 1440
+      }
+    ]
+  },
+  "population_probe_before_final_belts_delivery_policy": {
+    "schema": 2,
+    "isolated_database": true,
+    "engine": "sqlite",
+    "population": 250,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+      "characters/bots.py": "604ad1a2c0a683432f09b9f58319b62d01d8bbf867853537a2527cbaa9484837",
+      "characters/models.py": "746e24ea93430520cd7091b429b86e3b6efb53e5a92792520d9b638848a4437c"
+    },
+    "realm_populations": [
+      125,
+      125
+    ],
+    "mode": "sessions",
+    "mature_fixture": true,
+    "global_join_fixture": true,
+    "duration_seconds": 20.01,
+    "http_requests": 126,
+    "http_errors": [],
+    "started_at": "2026-11-12T19:05:01.369890+00:00",
+    "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+    "http_p50_ms": 48.12,
+    "http_p95_ms": 121.31,
+    "routes_p95_ms": {
+      "/": 159.75,
+      "/zadania/": 49.44,
+      "/sklep-odlamkow/": 125.1,
+      "/zycie-kolonii/": 117.32
+    },
+    "rss_peak_mib": 75.81,
+    "rss_start_mib": 68.23,
+    "rss_end_mib": 75.81,
+    "cpu_percent_one_core": 40.48,
+    "initial_tick_p50_ms": 52.77,
+    "initial_tick_p95_ms": 105.6,
+    "initial_queries_median": 102.0,
+    "initial_actions": {
+      "patrol": 250,
+      "improve": 60,
+      "equip": 190
+    },
+    "residents_ticked": 24,
+    "ticked_per_realm": [
+      17,
+      7
+    ],
+    "failed_decisions": 0,
+    "last_tick_age_p95_seconds": 34.55,
+    "oldest_last_tick_seconds": 35.83,
+    "limits": [
+      "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+      "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+      "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+      "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+      "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+    ],
+    "validation": {
+      "http_ok": true,
+      "actions_ok": true,
+      "all_residents_ticked": false
+    }
+  },
+  "limits": [
+    "Pinned list coverage does not establish completeness of the original game.",
+    "Special item effects, permanent potions, transformations, summons, teleportation and original NPC interactions remain incomplete.",
+    "Player is a resident; no verbatim Nameless Hero quest/dialogue import.",
+    "Organic timing models a knowledgeable warrior, no PvP or competing player market; global community victory is an external fixture.",
+    "Prepared bots have explicit starting attributes/ore; no grants during play.",
+    "Performance is a short local isolated probe, not a production SLA or long-term economic proof.",
+    "No production deployment, database reset or handoff edit."
+  ],
+  "population_probe_final": {
+    "schema": 2,
+    "isolated_database": true,
+    "engine": "sqlite",
+    "population": 250,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+      "characters/bots.py": "151c426d0ef5d19533eea50b17cf397b2b6fa8309e1459a63b4dd1a7832c07b8",
+      "characters/models.py": "977ccd31aeddb4ec15d58cb938cea1d678a0b85ef5c657606c937f46b1e77127"
+    },
+    "realm_populations": [
+      125,
+      125
+    ],
+    "mode": "sessions",
+    "mature_fixture": true,
+    "global_join_fixture": true,
+    "duration_seconds": 20.27,
+    "http_requests": 126,
+    "http_errors": [],
+    "started_at": "2026-11-12T20:07:20.780062+00:00",
+    "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+    "http_p50_ms": 48.67,
+    "http_p95_ms": 155.87,
+    "routes_p95_ms": {
+      "/": 181.08,
+      "/zadania/": 148.6,
+      "/sklep-odlamkow/": 68.33,
+      "/zycie-kolonii/": 155.87
+    },
+    "rss_peak_mib": 75.53,
+    "rss_start_mib": 69.72,
+    "rss_end_mib": 75.53,
+    "cpu_percent_one_core": 39.85,
+    "initial_tick_p50_ms": 52.55,
+    "initial_tick_p95_ms": 106.77,
+    "initial_queries_median": 102.0,
+    "initial_actions": {
+      "patrol": 250,
+      "improve": 52,
+      "equip": 198
+    },
+    "residents_ticked": 23,
+    "ticked_per_realm": [
+      15,
+      8
+    ],
+    "failed_decisions": 0,
+    "last_tick_age_p95_seconds": 34.48,
+    "oldest_last_tick_seconds": 35.75,
+    "limits": [
+      "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+      "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+      "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+      "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+      "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+    ],
+    "validation": {
+      "http_ok": true,
+      "actions_ok": true,
+      "all_residents_ticked": false
+    }
+  }
+}

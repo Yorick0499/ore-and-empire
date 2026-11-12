@@ -16,7 +16,9 @@ def journey(profile):
     else:realm_chapters=CHAPTERS
     from .barrier import joined
     merged=joined(profile.world_id)
-    if merged:realm_chapters=(*realm_chapters,(7,'Po upadku Bariery','old_camp'))
+    if merged:
+        from .gothic2_world import JOINED_CHAPTERS
+        realm_chapters=(*realm_chapters,*JOINED_CHAPTERS)
     steps=[];now=timezone.now()
     def add(title,route,description='',ends_at=None,query=''):
         steps.append({'title':title,'url':reverse(route)+query,'description':description,'ends_at':ends_at})

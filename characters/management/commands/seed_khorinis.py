@@ -39,4 +39,7 @@ class Command(BaseCommand):
         for key,name,place,level,seconds,energy,ore,xp in offers:
             AdventureTemplate.objects.get_or_create(key='k2-'+key,defaults={'name':name,'description':'Codzienna służba na wyspie przed połączeniem światów. Twoje działania podtrzymują miejscową społeczność.','place':next(row[1] for row in __import__('characters.khorinis',fromlist=['DESTINATIONS']).DESTINATIONS if row[0]==place),'universe':'GOTHIC_II','category':('supply' if key in {'port','fields','farm'} else 'delivery' if key=='courier' else 'scout' if key in {'pilgrim','forest'} else 'watch'),'level':level,'duration_seconds':seconds,'energy_cost':energy,'ore_reward':ore,'experience_reward':xp,'premium_reward':1})
         call_command('seed_jarkendar',stdout=self.stdout)
+        from characters.gothic2_content import PACK_PATH as nk_pack
+        call_command('seed_catalog',pack=nk_pack,stdout=self.stdout)
+        call_command('seed_gothic2_world',stdout=self.stdout)
         self.stdout.write('Khorinis: 29 zadań fabularnych, 10 zleceń, 35 wzorów rynsztunku i 18 run/zwojów; istniejące definicje zachowano.')

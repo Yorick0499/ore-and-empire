@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: 11 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
+Stan: 12 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
 
 ## Wdrożone
 
@@ -126,7 +126,7 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 | **2. #125 — scalone w PR #130**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
 | **3. #126 — scalone w PR #131**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
 | **4. #127 — scalone w PR #132**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
-| **5. #33 — paczka przygotowana do PR**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
+| **5. #33 — scalone w PR #133**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
 | **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
 
 #32 nadal obejmuje pełniejszy katalog i kampanię G2 NK; pojedyncza paczka Jarkendaru nie zamyka całego zakresu. #30/#111 obejmują integrację następstwa z istniejącym przejściem; nie implementować ponownie wyścigu, kopii i wspólnego serwera. Stare raporty to dowody historycznych wersji, nie obowiązujące wymagania premium.
@@ -158,3 +158,7 @@ Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów
 ### Publiczny Jarkendar — #33
 
 [Pierwsza grywalna wyprawa](JARKENDAR.md): portal bez premium, 8 zadań, 10 lokacji, przeciwnicy, boss, rynsztunek, zwykłe usługi gracza i botów. Brak nowego serwera i migracji schematu. Zaktualizowano komunikaty o dostępie, naprawiono oscylację podróży botów. Pełne NK pozostaje w #32, zbiorczy audyt buildów/UX w #128. Starsze sekcje opisują historyczne etapy; aktualny dostęp określa dokument Jarkendaru. Handoff pozostaje bez zmian.
+
+### Katalog i wyprawa NK — #32
+
+[Zakres integracji Gothicpedii](GOTHIC_II_CONTENT.md): 877 tożsamości przedmiotów, 85 kodów stworzeń, 352 NPC i 35 punktów z przypiętej listy; 167 aktywnych wzorów kupca, 67 populacji polowań, 8 nowych bossów i 15 kontraktów do Irdorath. Pasy, sześć zestawów pancerza, odnowienie many/zdrowia i dwa czary VI kręgu. Bez powielania serwera ani frakcji. #32 pozostaje otwarte dla nieobsługiwanych efektów/interakcji; następnie #128: organiczne pozostałe buildy, gospodarka i UX. Dawne liczby w historycznych sekcjach nie opisują nowej paczki.

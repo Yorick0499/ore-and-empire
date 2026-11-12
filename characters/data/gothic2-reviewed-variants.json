@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "items": {
+    "itar_djg_h": {
+      "source_revision": 562547,
+      "section": "Gothic II: Noc Kruka",
+      "match": {"Ochrona": "Broń: 150, Pociski: 150, Ogień: 100, Magia: 50"}
+    },
+    "itam_hp_01": {
+      "source_revision": 551103,
+      "section": "Gothic II: Noc Kruka",
+      "match": {"Dodatkowe": "+40 do punktów trafień"}
+    },
+    "itru_firerain": {
+      "source_revision": 562302,
+      "section": "Gothic II: Noc Kruka",
+      "match": {"Obrażenia": "500"}
+    },
+    "itsc_firerain": {
+      "source_revision": 562302,
+      "section": "Gothic II: Noc Kruka",
+      "match": {"Obrażenia": "500"}
+    }
+  }
+}

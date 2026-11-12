@@ -15,7 +15,8 @@ def artwork(key):
 
 @register.inclusion_tag("characters/artwork.html")
 def gothic_art(key):
-    return {"artwork":artwork(key),"illustrative":str(key).startswith("jark_")}
+    art=artwork(key)
+    return {"artwork":art,"illustrative":str(key).startswith("jark_") or bool(art and art.get("mapping") in {"category-reference","species-reference","region-reference"})}
 
 @register.inclusion_tag("characters/artwork.html")
 def gothic_item_art(item,compact=False):

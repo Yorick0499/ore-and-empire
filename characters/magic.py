@@ -32,9 +32,12 @@ SPELLS=(
     Spell('stormfist','Uderzenie burzy','brotherhood',3,7,42,'magic',0,2),
     Spell('pyrokinesis','Pirokineza','brotherhood',5,11,70,'magic',0,2),
 )
-BY_KEY={spell.key:spell for spell in SPELLS}
+NK_SPELLS=(Spell('nk_firerain','Deszcz ognia VI','fire',6,18,260,'fire',25),Spell('nk_thunderstorm','Grom VI','water',6,18,240,'magic',50))
+ALL_SPELLS=SPELLS+NK_SPELLS
+BY_KEY={spell.key:spell for spell in ALL_SPELLS}
 BY_CODE={'g1-itar'+kind+spell.key:(spell,kind=='scroll') for spell in SPELLS for kind in ('rune','scroll')}
 BY_CODE.update({'g2-itar'+kind+spell.key:(spell,kind=='scroll') for spell in SPELLS for kind in ('rune','scroll')})
+BY_CODE.update({f'oe-nk-{spell.key}-{kind}':(spell,kind=='scroll') for spell in NK_SPELLS for kind in ('rune','scroll')})
 SCHOOLS={'FIRE_ORDER':('fire','Krąg Ognia Khorinis'),'OLD_CAMP':('fire','Krąg Ognia'),'NEW_CAMP':('water','Krąg Wody'),'SWAMP_CAMP':('brotherhood','Bractwo Śniącego')}
 MAGE_RANKS={'K2_MAGE','K2_ARCHMAGE','FIRE_MAGE','ARCH_FIRE','WATER_MAGE','ARCH_WATER','GURU','ARCH_GURU'}
 ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
@@ -65,6 +68,9 @@ def circle_cap(profile):
 def rune_allowed(profile,spell):
     # Retain the native school and invested runes; the new membership opens its
     # destination school, but grants no circles, mana, items or learning points.
+    if spell.key.startswith('nk_'):
+        from .barrier import joined
+        if not joined(profile.world_id) or profile.level<35 or profile.camp_tier<3:return False
     schools={school[0] for school in (SCHOOLS.get(profile.camp),school_for(profile)) if school}
     return spell.school in schools and profile.magic_skill>=spell.circle and spell.circle<=circle_cap(profile)
 
@@ -84,6 +90,8 @@ def combat_plan(profile):
     item=OwnedItem.objects.select_related('blueprint').filter(pk=profile.prepared_magic_id,owner=profile,is_market_listed=False).first()
     entry=BY_CODE.get(item.blueprint.catalog_key) if item else None
     if not entry:return None
+    from .equipment import allowed
+    if not allowed(profile,item.blueprint):return None
     spell,scroll=entry
     if not scroll and not rune_allowed(profile,spell):return None
     return MagicPlan(spell,item.pk,scroll,item.quantity)
@@ -101,7 +109,8 @@ def learn_circle(profile):
 @player_action
 def purchase_magic(profile,blueprint_id):
     blueprint=ItemBluePrint.objects.filter(pk=blueprint_id,catalog_key__in=BY_CODE).first()
-    if not blueprint or blueprint.source_game not in source_games(profile) or blueprint.base_value<=0 or profile.ore_balance<blueprint.base_value or profile.is_busy:return False
+    from .equipment import allowed
+    if not blueprint or not allowed(profile,blueprint) or blueprint.source_game not in source_games(profile) or blueprint.base_value<=0 or profile.ore_balance<blueprint.base_value or profile.is_busy:return False
     spell,scroll=BY_CODE[blueprint.catalog_key]
     if not scroll and not rune_allowed(profile,spell):return False
     from .equipment import add_item
@@ -117,6 +126,8 @@ def prepare_magic(profile,item_id):
     item=OwnedItem.objects.filter(pk=item_id,owner=profile,is_market_listed=False).select_related('blueprint').first()
     entry=BY_CODE.get(item.blueprint.catalog_key) if item else None
     if not entry:return False
+    from .equipment import allowed
+    if not allowed(profile,item.blueprint):return False
     if not entry[1] and not rune_allowed(profile,entry[0]):return False
     profile.prepared_magic=item;profile.save(update_fields=['prepared_magic']);return True
 
@@ -132,7 +143,8 @@ def apply_combat_magic(profile,plan,result):
 
 
 def offers(profile):
-    return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in ItemBluePrint.objects.filter(source_game__in=source_games(profile),catalog_key__in=BY_CODE).order_by('base_value','pk')]
+    from .equipment import allowed
+    return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in ItemBluePrint.objects.filter(source_game__in=source_games(profile),catalog_key__in=BY_CODE).order_by('base_value','pk') if allowed(profile,item)]
 
 
 def survival_health(profile,monster,plan,mana=None):
@@ -174,8 +186,9 @@ def bot_magic_plan(profile,inventory,target=None):
         if profile.current_mana<BY_CODE[best.blueprint.catalog_key][0].cost or forecast>=physical:
             return ('clear_magic',None) if profile.prepared_magic_id else ('',None)
     if best and profile.prepared_magic_id!=best.pk:return 'prepare_magic',best.pk
-    desired=max((spell for spell in SPELLS if rune_allowed(profile,spell)),key=lambda spell:spell.circle,default=None)
+    desired=max((spell for spell in ALL_SPELLS if rune_allowed(profile,spell)),key=lambda spell:spell.circle,default=None)
     if desired and (not best or BY_CODE[best.blueprint.catalog_key][0].circle<desired.circle):
-        blueprint=ItemBluePrint.objects.filter(catalog_key=('g2-' if profile.world.universe=='GOTHIC_II' else 'g1-')+'itarrune'+desired.key,base_value__gt=0,base_value__lte=max(0,profile.ore_balance-20)).first()
+        keys=[key for key,(spell,scroll) in BY_CODE.items() if spell.key==desired.key and not scroll]
+        blueprint=ItemBluePrint.objects.filter(catalog_key__in=keys,source_game__in=source_games(profile),base_value__gt=0,base_value__lte=max(0,profile.ore_balance-20)).order_by('base_value','pk').first()
         if blueprint:return 'buy_magic',blueprint.pk
     return '',None

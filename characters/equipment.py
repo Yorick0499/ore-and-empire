@@ -14,7 +14,7 @@ def replacement_slot(item, equipped, requested=None):
         if item.is_equipped:
             return item.equipped_slot
         return next((slot for slot in ('ring1', 'ring2') if slot not in equipped), 'ring1')
-    slot = {'weapon':'weapon', 'armor':'armor', 'amulet':'amulet'}.get(item.blueprint.kind)
+    slot = {'weapon':'weapon', 'armor':'armor', 'amulet':'amulet','belt':'belt'}.get(item.blueprint.kind)
     return slot if requested is None or requested == slot else None
 
 
@@ -27,6 +27,13 @@ def compare_equipment(profile, item, requested=None):
     old = equipped.get(slot)
     old_stats = old.effective_stats if old else dict.fromkeys(STAT_FIELDS, 0)
     new_stats = item.effective_stats
+    if slot in {'armor','belt'}:
+        current_armor=equipped['armor'].blueprint.catalog_key if 'armor' in equipped else None
+        current_belt=equipped['belt'].blueprint if 'belt' in equipped else None
+        before=protection_set_bonus(current_armor,current_belt)
+        after=protection_set_bonus(item.blueprint.catalog_key if slot=='armor' else current_armor,item.blueprint if slot=='belt' else current_belt)
+        for key in ('weapon_prot','arrow_prot','fire_prot','magic_prot'):
+            old_stats[key]+=before;new_stats[key]+=after
     labels = {'damage':'Obrażenia broni', 'weapon_prot':'Ochrona przed bronią', 'arrow_prot':'Ochrona przed pociskami',
               'fire_prot':'Ochrona przed ogniem', 'magic_prot':'Ochrona przed magią', 'strength_bonus':'Bonus siły',
               'dexterity_bonus':'Bonus zręczności', 'mana_bonus':'Bonus many', 'life_bonus':'Bonus życia'}
@@ -34,6 +41,8 @@ def compare_equipment(profile, item, requested=None):
     if item.blueprint.source_game not in source_games(profile):requirements.append("Przedmiot pochodzi z innego świata.")
     bp = item.blueprint
     from .jarkendar import gear_allowed
+    from .gothic2_content import gear_allowed as nk_allowed
+    if not nk_allowed(profile,bp):requirements.append("Pozycja źródłowa bez obsługiwanej mechaniki." if bp.original_stats.get("runtime_supported") is False else "Wymagane połączenie światów oraz wskazana frakcja lub przeprawa do Jarkendaru.")
     if not gear_allowed(profile,bp):requirements.append("Najpierw odbierz zadanie Droga za portal po upadku Bariery.")
     if profile.level < bp.min_level:
         requirements.append(f'Poziom {bp.min_level} (masz {profile.level}).')
@@ -48,24 +57,36 @@ def compare_equipment(profile, item, requested=None):
         requirements.append(f'Bazowa zręczność {bp.required_dexterity} (masz {profile.dexterity}).')
     if item.is_market_listed:
         requirements.append('Najpierw wycofaj ten egzemplarz z targu.')
-    return {'slot':slot, 'slot_name':{'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II'}[slot],
+    return {'slot':slot, 'slot_name':{'weapon':'Broń','armor':'Pancerz','amulet':'Amulet','ring1':'Pierścień I','ring2':'Pierścień II','belt':'Pas'}[slot],
             'old':old, 'requirements':requirements, 'can_equip':not requirements and not item.is_equipped,
             'rows':[{'label':labels[key], 'old':old_stats[key], 'new':new_stats[key],
                      'delta':new_stats[key]-old_stats[key], 'change':f'{new_stats[key]-old_stats[key]:+d}'} for key in STAT_FIELDS]}
 
 
+def protection_set_bonus(armor,belt):
+    bonus=belt.original_stats.get('browser_set_bonus',{}) if belt else {}
+    if not isinstance(bonus,dict) or not isinstance(bonus.get('armor_keys'),list):return 0
+    value=bonus.get('protection')
+    return value if armor in bonus['armor_keys'] and type(value) is int and 0<=value<=20 else 0
+
+
 def stats_for(profile):
     totals = dict.fromkeys(BONUSES, 0)
-    for item in profile.inventory.filter(is_equipped=True).select_related('blueprint'):
+    equipped=list(profile.inventory.filter(is_equipped=True).select_related('blueprint'))
+    for item in equipped:
         effective = item.effective_stats
-        for key in totals:
-            totals[key] += effective[key]
+        for key in totals:totals[key] += effective[key]
+    armor=next((i.blueprint.catalog_key for i in equipped if i.equipped_slot=='armor'),None)
+    belt=next((i.blueprint for i in equipped if i.equipped_slot=='belt'),None)
+    bonus=protection_set_bonus(armor,belt)
+    for key in ('weapon_prot','arrow_prot','fire_prot','magic_prot'):totals[key]+=bonus
     return totals
 
 
 def allowed(profile, blueprint):
     from .jarkendar import gear_allowed
-    return (gear_allowed(profile,blueprint) and blueprint.source_game in source_games(profile) and profile.level >= blueprint.min_level and
+    from .gothic2_content import gear_allowed as nk_allowed
+    return (nk_allowed(profile,blueprint) and gear_allowed(profile,blueprint) and blueprint.source_game in source_games(profile) and profile.level >= blueprint.min_level and
             equipment_camp_allowed(profile,blueprint.required_camp) and
             profile.camp_tier >= blueprint.min_camp_tier)
 
@@ -141,7 +162,9 @@ def consume_ammo(profile):
 def physical_survival_health(profile, monster, damage=None):
     """Conservative no-critical forecast using the actual deterministic boss phases."""
     import math
-    damage = combat_values(profile)[0] if damage is None else damage
+    if damage is None:
+        damage,skill,_=combat_values(profile)
+        if skill>=100:damage*=2
     if monster.get('boss_key'):
         from .bosses import encounter_round
         kind = combat_values(profile)[2]

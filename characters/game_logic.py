@@ -206,7 +206,7 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
             hero_damage=max(1,hero_damage-(protection if monster.get('boss_key') and kind in ('weapon','arrow') else monster.get(kind+'_prot',monster['weapon_prot'] if kind=='arrow' else 0)))
         temp_monster_life = temp_monster_life - hero_damage
 
-        combat_log.append(f"{profile.user} zadaje {hero_damage} obrażeń.")
+        combat_log.append(f"{profile.display_name} zadaje {hero_damage} obrażeń.")
         combat_log.append(f"{monster['nazwa']} pozostało {temp_monster_life} HP")
 
         if temp_monster_life <= 0:
@@ -224,7 +224,7 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
         temp_hero_life = temp_hero_life - monster_damage
 
         combat_log.append(f"{monster['nazwa']} zadaje {monster_damage} obrażeń")
-        combat_log.append(f"{profile.user} pozostało {temp_hero_life} HP")
+        combat_log.append(f"{profile.display_name} pozostało {temp_hero_life} HP")
 
         if temp_hero_life <= 0:
             combat_log.append(f"{monster['nazwa']} zwyciężył")
@@ -550,9 +550,11 @@ def choose_camp(profile, camp):
 def use_item(profile, item):
     if item.owner != profile or item.is_market_listed or item.is_equipped or item.blueprint.kind != 'consumable': return False
     bp = item.blueprint
-    health = min(bp.heal_amount, profile.max_health - profile.current_health)
-    energy = min(bp.energy_amount, profile.max_energy - profile.current_energy)
-    if health <= 0 and energy <= 0: return False
+    from .equipment import allowed
+    from .consumables import restoration
+    if not allowed(profile,bp):return False
+    health,energy,mana=restoration(profile,bp)
+    if health <= 0 and energy <= 0 and mana <= 0: return False
     if energy:
         from .economic_ledger import refills_remaining
         from .models import EnergyRefill
@@ -560,8 +562,10 @@ def use_item(profile, item):
         EnergyRefill.objects.create(profile=profile, created_at=timezone.now(), reference='item:' + str(uuid4()))
     profile.current_health += health
     profile.current_energy += energy
+    profile.current_mana += mana
     if health: profile.health_updated_at = timezone.now()
     if energy: profile.energy_updated_at = timezone.now()
+    if mana: profile.mana_updated_at = timezone.now()
     profile.save()
     from .market_policy import record_market_event
     record_market_event(profile,item,"consumption",quantity=1)

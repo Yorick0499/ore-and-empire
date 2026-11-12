@@ -53,6 +53,29 @@ def validate_jarkendar(assets):
     return len(quests),len(DESTINATIONS),len(CREATURES)
 
 
+def validate_nk_world(assets):
+    from characters.gothic2_world import DATA,CREATURES,GROUPS,BOSS_ROWS,campaign
+    from characters.locations import BY_KEY
+    from characters.game_logic import BESTIARY,BOSSES
+    source=json.loads((PACK_PATH.parent/'gothic2-source-index.json').read_text())
+    if {r['code'].lower() for r in DATA}!={r['code'].lower() for r in source['creatures']}:raise ValueError('NK wildlife source coverage mismatch')
+    keys={q['key'] for q in campaign()}
+    if len(keys)!=len(campaign()):raise ValueError('Duplicate NK story identity')
+    for row in DATA:
+        if row['role']=='hunt' and (row['key'] not in BESTIARY or row['key'] not in assets or not any(row['key'] in BY_KEY['g2nk_'+g[0]].monsters for g in GROUPS)):raise ValueError('Missing NK wildlife habitat/art')
+        if row['role']!='hunt' and row['key'] in BESTIARY:raise ValueError('Special/summoned entity became ordinary wildlife')
+    for key,*_ in BOSS_ROWS:
+        if key not in BOSSES or key not in BY_KEY or key+'_boss' not in assets:raise ValueError('Missing NK boss location/art')
+    for q in campaign():
+        if q['universe']!='JOINED' or set(q['prerequisites'])-keys-{'jark-crypt-watch'}:raise ValueError('Invalid NK quest scope')
+        for g in q['objectives']:
+            target=g.get('target')
+            if g['kind']=='hunt' and target not in BESTIARY:raise ValueError('Unknown NK hunt target')
+            if g['kind']=='boss' and target not in BOSSES:raise ValueError('Unknown NK boss target')
+            if g['kind']=='travel' and target not in BY_KEY:raise ValueError('Unknown NK travel target')
+    return len(CREATURES),len(BOSS_ROWS),len(campaign())
+
+
 def validate_advancements():
     from characters.faction_advancement import RANKS
     from characters.factions import FACTIONS,RANK_NAMES
@@ -90,6 +113,11 @@ class Command(BaseCommand):
                 if any(asset.get(k)!=meta[k] for k in ('sha256','width','height','mime')):raise ValueError('Asset hash/metadata mismatch: '+key)
             if any(item.get('art_key') and item['art_key'] not in assets for item in data['items']):raise ValueError('Missing item artwork')
             quests,locations,creatures=validate_khorinis(assets)
+            from characters.gothic2_content import PACK_PATH as nk_pack,INDEX_PATH,validate_index
+            nk=validate_pack(nk_pack.read_bytes())
+            nk_counts=validate_index(json.loads(INDEX_PATH.read_bytes()),nk)
+            if any(i["art_key"] not in assets for i in nk["items"]):raise ValueError("Missing G2 NK item art")
+            nk_hunts,nk_bosses,nk_quests=validate_nk_world(assets)
             advanced=validate_advancements()
             jquests,jlocations,jcreatures=validate_jarkendar(assets)
         except Exception as exc:raise CommandError(str(exc)) from exc
@@ -99,3 +127,7 @@ class Command(BaseCommand):
         self.stdout.write(f'Joined factions: {advanced} earned promotion quests, ranks5–8 in each of five factions.')
 
         self.stdout.write(f'Public Jarkendar starter: {jquests} quests, {jlocations} locations, {jcreatures} creatures; shared server, no premium entitlement. NOT the complete NK campaign.')
+
+        self.stdout.write(f'Pinned NK source identities: {nk_counts}. Identity coverage is not full gameplay/quest coverage.')
+
+        self.stdout.write(f'NK resident expeditions: {nk_hunts} hunt populations, {nk_bosses} new bosses, {nk_quests} new quests; browser adaptation, not a verbatim hero campaign.')
