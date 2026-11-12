@@ -49,12 +49,16 @@ def school_for(profile):
 
 
 def circle_cap(profile):
+    from .faction_advancement import advanced_tier,current_tier
+    from .factions import membership
+    current=membership(profile)
+    if current and current.faction in {"FIRE_ORDER","WATER_CIRCLE"} and advanced_tier(profile) is not None:return 6
     native=6 if profile.guild in ARCH_RANKS else 4 if profile.guild in MAGE_RANKS else 2 if profile.camp_tier>=1 else 0
     from .factions import membership
     from .camp_progression import BY_RANK
     member=membership(profile);rank=BY_RANK.get(profile.guild)
     if member and member.faction in {'FIRE_ORDER','WATER_CIRCLE'} and rank:
-        return max(native,6 if rank.tier>=3 else 4 if rank.tier>=2 else 2 if rank.tier>=1 else 0)
+        return max(native,6 if current_tier(profile)>=3 else 4 if current_tier(profile)>=2 else 2 if current_tier(profile)>=1 else 0)
     return native
 
 

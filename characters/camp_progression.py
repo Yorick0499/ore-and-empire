@@ -115,6 +115,8 @@ def promotion_parents(profile, rank):
 
 
 def available_rank(profile, rank):
+    from .faction_advancement import BY_KEY,eligible
+    if rank.key in BY_KEY:return eligible(profile,rank)
     from .story_gates import missing
     from .realms import camps
     from .faction_choice import promotion_allowed
@@ -128,6 +130,8 @@ def quest_complete(quest, rank):
 @player_action
 def accept_camp_quest(profile, rank_key):
     from .models import CampQuest
+    from .faction_advancement import BY_KEY,accept_locked
+    if rank_key in BY_KEY:return accept_locked(profile,rank_key)
     rank = BY_RANK.get(rank_key)
     if not rank or not available_rank(profile, rank) or profile.is_busy:
         return False
@@ -147,6 +151,8 @@ def abandon_camp_quest(profile, rank_key):
 @player_action
 def promote_in_camp(profile, rank_key):
     from .models import CampQuest
+    from .faction_advancement import BY_KEY,promote_locked
+    if rank_key in BY_KEY:return promote_locked(profile,rank_key)
     rank = BY_RANK.get(rank_key)
     if not rank or not available_rank(profile, rank) or profile.is_busy:
         return False
@@ -176,7 +182,8 @@ def record_camp_event(profile, event):
     from .challenges import record_personal_event
     record_personal_event(profile,kind)
     for quest in CampQuest.objects.select_for_update().filter(profile=profile, promoted_at__isnull=True):
-        rank = BY_RANK.get(quest.rank_key)
+        from .faction_advancement import BY_KEY
+        rank = BY_RANK.get(quest.rank_key) or BY_KEY.get(quest.rank_key)
         if not rank or not available_rank(profile, rank):
             continue
         goal = next((goal for goal in rank.objectives if goal.event == event), None)

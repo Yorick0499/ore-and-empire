@@ -33,8 +33,11 @@ def rank_name(profile):
     from .camp_progression import BY_RANK
     member=membership(profile);rank=BY_RANK.get(profile.guild)
     if not member or member.faction not in RANK_NAMES or not rank or rank.camp!=profile.camp:return None
+    from .faction_advancement import advanced_tier,current_tier
+    advanced=advanced_tier(profile)
+    if advanced is not None:return RANK_NAMES[member.faction][advanced]
     # Ordinal is independent of grandfathered privilege levels and alliance_rank.
-    return RANK_NAMES[member.faction][rank.tier]
+    return RANK_NAMES[member.faction][current_tier(profile)]
 
 
 def enroll(profile):

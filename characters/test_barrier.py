@@ -269,8 +269,8 @@ class MercenaryUnionTests(TransactionTestCase):
         onar.ore_balance=2000;onar.save();seed();q=StoryQuest.objects.get(key='barrier-fire-dragon')
         self.assertFalse(promote_alliance(onar,3))
         StoryRun.objects.create(profile=onar,quest=q,status='claimed',snapshot={'key':q.key})
-        oldguild=onar.guild;self.assertTrue(promote_alliance(onar,3));onar.refresh_from_db()
-        self.assertEqual((onar.alliance_rank,onar.camp_tier,onar.guild),(4,4,oldguild));self.assertFalse(promote_alliance(onar,3))
+        oldguild=onar.guild;self.assertFalse(promote_alliance(onar,3));onar.refresh_from_db()
+        self.assertEqual((onar.alliance_rank,onar.camp_tier,onar.guild),(0,3,oldguild));self.assertFalse(promote_alliance(onar,3))
 
 class DragonBuildTests(TestCase):
     def test_prepared_post_barrier_melee_archer_and_mage_can_win(self):

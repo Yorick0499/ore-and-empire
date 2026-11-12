@@ -284,7 +284,15 @@ class BaselinePolicyV21(BaselinePolicyV20):
             return super().choose(replace(o,camp='PROLOGUE_PENDING'))
         return super().choose(o)
 
-class BaselinePolicy(BaselinePolicyV21):pass
+class BaselinePolicyV22(BaselinePolicyV21):
+    def choose(self,o):
+        safe=not (o.busy or o.adventure_ready or o.reward_ready or o.consume_id or o.product_urgent) and o.health>=10
+        if safe and o.camp_action=='choose_faction':return o.camp_action,o.camp_target_id
+        if safe and o.rank_action and o.rank_target:return o.rank_action,o.rank_target
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV22):pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -334,6 +342,8 @@ from .realms import profile_scope,camps as realm_camps
 @profile_scope
 def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
+    from .faction_advancement import RANKS as ADVANCED_RANKS
+    RANKS=RANKS+ADVANCED_RANKS
     from .locations import LOCATIONS
     from .economy import start_adventure, claim_adventure, purchase_product
     profile = type(profile).objects.select_related('world').get(pk=profile.pk)
@@ -410,7 +420,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     disposal = min((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.tradeable and i.blueprint.kind == "weapon" and not i.is_protected and i.effective_stats["damage"] < damage),
                    key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped and combat_equipment else None
     if len(inventory) >= 5:
-        disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable and not i.is_protected), disposal)
+        disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc','ammo'} and i.blueprint.tradeable and not i.is_protected), disposal)
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     from .adventures import choose_adventure
     template = choose_adventure(profile)
@@ -439,7 +449,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             if quest_complete(quest, rank):
                 needs_ore = needs_ore or profile.ore_balance < rank.cost
                 if getattr(profile, rank.attribute) < rank.attribute_value:
-                    training, training_needed = rank.attribute, True
+                    training, training_needed = ("dexterity" if profile.dexterity>profile.strength else "strength") if rank.attribute=="martial" else rank.attribute, True
                 elif profile.level >= rank.level and not needs_ore:
                     rank_action = "promote"
             for goal in rank.objectives:
@@ -452,6 +462,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 elif kind == "train": training, training_needed = key, True
     elif profile.camp != "NONE" and profile.bot_turn >= 2:
         candidates=[r for r in RANKS if available_rank(profile,r)]
+        advanced_candidates=[r for r in candidates if r.key.startswith('ADV_')]
+        if advanced_candidates:candidates=advanced_candidates
         from .magic import MAGE_RANKS
         wants_magic=profile.bot_role!='trader' and profile.pk%2==0
         rank=next((r for r in candidates if r.key in MAGE_RANKS),None) if wants_magic else None
@@ -550,7 +562,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         from .barrier import alliance_card
         if alliance_card(profile)['can_promote']:raid_action='alliance_promote';raid_target=None
         from .locations import BY_KEY
-        desired=next((BY_KEY.get(key) for kind,key in story.events if kind in {'boss','travel'} and BY_KEY.get(key) and BY_KEY[key].universe!=region(profile).universe),None)
+        desired=next((BY_KEY.get(key) for kind,key in (*story.events,*(('boss',key) for key in boss_goals)) if kind in {'boss','travel'} and BY_KEY.get(key) and BY_KEY[key].universe!=region(profile).universe),None)
+        if not desired and quest and quest.rank_key.startswith('ADV_'):
+            desired=next((loc for loc in LOCATIONS if loc.universe!=region(profile).universe and any(key in loc.monsters for key in hunt_goals) and profile.level>=loc.level and profile.camp_tier>=loc.min_tier),None)
         if desired:
             from .models import World
             destination=World.objects.filter(pk__in=region_ids(profile.world_id),universe=desired.universe).first()
@@ -623,10 +637,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-21" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-22" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
     if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
-        policy=None;policy_version="baseline-21"
+        policy=None;policy_version="baseline-22"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
     if isinstance(policy,OllamaPolicy):policy_version=policy.version
