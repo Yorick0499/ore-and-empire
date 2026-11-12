@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="hunt-forecast forecast-{{ monster.preparation.state }}"><strong>{{ monster.preparation.label }}</strong><p>Szacowane obrażenia otrzymane: do {{ monster.preparation.loss }} HP. Zalecane zdrowie z zapasem: {{ monster.preparation.needed }}.</p>{% if monster.preparation.state == 'danger' %}<p><a href="{% url 'train_page' %}">Rozwijaj postać</a> · <a href="{% url 'inventory_page' %}">Sprawdź wyposażenie</a></p>{% endif %}</div>
+                        <div class="hunt-forecast forecast-{{ monster.preparation.state }}"><strong>{{ monster.preparation.label }}</strong><p>Szacowane obrażenia otrzymane: do {{ monster.preparation.loss }} HP. Zalecane zdrowie z zapasem: {{ monster.preparation.needed }}.</p>{% include 'characters/magic_forecast.html' with magic=monster.preparation.magic %}{% if monster.preparation.state == 'danger' %}<p><a href="{% url 'train_page' %}">Rozwijaj postać</a> · <a href="{% url 'inventory_page' %}">Sprawdź wyposażenie</a></p>{% endif %}</div>
                         <form method="POST">
                             {% csrf_token %}<input type="hidden" name="request_key" value="{{ request_key }}">
                             <input type="hidden" name="monster_key" value="{{ key }}">

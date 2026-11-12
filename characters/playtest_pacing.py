@@ -35,7 +35,7 @@ class CampaignPacingTests(TestCase):
     def test_colony_contract_income(self):self.play('GOTHIC_I',None,support=True,income_first=True)
     def test_island_contract_income(self):self.play('GOTHIC_II',None,support=True,income_first=True)
 
-    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None):
+    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None,build_strategy=None,camp=None,on_checkpoint=None):
         initial=start_at or datetime(2026,11,11,9,tzinfo=POLISH_TIME)
         with patch('django.utils.timezone.now',return_value=initial):
             seed_clean_world();world=current_world();world.configured=True;world.bot_count=0;world.save()
@@ -107,7 +107,7 @@ class CampaignPacingTests(TestCase):
                 self.assertEqual(response.status_code,302)
                 hero.refresh_from_db()
             def mine():
-                do('mine',lambda:game.start_mining(hero,15));advance(15*60,'timer');do('mine_claim',lambda:game.claim_ore_reward(hero))
+                do('mine',lambda:game.start_mining(hero,15));advance(max(0,int((hero.action_end_time-now).total_seconds())),'timer');do('mine_claim',lambda:game.claim_ore_reward(hero))
             def funds(amount):
                 for _ in range(2000):
                     hero.refresh_from_db()
@@ -120,19 +120,22 @@ class CampaignPacingTests(TestCase):
                         do('income_claim',lambda:claim_adventure(hero,run.pk))
                     else:mine()
                 self.fail('Income budget exceeded')
-            def prepare():
+            def prepare(target=None):
                 hero.refresh_from_db()
-                while hero.skill_points:
-                    count=min(hero.skill_points,10);funds(hero.training_cost*count)
-                    do('train_strength',lambda:game.train_attribute(hero,'strength',count));hero.refresh_from_db()
-                choices=ItemBluePrint.objects.filter(source_game__in=source_games(hero),merchant=True,kind='weapon',weapon_type='onehand',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-damage','base_value','pk')
-                bp=next((b for b in choices if allowed(hero,b)),None);self.assertIsNotNone(bp)
-                equipped=hero.inventory.filter(is_equipped=True,equipped_slot='weapon').first()
-                if not equipped or equipped.effective_stats['damage']<bp.damage:
-                    owned=hero.inventory.filter(blueprint=bp,is_equipped=False,is_market_listed=False).first()
-                    if not owned:
-                        funds(bp.base_value);do('buy_weapon',lambda:game.buy_item_from_npc(hero,bp));owned=hero.inventory.filter(blueprint=bp,is_equipped=False).first()
-                    do('equip_weapon',lambda:game.equip_item(hero,owned))
+                if build_strategy:
+                    build_strategy.prepare(self,hero,{'do':do,'funds':funds,'advance':advance,'grind_level':grind_level},target)
+                else:
+                    while hero.skill_points:
+                        count=min(hero.skill_points,10);funds(hero.training_cost*count)
+                        do('train_strength',lambda:game.train_attribute(hero,'strength',count));hero.refresh_from_db()
+                    choices=ItemBluePrint.objects.filter(source_game__in=source_games(hero),merchant=True,kind='weapon',weapon_type='onehand',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-damage','base_value','pk')
+                    bp=next((b for b in choices if allowed(hero,b)),None);self.assertIsNotNone(bp)
+                    equipped=hero.inventory.filter(is_equipped=True,equipped_slot='weapon').first()
+                    if not equipped or equipped.effective_stats['damage']<bp.damage:
+                        owned=hero.inventory.filter(blueprint=bp,is_equipped=False,is_market_listed=False).first()
+                        if not owned:
+                            funds(bp.base_value);do('buy_weapon',lambda:game.buy_item_from_npc(hero,bp));owned=hero.inventory.filter(blueprint=bp,is_equipped=False).first()
+                        do('equip_weapon',lambda:game.equip_item(hero,owned))
                 if support:
                     armor=next((b for b in ItemBluePrint.objects.filter(source_game__in=source_games(hero),merchant=True,kind='armor',base_value__lte=max(100,hero.level*80),required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity).order_by('-weapon_prot','base_value','pk') if allowed(hero,b)),None)
                     worn=hero.inventory.filter(is_equipped=True,equipped_slot='armor').first()
@@ -142,7 +145,8 @@ class CampaignPacingTests(TestCase):
                     resupply()
                 # Wait only for missing health, rather than inserting a half hour per click.
                 hero.refresh_from_db()
-                if hero.current_health<hero.max_health:advance((hero.max_health-hero.current_health)*60,'recovery')
+                delay=max((hero.max_health-hero.current_health)*60,(hero.max_mana-hero.current_mana)*30 if build_strategy else 0)
+                if delay>0:advance(delay,'recovery')
             def grind_level():
                 template=AdventureTemplate.objects.filter(universe=region(hero).universe,enabled=True,level__lte=hero.level).order_by('-experience_reward').first()
                 run=do('adventure_start',lambda:__import__('characters.economy',fromlist=['start_adventure']).start_adventure(hero,template.pk))
@@ -173,7 +177,7 @@ class CampaignPacingTests(TestCase):
                     elif kind=='train':
                         funds(hero.training_cost);do('train_goal',lambda:game.train_attribute(hero,goal['target']))
                     elif kind in {'hunt','boss'}:
-                        prepare()
+                        prepare(goal['target'])
                         for _ in range(goal.get('count',1)):
                             if kind=='hunt':
                                 loc=next(l for l in LOCATIONS if l.accessible(hero) and goal['target'] in l.monsters)
@@ -184,9 +188,10 @@ class CampaignPacingTests(TestCase):
                 post('claim',run.pk);run.refresh_from_db();self.assertEqual(run.status,'claimed',run.snapshot['key'])
                 if hero.camp=='NONE':
                     from .story_gates import missing
-                    if not missing(hero):do('join_camp',lambda:game.choose_camp(hero,'CITY_WATCH' if universe=='GOTHIC_II' else 'OLD_CAMP'))
+                    if not missing(hero):do('join_camp',lambda:game.choose_camp(hero,camp or ('CITY_WATCH' if universe=='GOTHIC_II' else 'OLD_CAMP')))
+                if on_checkpoint:on_checkpoint(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start})
             if universe=='GOTHIC_I':
-                prepare();self.assertTrue(do('personal_finale',lambda:game.execute_boss(hero,'sleeper_sanctum')).won)
+                prepare('sleeper_sanctum');result=do('personal_finale',lambda:game.execute_boss(hero,'sleeper_sanctum'));self.assertTrue(result.won,(hero.level,hero.max_health,hero.mana,hero.equipment_stats,result.combat_log))
             hero.refresh_from_db()
             if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start})
-            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})
+            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'build':build_strategy.kind if build_strategy else 'warrior','universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.' if build_strategy else 'Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})

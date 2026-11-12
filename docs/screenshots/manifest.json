@@ -571,6 +571,38 @@
       "captured_at_utc": "2026-11-12T21:55:59.132141+00:00",
       "fixture": "Prywatna baza testowa: syntetyczny weteran45 po finale NK; zwykłe formularze i lokalne assety",
       "theme": "regionalny-endgame-136"
+    },
+    {
+      "file": "build-boss-390.png",
+      "bytes": 159207,
+      "sha256": "6275f2d25b752690de5cc0a767c536b8139f0d28e14358833c0a335d691ff718",
+      "captured_at_utc": "2026-11-12T22:27:24.644036+00:00",
+      "fixture": "Prywatny syntetyczny mag45 z przygotowaną runą i krótkim zapasem many; formularz treningu CSRF",
+      "theme": "buildy-frakcje-128"
+    },
+    {
+      "file": "build-boss-1440.png",
+      "bytes": 727991,
+      "sha256": "501e4fc3ccaccbcb3914db7f59ee8f9132bdb998355790d18fe27dc197a21325",
+      "captured_at_utc": "2026-11-12T22:27:25.508561+00:00",
+      "fixture": "Prywatny syntetyczny mag45 z przygotowaną runą i krótkim zapasem many; formularz treningu CSRF",
+      "theme": "buildy-frakcje-128"
+    },
+    {
+      "file": "build-training-390.png",
+      "bytes": 165497,
+      "sha256": "49a43d4e9308b9caad85782b5b2225e2d8e79bb32e590c6b8202894c477ce10a",
+      "captured_at_utc": "2026-11-12T22:27:22.472689+00:00",
+      "fixture": "Prywatny syntetyczny mag45 z przygotowaną runą i krótkim zapasem many; formularz treningu CSRF",
+      "theme": "buildy-frakcje-128"
+    },
+    {
+      "file": "build-training-1440.png",
+      "bytes": 581715,
+      "sha256": "88d5ea84bfcb32373a5e640ddcb68d56897a7a90bbafa22f2818378f84a388e1",
+      "captured_at_utc": "2026-11-12T22:27:23.302489+00:00",
+      "fixture": "Prywatny syntetyczny mag45 z przygotowaną runą i krótkim zapasem many; formularz treningu CSRF",
+      "theme": "buildy-frakcje-128"
     }
   ]
 }

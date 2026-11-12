@@ -479,6 +479,8 @@ def boss_view(request):
         last.created_at + timedelta(minutes=boss.cooldown_minutes) if last else None
     )
     waiting = next_attempt is not None and timezone.now() < next_attempt
+    from .combat_preparation import hunt_preparation
+    preparation=hunt_preparation(profile,{boss.key:boss.monster},energy_cost=boss.energy_cost)
     return render(
         request,
         "characters/boss.html",
@@ -486,6 +488,7 @@ def boss_view(request):
             "profile": profile,
             "location": location,
             "boss": boss,
+            "preparation":preparation,"forecast":preparation["forecasts"][boss.key],
             "mechanics": MECHANICS[boss.key],
             "current_ore":current_ore,"current_xp":current_xp,
             "finale_gate": boss.key == "sleeper_sanctum" and not finale_ready(profile),
@@ -495,7 +498,7 @@ def boss_view(request):
             "can_fight": (boss.key != "sleeper_sanctum" or finale_ready(profile)) and not waiting
             and not profile.is_busy
             and profile.current_energy >= boss.energy_cost
-            and profile.current_health >= 10,
+            and profile.current_health >= 10 and not preparation["blocks"],
         },
     )
 
