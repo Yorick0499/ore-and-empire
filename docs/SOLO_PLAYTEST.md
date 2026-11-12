@@ -131,3 +131,7 @@ Przygotowany bot poziomu45 zdobył cztery nowe rangi przez zwykłe decyzje i us�
 ### Publiczny Jarkendar — #33
 
 [Przebieg i ograniczenia](JARKENDAR.md): organiczny wojownik od zera i pięć przygotowanych frakcji botów; osobno 18 widoków GUI, blokady usług/URL oraz rzeczywisty równoczesny odbiór portalu na PostgreSQL. To początkowa wyprawa, nie pełne NK ani pełny test trzech buildów.
+
+## Wyprawa NK — #32
+
+[Nowy zakres i ograniczenia](GOTHIC_II_CONTENT.md): model wojownika od zera do finału Irdorath, realne koszty i dostawy, osobne przygotowane buildy oraz GUI. To nie pomiar zachowania człowieka ani dowód implementacji wszystkich oryginalnych zadań.

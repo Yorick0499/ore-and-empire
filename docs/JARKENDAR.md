@@ -34,3 +34,7 @@ Pięć przygotowanych botów reprezentujących docelowe frakcje ukończyło po 8
 18 widoków Chromium 320/390/1440 oraz rzeczywiste formularze portalu przeszły bez błędów JS i poziomego przepełnienia. Test przeglądarkowy przyspiesza wyłącznie oczekiwanie; osobny test usług przesuwa zegar i wymaga wykonania celów. Nadal potrzeba pełnych organicznych przejść maga i łucznika, sprawdzenia konkurencji rynku oraz pełniejszego NK. Nie są to dowody żywego serwera pod produkcyjnym obciążeniem.
 
 [Mapa na telefonie](screenshots/publiczny-jarkendar-390.jpg) · [Mapa na komputerze](screenshots/publiczny-jarkendar-1440.jpg).
+
+## Rozszerzenie #32
+
+Trzy dalsze obszary polowań i ścieżka Kruka są częścią [wyprawy NK](GOTHIC_II_CONTENT.md). Powyższe liczby i raport dotyczą pierwszej paczki #33; nowa paczka wykorzystuje także lokalne ilustracje Jarkendaru z Gothicpedii.

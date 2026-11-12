@@ -17,12 +17,15 @@ class Location:
 
     post_barrier: bool = False
     requires_portal: bool = False
+    required_story: str = ""
+    story_label: str = ""
 
     def accessible(self, profile):
         from .barrier import region,joined
         from .faction_choice import equipment_camp_allowed
         from .jarkendar import unlocked
-        return (not self.requires_portal or unlocked(profile)) and (not self.post_barrier or joined(profile.world_id)) and region(profile).universe == self.universe and profile.level >= self.level and (
+        from .gothic2_world import story_unlocked
+        return story_unlocked(profile,self.required_story) and (not self.requires_portal or unlocked(profile)) and (not self.post_barrier or joined(profile.world_id)) and region(profile).universe == self.universe and profile.level >= self.level and (
             not self.camps or any(equipment_camp_allowed(profile,camp) for camp in self.camps)
         ) and profile.camp_tier >= self.min_tier
 
@@ -81,5 +84,9 @@ LOCATIONS += tuple(Location(key,name,description,level,route=route,monsters=mons
 LOCATIONS += (Location('k2_dragon_fire','Szczyt smoka ognia','Wyprawa mieszkańców po upadku Bariery; przygotuj ochronę przed ogniem.',35,route='boss_page',universe='GOTHIC_I',wiki='Wulkan',post_barrier=True),)
 from .jarkendar import DESTINATIONS as JARKENDAR_DESTINATIONS
 LOCATIONS += tuple(Location(key,name,description,level,route=route,monsters=monsters,universe="GOTHIC_II",wiki="Jarkendar",post_barrier=True,requires_portal=key!="jark_portal") for key,name,description,level,route,monsters,art in JARKENDAR_DESTINATIONS)
+from .gothic2_world import DATA as NK_FAUNA,GROUPS as NK_GROUPS,BOSS_ROWS as NK_BOSSES
+LOCATIONS += tuple(Location('g2nk_'+group,name,'Warta mieszkańców po upadku Bariery. Parametry przeciwników są balansem przeglądarkowym.',level,monsters=tuple(r['key'] for r in NK_FAUNA if r['role']=='hunt' and r['group']==group),universe=universe,post_barrier=True,requires_portal=portal,wiki='Jarkendar' if portal else 'Górnicza Dolina' if universe=='GOTHIC_I' else 'Dwór Irdorath' if group=='irdorath' else 'Tereny Khorinis',required_story='nk-sailing' if group=='irdorath' else '',story_label='Kurs na Irdorath' if group=='irdorath' else '') for group,name,level,universe,portal in NK_GROUPS)
+LOCATIONS += tuple(Location(key,name,'Osobista próba warty mieszkańców; świat trwa niezależnie od ukończenia twojej wyprawy.',level,route='boss_page',universe=universe,post_barrier=True,requires_portal=portal,required_story=gate,story_label='Kurs na Irdorath' if gate=='nk-sailing' else 'Zapiski Budowniczych' if gate else '',wiki='Jarkendar' if portal else 'Górnicza Dolina' if universe=='GOTHIC_I' else 'Dwór Irdorath') for key,name,level,life,strength,protection,xp,ore,universe,portal,gate in NK_BOSSES)
+LOCATIONS += (Location('g2nk_ship','Statek wyprawy do Irdorath','Zamelduj się w porcie po przygotowaniu wspólnej wyprawy.',40,route='train_page',universe='GOTHIC_II',post_barrier=True,wiki='Esmeralda'),)
 LOCATIONS = tuple(sorted(LOCATIONS, key=lambda location: location.level))
 BY_KEY = {location.key: location for location in LOCATIONS}

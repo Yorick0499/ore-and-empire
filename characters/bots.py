@@ -61,6 +61,8 @@ class Observation:
     story_action: str = ""
     story_target: int | None = None
     story_recover: bool = False
+    delivery_id: int | None = None
+    delivery_cost: int = 0
     consume_id: int | None = None
     experience: int = 0
     magic_action: str = ""
@@ -292,7 +294,14 @@ class BaselinePolicyV22(BaselinePolicyV21):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV22):pass
+class BaselinePolicyV23(BaselinePolicyV22):
+    def choose(self,o):
+        safe=not (o.busy or o.adventure_ready or o.reward_ready or o.consume_id or o.product_urgent) and o.health>=10
+        if safe and o.delivery_id and o.ore>=o.delivery_cost:return 'stock',o.delivery_id
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV23):pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -344,7 +353,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
     from .faction_advancement import RANKS as ADVANCED_RANKS
     RANKS=RANKS+ADVANCED_RANKS
-    from .locations import LOCATIONS
+    from .locations import LOCATIONS,BY_KEY
     from .economy import start_adventure, claim_adventure, purchase_product
     profile = type(profile).objects.select_related('world').get(pk=profile.pk)
     from .worlds import playable
@@ -370,7 +379,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.effective_stats['damage'] if equipped else 0
     from .equipment import combat_values,allowed
-    combat_damage=combat_values(profile)[0]
+    combat_damage,combat_skill,_=combat_values(profile)
+    if combat_skill>=100:combat_damage*=2
     ammo_blocked=False;ammo_stock=None;ammo_kind=None
     if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'}:
         ammo_kind='arrow' if equipped.blueprint.weapon_type=='bow' else 'bolt'
@@ -397,12 +407,15 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             equipment=candidate;break
     from .economic_ledger import refills_remaining
     energy_refills_left = refills_remaining(profile)
-    consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
+    from .consumables import restoration
+    consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and any((restoration(profile,i.blueprint)[0] if profile.current_health<profile.max_health//2 else 0,restoration(profile,i.blueprint)[1] if profile.current_energy<15 and energy_refills_left else 0,restoration(profile,i.blueprint)[2] if profile.current_mana<profile.max_mana//2 else 0))), None)
     from .faction_choice import equipment_camps
     equipment_factions=equipment_camps(profile)
     stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=equipment_factions, min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     from .jarkendar import unlocked
     if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
+    from .gothic2_content import visible_stock
+    stock=visible_stock(profile,stock)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
     offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
@@ -427,18 +440,18 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .adventures import choose_adventure
     template = choose_adventure(profile)
     # Delivery stock is bought through the ordinary services and reserved from sale/equip.
-    delivery_needed = False
-    if story.missing_items and len(inventory) < 6:
+    delivery_needed = False;delivery_id=None;delivery_cost=0
+    if story.missing_items:
         needed = ItemBluePrint.objects.filter(pk__in=story.missing_items).order_by('base_value', 'pk').first()
-        if needed:
-            delivery_needed = True
+        if needed and needed.merchant and allowed(profile,needed):
+            delivery_needed = True;delivery_id=needed.pk;delivery_cost=needed.base_value
             if needed.base_value > 0 and needed.base_value <= profile.ore_balance:
                 stock, offer, upgrade = needed, None, None
                 story = type(story)('stock', needed.pk, story.goal, story.option, story.events, story.item_ids, story.missing_items)
     rank = None
     rank_action = ""
     quest_mine = any(kind == 'mine' for kind, _ in story.events)
-    needs_ore = delivery_needed and not story.action
+    needs_ore = delivery_needed and profile.ore_balance<delivery_cost and not story.action
     hunt_goals = [key for kind, key in story.events if kind == 'hunt']
     boss_goals = [key for kind, key in story.events if kind == 'boss']
     if final_goal:boss_goals.append('sleeper_sanctum')
@@ -496,7 +509,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     for key in boss_goals:
         boss = game.BOSSES[key]
         last = BossAttempt.objects.filter(profile=profile, boss_key=key).first()
-        if profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, combat_damage):
+        if BY_KEY[key].accessible(profile) and profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, combat_damage):
             boss_key = key
             break
     if ammo_blocked:
@@ -508,7 +521,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     for kind, key in (*story.events,*(('hunt',key) for key in hunt_goals),*(('boss',key) for key in boss_goals)):
         if kind == 'hunt' and any(loc.accessible(profile) and key in loc.monsters for loc in LOCATIONS):
             story_fights.append((game.BESTIARY[key], 15))
-        elif kind == 'boss' and profile.level >= game.BOSSES[key].level:
+        elif kind == 'boss' and BY_KEY[key].accessible(profile) and profile.level >= game.BOSSES[key].level:
             story_fights.append((game.BOSSES[key].monster, 25))
     story_recover = not ammo_blocked and bool(story_fights) and not any(
         safe_to_hunt(profile, monster, combat_damage) and profile.current_energy >= energy
@@ -634,7 +647,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         upgrade_gain=upgrade[3] if upgrade else 0,
         ore_reserve=UPGRADE_ORE_RESERVE if equipped and combat_equipment else 0,
         disposal_id=disposal.pk if disposal else None,
-        story_action=story.action, story_target=story.target, story_recover=story_recover,
+        story_action=story.action, story_target=story.target, story_recover=story_recover,delivery_id=delivery_id,delivery_cost=delivery_cost,
         consume_id=consumable.pk if consumable else None,
         market_action=market_action,market_target=market_target,market_price=market_price,
         craft_action=craft_action,craft_target=craft_target,
@@ -643,10 +656,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-22" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-23" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
     if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
-        policy=None;policy_version="baseline-22"
+        policy=None;policy_version="baseline-23"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
     if isinstance(policy,OllamaPolicy):policy_version=policy.version

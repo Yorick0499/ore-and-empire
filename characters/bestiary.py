@@ -65,6 +65,8 @@ from .khorinis import CREATURES as KHORINIS_CREATURES
 CREATURES += KHORINIS_CREATURES
 from .jarkendar import CREATURES as JARKENDAR_CREATURES
 CREATURES += JARKENDAR_CREATURES
+from .gothic2_world import CREATURES as NK_CREATURES
+CREATURES += NK_CREATURES
 BESTIARY = {
     key: dict(nazwa=name, level=level, life=life, strength=strength,
               weapon_prot=armour, exp_reward=experience, source=source)
@@ -74,3 +76,10 @@ BESTIARY = {
 # Browser adaptation resistances, separate from original Gothic statistics.
 for key,fire,magic in [('fire_golem',90,10),('ice_golem',0,50),('stone_golem',15,15),('fire_demon',60,30),('demon',40,30),('demon_lord',50,40),('skeleton_mage',10,20),('temple_guardian',20,25)]:
     BESTIARY[key].update(fire_prot=fire,magic_prot=magic)
+
+# Explicit browser resistances for NK wildlife; original numbers stay in sources.
+for key,monster in BESTIARY.items():
+    if key.startswith('g2nk_'):
+        if any(token in key for token in ('firegolem','firewaran','shadowbeast_addon_fire')):monster.update(fire_prot=90,magic_prot=20)
+        elif 'icegolem' in key or 'icewolf' in key:monster.update(fire_prot=0,magic_prot=30)
+        elif 'golem' in key or 'stoneguardian' in key:monster.update(fire_prot=20,magic_prot=20)

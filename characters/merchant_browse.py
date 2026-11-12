@@ -17,11 +17,13 @@ def merchant_context(profile,params):
         required_camp__in=['',profile.camp],min_camp_tier__lte=profile.camp_tier)
     from .jarkendar import unlocked
     if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
+    from .gothic2_content import visible_stock
+    stock=visible_stock(profile,stock)
     if filters['q']:stock=stock.filter(name__iregex=literal_pattern(filters['q']))
     if filters['kind']:stock=stock.filter(kind=filters['kind'])
     if filters['weapon']:stock=stock.filter(kind='weapon',weapon_type=filters['weapon'])
     if filters['affordable']:stock=stock.filter(base_value__lte=profile.ore_balance)
-    if filters['usable']:stock=stock.exclude(kind__in=['weapon','armor','ring','amulet'],required_strength__gt=profile.strength).exclude(kind__in=['weapon','armor','ring','amulet'],required_dexterity__gt=profile.dexterity)
+    if filters['usable']:stock=stock.exclude(kind__in=['weapon','armor','ring','amulet','belt'],required_strength__gt=profile.strength).exclude(kind__in=['weapon','armor','ring','amulet','belt'],required_dexterity__gt=profile.dexterity)
     stock=bounded_page(stock.order_by('base_value','name','pk'),params,'page')
     bag=bounded_page(profile.inventory.filter(is_equipped=False,is_market_listed=False,is_protected=False,blueprint__tradeable=True)
         .exclude(pk=profile.prepared_magic_id).select_related('blueprint').order_by('blueprint__name','pk'),params,'bag_page')

@@ -19,15 +19,20 @@ class Boss:
 
     @property
     def monster(self):
+        from .gothic2_world import COMBAT_PROFILES
+        kind,extra,armor,_=COMBAT_PROFILES.get(self.key,("weapon",0,0,""))
         return {
+            "damage_type":kind,
+            "fire_prot":60 if self.key in {"k2_dragon_fire","g2nk_dragon_island"} else 30 if self.key=="g2nk_dragon_undead" else 0,
+            "magic_prot":60 if self.key=="g2nk_dragon_ice" else 40 if self.key=="g2nk_dragon_undead" else 0,
             "nazwa": self.name,
             "life": self.life,
             "strength": self.strength,
             "weapon_prot": self.protection,
             "boss_key": self.key,
             "balance_version":self.balance_version,
-            "forecast_strength": self.strength + 13,
-            "forecast_protection": self.protection + 6,
+            "forecast_strength": self.strength + 13 + extra,
+            "forecast_protection": self.protection + 6 + armor,
         }
 
 
@@ -79,11 +84,26 @@ def encounter_round(monster, health, turn):
             messages.append("Fala echa uderza w magiczną ochronę warty.")
     if key=='k2_dragon_fire' and turn%3==0:
         kind='fire';strength+=15;messages.append('Ognisty oddech smoka!')
+    from .gothic2_world import COMBAT_PROFILES
+    if key in COMBAT_PROFILES:
+        element,extra,armor,message=COMBAT_PROFILES[key]
+        if stage>=2:protection+=armor
+        if turn%3==0:strength+=extra;kind=element;messages.append(message)
+        if key=='g2nk_dragon_rock' and stage>=2 and turn%2==0:
+            protection=max(0,protection-20);messages.append('Skalna osłona otwiera lukę: pancerz -20.')
+        if key=='g2nk_dragon_undead' and stage==3:
+            protection=max(0,protection-10);messages.append('Pieczęć warty osłabia pancerz smoka-ożywieńca.')
     return stage, max(0, protection), strength, kind, messages
 
 # First post-Barrier expedition. Browser balance, not canonical G2 statistics.
-BOSSES['k2_dragon_fire']=Boss('k2_dragon_fire','Feomathar — smok ognia',35,2400,120,75,5000,750,60,30)
+BOSSES['k2_dragon_fire']=Boss('k2_dragon_fire','Feomathar — smok ognia',35,2400,120,75,5000,750,60,30,balance_version=2)
 MECHANICS['k2_dragon_fire']='Ognisty oddech co trzecią rundę; przygotuj ochronę przed ogniem. Dostęp dopiero po upadku Bariery.'
 
 BOSSES['jark_crypt']=Boss('jark_crypt','Strażnik krypty Budowniczych',25,1100,75,40,3500,400)
 MECHANICS['jark_crypt']='Strażnik zapowiada silny atak co trzecią rundę. Przygotuj ochronę i zapas zdrowia; dostęp po przeprawie przez portal.'
+
+from .gothic2_world import BOSS_ROWS as NK_BOSSES
+for key,name,level,life,strength,protection,xp,ore,region,portal,gate in NK_BOSSES:
+    BOSSES[key]=Boss(key,name,level,life,strength,protection,xp,ore)
+    from .gothic2_world import COMBAT_PROFILES
+    MECHANICS[key]=COMBAT_PROFILES[key][3]+' Silny atak co trzecią rundę; pancerz lub osłona zmieniają się w późniejszych fazach. Stały balans przeglądarkowy.'

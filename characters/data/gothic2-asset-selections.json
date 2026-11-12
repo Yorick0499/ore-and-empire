@@ -1,0 +1,3590 @@
+{
+  "item_g2nk_djg_inserten": {
+    "page": "JOLY Storyhelpletter",
+    "file": "List otwarty G2 ikona.png",
+    "code": "DJG_Inserten",
+    "revision": 554443
+  },
+  "item_g2nk_enterbanditcamp": {
+    "page": "Wejście do obozu bandytów",
+    "file": "List otwarty G2 ikona.png",
+    "code": "EnterBanditCamp",
+    "revision": 554165
+  },
+  "item_g2nk_fakescroll_addon": {
+    "page": "Kawałek papieru",
+    "file": "List otwarty G2 ikona.png",
+    "code": "FakeScroll_Addon",
+    "revision": 575060
+  },
+  "item_g2nk_gold": {
+    "page": "Worek pełen złota!",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "Gold",
+    "revision": 566731
+  },
+  "item_g2nk_holy_hammer_mis": {
+    "page": "Święty młot",
+    "file": "Święty młot G2 ikona.png",
+    "code": "Holy_Hammer_Mis",
+    "revision": 585392
+  },
+  "item_g2nk_hosh1": {
+    "page": "Unsterblich",
+    "file": "List otwarty G2 ikona.png",
+    "code": "Hosh1",
+    "revision": 553308
+  },
+  "item_g2nk_hosh2": {
+    "page": "Sterblich",
+    "file": "List otwarty G2 ikona.png",
+    "code": "Hosh2",
+    "revision": 553307
+  },
+  "item_g2nk_itam_addon_franco": {
+    "page": "Amulet Franka",
+    "file": "Amulet życia GII ikona.png",
+    "code": "ItAm_Addon_Franco",
+    "revision": 578964
+  },
+  "item_g2nk_itam_addon_health": {
+    "page": "Amulet uzdrowiciela",
+    "file": "Amulet życia GII ikona.png",
+    "code": "ItAm_Addon_Health",
+    "revision": 551126
+  },
+  "item_g2nk_itam_addon_mana": {
+    "page": "Amulet kapłana",
+    "file": "Amulet życia GII ikona.png",
+    "code": "ItAm_Addon_Mana",
+    "revision": 551127
+  },
+  "item_g2nk_itam_addon_str": {
+    "page": "Amulet wojownika",
+    "file": "Amulet życia GII ikona.png",
+    "code": "ItAm_Addon_Str",
+    "revision": 578967
+  },
+  "item_g2nk_itam_addon_wispdetector": {
+    "page": "Amulet szukającego ognika",
+    "file": "Amulet magii GII ikona.png",
+    "code": "ItAm_Addon_WispDetector",
+    "revision": 583300
+  },
+  "item_g2nk_itam_amulettofdeath_mis": {
+    "page": "Święta Aura Innosa",
+    "file": "Amulet ognia GII ikona.png",
+    "code": "ItAm_AmulettOfDeath_Mis",
+    "revision": 550999
+  },
+  "item_g2nk_itam_dex_01": {
+    "page": "Amulet zwinności",
+    "file": "Amulet zwinności GII ikona.png",
+    "code": "ItAm_Dex_01",
+    "revision": 562802
+  },
+  "item_g2nk_itam_dex_strg_01": {
+    "page": "Amulet mocy",
+    "file": "Amulet mocy GII ikona.png",
+    "code": "ItAm_Dex_Strg_01",
+    "revision": 562798
+  },
+  "item_g2nk_itam_hp_01": {
+    "page": "Amulet życia",
+    "file": "Amulet życia GII ikona.png",
+    "code": "ItAm_HP_01",
+    "revision": 551103
+  },
+  "item_g2nk_itam_hp_mana_01": {
+    "page": "Amulet oświecenia",
+    "file": "Amulet oświecenia GII ikona.png",
+    "code": "ItAm_HP_Mana_01",
+    "revision": 562795
+  },
+  "item_g2nk_itam_mana_01": {
+    "page": "Amulet magii",
+    "file": "Amulet magii GII ikona.png",
+    "code": "ItAm_Mana_01",
+    "revision": 562793
+  },
+  "item_g2nk_itam_prot_edge_01": {
+    "page": "Amulet pancerza",
+    "file": "Amulet pancerza GII ikona.png",
+    "code": "ItAm_Prot_Edge_01",
+    "revision": 578853
+  },
+  "item_g2nk_itam_prot_fire_01": {
+    "page": "Amulet ognia",
+    "file": "Amulet ognia GII ikona.png",
+    "code": "ItAm_Prot_Fire_01",
+    "revision": 552827
+  },
+  "item_g2nk_itam_prot_mage_01": {
+    "page": "Amulet duchowej siły",
+    "file": "Amulet duchowej siły GII ikona.png",
+    "code": "ItAm_Prot_Mage_01",
+    "revision": 562783
+  },
+  "item_g2nk_itam_prot_point_01": {
+    "page": "Amulet dębowej skóry",
+    "file": "Amulet dębowej skóry GII ikona.png",
+    "code": "ItAm_Prot_Point_01",
+    "revision": 562777
+  },
+  "item_g2nk_itam_prot_total_01": {
+    "page": "Amulet magicznego pancerza",
+    "file": "Amulet magicznego pancerza GII ikona.png",
+    "code": "ItAm_Prot_Total_01",
+    "revision": 562787
+  },
+  "item_g2nk_itam_strg_01": {
+    "page": "Amulet siły",
+    "file": "Amulet siły GII ikona.png",
+    "code": "ItAm_Strg_01",
+    "revision": 575482
+  },
+  "item_g2nk_itar_barkeeper": {
+    "page": "Strój ziemianina",
+    "file": "Strój ziemianina G2 ikona.png",
+    "code": "ItAr_Barkeeper",
+    "revision": 578100
+  },
+  "item_g2nk_itar_bau_l": {
+    "page": "Strój farmera",
+    "file": "Strój farmera 1 G2 ikona.png",
+    "code": "ItAr_Bau_L",
+    "revision": 579136
+  },
+  "item_g2nk_itar_bau_m": {
+    "page": "Strój farmera",
+    "file": "Strój farmera 1 G2 ikona.png",
+    "code": "ItAr_Bau_M",
+    "revision": 579136
+  },
+  "item_g2nk_itar_baubabe_l": {
+    "page": "Suknia farmerki",
+    "file": "Strój obywatelki G2 ikona.png",
+    "code": "ItAr_BauBabe_L",
+    "revision": 546897
+  },
+  "item_g2nk_itar_baubabe_m": {
+    "page": "Suknia farmerki",
+    "file": "Strój obywatelki G2 ikona.png",
+    "code": "ItAr_BauBabe_M",
+    "revision": 546897
+  },
+  "item_g2nk_itar_bdt_h": {
+    "page": "Ciężki pancerz bandyty",
+    "file": "Ciężki pancerz bandyty G2 ikona.png",
+    "code": "ItAr_Bdt_H",
+    "revision": 563370
+  },
+  "item_g2nk_itar_bdt_m": {
+    "page": "Średni pancerz bandyty",
+    "file": "Średni pancerz bandyty G2 ikona.png",
+    "code": "ItAr_Bdt_M",
+    "revision": 578609
+  },
+  "item_g2nk_itar_bloodwyn_addon": {
+    "page": "Zbroja Bloodwyna",
+    "file": "Zbroja Bloodwyna G2NK ikona.png",
+    "code": "ItAr_Bloodwyn_Addon",
+    "revision": 547972
+  },
+  "item_g2nk_itar_dementor": {
+    "page": "Mroczny płaszcz",
+    "file": "Szata mrocznej magii G2 ikona.png",
+    "code": "ItAr_Dementor",
+    "revision": 590451
+  },
+  "item_g2nk_itar_diego": {
+    "page": "Pancerz Diega",
+    "file": "Pancerz Diega G2 ikona.png",
+    "code": "ItAr_Diego",
+    "revision": 561082
+  },
+  "item_g2nk_itar_djg_babe": {
+    "page": "Kobiecy pancerz łowcy smoków",
+    "file": "Lekki pancerz łowcy smoków G2 ikona.png",
+    "code": "ItAr_Djg_Babe",
+    "revision": 579166
+  },
+  "item_g2nk_itar_djg_crawler": {
+    "page": "Zbroja z pancerzy pełzaczy",
+    "file": "Zbroja z pancerzy pełzaczy G2 ikona.png",
+    "code": "ItAr_Djg_Crawler",
+    "revision": 583699
+  },
+  "item_g2nk_itar_djg_h": {
+    "page": "Ciężki pancerz łowcy smoków",
+    "file": "Ciężki pancerz łowcy smoków G2 ikona.png",
+    "code": "ItAr_Djg_H",
+    "revision": 562547
+  },
+  "item_g2nk_itar_djg_l": {
+    "page": "Lekki pancerz łowcy smoków",
+    "file": "Lekki pancerz łowcy smoków G2 ikona.png",
+    "code": "ItAr_Djg_L",
+    "revision": 591041
+  },
+  "item_g2nk_itar_djg_m": {
+    "page": "Średni pancerz łowcy smoków",
+    "file": "Średni pancerz łowcy smoków G2 ikona.png",
+    "code": "ItAr_Djg_M",
+    "revision": 590829
+  },
+  "item_g2nk_itar_fake_ranger": {
+    "page": "Zniszczona zbroja",
+    "file": "Skórzany pancerz (ikonka) (G2).png",
+    "code": "ItAr_Fake_Ranger",
+    "revision": 569777
+  },
+  "item_g2nk_itar_firearmor_addon": {
+    "page": "Magiczna zbroja",
+    "file": "Szata mrocznej magii G2 ikona.png",
+    "code": "ItAr_FireArmor_Addon",
+    "revision": 563339
+  },
+  "item_g2nk_itar_governor": {
+    "page": "Kaftan gubernatora",
+    "file": "Kaftan gubernatora G2 ikona.png",
+    "code": "ItAr_Governor",
+    "revision": 575275
+  },
+  "item_g2nk_itar_judge": {
+    "page": "Szata sędziego",
+    "file": "Kaftan gubernatora G2 ikona.png",
+    "code": "ItAr_Judge",
+    "revision": 579128
+  },
+  "item_g2nk_itar_kdf_h": {
+    "page": "Ciężka szata ognia",
+    "file": "Ciężka szata ognia G2 ikona.png",
+    "code": "ItAr_KdF_H",
+    "revision": 562945
+  },
+  "item_g2nk_itar_kdf_l": {
+    "page": "Szata maga ognia",
+    "file": "Szata maga ognia G2 ikona.png",
+    "code": "ItAr_KdF_L",
+    "revision": 562946
+  },
+  "item_g2nk_itar_kdw_h": {
+    "page": "Szata maga wody",
+    "file": "Szata maga wody G2 ikona.png",
+    "code": "ItAr_KdW_H",
+    "revision": 563113
+  },
+  "item_g2nk_itar_kdw_l_addon": {
+    "page": "Lekka toga maga wody",
+    "file": "Lekka toga maga wody G2NK ikona.png",
+    "code": "ItAr_KdW_L_Addon",
+    "revision": 581391
+  },
+  "item_g2nk_itar_leather_l": {
+    "page": "Skórzany pancerz",
+    "file": "Skórzany pancerz (ikonka) (G2).png",
+    "code": "ItAr_Leather_L",
+    "revision": 578798
+  },
+  "item_g2nk_itar_lester": {
+    "page": "Szata Lestera",
+    "file": "Szata Lestera G2 ikona.png",
+    "code": "ItAr_Lester",
+    "revision": 548330
+  },
+  "item_g2nk_itar_mayazombie_addon": {
+    "page": "Stara zbroja",
+    "file": "Zbroja Kruka G2NK ikona.png",
+    "code": "ItAr_MayaZombie_Addon",
+    "revision": 562844
+  },
+  "item_g2nk_itar_mil_l": {
+    "page": "Lekki pancerz straży",
+    "file": "Lekki pancerz straży G2 ikona.png",
+    "code": "ItAr_Mil_L",
+    "revision": 575331
+  },
+  "item_g2nk_itar_mil_m": {
+    "page": "Ciężki pancerz straży",
+    "file": "Ciężki pancerz straży G2 ikona.png",
+    "code": "ItAr_Mil_M",
+    "revision": 583172
+  },
+  "item_g2nk_itar_nov_l": {
+    "page": "Szata nowicjusza",
+    "file": "Szata nowicjusza G2 ikona.png",
+    "code": "ItAr_Nov_L",
+    "revision": 581775
+  },
+  "item_g2nk_itar_pal_h": {
+    "page": "Pancerz paladyna",
+    "file": "Pancerz paladyna G2 ikona.png",
+    "code": "ItAr_Pal_H",
+    "revision": 578059
+  },
+  "item_g2nk_itar_pal_m": {
+    "page": "Pancerz rycerza",
+    "file": "Pancerz rycerza G2 ikona.png",
+    "code": "ItAr_Pal_M",
+    "revision": 562842
+  },
+  "item_g2nk_itar_pal_skel": {
+    "page": "Stara rycerska zbroja",
+    "file": "Pancerz paladyna G2 ikona.png",
+    "code": "ItAr_Pal_Skel",
+    "revision": 563378
+  },
+  "item_g2nk_itar_pir_h_addon": {
+    "page": "Ubranie kapitana",
+    "file": "Kaftan gubernatora G2 ikona.png",
+    "code": "ItAr_Pir_H_Addon",
+    "revision": 569775
+  },
+  "item_g2nk_itar_pir_l_addon": {
+    "page": "Pirackie ubranie",
+    "file": "Pirackie ubranie G2NK ikona.png",
+    "code": "ItAr_Pir_L_Addon",
+    "revision": 546903
+  },
+  "item_g2nk_itar_pir_m_addon": {
+    "page": "Piracka zbroja",
+    "file": "Piracka zbroja G2NK ikona.png",
+    "code": "ItAr_Pir_M_Addon",
+    "revision": 586448
+  },
+  "item_g2nk_itar_prisoner": {
+    "page": "Łachy skazańca",
+    "file": "Łachy skazańca G2 ikona.png",
+    "code": "ItAr_Prisoner",
+    "revision": 579173
+  },
+  "item_g2nk_itar_ranger_addon": {
+    "page": "Zbroja Wodnego Kręgu",
+    "file": "Skórzany pancerz (ikonka) (G2).png",
+    "code": "ItAr_Ranger_Addon",
+    "revision": 569776
+  },
+  "item_g2nk_itar_raven_addon": {
+    "page": "Zbroja Kruka",
+    "file": "Zbroja Kruka G2NK ikona.png",
+    "code": "ItAr_Raven_Addon",
+    "revision": 546641
+  },
+  "item_g2nk_itar_sld_h": {
+    "page": "Ciężki pancerz najemnika",
+    "file": "Ciężki pancerz najemnika G2 ikona.png",
+    "code": "ItAr_Sld_H",
+    "revision": 578283
+  },
+  "item_g2nk_itar_sld_l": {
+    "page": "Lekki pancerz najemnika (Gothic II)",
+    "file": "Lekki pancerz najemnika G2 ikona.png",
+    "code": "ItAr_Sld_L",
+    "revision": 576973
+  },
+  "item_g2nk_itar_sld_m": {
+    "page": "Średni pancerz najemnika",
+    "file": "Średni pancerz najemnika G2 ikona.png",
+    "code": "ItAr_Sld_M",
+    "revision": 562517
+  },
+  "item_g2nk_itar_thorus_addon": {
+    "page": "Zbroja strażnika Kruka",
+    "file": "Zbroja strażnika Kruka G2NK ikona.png",
+    "code": "ItAr_Thorus_Addon",
+    "revision": 584938
+  },
+  "item_g2nk_itar_vlk_h": {
+    "page": "Strój obywatela",
+    "file": "Strój obywatela 1 G2 ikona.png",
+    "code": "ItAr_Vlk_H",
+    "revision": 575366
+  },
+  "item_g2nk_itar_vlk_l": {
+    "page": "Strój obywatela",
+    "file": "Strój obywatela 1 G2 ikona.png",
+    "code": "ItAr_Vlk_L",
+    "revision": 575366
+  },
+  "item_g2nk_itar_vlk_m": {
+    "page": "Strój obywatela",
+    "file": "Strój obywatela 1 G2 ikona.png",
+    "code": "ItAr_Vlk_M",
+    "revision": 575366
+  },
+  "item_g2nk_itar_vlkbabe_h": {
+    "page": "Strój obywatelki",
+    "file": "Strój obywatelki G2 ikona.png",
+    "code": "ItAr_VlkBabe_H",
+    "revision": 575367
+  },
+  "item_g2nk_itar_vlkbabe_l": {
+    "page": "Strój obywatelki",
+    "file": "Strój obywatelki G2 ikona.png",
+    "code": "ItAr_VlkBabe_L",
+    "revision": 575367
+  },
+  "item_g2nk_itar_vlkbabe_m": {
+    "page": "Strój obywatelki",
+    "file": "Strój obywatelki G2 ikona.png",
+    "code": "ItAr_VlkBabe_M",
+    "revision": 575367
+  },
+  "item_g2nk_itar_xardas": {
+    "page": "Szata mrocznych sztuk",
+    "file": "Szata mrocznej magii G2 ikona.png",
+    "code": "ItAr_Xardas",
+    "revision": 577263
+  },
+  "item_g2nk_itat_dragonegg_mis": {
+    "page": "Smocze jajo",
+    "file": "Smocze jajo G2 ikona.png",
+    "code": "ItAt_DragonEgg_Mis",
+    "revision": 585657
+  },
+  "item_g2nk_itat_meatbugflesh": {
+    "page": "Owadzie mięso",
+    "file": "Owadzie_mięso_(ikonka)_(G2).png",
+    "code": "ItAt_Meatbugflesh",
+    "revision": 483327
+  },
+  "item_g2nk_itbe_addon_dex_10": {
+    "page": "Pas zręczności",
+    "file": "Pas zręczności (ikona).png",
+    "code": "ItBe_Addon_Dex_10",
+    "revision": 559917
+  },
+  "item_g2nk_itbe_addon_dex_5": {
+    "page": "Pas umiejętności",
+    "file": "Pas siły (ikonka) (G2NK).png",
+    "code": "ItBe_Addon_Dex_5",
+    "revision": 559918
+  },
+  "item_g2nk_itbe_addon_kdf_01": {
+    "page": "Szarfa ognia",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_KDF_01",
+    "revision": 570264
+  },
+  "item_g2nk_itbe_addon_leather_01": {
+    "page": "Skórzany pas",
+    "file": "Skórzany pas (ikona).png",
+    "code": "ItBe_Addon_Leather_01",
+    "revision": 559919
+  },
+  "item_g2nk_itbe_addon_mc": {
+    "page": "Pas pełzacza",
+    "file": "Pas siły (ikonka) (G2NK).png",
+    "code": "ItBe_Addon_MC",
+    "revision": 559920
+  },
+  "item_g2nk_itbe_addon_mil_01": {
+    "page": "Pas straży",
+    "file": "Pas straży (ikona).png",
+    "code": "ItBe_Addon_Mil_01",
+    "revision": 575560
+  },
+  "item_g2nk_itbe_addon_nov_01": {
+    "page": "Szarfa gotowości",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Nov_01",
+    "revision": 569781
+  },
+  "item_g2nk_itbe_addon_prot_edge": {
+    "page": "Pas ochrony",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Prot_Edge",
+    "revision": 570261
+  },
+  "item_g2nk_itbe_addon_prot_edgpoi": {
+    "page": "Pas ochrony",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Prot_EdgPoi",
+    "revision": 570261
+  },
+  "item_g2nk_itbe_addon_prot_fire": {
+    "page": "Pas ognistego biegacza",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Prot_Fire",
+    "revision": 570262
+  },
+  "item_g2nk_itbe_addon_prot_magic": {
+    "page": "Pas magicznej obrony",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Prot_Magic",
+    "revision": 559924
+  },
+  "item_g2nk_itbe_addon_prot_point": {
+    "page": "Pas obrony",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Prot_Point",
+    "revision": 570260
+  },
+  "item_g2nk_itbe_addon_prot_total": {
+    "page": "Pas strażnika",
+    "file": "Pas brązowy srebrna klamra ikona.png",
+    "code": "ItBe_Addon_Prot_Total",
+    "revision": 570263
+  },
+  "item_g2nk_itbe_addon_sld_01": {
+    "page": "Pas najemnika",
+    "file": "Pas zręczności (ikona).png",
+    "code": "ItBe_Addon_Sld_01",
+    "revision": 562508
+  },
+  "item_g2nk_itbe_addon_str_10": {
+    "page": "Pas mocy",
+    "file": "Pas zręczności (ikona).png",
+    "code": "ItBe_Addon_Str_10",
+    "revision": 575965
+  },
+  "item_g2nk_itbe_addon_str_5": {
+    "page": "Pas siły",
+    "file": "Pas siły (ikonka) (G2NK).png",
+    "code": "ItBe_Addon_Str_5",
+    "revision": 575966
+  },
+  "item_g2nk_itfo_addon_firestew": {
+    "page": "Ognisty gulasz",
+    "file": "Gulasz_(ikonka)_(G2).png",
+    "code": "ItFo_Addon_FireStew",
+    "revision": 550907
+  },
+  "item_g2nk_itfo_addon_grog": {
+    "page": "Grog prawdziwego marynarza",
+    "file": "Biały rum GII Ikona.png",
+    "code": "ItFo_Addon_Grog",
+    "revision": 588383
+  },
+  "item_g2nk_itfo_addon_krokofleisch_mission": {
+    "page": "Mięso bagiennego szczura",
+    "file": "Mięso bagiennego szczura G2NK ikona.png",
+    "code": "ItFo_Addon_Krokofleisch_Mission",
+    "revision": 524644
+  },
+  "item_g2nk_itfo_addon_loushammer": {
+    "page": "Młot Lou",
+    "file": "Młot Lou (ikonka) (G2NK).png",
+    "code": "ItFo_Addon_LousHammer",
+    "revision": 562638
+  },
+  "item_g2nk_itfo_addon_meatsoup": {
+    "page": "Parujący gulasz",
+    "file": "Zupa_rybna_(ikonka)_(G2).png",
+    "code": "ItFo_Addon_Meatsoup",
+    "revision": 561986
+  },
+  "item_g2nk_itfo_addon_pfeffer_01": {
+    "page": "Ziarna czerwonego pieprzu",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItFo_Addon_Pfeffer_01",
+    "revision": 579085
+  },
+  "item_g2nk_itfo_addon_rum": {
+    "page": "Biały rum",
+    "file": "Biały rum GII Ikona.png",
+    "code": "ItFo_Addon_Rum",
+    "revision": 583337
+  },
+  "item_g2nk_itfo_addon_schlafhammer": {
+    "page": "Podwójny Młot Lou",
+    "file": "Młot Lou (ikonka) (G2NK).png",
+    "code": "ItFo_Addon_SchlafHammer",
+    "revision": 515870
+  },
+  "item_g2nk_itfo_addon_schnellerhering": {
+    "page": "Szybki śledź",
+    "file": "Młot Lou (ikonka) (G2NK).png",
+    "code": "ItFo_Addon_SchnellerHering",
+    "revision": 587874
+  },
+  "item_g2nk_itfo_apple": {
+    "page": "Jabłko",
+    "file": "Jabłko (ikonka) (G2).png",
+    "code": "ItFo_Apple",
+    "revision": 581619
+  },
+  "item_g2nk_itfo_bacon": {
+    "page": "Szynka",
+    "file": "Szynka_(ikonka)_(G2).png",
+    "code": "ItFo_Bacon",
+    "revision": 566509
+  },
+  "item_g2nk_itfo_beer": {
+    "page": "Piwo",
+    "file": "Piwo G2 ikona.png",
+    "code": "ItFo_Beer",
+    "revision": 581472
+  },
+  "item_g2nk_itfo_booze": {
+    "page": "Gin",
+    "file": "Gin_(ikonka)_(G2).png",
+    "code": "ItFo_Booze",
+    "revision": 580218
+  },
+  "item_g2nk_itfo_bread": {
+    "page": "Chleb",
+    "file": "Chleb G2 ikona.png",
+    "code": "ItFo_Bread",
+    "revision": 570164
+  },
+  "item_g2nk_itfo_cheese": {
+    "page": "Ser",
+    "file": "Ser_(ikonka)_(G2).png",
+    "code": "ItFo_Cheese",
+    "revision": 591435
+  },
+  "item_g2nk_itfo_coragonsbeer": {
+    "page": "Specjalne piwo Coragona",
+    "file": "Piwo G2 ikona.png",
+    "code": "ItFo_CoragonsBeer",
+    "revision": 550916
+  },
+  "item_g2nk_itfo_fish": {
+    "page": "Ryba",
+    "file": "Ryba ikonka (Gothic II).png",
+    "code": "ItFo_Fish",
+    "revision": 530950
+  },
+  "item_g2nk_itfo_halvorfish_mis": {
+    "page": "Dziwnie wyglądająca ryba",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItFo_HalvorFish_Mis",
+    "revision": 553403
+  },
+  "item_g2nk_itfo_honey": {
+    "page": "Miód",
+    "file": "Miód G2 ikona.png",
+    "code": "ItFo_Honey",
+    "revision": 587868
+  },
+  "item_g2nk_itfo_milk": {
+    "page": "Mleko",
+    "file": "Mleko G2 ikona.png",
+    "code": "ItFo_Milk",
+    "revision": 580291
+  },
+  "item_g2nk_itfo_sausage": {
+    "page": "Kiełbasa",
+    "file": "Kiełbasa G2 ikona.png",
+    "code": "ItFo_Sausage",
+    "revision": 580292
+  },
+  "item_g2nk_itfo_schafswurst": {
+    "page": "Barania kiełbasa",
+    "file": "Kiełbasa G2 ikona.png",
+    "code": "ItFo_Schafswurst",
+    "revision": 553400
+  },
+  "item_g2nk_itfo_smellyfish": {
+    "page": "Śledź",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItFo_SmellyFish",
+    "revision": 575693
+  },
+  "item_g2nk_itfo_stew": {
+    "page": "Gulasz",
+    "file": "Gulasz_(ikonka)_(G2).png",
+    "code": "ItFo_Stew",
+    "revision": 573410
+  },
+  "item_g2nk_itfo_testtrigger": {
+    "page": "Trigger die Adw",
+    "file": "Miód G2 ikona.png",
+    "code": "ItFo_TestTrigger",
+    "revision": 570166
+  },
+  "item_g2nk_itfo_water": {
+    "page": "Woda",
+    "file": "Woda_(ikonka)_(G2).png",
+    "code": "ItFo_Water",
+    "revision": 578814
+  },
+  "item_g2nk_itfo_wine": {
+    "page": "Wino",
+    "file": "Wino G2 ikona.png",
+    "code": "ItFo_Wine",
+    "revision": 580350
+  },
+  "item_g2nk_itfomutton": {
+    "page": "Smażone mięso",
+    "file": "Smażone mięso G2 ikona.png",
+    "code": "ItFoMutton",
+    "revision": 577131
+  },
+  "item_g2nk_itfomuttonraw": {
+    "page": "Surowe mięso",
+    "file": "Surowe mięso G2 ikona.png",
+    "code": "ItFoMuttonRaw",
+    "revision": 579462
+  },
+  "item_g2nk_itke_addon_bloodwyn_01": {
+    "page": "Klucz Bloodwyna",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Bloodwyn_01",
+    "revision": 576212
+  },
+  "item_g2nk_itke_addon_buddler_01": {
+    "page": "Klucz do skrzyni w obozie bandytów",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Buddler_01",
+    "revision": 576224
+  },
+  "item_g2nk_itke_addon_esteban_01": {
+    "page": "Klucz Estebana",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Esteban_01",
+    "revision": 576202
+  },
+  "item_g2nk_itke_addon_heiler": {
+    "page": "Klucz kamiennego strażnika",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Heiler",
+    "revision": 576197
+  },
+  "item_g2nk_itke_addon_skinner": {
+    "page": "Klucz Skinnera",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Skinner",
+    "revision": 576204
+  },
+  "item_g2nk_itke_addon_tavern_01": {
+    "page": "Klucz Lou",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Tavern_01",
+    "revision": 576206
+  },
+  "item_g2nk_itke_addon_thorus": {
+    "page": "Klucz Thorusa",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Addon_Thorus",
+    "revision": 576203
+  },
+  "item_g2nk_itke_bandit": {
+    "page": "Klucz do kufra Brago",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Bandit",
+    "revision": 576232
+  },
+  "item_g2nk_itke_bromor": {
+    "page": "Klucz do pokoju właściciela burdelu",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Bromor",
+    "revision": 576211
+  },
+  "item_g2nk_itke_buerger": {
+    "page": "Klucz do kufra obywatela",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Buerger",
+    "revision": 576226
+  },
+  "item_g2nk_itke_canyonlibrary_hierarchy_books_addon": {
+    "page": "Klucz do biblioteki Uczonych",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_CanyonLibrary_Hierarchy_Books_Addon",
+    "revision": 576191
+  },
+  "item_g2nk_itke_chest_sekob_xardasbook_mis": {
+    "page": "Klucz Xardasa (Gothic II)",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Chest_Sekob_XardasBook_Mis",
+    "revision": 576207
+  },
+  "item_g2nk_itke_chestmasterdementor_mis": {
+    "page": "Klucz do kufra czarnego maga",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_ChestMasterDementor_Mis",
+    "revision": 576221
+  },
+  "item_g2nk_itke_city_tower_01": {
+    "page": "Klucz do wieży",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_City_Tower_01",
+    "revision": 576193
+  },
+  "item_g2nk_itke_dexter": {
+    "page": "Klucz Dextera",
+    "file": "Klucz 3 ikona G2.png",
+    "code": "ItKe_Dexter",
+    "revision": 576210
+  },
+  "item_g2nk_itke_erzbaronflur": {
+    "page": "Klucz do pierwszych drzwi",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_ErzBaronFlur",
+    "revision": 576236
+  },
+  "item_g2nk_itke_erzbaronraum": {
+    "page": "Klucz do drugich drzwi",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_ErzBaronRaum",
+    "revision": 576247
+  },
+  "item_g2nk_itke_evt_crypt_01": {
+    "page": "Stary mosiężny klucz",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_EVT_Crypt_01",
+    "revision": 576290
+  },
+  "item_g2nk_itke_evt_undead_01": {
+    "page": "Klucz Archola",
+    "file": "Klucz 3 ikona G2.png",
+    "code": "ItKe_EVT_Undead_01",
+    "revision": 576213
+  },
+  "item_g2nk_itke_evt_undead_02": {
+    "page": "Klucz klucznika",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_EVT_Undead_02",
+    "revision": 576196
+  },
+  "item_g2nk_itke_fingers": {
+    "page": "Zardzewiały klucz do drzwi z kanałów",
+    "file": "Klucz 3 ikona G2.png",
+    "code": "ItKe_Fingers",
+    "revision": 576285
+  },
+  "item_g2nk_itke_greg_addon_mis": {
+    "page": "Klucz do chaty Grega",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Greg_Addon_Mis",
+    "revision": 576220
+  },
+  "item_g2nk_itke_hotel": {
+    "page": "Klucz do pokoju",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Hotel",
+    "revision": 585630
+  },
+  "item_g2nk_itke_igarazchest_mis": {
+    "page": "Klucz do kufra Igaraza",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_IgarazChest_Mis",
+    "revision": 576230
+  },
+  "item_g2nk_itke_innos_mis": {
+    "page": "Klucz do klasztoru Innosa",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Innos_Mis",
+    "revision": 576246
+  },
+  "item_g2nk_itke_kdfplayer": {
+    "page": "Klucz do komnaty w klasztorze",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_KDFPlayer",
+    "revision": 576239
+  },
+  "item_g2nk_itke_key_01": {
+    "page": "Klucz",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Key_01",
+    "revision": 579697
+  },
+  "item_g2nk_itke_klosterbibliothek": {
+    "page": "Klucz do biblioteki klasztornej",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_KlosterBibliothek",
+    "revision": 576240
+  },
+  "item_g2nk_itke_klosterschatz": {
+    "page": "Klucz do skarbca klasztornego",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_KlosterSchatz",
+    "revision": 576237
+  },
+  "item_g2nk_itke_klosterstore": {
+    "page": "Klucz do spiżarni klasztornej",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_KlosterStore",
+    "revision": 576238
+  },
+  "item_g2nk_itke_lastdoortoundeaddrgdi_mis": {
+    "page": "Klucz do komnaty czarnego maga",
+    "file": "Klucz 3 ikona G2.png",
+    "code": "ItKe_LastDoorToUndeadDrgDI_Mis",
+    "revision": 576241
+  },
+  "item_g2nk_itke_lockpick": {
+    "page": "Wytrych",
+    "file": "Wytrych GII ico.png",
+    "code": "ItKe_Lockpick",
+    "revision": 579459
+  },
+  "item_g2nk_itke_magicchest": {
+    "page": "Stary klucz",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_MagicChest",
+    "revision": 576291
+  },
+  "item_g2nk_itke_monastarysecretlibrary_mis": {
+    "page": "Klucz z księgi Dwór Irdorath",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_MonastarySecretLibrary_Mis",
+    "revision": 576201
+  },
+  "item_g2nk_itke_oc_maingate_mis": {
+    "page": "Klucz do wieży strażnika głównej bramy",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_OC_MainGate_Mis",
+    "revision": 576192
+  },
+  "item_g2nk_itke_oc_store": {
+    "page": "Klucz do magazynu zamkowego",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_OC_Store",
+    "revision": 576244
+  },
+  "item_g2nk_itke_orkknastdi_mis": {
+    "page": "Klucz orka-pułkownika",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_OrkKnastDI_Mis",
+    "revision": 576219
+  },
+  "item_g2nk_itke_orlan_hotelzimmer": {
+    "page": "Klucz do pokoju gospody „Pod Martwą Harpią”",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Orlan_HotelZimmer",
+    "revision": 585627
+  },
+  "item_g2nk_itke_orlan_teleportstation": {
+    "page": "Klucz Orlana",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Orlan_TeleportStation",
+    "revision": 585740
+  },
+  "item_g2nk_itke_paladintruhe": {
+    "page": "Klucz do kufra z siedziby paladynów",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_PaladinTruhe",
+    "revision": 584761
+  },
+  "item_g2nk_itke_pass_mis": {
+    "page": "Niewielki klucz",
+    "file": "Klucz 2 ikona G2.png",
+    "code": "ItKe_Pass_Mis",
+    "revision": 576195
+  },
+  "item_g2nk_itke_portaltempelwalkthrough_addon": {
+    "page": "Zardzewiały klucz do kamienia teleportacyjnego",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_PortalTempelWalkthrough_Addon",
+    "revision": 576284
+  },
+  "item_g2nk_itke_prisonkey_mis": {
+    "page": "Klucz do lochu",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_PrisonKey_Mis",
+    "revision": 551147
+  },
+  "item_g2nk_itke_richter": {
+    "page": "Klucz do kufra sędziego",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Richter",
+    "revision": 576222
+  },
+  "item_g2nk_itke_rune_mis": {
+    "page": "Niewielki klucz do kufra",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Rune_Mis",
+    "revision": 585738
+  },
+  "item_g2nk_itke_salandril": {
+    "page": "Klucz do kufra Salandrila",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Salandril",
+    "revision": 576228
+  },
+  "item_g2nk_itke_ship_levelchange_mis": {
+    "page": "Klucz do kajuty kapitańskiej",
+    "file": "Klucz 3 ikona G2.png",
+    "code": "ItKe_Ship_LevelChange_Mis",
+    "revision": 576245
+  },
+  "item_g2nk_itke_storage": {
+    "page": "Klucz do magazynu portowego",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Storage",
+    "revision": 576234
+  },
+  "item_g2nk_itke_thiefguildkey_hotel_mis": {
+    "page": "Zardzewiały klucz do piwnicy w gospodzie",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_ThiefGuildKey_Hotel_Mis",
+    "revision": 585622
+  },
+  "item_g2nk_itke_thiefguildkey_mis": {
+    "page": "Zardzewiały klucz Attili",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_ThiefGuildKey_Mis",
+    "revision": 576278
+  },
+  "item_g2nk_itke_thieftreasure": {
+    "page": "Mały klucz",
+    "file": "Klucz 3 ikona G2.png",
+    "code": "ItKe_ThiefTreasure",
+    "revision": 576257
+  },
+  "item_g2nk_itke_valentino": {
+    "page": "Klucz do kufra Valentina",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Valentino",
+    "revision": 576231
+  },
+  "item_g2nk_itke_xardas": {
+    "page": "Klucz do skrzyni Xardasa",
+    "file": "Klucz 1 ikona G2.png",
+    "code": "ItKe_Xardas",
+    "revision": 576229
+  },
+  "item_g2nk_itmi_addon_bloodwyn_kopf": {
+    "page": "Głowa Bloodwyna",
+    "file": "Głowa Bloodwyna G2NK ikona.png",
+    "code": "ItMi_Addon_Bloodwyn_Kopf",
+    "revision": 570092
+  },
+  "item_g2nk_itmi_addon_gregstreasurebottle_mis": {
+    "page": "Wiadomość w butelce",
+    "file": "Wiadomość w butelce ikona.png",
+    "code": "ItMi_Addon_GregsTreasureBottle_Mis",
+    "revision": 578290
+  },
+  "item_g2nk_itmi_addon_joint_01": {
+    "page": "Zielony nowicjusz",
+    "file": "Łodyga bagiennego ziela G2 ikona.png",
+    "code": "ItMi_Addon_Joint_01",
+    "revision": 568878
+  },
+  "item_g2nk_itmi_addon_kompass_mis": {
+    "page": "Złoty kompas",
+    "file": "Złoty kompas G2NK ikona.png",
+    "code": "ItMi_Addon_Kompass_Mis",
+    "revision": 570091
+  },
+  "item_g2nk_itmi_addon_lennar_paket": {
+    "page": "Brzęcząca paczka",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_Addon_Lennar_Paket",
+    "revision": 553494
+  },
+  "item_g2nk_itmi_addon_shell_01": {
+    "page": "Otwierana muszla",
+    "file": "Otwierana muszla (ikona).png",
+    "code": "ItMi_Addon_Shell_01",
+    "revision": 577091
+  },
+  "item_g2nk_itmi_addon_shell_02": {
+    "page": "Rogowa muszla",
+    "file": "Rogowa muszla G2NK ikona.png",
+    "code": "ItMi_Addon_Shell_02",
+    "revision": 577092
+  },
+  "item_g2nk_itmi_addon_steel_paket": {
+    "page": "Pakiet stali",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_Addon_Steel_Paket",
+    "revision": 553452
+  },
+  "item_g2nk_itmi_addon_stone_01": {
+    "page": "Czerwona kamienna tablica",
+    "file": "Czerwona KT ikona.png",
+    "code": "ItMi_Addon_Stone_01",
+    "revision": 585425
+  },
+  "item_g2nk_itmi_addon_stone_02": {
+    "page": "Fioletowa kamienna tablica",
+    "file": "Fioletowa KT ikona.png",
+    "code": "ItMi_Addon_Stone_02",
+    "revision": 585378
+  },
+  "item_g2nk_itmi_addon_stone_03": {
+    "page": "Niebieska kamienna tablica",
+    "file": "Niebieska KT ikona.png",
+    "code": "ItMi_Addon_Stone_03",
+    "revision": 585410
+  },
+  "item_g2nk_itmi_addon_stone_04": {
+    "page": "Zielona kamienna tablica",
+    "file": "Zielona kamienna tablica G2NK ikona.png",
+    "code": "ItMi_Addon_Stone_04",
+    "revision": 585389
+  },
+  "item_g2nk_itmi_addon_stone_05": {
+    "page": "Żółta kamienna tablica",
+    "file": "Żółta_KT_ikona.png",
+    "code": "ItMi_Addon_Stone_05",
+    "revision": 585391
+  },
+  "item_g2nk_itmi_addon_whitepearl": {
+    "page": "Perła",
+    "file": "Perła (ikonka) (G2).png",
+    "code": "ItMi_Addon_WhitePearl",
+    "revision": 519682
+  },
+  "item_g2nk_itmi_apfeltabak": {
+    "page": "Tytoń jabłkowy",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_ApfelTabak",
+    "revision": 587863
+  },
+  "item_g2nk_itmi_aquamarine": {
+    "page": "Akwamaryn",
+    "file": "Akwamaryn ikonka.png",
+    "code": "ItMi_Aquamarine",
+    "revision": 585730
+  },
+  "item_g2nk_itmi_baltrampaket": {
+    "page": "Dostawa Baltrama (przedmiot)",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_BaltramPaket",
+    "revision": 556433
+  },
+  "item_g2nk_itmi_bloodcup_mis": {
+    "page": "Krwawy puchar",
+    "file": "Złoty puchar G2 ikona.png",
+    "code": "ItMi_Bloodcup_Mis",
+    "revision": 578837
+  },
+  "item_g2nk_itmi_broom": {
+    "page": "Miotła",
+    "file": "Miotła G2 ikona.png",
+    "code": "ItMi_Broom",
+    "revision": 570224
+  },
+  "item_g2nk_itmi_brush": {
+    "page": "Szczotka",
+    "file": "Szczotka G2 ikona.png",
+    "code": "ItMi_Brush",
+    "revision": 566824
+  },
+  "item_g2nk_itmi_coal": {
+    "page": "Węgiel",
+    "file": "Węgiel G2 ikona.png",
+    "code": "ItMi_Coal",
+    "revision": 570214
+  },
+  "item_g2nk_itmi_coragonssilber": {
+    "page": "Srebro Coragona",
+    "file": "Srebrny puchar G2 ikona.png",
+    "code": "ItMi_CoragonsSilber",
+    "revision": 588243
+  },
+  "item_g2nk_itmi_darkpearl": {
+    "page": "Czarna perła",
+    "file": "Czarna perła ikona G2NK.png",
+    "code": "ItMi_DarkPearl",
+    "revision": 562556
+  },
+  "item_g2nk_itmi_doppeltabak": {
+    "page": "Podwójne jabłko",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_DoppelTabak",
+    "revision": 524570
+  },
+  "item_g2nk_itmi_eddasstatue": {
+    "page": "Posążek Eddy",
+    "file": "Posążek Innosa G2 ikona.png",
+    "code": "ItMi_EddasStatue",
+    "revision": 570231
+  },
+  "item_g2nk_itmi_erolskelch": {
+    "page": "Pęknięta srebrna misa",
+    "file": "Pęknięta_srebrna_misa_(ikonka)_(G2NK).png",
+    "code": "ItMi_ErolsKelch",
+    "revision": 551020
+  },
+  "item_g2nk_itmi_flask": {
+    "page": "Menzurka",
+    "file": "Menzurka_(ikonka)_(G2).png",
+    "code": "ItMi_Flask",
+    "revision": 550904
+  },
+  "item_g2nk_itmi_focus": {
+    "page": "Kamienie ogniskujące",
+    "file": "Kamień ogniskujący (ikonka) (G2NK).png",
+    "code": "ItMi_Focus",
+    "revision": 585385
+  },
+  "item_g2nk_itmi_gold": {
+    "page": "Złoto",
+    "file": "Złoto G2 ikona.png",
+    "code": "ItMi_Gold",
+    "revision": 591015
+  },
+  "item_g2nk_itmi_goldcandleholder": {
+    "page": "Złoty świecznik",
+    "file": "Złoty świecznik G2 ikona.png",
+    "code": "ItMi_GoldCandleholder",
+    "revision": 570188
+  },
+  "item_g2nk_itmi_goldchalice": {
+    "page": "Złote naczynie",
+    "file": "Złote_naczynie_(ikonka)_(G2NK).png",
+    "code": "ItMi_GoldChalice",
+    "revision": 553860
+  },
+  "item_g2nk_itmi_goldchest": {
+    "page": "Skrzyneczka",
+    "file": "Skrzyneczka_(ikonka)_(G2NK).png",
+    "code": "ItMi_GoldChest",
+    "revision": 553848
+  },
+  "item_g2nk_itmi_goldcup": {
+    "page": "Złoty puchar",
+    "file": "Złoty puchar G2 ikona.png",
+    "code": "ItMi_GoldCup",
+    "revision": 556050
+  },
+  "item_g2nk_itmi_goldnecklace": {
+    "page": "Złoty naszyjnik",
+    "file": "Złoty naszyjnik G2 ikona.png",
+    "code": "ItMi_GoldNecklace",
+    "revision": 591738
+  },
+  "item_g2nk_itmi_goldnugget_addon": {
+    "page": "Bryłka złota",
+    "file": "Bryłka złota GIINK ikona.png",
+    "code": "ItMi_GoldNugget_Addon",
+    "revision": 574200
+  },
+  "item_g2nk_itmi_goldring": {
+    "page": "Złoty pierścień",
+    "file": "Złoty pierścień G2 ikona.png",
+    "code": "ItMi_Goldring",
+    "revision": 575451
+  },
+  "item_g2nk_itmi_gornstreasure_mis": {
+    "page": "Skórzana sakwa Gorna",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_GornsTreasure_Mis",
+    "revision": 561976
+  },
+  "item_g2nk_itmi_hammer": {
+    "page": "Młotek",
+    "file": "Młotek G2 ikona.png",
+    "code": "ItMi_Hammer",
+    "revision": 575338
+  },
+  "item_g2nk_itmi_herbpaket": {
+    "page": "Paczka bagiennego ziela",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_HerbPaket",
+    "revision": 581958
+  },
+  "item_g2nk_itmi_holywater": {
+    "page": "Woda święcona",
+    "file": "Woda święcona G2 ikona.png",
+    "code": "ItMi_HolyWater",
+    "revision": 570216
+  },
+  "item_g2nk_itmi_honigtabak": {
+    "page": "Miodowy tytoń",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_HonigTabak",
+    "revision": 587866
+  },
+  "item_g2nk_itmi_iecello": {
+    "page": "Wiolonczela",
+    "file": "Wiolonczela G2NK ikona.png",
+    "code": "ItMi_IECello",
+    "revision": 575731
+  },
+  "item_g2nk_itmi_iecellobow": {
+    "page": "Smyczek wiolonczeli",
+    "file": "Smyczek wiolonczeli G2NK ikona.png",
+    "code": "ItMi_IECelloBow",
+    "revision": 575732
+  },
+  "item_g2nk_itmi_iedrum": {
+    "page": "Bęben",
+    "file": "Bęben G2NK ikona.png",
+    "code": "ItMi_IEDrum",
+    "revision": 524519
+  },
+  "item_g2nk_itmi_iedrumscheit": {
+    "page": "Trąba",
+    "file": "Trąba G2NK ikona.png",
+    "code": "ItMi_IEDrumScheit",
+    "revision": 575733
+  },
+  "item_g2nk_itmi_iedrumstick": {
+    "page": "Pałeczka",
+    "file": "Pałeczka G2NK ikona.png",
+    "code": "ItMi_IEDrumStick",
+    "revision": 524675
+  },
+  "item_g2nk_itmi_iedudelblau": {
+    "page": "Niebieskie dudy",
+    "file": "Niebieskie_dudy_(ikonka)_(G2).png",
+    "code": "ItMi_IEDudelBlau",
+    "revision": 575432
+  },
+  "item_g2nk_itmi_iedudelgelb": {
+    "page": "Żółte dudy",
+    "file": "Żółte dudy G2NK ikona.png",
+    "code": "ItMi_IEDudelGelb",
+    "revision": 561972
+  },
+  "item_g2nk_itmi_ieharfe": {
+    "page": "Harfa",
+    "file": "Harfa G2NK ikona.png",
+    "code": "ItMi_IEHarfe",
+    "revision": 575734
+  },
+  "item_g2nk_itmi_ielaute": {
+    "page": "Lutnia",
+    "file": "Lutnia_(ikonka)_(G2).png",
+    "code": "ItMi_IELaute",
+    "revision": 578830
+  },
+  "item_g2nk_itmi_innoseye_broken_mis": {
+    "page": "Oko Innosa",
+    "file": "Oko Innosa GII ikona.png",
+    "code": "ItMi_InnosEye_Broken_Mis",
+    "revision": 585412
+  },
+  "item_g2nk_itmi_innoseye_discharged_mis": {
+    "page": "Oko Innosa",
+    "file": "Oko Innosa GII ikona.png",
+    "code": "ItMi_InnosEye_Discharged_Mis",
+    "revision": 585412
+  },
+  "item_g2nk_itmi_innoseye_mis": {
+    "page": "Oko Innosa",
+    "file": "Oko Innosa GII ikona.png",
+    "code": "ItMi_InnosEye_Mis",
+    "revision": 585412
+  },
+  "item_g2nk_itmi_innosstatue": {
+    "page": "Posążek Innosa",
+    "file": "Posążek Innosa G2 ikona.png",
+    "code": "ItMi_InnosStatue",
+    "revision": 585403
+  },
+  "item_g2nk_itmi_jewelerychest": {
+    "page": "Szkatułka z klejnotami",
+    "file": "Szkatułka_z_klejnotami_(ikonka)_(G2NK).png",
+    "code": "ItMi_JeweleryChest",
+    "revision": 556037
+  },
+  "item_g2nk_itmi_joint": {
+    "page": "Łodyga bagiennego ziela",
+    "file": "Łodyga bagiennego ziela G2 ikona.png",
+    "code": "ItMi_Joint",
+    "revision": 587870
+  },
+  "item_g2nk_itmi_karrasblessedstone_mis": {
+    "page": "Kamień z poświęconej ziemi",
+    "file": "Skała_krystaliczna_(ikonka)_(G2).png",
+    "code": "ItMi_KarrasBlessedStone_Mis",
+    "revision": 553405
+  },
+  "item_g2nk_itmi_kerolothsgeldbeutel_mis": {
+    "page": "Skórzana torba Kerolotha",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_KerolothsGeldbeutel_Mis",
+    "revision": 561975
+  },
+  "item_g2nk_itmi_kerolothsgeldbeutelleer_mis": {
+    "page": "Skórzana torba Kerolotha",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_KerolothsGeldbeutelLeer_Mis",
+    "revision": 561975
+  },
+  "item_g2nk_itmi_lostinnosstatue_daron": {
+    "page": "Cenny posążek Innosa",
+    "file": "Posążek Innosa G2 ikona.png",
+    "code": "ItMi_LostInnosStatue_Daron",
+    "revision": 575339
+  },
+  "item_g2nk_itmi_lute": {
+    "page": "Lutnia",
+    "file": "Lutnia_(ikonka)_(G2).png",
+    "code": "ItMi_Lute",
+    "revision": 578830
+  },
+  "item_g2nk_itmi_malethsbanditgold": {
+    "page": "Sakwa pełna złota!",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_MalethsBanditGold",
+    "revision": 576252
+  },
+  "item_g2nk_itmi_mariasgoldplate": {
+    "page": "Ciężki, złoty talerz",
+    "file": "Złoty talerz G2 ikona.png",
+    "code": "ItMi_MariasGoldPlate",
+    "revision": 575336
+  },
+  "item_g2nk_itmi_moleratlubric_mis": {
+    "page": "Łój kretoszczura",
+    "file": "Łój kretoszczura G2 ikona.png",
+    "code": "ItMi_Moleratlubric_Mis",
+    "revision": 570191
+  },
+  "item_g2nk_itmi_nugget": {
+    "page": "Bryłka rudy",
+    "file": "Bryłka rudy (ikona) (Gothic II) (by SpY).png",
+    "code": "ItMi_Nugget",
+    "revision": 585565
+  },
+  "item_g2nk_itmi_oldcoin": {
+    "page": "Stara moneta",
+    "file": "Stara_moneta_(ikonka)_(G2).png",
+    "code": "ItMi_OldCoin",
+    "revision": 563051
+  },
+  "item_g2nk_itmi_packet": {
+    "page": "Paczka",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_Packet",
+    "revision": 566743
+  },
+  "item_g2nk_itmi_packet_baltram4skip_addon": {
+    "page": "Paczka dla Skipa",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_Packet_Baltram4Skip_Addon",
+    "revision": 574044
+  },
+  "item_g2nk_itmi_pan": {
+    "page": "Patelnia (przedmiot)",
+    "file": "Patelnia G2 ikona.png",
+    "code": "ItMi_Pan",
+    "revision": 567317
+  },
+  "item_g2nk_itmi_panfull": {
+    "page": "Patelnia (przedmiot)",
+    "file": "Patelnia G2 ikona.png",
+    "code": "ItMi_PanFull",
+    "revision": 567317
+  },
+  "item_g2nk_itmi_pilztabak": {
+    "page": "Grzybowy tytoń",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_PilzTabak",
+    "revision": 587903
+  },
+  "item_g2nk_itmi_pitch": {
+    "page": "Smoła",
+    "file": "Smoła_(ikonka)_(G2).png",
+    "code": "ItMi_Pitch",
+    "revision": 585658
+  },
+  "item_g2nk_itmi_pliers": {
+    "page": "Żuwaczka",
+    "file": "Żuwaczka_(ikonka)_(G2).png",
+    "code": "ItMi_Pliers",
+    "revision": 582220
+  },
+  "item_g2nk_itmi_pocket": {
+    "page": "Skórzany mieszek",
+    "file": "Skórzany mieszek 10sz ikona.png",
+    "code": "ItMi_Pocket",
+    "revision": 591991
+  },
+  "item_g2nk_itmi_portalring_addon": {
+    "page": "Ozdobny pierścień",
+    "file": "Ozdobny_pierścień_(ikonka)_(G2NK)_(by_Kubar906).png",
+    "code": "ItMi_PortalRing_Addon",
+    "revision": 585417
+  },
+  "item_g2nk_itmi_powereye": {
+    "page": "Oko Mocy",
+    "file": "Czarna perła ikona G2NK.png",
+    "code": "ItMi_PowerEye",
+    "revision": 585414
+  },
+  "item_g2nk_itmi_quartz": {
+    "page": "Kwarcyt",
+    "file": "Kwarcyt G2 ikona.png",
+    "code": "ItMi_Quartz",
+    "revision": 581871
+  },
+  "item_g2nk_itmi_rake": {
+    "page": "Grabie",
+    "file": "Grabie GII ico.png",
+    "code": "ItMi_Rake",
+    "revision": 530422
+  },
+  "item_g2nk_itmi_rockcrystal": {
+    "page": "Skała krystaliczna",
+    "file": "Skała_krystaliczna_(ikonka)_(G2).png",
+    "code": "ItMi_Rockcrystal",
+    "revision": 531413
+  },
+  "item_g2nk_itmi_runeblank": {
+    "page": "Pusty kamień runiczny",
+    "file": "Pusty kamień runiczny ikona.png",
+    "code": "ItMi_RuneBlank",
+    "revision": 580095
+  },
+  "item_g2nk_itmi_saw": {
+    "page": "Piła",
+    "file": "Piła G2 ikona.png",
+    "code": "ItMi_Saw",
+    "revision": 576952
+  },
+  "item_g2nk_itmi_scoop": {
+    "page": "Łyżka",
+    "file": "Łyżka G2 ikona.png",
+    "code": "ItMi_Scoop",
+    "revision": 577110
+  },
+  "item_g2nk_itmi_sextant": {
+    "page": "Sekstans (przedmiot)",
+    "file": "Sekstans G2 ikona.png",
+    "code": "ItMi_Sextant",
+    "revision": 575293
+  },
+  "item_g2nk_itmi_silvercandleholder": {
+    "page": "Srebrny świecznik",
+    "file": "Srebrny_świecznik_(ikonka)_(G2).png",
+    "code": "ItMi_SilverCandleHolder",
+    "revision": 553854
+  },
+  "item_g2nk_itmi_silverchalice": {
+    "page": "Srebrne naczynie",
+    "file": "Pęknięta_srebrna_misa_(ikonka)_(G2NK).png",
+    "code": "ItMi_SilverChalice",
+    "revision": 551018
+  },
+  "item_g2nk_itmi_silvercup": {
+    "page": "Srebrny puchar",
+    "file": "Srebrny puchar G2 ikona.png",
+    "code": "ItMi_SilverCup",
+    "revision": 556035
+  },
+  "item_g2nk_itmi_silvernecklace": {
+    "page": "Srebrny naszyjnik",
+    "file": "Srebrny_naszyjnik_(ikonka)_(G2NK).png",
+    "code": "ItMi_SilverNecklace",
+    "revision": 567440
+  },
+  "item_g2nk_itmi_silverplate": {
+    "page": "Srebrny talerz",
+    "file": "Srebrny talerz G2 ikona.png",
+    "code": "ItMi_SilverPlate",
+    "revision": 570218
+  },
+  "item_g2nk_itmi_silverring": {
+    "page": "Srebrny pierścień",
+    "file": "Srebrny_pierścień_(ikonka)_(G2).png",
+    "code": "ItMi_SilverRing",
+    "revision": 575335
+  },
+  "item_g2nk_itmi_skull": {
+    "page": "Czaszka",
+    "file": "Czaszka G2NK ikona.png",
+    "code": "ItMi_Skull",
+    "revision": 585281
+  },
+  "item_g2nk_itmi_stomper": {
+    "page": "Rozdrabniacz",
+    "file": "Rozdrabniacz G2 ikona.png",
+    "code": "ItMi_Stomper",
+    "revision": 522832
+  },
+  "item_g2nk_itmi_stoneofknowlegde_mis": {
+    "page": "Kamień Wiedzy",
+    "file": "Kamień wiedzy ikon.png",
+    "code": "ItMi_StoneOfKnowlegde_Mis",
+    "revision": 588228
+  },
+  "item_g2nk_itmi_sulfur": {
+    "page": "Siarka",
+    "file": "Siarka G2 ikona.png",
+    "code": "ItMi_Sulfur",
+    "revision": 584929
+  },
+  "item_g2nk_itmi_sumpftabak": {
+    "page": "Tytoń ziołowy",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItMi_SumpfTabak",
+    "revision": 587864
+  },
+  "item_g2nk_itmi_theklaspaket": {
+    "page": "Paczka Thekli",
+    "file": "Dostawa Beltrama ikona (GII).png",
+    "code": "ItMi_TheklasPaket",
+    "revision": 553418
+  },
+  "item_g2nk_itmi_zeitspalt_addon": {
+    "page": "Czarna ruda",
+    "file": "Czarna ruda G2NK ikona.png",
+    "code": "ItMi_Zeitspalt_Addon",
+    "revision": 589469
+  },
+  "item_g2nk_itmiswordblade": {
+    "page": "Ostrze",
+    "file": "Ostrze_(ikonka)_(G2).png",
+    "code": "ItMiSwordBlade",
+    "revision": 522817
+  },
+  "item_g2nk_itmiswordbladehot": {
+    "page": "Rozgrzane ostrze",
+    "file": "Rozgrzane_ostrze_(ikonka)_(G2).png",
+    "code": "ItMiSwordBladeHot",
+    "revision": 561992
+  },
+  "item_g2nk_itmiswordraw": {
+    "page": "Surowa stal",
+    "file": "Surowa stal (Gothic II) (ikona).png",
+    "code": "ItMiSwordRaw",
+    "revision": 591809
+  },
+  "item_g2nk_itmw_1h_bau_axe": {
+    "page": "Sierp",
+    "file": "Sierp (ikonka) (G2).png",
+    "code": "ItMw_1H_Bau_Axe",
+    "revision": 587549
+  },
+  "item_g2nk_itmw_1h_bau_mace": {
+    "page": "Laga",
+    "file": "Ikona laga (g2 NK) (by Ossowski21).png",
+    "code": "ItMw_1H_Bau_Mace",
+    "revision": 562539
+  },
+  "item_g2nk_itmw_1h_blessed_02": {
+    "page": "Błogosławione ostrze magiczne",
+    "file": "Kiepskie_ostrze_magiczne_(1H)_(ikonka)_(G2).png",
+    "code": "ItMw_1H_Blessed_02",
+    "revision": 562502
+  },
+  "item_g2nk_itmw_1h_blessed_03": {
+    "page": "Gniew Innosa",
+    "file": "Kiepskie ostrze magiczne (1H) (ikonka) (G2).png",
+    "code": "ItMw_1H_Blessed_03",
+    "revision": 591808
+  },
+  "item_g2nk_itmw_1h_common_01": {
+    "page": "Samodzielnie wykuty miecz",
+    "file": "Samodzielnie wykuty miecz G2 ikona.png",
+    "code": "ItMw_1H_Common_01",
+    "revision": 587968
+  },
+  "item_g2nk_itmw_1h_ferrossword_mis": {
+    "page": "Miecz Ferosa",
+    "file": "Magiczny miecz półtoraręczny G2 ikona.png",
+    "code": "ItMw_1H_FerrosSword_Mis",
+    "revision": 579172
+  },
+  "item_g2nk_itmw_1h_mace_l_01": {
+    "page": "Pogrzebacz",
+    "file": "Pogrzebacz (ikonka) (G2).png",
+    "code": "ItMw_1H_Mace_L_01",
+    "revision": 577105
+  },
+  "item_g2nk_itmw_1h_mace_l_03": {
+    "page": "Pałka",
+    "file": "Pałka_(ikonka)_(G2).png",
+    "code": "ItMw_1H_Mace_L_03",
+    "revision": 576134
+  },
+  "item_g2nk_itmw_1h_mace_l_04": {
+    "page": "Młot kowalski",
+    "file": "Młot kowalski (ikonka) (G2).png",
+    "code": "ItMw_1H_Mace_L_04",
+    "revision": 568375
+  },
+  "item_g2nk_itmw_1h_misc_axe": {
+    "page": "Zardzewiały topór",
+    "file": "Zardzewiały_topór_(Gothic_II)_(ikona).png",
+    "code": "ItMw_1H_Misc_Axe",
+    "revision": 583399
+  },
+  "item_g2nk_itmw_1h_sld_axe": {
+    "page": "Kiepski tasak",
+    "file": "Kiepski tasak G2 ikona.png",
+    "code": "ItMw_1H_Sld_Axe",
+    "revision": 571157
+  },
+  "item_g2nk_itmw_1h_sld_sword": {
+    "page": "Kiepski miecz",
+    "file": "Kiepski miecz G2 ikona.png",
+    "code": "ItMw_1H_Sld_Sword",
+    "revision": 587355
+  },
+  "item_g2nk_itmw_1h_special_01": {
+    "page": "Długi miecz magiczny",
+    "file": "Długi miecz magiczny G2 ikona.png",
+    "code": "ItMw_1H_Special_01",
+    "revision": 587358
+  },
+  "item_g2nk_itmw_1h_special_02": {
+    "page": "Magiczny miecz półtoraręczny",
+    "file": "Magiczny miecz półtoraręczny G2 ikona.png",
+    "code": "ItMw_1H_Special_02",
+    "revision": 571162
+  },
+  "item_g2nk_itmw_1h_special_03": {
+    "page": "Magiczne ostrze bojowe",
+    "file": "Magiczne ostrze bojowe G2 ikona.png",
+    "code": "ItMw_1H_Special_03",
+    "revision": 571161
+  },
+  "item_g2nk_itmw_1h_special_04": {
+    "page": "Magiczne ostrze na smoki",
+    "file": "Magiczne ostrze na smoki G2 ikona.png",
+    "code": "ItMw_1H_Special_04",
+    "revision": 585840
+  },
+  "item_g2nk_itmw_1h_sword_l_03": {
+    "page": "Nóż na wilki",
+    "file": "Nóż_na_wilki_(ikonka)_(G2NK).png",
+    "code": "ItMw_1H_Sword_L_03",
+    "revision": 571023
+  },
+  "item_g2nk_itmw_1h_vlk_axe": {
+    "page": "Topór",
+    "file": "Topór_(ikonka)_(G2).png",
+    "code": "ItMw_1H_Vlk_Axe",
+    "revision": 556728
+  },
+  "item_g2nk_itmw_1h_vlk_mace": {
+    "page": "Laska",
+    "file": "Laska G2 ikona.png",
+    "code": "ItMw_1H_Vlk_Mace",
+    "revision": 575283
+  },
+  "item_g2nk_itmw_1h_vlk_sword": {
+    "page": "Miecz",
+    "file": "Miecz G2 ikona.png",
+    "code": "ItMw_1H_Vlk_Sword",
+    "revision": 571165
+  },
+  "item_g2nk_itmw_2h_axe_l_01": {
+    "page": "Kilof",
+    "file": "Kilof (Gothic II) (ikona).png",
+    "code": "ItMw_2H_Axe_L_01",
+    "revision": 581517
+  },
+  "item_g2nk_itmw_2h_blessed_02": {
+    "page": "Miecz zakonu",
+    "file": "Miecz zakonu G2 ikona.png",
+    "code": "ItMw_2H_Blessed_02",
+    "revision": 579115
+  },
+  "item_g2nk_itmw_2h_blessed_03": {
+    "page": "Święty Kat",
+    "file": "Miecz zakonu G2 ikona.png",
+    "code": "ItMw_2H_Blessed_03",
+    "revision": 579114
+  },
+  "item_g2nk_itmw_2h_orcaxe_01": {
+    "page": "Lekki orkowy topór",
+    "file": "Lekki orkowy topór G2 ikona.png",
+    "code": "ItMw_2H_Orcaxe_01",
+    "revision": 575397
+  },
+  "item_g2nk_itmw_2h_orcaxe_02": {
+    "page": "Średni orkowy topór",
+    "file": "Średni orkowy topór G2 ikona.png",
+    "code": "ItMw_2H_Orcaxe_02",
+    "revision": 585659
+  },
+  "item_g2nk_itmw_2h_orcaxe_04": {
+    "page": "Ogromny orkowy topór",
+    "file": "Ogromny orkowy topór (Gothic II) (ikona).png",
+    "code": "ItMw_2H_Orcaxe_04",
+    "revision": 576509
+  },
+  "item_g2nk_itmw_2h_orcsword_01": {
+    "page": "Jaszczurzy miecz",
+    "file": "Jaszczurzy miecz (Gothic II) (ikona).png",
+    "code": "ItMw_2H_OrcSword_01",
+    "revision": 570682
+  },
+  "item_g2nk_itmw_2h_pal_sword": {
+    "page": "Miecz dwuręczny paladyna",
+    "file": "Miecz dwuręczny paladyna G2 ikona.png",
+    "code": "ItMw_2H_Pal_Sword",
+    "revision": 568428
+  },
+  "item_g2nk_itmw_2h_rod": {
+    "page": "Miecz dwuręczny Roda",
+    "file": "Kiepski miecz dwuręczny (ikonka) (G2).png",
+    "code": "ItMw_2H_Rod",
+    "revision": 569299
+  },
+  "item_g2nk_itmw_2h_sld_axe": {
+    "page": "Kiepski topór bojowy",
+    "file": "Kiepski_topór_bojowy_(ikonka)_(G2).png",
+    "code": "ItMw_2H_Sld_Axe",
+    "revision": 567432
+  },
+  "item_g2nk_itmw_2h_sld_sword": {
+    "page": "Kiepski miecz dwuręczny",
+    "file": "Kiepski miecz dwuręczny (ikonka) (G2).png",
+    "code": "ItMw_2H_Sld_Sword",
+    "revision": 585589
+  },
+  "item_g2nk_itmw_2h_special_01": {
+    "page": "Magiczny miecz dwuręczny",
+    "file": "Magiczny miecz dwuręczny G2 ikona.png",
+    "code": "ItMw_2H_Special_01",
+    "revision": 571078
+  },
+  "item_g2nk_itmw_2h_special_04": {
+    "page": "Duże magiczne ostrze na smoki",
+    "file": "Duże magiczne ostrze na smoki G2 ikona.png",
+    "code": "ItMw_2H_Special_04",
+    "revision": 586192
+  },
+  "item_g2nk_itmw_2h_sword_m_01": {
+    "page": "Zardzewiały miecz dwuręczny",
+    "file": "Ikona zardzewiały miecz dwuręczny g2 (by Ossowski21).png",
+    "code": "ItMw_2H_Sword_M_01",
+    "revision": 575369
+  },
+  "item_g2nk_itmw_addon_bandittrader": {
+    "page": "Pałasz bandytów",
+    "file": "Miecz G2 ikona.png",
+    "code": "ItMw_Addon_BanditTrader",
+    "revision": 571166
+  },
+  "item_g2nk_itmw_addon_betty": {
+    "page": "Betty",
+    "file": "El Bastardo G2 ikona.png",
+    "code": "ItMw_Addon_Betty",
+    "revision": 588504
+  },
+  "item_g2nk_itmw_addon_hacker_1h_01": {
+    "page": "Maczeta",
+    "file": "Maczeta G2NK ikona.png",
+    "code": "ItMw_Addon_Hacker_1H_01",
+    "revision": 581160
+  },
+  "item_g2nk_itmw_addon_hacker_1h_02": {
+    "page": "Stara maczeta",
+    "file": "Stara maczeta G2NK ikona.png",
+    "code": "ItMw_Addon_Hacker_1H_02",
+    "revision": 571207
+  },
+  "item_g2nk_itmw_addon_hacker_2h_01": {
+    "page": "Wielka maczeta",
+    "file": "Wielka maczeta G2NK ikona.png",
+    "code": "ItMw_Addon_Hacker_2H_01",
+    "revision": 571094
+  },
+  "item_g2nk_itmw_addon_hacker_2h_02": {
+    "page": "Wielka stara maczeta",
+    "file": "Wielka stara maczeta G2NK ikona.png",
+    "code": "ItMw_Addon_Hacker_2H_02",
+    "revision": 571096
+  },
+  "item_g2nk_itmw_addon_keule_1h_01": {
+    "page": "Sługa wiatru",
+    "file": "Sługa wiatru (ikona).png",
+    "code": "ItMw_Addon_Keule_1H_01",
+    "revision": 557220
+  },
+  "item_g2nk_itmw_addon_keule_2h_01": {
+    "page": "Sługa burzy",
+    "file": "Sługa burzy G2NK ikona.png",
+    "code": "ItMw_Addon_Keule_2H_01",
+    "revision": 579121
+  },
+  "item_g2nk_itmw_addon_knife01": {
+    "page": "Nóż na wilki",
+    "file": "Nóż_na_wilki_(ikonka)_(G2NK).png",
+    "code": "ItMw_Addon_Knife01",
+    "revision": 571023
+  },
+  "item_g2nk_itmw_addon_pir1haxe": {
+    "page": "Topór pokładowy",
+    "file": "Topór marynarski (ikonka) (G2).png",
+    "code": "ItMw_Addon_Pir1HAxe",
+    "revision": 575053
+  },
+  "item_g2nk_itmw_addon_pir1hsword": {
+    "page": "Kordelas (jednoręczny)",
+    "file": "Piracki kordelas G2 ikona.png",
+    "code": "ItMw_Addon_Pir1HSword",
+    "revision": 575054
+  },
+  "item_g2nk_itmw_addon_pir2haxe": {
+    "page": "Miażdżydeska",
+    "file": "Miażdżydeska_(ikonka)_(G2NK).png",
+    "code": "ItMw_Addon_Pir2HAxe",
+    "revision": 568430
+  },
+  "item_g2nk_itmw_addon_pir2hsword": {
+    "page": "Miecz pokładowy",
+    "file": "Kordelas dwuręczny G2 ikona.png",
+    "code": "ItMw_Addon_Pir2HSword",
+    "revision": 571068
+  },
+  "item_g2nk_itmw_addon_stab01": {
+    "page": "Kostur maga ognia",
+    "file": "Kostur maga ognia G2NK ikona.png",
+    "code": "ItMw_Addon_Stab01",
+    "revision": 571100
+  },
+  "item_g2nk_itmw_addon_stab02": {
+    "page": "Magiczna różdżka",
+    "file": "Magiczna różdżka (ikonka) (G2NK).png",
+    "code": "ItMw_Addon_Stab02",
+    "revision": 470747
+  },
+  "item_g2nk_itmw_addon_stab03": {
+    "page": "Kostur maga wody",
+    "file": "Kostur_maga_wody_(ikonka)_(G2NK).png",
+    "code": "ItMw_Addon_Stab03",
+    "revision": 567328
+  },
+  "item_g2nk_itmw_addon_stab04": {
+    "page": "Zaklęty kostur Ulthara",
+    "file": "Magiczna różdżka (ikonka) (G2NK).png",
+    "code": "ItMw_Addon_Stab04",
+    "revision": 542442
+  },
+  "item_g2nk_itmw_alrikssword_mis": {
+    "page": "Miecz Alrika (broń)",
+    "file": "Kiepski miecz G2 ikona.png",
+    "code": "ItMw_AlriksSword_Mis",
+    "revision": 571156
+  },
+  "item_g2nk_itmw_barbarenstreitaxt": {
+    "page": "Barbarzyński topór bojowy",
+    "file": "Barbarzyński topór bojowy G2 ikona.png",
+    "code": "ItMw_Barbarenstreitaxt",
+    "revision": 574902
+  },
+  "item_g2nk_itmw_bartaxt": {
+    "page": "Wielki topór",
+    "file": "Wielki_topór_(ikonka)_(G2).png",
+    "code": "ItMw_Bartaxt",
+    "revision": 581347
+  },
+  "item_g2nk_itmw_beliarweapon_1h_01": {
+    "page": "Szpon Beliara",
+    "file": "Szpon Beliara dwuręczny G2NK ikona.png",
+    "code": "ItMw_BeliarWeapon_1H_01",
+    "revision": 583976
+  },
+  "item_g2nk_itmw_beliarweapon_2h_01": {
+    "page": "Szpon Beliara",
+    "file": "Szpon Beliara dwuręczny G2NK ikona.png",
+    "code": "ItMw_BeliarWeapon_2H_01",
+    "revision": 583976
+  },
+  "item_g2nk_itmw_beliarweapon_fire": {
+    "page": "Szpon Beliara",
+    "file": "Szpon Beliara dwuręczny G2NK ikona.png",
+    "code": "ItMw_BeliarWeapon_Fire",
+    "revision": 583976
+  },
+  "item_g2nk_itmw_berserkeraxt": {
+    "page": "Topór berserkera",
+    "file": "Topór berserkera (Gothic II) (ikona).png",
+    "code": "ItMw_Berserkeraxt",
+    "revision": 567398
+  },
+  "item_g2nk_itmw_doppelaxt": {
+    "page": "Topór obosieczny",
+    "file": "Topór obosieczny G2 ikona.png",
+    "code": "ItMw_Doppelaxt",
+    "revision": 582069
+  },
+  "item_g2nk_itmw_drachenschneide": {
+    "page": "Smocza Zguba",
+    "file": "Smocza Zguba (Gothic II) (ikona).png",
+    "code": "ItMw_Drachenschneide",
+    "revision": 591634
+  },
+  "item_g2nk_itmw_elbastardo": {
+    "page": "El Bastardo",
+    "file": "El Bastardo G2 ikona.png",
+    "code": "ItMw_ElBastardo",
+    "revision": 571145
+  },
+  "item_g2nk_itmw_folteraxt": {
+    "page": "Katowski topór",
+    "file": "Katowski topór G2 ikona.png",
+    "code": "ItMw_Folteraxt",
+    "revision": 571150
+  },
+  "item_g2nk_itmw_francisdagger_mis": {
+    "page": "Złoty sztylet",
+    "file": "Sztylet_(ikonka)_(G2).png",
+    "code": "ItMw_FrancisDagger_Mis",
+    "revision": 517156
+  },
+  "item_g2nk_itmw_hellebarde": {
+    "page": "Halabarda",
+    "file": "Halabarda_(ikonka)_(G2).png",
+    "code": "ItMw_Hellebarde",
+    "revision": 575309
+  },
+  "item_g2nk_itmw_kriegshammer1": {
+    "page": "Młot wojenny",
+    "file": "Młot wojenny G2 ikona.png",
+    "code": "ItMw_Kriegshammer1",
+    "revision": 579079
+  },
+  "item_g2nk_itmw_kriegshammer2": {
+    "page": "Ciężki młot wojenny",
+    "file": "Ciężki młot wojenny G2 ikona.png",
+    "code": "ItMw_Kriegshammer2",
+    "revision": 575416
+  },
+  "item_g2nk_itmw_kriegskeule": {
+    "page": "Pałka bojowa",
+    "file": "Pałka bojowa (ikonka) (G2NK).png",
+    "code": "ItMw_Kriegskeule",
+    "revision": 568378
+  },
+  "item_g2nk_itmw_krummschwert": {
+    "page": "Kordelas (dwuręczny)",
+    "file": "Kordelas dwuręczny G2 ikona.png",
+    "code": "ItMw_Krummschwert",
+    "revision": 575291
+  },
+  "item_g2nk_itmw_malethsgehstock_mis": {
+    "page": "Laska Maletha (broń)",
+    "file": "Laska G2 ikona.png",
+    "code": "ItMw_MalethsGehstock_Mis",
+    "revision": 587010
+  },
+  "item_g2nk_itmw_meisterdegen": {
+    "page": "Miecz mistrzowski",
+    "file": "Miecz mistrzowski G2 ikona.png",
+    "code": "ItMw_Meisterdegen",
+    "revision": 579093
+  },
+  "item_g2nk_itmw_morgenstern": {
+    "page": "Buława i łańcuch",
+    "file": "Buława i łańcuch (ikonka) (G2).png",
+    "code": "ItMw_Morgenstern",
+    "revision": 568909
+  },
+  "item_g2nk_itmw_nagelkeule": {
+    "page": "Pałka z kolcami",
+    "file": "Pałka z kolcami G2 ikona.png",
+    "code": "ItMw_Nagelkeule",
+    "revision": 582025
+  },
+  "item_g2nk_itmw_nagelkeule2": {
+    "page": "Ciężka pałka z kolcami",
+    "file": "Pałka z kolcami G2 ikona.png",
+    "code": "ItMw_Nagelkeule2",
+    "revision": 581464
+  },
+  "item_g2nk_itmw_nagelknueppel": {
+    "page": "Maczuga z kolcami",
+    "file": "Maczuga_z_kolcami_(ikonka)_(G2).png",
+    "code": "ItMw_Nagelknueppel",
+    "revision": 550382
+  },
+  "item_g2nk_itmw_orkschlaechter": {
+    "page": "Orkowa zguba",
+    "file": "Orkowa zguba G2 ikona.png",
+    "code": "ItMw_Orkschlaechter",
+    "revision": 575392
+  },
+  "item_g2nk_itmw_piratensaebel": {
+    "page": "Piracki kordelas",
+    "file": "Piracki kordelas G2 ikona.png",
+    "code": "ItMw_Piratensaebel",
+    "revision": 571199
+  },
+  "item_g2nk_itmw_rangerstaff_addon": {
+    "page": "Pika bojowa Wodnego Kręgu",
+    "file": "Pika bojowa G2 ikona.png",
+    "code": "ItMw_RangerStaff_Addon",
+    "revision": 585655
+  },
+  "item_g2nk_itmw_rapier": {
+    "page": "Rapier",
+    "file": "Rapier (Gothic II) (ikona).png",
+    "code": "ItMw_Rapier",
+    "revision": 579090
+  },
+  "item_g2nk_itmw_richtstab": {
+    "page": "Kostur sędziego",
+    "file": "Kostur sędziego G2 ikona.png",
+    "code": "ItMw_Richtstab",
+    "revision": 591783
+  },
+  "item_g2nk_itmw_rubinklinge": {
+    "page": "Rubinowe ostrze",
+    "file": "Rubinowe ostrze G2 ikona.png",
+    "code": "ItMw_Rubinklinge",
+    "revision": 571197
+  },
+  "item_g2nk_itmw_runenschwert": {
+    "page": "Miecz runiczny",
+    "file": "Miecz runiczny G2 ikona.png",
+    "code": "ItMw_Runenschwert",
+    "revision": 571193
+  },
+  "item_g2nk_itmw_schiffsaxt": {
+    "page": "Topór marynarski",
+    "file": "Topór marynarski (ikonka) (G2).png",
+    "code": "ItMw_Schiffsaxt",
+    "revision": 568388
+  },
+  "item_g2nk_itmw_schwert": {
+    "page": "Kiepski długi miecz",
+    "file": "Kiepski długi miecz G2 ikona.png",
+    "code": "ItMw_Schwert",
+    "revision": 575349
+  },
+  "item_g2nk_itmw_schwert1": {
+    "page": "Dobry miecz",
+    "file": "Dobry miecz G2 ikona.png",
+    "code": "ItMw_Schwert1",
+    "revision": 571141
+  },
+  "item_g2nk_itmw_schwert3": {
+    "page": "Kiepski miecz półtoraręczny",
+    "file": "Kiepski miecz półtoraręczny (ikonka) (G2).png",
+    "code": "ItMw_Schwert3",
+    "revision": 568394
+  },
+  "item_g2nk_itmw_schwert4": {
+    "page": "Dobry długi miecz",
+    "file": "Dobry długi miecz G2 ikona.png",
+    "code": "ItMw_Schwert4",
+    "revision": 580062
+  },
+  "item_g2nk_itmw_schwert5": {
+    "page": "Dobry miecz półtoraręczny",
+    "file": "Dobry miecz półtoraręczny (ikonka) (G2).png",
+    "code": "ItMw_Schwert5",
+    "revision": 568381
+  },
+  "item_g2nk_itmw_sense": {
+    "page": "Mała kosa",
+    "file": "Mała kosa G2 ikona.png",
+    "code": "ItMw_Sense",
+    "revision": 568383
+  },
+  "item_g2nk_itmw_shortsword1": {
+    "page": "Krótki miecz straży",
+    "file": "Krótki miecz straży G2 ikona.png",
+    "code": "ItMw_Shortsword1",
+    "revision": 575288
+  },
+  "item_g2nk_itmw_shortsword2": {
+    "page": "Kiepski krótki miecz",
+    "file": "Kiepski krótki miecz G2 ikona.png",
+    "code": "ItMw_Shortsword2",
+    "revision": 571153
+  },
+  "item_g2nk_itmw_shortsword3": {
+    "page": "Krótki miecz",
+    "file": "Krótki miecz (Gothic II) (ikona).png",
+    "code": "ItMw_Shortsword3",
+    "revision": 588446
+  },
+  "item_g2nk_itmw_shortsword4": {
+    "page": "Wilczy kieł",
+    "file": "Wilczy kieł ikona (GII).png",
+    "code": "ItMw_Shortsword4",
+    "revision": 575290
+  },
+  "item_g2nk_itmw_shortsword5": {
+    "page": "Dobry krótki miecz",
+    "file": "Dobry krótki miecz G2 ikona.png",
+    "code": "ItMw_Shortsword5",
+    "revision": 571137
+  },
+  "item_g2nk_itmw_spicker": {
+    "page": "Rębiczerep",
+    "file": "Rębiczerep_(ikonka)_(G2).png",
+    "code": "ItMw_Spicker",
+    "revision": 557183
+  },
+  "item_g2nk_itmw_stabkeule": {
+    "page": "Buława drzewcowa",
+    "file": "Buława drzewcowa G2 ikona.png",
+    "code": "ItMw_Stabkeule",
+    "revision": 557185
+  },
+  "item_g2nk_itmw_steinbrecher": {
+    "page": "Oskard",
+    "file": "Oskard G2 ikona.png",
+    "code": "ItMw_Steinbrecher",
+    "revision": 575315
+  },
+  "item_g2nk_itmw_streitaxt1": {
+    "page": "Lekki topór bojowy",
+    "file": "Lekki topór bojowy (ikonka) (G2).png",
+    "code": "ItMw_Streitaxt1",
+    "revision": 568398
+  },
+  "item_g2nk_itmw_streitaxt2": {
+    "page": "Topór bojowy",
+    "file": "Topór bojowy G2 ikona.png",
+    "code": "ItMw_Streitaxt2",
+    "revision": 578783
+  },
+  "item_g2nk_itmw_streitkolben": {
+    "page": "Buława",
+    "file": "Buława (ikonka) (G2).png",
+    "code": "ItMw_Streitkolben",
+    "revision": 591643
+  },
+  "item_g2nk_itmw_sturmbringer": {
+    "page": "Ostrze Burzy",
+    "file": "Ostrze Burzy G2 ikona.png",
+    "code": "ItMw_Sturmbringer",
+    "revision": 571084
+  },
+  "item_g2nk_itmw_zweihaender1": {
+    "page": "Lekki miecz dwuręczny",
+    "file": "Lekki miecz dwuręczny G2 ikona.png",
+    "code": "ItMw_Zweihaender1",
+    "revision": 575314
+  },
+  "item_g2nk_itmw_zweihaender2": {
+    "page": "Miecz dwuręczny",
+    "file": "Miecz dwuręczny G2 ikona.png",
+    "code": "ItMw_Zweihaender2",
+    "revision": 575330
+  },
+  "item_g2nk_itmw_zweihaender3": {
+    "page": "Runa mocy",
+    "file": "Runa mocy (ikonka) (G2).png",
+    "code": "ItMw_Zweihaender3",
+    "revision": 568408
+  },
+  "item_g2nk_itmw_zweihaender4": {
+    "page": "Ciężki miecz dwuręczny",
+    "file": "Ciężki miecz dwuręczny G2 ikona.png",
+    "code": "ItMw_Zweihaender4",
+    "revision": 591984
+  },
+  "item_g2nk_itpl_beet": {
+    "page": "Rzepa",
+    "file": "Rzepa G2 ikona.png",
+    "code": "ItPl_Beet",
+    "revision": 575362
+  },
+  "item_g2nk_itpl_blueplant": {
+    "page": "Niebieski bez",
+    "file": "Niebieski bez G2 ikona.png",
+    "code": "ItPl_Blueplant",
+    "revision": 571251
+  },
+  "item_g2nk_itpl_dex_herb_01": {
+    "page": "Goblinie jagody",
+    "file": "Goblinie jagody G2 ikona.png",
+    "code": "ItPl_Dex_Herb_01",
+    "revision": 585656
+  },
+  "item_g2nk_itpl_forestberry": {
+    "page": "Leśna jagoda",
+    "file": "Leśna jagoda (ikonka) (G2).png",
+    "code": "ItPl_ForestBerry",
+    "revision": 575005
+  },
+  "item_g2nk_itpl_health_herb_01": {
+    "page": "Roślina lecznicza",
+    "file": "Roślina lecznicza G2 ikona.png",
+    "code": "ItPl_Health_Herb_01",
+    "revision": 571256
+  },
+  "item_g2nk_itpl_health_herb_02": {
+    "page": "Ziele lecznicze",
+    "file": "Ziele lecznicze G2 ikona.png",
+    "code": "ItPl_Health_Herb_02",
+    "revision": 575430
+  },
+  "item_g2nk_itpl_health_herb_03": {
+    "page": "Korzeń leczniczy",
+    "file": "Korzeń leczniczy G2 ikona.png",
+    "code": "ItPl_Health_Herb_03",
+    "revision": 571259
+  },
+  "item_g2nk_itpl_mana_herb_01": {
+    "page": "Ognista pokrzywa",
+    "file": "Ognista pokrzywa G2 ikona.png",
+    "code": "ItPl_Mana_Herb_01",
+    "revision": 550944
+  },
+  "item_g2nk_itpl_mana_herb_02": {
+    "page": "Ogniste ziele",
+    "file": "Ogniste ziele G2 ikona.png",
+    "code": "ItPl_Mana_Herb_02",
+    "revision": 551055
+  },
+  "item_g2nk_itpl_mana_herb_03": {
+    "page": "Ognisty korzeń",
+    "file": "Ognisty korzeń G2 ikona.png",
+    "code": "ItPl_Mana_Herb_03",
+    "revision": 551082
+  },
+  "item_g2nk_itpl_mushroom_01": {
+    "page": "Ciemny grzyb",
+    "file": "Ciemny grzyb G2 ikona.png",
+    "code": "ItPl_Mushroom_01",
+    "revision": 587867
+  },
+  "item_g2nk_itpl_mushroom_02": {
+    "page": "Mięso kopacza",
+    "file": "Mięso kopacza G2 ikona.png",
+    "code": "ItPl_Mushroom_02",
+    "revision": 575011
+  },
+  "item_g2nk_itpl_perm_herb": {
+    "page": "Szczaw królewski",
+    "file": "Szczaw królewski G2 ikona.png",
+    "code": "ItPl_Perm_Herb",
+    "revision": 580214
+  },
+  "item_g2nk_itpl_planeberry": {
+    "page": "Polna jagoda",
+    "file": "Polna jagoda (ikonka) (G2).png",
+    "code": "ItPl_Planeberry",
+    "revision": 591532
+  },
+  "item_g2nk_itpl_sagitta_herb_mis": {
+    "page": "Słoneczny aloes (roślina)",
+    "file": "Smoczy korzeń G2 ikona.png",
+    "code": "ItPl_Sagitta_Herb_Mis",
+    "revision": 575008
+  },
+  "item_g2nk_itpl_speed_herb_01": {
+    "page": "Zębate ziele",
+    "file": "Zębate_ziele_(ikonka)_(G2).png",
+    "code": "ItPl_Speed_Herb_01",
+    "revision": 587011
+  },
+  "item_g2nk_itpl_strength_herb_01": {
+    "page": "Dragrot",
+    "file": "Smoczy korzeń G2 ikona.png",
+    "code": "ItPl_Strength_Herb_01",
+    "revision": 578817
+  },
+  "item_g2nk_itpl_swampherb": {
+    "page": "Bagienne ziele",
+    "file": "Bagienne ziele ikona GII.png",
+    "code": "ItPl_SwampHerb",
+    "revision": 587869
+  },
+  "item_g2nk_itpl_temp_herb": {
+    "page": "Rdest polny",
+    "file": "Rdest polny G2 ikona.png",
+    "code": "ItPl_Temp_Herb",
+    "revision": 575311
+  },
+  "item_g2nk_itpl_weed": {
+    "page": "Chwasty",
+    "file": "Bagienne ziele ikona GII.png",
+    "code": "ItPl_Weed",
+    "revision": 556411
+  },
+  "item_g2nk_itpo_addon_geist_01": {
+    "page": "Mikstura przemiany duszy",
+    "file": "Eliksir siły G2 ikona.png",
+    "code": "ItPo_Addon_Geist_01",
+    "revision": 553449
+  },
+  "item_g2nk_itpo_addon_geist_02": {
+    "page": "Mikstura przemiany duszy",
+    "file": "Eliksir siły G2 ikona.png",
+    "code": "ItPo_Addon_Geist_02",
+    "revision": 553449
+  },
+  "item_g2nk_itpo_dragoneggdrinkneoras_mis": {
+    "page": "Mikstura wydzieliny ze smoczych jaj",
+    "file": "Mikstura_wydzieliny_ze_smoczych_jaj_(ikonka)_(G2).png",
+    "code": "ItPo_DragonEggDrinkNeoras_Mis",
+    "revision": 553495
+  },
+  "item_g2nk_itpo_healrandolph_mis": {
+    "page": "Leczenie z nałogu",
+    "file": "Łzy_Innosa_(ikonka)_(G2).png",
+    "code": "ItPo_HealRandolph_Mis",
+    "revision": 553407
+  },
+  "item_g2nk_itpo_health_01": {
+    "page": "Esencja lecznicza",
+    "file": "Esencja lecznicza (ikonka) (G2).png",
+    "code": "ItPo_Health_01",
+    "revision": 552694
+  },
+  "item_g2nk_itpo_health_02": {
+    "page": "Ekstrakt leczniczy",
+    "file": "Ekstrakt leczniczy G2 ikona.png",
+    "code": "ItPo_Health_02",
+    "revision": 573400
+  },
+  "item_g2nk_itpo_health_03": {
+    "page": "Eliksir leczniczy",
+    "file": "Eliksir leczniczy (ikonka (G2).png",
+    "code": "ItPo_Health_03",
+    "revision": 591297
+  },
+  "item_g2nk_itpo_health_addon_04": {
+    "page": "Pełnia życia",
+    "file": "Eliksir leczniczy (ikonka (G2).png",
+    "code": "ItPo_Health_Addon_04",
+    "revision": 575446
+  },
+  "item_g2nk_itpo_mana_01": {
+    "page": "Esencja many",
+    "file": "Esencja many (ikonka) (G2).png",
+    "code": "ItPo_Mana_01",
+    "revision": 551086
+  },
+  "item_g2nk_itpo_mana_02": {
+    "page": "Ekstrakt many",
+    "file": "Ekstrakt_many_(ikonka)_(G2).png",
+    "code": "ItPo_Mana_02",
+    "revision": 586821
+  },
+  "item_g2nk_itpo_mana_03": {
+    "page": "Eliksir many",
+    "file": "Eliksir many G2 ikona.png",
+    "code": "ItPo_Mana_03",
+    "revision": 586819
+  },
+  "item_g2nk_itpo_mana_addon_04": {
+    "page": "Pełnia many",
+    "file": "Eliksir many G2 ikona.png",
+    "code": "ItPo_Mana_Addon_04",
+    "revision": 575684
+  },
+  "item_g2nk_itpo_megadrink": {
+    "page": "Embarla Firgasto",
+    "file": "Eliksir ducha G2 ikona.png",
+    "code": "ItPo_MegaDrink",
+    "revision": 554448
+  },
+  "item_g2nk_itpo_perm_dex": {
+    "page": "Eliksir zręczności",
+    "file": "Eliksir zręczności G2 ikona.png",
+    "code": "ItPo_Perm_Dex",
+    "revision": 583650
+  },
+  "item_g2nk_itpo_perm_health": {
+    "page": "Eliksir życia",
+    "file": "Eliksir życia G2 ikona.png",
+    "code": "ItPo_Perm_Health",
+    "revision": 567435
+  },
+  "item_g2nk_itpo_perm_littlemana": {
+    "page": "Esencja ducha",
+    "file": "Eliksir ducha G2 ikona.png",
+    "code": "ItPo_Perm_LittleMana",
+    "revision": 567436
+  },
+  "item_g2nk_itpo_potionofdeath_01_mis": {
+    "page": "Łzy Innosa",
+    "file": "Łzy_Innosa_(ikonka)_(G2).png",
+    "code": "ItPo_PotionOfDeath_01_Mis",
+    "revision": 562515
+  },
+  "item_g2nk_itpo_potionofdeath_02_mis": {
+    "page": "Łzy Innosa",
+    "file": "Łzy_Innosa_(ikonka)_(G2).png",
+    "code": "ItPo_PotionOfDeath_02_Mis",
+    "revision": 562515
+  },
+  "item_g2nk_itpo_speed": {
+    "page": "Mikstura szybkości",
+    "file": "Mikstura szybkości G2 ikona.png",
+    "code": "ItPo_Speed",
+    "revision": 554397
+  },
+  "item_g2nk_itri_addon_health_01": {
+    "page": "Pierścień uzdrowiciela",
+    "file": "Pierścień wiecznych zwycięstw G2 ikona.png",
+    "code": "ItRi_Addon_Health_01",
+    "revision": 570076
+  },
+  "item_g2nk_itri_addon_health_02": {
+    "page": "Pierścień uzdrowiciela",
+    "file": "Pierścień wiecznych zwycięstw G2 ikona.png",
+    "code": "ItRi_Addon_Health_02",
+    "revision": 570076
+  },
+  "item_g2nk_itri_addon_mana_01": {
+    "page": "Pierścień kapłana",
+    "file": "Pierścień wiecznych zwycięstw G2 ikona.png",
+    "code": "ItRi_Addon_Mana_01",
+    "revision": 570075
+  },
+  "item_g2nk_itri_addon_mana_02": {
+    "page": "Pierścień kapłana",
+    "file": "Pierścień wiecznych zwycięstw G2 ikona.png",
+    "code": "ItRi_Addon_Mana_02",
+    "revision": 570075
+  },
+  "item_g2nk_itri_addon_morgansring_mission": {
+    "page": "Pierścień Morgana",
+    "file": "Pierścień Morgana (ikona) (by SpY).png",
+    "code": "ItRi_Addon_MorgansRing_Mission",
+    "revision": 559800
+  },
+  "item_g2nk_itri_addon_str_01": {
+    "page": "Pierścień wojownika",
+    "file": "Pierścień Morgana (ikona) (by SpY).png",
+    "code": "ItRi_Addon_Str_01",
+    "revision": 559960
+  },
+  "item_g2nk_itri_addon_str_02": {
+    "page": "Pierścień wojownika",
+    "file": "Pierścień Morgana (ikona) (by SpY).png",
+    "code": "ItRi_Addon_Str_02",
+    "revision": 559960
+  },
+  "item_g2nk_itri_hp_01": {
+    "page": "Pierścień życia",
+    "file": "Pierścień życia ikona (Gothic II).png",
+    "code": "ItRi_HP_01",
+    "revision": 562763
+  },
+  "item_g2nk_itri_hp_mana_01": {
+    "page": "Pierścień oświecenia",
+    "file": "Pierścień oświecenia ikona (Gothic II).png",
+    "code": "ItRi_HP_Mana_01",
+    "revision": 562772
+  },
+  "item_g2nk_itri_lancering": {
+    "page": "Pierścień z akwamarynem",
+    "file": "Pierścień oświecenia ikona (Gothic II).png",
+    "code": "ItRi_LanceRing",
+    "revision": 570078
+  },
+  "item_g2nk_itri_mana_01": {
+    "page": "Pierścień magii",
+    "file": "Pierścień magii G2 ikona.png",
+    "code": "ItRi_Mana_01",
+    "revision": 567172
+  },
+  "item_g2nk_itri_orcelitering": {
+    "page": "Pierścień orkowych przywódców",
+    "file": "Pierścień siły G2 ikona.png",
+    "code": "ItRi_OrcEliteRing",
+    "revision": 575049
+  },
+  "item_g2nk_itri_prot_edge_01": {
+    "page": "Pierścień żelaznej skóry",
+    "file": "Pierścień żelaznej skóry G2 ikona.png",
+    "code": "ItRi_Prot_Edge_01",
+    "revision": 575389
+  },
+  "item_g2nk_itri_prot_edge_02": {
+    "page": "Pierścień magicznego pancerza",
+    "file": "Pierścień magicznego pancerza G2 ikona.png",
+    "code": "ItRi_Prot_Edge_02",
+    "revision": 562690
+  },
+  "item_g2nk_itri_prot_fire_01": {
+    "page": "Pierścień ochrony przed ogniem",
+    "file": "Pierścień ochrony przed ogniem G2 ikona.png",
+    "code": "ItRi_Prot_Fire_01",
+    "revision": 562705
+  },
+  "item_g2nk_itri_prot_mage_02": {
+    "page": "Pierścień obrony",
+    "file": "Pierścień obrony G2 ikona.png",
+    "code": "ItRi_Prot_Mage_02",
+    "revision": 576986
+  },
+  "item_g2nk_itri_prot_point_01": {
+    "page": "Pierścień drewnianej skóry",
+    "file": "Pierścień drewnianej skóry G2 ikona.png",
+    "code": "ItRi_Prot_Point_01",
+    "revision": 562693
+  },
+  "item_g2nk_itri_prot_point_02": {
+    "page": "Pierścień kamiennej skóry",
+    "file": "Pierścień_kamiennej_skóry_(ikonka)_(G2).png",
+    "code": "ItRi_Prot_Point_02",
+    "revision": 575390
+  },
+  "item_g2nk_itri_ranger_addon": {
+    "page": "Pierścień z akwamarynem",
+    "file": "Pierścień oświecenia ikona (Gothic II).png",
+    "code": "ItRi_Ranger_Addon",
+    "revision": 570078
+  },
+  "item_g2nk_itri_ranger_lares_addon": {
+    "page": "Pierścień z akwamarynem",
+    "file": "Pierścień oświecenia ikona (Gothic II).png",
+    "code": "ItRi_Ranger_Lares_Addon",
+    "revision": 570078
+  },
+  "item_g2nk_itri_str_02": {
+    "page": "Pierścień siły",
+    "file": "Pierścień siły G2 ikona.png",
+    "code": "ItRi_Str_02",
+    "revision": 573189
+  },
+  "item_g2nk_itri_tengron": {
+    "page": "Pierścień Tengrona (przedmiot)",
+    "file": "Pierścień życia ikona (Gothic II).png",
+    "code": "ItRi_Tengron",
+    "revision": 576307
+  },
+  "item_g2nk_itru_armyofdarkness": {
+    "page": "Armia ciemności",
+    "file": "Armia Ciemności Runa GII.png",
+    "code": "ItRu_ArmyOfDarkness",
+    "revision": 562190
+  },
+  "item_g2nk_itru_beliarsrage": {
+    "page": "Szał Beliara",
+    "file": "Szał Beliara G2NK ikona.png",
+    "code": "ItRu_BeliarsRage",
+    "revision": 579196
+  },
+  "item_g2nk_itru_concussionbolt": {
+    "page": "Pocisk nieprzytomności",
+    "file": "Szkodzenie złu runa G2 ikona.png",
+    "code": "ItRu_Concussionbolt",
+    "revision": 584816
+  },
+  "item_g2nk_itru_deathball": {
+    "page": "Śmiertelna kula",
+    "file": "Szkodzenie złu runa G2 ikona.png",
+    "code": "ItRu_Deathball",
+    "revision": 584820
+  },
+  "item_g2nk_itru_firerain": {
+    "page": "Deszcz ognia",
+    "file": "Deszcz ognia (runa) (G2NK).png",
+    "code": "ItRu_Firerain",
+    "revision": 562302
+  },
+  "item_g2nk_itru_geyser": {
+    "page": "Gejzer",
+    "file": "Gejzer (Gothic II, runa).png",
+    "code": "ItRu_Geyser",
+    "revision": 528984
+  },
+  "item_g2nk_itru_greententacle": {
+    "page": "Korzeń",
+    "file": "Korzeń G2NK ikona.png",
+    "code": "ItRu_GreenTentacle",
+    "revision": 579555
+  },
+  "item_g2nk_itru_icelance": {
+    "page": "Lodowa lanca",
+    "file": "Lodowa lanca (Gothic II, runa).png",
+    "code": "ItRu_Icelance",
+    "revision": 571261
+  },
+  "item_g2nk_itru_palteleportsecret": {
+    "page": "Teleportacja do tajnej komnaty",
+    "file": "Teleportacja do tajnej komnaty ikona.png",
+    "code": "ItRu_PalTeleportSecret",
+    "revision": 569817
+  },
+  "item_g2nk_itru_pyrokinesis": {
+    "page": "Duża burza ognista",
+    "file": "duża_burza_ognista.png",
+    "code": "ItRu_Pyrokinesis",
+    "revision": 544599
+  },
+  "item_g2nk_itru_skull": {
+    "page": "Krzyk umarłych",
+    "file": "Krzyk umarłych G2NK ikona.png",
+    "code": "ItRu_Skull",
+    "revision": 567426
+  },
+  "item_g2nk_itru_suckenergy": {
+    "page": "Kradzież energii",
+    "file": "Kradzież energii (ikona).png",
+    "code": "ItRu_SuckEnergy",
+    "revision": 579556
+  },
+  "item_g2nk_itru_summonguardian": {
+    "page": "Stworzenie strażnika",
+    "file": "Stworzenie strażnika G2NK ikona.png",
+    "code": "ItRu_SummonGuardian",
+    "revision": 548055
+  },
+  "item_g2nk_itru_summonzombie": {
+    "page": "Stworzenie zombie",
+    "file": "Stworzenie zombie G2NK ikona.png",
+    "code": "ItRu_SummonZombie",
+    "revision": 579558
+  },
+  "item_g2nk_itru_swarm": {
+    "page": "Rój owadów",
+    "file": "Rój owadów G2NK ikona.png",
+    "code": "ItRu_Swarm",
+    "revision": 586037
+  },
+  "item_g2nk_itru_teleportfarm": {
+    "page": "Teleportacja do majątku ziemskiego",
+    "file": "Teleportacja do majątku ziemskiego ikona.png",
+    "code": "ItRu_TeleportFarm",
+    "revision": 566762
+  },
+  "item_g2nk_itru_teleportmonastery": {
+    "page": "Teleportacja do klasztoru",
+    "file": "Teleportacja do klasztoru ikona.png",
+    "code": "ItRu_TeleportMonastery",
+    "revision": 566766
+  },
+  "item_g2nk_itru_teleportoc": {
+    "page": "Teleportacja do zamku",
+    "file": "Teleportacja_do_zamku_ikona.png",
+    "code": "ItRu_TeleportOC",
+    "revision": 579765
+  },
+  "item_g2nk_itru_teleportowdemontower": {
+    "page": "Teleportacja do starej wieży demonów",
+    "file": "Teleportacja do starej wieży demonów ikona.png",
+    "code": "ItRu_TeleportOWDemonTower",
+    "revision": 566764
+  },
+  "item_g2nk_itru_teleportpassnw": {
+    "page": "Teleportacja do przełęczy Khorinis",
+    "file": "Teleportacja do przełęczy Khorinis ikona.png",
+    "code": "ItRu_TeleportPassNW",
+    "revision": 585579
+  },
+  "item_g2nk_itru_teleportpassow": {
+    "page": "Teleportacja do przełęczy w Górniczej Dolinie",
+    "file": "Teleportacja do przełęczy w Górniczej Dolinie ikona.png",
+    "code": "ItRu_TeleportPassOW",
+    "revision": 566761
+  },
+  "item_g2nk_itru_teleportseaport": {
+    "page": "Teleportacja do miasta portowego",
+    "file": "Teleportacja do miasta portowego ikona.png",
+    "code": "ItRu_TeleportSeaport",
+    "revision": 575520
+  },
+  "item_g2nk_itru_teleporttaverne": {
+    "page": "Teleportacja do tawerny",
+    "file": "Teleportacja do starej wieży demonów ikona.png",
+    "code": "ItRu_TeleportTaverne",
+    "revision": 566759
+  },
+  "item_g2nk_itru_teleportxardas": {
+    "page": "Teleportacja do Xardasa",
+    "file": "Teleportacja do Xardasa ikona.png",
+    "code": "ItRu_TeleportXardas",
+    "revision": 575550
+  },
+  "item_g2nk_itru_thunderstorm": {
+    "page": "Grom (zaklęcie z Gothic II: Noc Kruka)",
+    "file": "Grom (Gothic II, runa).png",
+    "code": "ItRu_Thunderstorm",
+    "revision": 586038
+  },
+  "item_g2nk_itrw_addon_firebow": {
+    "page": "Ognisty łuk",
+    "file": "Ognisty łuk GIINK ico.png",
+    "code": "ItRw_Addon_Firebow",
+    "revision": 581059
+  },
+  "item_g2nk_itrw_addon_magicbow": {
+    "page": "Magiczny łuk",
+    "file": "Ognisty łuk GIINK ico.png",
+    "code": "ItRw_Addon_MagicBow",
+    "revision": 567702
+  },
+  "item_g2nk_itrw_addon_magiccrossbow": {
+    "page": "Magiczna kusza",
+    "file": "Ciężka kusza G2 ikona.png",
+    "code": "ItRw_Addon_MagicCrossbow",
+    "revision": 581072
+  },
+  "item_g2nk_itrw_arrow": {
+    "page": "Strzała",
+    "file": "Strzała_(ikonka)_(G2).png",
+    "code": "ItRw_Arrow",
+    "revision": 575400
+  },
+  "item_g2nk_itrw_bolt": {
+    "page": "Bełt",
+    "file": "Bełt_(ikonka)_(G2).png",
+    "code": "ItRw_Bolt",
+    "revision": 575399
+  },
+  "item_g2nk_itrw_bow_h_01": {
+    "page": "Kościany łuk",
+    "file": "Kościany łuk G2 ikona.png",
+    "code": "ItRw_Bow_H_01",
+    "revision": 581001
+  },
+  "item_g2nk_itrw_bow_h_02": {
+    "page": "Łuk dębowy",
+    "file": "Łuk dębowy G2 ikona.png",
+    "code": "ItRw_Bow_H_02",
+    "revision": 581025
+  },
+  "item_g2nk_itrw_bow_h_03": {
+    "page": "Łuk wojenny",
+    "file": "Łuk_wojenny_(ikonka)_(G2).png",
+    "code": "ItRw_Bow_H_03",
+    "revision": 581048
+  },
+  "item_g2nk_itrw_bow_h_04": {
+    "page": "Smoczy łuk",
+    "file": "Ognisty łuk GIINK ico.png",
+    "code": "ItRw_Bow_H_04",
+    "revision": 577608
+  },
+  "item_g2nk_itrw_bow_l_01": {
+    "page": "Krótki łuk",
+    "file": "Krótki łuk G2 ikona.png",
+    "code": "ItRw_Bow_L_01",
+    "revision": 581005
+  },
+  "item_g2nk_itrw_bow_l_02": {
+    "page": "Łuk wierzbowy",
+    "file": "Łuk wierzbowy G2 ikona.png",
+    "code": "ItRw_Bow_L_02",
+    "revision": 581045
+  },
+  "item_g2nk_itrw_bow_l_03": {
+    "page": "Łuk myśliwski",
+    "file": "Łuk kompozytowy G2 ikona.png",
+    "code": "ItRw_Bow_L_03",
+    "revision": 582226
+  },
+  "item_g2nk_itrw_bow_l_04": {
+    "page": "Łuk z wiązu",
+    "file": "Łuk jesionowy G2 ikona.png",
+    "code": "ItRw_Bow_L_04",
+    "revision": 571235
+  },
+  "item_g2nk_itrw_bow_m_01": {
+    "page": "Łuk kompozytowy",
+    "file": "Łuk kompozytowy G2 ikona.png",
+    "code": "ItRw_Bow_M_01",
+    "revision": 575419
+  },
+  "item_g2nk_itrw_bow_m_02": {
+    "page": "Łuk jesionowy",
+    "file": "Łuk jesionowy G2 ikona.png",
+    "code": "ItRw_Bow_M_02",
+    "revision": 574927
+  },
+  "item_g2nk_itrw_bow_m_03": {
+    "page": "Długi łuk",
+    "file": "Długi łuk G2 ikona.png",
+    "code": "ItRw_Bow_M_03",
+    "revision": 582371
+  },
+  "item_g2nk_itrw_bow_m_04": {
+    "page": "Łuk bukowy",
+    "file": "Łuk bukowy (ikonka) (G2).png",
+    "code": "ItRw_Bow_M_04",
+    "revision": 568449
+  },
+  "item_g2nk_itrw_crossbow_h_01": {
+    "page": "Ciężka kusza",
+    "file": "Ciężka kusza G2 ikona.png",
+    "code": "ItRw_Crossbow_H_01",
+    "revision": 581063
+  },
+  "item_g2nk_itrw_crossbow_h_02": {
+    "page": "Kusza łowcy smoków",
+    "file": "Ciężka kusza G2 ikona.png",
+    "code": "ItRw_Crossbow_H_02",
+    "revision": 591424
+  },
+  "item_g2nk_itrw_crossbow_l_02": {
+    "page": "Lekka kusza",
+    "file": "Lekka kusza G2 ikona.png",
+    "code": "ItRw_Crossbow_L_02",
+    "revision": 583112
+  },
+  "item_g2nk_itrw_crossbow_m_02": {
+    "page": "Kusza bojowa",
+    "file": "Kusza G2 ikona.png",
+    "code": "ItRw_Crossbow_M_02",
+    "revision": 591255
+  },
+  "item_g2nk_itrw_dragomirsarmbrust_mis": {
+    "page": "Kusza Dragomira (broń)",
+    "file": "Lekka kusza G2 ikona.png",
+    "code": "ItRw_DragomirsArmbrust_Mis",
+    "revision": 561836
+  },
+  "item_g2nk_itrw_sld_bow": {
+    "page": "Łuk",
+    "file": "Długi łuk G2 ikona.png",
+    "code": "ItRw_Sld_Bow",
+    "revision": 574893
+  },
+  "item_g2nk_itsc_armyofdarkness": {
+    "page": "Armia ciemności",
+    "file": "Armia Ciemności Zwój GII.png",
+    "code": "ItSc_ArmyOfDarkness",
+    "revision": 562190
+  },
+  "item_g2nk_itsc_charm": {
+    "page": "Niepamięć",
+    "file": "Sen niepamięć (zwój) (ikona).png",
+    "code": "ItSc_Charm",
+    "revision": 585193
+  },
+  "item_g2nk_itsc_firerain": {
+    "page": "Deszcz ognia",
+    "file": "Deszcz ognia (zwój) (G2NK).png",
+    "code": "ItSc_Firerain",
+    "revision": 562302
+  },
+  "item_g2nk_itsc_icelance": {
+    "page": "Lodowa lanca",
+    "file": "Lodowa lanca (Gothic II, zwój).png",
+    "code": "ItSc_Icelance",
+    "revision": 571261
+  },
+  "item_g2nk_itsc_pyrokinesis": {
+    "page": "Duża burza ognista",
+    "file": "Duża burza ognista zwój G2.png",
+    "code": "ItSc_Pyrokinesis",
+    "revision": 544599
+  },
+  "item_g2nk_itsc_summonmud": {
+    "page": "Przyzwanie błotniaka",
+    "file": "Przyzwanie demona zwój G2 ikona.png",
+    "code": "ItSc_SummonMud",
+    "revision": 576155
+  },
+  "item_g2nk_itsc_thunderstorm": {
+    "page": "Grom (zaklęcie z Gothic II: Noc Kruka)",
+    "file": "Grom (Gothic II, zwój).png",
+    "code": "ItSc_Thunderstorm",
+    "revision": 586038
+  },
+  "item_g2nk_itse_addon_cavalornsbeutel": {
+    "page": "Skórzana torba Cavalorna",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_Addon_CavalornsBeutel",
+    "revision": 544536
+  },
+  "item_g2nk_itse_addon_sack": {
+    "page": "W sakwie jest pełno nowych broni!",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItSe_Addon_Sack",
+    "revision": 566729
+  },
+  "item_g2nk_itse_diegostreasure_mis": {
+    "page": "Skórzana torba Diega",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_DiegosTreasure_Mis",
+    "revision": 584696
+  },
+  "item_g2nk_itse_erzfisch": {
+    "page": "Kulista ryba",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItSe_ErzFisch",
+    "revision": 522673
+  },
+  "item_g2nk_itse_goldfisch": {
+    "page": "Ciężka ryba",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItSe_GoldFisch",
+    "revision": 562532
+  },
+  "item_g2nk_itse_goldpocket100": {
+    "page": "Skórzany mieszek",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_GoldPocket100",
+    "revision": 591991
+  },
+  "item_g2nk_itse_goldpocket25": {
+    "page": "Skórzany mieszek",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_GoldPocket25",
+    "revision": 591991
+  },
+  "item_g2nk_itse_goldpocket50": {
+    "page": "Skórzany mieszek",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_GoldPocket50",
+    "revision": 591991
+  },
+  "item_g2nk_itse_golemchest_mis": {
+    "page": "Skórzany mieszek",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_GolemChest_Mis",
+    "revision": 591991
+  },
+  "item_g2nk_itse_hannasbeutel": {
+    "page": "Skórzany mieszek",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_HannasBeutel",
+    "revision": 591991
+  },
+  "item_g2nk_itse_lockpickfisch": {
+    "page": "Lekka ryba",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItSe_LockpickFisch",
+    "revision": 562486
+  },
+  "item_g2nk_itse_olav": {
+    "page": "Sakiewka Olava",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_Olav",
+    "revision": 561978
+  },
+  "item_g2nk_itse_ringfisch": {
+    "page": "Mała ryba",
+    "file": "Inna ryba (ikonka) (G2).png",
+    "code": "ItSe_RingFisch",
+    "revision": 522675
+  },
+  "item_g2nk_itse_xardasnotfallbeutel_mis": {
+    "page": "Bardzo dziwna skórzana torba",
+    "file": "Skórzany mieszek ikona.png",
+    "code": "ItSe_XardasNotfallBeutel_Mis",
+    "revision": 562503
+  },
+  "item_g2nk_itwr_addon_bandittrader": {
+    "page": "Dostawa (list)",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_Addon_BanditTrader",
+    "revision": 576363
+  },
+  "item_g2nk_itwr_addon_hinweis_01": {
+    "page": "Ważna wiadomość (z chaty na bagnie)",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Addon_Hinweis_01",
+    "revision": 555130
+  },
+  "item_g2nk_itwr_addon_hinweis_02": {
+    "page": "Ważna wiadomość (z karczmy)",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Addon_Hinweis_02",
+    "revision": 555129
+  },
+  "item_g2nk_itwr_addon_pirates_01": {
+    "page": "Brudny papier",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Addon_Pirates_01",
+    "revision": 576464
+  },
+  "item_g2nk_itwr_addon_summonancientghost": {
+    "page": "Przywołanie Quarhodrona",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Addon_SummonAncientGhost",
+    "revision": 534606
+  },
+  "item_g2nk_itwr_addon_treasuremap": {
+    "page": "Mapa do skarbu",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Addon_TreasureMap",
+    "revision": 574814
+  },
+  "item_g2nk_itwr_addon_william_01": {
+    "page": "Liścik",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Addon_William_01",
+    "revision": 534572
+  },
+  "item_g2nk_itwr_babosdocs_mis": {
+    "page": "Zwitek papierów",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_BabosDocs_Mis",
+    "revision": 540358
+  },
+  "item_g2nk_itwr_babosletter_mis": {
+    "page": "List do Babo",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_BabosLetter_Mis",
+    "revision": 544802
+  },
+  "item_g2nk_itwr_babospinup_mis": {
+    "page": "Portret nagiej kobiety",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_BabosPinUp_Mis",
+    "revision": 588384
+  },
+  "item_g2nk_itwr_banditletter_mis": {
+    "page": "Wiadomość (od Dextera)",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_BanditLetter_Mis",
+    "revision": 576582
+  },
+  "item_g2nk_itwr_bloody_mis": {
+    "page": "Trucizna krwiopijców",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_Bloody_Mis",
+    "revision": 576460
+  },
+  "item_g2nk_itwr_bowstoneplate1_addon": {
+    "page": "Kamienna tablica łuczników I",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_BowStoneplate1_Addon",
+    "revision": 585451
+  },
+  "item_g2nk_itwr_bowstoneplate2_addon": {
+    "page": "Kamienna tablica łuczników II",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_BowStoneplate2_Addon",
+    "revision": 585452
+  },
+  "item_g2nk_itwr_bowstoneplate3_addon": {
+    "page": "Kamienna tablica łuczników III",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_BowStoneplate3_Addon",
+    "revision": 585453
+  },
+  "item_g2nk_itwr_canthars_komprobrief_mis": {
+    "page": "List Canthara do Sary",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Canthars_Komprobrief_Mis",
+    "revision": 576574
+  },
+  "item_g2nk_itwr_crsbowstoneplate1_addon": {
+    "page": "Kamienna tablica kuszników I",
+    "file": "Kamienna tablica walki bronią jednoręczną (ikona) (GIINK).png",
+    "code": "ItWr_CrsbowStoneplate1_Addon",
+    "revision": 585382
+  },
+  "item_g2nk_itwr_crsbowstoneplate2_addon": {
+    "page": "Kamienna tablica kuszników II",
+    "file": "Kamienna tablica walki bronią jednoręczną (ikona) (GIINK).png",
+    "code": "ItWr_CrsbowStoneplate2_Addon",
+    "revision": 585381
+  },
+  "item_g2nk_itwr_crsbowstoneplate3_addon": {
+    "page": "Kamienna tablica kuszników III",
+    "file": "Kamienna tablica walki bronią jednoręczną (ikona) (GIINK).png",
+    "code": "ItWr_CrsbowStoneplate3_Addon",
+    "revision": 585380
+  },
+  "item_g2nk_itwr_dementorobsessionbook_mis": {
+    "page": "Almanach Opętanych",
+    "file": "Księga 5 G2 ikona.png",
+    "code": "ItWr_DementorObsessionBook_Mis",
+    "revision": 563495
+  },
+  "item_g2nk_itwr_dexstoneplate1_addon": {
+    "page": "Kamienna tablica zręczności I",
+    "file": "Tablica zręczności ico.png",
+    "code": "ItWr_DexStoneplate1_Addon",
+    "revision": 585461
+  },
+  "item_g2nk_itwr_dexstoneplate2_addon": {
+    "page": "Kamienna tablica zręczności II",
+    "file": "Tablica zręczności ico.png",
+    "code": "ItWr_DexStoneplate2_Addon",
+    "revision": 585447
+  },
+  "item_g2nk_itwr_dexstoneplate3_addon": {
+    "page": "Kamienna tablica zręczności III",
+    "file": "Tablica zręczności ico.png",
+    "code": "ItWr_DexStoneplate3_Addon",
+    "revision": 585450
+  },
+  "item_g2nk_itwr_diegosletter_mis": {
+    "page": "List Diega do Gerbrandta",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_DiegosLetter_Mis",
+    "revision": 575705
+  },
+  "item_g2nk_itwr_forgedshipletter_mis": {
+    "page": "Akt okrętowy",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_ForgedShipletter_Mis",
+    "revision": 553395
+  },
+  "item_g2nk_itwr_gilbertletter": {
+    "page": "Wiadomość od Gilberta",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_GilbertLetter",
+    "revision": 576583
+  },
+  "item_g2nk_itwr_halvormessage": {
+    "page": "Śmierdząca notatka",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_HalvorMessage",
+    "revision": 576430
+  },
+  "item_g2nk_itwr_hitpointstoneplate1_addon": {
+    "page": "Kamienna tablica życia I",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_HitpointStoneplate1_Addon",
+    "revision": 585438
+  },
+  "item_g2nk_itwr_hitpointstoneplate2_addon": {
+    "page": "Kamienna tablica życia II",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_HitpointStoneplate2_Addon",
+    "revision": 585445
+  },
+  "item_g2nk_itwr_hitpointstoneplate3_addon": {
+    "page": "Kamienna tablica życia III",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_HitpointStoneplate3_Addon",
+    "revision": 585736
+  },
+  "item_g2nk_itwr_kdwletter": {
+    "page": "Wiadomość Saturasa",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_KdWLetter",
+    "revision": 533843
+  },
+  "item_g2nk_itwr_kraeuterliste": {
+    "page": "Lista ziół Constantina",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Kraeuterliste",
+    "revision": 576577
+  },
+  "item_g2nk_itwr_krypta_garon": {
+    "page": "Stary list Ivana",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_Krypta_Garon",
+    "revision": 576579
+  },
+  "item_g2nk_itwr_lastdoortoundeaddrgdi_mis": {
+    "page": "Zwój czarnego maga",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_LastDoorToUndeadDrgDI_Mis",
+    "revision": 576387
+  },
+  "item_g2nk_itwr_letterforgorn_mis": {
+    "page": "List Miltena do Gorna",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_LetterForGorn_Mis",
+    "revision": 534553
+  },
+  "item_g2nk_itwr_luciasloveletter_addon": {
+    "page": "List pożegnalny Lucii",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_LuciasLoveletter_Addon",
+    "revision": 534569
+  },
+  "item_g2nk_itwr_manarezept": {
+    "page": "Receptura esencji magicznej",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_ManaRezept",
+    "revision": 576466
+  },
+  "item_g2nk_itwr_manastoneplate1_addon": {
+    "page": "Kamienna tablica magii I",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_ManaStoneplate1_Addon",
+    "revision": 585737
+  },
+  "item_g2nk_itwr_manastoneplate2_addon": {
+    "page": "Kamienna tablica magii II",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_ManaStoneplate2_Addon",
+    "revision": 585423
+  },
+  "item_g2nk_itwr_manastoneplate3_addon": {
+    "page": "Kamienna tablica magii III",
+    "file": "Kamienna tablica łuczników (ikona) (GIINK).png",
+    "code": "ItWr_ManaStoneplate3_Addon",
+    "revision": 585422
+  },
+  "item_g2nk_itwr_manowar": {
+    "page": "Lament Dominique",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_Manowar",
+    "revision": 576563
+  },
+  "item_g2nk_itwr_map_addonworld": {
+    "page": "Mapa Jarkendaru",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_AddonWorld",
+    "revision": 569736
+  },
+  "item_g2nk_itwr_map_caves_mis": {
+    "page": "Mapa jaskiń Khorinis",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_Caves_Mis",
+    "revision": 590810
+  },
+  "item_g2nk_itwr_map_newworld": {
+    "page": "Mapa terenów Khorinis",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_NewWorld",
+    "revision": 575401
+  },
+  "item_g2nk_itwr_map_newworld_city": {
+    "page": "Mapa miasta Khorinis",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_NewWorld_City",
+    "revision": 575355
+  },
+  "item_g2nk_itwr_map_newworld_dexter": {
+    "page": "Mapa terenów Khorinis (Gothic II: Noc Kruka)",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_NewWorld_Dexter",
+    "revision": 574812
+  },
+  "item_g2nk_itwr_map_newworld_ornaments_addon": {
+    "page": "Mapa Nefariusa",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_NewWorld_Ornaments_Addon",
+    "revision": 575528
+  },
+  "item_g2nk_itwr_map_oldworld": {
+    "page": "Mapa Górniczej Doliny",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_OldWorld",
+    "revision": 584926
+  },
+  "item_g2nk_itwr_map_oldworld_oremines_mis": {
+    "page": "Mapa kopalni Garonda",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_OldWorld_Oremines_Mis",
+    "revision": 574825
+  },
+  "item_g2nk_itwr_map_orcelite_mis": {
+    "page": "Orkowa mapa wojenna",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_OrcElite_Mis",
+    "revision": 574811
+  },
+  "item_g2nk_itwr_map_shrine_mis": {
+    "page": "Mapa świętych kapliczek",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Map_Shrine_Mis",
+    "revision": 575402
+  },
+  "item_g2nk_itwr_martin_milizempfehlung_addon": {
+    "page": "List polecający dla Lorda Andre",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Martin_MilizEmpfehlung_Addon",
+    "revision": 578175
+  },
+  "item_g2nk_itwr_minenanteil_mis": {
+    "page": "Udział w kopalni rudy Khorinis",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_MinenAnteil_Mis",
+    "revision": 576388
+  },
+  "item_g2nk_itwr_morgahardtip": {
+    "page": "List Morgaharda",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Morgahardtip",
+    "revision": 585735
+  },
+  "item_g2nk_itwr_onehstoneplate1_addon": {
+    "page": "Kamienna tablica walki bronią jednoręczną I",
+    "file": "Kamienna tablica walki bronią jednoręczną (ikona) (GIINK).png",
+    "code": "ItWr_OneHStoneplate1_Addon",
+    "revision": 585458
+  },
+  "item_g2nk_itwr_onehstoneplate2_addon": {
+    "page": "Kamienna tablica walki bronią jednoręczną II",
+    "file": "Kamienna tablica walki bronią jednoręczną (ikona) (GIINK).png",
+    "code": "ItWr_OneHStoneplate2_Addon",
+    "revision": 585459
+  },
+  "item_g2nk_itwr_onehstoneplate3_addon": {
+    "page": "Kamienna tablica walki bronią jednoręczną III",
+    "file": "Kamienna tablica walki bronią jednoręczną (ikona) (GIINK).png",
+    "code": "ItWr_OneHStoneplate3_Addon",
+    "revision": 585460
+  },
+  "item_g2nk_itwr_paladinletter_mis": {
+    "page": "List do lorda Hagena",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_PaladinLetter_Mis",
+    "revision": 576585
+  },
+  "item_g2nk_itwr_passage_mis": {
+    "page": "Propozycja Lee dla paladynów",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Passage_Mis",
+    "revision": 576459
+  },
+  "item_g2nk_itwr_passierschein": {
+    "page": "Przepustka Khorinis",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Passierschein",
+    "revision": 575463
+  },
+  "item_g2nk_itwr_pfandbrief_mis": {
+    "page": "Weksel",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_Pfandbrief_Mis",
+    "revision": 534904
+  },
+  "item_g2nk_itwr_poster_mis": {
+    "page": "List gończy",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Poster_Mis",
+    "revision": 578863
+  },
+  "item_g2nk_itwr_pyrokarsobsessionlist": {
+    "page": "Magiczny list Pyrokara",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_PyrokarsObsessionList",
+    "revision": 553413
+  },
+  "item_g2nk_itwr_ravenskidnappermission_addon": {
+    "page": "Rozkazy",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_RavensKidnappermission_Addon",
+    "revision": 576379
+  },
+  "item_g2nk_itwr_richterkomprobrief_mis": {
+    "page": "Zlecenie sędziego",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_RichterKomproBrief_Mis",
+    "revision": 576462
+  },
+  "item_g2nk_itwr_saturasfirstmessage_addon": {
+    "page": "List Saturasa do Vatrasa",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_SaturasFirstMessage_Addon",
+    "revision": 575063
+  },
+  "item_g2nk_itwr_seamap_irdorath": {
+    "page": "Mapa morska wyspy Irdorath",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_Seamap_Irdorath",
+    "revision": 583971
+  },
+  "item_g2nk_itwr_shatteredgolem_mis": {
+    "page": "Bardzo stara mapa",
+    "file": "Mapa G2 ikona.png",
+    "code": "ItWr_ShatteredGolem_Mis",
+    "revision": 574804
+  },
+  "item_g2nk_itwr_silvestro_mis": {
+    "page": "Wiadomość od Silvestra",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Silvestro_Mis",
+    "revision": 576429
+  },
+  "item_g2nk_itwr_stoneplatecommon_addon": {
+    "page": "Stara kamienna tablica",
+    "file": "Stara_kamienna_tablica_(ikonka)_(G2NK).png",
+    "code": "ItWr_StoneplateCommon_Addon",
+    "revision": 585407
+  },
+  "item_g2nk_itwr_strstoneplate1_addon": {
+    "page": "Kamienna tablica siły I",
+    "file": "Tablica siły ico.png",
+    "code": "ItWr_StrStoneplate1_Addon",
+    "revision": 585420
+  },
+  "item_g2nk_itwr_strstoneplate2_addon": {
+    "page": "Kamienna tablica siły II",
+    "file": "Tablica siły ico.png",
+    "code": "ItWr_StrStoneplate2_Addon",
+    "revision": 585419
+  },
+  "item_g2nk_itwr_strstoneplate3_addon": {
+    "page": "Kamienna tablica siły III",
+    "file": "Tablica siły ico.png",
+    "code": "ItWr_StrStoneplate3_Addon",
+    "revision": 585418
+  },
+  "item_g2nk_itwr_twohstoneplate1_addon": {
+    "page": "Kamienna tablica walki bronią dwuręczną I",
+    "file": "Tablica brIIr ico.png",
+    "code": "ItWr_TwoHStoneplate1_Addon",
+    "revision": 585455
+  },
+  "item_g2nk_itwr_twohstoneplate2_addon": {
+    "page": "Kamienna tablica walki bronią dwuręczną II",
+    "file": "Tablica brIIr ico.png",
+    "code": "ItWr_TwoHStoneplate2_Addon",
+    "revision": 585454
+  },
+  "item_g2nk_itwr_twohstoneplate3_addon": {
+    "page": "Kamienna tablica walki bronią dwuręczną III",
+    "file": "Tablica brIIr ico.png",
+    "code": "ItWr_TwoHStoneplate3_Addon",
+    "revision": 585457
+  },
+  "item_g2nk_itwr_uselampidiot_mis": {
+    "page": "Podniszczony list",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_UseLampIdiot_Mis",
+    "revision": 576463
+  },
+  "item_g2nk_itwr_vatras2saturas_findraven": {
+    "page": "Przesyłka",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_Vatras2Saturas_FindRaven",
+    "revision": 576274
+  },
+  "item_g2nk_itwr_vatras_kdfempfehlung_addon": {
+    "page": "List polecający od Vatrasa",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Vatras_KdFEmpfehlung_Addon",
+    "revision": 576454
+  },
+  "item_g2nk_itwr_vatrasmessage": {
+    "page": "Wiadomość od Vatrasa do magów ognia",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_VatrasMessage",
+    "revision": 576584
+  },
+  "item_g2nk_itwr_vatrasmessage_open": {
+    "page": "Wiadomość od Vatrasa do magów ognia",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_VatrasMessage_Open",
+    "revision": 576584
+  },
+  "item_g2nk_itwr_xardasermahnungfueridioten_mis": {
+    "page": "List ostrzegawczy Xardasa",
+    "file": "Zamknięty list GII ico.png",
+    "code": "ItWr_XardasErmahnungFuerIdioten_Mis",
+    "revision": 576389
+  },
+  "item_g2nk_itwr_xardaslettertoopenbook_mis": {
+    "page": "List Xardasa",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_XardasLetterToOpenBook_Mis",
+    "revision": 540570
+  },
+  "item_g2nk_itwr_zugbruecke_mis": {
+    "page": "List Archola",
+    "file": "List otwarty G2 ikona.png",
+    "code": "ItWr_Zugbruecke_Mis",
+    "revision": 576440
+  },
+  "item_g2nk_j1": {
+    "page": "JOLY Storyhelpletter",
+    "file": "List otwarty G2 ikona.png",
+    "code": "J1",
+    "revision": 554443
+  },
+  "item_g2nk_j2": {
+    "page": "Greg Taverne",
+    "file": "List otwarty G2 ikona.png",
+    "code": "J2",
+    "revision": 585768
+  },
+  "item_g2nk_j4": {
+    "page": "B Kapitelwechsel(5, OLDWORLD ZEN)",
+    "file": "List otwarty G2 ikona.png",
+    "code": "J4",
+    "revision": 554384
+  },
+  "item_g2nk_mobsibrief": {
+    "page": "MobsiBrief",
+    "file": "Zamknięty list GII ico.png",
+    "code": "MobsiBrief",
+    "revision": 553191
+  },
+  "item_g2nk_ph": {
+    "page": "Dawca magii",
+    "file": "List otwarty G2 ikona.png",
+    "code": "PH",
+    "revision": 581884
+  },
+  "item_g2nk_runenbrief": {
+    "page": "Dawca run",
+    "file": "List otwarty G2 ikona.png",
+    "code": "RunenBrief",
+    "revision": 581882
+  },
+  "item_g2nk_standardbrief": {
+    "page": "Typowy list",
+    "file": "List otwarty G2 ikona.png",
+    "code": "StandardBrief",
+    "revision": 576580
+  },
+  "item_g2nk_standardbuch": {
+    "page": "Typowa książka",
+    "file": "Księga 5 G2 ikona.png",
+    "code": "StandardBuch",
+    "revision": 574819
+  }
+}

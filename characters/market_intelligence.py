@@ -26,15 +26,16 @@ def fists(p):return p.strength*(100+p.onehand_skill)//100
 
 def retention(p,items,reserved=()):
     keep={i.pk for i in items if i.is_equipped or i.is_protected or i.pk==p.prepared_magic_id or i.blueprint_id in reserved or not i.blueprint.tradeable or i.blueprint.catalog_key=='rune-dust'}
-    for kind,slots in [('weapon',1),('armor',1),('amulet',1),('ring',2)]:
+    for kind,slots in [('weapon',1),('armor',1),('amulet',1),('belt',1),('ring',2)]:
         choices=sorted((i for i in items if i.blueprint.kind==kind and usable(p,i.blueprint)),key=lambda i:(score(p,i),i.is_equipped,-i.pk),reverse=True)
         keep.update(i.pk for i in choices[:slots])
         best=score(p,choices[0]) if choices else 0
         future=[i for i in items if i.blueprint.kind==kind and not usable(p,i.blueprint) and i.blueprint.min_level<=p.level+2 and equipment_camp_allowed(p,i.blueprint.required_camp) and i.blueprint.min_camp_tier<=p.camp_tier+1 and i.blueprint.required_strength<=p.strength+10 and i.blueprint.required_dexterity<=p.dexterity+10 and score(p,i)>best]
         if future:keep.add(max(future,key=lambda i:(score(p,i),-i.pk)).pk)
-    for field in ('heal_amount','energy_amount'):
-        choices=[i for i in items if not i.is_market_listed and getattr(i.blueprint,field)>0]
-        if choices:keep.add(max(choices,key=lambda i:(getattr(i.blueprint,field),-i.pk)).pk)
+    from .consumables import potential
+    for resource in range(3):
+        choices=[i for i in items if i.blueprint.kind=='consumable' and not i.is_market_listed and potential(p,i.blueprint)[resource]>0]
+        if choices:keep.add(max(choices,key=lambda i:(potential(p,i.blueprint)[resource],-i.pk)).pk)
     return keep
 
 @dataclass(frozen=True)
@@ -83,9 +84,9 @@ class MarketState:
             current=values[slots-1] if len(values)>=slots else fists(p) if b.kind=='weapon' else 0
             return int(self.value(p,i)-current>=max(5,current//20))
         if b.kind=='consumable':
-            field='heal_amount' if b.heal_amount else 'energy_amount'
-            n=sum(x.quantity for x in held if getattr(x.blueprint,field)>0)
-            if (b.heal_amount and p.current_health<p.max_health*3//4) or (b.energy_amount and p.current_energy<30):return max(0,2-n)
+            from .consumables import potential
+            amounts=potential(p,b);low=(p.current_health<p.max_health*3//4,p.current_energy<30,bool(p.magic_skill or p.prepared_magic_id) and p.current_mana<p.max_mana*3//4)
+            return max((max(0,2-sum(x.quantity for x in held if x.blueprint.kind=='consumable' and potential(p,x.blueprint)[resource]>0)) for resource in range(3) if amounts[resource] and low[resource]),default=0)
         if b.kind=='ammo':
             weapon=next((x for x in held if x.is_equipped and x.equipped_slot=='weapon'),None)
             kind='arrow' if weapon and weapon.blueprint.weapon_type=='bow' else 'bolt' if weapon and weapon.blueprint.weapon_type=='crossbow' else None

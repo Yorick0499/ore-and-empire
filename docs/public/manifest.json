@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-12",
-  "code_revision": "publiczny Jarkendar / #33",
-  "migration": "0051_advanced_faction_ranks",
+  "code_revision": "katalog Gothicpedii i kampania mieszkańca NK / #32",
+  "migration": "0052_nk_belts",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -37,6 +37,10 @@
         [
           "docs/JARKENDAR.md",
           "Publiczny Jarkendar — pierwsza wyprawa"
+        ],
+        [
+          "docs/GOTHIC_II_CONTENT.md",
+          "Gothic II NK — źródła, mechaniki i wyprawa do Irdorath"
         ],
         [
           "docs/WORLD.md",
@@ -252,6 +256,7 @@
     "docs/reports/sukcesja-frakcji-2026-11-11.json",
     "docs/reports/wybor-bractwa-2026-11-12.json",
     "docs/reports/zlecenia-buildy-petla-2026-11-08.json",
-    "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json"
+    "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json",
+    "docs/reports/gothic2-nk-content-2026-11-12.json"
   ]
 }

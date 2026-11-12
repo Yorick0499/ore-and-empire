@@ -38,7 +38,7 @@ class Command(BaseCommand):
             if value in available:
                 ItemBluePrint.objects.filter(catalog_key=key,art_key__in=['','old_camp']).update(art_key=value)
         for key in [*BESTIARY,*BOSSES]:
-            if key.startswith(("k2_","jark_")):continue
+            if key.startswith(("k2_","jark_","g2nk_")):continue
             material='crawler-plate' if 'crawler' in key else 'wolf-skin' if key in {'wolf','shadowbeast','orc_dog'} else 'raw-meat'
             entries=[{'blueprint':blueprints[material].pk,'weight':6000,'min':1,'max':1}]
             if key=='minecrawler': entries=[{'blueprint':blueprints['crawler-plate'].pk,'weight':6000},{'blueprint':blueprints['crawler-egg'].pk,'weight':1500}]

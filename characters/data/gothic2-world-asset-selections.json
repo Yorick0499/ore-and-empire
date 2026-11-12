@@ -1,0 +1,534 @@
+{
+  "g2nk_alligator": {
+    "page": "Aligator",
+    "file": "Aligator (NK).png",
+    "revision": 549429,
+    "source": "https://gothic.fandom.com/pl/wiki/Aligator",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_blattcrawler": {
+    "page": "Polny pełzacz",
+    "file": "Polny pełzacz (by NexGaming).png",
+    "revision": 583281,
+    "source": "https://gothic.fandom.com/pl/wiki/Polny_pe%C5%82zacz",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_bloodfly": {
+    "page": "Krwiopijca",
+    "file": "Krwiopijca_GII.png",
+    "revision": 575087,
+    "source": "https://gothic.fandom.com/pl/wiki/Krwiopijca",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_bloodhound": {
+    "page": "Ogar",
+    "file": "Krwawy ogar (G2).png",
+    "revision": 576655,
+    "source": "https://gothic.fandom.com/pl/wiki/Ogar",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_crypt_skeleton_lord": {
+    "page": "Inubis",
+    "file": "Inubis (by Jakimix135xd).png",
+    "revision": 562989,
+    "source": "https://gothic.fandom.com/pl/wiki/Inubis",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_demon": {
+    "page": "Demon",
+    "file": "Demonfinal.png",
+    "revision": 580841,
+    "source": "https://gothic.fandom.com/pl/wiki/Demon",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_demonlord": {
+    "page": "Książę demonów",
+    "file": "Książe_Demonów_GII.png",
+    "revision": 588040,
+    "source": "https://gothic.fandom.com/pl/wiki/Ksi%C4%85%C5%BC%C4%99_demon%C3%B3w",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_draconian": {
+    "page": "Jaszczuroczłek",
+    "file": "G2NK Jaszczuroczłek.png",
+    "revision": 583518,
+    "source": "https://gothic.fandom.com/pl/wiki/Jaszczurocz%C5%82ek",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragon_fire": {
+    "page": "Feomathar",
+    "file": "Feomathar (by Ossowski21).png",
+    "revision": 583127,
+    "source": "https://gothic.fandom.com/pl/wiki/Feomathar",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragon_fire_island": {
+    "page": "Feodaron",
+    "file": "Feodaron.png",
+    "revision": 578641,
+    "source": "https://gothic.fandom.com/pl/wiki/Feodaron",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragon_ice": {
+    "page": "Finkregh",
+    "file": "Finkregh.png",
+    "revision": 583129,
+    "source": "https://gothic.fandom.com/pl/wiki/Finkregh",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragon_rock": {
+    "page": "Pedrakhan",
+    "file": "Pedrakhan.png",
+    "revision": 578638,
+    "source": "https://gothic.fandom.com/pl/wiki/Pedrakhan",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragon_swamp": {
+    "page": "Pandrodor",
+    "file": "Pandrodor.png",
+    "revision": 583124,
+    "source": "https://gothic.fandom.com/pl/wiki/Pandrodor",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragon_undead": {
+    "page": "Smok-ożywieniec",
+    "file": "Smok Ożywieniec (Gothic II Noc Kruka).png",
+    "revision": 578636,
+    "source": "https://gothic.fandom.com/pl/wiki/Smok-o%C5%BCywieniec",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_dragonsnapper": {
+    "page": "Smoczy zębacz",
+    "file": "Smoczy zębacz GII.png",
+    "revision": 578955,
+    "source": "https://gothic.fandom.com/pl/wiki/Smoczy_z%C4%99bacz",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_firegolem": {
+    "page": "Ognisty golem",
+    "file": "Ognisty golem g2 (by Ossowski21).png",
+    "revision": 567953,
+    "source": "https://gothic.fandom.com/pl/wiki/Ognisty_golem",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_firewaran": {
+    "page": "Ognisty jaszczur",
+    "file": "Ognisty jaszczur (Gothic II) (by SpY).png",
+    "revision": 560827,
+    "source": "https://gothic.fandom.com/pl/wiki/Ognisty_jaszczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_gaans_snapper": {
+    "page": "Prychający smoczy zębacz",
+    "file": "Prychający smoczy zębacz (Gothic II).png",
+    "revision": 557975,
+    "source": "https://gothic.fandom.com/pl/wiki/Prychaj%C4%85cy_smoczy_z%C4%99bacz",
+    "mapping": "species-reference"
+  },
+  "g2nk_giant_bug": {
+    "page": "Polna bestia",
+    "file": "Polna_Bestia_GII.png",
+    "revision": 561170,
+    "source": "https://gothic.fandom.com/pl/wiki/Polna_bestia",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_giant_desertrat": {
+    "page": "Pustynny szczur",
+    "file": "Pustynny_Szczur_NK.png",
+    "revision": 576692,
+    "source": "https://gothic.fandom.com/pl/wiki/Pustynny_szczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_giant_rat": {
+    "page": "Olbrzymi szczur",
+    "file": "Olbrzymi szczur (G2).png",
+    "revision": 576648,
+    "source": "https://gothic.fandom.com/pl/wiki/Olbrzymi_szczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_gobbo_black": {
+    "page": "Czarny goblin",
+    "file": "Czarny goblin Gii.png",
+    "revision": 580146,
+    "source": "https://gothic.fandom.com/pl/wiki/Czarny_goblin",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_gobbo_green": {
+    "page": "Goblin",
+    "file": "Goblin (Gothic II) (by Gothicfan94).png",
+    "revision": 590566,
+    "source": "https://gothic.fandom.com/pl/wiki/Goblin",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_gobbo_skeleton": {
+    "page": "Szkielet goblin",
+    "file": "Szkielet goblin.png",
+    "revision": 578944,
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet_goblin",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_gobbo_warrior": {
+    "page": "Goblin wojownik",
+    "file": "Goblin wojownik z mieczem GIINK.png",
+    "revision": 580147,
+    "source": "https://gothic.fandom.com/pl/wiki/Goblin_wojownik",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_gobbo_warrior_visir": {
+    "page": "Goblin wojownik",
+    "file": "Goblin wojownik z mieczem GIINK.png",
+    "revision": 580147,
+    "source": "https://gothic.fandom.com/pl/wiki/Goblin_wojownik",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_harpie": {
+    "page": "Harpia",
+    "file": "Harpia_(G2NK).png",
+    "revision": 587877,
+    "source": "https://gothic.fandom.com/pl/wiki/Harpia",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_icegolem": {
+    "page": "Lodowy golem",
+    "file": "G2NK Lodowy golem.png",
+    "revision": 587007,
+    "source": "https://gothic.fandom.com/pl/wiki/Lodowy_golem",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_icewolf": {
+    "page": "Lodowy wilk",
+    "file": "Lodowy Wilk Gothic II.png",
+    "revision": 567580,
+    "source": "https://gothic.fandom.com/pl/wiki/Lodowy_wilk",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_keiler": {
+    "page": "Dzik",
+    "file": "Dzik_(Gothic_II_Noc_Kruka)_(by_SpY).png",
+    "revision": 567562,
+    "source": "https://gothic.fandom.com/pl/wiki/Dzik",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_lesser_skeleton": {
+    "page": "Pomniejszy szkielet",
+    "file": "G2NK Pomniejszy szkielet.png",
+    "revision": 580217,
+    "source": "https://gothic.fandom.com/pl/wiki/Pomniejszy_szkielet",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_lurker": {
+    "page": "Topielec",
+    "file": "Topielec (G2).png",
+    "revision": 583401,
+    "source": "https://gothic.fandom.com/pl/wiki/Topielec",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_meatbug": {
+    "page": "Chrząszcz",
+    "file": "G2 Chrząszcz.png",
+    "revision": 577172,
+    "source": "https://gothic.fandom.com/pl/wiki/Chrz%C4%85szcz",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_minecrawler": {
+    "page": "Pełzacz",
+    "file": "Pełzacz GII.png",
+    "revision": 583697,
+    "source": "https://gothic.fandom.com/pl/wiki/Pe%C5%82zacz",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_minecrawlerwarrior": {
+    "page": "Pełzacz wojownik",
+    "file": "Pełzacz wojownik (Gothic II) (by BagiennySzopen).png",
+    "revision": 567969,
+    "source": "https://gothic.fandom.com/pl/wiki/Pe%C5%82zacz_wojownik",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_molerat": {
+    "page": "Kretoszczur",
+    "file": "Kretoszczur_GII.png",
+    "revision": 576652,
+    "source": "https://gothic.fandom.com/pl/wiki/Kretoszczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_orcbiter": {
+    "page": "Kąsacz",
+    "file": "Kąsacz (G2).png",
+    "revision": 554766,
+    "source": "https://gothic.fandom.com/pl/wiki/K%C4%85sacz",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_orcelite_rest": {
+    "page": "Elitarni orkowie",
+    "file": "Ork elita (Gothic II) (by_SpY).png",
+    "revision": 575351,
+    "source": "https://gothic.fandom.com/pl/wiki/Elitarni_orkowie",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_orcshaman_sit": {
+    "page": "Szamani orków",
+    "file": "Ork-szaman G2.png",
+    "revision": 570656,
+    "source": "https://gothic.fandom.com/pl/wiki/Szamani_ork%C3%B3w",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_orcwarrior_harad": {
+    "page": "Zwiadowcy orków",
+    "file": "Ork zwiadowca GII.png",
+    "revision": 575354,
+    "source": "https://gothic.fandom.com/pl/wiki/Zwiadowcy_ork%C3%B3w",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_orcwarrior_rest": {
+    "page": "Wojownicy orków",
+    "file": "Ork-wojownik G2.png",
+    "revision": 575353,
+    "source": "https://gothic.fandom.com/pl/wiki/Wojownicy_ork%C3%B3w",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_razor": {
+    "page": "Brzytwiak",
+    "file": "Brzytwiak (NK).png",
+    "revision": 578078,
+    "source": "https://gothic.fandom.com/pl/wiki/Brzytwiak",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_scavenger": {
+    "page": "Ścierwojad",
+    "file": "Ścierwojad_GII.png",
+    "revision": 575078,
+    "source": "https://gothic.fandom.com/pl/wiki/%C5%9Acierwojad",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_scavenger_demon": {
+    "page": "Preriowy ścierwojad",
+    "file": "Pscierwojad.png",
+    "revision": 576410,
+    "source": "https://gothic.fandom.com/pl/wiki/Preriowy_%C5%9Bcierwojad",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_shadowbeast": {
+    "page": "Cieniostwór",
+    "file": "Cieniostwór (G2).png",
+    "revision": 575089,
+    "source": "https://gothic.fandom.com/pl/wiki/Cieniostw%C3%B3r",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_shadowbeast_addon_fire": {
+    "page": "Ognisty demon",
+    "file": "Ognisty demon.png",
+    "revision": 574770,
+    "source": "https://gothic.fandom.com/pl/wiki/Ognisty_demon",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_sheep": {
+    "page": "Owca",
+    "file": "Owca (Gothic II).png",
+    "revision": 587556,
+    "source": "https://gothic.fandom.com/pl/wiki/Owca",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_skeleton": {
+    "page": "Szkielet",
+    "file": "G2NK Szkielet zwykły.png",
+    "revision": 591390,
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_skeleton_lord": {
+    "page": "Wojownik cienia",
+    "file": "G2NK Wojownik cienia.png",
+    "revision": 569787,
+    "source": "https://gothic.fandom.com/pl/wiki/Wojownik_cienia",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_skeleton_lord_archol": {
+    "page": "Archol",
+    "file": "Archol (GII) (by Jao98).png",
+    "revision": 582067,
+    "source": "https://gothic.fandom.com/pl/wiki/Archol",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_skeletonmage": {
+    "page": "Szkielet mag",
+    "file": "Szkielet mag G2.png",
+    "revision": 558122,
+    "source": "https://gothic.fandom.com/pl/wiki/Szkielet_mag",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_snapper": {
+    "page": "Zębacz",
+    "file": "Zębacz (G2).png",
+    "revision": 575088,
+    "source": "https://gothic.fandom.com/pl/wiki/Z%C4%99bacz",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_stoneguardian": {
+    "page": "Kamienny strażnik",
+    "file": "Kamienny strażnik (by Wojciech Wawrzyńczak).png",
+    "revision": 587876,
+    "source": "https://gothic.fandom.com/pl/wiki/Kamienny_stra%C5%BCnik",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_stonepuma": {
+    "page": "Pantera",
+    "file": "Pantera_(by_SpY).png",
+    "revision": 591659,
+    "source": "https://gothic.fandom.com/pl/wiki/Pantera",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_swampgolem": {
+    "page": "Bagienny golem",
+    "file": "G2NK Bagienny golem.png",
+    "revision": 583322,
+    "source": "https://gothic.fandom.com/pl/wiki/Bagienny_golem",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_swamprat": {
+    "page": "Bagienny szczur",
+    "file": "Bagienny szczur (G2NK).png",
+    "revision": 548637,
+    "source": "https://gothic.fandom.com/pl/wiki/Bagienny_szczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_swampshark": {
+    "page": "Wąż błotny",
+    "file": "Wąż_błotny_(G2NK).png",
+    "revision": 570025,
+    "source": "https://gothic.fandom.com/pl/wiki/W%C4%85%C5%BC_b%C5%82otny",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_swampzombie": {
+    "page": "Bagienny zombie",
+    "file": "Bagienne zombie GII.png",
+    "revision": 549431,
+    "source": "https://gothic.fandom.com/pl/wiki/Bagienny_zombie",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_swarm": {
+    "page": "Latający rój",
+    "file": "Ognik.png",
+    "revision": 524640,
+    "source": "https://gothic.fandom.com/pl/wiki/Lataj%C4%85cy_r%C3%B3j",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_troll": {
+    "page": "Troll",
+    "file": "Troll (G2).png",
+    "revision": 558565,
+    "source": "https://gothic.fandom.com/pl/wiki/Troll",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_troll_black": {
+    "page": "Czarny troll",
+    "file": "Czarny troll (Gothic II) (by Gothicfan94).png",
+    "revision": 567554,
+    "source": "https://gothic.fandom.com/pl/wiki/Czarny_troll",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_troll_di": {
+    "page": "Troll jaskiniowy",
+    "file": "Troll jaskiniowy.png",
+    "revision": 558128,
+    "source": "https://gothic.fandom.com/pl/wiki/Troll_jaskiniowy",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_waran": {
+    "page": "Jaszczur",
+    "file": "Jaszczur (G2).png",
+    "revision": 576654,
+    "source": "https://gothic.fandom.com/pl/wiki/Jaszczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_warg": {
+    "page": "Warg",
+    "file": "Warg G2.png",
+    "revision": 576647,
+    "source": "https://gothic.fandom.com/pl/wiki/Warg",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_ygiant_bug": {
+    "page": "Młoda polna bestia",
+    "file": "Młoda polna bestia (G2).png",
+    "revision": 548517,
+    "source": "https://gothic.fandom.com/pl/wiki/M%C5%82oda_polna_bestia",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_ygiant_rat": {
+    "page": "Młody olbrzymi szczur",
+    "file": "Młody olbrzymi szczur (Gothic II).png",
+    "revision": 552077,
+    "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_olbrzymi_szczur",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_ygobbo_green": {
+    "page": "Goblin",
+    "file": "Goblin (Gothic II) (by Gothicfan94).png",
+    "revision": 590566,
+    "source": "https://gothic.fandom.com/pl/wiki/Goblin",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_ywolf": {
+    "page": "Młody wilk",
+    "file": "Młody wilk (Gothic II) (by Wojciech Wawrzyńczak).png",
+    "revision": 585563,
+    "source": "https://gothic.fandom.com/pl/wiki/M%C5%82ody_wilk",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_zombie01": {
+    "page": "Zombie",
+    "file": "Bagienne zombie GII.png",
+    "revision": 586433,
+    "source": "https://gothic.fandom.com/pl/wiki/Zombie",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_zombie02": {
+    "page": "Zombie",
+    "file": "Bagienne zombie GII.png",
+    "revision": 586433,
+    "source": "https://gothic.fandom.com/pl/wiki/Zombie",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_zombie03": {
+    "page": "Zombie",
+    "file": "Bagienne zombie GII.png",
+    "revision": 586433,
+    "source": "https://gothic.fandom.com/pl/wiki/Zombie",
+    "mapping": "code-matched-infobox"
+  },
+  "g2nk_zombie04": {
+    "page": "Zombie",
+    "file": "Bagienne zombie GII.png",
+    "revision": 586433,
+    "source": "https://gothic.fandom.com/pl/wiki/Zombie",
+    "mapping": "code-matched-infobox"
+  },
+  "nk_region_valley": {
+    "page": "Górnicza Dolina",
+    "file": "GD Widok całościowy GIINK.png",
+    "revision": 579889,
+    "source": "https://gothic.fandom.com/pl/wiki/G%C3%B3rnicza_Dolina",
+    "mapping": "region-reference"
+  },
+  "nk_region_jarkendar": {
+    "page": "Jarkendar",
+    "file": "Jarkendar GIINK.png",
+    "revision": 578158,
+    "source": "https://gothic.fandom.com/pl/wiki/Jarkendar",
+    "mapping": "region-reference"
+  },
+  "nk_region_irdorath": {
+    "page": "Dwór Irdorath",
+    "file": "Irdorath wejście G2.png",
+    "revision": 553586,
+    "source": "https://gothic.fandom.com/pl/wiki/Dw%C3%B3r_Irdorath",
+    "mapping": "region-reference"
+  },
+  "g2nk_raven": {
+    "page": "Kruk",
+    "file": "Kruk (NK).png",
+    "revision": 583703,
+    "source": "https://gothic.fandom.com/pl/wiki/Kruk",
+    "mapping": "region-reference"
+  }
+}

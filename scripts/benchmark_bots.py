@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--population',type=int,default=100)
     parser.add_argument('--mode',choices=['stress','sessions'],default='stress')
     parser.add_argument('--mature',action='store_true')
+    parser.add_argument('--joined',action='store_true',help='Syntetyczne globalne połączenie obu istniejących regionów; bez resetu postaci.')
     args=parser.parse_args();target=Path(args.report).resolve()
     if target.exists():raise SystemExit('Raport już istnieje.')
     if not 20<=args.seconds<=300 or not 2<=args.population<=300:raise SystemExit('Wymagane 20–300 sekund oraz 2–300 botów łącznie.')
@@ -62,10 +63,19 @@ def main():
             from characters import game_logic as game
             for p in actors:
                 p.level=30;p.strength=200;p.life=500;p.current_health=500;p.ore_balance=2000
-                p.camp='OLD_CAMP' if p.world_id==colony.pk else 'CITY_WATCH';p.save()
+                p.camp='OLD_CAMP' if p.world_id==colony.pk else 'CITY_WATCH';p.guild='GUARD' if p.world_id==colony.pk else 'K2_PALADIN';p.save()
                 for kind in ('onehand','armor'):
                     key='colony-loot-4-'+kind if p.world_id==colony.pk else 'k2-watch-30-'+kind
                     game.equip_item(p,add_item(p,ItemBluePrint.objects.get(catalog_key=key)))
+        if args.joined:
+            from uuid import uuid4
+            from django.apps import apps
+            from django.db import transaction
+            from characters.models import SleeperRace,CampGuild
+            from characters.faction_succession_v1 import apply
+            World.objects.filter(pk__in=[colony.pk,island.pk]).update(union_key=uuid4())
+            race=SleeperRace.objects.create(colony=colony,khorinis=island,winner=CampGuild.objects.get(world=colony,camp='OLD_CAMP'),state='joined')
+            with transaction.atomic():apply(apps,race)
         times=[];queries=[];warm=Counter()
         for turn in range(2):
             for p in actors:
@@ -77,7 +87,7 @@ def main():
             # Performance fixture: every account is initially eligible; resources stay earned.
             PlayerProfile.objects.filter(is_bot=True).update(bot_last_tick=None)
         human=User.objects.create_user('benchmark-resident')
-        other=create_character(human,'Mieszkaniec Khorinis',island.pk)
+        other=create_character(human,'Mieszkaniec Khorinis',colony.pk if args.joined else island.pk,start_region=island.pk if args.joined else None)
         cookies=[]
         for profile in (human.playerprofile,other):
             client=Client();client.force_login(human);session=client.session
@@ -130,7 +140,7 @@ def main():
             'schema':2,'isolated_database':True,'engine':'sqlite','population':args.population,
             'python':platform.python_version(),'platform':platform.platform(),
             'source_sha256':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ('characters/bot_scheduler.py','characters/bots.py','characters/models.py')},
-            'realm_populations':[first,second],'mode':args.mode,'mature_fixture':args.mature,
+            'realm_populations':[first,second],'mode':args.mode,'mature_fixture':args.mature,'global_join_fixture':args.joined,
             'duration_seconds':round(elapsed,2),'http_requests':n,'http_errors':errors,
             'started_at':live_started.isoformat(),
             'warmup':'Two forced ordinary decisions per bot before the measured launcher.',

@@ -27,6 +27,8 @@ def validate_pack(raw):
         source=urlsplit(item.get('source',''))
         if source.scheme!='https' or source.hostname!='gothic.fandom.com': raise ValueError('Invalid source')
         if not isinstance(item.get('original_stats'),dict): raise ValueError('Missing factual provenance')
+        restore=item['original_stats'].get('browser_restore',{})
+        if not isinstance(restore,dict) or set(restore)-{'health','mana','health_percent','mana_percent'} or any(type(v) is not int or not 0<=v<=(100 if k.endswith('percent') else 10000) for k,v in restore.items()):raise ValueError('Invalid restorative effect')
         for field in NUMBER_FIELDS & item.keys():
             if type(item[field]) is not int or not 0<=item[field]<=1000000: raise ValueError('Invalid numeric stat')
         if item.get('weapon_type','onehand') not in {'onehand','twohand','bow','crossbow'} or item.get('damage_type','weapon') not in {'weapon','arrow','fire','magic'}: raise ValueError('Invalid weapon type')
@@ -42,24 +44,25 @@ def install_catalog(raw):
     if previous:
         if previous.sha256!=digest: raise ValueError('Version already exists with different content; increment the version')
         if ItemBluePrint.objects.filter(catalog_key__in=[i['key'] for i in data['items']]).count()==len(data['items']):return previous,0
-    reference=json.loads((PACK_PATH.parent/"gothic1-items-v2-reference.json").read_bytes())
+    source_game='GOTHIC_II' if data['game']=='GOTHIC_II_NK' else data['game']
+    reference=json.loads((PACK_PATH.parent/"gothic1-items-v2-reference.json").read_bytes()) if data['game']=='GOTHIC_I' else {'items':[]}
     old_items={i["key"]:i for i in reference["items"]}
     created=0
     for item in data['items']:
         fields={key:value for key,value in item.items() if key in NUMBER_FIELDS|OPTION_FIELDS}
-        defaults={'name':item['name'],'kind':item['kind'],'source_game':data['game'],'source_url':item['source'],'original_stats':item['original_stats'],**fields}
+        defaults={'name':item['name'],'kind':item['kind'],'source_game':source_game,'source_url':item['source'],'original_stats':item['original_stats'],**fields}
         blueprint=ItemBluePrint.objects.filter(catalog_key=item['key']).first()
         if not blueprint:
             # Attach a source identity to a legacy item without changing its balance.
-            blueprint=ItemBluePrint.objects.filter(name=item['name'],catalog_key__isnull=True).order_by('pk').first()
+            blueprint=ItemBluePrint.objects.filter(name=item['name'],catalog_key__isnull=True,source_game__in=['adaptation','GOTHIC_I']).order_by('pk').first() if data['game']=='GOTHIC_I' else None
         if blueprint:
-            if blueprint.source_game not in {'adaptation',data['game']}: raise ValueError('Cannot overwrite another game catalog')
+            if blueprint.source_game not in {'adaptation',source_game}: raise ValueError('Cannot overwrite another game catalog')
             old=old_items.get(item['key'])
             active=NUMBER_FIELDS | (OPTION_FIELDS-{'art_key'}) | {'name','kind'}
             # Repair only untouched v2 definitions. Operator-tuned balance survives.
             if data['version']>=3 and old and blueprint.catalog_key==item['key'] and all(getattr(blueprint,k)==old.get(k,ItemBluePrint._meta.get_field(k).get_default()) for k in active):
                 for k in active:setattr(blueprint,k,defaults.get(k,ItemBluePrint._meta.get_field(k).get_default()))
-            blueprint.catalog_key=item['key'];blueprint.source_url=item['source'];blueprint.source_game=data['game'];blueprint.original_stats=item['original_stats']
+            blueprint.catalog_key=item['key'];blueprint.source_url=item['source'];blueprint.source_game=source_game;blueprint.original_stats=item['original_stats']
             if item.get('art_key'): blueprint.art_key=item['art_key']
             blueprint.save()
         else:

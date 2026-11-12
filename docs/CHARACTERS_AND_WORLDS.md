@@ -93,3 +93,7 @@ Gdy pieczęć czeka na kolejne konto, ponowny wypad dotychczasowego uczestnika j
 Jeden wybór serwera obejmuje dwa regiony startowe i ich własne kampanie. Nowa postać zaczyna od poziomu 0, bez skopiowanego ekwipunku i zadań; Khorinis nie wymaga ukończenia Kolonii. Pięć slotów pozostaje wspólne. Wybór ustala pochodzenie i historię tej postaci, nie zmienia istniejących postaci. Nowe imię jest rezerwowane dla całej grupy regionów, także przy równoczesnym tworzeniu. [Próby i czas rozwoju](SOLO_PLAYTEST.md).
 
 Aktualny dostęp i zakres publicznego regionu: [Jarkendar](JARKENDAR.md). Starsze opisy zamkniętego regionu odnoszą się do stanu sprzed #33.
+
+## Kampania mieszkańca po Barierze
+
+[Paczka NK](GOTHIC_II_CONTENT.md) dodaje kontrakty do Irdorath w istniejącym wspólnym serwerze. Nowe przedmioty sprawdzają połączenie, portal i frakcję; brak kont premium. Pięć docelowych frakcji pozostaje bez zmian.
