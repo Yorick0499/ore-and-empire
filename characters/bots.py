@@ -410,7 +410,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     disposal = min((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.tradeable and i.blueprint.kind == "weapon" and not i.is_protected and i.effective_stats["damage"] < damage),
                    key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped and combat_equipment else None
     if len(inventory) >= 5:
-        disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc'} and i.blueprint.tradeable and not i.is_protected), disposal)
+        disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc','ammo'} and i.blueprint.tradeable and not i.is_protected), disposal)
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     from .adventures import choose_adventure
     template = choose_adventure(profile)
