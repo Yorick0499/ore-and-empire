@@ -104,7 +104,7 @@ Każdy przebieg wymaga nowej nazwy raportu; istniejący plik nie jest nadpisywan
 
 | Pakiet `--suite` | Zakres i zastosowanie |
 | --- | --- |
-| `quick` | Rangi, bramki, nadużycia, podstawowy UX i kontrakt polecenia; bez długich kampanii. 42 testy, około18s w opisanej próbie. |
+| `quick` | Rangi, bramki, nadużycia, podstawowy UX i kontrakt polecenia; bez długich kampanii. Obejmuje także sukcesję i wybór Bractwa; historyczny pomiar #124:42testy/około18s. Bieżący wynik w raporcie #126. |
 | `campaign` | Gracz G1, trzy obozy botów, trzy frakcje Khorinis, boty po połączeniu i trzy wczesne buildy. 5 przypadków, około5min w opisanej próbie; zwykłe zasoby i usługi, bez nadawania postępu. |
 | `pacing` | Osobne modele czasu wojownika, rzeczywiste koszty/regeneracja i wirtualnie przesuwany zegar; nie czekamy fizycznie na upływ godzin świata. |
 | `world` | Osobowości botów, rynek i cykle życia świata. |
@@ -115,3 +115,7 @@ Po zmianie konkretnego modułu uruchamiamy jego testy i `quick`, następnie tylk
 Długie kampanie botów używają `TransactionTestCase`: planowanie i wykonanie jednej tury mają krótką transakcję jak worker, po turze następuje commit. Cała wielodniowa symulacja nie jest jedną rosnącą transakcją. Zachowano asercje ukończeń, zasobów, łupów, późniejszych wart i kuźni. Kampania trzech obozów na PostgreSQL przeszła w około2min. Preferencje aktorów są jawne i niezależne od przypadkowych sekwencji ID; nie nadają statystyk ani nagród.
 
 [Raport pakietów, pełnej regresji i PostgreSQL](reports/pakiety-symulacji-2026-11-11.json) odróżnia wyniki mechaniki sprzed zmiany oprawy od końcowej walidacji pakietów. Czasy zależą od maszyny i obciążenia, nie są obietnicą wydajności serwera ani czasem przejścia gry.
+
+### Scenariusze po sukcesji — #126
+
+Świeży adept magii po połączeniu nie dołącza do rozwiązanego Bractwa: test zaczyna historyczną drogą Starego Obozu do Cienia, zdobywa wymagane15siły i naukę pierwszego kręgu za rzeczywiste PN/rudę, kupuje Ognisty pocisk. To wczesny build do poziomu6, nie pełna kampania maga. Trzy dotychczasowe obozy botów dołączają przed zewnętrznym globalnym wydarzeniem, a następnie korzystają z sukcesji i jednorazowego wyboru Bractwa. Test wymaga ukończenia kampanii i dalszych zwykłych aktywności. Samo zwycięstwo całej wspólnoty nie jest odgrywane w tej symulacji.

@@ -1,6 +1,6 @@
 # Obozy jako gildie — etap 1
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji jest wdrożona w0049; wybór Bractwa, wyższe awanse i portal nadal są planowane. Starsze sekcje poniżej opisują historię.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji jest wdrożona w0049; wybór Bractwa działa od0050, wyższe awanse i portal nadal są planowane. Starsze sekcje poniżej opisują historię.
 
 
 Gildią jest istniejący Stary Obóz, Nowy Obóz albo Bractwo na bagnie. Nie ma oddzielnej rekrutacji, drużyn ani wymogu jednoczesnej obecności. Przynależność `camp` daje członkostwo; dotychczasowe `guild` oznacza **osobistą rangę** (np. Cień), nie nową organizację. Dołączenie do obozu nie zmienia wcześniejszych questów, sprzętu i poziomu. Na razie istnieje jeden lokalny świat; zakres edycji pozostaje #15/#34, współbieżność serwera #19.
@@ -56,3 +56,25 @@ Początek widoku po sukcesji, komputer1440px:
 Telefon390px:
 
 ![Bieżący awans na telefonie](screenshots/frakcje-po-barierze-390.jpg)
+
+## Jednorazowy wybór Bractwa — 0050, #126
+
+Formularz w `/oboz/` pozwala przejść raz do nowej wspólnoty. Guru i Arcyguru wybierają Ogień/Wodę, pozostali członkowie Bractwa — wszystkie pięć frakcji. Zbieracz i Nowicjusz mają otwarty wybór. Powtórzenie tego samego wyboru jest bezpłatne i nie przenosi środków ponownie; inna frakcja jest odrzucana. Wybór wymaga zakończenia trwającej czynności oraz dokończenia albo świadomego porzucenia aktywnego zadania awansu przez dotychczasowy formularz. Nie kasuje zadania za gracza. Czekając, można normalnie grać.
+
+Szczebel podstawowy i jego korzyści pozostają; postać bez rangi nadal nie ma zdobytej rangi. Nie przybywa poziomów, PN, atrybutów, kręgów, przedmiotów ani waluty osobistej. `camp`/`guild` nadal prowadzą historyczną kampanię; `FactionChoice` zapisuje oryginalną rangę i obie gildie. Kolejne rodzime awanse nie nadpisują wybranej frakcji. Po wyborze magicznym Nowicjusz kontynuuje drogę Guru; dawny Strażnik świątynny może zdobyć Arcyguru przez zwykłe wymagania, opłatę i zadanie. Po wyborze wojskowym Nowicjusz ma drogę Strażnika/Templariusza i nie może zostać Guru miasta. Awanse5–8 pozostają #127.
+
+Wybrana frakcja udostępnia swoją szkołę magii i sprzęt/siedzibę, z zachowaniem zwykłych wymagań poziomu, statystyk, rangi i regionu. Rodzima szkoła, sprzęt i miejsca potrzebne historycznej kampanii pozostają używalne. Nowej magii trzeba nauczyć się za własne PN/rudę; nie przydziela się run. Boty korzystają z tej samej usługi i allowlisty, a decyzja jest rejestrowana i odtwarzalna przez istniejącą politykę. Wybór nie zmienia automatycznie strategii rozdzielania atrybutów.
+
+Udział Bractwa przenosi się do skarbca docelowej gildii, nigdy do prywatnego portfela: bieżąca ruda i PD depozytu dzielą się po równo między pozostających członków `PENDING`. Reszta całkowitoliczbowa trafia według ID postaci. Kolejny wybór uwzględnia rzeczywiste wpłaty i nagrody od poprzedniego; wybory różnych osób są serializowane blokadą wspólnego depozytu. Przejmowane poziomy i ulepszenia mają maksimum, nie sumę. Po wyjściu ostatniego członka przekazywalny skarbiec i PD są puste, historia projektów i wypraw pozostaje. Stare ukończone wyprawy nadal wypłacają nagrodę wyłącznie raz i tylko uczestnikom z wkładem. Nie kopiuje się projektów ani nagród.
+
+Migracja0050 dodaje tylko tabelę decyzji; nie wybiera za istniejące postacie i nie przenosi zasobów podczas migracji. Prywatnej bazy użytkownika nie aktualizowano.
+
+Weryfikacja i granice pomiarów: [raport #126](reports/wybor-bractwa-2026-11-12.json). Formularze Guru→Woda oraz wojownik→Miasto wykonano w Chromium, a ich udziały skarbca zachowały całkowitą rudę. Widoki320/390/1440px bez przepełnienia.
+
+Początek widoku, telefon390px:
+
+![Jednorazowy wybór Bractwa na telefonie](screenshots/wybor-bractwa-390.jpg)
+
+Komputer1440px:
+
+![Jednorazowy wybór Bractwa na komputerze](screenshots/wybor-bractwa-1440.jpg)

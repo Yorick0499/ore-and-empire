@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
-  "date": "2026-11-11",
-  "code_revision": "pięć frakcji i sukcesja skarbców / #125",
-  "migration": "0049_faction_succession",
+  "date": "2026-11-12",
+  "code_revision": "jednorazowy wybór Bractwa / #126",
+  "migration": "0050_brotherhood_faction_choice",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -244,6 +244,7 @@
     "docs/reports/sto-botow-2026-11-06.json",
     "docs/reports/sto-botow-endgame-2026-11-06.json",
     "docs/reports/sukcesja-frakcji-2026-11-11.json",
+    "docs/reports/wybor-bractwa-2026-11-12.json",
     "docs/reports/zlecenia-buildy-petla-2026-11-08.json",
     "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json"
   ]

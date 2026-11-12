@@ -1,3 +1,4 @@
+from .faction_choice import equipment_camp_allowed
 """Bounded real-needs market model, including equipment and NPC substitutes."""
 from collections import defaultdict
 from dataclasses import dataclass
@@ -29,7 +30,7 @@ def retention(p,items,reserved=()):
         choices=sorted((i for i in items if i.blueprint.kind==kind and usable(p,i.blueprint)),key=lambda i:(score(p,i),i.is_equipped,-i.pk),reverse=True)
         keep.update(i.pk for i in choices[:slots])
         best=score(p,choices[0]) if choices else 0
-        future=[i for i in items if i.blueprint.kind==kind and not usable(p,i.blueprint) and i.blueprint.min_level<=p.level+2 and i.blueprint.required_camp in {'',p.camp} and i.blueprint.min_camp_tier<=p.camp_tier+1 and i.blueprint.required_strength<=p.strength+10 and i.blueprint.required_dexterity<=p.dexterity+10 and score(p,i)>best]
+        future=[i for i in items if i.blueprint.kind==kind and not usable(p,i.blueprint) and i.blueprint.min_level<=p.level+2 and equipment_camp_allowed(p,i.blueprint.required_camp) and i.blueprint.min_camp_tier<=p.camp_tier+1 and i.blueprint.required_strength<=p.strength+10 and i.blueprint.required_dexterity<=p.dexterity+10 and score(p,i)>best]
         if future:keep.add(max(future,key=lambda i:(score(p,i),-i.pk)).pk)
     for field in ('heal_amount','energy_amount'):
         choices=[i for i in items if not i.is_market_listed and getattr(i.blueprint,field)>0]

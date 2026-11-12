@@ -1,4 +1,5 @@
 from .barrier import source_games
+from .faction_choice import equipment_camp_allowed
 """Derived equipment statistics never overwrite base attributes."""
 from .models import OwnedItem
 
@@ -34,7 +35,7 @@ def compare_equipment(profile, item, requested=None):
     bp = item.blueprint
     if profile.level < bp.min_level:
         requirements.append(f'Poziom {bp.min_level} (masz {profile.level}).')
-    if bp.required_camp and profile.camp != bp.required_camp:
+    if not equipment_camp_allowed(profile,bp.required_camp):
         from .models import PlayerProfile
         requirements.append('Obóz: ' + dict(PlayerProfile.CAMP_LIST).get(bp.required_camp, bp.required_camp) + '.')
     if profile.camp_tier < bp.min_camp_tier:
@@ -62,7 +63,7 @@ def stats_for(profile):
 
 def allowed(profile, blueprint):
     return (blueprint.source_game in source_games(profile) and profile.level >= blueprint.min_level and
-            (not blueprint.required_camp or profile.camp == blueprint.required_camp) and
+            equipment_camp_allowed(profile,blueprint.required_camp) and
             profile.camp_tier >= blueprint.min_camp_tier)
 
 

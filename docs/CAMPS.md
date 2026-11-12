@@ -1,6 +1,6 @@
 # Camp progression
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja i bieżące nazwy frakcji działają od0049; wybór Bractwa i awanse5–8 pozostają planowane. Niżej opis rodzimych questów i historii.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja i bieżące nazwy frakcji działają od0049; wybór Bractwa działa od0050; awanse5–8 pozostają planowane. Niżej opis rodzimych questów i historii.
 
 
 These ranks, quests and thresholds are original Ore & Empire progression inspired

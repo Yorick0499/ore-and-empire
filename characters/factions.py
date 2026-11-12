@@ -43,6 +43,8 @@ def enroll(profile):
     from .barrier import region_ids
     succession=FactionSuccession.objects.filter(race__colony_id__in=region_ids(profile.world_id)).select_related('race').first()
     if not succession:return
+    from .faction_choice import choice_for
+    if choice_for(profile):return
     faction=destination(profile.camp,profile.guild)
     guild=CampGuild.objects.get(world_id=succession.race.khorinis_id if faction in {'CITY_WATCH','FIRE_ORDER'} else succession.race.colony_id,camp='SWAMP_CAMP' if faction=='PENDING' else faction) if faction else None
     if not faction:return

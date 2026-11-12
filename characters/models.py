@@ -1165,3 +1165,16 @@ class FactionMembership(models.Model):
     historical_rank=models.CharField(max_length=20)
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(faction__in=['CITY_WATCH','FIRE_ORDER','WATER_CIRCLE','BANDITS','MERCENARIES','PENDING']),name='valid_successor_faction')]
+
+
+class FactionChoice(models.Model):
+    membership=models.OneToOneField(FactionMembership,on_delete=models.PROTECT,related_name='choice')
+    destination=models.CharField(max_length=20)
+    original_rank=models.CharField(max_length=20)
+    source_guild=models.ForeignKey(CampGuild,on_delete=models.PROTECT,related_name='+')
+    target_guild=models.ForeignKey(CampGuild,on_delete=models.PROTECT,related_name='+')
+    ore=models.PositiveIntegerField(default=0)
+    experience=models.PositiveIntegerField(default=0)
+    created_at=models.DateTimeField(default=timezone.now)
+    class Meta:
+        constraints=[models.CheckConstraint(condition=models.Q(destination__in=['CITY_WATCH','FIRE_ORDER','WATER_CIRCLE','BANDITS','MERCENARIES']),name='valid_brotherhood_choice')]

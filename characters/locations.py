@@ -19,8 +19,9 @@ class Location:
 
     def accessible(self, profile):
         from .barrier import region,joined
+        from .faction_choice import equipment_camp_allowed
         return (not self.post_barrier or joined(profile.world_id)) and region(profile).universe == self.universe and profile.level >= self.level and (
-            not self.camps or profile.camp in self.camps
+            not self.camps or any(equipment_camp_allowed(profile,camp) for camp in self.camps)
         ) and profile.camp_tier >= self.min_tier
 
     @property
