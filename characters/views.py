@@ -541,14 +541,14 @@ def camp_view(request):
     from .factions import FACTIONS,RANK_NAMES,membership
     from .camp_progression import promotion_parents
     from .faction_choice import card as choice_card
-    from .faction_advancement import cards as advanced_cards
+    from .faction_advancement import cards as advanced_cards,current_tier
     member=membership(profile)
     cards=rank_cards(profile,selected)
     if member:
         cards.sort(key=lambda card:0 if card["quest"] and card["quest"].promoted_at is None else 1 if profile.guild in promotion_parents(profile,card["rank"]) else 2 if card["current"] else 3)
     faction_paths=[{"key":key,"name":name,"basic":RANK_NAMES[key][:4],"advanced":RANK_NAMES[key][4:]} for key,name in FACTIONS] if member or joined(profile.world_id) else []
     return render(request, "characters/camp.html", {
-        "faction_paths":faction_paths,"membership":member,"brotherhood":choice_card(profile),"advanced_cards":advanced_cards(profile),
+        "faction_paths":faction_paths,"membership":member,"brotherhood":choice_card(profile),"advanced_cards":advanced_cards(profile),"advanced_path_open":current_tier(profile)>=3 and not profile.camp_quests.filter(promoted_at__isnull=True).exclude(rank_key__startswith="ADV_").exists(),
         "profile": profile, "cards": cards,
         "selected": selected, "camp_name": camps[selected], "paths": CAMP_PATHS[selected],
         "camps": camp_choices,

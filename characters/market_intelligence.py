@@ -49,7 +49,7 @@ class MarketState:
         self.now=timezone.now();self.world_id=world_id
         from .barrier import region_ids
         worlds=region_ids(world_id)
-        self.people=list(PlayerProfile.objects.filter(world_id__in=worlds,user__is_active=True,is_draft=False))
+        self.people=list(PlayerProfile.objects.filter(world_id__in=worlds,user__is_active=True,is_draft=False).select_related('world','faction_membership__rank_progress'))
         self.items=defaultdict(list);self.listings=[]
         for i in OwnedItem.objects.filter(owner__world_id__in=worlds,owner__user__is_active=True).select_related('blueprint','owner'):
             self.items[i.owner_id].append(i)

@@ -89,4 +89,5 @@ def cards(profile):
             'can_accept':allowed and not active and not profile.is_busy,'can_promote':allowed and ready and not profile.is_busy and profile.level>=rank.level and profile.ore_balance>=rank.cost and getattr(profile,rank.attribute)>=rank.attribute_value,
             'attribute_name':'Mana' if rank.attribute=='mana' else 'Siła lub Zręczność','attribute_current':getattr(profile,rank.attribute),
             'goals':[{'label':g.label,'count':g.count,'progress':quest.progress.get(g.event,0) if quest else 0} for g in rank.objectives]})
+    result.sort(key=lambda card:0 if card['quest'] and card['quest'].promoted_at is None else 1 if card['can_accept'] else 2 if card['current'] else 3)
     return result

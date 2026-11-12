@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0050_brotherhood_faction_choice",
+  "migration": "0051_advanced_faction_ranks",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -443,6 +443,22 @@
       "captured_at_utc": "2026-11-12T16:17:38.327156+00:00",
       "fixture": "Osobna baza0050, syntetyczny Guru poziomu0. Formularz przed wyborem; nie organiczna kampania.",
       "theme": "wybor-bractwa-126"
+    },
+    {
+      "file": "osiem-rang-390.jpg",
+      "bytes": 128737,
+      "sha256": "640a6de987c3846220e4c7e4e0841436db6a7a94aff5afb47d6bb57e02468eaa",
+      "captured_at_utc": "2026-11-12T17:36:13.117244+00:00",
+      "fixture": "Izolowana baza; syntetyczny weteran do kontroli GUI awansów, bez danych produkcji",
+      "theme": "osiem-rang-127"
+    },
+    {
+      "file": "osiem-rang-1440.jpg",
+      "bytes": 263972,
+      "sha256": "4690eb37022d3d8e71b8617d4eb48de122716f1bae01544fce951cdf2964b1bc",
+      "captured_at_utc": "2026-11-12T17:36:13.212193+00:00",
+      "fixture": "Izolowana baza; syntetyczny weteran do kontroli GUI awansów, bez danych produkcji",
+      "theme": "osiem-rang-127"
     }
   ]
 }

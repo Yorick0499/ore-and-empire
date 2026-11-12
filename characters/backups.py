@@ -12,6 +12,11 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_factionsuccession':['id','race_id','details','created_at'],
+    'characters_factionmembership':['id','profile_id','succession_id','faction','guild_id','historical_camp','historical_rank'],
+    'characters_factionchoice':['id','membership_id','destination','original_rank','source_guild_id','target_guild_id','ore','experience','created_at'],
+    'characters_factionrankprogress':['id','membership_id','tier'],
+    'characters_campquest':['id','profile_id','rank_key','accepted_at','progress','promoted_at'],
     'characters_sleeperrace':['id','colony_id','khorinis_id','winner_id','state','paused','lease_owner','lease_expires_at','backup_path','backup_digest','proof','won_at','joined_at'],
     'characters_sleepersiege':['id','race_id','guild_id','maximum_health','health','attack','protection','completed_at'],
     'characters_sleeperstrike':['id','siege_id','profile_id','account_id','request_key','damage','log','created_at'],

@@ -16,6 +16,29 @@ class IntelligentMarketTests(TestCase):
         self.item=add_item(self.s,self.bp)
         self.best=add_item(self.s,ItemBluePrint.objects.create(name='Własny miecz',damage=40,base_value=200,merchant=False))
         game.equip_item(self.s,self.best)
+    def test_ranked_buyers_have_constant_market_query_count(self):
+        from django.db import connection,transaction
+        from django.test.utils import CaptureQueriesContext
+        from .test_faction_succession import fixture,succeed,person
+        from .factions import enroll
+        from .models import FactionRankProgress
+        from .realms import world_scope
+        c,i,race=fixture()
+        for actor in [self.s,self.b]:actor.camp='OLD_CAMP';actor.guild='BARON';actor.save()
+        succeed(race)
+        for actor in [self.s,self.b]:
+            actor.refresh_from_db();FactionRankProgress.objects.create(membership=actor.faction_membership,tier=4)
+        def queries():
+            with world_scope(c),CaptureQueriesContext(connection) as captured:
+                MarketState(c.pk).quote(self.s,self.item)
+            return len(captured)
+        small=queries()
+        for n in range(20):
+            actor=person(c,'OLD_CAMP','BARON')
+            with transaction.atomic():enroll(actor)
+            FactionRankProgress.objects.create(membership=actor.faction_membership,tier=7)
+        large=queries();self.assertEqual(small,large);self.assertLessEqual(large,10)
+
     def test_junk_and_no_eligible_buyer_do_not_create_artificial_demand(self):
         junk=add_item(self.s,ItemBluePrint.objects.create(name='Drewniany kij',damage=1,base_value=5))
         self.assertEqual(MarketState(self.s.world_id).quote(self.s,junk).price,0)

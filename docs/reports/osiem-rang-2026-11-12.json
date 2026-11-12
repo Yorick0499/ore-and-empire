@@ -1,0 +1,446 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "issue": 127,
+  "migration": "0051_advanced_faction_ranks",
+  "scope": "Cztery zdobywane awanse każdej z pięciu frakcji; zgodność zapisów i historycznych awansów.",
+  "tests": {
+    "quick": {
+      "tests": 85,
+      "skipped": 3,
+      "seconds": 20.571
+    },
+    "postgresql": {
+      "tests": 59,
+      "skipped": 0,
+      "seconds": 7.573
+    },
+    "targeted_regression": {
+      "tests": 70,
+      "skipped": 1,
+      "seconds": 9.267
+    },
+    "backup_restore": {
+      "tests": 4,
+      "seconds": 9.256
+    },
+    "native_and_joined_bot_campaigns": {
+      "tests": 2,
+      "seconds": 159.941
+    },
+    "khorinis_campaign": {
+      "tests": 1,
+      "seconds": 59.874
+    },
+    "note": "Pakiety częściowo się pokrywają; nie sumować jako unikalnych testów. Pełne CI bieżącego PR pozostaje do wykonania."
+  },
+  "organic_rank_scenarios": [
+    {
+      "scenario": "zarobione-osiem-rang",
+      "checkpoints": [
+        {
+          "rank": "Kopacz",
+          "ordinal": 1,
+          "level": 31,
+          "elapsed_hours": 11.28,
+          "strength": 320,
+          "health": 422,
+          "ore": 240
+        },
+        {
+          "rank": "Cień",
+          "ordinal": 2,
+          "level": 31,
+          "elapsed_hours": 12.44,
+          "strength": 320,
+          "health": 422,
+          "ore": 210
+        },
+        {
+          "rank": "Strażnik",
+          "ordinal": 3,
+          "level": 31,
+          "elapsed_hours": 14.1,
+          "strength": 320,
+          "health": 422,
+          "ore": 173
+        },
+        {
+          "rank": "Magnat",
+          "ordinal": 4,
+          "level": 31,
+          "elapsed_hours": 16.89,
+          "strength": 320,
+          "health": 422,
+          "ore": 475
+        },
+        {
+          "rank": "Przywódca szajki",
+          "ordinal": 5,
+          "level": 31,
+          "elapsed_hours": 18.99,
+          "strength": 320,
+          "health": 422,
+          "ore": 323
+        },
+        {
+          "rank": "Dowódca bandytów",
+          "ordinal": 6,
+          "level": 35,
+          "elapsed_hours": 33.68,
+          "strength": 360,
+          "health": 470,
+          "ore": 1104
+        },
+        {
+          "rank": "Herszt bandytów",
+          "ordinal": 7,
+          "level": 40,
+          "elapsed_hours": 54.43,
+          "strength": 410,
+          "health": 530,
+          "ore": 6017
+        },
+        {
+          "rank": "Baron bandytów",
+          "ordinal": 8,
+          "level": 45,
+          "elapsed_hours": 80.35,
+          "strength": 460,
+          "health": 590,
+          "ore": 11760
+        }
+      ],
+      "admin_grants": false,
+      "global_join_fixture": true,
+      "limits": [
+        "Warrior strategy with NPC gear and earned itemshop, no player-market competition.",
+        "Community victory is an external global fixture.",
+        "Does not include public Jarkendar or the entire G2 NK campaign."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_I",
+      "session_minutes": null,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 80.35,
+      "active_minutes": 549.0,
+      "recovery_minutes": 2725.0,
+      "timers_minutes": 1547.2,
+      "offline_hours": 0.0,
+      "calendar_days": 4,
+      "level": 45,
+      "strength": 460,
+      "quests": 27,
+      "ore": 11760,
+      "shards": 498,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 5,
+        "mine_claim": 5,
+        "buy_weapon": 8,
+        "equip_weapon": 8,
+        "income_adventure": 256,
+        "income_claim": 32,
+        "buy_armor": 6,
+        "equip_armor": 6,
+        "hunt": 105,
+        "travel_energy": 25,
+        "story_travel": 16,
+        "join_camp": 1,
+        "buy_delivery": 2,
+        "train_strength": 45,
+        "earned_shop_energy": 20,
+        "train_goal": 1,
+        "boss": 19,
+        "earned_shop_health": 43,
+        "personal_finale": 1,
+        "rank_accept": 8,
+        "rank_mine": 118,
+        "rank_mine_claim": 24,
+        "rank_promote": 8,
+        "rank_hunt": 467,
+        "rank_boss": 103,
+        "adventure_start": 1715,
+        "adventure_claim": 131
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez awansów rang i handlu łupami.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    },
+    {
+      "scenario": "zarobione-osiem-rang",
+      "checkpoints": [
+        {
+          "rank": "Kopacz",
+          "ordinal": 1,
+          "level": 31,
+          "elapsed_hours": 120.97,
+          "strength": 320,
+          "health": 422,
+          "ore": 39
+        },
+        {
+          "rank": "Cień",
+          "ordinal": 2,
+          "level": 31,
+          "elapsed_hours": 120.99,
+          "strength": 320,
+          "health": 422,
+          "ore": 9
+        },
+        {
+          "rank": "Strażnik",
+          "ordinal": 3,
+          "level": 31,
+          "elapsed_hours": 144.34,
+          "strength": 320,
+          "health": 422,
+          "ore": 404
+        },
+        {
+          "rank": "Magnat",
+          "ordinal": 4,
+          "level": 31,
+          "elapsed_hours": 168.13,
+          "strength": 320,
+          "health": 422,
+          "ore": 607
+        },
+        {
+          "rank": "Przywódca szajki",
+          "ordinal": 5,
+          "level": 31,
+          "elapsed_hours": 192.01,
+          "strength": 320,
+          "health": 422,
+          "ore": 175
+        },
+        {
+          "rank": "Dowódca bandytów",
+          "ordinal": 6,
+          "level": 35,
+          "elapsed_hours": 312.9,
+          "strength": 360,
+          "health": 470,
+          "ore": 1624
+        },
+        {
+          "rank": "Herszt bandytów",
+          "ordinal": 7,
+          "level": 40,
+          "elapsed_hours": 528.42,
+          "strength": 410,
+          "health": 530,
+          "ore": 7017
+        },
+        {
+          "rank": "Baron bandytów",
+          "ordinal": 8,
+          "level": 45,
+          "elapsed_hours": 792.13,
+          "strength": 460,
+          "health": 590,
+          "ore": 13162
+        }
+      ],
+      "admin_grants": false,
+      "global_join_fixture": true,
+      "limits": [
+        "Warrior strategy with NPC gear and earned itemshop, no player-market competition.",
+        "Community victory is an external global fixture.",
+        "Does not include public Jarkendar or the entire G2 NK campaign."
+      ]
+    },
+    {
+      "scenario": "tempo-kampanii-i-kontynuacji",
+      "universe": "GOTHIC_I",
+      "session_minutes": 60,
+      "armor_and_earned_shop": true,
+      "income_first": true,
+      "action_seconds": 10,
+      "seed": 111126,
+      "elapsed_hours": 792.13,
+      "active_minutes": 148.5,
+      "recovery_minutes": 337.8,
+      "timers_minutes": 1501.7,
+      "offline_hours": 759.0,
+      "calendar_days": 34,
+      "level": 45,
+      "strength": 460,
+      "quests": 27,
+      "ore": 13162,
+      "shards": 489,
+      "actions": {
+        "story_accept": 27,
+        "story_energy": 27,
+        "story_start": 27,
+        "story_talk": 8,
+        "story_claim": 27,
+        "mine": 5,
+        "mine_claim": 5,
+        "buy_weapon": 8,
+        "equip_weapon": 8,
+        "income_adventure": 35,
+        "income_claim": 30,
+        "buy_armor": 6,
+        "equip_armor": 6,
+        "hunt": 20,
+        "travel_energy": 16,
+        "story_travel": 16,
+        "join_camp": 1,
+        "buy_delivery": 2,
+        "train_strength": 45,
+        "earned_shop_energy": 40,
+        "train_goal": 1,
+        "boss": 1,
+        "earned_shop_health": 43,
+        "personal_finale": 1,
+        "rank_accept": 8,
+        "rank_mine": 42,
+        "rank_mine_claim": 24,
+        "rank_promote": 8,
+        "rank_hunt": 82,
+        "rank_boss": 34,
+        "adventure_start": 153,
+        "adventure_claim": 135
+      },
+      "defeats": 0,
+      "admin_grants": false,
+      "limits": [
+        "Znająca cele strategia wojownika; nie pomiar zachowania człowieka.",
+        "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+        "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+        "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+        "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+      ]
+    }
+  ],
+  "prepared_bot": [
+    {
+      "scenario": "przygotowany-bot-osiem-rang",
+      "ticks": 176,
+      "actions": {
+        "patrol": 25,
+        "equip": 9,
+        "accept": 4,
+        "improve": 23,
+        "story_accept": 3,
+        "story_start": 3,
+        "raid_rally": 7,
+        "story_talk": 1,
+        "challenge_accept": 5,
+        "salvage": 23,
+        "story_claim": 2,
+        "camp_donate": 5,
+        "achievement_claim": 2,
+        "mine": 13,
+        "claim": 13,
+        "story_travel": 1,
+        "hunt": 24,
+        "promote": 4,
+        "boss": 4,
+        "sell": 5
+      },
+      "rank": "Baron bandytów",
+      "level": 45,
+      "synthetic_veteran_fixture": true,
+      "admin_grants_during_play": false,
+      "limits": [
+        "Prepared level45/attributes/gear are a fixture, not organic progression.",
+        "Two-hour steps are not a playtime estimate."
+      ]
+    }
+  ],
+  "gui": {
+    "isolated_database": true,
+    "synthetic_veteran_fixture": true,
+    "errors": [],
+    "pages": [
+      {
+        "state": "basic4",
+        "viewport": 320,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "basic4",
+        "viewport": 390,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "basic4",
+        "viewport": 1440,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "earned5",
+        "viewport": 320,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "earned5",
+        "viewport": 390,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "earned5",
+        "viewport": 1440,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "state": "legacy-paid5",
+        "viewport": 320,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "state": "legacy-paid5",
+        "viewport": 390,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "state": "legacy-paid5",
+        "viewport": 1440,
+        "width": 1440,
+        "scroll": 1440
+      }
+    ],
+    "form_promotion": {
+      "tier": 4,
+      "ore_debited": 500,
+      "native_rank": "BARON",
+      "new_rank": "Przywódca szajki",
+      "quest_objectives_prefilled_fixture": true
+    }
+  },
+  "limitations": [
+    "80,35h to czas świata; 9,15h to modelowe operacje, a nie pomiar aktywnego czasu człowieka.",
+    "Wariant godziny dziennie osiąga cel w 34. dniu kalendarza.",
+    "Połączenie światów jest zewnętrzną fiksturą; zasoby organicznego wojownika są zdobywane normalnie.",
+    "Przygotowany bot ma syntetyczne początkowe statystyki i sprzęt; wynik nie mierzy organicznego rozwoju.",
+    "Starsza uwaga helpera o braku rang dotyczy wyłącznie bazowej fazy kampanii; kontynuacja tego raportu zdobywa osiem rang.",
+    "Brak pełnej kampanii maga i łucznika do rangi 8; brak konkurencji rynku.",
+    "Katalog Gothic II NK i Jarkendar pozostają niepełne."
+  ]
+}

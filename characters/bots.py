@@ -503,7 +503,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     # on lower-value fallback hunts forever. Impossible-at-full-health fights still
     # permit training/leveling/gear upgrades rather than causing permanent rest.
     story_fights = [(game.BOSSES["sleeper_sanctum"].monster,25)] if final_goal else []
-    for kind, key in story.events:
+    for kind, key in (*story.events,*(('hunt',key) for key in hunt_goals),*(('boss',key) for key in boss_goals)):
         if kind == 'hunt' and any(loc.accessible(profile) and key in loc.monsters for loc in LOCATIONS):
             story_fights.append((game.BESTIARY[key], 15))
         elif kind == 'boss' and profile.level >= game.BOSSES[key].level:

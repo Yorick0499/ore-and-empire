@@ -4,7 +4,7 @@ from io import StringIO
 from uuid import uuid4
 from django.apps import apps
 from django.db import transaction
-from django.test import TestCase
+from django.test import TestCase,TransactionTestCase
 from django.core.management import call_command
 from . import playtest_pacing as pacing
 from .models import World,SleeperRace,CampGuild
@@ -60,3 +60,30 @@ class EarnedFactionRankTests(TestCase):
             checkpoints.append({'rank':rank.name,'ordinal':rank.tier+1,'level':hero.level,'elapsed_hours':round((steps['now']()-steps['start']).total_seconds()/3600,2),'strength':hero.strength,'health':hero.max_health,'ore':hero.ore_balance})
         self.assertEqual(current_tier(hero),7)
         record_scenario('zarobione-osiem-rang',{'checkpoints':checkpoints,'admin_grants':False,'global_join_fixture':True,'limits':['Warrior strategy with NPC gear and earned itemshop, no player-market competition.','Community victory is an external global fixture.','Does not include public Jarkendar or the entire G2 NK campaign.']})
+
+
+class PreparedRankBotTests(TransactionTestCase):
+    def test_prepared_casual_bot_can_finish_all_four_new_ranks(self):
+        from datetime import timedelta
+        from unittest.mock import patch
+        from django.utils import timezone
+        from .world_management import seed_clean_world
+        from .test_faction_succession import fixture,person,succeed
+        from .models import ItemBluePrint,OwnedItem,BotDecision
+        from .bots import tick_bot
+        from .bot_telemetry import replay_decision
+        seed_clean_world();c,i,race=fixture();p=person(c,'OLD_CAMP','BARON',bot=True)
+        p.level=45;p.strength=180;p.dexterity=180;p.life=6000;p.current_health=6000;p.weapon_prot=100;p.fire_prot=100;p.ore_balance=20000;p.bot_personality='casual';p.save();succeed(race)
+        bp=ItemBluePrint.objects.create(name='Prepared veteran weapon',kind='weapon',weapon_type='onehand',damage=200,source_game='adaptation')
+        OwnedItem.objects.create(owner=p,blueprint=bp,is_equipped=True,equipped_slot='weapon')
+        now=timezone.now();actions={}
+        for step in range(800):
+            with patch('django.utils.timezone.now',return_value=now+timedelta(hours=2*step)):
+                with transaction.atomic():action,ok=tick_bot(p,force_active=True)
+                self.assertTrue(ok,(step,action));actions[action]=actions.get(action,0)+1
+            p.refresh_from_db()
+            if current_tier(p)==7:break
+        self.assertEqual(current_tier(p),7,(actions,list(p.camp_quests.filter(promoted_at__isnull=True).values('rank_key','progress'))))
+        decision=BotDecision.objects.filter(profile=p,action='promote',success=True,target_id__gt=30).first()
+        self.assertIsNotNone(decision);self.assertTrue(replay_decision(decision)['matches'])
+        record_scenario('przygotowany-bot-osiem-rang',{'ticks':step+1,'actions':actions,'rank':p.guild_name,'level':p.level,'synthetic_veteran_fixture':True,'admin_grants_during_play':False,'limits':['Prepared level45/attributes/gear are a fixture, not organic progression.','Two-hour steps are not a playtime estimate.']})

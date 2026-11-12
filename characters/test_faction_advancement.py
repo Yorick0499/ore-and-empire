@@ -27,6 +27,14 @@ class CatalogTests(SimpleTestCase):
                 if kind=='hunt':self.assertIn(key,BESTIARY)
                 if kind=='boss':self.assertIn(key,BOSSES)
 
+    def test_offline_validator_rejects_missing_advanced_boss(self):
+        from dataclasses import replace
+        from .camp_progression import obj
+        from .management.commands.validate_content import validate_advancements
+        fake=replace(RANKS[0],objectives=(obj('boss:missing-boss',1,'Missing'),))
+        with patch('characters.faction_advancement.RANKS',(fake,)):
+            with self.assertRaisesRegex(ValueError,'Unknown rank boss'):validate_advancements()
+
 
 class PromotionPolicyTests(SimpleTestCase):
     def test_new_priority_does_not_change_historical_replay(self):
@@ -103,6 +111,28 @@ class AdvancementTests(TestCase):
         with patch.object(CampQuest,'save',side_effect=RuntimeError):
             with self.assertRaises(RuntimeError):promote_in_camp(p,rank.key)
         p.refresh_from_db();self.assertEqual(p.ore_balance,20000);self.assertFalse(FactionRankProgress.objects.exists())
+    def test_bot_recovers_for_active_rank_hunts_instead_of_farming_easier_fights(self):
+        from .bots import tick_bot
+        p=self.veteran();p.is_bot=True;p.current_health=1;p.health_updated_at=timezone.now();p.save();succeed(self.race)
+        self.assertTrue(accept_camp_quest(p,'ADV_BANDITS_4'))
+        seen=[]
+        class ObservePolicy:
+            def choose(self,o):seen.append(o);return 'wait',None
+        self.assertEqual(tick_bot(p,policy=ObservePolicy(),force_active=True),('wait',True))
+        self.assertTrue(seen[0].story_recover)
+        p.current_health=p.max_health;p.health_updated_at=timezone.now();p.save()
+        tick_bot(p,policy=ObservePolicy(),force_active=True)
+        self.assertTrue(seen[-1].quest_hunt)
+
+    def test_beginner_sees_future_ranks_collapsed_and_veteran_can_see_next_step(self):
+        from django.urls import reverse
+        p=self.veteran();succeed(self.race);self.client.force_login(p.user)
+        response=self.client.get(reverse('camp_page'));self.assertEqual(response.status_code,200)
+        self.assertTrue(response.context['advanced_path_open'])
+        self.assertEqual(response.context['advanced_cards'][0]['rank'].key,'ADV_BANDITS_4')
+        p.guild='DIGGER';p.save()
+        response=self.client.get(reverse('camp_page'));self.assertFalse(response.context['advanced_path_open'])
+
     def test_actual_mining_hunts_and_bosses_advance_a_prepared_veteran(self):
         from . import game_logic as game
         from .locations import LOCATIONS
