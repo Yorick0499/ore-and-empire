@@ -30,6 +30,8 @@ def journey(profile):
     chapter=max(number for number,_,_ in realm_chapters if number<=chapter);name=next(n for number,n,_ in realm_chapters if number==chapter)
     island_complete=profile.world.universe=='GOTHIC_II' and any(r.snapshot.get('key')=='k2-supply-8' for r in claimed)
     finished=hasattr(profile,'campaign_completion')
+    nk_complete=any(r.snapshot.get('key')=='nk-undead' for r in claimed)
+    if nk_complete:add('Wyprawa NK ukończona — dalsze warty','frontier_page','Wspólny świat trwa dalej. Rozwijaj sprzęt, wspólnotę i wynik miesiąca.')
     if profile.action_end_time:
         if profile.action_end_time<=now:add('Odbierz urobek','mine_page','Zmiana w kopalni już się skończyła.')
         else:add('Trwa twoja zmiana w kopalni','mine_page','Po zakończeniu wróć po urobek.',profile.action_end_time)
@@ -64,10 +66,10 @@ def journey(profile):
         if missing(profile):add('Ukończ prolog przed dołączeniem','story_page','Odbierz ostatni przydział prologu, aby wspólnota przyjęła twoją postać.')
         else:add('Wybierz obóz i wspólne cele','locations_page','Obóz jest twoją gildią. Wybór przynależności jest stały.')
     else:add('Sprawdź wspólne cele swojego obozu','camp_guild','Twój wkład oraz działania mieszkańców rozwijają tę samą wspólnotę.')
-    if finished:add('Dalsza droga: Warty za Przełęczą','frontier_page','Szukaj lepszego łupu i walcz o wynik miesiąca.')
+    if finished and not nk_complete:add('Dalsza droga: Warty za Przełęczą','frontier_page','Szukaj lepszego łupu i walcz o wynik miesiąca.')
     if island_complete:
         add('Warta Khorinis ukończona — dalsze zlecenia','adventures_page','Rozwijaj postać i wspólnotę. Po upadku Bariery pojawiają się dalsze przydziały i publiczna wyprawa do Jarkendaru; osobista kampania nie łączy światów.')
     previous=250*profile.level*(profile.level+1);span=max(1,profile.required_exp-previous)
-    return {'steps':steps[:7],'chapter':chapter,'chapter_name':name,'finished':finished,'island_complete':island_complete,
+    return {'steps':steps[:7],'chapter':chapter,'chapter_name':name,'finished':finished,'nk_complete':nk_complete,'island_complete':island_complete,
             'xp_value':max(0,min(span,profile.experience-previous)),'xp_span':span,
             'xp_remaining':max(0,profile.required_exp-profile.experience),'next_level':profile.level+1}

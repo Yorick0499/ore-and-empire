@@ -165,4 +165,8 @@ Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów
 
 ### Assety NK — uzupełnienie #32
 
-[Stan grafiki](GOTHIC_II_CONTENT.md): 866/877 tożsamości z dopasowaniem źródłowym, wszystkie167 wzorów kupca i85 kodów stworzeń z lokalnymi assetami. 11 archiwalnych wariantów ma oznaczone modele kategorii. Naprawiono pierwszeństwo nowych ilustracji Jarkendaru i dodano bramkę walidacji assetów aktywnego contentu. Portrety dalszych NPC i sceny questów pozostają w #32; brak zmian danych progresji i migracji.
+[Stan grafiki](GOTHIC_II_CONTENT.md): 866/877 tożsamości z dopasowaniem źródłowym, wszystkie167 wzorów kupca i85 kodów stworzeń z lokalnymi assetami. 11 archiwalnych wariantów ma oznaczone modele kategorii. Naprawiono pierwszeństwo nowych ilustracji Jarkendaru i dodano bramkę walidacji assetów aktywnego contentu. Decyzja użytkownika: portrety NPC i sceny questowe odłożone; priorytetem są przedmioty, lokacje, moby i bossowie oraz pełna droga. Brak zmian danych progresji i migracji.
+
+### Gotowość pełnej drogi — #128
+
+[Aktualna kolejność i uruchomienie](COMPLETE_JOURNEY.md): podstawowe assety → rzeczywista droga Kolonia/Śniący/połączenie/NK/warty → organiczne pozostałe buildy → regionalny endgame [#136](https://github.com/Yorick0499/ore-and-empire/issues/136) → wydarzenia większego świata [#137](https://github.com/Yorick0499/ore-and-empire/issues/137) → dłuższa gospodarka i próba wydania. Dodano osobne `simulate_journey`: trzy konta od0, zdobyta wspólnota10, prawdziwe uderzenia i zweryfikowana aktywacja, następnie Irdorath i powtarzalne warty. Stare postępy wart zachowane; komunikaty po Barierze i finale NK opisują wspólny świat. #128 pozostaje otwarte dla pełnej macierzy buildów/gospodarki.

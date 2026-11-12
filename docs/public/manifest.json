@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-12",
-  "code_revision": "uzupełnienie assetów Gothic II NK / #32",
+  "code_revision": "pełna droga i lokacje NK / #128/#32",
   "migration": "0052_nk_belts",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -20,6 +20,10 @@
         [
           "docs/GAME_GUIDE.md",
           "Jak grać — pełny przewodnik"
+        ],
+        [
+          "docs/COMPLETE_JOURNEY.md",
+          "Uruchomienie, pełna droga i plan endgame"
         ]
       ]
     },
@@ -258,6 +262,7 @@
     "docs/reports/zlecenia-buildy-petla-2026-11-08.json",
     "docs/reports/zlecenia-rzadkosc-gui-2026-11-08.json",
     "docs/reports/gothic2-nk-content-2026-11-12.json",
-    "docs/reports/gothic2-nk-assets-2026-11-12.json"
+    "docs/reports/gothic2-nk-assets-2026-11-12.json",
+    "docs/reports/pelna-droga-2026-11-12.json"
   ]
 }

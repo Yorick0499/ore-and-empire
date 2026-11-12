@@ -35,8 +35,9 @@ class CampaignPacingTests(TestCase):
     def test_colony_contract_income(self):self.play('GOTHIC_I',None,support=True,income_first=True)
     def test_island_contract_income(self):self.play('GOTHIC_II',None,support=True,income_first=True)
 
-    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None):
-        with patch('django.utils.timezone.now',return_value=datetime(2026,11,11,9,tzinfo=POLISH_TIME)):
+    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None):
+        initial=start_at or datetime(2026,11,11,9,tzinfo=POLISH_TIME)
+        with patch('django.utils.timezone.now',return_value=initial):
             seed_clean_world();world=current_world();world.configured=True;world.bot_count=0;world.save()
             if universe=='GOTHIC_II':
                 call_command('open_khorinis',bots=0,stdout=StringIO());world=World.objects.get(universe=universe)
@@ -48,7 +49,7 @@ class CampaignPacingTests(TestCase):
                 from .post_barrier import seed
                 seed()
         state=random.getstate();self.addCleanup(random.setstate,state);random.seed(111126)
-        start=datetime(2026,11,11,9,tzinfo=POLISH_TIME);now=start;session_start=start
+        start=initial;now=start;session_start=start
         event_days=set()
         def calendar():
             if after_campaign and now.date() not in event_days:
@@ -76,7 +77,7 @@ class CampaignPacingTests(TestCase):
             else:timed_seconds+=seconds
         with patch('django.utils.timezone.now',side_effect=lambda:now):
             calendar()
-            user=User.objects.create_user('pacing-player');hero=create_character(user,'Nowy mieszkaniec',current_world().pk if joined_start else world.pk,start_region=world.pk if joined_start else None)
+            user=User.objects.create_user(actor_name);hero=create_character(user,'Nowy mieszkaniec' if actor_name=='pacing-player' else 'Mieszkaniec '+actor_name,current_world().pk if joined_start else world.pk,start_region=world.pk if joined_start else None)
             self.client.force_login(user);self.client.post('/postacie/',{'profile':hero.pk})
             def resupply():
                 if not support:return
@@ -86,8 +87,8 @@ class CampaignPacingTests(TestCase):
                 from .economic_ledger import refills_remaining
                 from uuid import uuid4
                 for _ in range(20):
-                    hero.refresh_from_db()
-                    product=next((q for q in StoreProduct.objects.filter(enabled=True,kind__in=['health','energy']).order_by('price','pk') if helpful(hero,q,refills_remaining(hero)) and ((q.kind=='health' and hero.max_health-hero.current_health>=q.effect) or (q.kind=='energy' and hero.current_energy<15))),None)
+                    hero.refresh_from_db();game.refresh_player(hero)
+                    product=next((q for q in StoreProduct.objects.filter(enabled=True,kind__in=['health','energy'],price__lte=hero.premium_balance,level__lte=hero.level).order_by('price','pk') if helpful(hero,q,refills_remaining(hero)) and ((q.kind=='health' and hero.max_health-hero.current_health>=q.effect) or (q.kind=='energy' and hero.current_energy<15))),None)
                     if not product:return
                     advance(10);self.assertTrue(purchase_product(hero,product.pk,uuid4()));actions['earned_shop_'+product.kind]+=1
             def do(label,fn):
@@ -106,7 +107,7 @@ class CampaignPacingTests(TestCase):
                 self.assertEqual(response.status_code,302)
                 hero.refresh_from_db()
             def mine():
-                do('mine',lambda:game.start_mining(hero,15));advance(15,'timer');do('mine_claim',lambda:game.claim_ore_reward(hero))
+                do('mine',lambda:game.start_mining(hero,15));advance(15*60,'timer');do('mine_claim',lambda:game.claim_ore_reward(hero))
             def funds(amount):
                 for _ in range(2000):
                     hero.refresh_from_db()

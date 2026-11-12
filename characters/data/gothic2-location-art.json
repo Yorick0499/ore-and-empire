@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "locations": {
+    "g2nk_crypts": {
+      "page": "Krypta Inubisa",
+      "revision": 577933,
+      "file": "Cmentarz koło farmy Onara 4.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Krypta_Inubisa",
+      "mapping": "source-location"
+    },
+    "g2nk_inubis": {
+      "page": "Krypta Inubisa",
+      "revision": 577933,
+      "file": "Cmentarz koło farmy Onara 4.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Krypta_Inubisa",
+      "mapping": "source-location"
+    },
+    "g2nk_ship": {
+      "page": "Esmeralda",
+      "revision": 583394,
+      "file": "Esmeralda (G2).png",
+      "source": "https://gothic.fandom.com/pl/wiki/Esmeralda",
+      "mapping": "source-location"
+    },
+    "jark_canyon": {
+      "page": "Kanion w Jarkendarze",
+      "revision": 591401,
+      "file": "Kanion w Jarkendarze.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Kanion_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "g2nk_jark_canyon": {
+      "page": "Kanion w Jarkendarze",
+      "revision": 591401,
+      "file": "Kanion w Jarkendarze.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Kanion_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "jark_swamp": {
+      "page": "Bagno w Jarkendarze",
+      "revision": 585367,
+      "file": "G2NK Bagno w Jarkendarze 01 wejście z ruin centralnych.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Bagno_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "g2nk_jark_swamp": {
+      "page": "Bagno w Jarkendarze",
+      "revision": 585367,
+      "file": "G2NK Bagno w Jarkendarze 01 wejście z ruin centralnych.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Bagno_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "jark_pirates": {
+      "page": "Obóz piratów",
+      "revision": 587625,
+      "file": "Obóz piratów.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_pirat%C3%B3w",
+      "mapping": "source-location"
+    },
+    "jark_bandits": {
+      "page": "Obóz bandytów w Jarkendarze",
+      "revision": 579084,
+      "file": "Obóz Kruka.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Ob%C3%B3z_bandyt%C3%B3w_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "jark_water": {
+      "page": "Ruiny centralne",
+      "revision": 584818,
+      "file": "Jarkendar (by Railfail536).png",
+      "source": "https://gothic.fandom.com/pl/wiki/Ruiny_centralne",
+      "mapping": "source-location"
+    },
+    "jark_ruins": {
+      "page": "Ruiny centralne",
+      "revision": 584818,
+      "file": "Jarkendar (by Railfail536).png",
+      "source": "https://gothic.fandom.com/pl/wiki/Ruiny_centralne",
+      "mapping": "source-location"
+    },
+    "g2nk_jark_ruins": {
+      "page": "Ruiny centralne",
+      "revision": 584818,
+      "file": "Jarkendar (by Railfail536).png",
+      "source": "https://gothic.fandom.com/pl/wiki/Ruiny_centralne",
+      "mapping": "source-location"
+    },
+    "jark_mine": {
+      "page": "Kopalnia złota w Jarkendarze",
+      "revision": 574888,
+      "file": "Kopalnia złota w Jarkendarze.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Kopalnia_z%C5%82ota_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "g2nk_ice": {
+      "page": "Lodowa kraina",
+      "revision": 587777,
+      "file": "Lodowa kraina (G2).png",
+      "source": "https://gothic.fandom.com/pl/wiki/Lodowa_kraina",
+      "mapping": "source-location"
+    },
+    "g2nk_forest": {
+      "page": "Wschodni las w Khorinis",
+      "revision": 577966,
+      "file": "Farma Sekoba G2.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Wschodni_las_w_Khorinis",
+      "mapping": "location-reference"
+    },
+    "k2_dark_forest": {
+      "page": "Wschodni las w Khorinis",
+      "revision": 577966,
+      "file": "Farma Sekoba G2.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Wschodni_las_w_Khorinis",
+      "mapping": "source-location"
+    },
+    "jark_beach": {
+      "page": "Plaża w Jarkendarze",
+      "revision": 576678,
+      "file": "Plaża w Jarkendarze GIINK.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Pla%C5%BCa_w_Jarkendarze",
+      "mapping": "source-location"
+    },
+    "jark_portal": {
+      "page": "Portal do Jarkendaru",
+      "revision": 584838,
+      "file": "G2NK Portal do Jarkendaru otwarty.png",
+      "source": "https://gothic.fandom.com/pl/wiki/Portal_do_Jarkendaru",
+      "mapping": "source-location"
+    }
+  }
+}

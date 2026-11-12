@@ -38,6 +38,9 @@ def main():
     supplement=json.loads(supplement_path.read_text())['items'] if supplement_path.exists() else {}
     ids.update(row['source_revision'] for row in supplement.values() if row.get('source_revision'))
     world=json.loads((data_root/'gothic2-world-asset-selections.json').read_bytes());ids.update(r['revision'] for r in world.values())
+    places_path=data_root/'gothic2-location-art.json'
+    places=json.loads(places_path.read_text())['locations'] if places_path.exists() else {}
+    ids.update(row['revision'] for row in places.values())
     cached=set()
     for path in cache.glob('pages-*.json'):
         for page in json.loads(path.read_text()).get('query',{}).get('pages',[]):
@@ -66,6 +69,7 @@ def main():
         selected=image_selection(fields,row['kind'])
         if selected:names.add(selected)
     names.update(row['file'] for row in world.values());
+    names.update(row['file'] for row in places.values())
     names.update(name for row in supplement.values() for name in row['candidates'])
     if args.extra_images_json:
         extra=json.loads(args.extra_images_json.read_text())

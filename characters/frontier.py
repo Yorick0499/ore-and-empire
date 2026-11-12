@@ -17,6 +17,18 @@ def frontier_unlocked(profile):
     return profile.level >= 30 and profile.camp != 'NONE'
 
 
+def presentation(profile):
+    from .barrier import joined,region
+    if joined(profile.world_id):
+        complete=profile.story_runs.filter(status='claimed',quest__key='nk-undead').exists()
+        return {'title':'Warty wspólnych szlaków','label':'Służba po upadku Bariery',
+                'art':'nk_region_irdorath' if complete else 'nk_region_valley',
+                'description':'Wyprawa do Irdorath dobiegła końca, ale wspólny świat żyje dalej. Wracaj na warty, ulepszaj sprzęt i zdobywaj wynik miesiąca.' if complete else 'Kolonia i Khorinis tworzą wspólny świat. Ochraniaj szlaki i rozwijaj ekwipunek pomiędzy przydziałami.'}
+    if region(profile).universe=='GOTHIC_II':
+        return {'title':'Warty Khorinis','label':'Służba na wyspie','art':'k2_harbor','description':'Bariera nadal stoi. Utrzymuj szlaki wyspy, zdobywaj lepszy sprzęt i wspieraj swoją wspólnotę.'}
+    return {'title':'Warty za Przełęczą','label':'Służba w Kolonii','art':'old_camp','description':'Bariera nadal stoi. Obóz potrzebuje wartowników; trenuj, zdobywaj oręż i ulepszaj wyposażenie. Osobista kampania nie kończy życia świata.'}
+
+
 def season_key(now=None):
     return polish_day(now).strftime('%Y-%m')
 

@@ -507,6 +507,38 @@
       "captured_at_utc": "2026-11-12T20:37:30.566519+00:00",
       "fixture": "Izolowana baza GUI, syntetyczny weteran45; katalog trofeów po uzupełnieniu assetów, bez grantów w produkcji",
       "theme": "gothic2-nk-assets-32"
+    },
+    {
+      "file": "journey-patrol-390.png",
+      "bytes": 234835,
+      "sha256": "2efe1632fe7cbdf61f9ebc046898f0eb9eb3cf1173fcb1f4cdeab57f44ae007f",
+      "captured_at_utc": "2026-11-12T21:18:05.359278+00:00",
+      "fixture": "Wyłącznie lokalna baza GUI; syntetyczny weteran45 z odebranym finałem NK, rzeczywisty formularz warty; pełna zarobiona droga testowana osobno",
+      "theme": "pelna-droga-i-lokacje-nk-128"
+    },
+    {
+      "file": "journey-patrol-1440.png",
+      "bytes": 568244,
+      "sha256": "160f5fe05a72104c82f82279c0734930011af367e446e3690a27034c142bf66b",
+      "captured_at_utc": "2026-11-12T21:18:05.360201+00:00",
+      "fixture": "Wyłącznie lokalna baza GUI; syntetyczny weteran45 z odebranym finałem NK, rzeczywisty formularz warty; pełna zarobiona droga testowana osobno",
+      "theme": "pelna-droga-i-lokacje-nk-128"
+    },
+    {
+      "file": "journey-map-390.png",
+      "bytes": 295450,
+      "sha256": "73b6530e4af93421b3e95f97c7bfc3b39eddcea5915a1532bc46ea394858983e",
+      "captured_at_utc": "2026-11-12T21:18:05.360647+00:00",
+      "fixture": "Wyłącznie lokalna baza GUI; syntetyczny weteran45 z odebranym finałem NK, rzeczywisty formularz warty; pełna zarobiona droga testowana osobno",
+      "theme": "pelna-droga-i-lokacje-nk-128"
+    },
+    {
+      "file": "journey-map-1440.png",
+      "bytes": 768855,
+      "sha256": "2ce22eb74b6a7256046e7ad2b89ec3bd23c2ecc06aee17a3705441c2f2c39a99",
+      "captured_at_utc": "2026-11-12T21:18:05.361662+00:00",
+      "fixture": "Wyłącznie lokalna baza GUI; syntetyczny weteran45 z odebranym finałem NK, rzeczywisty formularz warty; pełna zarobiona droga testowana osobno",
+      "theme": "pelna-droga-i-lokacje-nk-128"
     }
   ]
 }

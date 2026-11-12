@@ -19,14 +19,14 @@ Otwórz [grę lokalną](http://127.0.0.1:8001/). Nowa instalacja udostępnia `/i
 
 Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Opcjonalny profil produkcyjny, PostgreSQL i procedury wdrożenia są w [dokumentacji operatora](docs/PRODUCTION.md).
 
-Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. [Zasady oraz plan Kolonia + Khorinis](docs/CHARACTERS_AND_WORLDS.md). **Khorinis jest już grywalne przed połączeniem**: 29 definicji fabuły, trzy frakcje i własna pętla. [Zakres paczki i otwarcie serwera](docs/KHORINIS.md). Jarkendar pozostaje zamknięty do przyszłego połączenia po obozowym Śniącym.
+Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. [Zasady oraz plan Kolonia + Khorinis](docs/CHARACTERS_AND_WORLDS.md). **Khorinis jest już grywalne przed połączeniem**: 29 definicji fabuły, trzy frakcje i własna pętla. [Zakres paczki i otwarcie serwera](docs/KHORINIS.md). Globalne zwycięstwo wspólnoty uruchamia bezpieczne połączenie i publiczny Jarkendar. Dalej można przejść wyprawę mieszkańca do Irdorath i kontynuować warty. [Uruchomienie obu regionów, pełna droga i próba integracyjna](docs/COMPLETE_JOURNEY.md).
 
 ## Co możesz przejść
 
 - Sześć rozdziałów i 41 jednorazowych definicji fabularnych; 27 zadań prowadzi daną ścieżkę do przygotowania finału, dostępny jest także epilog zależny od wyboru.
 - Osobisty finał od poziomu 30, trzej bossowie z fazami i trofeami oraz trwała sala chwały. Finał bota nie zamyka świata.
 - Trzy obozy jako gildie: osobiste rangi, wspólne zadania, skarbiec, ulepszenia i asynchroniczny boss.
-- Polowanie, kopalnie, ekwipunek, rzeczywisty rynek, cztery receptury kowalstwa/alchemii i dziewięć zaklęć jako runy/zwoje.
+- Polowanie, kopalnie, ekwipunek, rzeczywisty rynek, cztery receptury kowalstwa/alchemii i dziewięć podstawowych zaklęć oraz dwa wzory VI kręgu po połączeniu, jako runy/zwoje.
 - 44 zlecenia czasowe, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze. Bez realnych płatności.
 - Siedem osobowości botów, sesje w czasie polskim i jawne symulowane zakupy odłamków — [szczegóły](docs/BOT_PERSONALITIES.md).
 - 17 ofert itemshopu z limitami przyspieszania postępu, racjonalna wycena i ochrona wyposażenia botów.
