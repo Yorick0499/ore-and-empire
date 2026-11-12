@@ -58,6 +58,27 @@ jobs:
           path: staticfiles/
           retention-days: 7
 
+  complete-journey:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: isolated-journey-ci-only
+      DEBUG: 'False'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Colony to real Barrier activation, NK and repeatable patrols
+        run: python manage.py simulate_journey --report work/complete-journey.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: complete-journey-report
+          path: work/complete-journey.json
+          retention-days: 7
+
   postgres:
     runs-on: ubuntu-latest
     services:
@@ -91,7 +112,7 @@ jobs:
       - name: Install matching PostgreSQL tools
         run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
       - name: PostgreSQL gameplay regression
-        run: python manage.py test characters.test_gothic2_content characters.test_gothic2_world characters.test_nk_equipment characters.test_jarkendar characters.test_faction_advancement characters.test_bot_inventory characters.test_faction_choice characters.test_faction_succession characters.test_rank_paths characters.test_progression_balance characters.test_barrier_admin characters.test_barrier characters.test_bot_population characters.test_convergence characters.test_khorinis characters.test_new_progression characters.test_playability_audit characters.test_camps characters.test_adventure_variety characters.test_solo_playability characters.test_rarity characters.test_item_protection characters.test_market_browse characters.test_equipment_comparison characters.test_equipment characters.test_magic characters.test_endgame characters.test_story_quests characters.test_campaign characters.test_camp_guilds characters.test_camp_raids characters.test_economy_balance characters.test_market_policy characters.test_market_intelligence characters.test_bot_personalities characters.test_bot_cycle_simulation characters.test_production --noinput
+        run: python manage.py test characters.test_complete_journey characters.test_gothic2_content characters.test_gothic2_world characters.test_nk_equipment characters.test_jarkendar characters.test_faction_advancement characters.test_bot_inventory characters.test_faction_choice characters.test_faction_succession characters.test_rank_paths characters.test_progression_balance characters.test_barrier_admin characters.test_barrier characters.test_bot_population characters.test_convergence characters.test_khorinis characters.test_new_progression characters.test_playability_audit characters.test_camps characters.test_adventure_variety characters.test_solo_playability characters.test_rarity characters.test_item_protection characters.test_market_browse characters.test_equipment_comparison characters.test_equipment characters.test_magic characters.test_endgame characters.test_story_quests characters.test_campaign characters.test_camp_guilds characters.test_camp_raids characters.test_economy_balance characters.test_market_policy characters.test_market_intelligence characters.test_bot_personalities characters.test_bot_cycle_simulation characters.test_production --noinput
       - name: Real contention and mixed player/bot load
         run: python manage.py simulate_concurrency --report work/postgresql-ci.json
       - uses: actions/upload-artifact@v4

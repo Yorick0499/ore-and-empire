@@ -1,14 +1,14 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 9 listopada 2026, etap równoległego Khorinis, migracja 0043. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 12 listopada 2026, wspólny świat po Barierze, migracja0052. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
-Przeglądarkowe RPG w realiach Gothic I, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–300 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.
+Przeglądarkowe RPG w realiach Gothic I i Gothic II: Noc Kruka, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–300 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.
 
-W grze są 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Szczegółowe tabele są w [katalogu zawartości](../GAME_CONTENT.md), a pełna instrukcja w [przewodniku gracza](../GAME_GUIDE.md).
+Podstawowa paczka Kolonii ma41 lokacji,53 zwykłych przeciwników, trzej bossowie solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Paczka NK dodaje publiczny Jarkendar i dalsze wyprawy do Irdorath, z bramkami po globalnym połączeniu. Bieżący zakres opisuje [katalog NK](../GOTHIC_II_CONTENT.md). Szczegółowe tabele Kolonii są w [katalogu zawartości](../GAME_CONTENT.md), a pełna instrukcja w [przewodniku gracza](../GAME_GUIDE.md).
 
-Nie ma realnych płatności ani gotowego transferu do Gothic II: Noc Kruka. Dwa równoległe serwery już działają. Jarkendar, smoki i połączenie po obozowym Śniącym pozostają dalszym etapem. [Pierwsza paczka Khorinis i instrukcja otwarcia](../KHORINIS.md). Projekt jest fanowski; grafiki i font mają osobno wskazane źródła i prawa.
+Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwycięstwie wspólnoty łączą się automatycznie, ze zweryfikowaną kopią i zachowaniem dorobku. Publiczny Jarkendar, smoki oraz adaptowana wyprawa do Irdorath są dostępne po spełnieniu bramek. [Pierwsza paczka Khorinis i instrukcja otwarcia](../KHORINIS.md). Projekt jest fanowski; grafiki i font mają osobno wskazane źródła i prawa.
 
 ## Stack i architektura
 
@@ -20,7 +20,7 @@ Nie ma realnych płatności ani gotowego transferu do Gothic II: Noc Kruka. Dwa 
 | Opcjonalny serwer | PostgreSQL, psycopg 3.3.8; szablon Compose używa PostgreSQL 17 |
 | Procesy produkcyjne | Gunicorn 26.2.0, osobny `run_worker`, WhiteNoise 6.12.0, Caddy 2, Docker Compose / szablony systemd |
 | Reguły gry | Wspólne usługi domenowe i transakcje Django dla ludzi oraz botów |
-| Boty | Reguły `baseline-21`, obserwacja schematu 22, scheduler z dzierżawą i limitem pracy |
+| Boty | Reguły `baseline-23`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
 | Opcjonalny eksperyment AI | Lokalny adapter Ollama, jawny opt-in; model i GPU nie są wymagane do normalnej gry |
 | Zegar | `zoneinfo`, `Europe/Warsaw`, Astral 3.2; automatyczne CET/CEST |
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |

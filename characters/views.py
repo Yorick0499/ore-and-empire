@@ -1004,7 +1004,7 @@ def hall_view(request):
 
 @login_required
 def frontier_view(request):
-    from .frontier import patrol,board,season_key,enemy,COOLDOWN,frontier_unlocked
+    from .frontier import patrol,board,season_key,enemy,COOLDOWN,frontier_unlocked,presentation
     from .models import CampaignCompletion,FrontierProgress
     profile=request.user.playerprofile
     refresh_player(profile)
@@ -1017,7 +1017,7 @@ def frontier_view(request):
     rows=list(board(profile.world))
     names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[r['profile_id'] for r in rows]).select_related('user')}
     for row in rows:row['name']=names[row['profile_id']]
-    return render(request,'characters/frontier.html',{'profile':profile,'ready':frontier_unlocked(profile),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})
+    return render(request,'characters/frontier.html',{'profile':profile,'ready':frontier_unlocked(profile),'frontier_theme':presentation(profile),'progress':progress,'depth':depth,'enemy':enemy(depth),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':progress.last_attempt_at+COOLDOWN if progress and progress.last_attempt_at else None})
 
 
 @login_required

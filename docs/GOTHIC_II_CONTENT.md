@@ -64,4 +64,10 @@ python manage.py validate_content
 
 Cache uwzględnia rewizje oraz pliki suplementu. Przy przeglądzie nowych źródeł `build_gothic2_art.py --cache /tmp/ore-nk-cache --plan` tworzy dodatkową listę kandydatów poza repo; można ją podać do cache jako `--extra-images-json`. Publikacja jest offline, powtarzalna i waliduje bajty plików. Walidator odrzuca nowy aktywny przedmiot NK z samym placeholderem oraz stworzenie bez grafiki.
 
-Portrety pozostałych NPC referencyjnych i dodatkowe ilustracje szczególnych scen zadań pozostają dalszą pracą w #32. Ten etap nie deklaruje zamknięcia całej biblioteki wizualnej ani wszystkich mechanik oryginału.
+Portrety NPC i ilustracje scen zadań są odłożone zgodnie z aktualną decyzją użytkownika; nie blokują grywalnej wersji. Priorytet mają broń, przedmioty, lokacje, moby i bossowie. Ten etap nie deklaruje zamknięcia całej biblioteki wizualnej ani wszystkich mechanik oryginału.
+
+## Lokacje i droga do dalszej gry
+
+Decyzja użytkownika: assety obejmują broń/przedmioty, lokacje, moby i bossów; NPC i sceny questowe czekają. `gothic2-location-art.json` przypina12 zdjęć dla18 lokacji: m.in. właściwą kryptę Inubisa, Esmeraldę, portal, obóz piratów, kopalnię, kanion i bagno. Dwa wcześniejsze klucze ilustracji bossów Khorinis były puste — dodano oznaczone odniesienia terenu. Archol i Feodaron na mapie korzystają z właściwych modeli bossów. Walidacja obejmuje45 terenów NK i wszystkie użyte klucze obrazów bossów; nie tylko indeks źródłowy.
+
+Po bazowym/suplementowym builderze publikuj te dopasowania poleceniem `python scripts/build_gothic2_location_art.py --cache /tmp/ore-nk-cache`. Cache pobiera przypięte rewizje i zdjęcia. Nie zmienia to hasha katalogu statystyk ani egzemplarzy. [Uruchomienie i test całej drogi](COMPLETE_JOURNEY.md).

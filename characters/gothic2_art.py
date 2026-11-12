@@ -17,6 +17,19 @@ def validate_coverage(pack,index,assets):
             'active_items':sum(i['merchant'] for i in pack['items']),'creatures':len(index['creatures'])}
 
 
+def validate_runtime_locations(assets):
+    from .locations import LOCATIONS
+    from .bosses import BOSSES
+    count=0
+    for location in LOCATIONS:
+        if location.universe!='GOTHIC_II' and not location.post_barrier:continue
+        keys=[location.key]+([location.key+'_boss'] if location.key in BOSSES else [])
+        for key in keys:
+            if assets.get(key,{}).get('game')!='GOTHIC_II_NK':raise ValueError('Missing G2 runtime location/boss art: '+key)
+        count+=1
+    return count
+
+
 def code_matches(value,code):
     if re.search(r'(?<![A-Za-z0-9_])'+re.escape(code)+r'(?![A-Za-z0-9_])',value,re.I):return True
     for prefix,start,end in re.findall(r'([A-Za-z0-9_]+_)(\d+)-(\d+)',value):
