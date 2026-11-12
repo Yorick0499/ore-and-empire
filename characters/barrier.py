@@ -42,6 +42,12 @@ def travel(profile,destination):
 def guild_identity(profile):
     from .factions import membership
     member=membership(profile)
+    if member is None and joined(profile.world_id):
+        # A long-lived actor may predate the global transaction. Reads of the
+        # social guild must resolve its newly created membership as well.
+        from .models import FactionMembership
+        member=FactionMembership.objects.filter(profile_id=profile.pk).first()
+        if member:profile.faction_membership=member
     if member:return {'pk':member.guild_id}
     if profile.camp in {'NEW_CAMP','ONAR_MERCS'} and joined(profile.world_id):
         colony=World.objects.get(pk__in=region_ids(profile.world_id),universe='GOTHIC_I')

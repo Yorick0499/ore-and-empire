@@ -25,7 +25,7 @@ def world_report(days=7,now=None):
     latest_ids=PlayerProfile.objects.filter(world=world,is_bot=True).annotate(latest=Subquery(BotDecision.objects.filter(profile_id=OuterRef('pk')).order_by('-created_at','-pk').values('pk')[:1])).values_list('latest',flat=True)
     latest={row.profile_id:row for row in BotDecision.objects.filter(id__in=latest_ids)}
     residents=[];states={'active':0,'resting':0,'blocked':0,'offline':0}
-    for p in PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).select_related('user'):
+    for p in PlayerProfile.objects.filter(world=world,is_bot=True,user__is_active=True).select_related('user','faction_membership'):
         last=latest.get(p.pk)
         state='offline' if not p.bot_last_tick or now-p.bot_last_tick>timedelta(seconds=90) else 'blocked' if last and not last.success else 'resting' if last and last.action=='wait' else 'active'
         states[state]+=1

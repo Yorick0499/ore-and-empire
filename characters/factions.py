@@ -18,11 +18,6 @@ RANK_NAMES = {
 
 
 def membership(profile):
-    # A profile may have cached the absent reverse relation before global activation.
-    # Positive memberships remain cached; player_action refreshes them under its lock.
-    if 'faction_membership' in profile._state.fields_cache and profile._state.fields_cache['faction_membership'] is None:
-        from .barrier import joined
-        if joined(profile.world_id):profile._state.fields_cache.pop('faction_membership',None)
     try:return profile.faction_membership
     except FactionMembership.DoesNotExist:return None
 

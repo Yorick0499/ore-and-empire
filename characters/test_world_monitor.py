@@ -68,3 +68,15 @@ class WorldMonitorTests(TestCase):
         export=self.client.get('/zarzadca/swiat/?format=json&days=7')
         self.assertEqual(export.json()['schema'],1)
         self.assertNotIn('password',export.content.decode())
+
+    def test_ranked_population_does_not_add_membership_queries_per_bot(self):
+        from .models import PlayerProfile
+        self.profile.camp='OLD_CAMP';self.profile.guild='GUARD';self.profile.save()
+        with CaptureQueriesContext(connection) as small:world_report()
+        for n in range(20):
+            p=User.objects.create_user('ranked-monitor-'+str(n)).playerprofile
+            p.is_bot=True;p.camp='NEW_CAMP';p.guild='WATER_MAGE';p.save()
+        with CaptureQueriesContext(connection) as large:report=world_report()
+        self.assertLessEqual(len(large),16)
+        self.assertEqual(len(small),len(large))
+        self.assertEqual(len(report['residents']),21)

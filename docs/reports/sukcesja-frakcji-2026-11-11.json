@@ -158,5 +158,14 @@
     "No production migration/deployment; schema0049 itself does not transfer funds.",
     "This report does not claim complete G2 Night of the Raven content or new end-to-end campaign timing.",
     "GitHub CI result will be checked on the PR; local results do not attest remote execution."
-  ]
+  ],
+  "followup_2026_11_12": {
+    "ci_failure": "1 of547 tests: world-monitor query budget17 instead of16; PostgreSQL and production image passed",
+    "fix": "Load faction membership with resident query; reload absent old memberships only when resolving social guilds. Do not loosen16-query budget.",
+    "local_tests": 20,
+    "local_skipped": 1,
+    "local_seconds": 1.563,
+    "success": true,
+    "scaling_test": "1 versus21 ranked residents: same query count, at most16."
+  }
 }

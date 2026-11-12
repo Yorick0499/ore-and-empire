@@ -15924,7 +15924,16 @@ python scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne 
     &quot;No production migration/deployment; schema0049 itself does not transfer funds.&quot;,
     &quot;This report does not claim complete G2 Night of the Raven content or new end-to-end campaign timing.&quot;,
     &quot;GitHub CI result will be checked on the PR; local results do not attest remote execution.&quot;
-  ]
+  ],
+  &quot;followup_2026_11_12&quot;: {
+    &quot;ci_failure&quot;: &quot;1 of547 tests: world-monitor query budget17 instead of16; PostgreSQL and production image passed&quot;,
+    &quot;fix&quot;: &quot;Load faction membership with resident query; reload absent old memberships only when resolving social guilds. Do not loosen16-query budget.&quot;,
+    &quot;local_tests&quot;: 20,
+    &quot;local_skipped&quot;: 1,
+    &quot;local_seconds&quot;: 1.563,
+    &quot;success&quot;: true,
+    &quot;scaling_test&quot;: &quot;1 versus21 ranked residents: same query count, at most16.&quot;
+  }
 }</code></pre><button type="button" class="download" data-report-download="sukcesja-frakcji-2026-11-11.json">Pobierz publiczny raport JSON</button></details><details class="report" id="report-zlecenia-buildy-petla-2026-11-08"><summary>zlecenia-buildy-petla-2026-11-08.json</summary><pre><code>{
   &quot;schema&quot;: 1,
   &quot;success&quot;: true,
