@@ -60,7 +60,7 @@ class TwoRealmTests(TestCase):
             self.assertFalse(game.execute_boss(self.p,key))
         self.assertEqual(self.client.get('/polowanie/?location=jarkendar').status_code,404)
         from .locations import LOCATIONS
-        self.assertFalse(any('jarkendar' in l.key for l in LOCATIONS))
+        self.assertFalse(any(l.accessible(self.p) for l in LOCATIONS if l.key.startswith('jark_')))
         self.assertFalse(game.choose_camp(self.p,'CITY_WATCH'))
         self.assertFalse(game.choose_camp(self.p,'OLD_CAMP'))
     def test_open_is_idempotent_and_does_not_touch_colony(self):

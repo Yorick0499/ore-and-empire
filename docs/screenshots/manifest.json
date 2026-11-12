@@ -459,6 +459,22 @@
       "captured_at_utc": "2026-11-12T17:36:13.212193+00:00",
       "fixture": "Izolowana baza; syntetyczny weteran do kontroli GUI awansów, bez danych produkcji",
       "theme": "osiem-rang-127"
+    },
+    {
+      "file": "publiczny-jarkendar-390.jpg",
+      "bytes": 54186,
+      "sha256": "9fb01d6ee3b6e4115a5a43314a6971611412802b3f05659c2596a72d19f0f494",
+      "captured_at_utc": "2026-11-12T18:00:12.032497+00:00",
+      "fixture": "Izolowana baza, syntetyczny poziom25, portal odebrany prawdziwymi formularzami; przyspieszony wyłącznie zegar oczekiwania",
+      "theme": "publiczny-jarkendar-33"
+    },
+    {
+      "file": "publiczny-jarkendar-1440.jpg",
+      "bytes": 189823,
+      "sha256": "1fa961fb5b634c56062a04ab6b76070982c801aa4b145a815692b0b37bad82bb",
+      "captured_at_utc": "2026-11-12T18:00:12.058075+00:00",
+      "fixture": "Izolowana baza, syntetyczny poziom25, portal odebrany prawdziwymi formularzami; przyspieszony wyłącznie zegar oczekiwania",
+      "theme": "publiczny-jarkendar-33"
     }
   ]
 }

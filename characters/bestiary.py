@@ -63,6 +63,8 @@ CREATURES = [
 ]
 from .khorinis import CREATURES as KHORINIS_CREATURES
 CREATURES += KHORINIS_CREATURES
+from .jarkendar import CREATURES as JARKENDAR_CREATURES
+CREATURES += JARKENDAR_CREATURES
 BESTIARY = {
     key: dict(nazwa=name, level=level, life=life, strength=strength,
               weapon_prot=armour, exp_reward=experience, source=source)

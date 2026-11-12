@@ -84,3 +84,6 @@ def encounter_round(monster, health, turn):
 # First post-Barrier expedition. Browser balance, not canonical G2 statistics.
 BOSSES['k2_dragon_fire']=Boss('k2_dragon_fire','Feomathar — smok ognia',35,2400,120,75,5000,750,60,30)
 MECHANICS['k2_dragon_fire']='Ognisty oddech co trzecią rundę; przygotuj ochronę przed ogniem. Dostęp dopiero po upadku Bariery.'
+
+BOSSES['jark_crypt']=Boss('jark_crypt','Strażnik krypty Budowniczych',25,1100,75,40,3500,400)
+MECHANICS['jark_crypt']='Strażnik zapowiada silny atak co trzecią rundę. Przygotuj ochronę i zapas zdrowia; dostęp po przeprawie przez portal.'

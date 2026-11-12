@@ -1,6 +1,6 @@
 # Konto, pięć postaci i droga do dwóch światów
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji działa od0049; wybór Bractwa działa od0050; wyższe rangi działają od0051; publiczny portal jest nadal planowany. Szczegóły bieżących i historycznych reguł poniżej.
+> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji działa od0049; wybór Bractwa działa od0050; wyższe rangi działają od0051; publiczny portal i początkowa wyprawa są wdrożone w kodzie #33, po odebraniu zadania od poziomu10. Szczegóły bieżących i historycznych reguł poniżej.
 
 
 ## Dostępne od migracji 0042 — #107–#110
@@ -91,3 +91,5 @@ Gdy pieczęć czeka na kolejne konto, ponowny wypad dotychczasowego uczestnika j
 ## Świeży start po połączeniu — #31
 
 Jeden wybór serwera obejmuje dwa regiony startowe i ich własne kampanie. Nowa postać zaczyna od poziomu 0, bez skopiowanego ekwipunku i zadań; Khorinis nie wymaga ukończenia Kolonii. Pięć slotów pozostaje wspólne. Wybór ustala pochodzenie i historię tej postaci, nie zmienia istniejących postaci. Nowe imię jest rezerwowane dla całej grupy regionów, także przy równoczesnym tworzeniu. [Próby i czas rozwoju](SOLO_PLAYTEST.md).
+
+Aktualny dostęp i zakres publicznego regionu: [Jarkendar](JARKENDAR.md). Starsze opisy zamkniętego regionu odnoszą się do stanu sprzed #33.

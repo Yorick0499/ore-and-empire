@@ -15,6 +15,8 @@ def merchant_context(profile,params):
              'usable':'1' if params.get('usable')=='1' else ''}
     stock=ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True,base_value__gte=0,min_level__lte=profile.level,
         required_camp__in=['',profile.camp],min_camp_tier__lte=profile.camp_tier)
+    from .jarkendar import unlocked
+    if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
     if filters['q']:stock=stock.filter(name__iregex=literal_pattern(filters['q']))
     if filters['kind']:stock=stock.filter(kind=filters['kind'])
     if filters['weapon']:stock=stock.filter(kind='weapon',weapon_type=filters['weapon'])

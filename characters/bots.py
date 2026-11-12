@@ -401,10 +401,12 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .faction_choice import equipment_camps
     equipment_factions=equipment_camps(profile)
     stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=equipment_factions, min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    from .jarkendar import unlocked
+    if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
     offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
-    offers=[o for o in offers if o.market_price<=market.quote(o.owner,o).price]
+    offers=[o for o in offers if allowed(profile,o.blueprint) and o.market_price<=market.quote(o.owner,o).price]
     upgrade = None
     if equipped and combat_equipment:
         upgrade = choose_upgrade(stock, offers, score(profile,equipped), profile.ore_balance,profile)
@@ -562,9 +564,13 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         from .barrier import alliance_card
         if alliance_card(profile)['can_promote']:raid_action='alliance_promote';raid_target=None
         from .locations import BY_KEY
-        desired=next((BY_KEY.get(key) for kind,key in (*story.events,*(('boss',key) for key in boss_goals)) if kind in {'boss','travel'} and BY_KEY.get(key) and BY_KEY[key].universe!=region(profile).universe),None)
-        if not desired and quest and quest.rank_key.startswith('ADV_'):
-            desired=next((loc for loc in LOCATIONS if loc.universe!=region(profile).universe and any(key in loc.monsters for key in hunt_goals) and profile.level>=loc.level and profile.camp_tier>=loc.min_tier),None)
+        # Finish the active story route before traveling for a parallel rank.
+        # Mixing both routes caused endless Colony/island oscillation.
+        route_events=story.events if story.action or story.events else tuple(('boss',key) for key in boss_goals)
+        route_hunts=[key for kind,key in route_events if kind=='hunt'] if story.action or story.events else hunt_goals
+        desired=next((BY_KEY.get(key) for kind,key in route_events if kind in {'boss','travel'} and BY_KEY.get(key) and BY_KEY[key].universe!=region(profile).universe),None)
+        if not desired:
+            desired=next((loc for loc in LOCATIONS if loc.universe!=region(profile).universe and any(key in loc.monsters for key in route_hunts) and profile.level>=loc.level and profile.camp_tier>=loc.min_tier),None)
         if desired:
             from .models import World
             destination=World.objects.filter(pk__in=region_ids(profile.world_id),universe=desired.universe).first()

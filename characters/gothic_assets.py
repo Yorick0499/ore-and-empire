@@ -21,3 +21,8 @@ ASSET_PAGES['healing_essence'] = 'Esencja uzdrawiająca'
 from urllib.parse import unquote, urlsplit
 for _item in json.loads((Path(__file__).resolve().parent/'data/gothic1-items.json').read_text())['items']:
     ASSET_PAGES[_item['art_key']] = unquote(urlsplit(_item['source']).path.rsplit('/',1)[-1]).replace('_',' ')
+
+# Existing local illustrations, explicitly generic; no new image provenance claim.
+from .jarkendar import DESTINATIONS as JARKENDAR_DESTINATIONS
+ASSET_ALIASES.update({row[0]:row[6] for row in JARKENDAR_DESTINATIONS})
+ASSET_ALIASES.update(dict(jark_lurker='lurker',jark_mantis='minecrawler',jark_razor='razor',jark_bloodhound='orc_dog',jark_swampshark='swampshark',jark_guardian='stone_golem',jark_crypt_boss='stone_golem'))

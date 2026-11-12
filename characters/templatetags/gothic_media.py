@@ -15,7 +15,7 @@ def artwork(key):
 
 @register.inclusion_tag("characters/artwork.html")
 def gothic_art(key):
-    return {"artwork":artwork(key)}
+    return {"artwork":artwork(key),"illustrative":str(key).startswith("jark_")}
 
 @register.inclusion_tag("characters/artwork.html")
 def gothic_item_art(item,compact=False):

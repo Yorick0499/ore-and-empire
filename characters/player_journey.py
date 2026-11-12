@@ -64,7 +64,7 @@ def journey(profile):
     else:add('Sprawdź wspólne cele swojego obozu','camp_guild','Twój wkład oraz działania mieszkańców rozwijają tę samą wspólnotę.')
     if finished:add('Dalsza droga: Warty za Przełęczą','frontier_page','Szukaj lepszego łupu i walcz o wynik miesiąca.')
     if island_complete:
-        add('Warta Khorinis ukończona — dalsze zlecenia','adventures_page','Rozwijaj postać i wspólnotę. Dalsza fabuła NK, smoki i Jarkendar nie są jeszcze dostępne; osobista kampania nie łączy światów.')
+        add('Warta Khorinis ukończona — dalsze zlecenia','adventures_page','Rozwijaj postać i wspólnotę. Po upadku Bariery pojawiają się dalsze przydziały i publiczna wyprawa do Jarkendaru; osobista kampania nie łączy światów.')
     previous=250*profile.level*(profile.level+1);span=max(1,profile.required_exp-previous)
     return {'steps':steps[:7],'chapter':chapter,'chapter_name':name,'finished':finished,'island_complete':island_complete,
             'xp_value':max(0,min(span,profile.experience-previous)),'xp_span':span,
