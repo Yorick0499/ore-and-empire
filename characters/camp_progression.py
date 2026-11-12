@@ -107,6 +107,9 @@ def promotion_tier(profile, rank):
 
 
 def promotion_parents(profile, rank):
+    from .faction_choice import promotion_parents as chosen_parents
+    parents=chosen_parents(profile,rank)
+    if parents is not None:return parents
     if profile.legacy_water_path and rank.key=='WATER_MAGE':return ('MERC',)
     return rank.parents
 
@@ -114,7 +117,8 @@ def promotion_parents(profile, rank):
 def available_rank(profile, rank):
     from .story_gates import missing
     from .realms import camps
-    return rank.camp in camps(profile.world) and profile.camp == rank.camp and profile.guild in promotion_parents(profile,rank) and not missing(profile,promotion_tier(profile,rank))
+    from .faction_choice import promotion_allowed
+    return promotion_allowed(profile,rank) and rank.camp in camps(profile.world) and profile.camp == rank.camp and profile.guild in promotion_parents(profile,rank) and not missing(profile,promotion_tier(profile,rank))
 
 
 def quest_complete(quest, rank):

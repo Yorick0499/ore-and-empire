@@ -123,9 +123,9 @@ Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego
 | Etap / issue | Minimalny zakres | Kryterium ukończenia |
 | --- | --- | --- |
 | **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
-| **2. #125 — implementacja do PR**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
-| **3. #126 — następny**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
-| **4. #127**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
+| **2. #125 — scalone w PR #130**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
+| **3. #126 — implementacja do PR**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
+| **4. #127 — następny**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
 | **5. #33**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
 | **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
 
@@ -144,3 +144,9 @@ Nowe pakiety `simulate_release --suite quick/campaign/pacing/world/full` oddziel
 Migracja0049 dodaje oddzielne członkostwo bieżącej frakcji i audyt sukcesji. Rodzime `camp`/`guild` oraz wszystkie osobiste rekordy pozostają bez zmian. Automatyczne przejście działa w transakcji aktywacji Bariery. Już połączone serwery obsługuje ten sam worker albo `barrier_transition ID --resume --operator LOGIN`, ze świeżą zweryfikowaną kopią przed zmianą. Sama migracja schematu nie dzieli skarbców.
 
 Użytkownik zatwierdził podział skarbców według liczby członków; [szczegóły i ograniczenia](CAMP_GUILDS.md). Rangi5–8 są katalogiem planowanym, Bractwo oczekuje na wybór #126, portal Jarkendaru pozostaje zamknięty. Handoff pozostawiono bez zmian zgodnie z poleceniem.
+
+### Stan realizacji #126 — 12 XI 2026
+
+Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów, dawnej kampanii i zasobów; wspólna usługa ludzi/botów. Przekazywany udział bieżącego depozytu ma równe wagi pozostających członków i deterministyczną resztę. [Dokładne reguły oraz wymagania wyboru](CAMP_GUILDS.md). Migracja0050 dodaje wyłącznie zapis decyzji. Następny etap #127: wyższe rangi i realna progresja po połączeniu; Jarkendar i pełniejsze G2 NK nadal w #33/#32.
+
+#130 scalono po pełnym zielonym CI Python3.12/3.13, PostgreSQL, współbieżności, dokumentacji i obrazu. Przekroczenie16zapytań raportu świata zostało usunięte bez podnoszenia limitu, z testem1/21botów. [Wyniki #126 i wykryte problemy scenariuszy](reports/wybor-bractwa-2026-11-12.json).

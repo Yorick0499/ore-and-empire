@@ -35,6 +35,11 @@ class OrdinaryBuildSession(TestCase):
             call_command('open_khorinis',bots=0,stdout=StringIO())
             from uuid import uuid4
             World.objects.filter(status='active').update(union_key=uuid4())
+            from .models import SleeperRace,CampGuild
+            from django.apps import apps
+            from .faction_succession_v1 import apply
+            race=SleeperRace.objects.create(colony=world,khorinis=World.objects.get(universe='GOTHIC_II',is_open=True),winner=CampGuild.objects.get(world=world,camp='OLD_CAMP'),state='joined')
+            apply(apps,race)
         state=random.getstate();self.addCleanup(random.setstate,state);random.seed(71)
         call_command('run_bots',create=3,create_only=True,stdout=StringIO())
         from .bots import tick_bot
@@ -69,7 +74,7 @@ class OrdinaryBuildSession(TestCase):
                     # Earn the prologue and branch gates through the same forms as a new player.
                     from .story_quests import bot_story_plan,StoryPlan
                     from .story_gates import missing
-                    camp={'warrior':'OLD_CAMP','archer':'NEW_CAMP','mage':'SWAMP_CAMP'}[name]
+                    camp={'warrior':'OLD_CAMP','archer':'NEW_CAMP','mage':'OLD_CAMP' if joined_start else 'SWAMP_CAMP'}[name]
                     if p.camp=='NONE' and not missing(p):
                         post('/',camp=camp);self.assertEqual(p.camp,camp);actions['join_camp']+=1;continue
                     plan=bot_story_plan(p) if missing(p,1,camp) else StoryPlan()
@@ -85,13 +90,18 @@ class OrdinaryBuildSession(TestCase):
                     else:bp=None
                     if bp is not None:continue
                     # Camp requirements are earned after accepting the actual promotion quest.
-                    rank_key=('PICKER' if p.guild=='NONE' else 'NOVICE' if p.guild=='PICKER' else '') if name=='mage' else ''
+                    first,second=('DIGGER','SHADOW') if joined_start else ('PICKER','NOVICE')
+                    rank_key=(first if p.guild=='NONE' else second if p.guild==first else '') if name=='mage' else ''
                     target=None
                     if rank_key and not missing(p,BY_RANK[rank_key].tier):
                         rank=BY_RANK[rank_key];cq=p.camp_quests.filter(rank_key=rank_key,promoted_at__isnull=True).first()
                         if not cq:post('/oboz/',action='accept',rank=rank_key);actions['rank_accept']+=1;continue
+                        if quest_complete(cq,rank) and getattr(p,rank.attribute)<rank.attribute_value and p.skill_points and p.ore_balance>=p.training_cost:
+                            post('/trening/',attribute=rank.attribute,count=1);actions['rank_attribute_train']+=1;continue
                         if quest_complete(cq,rank) and p.level>=rank.level and getattr(p,rank.attribute)>=rank.attribute_value and p.ore_balance>=rank.cost:
                             post('/oboz/',action='promote',rank=rank_key);actions['rank_promote']+=1;continue
+                        if any(g.event=='mine' and cq.progress.get(g.event,0)<g.count for g in rank.objectives):
+                            post('/kopalnia/',action='mine');actions['rank_mine']+=1;continue
                         target=next((g.event.split(':',1)[1] for g in rank.objectives if g.event.startswith('hunt:') and cq.progress.get(g.event,0)<g.count),None)
                     # Spend earned PN, reserving five for the mage's first circle.
                     reserve=5 if name=='mage' and not p.magic_skill else 0
@@ -103,7 +113,7 @@ class OrdinaryBuildSession(TestCase):
                     if name=='mage' and not p.magic_skill and circle_cap(p) and p.level>=2 and p.skill_points>=5 and p.ore_balance>=50:
                         post('/magia/',action='learn');actions['learn_circle']+=1;continue
                     if name=='mage' and p.magic_skill and not p.prepared_magic_id:
-                        rune=ItemBluePrint.objects.get(catalog_key='g1-itarrunewindfist')
+                        rune=ItemBluePrint.objects.get(catalog_key='g1-itarrunefirebolt' if joined_start else 'g1-itarrunewindfist')
                         owned=p.inventory.filter(blueprint=rune).first()
                         if owned:post('/magia/',action='prepare',item=owned.pk);actions['prepare_rune']+=1;continue
                         if p.ore_balance>=rune.base_value:post('/magia/',action='buy',blueprint=rune.pk);actions['buy_rune']+=1;continue
@@ -145,7 +155,7 @@ class OrdinaryBuildSession(TestCase):
                         post('/polowanie/?location='+habitats[key],monster_key=key,request_key=uuid4())
                         self.assertEqual(p.battles.count(),before+1)
                         battle=p.battles.first();self.assertTrue(battle.won,(name,key,battle.combat_log))
-                        if p.prepared_magic_id:self.assertIn('Uderzenie wiatru',str(battle.combat_log))
+                        if p.prepared_magic_id:self.assertIn('Ognisty pocisk' if joined_start else 'Uderzenie wiatru',str(battle.combat_log))
                         actions['magic_hunt' if p.prepared_magic_id else 'ranged_hunt' if name=='archer' else 'melee_hunt']+=1
                     else:actions['wait']+=1
             if all(p.level>=6 and actions[{'mage':'magic_hunt','archer':'ranged_hunt','warrior':'melee_hunt'}[name]]>=10 for name,p,_,actions in actors):break
@@ -153,7 +163,7 @@ class OrdinaryBuildSession(TestCase):
         for name,p,_,actions in actors:
             p.refresh_from_db();self.assertGreaterEqual(p.level,6,(name,dict(actions),p.__dict__))
             self.assertFalse(p.user.is_staff)
-            if name=='mage':self.assertGreaterEqual(actions['magic_hunt'],10);self.assertEqual(p.guild,'NOVICE')
+            if name=='mage':self.assertGreaterEqual(actions['magic_hunt'],10,(p.guild,dict(actions),p.strength,p.mana,p.skill_points,list(p.camp_quests.values('rank_key','progress'))));self.assertEqual(p.guild,'SHADOW' if joined_start else 'NOVICE')
             else:
                 self.assertGreater(getattr(p,'onehand_skill' if name=='warrior' else 'bow_skill'),0)
                 self.assertGreaterEqual(actions['melee_hunt' if name=='warrior' else 'ranged_hunt'],10)

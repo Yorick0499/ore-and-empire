@@ -40,15 +40,29 @@ MAGE_RANKS={'K2_MAGE','K2_ARCHMAGE','FIRE_MAGE','ARCH_FIRE','WATER_MAGE','ARCH_W
 ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
 
 
+def school_for(profile):
+    from .factions import membership
+    member=membership(profile)
+    if member and member.faction in {'FIRE_ORDER','WATER_CIRCLE'}:
+        return ('fire','Klasztor Magów Ognia') if member.faction=='FIRE_ORDER' else ('water','Krąg Magów Wody')
+    return SCHOOLS.get(profile.camp)
+
+
 def circle_cap(profile):
-    if profile.guild in ARCH_RANKS:return 6
-    if profile.guild in MAGE_RANKS:return 4
-    return 2 if profile.camp_tier>=1 else 0
+    native=6 if profile.guild in ARCH_RANKS else 4 if profile.guild in MAGE_RANKS else 2 if profile.camp_tier>=1 else 0
+    from .factions import membership
+    from .camp_progression import BY_RANK
+    member=membership(profile);rank=BY_RANK.get(profile.guild)
+    if member and member.faction in {'FIRE_ORDER','WATER_CIRCLE'} and rank:
+        return max(native,6 if rank.tier>=3 else 4 if rank.tier>=2 else 2 if rank.tier>=1 else 0)
+    return native
 
 
 def rune_allowed(profile,spell):
-    school=SCHOOLS.get(profile.camp)
-    return bool(school and school[0]==spell.school and profile.magic_skill>=spell.circle and spell.circle<=circle_cap(profile))
+    # Retain the native school and invested runes; the new membership opens its
+    # destination school, but grants no circles, mana, items or learning points.
+    schools={school[0] for school in (SCHOOLS.get(profile.camp),school_for(profile)) if school}
+    return spell.school in schools and profile.magic_skill>=spell.circle and spell.circle<=circle_cap(profile)
 
 
 @dataclass(frozen=True)
@@ -142,8 +156,8 @@ def survival_health(profile,monster,plan,mana=None):
 
 
 def bot_magic_plan(profile,inventory,target=None):
-    if profile.guild not in MAGE_RANKS and profile.guild not in {'NOVICE','K2_NOVICE','K2_ADEPT'}:return ('clear_magic',None) if profile.prepared_magic_id else ('',None)
-    school=SCHOOLS.get(profile.camp)
+    if profile.guild not in MAGE_RANKS and profile.guild not in {'NOVICE','K2_NOVICE','K2_ADEPT'} and circle_cap(profile)<4:return ('clear_magic',None) if profile.prepared_magic_id else ('',None)
+    school=school_for(profile)
     if not school:return '',None
     if profile.magic_skill<circle_cap(profile) and profile.level>=(profile.magic_skill+1)*2 and profile.skill_points>=5*(profile.magic_skill+1) and profile.ore_balance>=50*(profile.magic_skill+1):return 'learn_circle',None
     usable=[item for item in inventory if not item.is_market_listed and item.blueprint.catalog_key in BY_CODE and not BY_CODE[item.blueprint.catalog_key][1] and rune_allowed(profile,BY_CODE[item.blueprint.catalog_key][0])]

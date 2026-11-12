@@ -524,6 +524,10 @@ def camp_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
     if request.method == "POST":
+        from .faction_choice import choose
+        if request.POST.get("action")=="choose_faction":
+            report_action(request,choose(profile,request.POST.get("faction")))
+            return redirect("camp_page")
         actions = {"accept": accept_camp_quest, "abandon": abandon_camp_quest, "promote": promote_in_camp}
         action = actions.get(request.POST.get("action"))
         report_action(request, action(profile, request.POST.get("rank")) if action else False)
@@ -536,13 +540,14 @@ def camp_view(request):
         raise Http404("Nieznany obóz")
     from .factions import FACTIONS,RANK_NAMES,membership
     from .camp_progression import promotion_parents
+    from .faction_choice import card as choice_card
     member=membership(profile)
     cards=rank_cards(profile,selected)
     if member:
         cards.sort(key=lambda card:0 if card["quest"] and card["quest"].promoted_at is None else 1 if profile.guild in promotion_parents(profile,card["rank"]) else 2 if card["current"] else 3)
     faction_paths=[{"key":key,"name":name,"basic":RANK_NAMES[key][:4],"advanced":RANK_NAMES[key][4:]} for key,name in FACTIONS] if member or joined(profile.world_id) else []
     return render(request, "characters/camp.html", {
-        "faction_paths":faction_paths,"membership":member,
+        "faction_paths":faction_paths,"membership":member,"brotherhood":choice_card(profile),
         "profile": profile, "cards": cards,
         "selected": selected, "camp_name": camps[selected], "paths": CAMP_PATHS[selected],
         "camps": camp_choices,
@@ -778,7 +783,7 @@ def world_monitor_view(request):
 
 @login_required
 def magic_view(request):
-    from .magic import SCHOOLS,BY_CODE,offers,combat_plan,learn_circle,prepare_magic,purchase_magic,circle_cap
+    from .magic import SCHOOLS,BY_CODE,offers,combat_plan,learn_circle,prepare_magic,purchase_magic,circle_cap,school_for
     profile=request.user.playerprofile
     refresh_player(profile)
     if request.method=='POST':
@@ -792,7 +797,7 @@ def magic_view(request):
         return redirect('magic_page')
     inventory=[{'item':item,'spell':BY_CODE[item.blueprint.catalog_key][0]} for item in profile.inventory.filter(is_market_listed=False,blueprint__catalog_key__in=BY_CODE).select_related('blueprint')]
     next_circle=profile.magic_skill+1
-    return render(request,'characters/magic.html',{'profile':profile,'school':SCHOOLS.get(profile.camp,('','Bez szkoły — dostępne zwoje'))[1],'plan':combat_plan(profile),'circle_cap':circle_cap(profile),'next_circle':next_circle,'circle_lp':5*next_circle,'circle_ore':50*next_circle,'circle_level':next_circle*2,'can_learn':not profile.is_busy and next_circle<=circle_cap(profile) and profile.level>=next_circle*2 and profile.skill_points>=5*next_circle and profile.ore_balance>=50*next_circle,'inventory':inventory,'offers':offers(profile)})
+    return render(request,'characters/magic.html',{'profile':profile,'school':(school_for(profile) or ('','Bez szkoły — dostępne zwoje'))[1],'plan':combat_plan(profile),'circle_cap':circle_cap(profile),'next_circle':next_circle,'circle_lp':5*next_circle,'circle_ore':50*next_circle,'circle_level':next_circle*2,'can_learn':not profile.is_busy and next_circle<=circle_cap(profile) and profile.level>=next_circle*2 and profile.skill_points>=5*next_circle and profile.ore_balance>=50*next_circle,'inventory':inventory,'offers':offers(profile)})
 
 
 @login_required

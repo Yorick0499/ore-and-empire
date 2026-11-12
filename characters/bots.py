@@ -388,10 +388,12 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .economic_ledger import refills_remaining
     energy_refills_left = refills_remaining(profile)
     consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and ((i.blueprint.heal_amount and profile.current_health < profile.max_health // 2) or (i.blueprint.energy_amount and profile.current_energy < 15 and energy_refills_left))), None)
-    stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=['',profile.camp], min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    from .faction_choice import equipment_camps
+    equipment_factions=equipment_camps(profile)
+    stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=equipment_factions, min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=['',profile.camp], blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
     offers=[o for o in offers if o.market_price<=market.quote(o.owner,o).price]
     upgrade = None
     if equipped and combat_equipment:
@@ -516,6 +518,12 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 camp_action="camp_upgrade";camp_target_id=list(UPGRADES).index(camp_upgrade["key"])+1;camp_upgrade_level=camp_upgrade["level"]
             elif profile.ore_balance>=250 and card["guild"].treasury<100:
                 camp_action="camp_donate"
+    from .faction_choice import card as faction_card
+    from .factions import FACTIONS
+    faction_choice=faction_card(profile)
+    if faction_choice and faction_choice['can_choose']:
+        selected=faction_choice['options'][(profile.pk-1)%len(faction_choice['options'])]['key']
+        camp_action='choose_faction';camp_target_id=[key for key,_ in FACTIONS].index(selected)+1
     from .camp_raids import raid_card
     raid_action="";raid_target=None
     if profile.camp!="NONE" and profile.level>=3:
@@ -660,6 +668,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 from .barrier import travel
                 success=bool(travel(profile,target))
             else:success=bool(rally_camp_raid(profile) if action=='raid_rally' else strike_camp_raid(profile,target,uuid4()) if action=='raid_strike' else claim_camp_raid(profile,target))
+        elif action=='choose_faction' and obs.camp_action==action and target==obs.camp_target_id:
+            from .faction_choice import choose
+            success=choose(profile,FACTIONS[target-1][0])
         elif action=='camp_donate' and obs.camp_action==action and target is None:
             success=donate_to_camp(profile,10,uuid4())
         elif action=='camp_upgrade' and obs.camp_action==action and target==obs.camp_target_id:

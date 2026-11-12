@@ -1,0 +1,475 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "issue": 126,
+  "isolated_databases_only": true,
+  "personal_progress_grants": false,
+  "tests": [
+    {
+      "engine": "SQLite",
+      "label": "choice, succession, equipment, magic, native ranks, market and bot regression",
+      "cases": 111,
+      "skipped": 2,
+      "seconds": 15.118,
+      "success": true
+    },
+    {
+      "engine": "PostgreSQL16",
+      "label": "final choice/contention, succession, magic, equipment, bounded monitor and headquarters",
+      "cases": 55,
+      "skipped": 0,
+      "seconds": 5.774,
+      "success": true
+    },
+    {
+      "engine": "SQLite",
+      "label": "organic fresh joined melee/archer/early mage",
+      "cases": 1,
+      "seconds": 32.918,
+      "success": true
+    },
+    {
+      "engine": "SQLite",
+      "label": "three normally recruited bots finish campaigns, choose faction and continue; decision replay",
+      "cases": 1,
+      "seconds": 83.56,
+      "success": true
+    }
+  ],
+  "quick": {
+    "schema": 2,
+    "suite": "quick",
+    "success": true,
+    "elapsed_seconds": 21.27,
+    "isolated_database": true,
+    "world_clock": "Europe/Warsaw; rzeczywisty dzień słoneczny Warszawy",
+    "test_labels": [
+      "characters.test_faction_choice",
+      "characters.test_faction_succession",
+      "characters.test_rank_paths",
+      "characters.test_new_progression",
+      "characters.test_release_abuse",
+      "characters.test_playability_audit",
+      "characters.test_release_suites"
+    ],
+    "recorded_scenarios": 0,
+    "scenarios": [],
+    "time_models": {},
+    "limits": [
+      "Automatyczne przejścia łączą formularze i zwykłe serwisy; osobny test Chromium sprawdza GUI.",
+      "Tempo kampanii jest modelem strategii wojownika, nie pomiarem czasu człowieka ani całego G2 NK.",
+      "Raport nie zastępuje testów współbieżności PostgreSQL ani publicznego hostingu."
+    ]
+  },
+  "scenarios": [
+    {
+      "scenario": "trzy-buildy-z-finansowaniem",
+      "strategy": "zlecenia na rudę przy brakach",
+      "seed": 71,
+      "ticks": 162,
+      "simulated_hours": 40.25,
+      "minutes_per_tick": 15,
+      "characters": [
+        {
+          "build": "warrior",
+          "level": 6,
+          "xp": 10519,
+          "ore": 117,
+          "strength": 45,
+          "dexterity": 10,
+          "mana": 10,
+          "mastery": 15,
+          "actions": {
+            "story_accept": 9,
+            "story_start": 9,
+            "story_talk": 3,
+            "story_claim": 9,
+            "story_mine": 3,
+            "mine_claim": 3,
+            "story_travel": 2,
+            "buy_weapon": 5,
+            "equip": 5,
+            "melee_hunt": 22,
+            "join_camp": 1,
+            "story_delivery_buy": 1,
+            "train_onehand_skill": 15,
+            "train_strength": 35,
+            "sell_loot": 6,
+            "adventure_start": 14,
+            "adventure_claim": 14
+          },
+          "defeats": 0
+        },
+        {
+          "build": "archer",
+          "level": 6,
+          "xp": 10689,
+          "ore": 90,
+          "strength": 10,
+          "dexterity": 45,
+          "mana": 10,
+          "mastery": 15,
+          "actions": {
+            "story_accept": 9,
+            "story_start": 9,
+            "story_talk": 3,
+            "story_claim": 9,
+            "story_mine": 3,
+            "mine_claim": 3,
+            "story_travel": 3,
+            "buy_weapon": 4,
+            "equip": 4,
+            "buy_ammo_pack": 3,
+            "ranged_hunt": 22,
+            "join_camp": 1,
+            "story_delivery_buy": 1,
+            "train_bow_skill": 15,
+            "train_dexterity": 35,
+            "adventure_start": 14,
+            "adventure_claim": 14,
+            "sell_loot": 4
+          },
+          "defeats": 0
+        },
+        {
+          "build": "mage",
+          "level": 6,
+          "xp": 10631,
+          "ore": 321,
+          "strength": 15,
+          "dexterity": 10,
+          "mana": 50,
+          "mastery": 1,
+          "actions": {
+            "story_accept": 9,
+            "story_start": 9,
+            "story_talk": 3,
+            "story_claim": 9,
+            "story_mine": 3,
+            "mine_claim": 4,
+            "story_travel": 2,
+            "buy_weapon": 1,
+            "equip": 1,
+            "melee_hunt": 8,
+            "join_camp": 1,
+            "story_delivery_buy": 1,
+            "rank_accept": 2,
+            "rank_mine": 1,
+            "rank_promote": 2,
+            "train_mana": 40,
+            "sell_loot": 2,
+            "rank_attribute_train": 5,
+            "adventure_start": 17,
+            "adventure_claim": 17,
+            "learn_circle": 1,
+            "buy_rune": 1,
+            "prepare_rune": 1,
+            "magic_hunt": 23
+          },
+          "defeats": 0
+        }
+      ],
+      "bot_actions": {
+        "stock": 27,
+        "mine": 22,
+        "equip": 21,
+        "claim": 22,
+        "list": 20,
+        "story_accept": 44,
+        "story_start": 44,
+        "story_talk": 14,
+        "story_claim": 44,
+        "market_cancel": 14,
+        "market_sell": 12,
+        "finance": 6,
+        "ammo": 6,
+        "story_travel": 13,
+        "hunt": 22,
+        "camp": 3,
+        "accept": 6,
+        "promote": 3,
+        "challenge_accept": 9,
+        "train": 90,
+        "market_buy": 2,
+        "sell": 14,
+        "challenge_claim": 6,
+        "craft_learn": 1,
+        "market_reprice": 9,
+        "improve": 3,
+        "camp_donate": 5,
+        "craft_material": 1,
+        "boss": 2,
+        "salvage": 1
+      },
+      "bots": 3,
+      "admin_grants": false,
+      "limits": "Formularze treningu, zakupów, polowań, wypraw i awansu; serwisy regeneracji, wyposażenia i sprzedaży. Zegar przyspieszony, bez nadawania zasobów. To nie jest pomiar czasu aktywnego klikania ani retencji."
+    },
+    {
+      "scenario": "trzy-obozy-botow",
+      "ticks": 455,
+      "simulated_hours": 227.0,
+      "actions": {
+        "stock": 36,
+        "mine": 24,
+        "equip": 42,
+        "claim": 24,
+        "sell": 38,
+        "story_accept": 87,
+        "story_start": 87,
+        "story_talk": 30,
+        "story_claim": 87,
+        "finance": 4,
+        "ammo": 2,
+        "challenge_accept": 33,
+        "story_travel": 49,
+        "hunt": 61,
+        "camp": 3,
+        "accept": 6,
+        "promote": 3,
+        "train": 527,
+        "challenge_claim": 9,
+        "list": 4,
+        "market_cancel": 1,
+        "market_sell": 1,
+        "craft_learn": 3,
+        "adventure": 5,
+        "adventure_claim": 5,
+        "choose_faction": 1,
+        "craft_material": 3,
+        "craft": 2,
+        "improve": 31,
+        "camp_donate": 30,
+        "boss": 6,
+        "salvage": 16,
+        "achievement_claim": 3,
+        "market_buy": 3,
+        "patrol": 13,
+        "wait": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "level": 31,
+          "experience": 252040,
+          "ore_balance": 6061,
+          "premium_balance": 22
+        },
+        {
+          "camp": "OLD_CAMP",
+          "level": 31,
+          "experience": 249426,
+          "ore_balance": 3752,
+          "premium_balance": 6
+        },
+        {
+          "camp": "NEW_CAMP",
+          "level": 30,
+          "experience": 246624,
+          "ore_balance": 5673,
+          "premium_balance": 6
+        }
+      ],
+      "finishers": 3
+    },
+    {
+      "scenario": "po-finale-dalsze-zycie",
+      "ticks_per_bot": 60,
+      "actions": {
+        "improve": 30,
+        "salvage": 32,
+        "train": 25,
+        "challenge_accept": 3,
+        "hunt": 10,
+        "patrol": 38,
+        "sell": 1,
+        "promote": 3,
+        "equip": 11,
+        "learn_circle": 2,
+        "list": 4,
+        "market_buy": 4,
+        "buy_magic": 1,
+        "prepare_magic": 2,
+        "accept": 3,
+        "craft_learn": 1,
+        "clear_magic": 1,
+        "challenge_claim": 1,
+        "raid_rally": 2,
+        "mine": 2,
+        "claim": 2,
+        "achievement_claim": 1,
+        "boss": 1
+      },
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "patrol_wins": 13,
+          "upgrades": 17
+        },
+        {
+          "camp": "OLD_CAMP",
+          "patrol_wins": 26,
+          "upgrades": 23
+        },
+        {
+          "camp": "NEW_CAMP",
+          "patrol_wins": 12,
+          "upgrades": 21
+        }
+      ]
+    },
+    {
+      "scenario": "boty-po-polaczeniu",
+      "global_join_fixture": true,
+      "join_after_ordinary_recruitment": true,
+      "faction_succession": true,
+      "admin_grants": false,
+      "characters": [
+        {
+          "camp": "SWAMP_CAMP",
+          "guild": "NOVICE",
+          "faction_membership__faction": "FIRE_ORDER",
+          "level": 31,
+          "strength": 156,
+          "dexterity": 10,
+          "mana": 25
+        },
+        {
+          "camp": "OLD_CAMP",
+          "guild": "SHADOW",
+          "faction_membership__faction": "BANDITS",
+          "level": 32,
+          "strength": 214,
+          "dexterity": 10,
+          "mana": 10
+        },
+        {
+          "camp": "NEW_CAMP",
+          "guild": "ROGUE",
+          "faction_membership__faction": "MERCENARIES",
+          "level": 31,
+          "strength": 185,
+          "dexterity": 12,
+          "mana": 19
+        }
+      ],
+      "limits": [
+        "Krok testowy 30 minut nie jest pomiarem czasu człowieka.",
+        "Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu."
+      ]
+    }
+  ],
+  "gui": {
+    "isolated_database": true,
+    "synthetic_membership_fixture": true,
+    "errors": [],
+    "pages": [
+      {
+        "route": "/oboz/",
+        "viewport": 320,
+        "state": "pending-guru",
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "route": "/oboz/",
+        "viewport": 390,
+        "state": "pending-guru",
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "route": "/oboz/",
+        "viewport": 1440,
+        "state": "pending-guru",
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "route": "/wspolnota/",
+        "viewport": 320,
+        "state": "water-guru",
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "route": "/magia/",
+        "viewport": 320,
+        "state": "water-guru",
+        "status": 200,
+        "width": 320,
+        "scroll": 320
+      },
+      {
+        "route": "/wspolnota/",
+        "viewport": 390,
+        "state": "water-guru",
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "route": "/magia/",
+        "viewport": 390,
+        "state": "water-guru",
+        "status": 200,
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "route": "/wspolnota/",
+        "viewport": 1440,
+        "state": "water-guru",
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "route": "/magia/",
+        "viewport": 1440,
+        "state": "water-guru",
+        "status": 200,
+        "width": 1440,
+        "scroll": 1440
+      }
+    ],
+    "choices": [
+      {
+        "destination": "WATER_CIRCLE",
+        "ore": 50,
+        "original_rank": "GURU"
+      },
+      {
+        "destination": "CITY_WATCH",
+        "ore": 50,
+        "original_rank": "SWAMP_GUARD"
+      }
+    ]
+  },
+  "findings_fixed": [
+    "Do not automatically switch Brotherhood bot training to mana after faction choice; this stalled progress before a story boss. Keep original attribute strategy and required promotion training.",
+    "Fresh joined mage follows Digger/Shadow rather than closed Brotherhood recruitment, earns the mandatory mining shift and15 strength through normal forms, then buys the first fire rune.",
+    "Use wrapping radio labels so full faction/rank names are visible on mobile."
+  ],
+  "limits": [
+    "Groups overlap; do not sum as unique tests.",
+    "Global join is an external environment fixture, not a simulated community victory.",
+    "Fresh three-build scenario reaches level6, not a complete mage or archer campaign.",
+    "Synthetic GUI characters prove forms/layout, not organic campaign progress.",
+    "Treasury distribution uses the actual remaining Brotherhood escrow at each choice; no private payout.",
+    "Advanced ranks5–8, public Jarkendar and complete G2 NK remain127/33/32.",
+    "No production migration/deployment. Handoff intentionally unchanged.",
+    "No claim of measured human satisfaction or retention; automated playability evidence only."
+  ],
+  "prerequisite_130": {
+    "merge": "4394f352c32868f1d63df17cb3003c4c53de3e4f",
+    "head": "e48ebdff3340beba0d4030d32dd6cdab85e1d824",
+    "ci_run": 43253539590,
+    "conclusion": "success",
+    "fix": "constant world-report query count; no increased query budget"
+  }
+}
