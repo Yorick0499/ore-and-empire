@@ -2,6 +2,10 @@
 
 Stan: 13 XI 2026, po #141. Wszystkie próby wykonujemy na odizolowanych bazach, bez danych prywatnego świata. [Raport bieżącego wydania](reports/grywalnosc-wydania-2026-11-13.json), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [pełna droga](COMPLETE_JOURNEY.md).
 
+## Doprecyzowanie maga Wody — #150
+
+Nowa próba Nowego Obozu zabrania zakupu zwojów i przechodzi od zera do NK, rangi8 i pierwszych wart, kupując runy wszystkich sześciu kręgów oraz runę NK. Poprzednie wyniki dopuszczały zwoje, więc nie potwierdzały samowystarczalności szkolnej magii. [Nowy raport](reports/mag-wody-runy-2026-11-13.json), [balans i ograniczenia próby](MAGIC.md).
+
 ## Co sprawdzono w bieżącej wersji
 
 | Próba | Zakres | Wynik |

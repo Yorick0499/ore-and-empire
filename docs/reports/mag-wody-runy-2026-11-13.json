@@ -1,0 +1,813 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "issue": 150,
+  "base_revision": "81fa5ce4093269402f2091b51a2748513a4a9aff",
+  "balance": "water-runes-v1",
+  "migration": "0054 (no new migration)",
+  "diagnosis": [
+    "Water had combat runes only on circles1/3/5; circle4 promotion fights can resist the old40 damage down to1.",
+    "Previous build strategy allowed buying unrestricted scrolls; it did not prove a comfortable rune-only build."
+  ],
+  "runes": [
+    {
+      "circle": 1,
+      "name": "Sopel lodu",
+      "damage": 30,
+      "mana": 4,
+      "mitigation_percent": 25
+    },
+    {
+      "circle": 2,
+      "name": "Lodowa lanca",
+      "damage": 55,
+      "mana": 6,
+      "mitigation_percent": 25
+    },
+    {
+      "circle": 3,
+      "name": "Bryła lodu",
+      "damage": 85,
+      "mana": 8,
+      "mitigation_percent": 40
+    },
+    {
+      "circle": 4,
+      "name": "Piorun kulisty",
+      "damage": 125,
+      "mana": 10,
+      "mitigation_percent": 30
+    },
+    {
+      "circle": 5,
+      "name": "Lodowa fala",
+      "damage": 175,
+      "mana": 13,
+      "mitigation_percent": 50
+    },
+    {
+      "circle": 6,
+      "name": "Grom",
+      "damage": 220,
+      "mana": 16,
+      "mitigation_percent": 35
+    }
+  ],
+  "preservation": [
+    "Old owned runes retain item IDs and gain runtime balance.",
+    "New training runes added idempotently by existing equipment seeder at launcher startup; no profile grants or migrations.",
+    "Operator-edited prices and inventory are preserved.",
+    "Legacy water scroll damage stays20/40/75; fire/brotherhood damage unchanged.",
+    "NPC/account names, world progress, bot cadence and recovery rates unchanged."
+  ],
+  "source_sha256": {
+    "characters/magic.py": "a99e0fe201d10c5355b32f1962fa3c3db9fe65a257e79005cd3262245e538725",
+    "characters/test_water_runes.py": "9b091fddccf6041cc07c35a608ea55f8f9c342e5dbdedf95aa5ba4975308f131",
+    "characters/playtest_build_journeys.py": "2237221488ea48b3a5c3fb2a505a49ae26fcc8611cf97b3bead07d815878efc7"
+  },
+  "tests": {
+    "modules": {
+      "run": 31,
+      "skipped_postgresql": 1,
+      "success": true
+    },
+    "regression": {
+      "run": 65,
+      "skipped_postgresql": 3,
+      "success": true
+    },
+    "prepared_nk_bots": {
+      "run": 1,
+      "factions_completed": 5,
+      "success": true,
+      "fixture": "Prepared veterans45, ordinary paid equipment/lessons, no grants during play."
+    },
+    "native_bots": {
+      "run": 1,
+      "camps_completed": 3,
+      "success": true,
+      "fixture": "Fresh ordinary bot accounts and normal growth, then60 continuation turns each."
+    }
+  },
+  "ice_golem_comparison": [
+    {
+      "scenario": "water-promotion-ice-golem",
+      "fixture": "Prepared mage, 100 mana, 500 HP; same target and attributes.",
+      "old_third_circle_won": false,
+      "new_fourth_circle_won": true,
+      "damage_after_resistance": 75,
+      "casts": 6,
+      "mana_used": 60,
+      "health_used": 175,
+      "scrolls": 0,
+      "fist_fallback": false
+    }
+  ],
+  "old_strategy_baseline": {
+    "schema": 1,
+    "success": true,
+    "seconds": 71.68,
+    "isolated_database": true,
+    "cases": [
+      "new-water"
+    ],
+    "completed": [
+      "new-water"
+    ],
+    "scenarios": [
+      {
+        "scenario": "earned-nk-resident-campaign",
+        "build": "water",
+        "admin_grants": false,
+        "global_join_fixture": true,
+        "new_contracts": 23,
+        "checkpoints": [
+          {
+            "quest": "jark-portal",
+            "level": 40,
+            "world_hours": 3.6,
+            "ore": 171
+          },
+          {
+            "quest": "jark-supplies",
+            "level": 41,
+            "world_hours": 3.75,
+            "ore": 340
+          },
+          {
+            "quest": "jark-pirates",
+            "level": 41,
+            "world_hours": 4.42,
+            "ore": 460
+          },
+          {
+            "quest": "jark-canyon",
+            "level": 41,
+            "world_hours": 5.8,
+            "ore": 785
+          },
+          {
+            "quest": "jark-workers",
+            "level": 42,
+            "world_hours": 6.44,
+            "ore": 1185
+          },
+          {
+            "quest": "jark-swamp-watch",
+            "level": 42,
+            "world_hours": 7.29,
+            "ore": 1605
+          },
+          {
+            "quest": "jark-stones",
+            "level": 43,
+            "world_hours": 8.51,
+            "ore": 2205
+          },
+          {
+            "quest": "jark-crypt-watch",
+            "level": 44,
+            "world_hours": 9.06,
+            "ore": 3295
+          },
+          {
+            "quest": "nk-scouts",
+            "level": 44,
+            "world_hours": 10.82,
+            "ore": 3465
+          },
+          {
+            "quest": "nk-supplies",
+            "level": 45,
+            "world_hours": 11.32,
+            "ore": 3791
+          },
+          {
+            "quest": "nk-seekers",
+            "level": 46,
+            "world_hours": 12.46,
+            "ore": 4061
+          },
+          {
+            "quest": "nk-tablets",
+            "level": 46,
+            "world_hours": 13.92,
+            "ore": 4331
+          },
+          {
+            "quest": "nk-raven",
+            "level": 48,
+            "world_hours": 14.38,
+            "ore": 5441
+          },
+          {
+            "quest": "nk-eye",
+            "level": 48,
+            "world_hours": 15.78,
+            "ore": 5731
+          },
+          {
+            "quest": "nk-swamp-dragon",
+            "level": 49,
+            "world_hours": 17.25,
+            "ore": 6910
+          },
+          {
+            "quest": "nk-stone-dragon",
+            "level": 51,
+            "world_hours": 17.26,
+            "ore": 8330
+          },
+          {
+            "quest": "nk-fire-dragon",
+            "level": 52,
+            "world_hours": 18.96,
+            "ore": 9745
+          },
+          {
+            "quest": "nk-ice-dragon",
+            "level": 54,
+            "world_hours": 20.56,
+            "ore": 11420
+          },
+          {
+            "quest": "nk-ship",
+            "level": 55,
+            "world_hours": 23.03,
+            "ore": 12056
+          },
+          {
+            "quest": "nk-sailing",
+            "level": 56,
+            "world_hours": 23.25,
+            "ore": 12476
+          },
+          {
+            "quest": "nk-island-dragon",
+            "level": 58,
+            "world_hours": 23.48,
+            "ore": 14291
+          },
+          {
+            "quest": "nk-archol",
+            "level": 59,
+            "world_hours": 25.46,
+            "ore": 16178
+          },
+          {
+            "quest": "nk-undead",
+            "level": 62,
+            "world_hours": 27.51,
+            "ore": 18608
+          }
+        ],
+        "level": 62,
+        "expedition_world_hours": 27.51,
+        "total_world_hours": 110.26,
+        "limits": [
+          "Known-goal build strategy, no PvP/player-market competition.",
+          "Global community victory is an external event fixture.",
+          "Does not mean all original hero quests, every item effect or guild rank8 completed.",
+          "Virtual timers use seconds; active operations are modelled, not human playtime."
+        ]
+      },
+      {
+        "scenario": "earned-build-faction-journey",
+        "case": "new-water",
+        "build": "water",
+        "start_universe": "GOTHIC_I",
+        "native_camp": "NEW_CAMP",
+        "faction": "WATER_CIRCLE",
+        "rank_ordinal": 8,
+        "level": 63,
+        "strength": 26,
+        "dexterity": 12,
+        "mana": 507,
+        "magic_circle": 6,
+        "magical_battles": 90,
+        "ore": 16667,
+        "world_days": 5.43,
+        "checkpoints": [
+          {
+            "rank": "Kret",
+            "ordinal": 1,
+            "level": 1,
+            "world_hours": 0.28,
+            "ore": 46
+          },
+          {
+            "rank": "Szkodnik",
+            "ordinal": 2,
+            "level": 6,
+            "world_hours": 6.27,
+            "ore": 43
+          },
+          {
+            "rank": "Mag Wody",
+            "ordinal": 3,
+            "level": 18,
+            "world_hours": 41.07,
+            "ore": 112
+          },
+          {
+            "rank": "Arcymag Wody",
+            "ordinal": 4,
+            "level": 28,
+            "world_hours": 63.23,
+            "ore": 72
+          },
+          {
+            "rank": "Mistrz Wody",
+            "ordinal": 5,
+            "level": 62,
+            "world_hours": 113.36,
+            "ore": 17926
+          },
+          {
+            "rank": "Strażnik Równowagi",
+            "ordinal": 6,
+            "level": 62,
+            "world_hours": 115.06,
+            "ore": 17713
+          },
+          {
+            "rank": "Mistrz Kręgu Wody",
+            "ordinal": 7,
+            "level": 62,
+            "world_hours": 119.3,
+            "ore": 17038
+          },
+          {
+            "rank": "Awatar Adanosa",
+            "ordinal": 8,
+            "level": 63,
+            "world_hours": 126.15,
+            "ore": 16359
+          }
+        ],
+        "earned_personal_progression": true,
+        "external_global_barrier_event": true,
+        "limits": [
+          "Ordinary earned character; global community victory is an external fixture.",
+          "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+          "First regional depths, not all400 or a long-lived economy."
+        ]
+      },
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "build": "water",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 130.43,
+        "active_minutes": 653.7,
+        "recovery_minutes": 5267.0,
+        "timers_minutes": 1905.3,
+        "offline_hours": 0.0,
+        "calendar_days": 6,
+        "level": 63,
+        "strength": 26,
+        "quests": 50,
+        "ore": 16667,
+        "shards": 489,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 20,
+          "mine_claim": 5,
+          "build_buy_weapon": 8,
+          "build_equip_weapon": 8,
+          "income_adventure": 2205,
+          "income_claim": 222,
+          "build_buy_protection": 10,
+          "build_equip_protection": 10,
+          "buy_armor": 14,
+          "equip_armor": 14,
+          "hunt": 126,
+          "travel_energy": 25,
+          "story_travel": 17,
+          "join_camp": 1,
+          "matrix_rank_accept": 8,
+          "matrix_mine": 14,
+          "matrix_mine_claim": 14,
+          "matrix_rank_promote": 8,
+          "buy_delivery": 2,
+          "earned_shop_health": 62,
+          "build_train_strength": 2,
+          "build_train_mana": 53,
+          "matrix_hunt": 109,
+          "earned_shop_energy": 28,
+          "matrix_rank_attribute": 2,
+          "build_circle": 6,
+          "build_buy_magic": 42,
+          "build_prepare_magic": 122,
+          "train_goal": 1,
+          "boss": 18,
+          "matrix_train_goal": 3,
+          "adventure_start": 425,
+          "adventure_claim": 31,
+          "personal_finale": 2,
+          "nk_accept": 23,
+          "nk_start": 23,
+          "nk_region": 5,
+          "nk_visit": 14,
+          "nk_talk": 3,
+          "nk_claim": 23,
+          "nk_mine": 16,
+          "nk_mine_claim": 10,
+          "nk_hunt": 33,
+          "nk_boss": 9,
+          "nk_material_buy": 2,
+          "matrix_boss": 4,
+          "matrix_regional": 4
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      }
+    ],
+    "limits": [
+      "Earned character progression; external global community victory, separately verified by simulate_journey.",
+      "Virtual timers, knowledgeable strategy, no competing player market/PvP or long economy."
+    ]
+  },
+  "new_rune_only_journey": {
+    "schema": 1,
+    "success": true,
+    "seconds": 61.36,
+    "isolated_database": true,
+    "cases": [
+      "new-water"
+    ],
+    "completed": [
+      "new-water"
+    ],
+    "scenarios": [
+      {
+        "scenario": "earned-nk-resident-campaign",
+        "build": "water",
+        "admin_grants": false,
+        "global_join_fixture": true,
+        "new_contracts": 23,
+        "checkpoints": [
+          {
+            "quest": "jark-portal",
+            "level": 38,
+            "world_hours": 6.65,
+            "ore": 211
+          },
+          {
+            "quest": "jark-supplies",
+            "level": 38,
+            "world_hours": 6.86,
+            "ore": 222
+          },
+          {
+            "quest": "jark-pirates",
+            "level": 38,
+            "world_hours": 7.37,
+            "ore": 422
+          },
+          {
+            "quest": "jark-canyon",
+            "level": 38,
+            "world_hours": 8.83,
+            "ore": 747
+          },
+          {
+            "quest": "jark-workers",
+            "level": 39,
+            "world_hours": 9.55,
+            "ore": 1067
+          },
+          {
+            "quest": "jark-swamp-watch",
+            "level": 40,
+            "world_hours": 10.33,
+            "ore": 1567
+          },
+          {
+            "quest": "jark-stones",
+            "level": 40,
+            "world_hours": 11.64,
+            "ore": 2087
+          },
+          {
+            "quest": "jark-crypt-watch",
+            "level": 41,
+            "world_hours": 12.11,
+            "ore": 3277
+          },
+          {
+            "quest": "nk-scouts",
+            "level": 42,
+            "world_hours": 13.87,
+            "ore": 3447
+          },
+          {
+            "quest": "nk-supplies",
+            "level": 42,
+            "world_hours": 14.45,
+            "ore": 3693
+          },
+          {
+            "quest": "nk-seekers",
+            "level": 43,
+            "world_hours": 15.47,
+            "ore": 3963
+          },
+          {
+            "quest": "nk-tablets",
+            "level": 44,
+            "world_hours": 16.84,
+            "ore": 4313
+          },
+          {
+            "quest": "nk-raven",
+            "level": 45,
+            "world_hours": 17.39,
+            "ore": 5313
+          },
+          {
+            "quest": "nk-eye",
+            "level": 46,
+            "world_hours": 18.71,
+            "ore": 5683
+          },
+          {
+            "quest": "nk-swamp-dragon",
+            "level": 47,
+            "world_hours": 20.29,
+            "ore": 6861
+          },
+          {
+            "quest": "nk-stone-dragon",
+            "level": 49,
+            "world_hours": 20.51,
+            "ore": 8166
+          },
+          {
+            "quest": "nk-fire-dragon",
+            "level": 50,
+            "world_hours": 22.21,
+            "ore": 9543
+          },
+          {
+            "quest": "nk-ice-dragon",
+            "level": 52,
+            "world_hours": 23.81,
+            "ore": 11178
+          },
+          {
+            "quest": "nk-ship",
+            "level": 53,
+            "world_hours": 26.28,
+            "ore": 11814
+          },
+          {
+            "quest": "nk-sailing",
+            "level": 54,
+            "world_hours": 26.5,
+            "ore": 12234
+          },
+          {
+            "quest": "nk-island-dragon",
+            "level": 56,
+            "world_hours": 26.73,
+            "ore": 14049
+          },
+          {
+            "quest": "nk-archol",
+            "level": 58,
+            "world_hours": 28.71,
+            "ore": 15936
+          },
+          {
+            "quest": "nk-undead",
+            "level": 60,
+            "world_hours": 30.85,
+            "ore": 18346
+          }
+        ],
+        "level": 60,
+        "expedition_world_hours": 30.85,
+        "total_world_hours": 95.69,
+        "limits": [
+          "Known-goal build strategy, no PvP/player-market competition.",
+          "Global community victory is an external event fixture.",
+          "Does not mean all original hero quests, every item effect or guild rank8 completed.",
+          "Virtual timers use seconds; active operations are modelled, not human playtime."
+        ]
+      },
+      {
+        "scenario": "earned-build-faction-journey",
+        "case": "new-water",
+        "build": "water",
+        "start_universe": "GOTHIC_I",
+        "native_camp": "NEW_CAMP",
+        "faction": "WATER_CIRCLE",
+        "rank_ordinal": 8,
+        "level": 61,
+        "strength": 26,
+        "dexterity": 12,
+        "mana": 487,
+        "magic_circle": 6,
+        "magical_battles": 90,
+        "spell_usage": {
+          "nk_thunderstorm": 63,
+          "chainlightning": 1,
+          "icewave": 1,
+          "thunderball": 11,
+          "icecube": 1,
+          "waterlance": 10,
+          "thunderbolt": 3
+        },
+        "water_runes_only": true,
+        "magic_purchases": [
+          "g1-itarrunethunderbolt",
+          "oe-water-g1-waterlance-rune",
+          "g1-itarruneicecube",
+          "oe-water-g1-thunderball-rune",
+          "g1-itarruneicewave",
+          "oe-water-g1-chainlightning-rune",
+          "oe-nk-nk_thunderstorm-rune"
+        ],
+        "ore": 16402,
+        "world_days": 4.82,
+        "checkpoints": [
+          {
+            "rank": "Kret",
+            "ordinal": 1,
+            "level": 1,
+            "world_hours": 0.28,
+            "ore": 46
+          },
+          {
+            "rank": "Szkodnik",
+            "ordinal": 2,
+            "level": 6,
+            "world_hours": 6.27,
+            "ore": 43
+          },
+          {
+            "rank": "Mag Wody",
+            "ordinal": 3,
+            "level": 17,
+            "world_hours": 41.44,
+            "ore": 43
+          },
+          {
+            "rank": "Arcymag Wody",
+            "ordinal": 4,
+            "level": 26,
+            "world_hours": 55.1,
+            "ore": 26
+          },
+          {
+            "rank": "Mistrz Wody",
+            "ordinal": 5,
+            "level": 60,
+            "world_hours": 98.72,
+            "ore": 17747
+          },
+          {
+            "rank": "Strażnik Równowagi",
+            "ordinal": 6,
+            "level": 60,
+            "world_hours": 100.41,
+            "ore": 17572
+          },
+          {
+            "rank": "Mistrz Kręgu Wody",
+            "ordinal": 7,
+            "level": 61,
+            "world_hours": 104.65,
+            "ore": 16859
+          },
+          {
+            "rank": "Awatar Adanosa",
+            "ordinal": 8,
+            "level": 61,
+            "world_hours": 111.5,
+            "ore": 16094
+          }
+        ],
+        "earned_personal_progression": true,
+        "external_global_barrier_event": true,
+        "limits": [
+          "Ordinary earned character; global community victory is an external fixture.",
+          "Knowledgeable strategy and virtual recovery, no competing player market or PvP.",
+          "First regional depths, not all400 or a long-lived economy."
+        ]
+      },
+      {
+        "scenario": "tempo-kampanii-i-kontynuacji",
+        "build": "water",
+        "universe": "GOTHIC_I",
+        "session_minutes": null,
+        "armor_and_earned_shop": true,
+        "income_first": true,
+        "action_seconds": 10,
+        "seed": 111126,
+        "elapsed_hours": 115.78,
+        "active_minutes": 531.7,
+        "recovery_minutes": 4755.5,
+        "timers_minutes": 1659.9,
+        "offline_hours": 0.0,
+        "calendar_days": 6,
+        "level": 61,
+        "strength": 26,
+        "quests": 50,
+        "ore": 16402,
+        "shards": 357,
+        "actions": {
+          "story_accept": 27,
+          "story_energy": 27,
+          "story_start": 27,
+          "story_talk": 8,
+          "story_claim": 27,
+          "mine": 20,
+          "mine_claim": 5,
+          "build_buy_weapon": 8,
+          "build_equip_weapon": 8,
+          "income_adventure": 1991,
+          "income_claim": 223,
+          "build_buy_protection": 10,
+          "build_equip_protection": 10,
+          "buy_armor": 13,
+          "equip_armor": 13,
+          "hunt": 135,
+          "travel_energy": 24,
+          "story_travel": 17,
+          "join_camp": 1,
+          "matrix_rank_accept": 8,
+          "matrix_mine": 14,
+          "matrix_mine_claim": 14,
+          "matrix_rank_promote": 8,
+          "buy_delivery": 2,
+          "earned_shop_health": 58,
+          "build_train_strength": 2,
+          "build_train_mana": 50,
+          "matrix_hunt": 81,
+          "earned_shop_energy": 25,
+          "matrix_rank_attribute": 2,
+          "build_circle": 6,
+          "build_buy_magic": 7,
+          "build_prepare_magic": 122,
+          "train_goal": 1,
+          "boss": 17,
+          "matrix_train_goal": 3,
+          "personal_finale": 7,
+          "nk_accept": 23,
+          "nk_start": 23,
+          "nk_region": 5,
+          "nk_visit": 14,
+          "nk_talk": 3,
+          "nk_claim": 23,
+          "nk_mine": 10,
+          "nk_mine_claim": 10,
+          "nk_hunt": 39,
+          "nk_boss": 9,
+          "nk_material_buy": 2,
+          "matrix_boss": 4,
+          "matrix_regional": 4
+        },
+        "defeats": 0,
+        "admin_grants": false,
+        "limits": [
+          "Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.",
+          "Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.",
+          "Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.",
+          "Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.",
+          "Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty."
+        ]
+      }
+    ],
+    "limits": [
+      "Earned character progression; external global community victory, separately verified by simulate_journey.",
+      "Virtual timers, knowledgeable strategy, no competing player market/PvP or long economy."
+    ]
+  },
+  "limits": [
+    "Knowledgeable strategy, virtual timers; not observed human playtime or subjective satisfaction.",
+    "Global Barrier victory is an external fixture in this matrix; not timed population-wide progress.",
+    "Early play before school unlock includes basic weapons. Once unlocked, no scroll purchases; seven paid runes total.",
+    "Earned health/energy itemshop is enabled; no free resources or mana refills.",
+    "First four regional endgame depths only, not all400.",
+    "Before/after strategies differ in scroll restrictions; virtual days are not a controlled performance benchmark.",
+    "Local SQLite tests; PostgreSQL regression included in CI separately.",
+    "No new visual browser session; template rendering covered by Django tests."
+  ]
+}

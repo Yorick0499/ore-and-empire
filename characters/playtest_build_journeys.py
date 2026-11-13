@@ -33,7 +33,7 @@ CASES={
 }
 
 class EarnedBuild:
-    def __init__(self,kind):self.kind=kind
+    def __init__(self,kind,*,runes_only=False):self.kind=kind;self.runes_only=runes_only
     def train(self,test,p,steps,attribute,amount):
         while amount>0:
             n=min(10,amount,p.skill_points)
@@ -90,6 +90,7 @@ class EarnedBuild:
             candidates=[]
             for b in ItemBluePrint.objects.filter(source_game__in=source_games(p),catalog_key__in=BY_CODE):
                 spell,scroll=BY_CODE[b.catalog_key]
+                if self.runes_only and scroll:continue
                 if allowed(p,b) and (scroll or rune_allowed(p,spell)):
                     damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
                     # Prefer sustainable runes; a bought opposite-element scroll
@@ -127,7 +128,16 @@ class EarnedBuildJourneys(TestCase):
     expedition=EarnedNkCampaign.expedition
     def run_case(self,key):
         self.case=key;self.universe,self.camp,self.build,self.path,self.destination=CASES[key];self.checkpoints=[]
-        self.play(self.universe,None,support=True,income_first=True,camp=self.camp,build_strategy=EarnedBuild(self.build),on_checkpoint=self.native_ranks,after_campaign=self.finish,actor_name='b-'+key)
+        from unittest.mock import patch
+        from .magic import purchase_magic
+        self.magic_purchases=[]
+        def checked_purchase(profile,blueprint_id):
+            bp=ItemBluePrint.objects.get(pk=blueprint_id)
+            if key=='new-water':self.assertEqual(bp.kind,'rune',bp.catalog_key)
+            self.magic_purchases.append(bp.catalog_key)
+            return purchase_magic(profile,blueprint_id)
+        with patch('characters.magic.purchase_magic',side_effect=checked_purchase):
+            self.play(self.universe,None,support=True,income_first=True,camp=self.camp,build_strategy=EarnedBuild(self.build,runes_only=key=='new-water'),on_checkpoint=self.native_ranks,after_campaign=self.finish,actor_name='b-'+key)
     def native_ranks(self,p,steps):
         for key in self.path:
             rank=BY_RANK[key]
@@ -199,9 +209,16 @@ class EarnedBuildJourneys(TestCase):
             steps['prepare']();steps['advance'](301,'timer');row=steps['do']('matrix_regional',lambda:patrol(p,1,uuid4(),track));self.assertTrue(row.won,(self.case,track,row.snapshot))
         self.assertEqual(p.battles.filter(won=False).count(),0)
         casts=p.battles.filter(combat_details__casts__gt=0).count()
+        from .magic import BY_KEY
+        from collections import Counter
+        spell_usage=dict(Counter(p.battles.filter(combat_details__casts__gt=0).values_list('combat_details__magic',flat=True)))
+        if self.case=='new-water':
+            self.assertFalse(p.inventory.filter(blueprint__kind='scroll').exists())
+            self.assertTrue(all(BY_KEY[key].school=='water' for key in spell_usage),spell_usage)
+            self.assertTrue(self.magic_purchases)
         if self.build in {'fire','water'}:self.assertGreater(casts,20)
         if self.build=='archer':self.assertEqual(p.inventory.get(is_equipped=True,equipped_slot='weapon').blueprint.weapon_type,'bow')
-        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
+        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
 
 for _key in CASES:
     def _test(self,key=_key):self.run_case(key)
