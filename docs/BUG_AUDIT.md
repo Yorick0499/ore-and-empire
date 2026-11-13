@@ -2,6 +2,10 @@
 
 Stan bieżących testów: [audyt 13 XI](SOLO_PLAYTEST.md). Poniższe sekcje 6–9 XI są historią wykrytych błędów i nie opisują dzisiejszych limitów/wersji.
 
+## 14 XI — ręczne wyprawy i ekran wspólnoty (#152)
+
+Dodano dodatkowe cele dla ludzkiej najwyższej rangi Kolonii do poziomu10 wspólnoty, bez dziennego oczekiwania. Rozkaz nie jest wypłatą PD: wymaga prawdziwej walki i zasobów. UUID, jedna aktywna wyprawa, blokada wspólnoty, ponowne sprawdzenie fazy po oczekiwaniu na blokadę i atomowe zwycięstwo chronią przed duplikacją. Bot nie ogłasza rozkazu, ale może pomóc przez dotychczasowy serwis. Naprawiono też zduplikowane sekcje HTML umieszczone omyłkowo w tytule strony Wspólnoty. [Zasady](CAMP_RAIDS.md), [raport](reports/wyprawy-na-rozkaz-2026-11-14.json).
+
 ## 13 XI — runiczny mag Wody (#150)
 
 Trzy podstawowe runy na sześć kręgów pozostawiały lukę przed awansem: Bryła lodu 40 nie przebijała magicznej ochrony 50 lodowego golema. Starsza macierz dopuszczała zakup zwojów. Dodano runy II/IV/VI i mocniejsze wersje szkolne I/III/V; zwoje zachowują obrażenia. Przejście Nowego Obozu od zera przez NK/rangę8/warty ma teraz zakaz kupowania zwojów. Bot nie kupuje ponownie posiadanej wyższej runy, gdy do aktualnego celu wybiera bezpieczniejszy niższy krąg; rozpoznaje też lepszą runę NK tego samego VI kręgu. [Wyniki i ograniczenia](reports/mag-wody-runy-2026-11-13.json), [parametry](MAGIC.md).

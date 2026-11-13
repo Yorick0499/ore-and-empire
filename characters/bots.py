@@ -560,7 +560,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .camp_raids import raid_card
     raid_action="";raid_target=None
     if profile.camp!="NONE" and profile.level>=3:
-        raid_status=raid_card(profile)
+        raid_status=raid_card(profile,include_manual=True)
         pending=next(iter(raid_status['rewards']),None)
         if pending:raid_action='raid_claim';raid_target=pending.pk
         elif profile.bot_turn%(7 if profile.bot_personality=='social' else 13)==0:

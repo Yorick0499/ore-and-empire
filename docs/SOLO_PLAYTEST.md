@@ -2,6 +2,10 @@
 
 Stan: 13 XI 2026, po #141. Wszystkie próby wykonujemy na odizolowanych bazach, bez danych prywatnego świata. [Raport bieżącego wydania](reports/grywalnosc-wydania-2026-11-13.json), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [pełna droga](COMPLETE_JOURNEY.md).
 
+## 14 XI — przyspieszenie wspólnoty przez gracza (#152)
+
+[Raport wypraw na rozkaz](reports/wyprawy-na-rozkaz-2026-11-14.json): przygotowany Arcymag Wody35 sam zdobywa wspólnocie poziom10 przez 15 zwycięstw i 31 płatnych wypadów, z regeneracją zamiast odnowień/grantów. Około 8,86 wirtualnej godziny; nie jest to czas aktywnego klikania ani dojścia postaci od zera. Osobno testowano udział bota, zachowanie codziennych/tygodniowych celów, historię migracji 0054→0055 i prawdziwą kopię/odtworzenie. GUI w 320/390/1440 px oraz rzeczywiste formularze CSRF: ogłoszenie, walka, nagroda, ponowne ogłoszenie tego samego dnia.
+
 ## Doprecyzowanie maga Wody — #150
 
 Nowa próba Nowego Obozu zabrania zakupu zwojów i przechodzi od zera do NK, rangi8 i pierwszych wart, kupując runy wszystkich sześciu kręgów oraz runę NK. Poprzednie wyniki dopuszczały zwoje, więc nie potwierdzały samowystarczalności szkolnej magii. [Nowy raport](reports/mag-wody-runy-2026-11-13.json), [balans i ograniczenia próby](MAGIC.md).

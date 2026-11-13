@@ -1,6 +1,6 @@
 # Dokumentacja — indeks
 
-**Stan: 13 listopada 2026, po PR #141, migracja `0054_world_updates_events`.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
+**Stan: 14 listopada 2026, wyprawy na rozkaz #152, migracja `0055_manual_camp_raids_world_updates_events`.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
 
 ## Gra od początku do dalszych wart
 

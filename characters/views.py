@@ -854,7 +854,7 @@ def magic_view(request):
 @login_required
 def camp_guild_view(request):
     from .camp_guilds import guild_cards,donate_to_camp,upgrade_camp
-    from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid,raid_card
+    from .camp_raids import rally_camp_raid,strike_camp_raid,claim_camp_raid,raid_card,rally_manual_raid,can_rally_manual,manual_region
     profile=request.user.playerprofile
     refresh_player(profile)
     if request.method=='POST':
@@ -871,17 +871,22 @@ def camp_guild_view(request):
             from .sleeper import rally,strike,claim_reward
             result=rally(profile) if action=='sleeper_rally' else strike(profile,positive_id(request.POST.get('siege')),request.POST.get('request_key')) if action=='sleeper_strike' else claim_reward(profile)
         elif action=='rally':result=rally_camp_raid(profile)
+        elif action=='manual_rally':result=rally_manual_raid(profile,request.POST.get('request_key'))
         elif action=='weekly_rally':result=rally_camp_raid(profile,'weekly')
         elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
         elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
         else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
-        (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
+        if action=='manual_rally':
+            (messages.success if result else messages.error)(request,'Wyprawa na rozkaz jest zapisana.' if result else 'Nie ogłoszono kolejnej wyprawy. Potrzebujesz najwyższej rangi Kolonii, wspólnoty poniżej poziomu 10 i braku innej aktywnej wyprawy na rozkaz. Opcja jest dla graczy przed połączeniem światów.')
+        else:
+            (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
         return redirect('camp_guild')
     from .sleeper import card as sleeper_card
     from .barrier import alliance_card
     from .regional_endgame import unlocked as endgame_unlocked
     weekly_eligible=endgame_unlocked(profile)
-    return render(request,'characters/camp_guild.html',{'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
+    manual_card=raid_card(profile,'manual')
+    return render(request,'characters/camp_guild.html',{'manual_card':manual_card,'manual_region':manual_region(profile),'can_rally_manual':can_rally_manual(profile),'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
 
 
 @sensitive_post_parameters("password")

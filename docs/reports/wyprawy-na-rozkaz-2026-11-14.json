@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "issue": 152,
+  "base_revision": "d0ac1a05b202928d128fd515286d69050300ffe8",
+  "migration": "0055_manual_camp_raids",
+  "rules": {
+    "human_initiator_only": true,
+    "native_rank_ordinal": 4,
+    "region": "GOTHIC_I before global join",
+    "guild_level_below": 10,
+    "one_active_manual_target_per_guild": true,
+    "daily_reset_required": false,
+    "ordinary_sortie_energy": 20,
+    "sortie_cooldown_seconds": 60,
+    "guild_xp_per_victory": 60,
+    "treasury_per_victory": 100,
+    "bot_participation": true,
+    "bot_initiation": false
+  },
+  "local_regression": {
+    "tests": 74,
+    "success": true,
+    "skipped_postgresql": 7,
+    "includes": [
+      "manual permissions and three PG races",
+      "migration0054→0055 history",
+      "daily/weekly raids",
+      "guilds",
+      "faction succession",
+      "backups",
+      "suite selection",
+      "bot inventory"
+    ]
+  },
+  "final_module": {
+    "tests": 23,
+    "success": true,
+    "skipped_postgresql": 3,
+    "note": "Subset of broader regression, not an additional independent count."
+  },
+  "simulation": [
+    {
+      "scenario": "prepared-water-archmage-manual-guild10",
+      "success": true,
+      "initial_character": "Prepared level35 Water Archmage, mana180, protection35, 5000ore/105LP.",
+      "ordinary_circle_learning": 6,
+      "paid_rune": "oe-water-g1-chainlightning-rune",
+      "guild_start_level": 1,
+      "guild_end_level": 10,
+      "guild_xp": 900,
+      "guild_treasury": 1500,
+      "victories": 15,
+      "sorties": 31,
+      "casts": 77,
+      "energy_spent": 620,
+      "mana_spent": 1232,
+      "world_hours": 8.86,
+      "checkpoints": [
+        {
+          "victory": 1,
+          "guild_level": 1,
+          "guild_xp": 60,
+          "world_hours": 0.003
+        },
+        {
+          "victory": 2,
+          "guild_level": 2,
+          "guild_xp": 120,
+          "world_hours": 0.006
+        },
+        {
+          "victory": 3,
+          "guild_level": 2,
+          "guild_xp": 180,
+          "world_hours": 0.011
+        },
+        {
+          "victory": 4,
+          "guild_level": 3,
+          "guild_xp": 240,
+          "world_hours": 0.384
+        },
+        {
+          "victory": 5,
+          "guild_level": 4,
+          "guild_xp": 300,
+          "world_hours": 1.007
+        },
+        {
+          "victory": 6,
+          "guild_level": 4,
+          "guild_xp": 360,
+          "world_hours": 1.679
+        },
+        {
+          "victory": 7,
+          "guild_level": 5,
+          "guild_xp": 420,
+          "world_hours": 2.352
+        },
+        {
+          "victory": 8,
+          "guild_level": 5,
+          "guild_xp": 480,
+          "world_hours": 3.008
+        },
+        {
+          "victory": 9,
+          "guild_level": 6,
+          "guild_xp": 540,
+          "world_hours": 3.681
+        },
+        {
+          "victory": 10,
+          "guild_level": 7,
+          "guild_xp": 600,
+          "world_hours": 4.421
+        },
+        {
+          "victory": 11,
+          "guild_level": 7,
+          "guild_xp": 660,
+          "world_hours": 5.227
+        },
+        {
+          "victory": 12,
+          "guild_level": 8,
+          "guild_xp": 720,
+          "world_hours": 6.033
+        },
+        {
+          "victory": 13,
+          "guild_level": 8,
+          "guild_xp": 780,
+          "world_hours": 6.975
+        },
+        {
+          "victory": 14,
+          "guild_level": 9,
+          "guild_xp": 840,
+          "world_hours": 7.918
+        },
+        {
+          "victory": 15,
+          "guild_level": 10,
+          "guild_xp": 900,
+          "world_hours": 8.86
+        }
+      ],
+      "free_runtime_grants": false,
+      "itemshop_refills": 0,
+      "scroll_purchases": 0,
+      "daily_reset_required": false,
+      "global_sleeper_requirements_unchanged": true,
+      "limits": [
+        "Prepared post-campaign character; not a fresh character walkthrough.",
+        "Virtual clock and known strategy; not human active playtime.",
+        "Solo guild progression only, not the global Sleeper victory; normal resource regeneration."
+      ]
+    }
+  ],
+  "gui": {
+    "success": true,
+    "isolated_database": true,
+    "prepared_water_archmage": true,
+    "checks": [
+      {
+        "width": 320,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      },
+      {
+        "width": 390,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      },
+      {
+        "width": 1440,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      }
+    ],
+    "actual_csrf_post_flow": [
+      "rally",
+      "paid_strike",
+      "claim",
+      "rally_same_day"
+    ],
+    "guild_xp_after_first_victory": 60,
+    "strike_energy_cost": 20,
+    "javascript_errors": []
+  },
+  "screenshot_evidence": [
+    {
+      "name": "manual-active-390.png",
+      "sha256": "a1ea5166154b89c7963233edef2ed390f8408af68dce216bc1322ff89c8b88d9"
+    },
+    {
+      "name": "manual-active-1440.png",
+      "sha256": "68c4650b478f6f81e10fd25040341e2dfe034085c60416af8f6c0899cd6a8de7"
+    }
+  ],
+  "backup_restore": {
+    "success": true,
+    "isolated_database": true,
+    "actual_backup_restore": true,
+    "preserved_manual_raids": 2,
+    "preserved_strikes": 1,
+    "preserved_rewards": 1,
+    "protected_rally_metadata": true,
+    "all_table_fingerprints_equal": true,
+    "tables": 48
+  },
+  "source_sha256": {
+    "characters/camp_raids.py": "9aefd1859dc78bc3420df7d510b19f00a12962185fe8142a986260adf600cc7f",
+    "characters/models.py": "6a52c5bca4fc1eedb1ca001aae032c9764530e330ef463a0b8eab89fdf7dde49",
+    "characters/bots.py": "726ffb78db241a9cdac2d7af1f9651ccaab0c0f5c886fde3f7e3362ac4eaf0b2",
+    "characters/migrations/0055_manual_camp_raids.py": "46383b306ba75f38643d923eb8cbb5b9441dd0dd0d5c9879974a3dd5f7e4c83e",
+    "characters/test_manual_camp_raids.py": "606dd255e12f72f6cd7f3d72ccf96b89e1944da2538dca833d11be66c8c349a3"
+  },
+  "preserved": [
+    "Daily/weekly uniqueness and ordinary combat costs/rewards.",
+    "Existing account, profile, inventory, guild and raid history.",
+    "Bot cadence, session windows and policy replay inputs.",
+    "Global Sleeper prerequisites, community seal and verified activation."
+  ],
+  "limits": [
+    "Virtual resource timers and known strategy; not active human playtime.",
+    "Guild rush starts as prepared level35 Water Archmage, not a fresh account.",
+    "Solo progression to guild10 only; no global Sleeper victory claimed.",
+    "Local SQLite; real concurrent races run only on PostgreSQL CI.",
+    "No private world reset or test writes; migrations are applied to the actual save by the ordinary launcher restart."
+  ]
+}

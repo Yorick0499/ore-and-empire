@@ -176,7 +176,7 @@ class LegacyEndgameMigrationTests(TransactionTestCase):
             bp=old.get_model('characters','ItemBluePrint').objects.create(name='Preserved blade');item=old.get_model('characters','OwnedItem').objects.create(owner=p,blueprint=bp,upgrade_level=2)
             executor=MigrationExecutor(connection);executor.migrate([('characters','0053_regional_endgame')])
             self.assertEqual(FrontierProgress.objects.get(profile_id=p.pk).unlocked,37);self.assertEqual(FrontierRecord.objects.get(pk=record.pk).snapshot,{'version':1,'kept':'yes'});self.assertEqual(FrontierRecord.objects.get(pk=record.pk).track,'legacy')
-            self.assertEqual((CampRaid.objects.get(pk=raid.pk).cycle,CampRaid.objects.get(pk=raid.pk).health),('daily',777))
+            self.assertEqual(CampRaid.objects.values_list('cycle','health').get(pk=raid.pk),('daily',777))
             from .models import OwnedItem
             self.assertEqual(OwnedItem.objects.get(pk=item.pk).upgrade_level,2);self.assertEqual(PlayerProfile.objects.get(pk=p.pk).ore_balance,1234)
         finally:

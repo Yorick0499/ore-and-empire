@@ -2,7 +2,7 @@
 
 Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-Stan dokumentacji: **13 listopada 2026, po PR #141, migracja 0054**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
+Stan dokumentacji: **14 listopada 2026, wyprawy na rozkaz #152, migracja 0055_manual_camp_raids**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
 ## Uruchomienie
 

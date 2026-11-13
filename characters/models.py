@@ -942,6 +942,8 @@ class CampContribution(models.Model):
 class CampRaid(models.Model):
     cycle=models.CharField(max_length=8,default='daily')
     rule_version=models.PositiveSmallIntegerField(default=1)
+    rally_request=models.UUIDField(null=True,blank=True)
+    rallied_by=models.ForeignKey(PlayerProfile,on_delete=models.PROTECT,null=True,blank=True,related_name='called_camp_raids')
     guild = models.ForeignKey(CampGuild,on_delete=models.PROTECT,related_name='raids')
     day = models.DateField()
     name = models.CharField(max_length=120)
@@ -953,7 +955,14 @@ class CampRaid(models.Model):
     minimum_level = models.PositiveSmallIntegerField(default=3)
     completed_at = models.DateTimeField(null=True,blank=True)
     class Meta:
-        constraints=[models.UniqueConstraint(fields=['guild','day','cycle'],name='one_camp_raid_per_cycle'),models.CheckConstraint(condition=models.Q(cycle__in=['daily','weekly'],rule_version__gte=1),name='camp_raid_cycle_valid'),models.CheckConstraint(condition=models.Q(health__lte=models.F('maximum_health'),maximum_health__gte=1),name='camp_raid_health_bounds')]
+        constraints=[
+            models.UniqueConstraint(fields=['guild','day','cycle'],condition=models.Q(cycle__in=['daily','weekly']),name='one_camp_raid_per_cycle'),
+            models.UniqueConstraint(fields=['guild'],condition=models.Q(cycle='manual',completed_at__isnull=True),name='one_open_manual_camp_raid'),
+            models.UniqueConstraint(fields=['rallied_by','rally_request'],name='one_manual_raid_rally_request'),
+            models.CheckConstraint(condition=models.Q(cycle__in=['daily','weekly','manual'],rule_version__gte=1),name='camp_raid_cycle_valid'),
+            models.CheckConstraint(condition=(models.Q(cycle='manual',rally_request__isnull=False,rallied_by__isnull=False)|models.Q(cycle__in=['daily','weekly'],rally_request__isnull=True,rallied_by__isnull=True)),name='camp_raid_manual_author'),
+            models.CheckConstraint(condition=models.Q(health__lte=models.F('maximum_health'),maximum_health__gte=1),name='camp_raid_health_bounds'),
+        ]
 
 
 class CampRaidStrike(models.Model):
