@@ -85,12 +85,13 @@ class PopulationTests(TestCase):
 
 class LargeSchedulerTests(SimpleTestCase):
     def test_public_names_remain_distinct_for_two_maximum_populations(self):
-        names=[PlayerProfile(pk=n,user_id=1,world_id=1,is_bot=True).display_name for n in range(1,601)]
-        self.assertEqual(len(set(names)),600)
-        self.assertEqual(names[0],'MrocznyKruk')
-        self.assertEqual(names[100],'MrocznyStraznik')
-        self.assertEqual(names[120],'MrocznyMag')
-        self.assertEqual(names[220],'MrocznyZwiadowca')
+        # Cover future ID ranges/cycles as well as the current 600 residents.
+        names=[PlayerProfile(pk=n,user_id=1,world_id=1,is_bot=True).display_name for n in range(1,10001)]
+        self.assertEqual(len({name.casefold() for name in names}),10000)
+        self.assertEqual(names[:5],['Gorn243','DiegoxD','XLesterX','IksDex','WhiteCFD'])
+        self.assertEqual(names[49],'BandytaNaL4')
+        self.assertTrue(all(name.isascii() and len(name)<=30 for name in names))
+        self.assertEqual(PlayerProfile(pk=42,user_id=1,world_id=1,is_bot=True).display_name,names[41])
 
     def test_benchmark_environment_cannot_inherit_a_live_postgres_url(self):
         import os

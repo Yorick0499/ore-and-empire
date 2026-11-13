@@ -303,24 +303,8 @@ class PlayerProfile(models.Model):
     def display_name(self):
         if not self.is_bot:
             return self.name or self.user.username
-        prefixes = (
-            "Mroczny", "Krwawy", "Zelazny", "Popielny", "Cichy",
-            "Nocny", "Runiczny", "Wygnany", "Zapomniany", "Bagienny",
-            "Gorniczy", "Burzowy", "Kamienny", "Zloty", "Czarny",
-            "Wilczy", "Stalowy", "Ognisty", "Pradawny", "Nieugiety",
-        )
-        titles = (
-            "Kruk", "Wilk", "Cien", "Lowca", "Wloczega", "Straznik",
-            "Mag", "Skazaniec", "Najemnik", "Kopacz", "Wojownik",
-            "Zwiadowca", "Gryf", "Kiel", "Ork", "Smok", "Golem",
-            "Templariusz", "Banita", "Wedrowiec", "Berserk", "Paladyn",
-            "Msciciel", "Pirat", "Szaman", "Zebacz", "Brzytwiak",
-            "Warg", "Zwiastun", "Ognik",
-        )
-        # Stable public handles; account identifiers and saved progress stay intact.
-        cycle, index = divmod(self.pk - 1, len(prefixes) * len(titles))
-        name = prefixes[index % len(prefixes)] + titles[index // len(prefixes)]
-        return name + (f"_{cycle + 1}" if cycle else "")
+        from .bot_names import bot_nickname
+        return bot_nickname(self.pk)
 
     @property
     def training_cost(self):
