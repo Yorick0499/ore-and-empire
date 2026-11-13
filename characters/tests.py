@@ -298,7 +298,9 @@ class ColonyTests(TestCase):
         self.assertEqual(sword.base_value, 99)
 
     def test_bot_uses_game_services_and_no_password(self):
-        call_command("run_bots", create=1, limit=1, stdout=StringIO())
+        # This asserts an active shopping turn, independently of the real-world
+        # session schedule. Offline bots correctly keep their starting ore.
+        call_command("run_bots", create=1, limit=1, force_active=True, stdout=StringIO())
         bot = PlayerProfile.objects.get(is_bot=True)
         self.assertFalse(bot.user.has_usable_password())
         self.assertEqual(bot.ore_balance, 30)

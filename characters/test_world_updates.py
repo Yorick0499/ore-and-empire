@@ -93,6 +93,24 @@ class WorldUpdateTests(TestCase):
             self.assertTrue(travel(self.p,self.i.pk));self.p=PlayerProfile.objects.get(pk=self.p.pk)
             self.assertEqual(context(self.p)['uses'],0)
         with patch('django.utils.timezone.now',return_value=self.now+timedelta(days=1)):self.assertEqual(context(self.p)['uses'],3)
+    def test_shared_preview_events_keep_regional_rewards_targeted_and_read_only(self):
+        from .world_events import active_events,reward_rates
+        from .barrier import region_ids
+        local=self.event()
+        self.event(region='',activity='',targets=[],name='Globalne święto',ore_percent=110,experience_percent=110)
+        with patch('django.utils.timezone.now',return_value=self.now),world_scope(self.c):
+            events=list(active_events(world_ids=region_ids(self.p.world_id),include_regional=True))
+            rates=reward_rates(events=events)
+            prepared=context(self.p,events=events)
+            self.assertIn(local,prepared['events'])
+            self.assertNotIn(local.name,rates[3])
+            for target in ('wolf','scavenger'):
+                cached=reward_snapshot(100,100,profile=self.p,activity='hunt',target=target,rates=rates,regional_context=prepared)
+                fresh=reward_snapshot(100,100,profile=self.p,activity='hunt',target=target)
+                self.assertEqual(cached,fresh)
+                self.assertEqual(local.name in cached[3],target=='wolf')
+        self.assertFalse(RegionalEventUse.objects.exists())
+
     def test_max_rule_targets_and_premium_never_stack_or_consume_useless_budget(self):
         self.event()
         with patch('django.utils.timezone.now',return_value=self.now):

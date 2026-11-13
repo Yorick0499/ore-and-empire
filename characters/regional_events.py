@@ -105,14 +105,15 @@ def seed_regional(world,flags,now):
                 WorldEvent.objects.get_or_create(key=f'regional-v{VERSION}-{world.pk}-{key}-{day}-{slot}',defaults={'world':world,'name':title,'kind':'random' if slot else 'seasonal','description':description,'starts_at':start,'ends_at':end,'ore_percent':120 if activity in {'mine','adventure','boss'} else 100,'experience_percent':125 if activity not in {'mine','raid'} else 100,'region':key,'activity':activity,'targets':list(targets),'art_key':art,'release_key':release,'rule_version':VERSION})
 
 
-def context(profile,now=None,*,reward_only=False):
+def context(profile,now=None,*,reward_only=False,events=None):
     from .world_events import active_events
     if profile.level<15:return None
     now=now or timezone.now();start=datetime.combine(polish_day(now),time.min,tzinfo=POLISH_TIME)
     uses=list(RegionalEventUse.objects.filter(profile=profile,created_at__gte=start,created_at__lt=start+timedelta(days=1)).values_list('snapshot',flat=True))
     if reward_only and (len(uses)>=DAILY_USES or (sum(u.get('ore_bonus',0) for u in uses)>=300 and sum(u.get('experience_bonus',0) for u in uses)>=3000)):
         return {'now':now,'events':[],'uses':0,'ore':0,'experience':0}
-    return {'now':now,'events':[e for e in active_events(now,world_ids=region_ids(profile.world_id),include_regional=True).exclude(region='') if eligible(profile,e)],'uses':max(0,DAILY_USES-len(uses)),'ore':max(0,300-sum(u.get('ore_bonus',0) for u in uses)),'experience':max(0,3000-sum(u.get('experience_bonus',0) for u in uses))}
+    events=active_events(now,world_ids=region_ids(profile.world_id),include_regional=True).exclude(region='') if events is None else events
+    return {'now':now,'events':[e for e in events if e.region and eligible(profile,e)],'uses':max(0,DAILY_USES-len(uses)),'ore':max(0,300-sum(u.get('ore_bonus',0) for u in uses)),'experience':max(0,3000-sum(u.get('experience_bonus',0) for u in uses))}
 
 def enhance(profile,activity,target,ore,xp,base,consume_key=None,prepared=None):
     """Called under player_action's profile lock for writes; previews never write."""

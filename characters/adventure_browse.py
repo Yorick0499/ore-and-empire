@@ -4,7 +4,7 @@ from .text_search import literal_pattern
 from django.db.models import Q
 from .models import AdventureTemplate
 from .market_browse import bounded_page, pager
-from .world_events import reward_snapshot, reward_rates
+from .world_events import reward_snapshot, reward_rates, active_events
 
 
 def adventure_context(profile, params):
@@ -22,9 +22,11 @@ def adventure_context(profile, params):
     run=profile.adventures.filter(claimed_at__isnull=True).select_related('template').first()
     quests=[]
     # The event snapshot is identical for all offers on this response.
-    rates=reward_rates()
+    from .barrier import region_ids
     from .regional_events import context
-    regional=context(profile)
+    events=list(active_events(world_ids=region_ids(profile.world_id),include_regional=True))
+    rates=reward_rates(events=events)
+    regional=context(profile,events=events)
     for quest in stock:
         ore,xp,premium,events=reward_snapshot(quest.ore_reward,quest.experience_reward,quest.premium_reward,rates=rates,profile=profile,activity="adventure",target=quest.key,regional_context=regional)
         reason=''

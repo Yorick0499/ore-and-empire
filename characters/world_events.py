@@ -14,8 +14,8 @@ def active_events(now=None,*,world_ids=None,include_regional=False):
     return rows if include_regional else rows.filter(region='')
 
 
-def reward_rates():
-    events=list(active_events())
+def reward_rates(*, events=None):
+    events=list(active_events()) if events is None else [e for e in events if not e.region]
     from .world_clock import clock_state
     clock=clock_state()
     return (max([clock['ore'],*(event.ore_percent for event in events)]),
