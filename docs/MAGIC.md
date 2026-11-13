@@ -1,6 +1,8 @@
-# Magia — balans przeglądarkowej adaptacji v1
+# Magia — kręgi, runy, zwoje i odporności
 
-`/magia/` udostępnia dziewięć działających zaklęć jako runy i zwoje. Nazwy/kody i ceny pochodzą z wersjonowanej paczki G1; poniższe koszty, obrażenia, obrony, sterowanie turami i warunki nauki są **autorskim balansem adaptacji**, nie tabelą oryginalnego Gothic I. Pozostałe magiczne przedmioty w katalogu pozostają nieaktywne.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+`/magia/` udostępnia 9 podstawowych zaklęć oraz 2 dodatkowe VI kręgu po Barierze, każde jako runę i zwój. Nazwy/kody i ceny pochodzą z wersjonowanej paczki G1; poniższe koszty, obrażenia, obrony, sterowanie turami i warunki nauki są **autorskim balansem adaptacji**, nie tabelą oryginalnego Gothic I. Źródłowy katalog obejmuje też pozycje bez zaimplementowanego efektu; sam wpis nie oznacza działającego czaru.
 
 | Szkoła | Zaklęcie | Krąg | Mana/rzut runy | Obrażenia | Efekt |
 |---|---|---:|---:|---:|---|
@@ -13,8 +15,10 @@
 | Bractwo | Uderzenie wiatru | 1 | 3 | 18 magii | co trzeci rzut przerywa turę przeciwnika |
 | Bractwo | Uderzenie burzy | 3 | 7 | 42 magii | co drugi rzut przerywa turę przeciwnika |
 | Bractwo | Pirokineza | 5 | 11 | 70 magii | co drugi rzut przerywa turę przeciwnika |
+| Ogień po Barierze | Deszcz ognia VI | 6 | 18 | 260 ognia | 25% mniej obrażeń w turze rzutu |
+| Woda po Barierze | Grom VI | 6 | 18 | 240 magii | 50% mniej obrażeń w turze rzutu |
 
-Każdy zwój kosztuje 1 many/rzut i jedną sztukę na **rzeczywiste rzucenie**, bez wymogu szkoły/kręgu. Runa jest wielokrotnego użytku, wymaga kręgu i szkoły obozu. Zwoje w stosie pozwalają na kilka rzutów, do wyczerpania stosu/many. Pierwszy rzut musi być opłacalny przed rozpoczęciem walki; po wyczerpaniu zapasu postać broni się pięściami do końca starcia, bez darmowej amunicji. Przed kolejną walką można wrócić do broni na ekranie magii. Zużyty ostatni zwój czyści przygotowanie. Przedmiot przygotowany nie może być wystawiony/sprzedany bez wcześniejszego wyłączenia go. Cudzy, wystawiony albo niedozwolony przedmiot jest odrzucany także przez serwis walki.
+Każdy zwój kosztuje 1 many/rzut i jedną sztukę na **rzeczywiste rzucenie**, bez wymogu szkoły/kręgu. Runa jest wielokrotnego użytku, wymaga kręgu i szkoły obozu. Dostępne oddzielnie kupione egzemplarze tego samego zwoju tworzą wspólny zapas walki. Najpierw zużywa się przygotowany, potem pozostałe według ID. Dodatkowe chronione i wystawione egzemplarze nie są pobierane; ostatni dostępny zapas/mana ogranicza liczbę rzutów. Pierwszy rzut musi być opłacalny przed rozpoczęciem walki; po wyczerpaniu zapasu postać broni się pięściami do końca starcia, bez darmowej amunicji. Przed kolejną walką można wrócić do broni na ekranie magii. Zużyty ostatni dostępny zwój czyści przygotowanie; jeśli pozostał dostępny egzemplarz tego samego typu, przygotowanie przechodzi na niego. Przedmiot przygotowany nie może być wystawiony/sprzedany bez wcześniejszego wyłączenia go. Cudzy, wystawiony albo niedozwolony przedmiot jest odrzucany także przez serwis walki.
 
 Nauka kolejnego kręgu N kosztuje 5×N PN i 50×N rudy, wymaga poziomu 2×N. Wtajemniczeni obozowi (ranga od tier 1) mogą nauczyć się dwóch kręgów, Mag Ognia/Wody lub Guru czterech, arcyrangi sześciu. Dostęp do run jest ograniczony także rangą i obozem; samo ustawienie `magic_skill` nie usuwa blokady szkoły/rangi. Maksymalną manę rozwija istniejący trening (1 PN i 10 rudy za punkt, pomniejszone o zniżkę szkoły obozowej). Zwiększenie maksimum ani założenie biżuterii nie leczy/nie odnawia many. Zdjęcie lub usunięcie sprzętu przycina aktualną manę do nowego maksimum.
 
@@ -24,7 +28,7 @@ Walka odejmuje ochronę `fire_prot`/`magic_prot`; minimum obrażeń to 1. Golemy
 
 ## Boty i odtwarzanie
 
-Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-21 i schema 22) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
+Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-24 i schema 23) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
 
 ## Kontrola grywalności
 
@@ -49,5 +53,8 @@ walkę pięściami po wyczerpaniu many. Dzięki wspólnej prognozie bot nie porz
 magii na podstawie innej oceny pancerza ani nie farmi, gdy finał jest osiągalny
 po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bossów.
 
+## Frakcja po sukcesji i przygotowanie do bossa
 
-Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; po wyborze Bractwa zachowana rodzima szkoła pozostaje dostępna do historycznej kampanii. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. [Frakcje](CAMP_GUILDS.md).
+
+Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Część starć wymaga zwoju innego żywiołu, ochrony i odpoczynku. [Organiczne drogi Ognia/Wody i Bractwa](BUILD_PLAYTHROUGHS.md).

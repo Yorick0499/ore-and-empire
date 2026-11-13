@@ -1,5 +1,7 @@
 # PostgreSQL i wyłączny scheduler (#19)
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 Gra lokalna nadal domyślnie używa SQLite i jednego `play.py`. PostgreSQL jest osobną, wybieraną konfiguracją. Nie przełączamy automatycznie prywatnego zapisu ani nie uruchamiamy drugiego schedulera.
 
 ## Konfiguracja
@@ -36,3 +38,9 @@ Planowanie bota nie trzyma blokady postaci. Usługi blokują uczestników handlu
 Źródła implementacji: [Django — PostgreSQL](https://docs.djangoproject.com/en/6.0/ref/databases/#postgresql-notes), [PostgreSQL — blokady](https://www.postgresql.org/docs/16/explicit-locking.html).
 
 Launcher SQLite rozpoznaje nowy świat po resecie i przejmuje jego osobną dzierżawę bez zamykania serwera. Test wykonuje rzeczywisty reset na izolowanej bazie i sprawdza kolejną turę bota. Usunięta dzierżawa daje kontrolowany stan utraty, nie błąd ORM.
+
+## Bieżące rozszerzenia zapisu
+
+Migracje do 0054 obejmują pochodzenie/sloty, wyścig i sukcesję, wybór Bractwa, dalsze rangi, pasy, regionalne warty i historię odsłon/limitów wydarzeń. Import/odtworzenie zachowują właściwy manifest starej wersji; nie usuwaj nowych tabel ręcznie przy aktualizacji. [Kopie i porównanie danych](BACKUPS.md).
+
+[CI #141](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831) zaliczył regresję PostgreSQL i rzeczywiste współbieżne próby po dodaniu wydarzeń. Dotyczy m.in. ostatniego regionalnego slotu i wspólnego odkrycia dwóch regionów; nie jest prognozą wydajności publicznego hostingu.

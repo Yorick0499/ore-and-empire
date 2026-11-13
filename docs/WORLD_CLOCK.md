@@ -1,5 +1,7 @@
 # Rzeczywisty czas polski i rytm świata
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 Świat działa **1:1 z prawdziwym czasem** w `Europe/Warsaw`. Nie ma przyspieszonej doby. Python `zoneinfo` korzysta z bazy reguł strefy: automatycznie CET zimą i CEST latem, bez ręcznego dodawania godziny. Baza nadal przechowuje świadome daty UTC; interfejs i granice kalendarza używają Polski. Serwer/OS musi mieć aktualne dane stref czasowych.
 
 ## Sześć pór dnia
@@ -32,3 +34,7 @@ Nie ma zamykania lokacji ani zmniejszania regeneracji. Maksymalna różnica mię
 ## Testy i diagnostyka
 
 Testy obejmują lokalną północ przy innej dacie UTC, zmianę pory roku, poniedziałek tygodnia, wszystkie granice słoneczne, zmianę CET/CEST w marcu i październiku, doby 23/25 h, niezmienność snapshotów oraz ochronę niestandardowych eventów. Raporty techniczne retencji i agregacji telemetrii pozostają w UTC i są tak opisane — nie są resetami rozgrywki.
+
+## Wspólny świat i regionalne okna
+
+Po Barierze oba regiony używają tego samego polskiego zegara i kalendarza. Regionalne okna zaczynają się przy wschodzie i końcu zmierzchu cywilnego, trwają cztery rzeczywiste godziny i mają trwałe klucze daty/regionu/wersji. Łączny budżet postaci nie resetuje się przez podróż. Cele tygodnia używają znormalizowanego poniedziałku, także gdy orkowa odsłona odblokuje się w niedzielę. [Pełne reguły](WORLD_UPDATES.md).

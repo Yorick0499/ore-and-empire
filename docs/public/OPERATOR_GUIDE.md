@@ -1,12 +1,12 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 12 listopada 2026, wspólny świat po Barierze, migracja0054. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 13 listopada 2026, po PR #141, wspólny świat po Barierze, migracja 0054. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
-Przeglądarkowe RPG w realiach Gothic I i Gothic II: Noc Kruka, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz opcjonalne równoległe Khorinis, po 0–300 botów na serwer we wspólnej kolejce. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.
+Przeglądarkowe RPG w realiach Gothic I i Gothic II: Noc Kruka, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz otwierane Khorinis, po 0–300 botów na region we wspólnej kolejce. Domyślne 125+125 daje 250; po Barierze jest jeden serwer z zachowanymi konfiguracjami regionów. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.
 
-Podstawowa paczka Kolonii ma41 lokacji,53 zwykłych przeciwników, trzej bossowie solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Paczka NK dodaje publiczny Jarkendar i dalsze wyprawy do Irdorath, z bramkami po globalnym połączeniu. Bieżący zakres opisuje [katalog NK](../GOTHIC_II_CONTENT.md). Szczegółowe tabele Kolonii są w [katalogu zawartości](../GAME_CONTENT.md), a pełna instrukcja w [przewodniku gracza](../GAME_GUIDE.md).
+Podstawowa paczka Kolonii ma 41 lokacji, 53 zwykłych przeciwników, trzech bossów solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Paczka NK dodaje publiczny Jarkendar i dalsze wyprawy do Irdorath, z bramkami po globalnym połączeniu. Bieżący zakres opisuje [katalog NK](../GOTHIC_II_CONTENT.md). Szczegółowe tabele Kolonii są w [katalogu zawartości](../GAME_CONTENT.md), a pełna instrukcja w [przewodniku gracza](../GAME_GUIDE.md).
 
 Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwycięstwie wspólnoty łączą się automatycznie, ze zweryfikowaną kopią i zachowaniem dorobku. Publiczny Jarkendar, smoki oraz adaptowana wyprawa do Irdorath są dostępne po spełnieniu bramek. [Pierwsza paczka Khorinis i instrukcja otwarcia](../KHORINIS.md). Projekt jest fanowski; grafiki i font mają osobno wskazane źródła i prawa.
 
@@ -146,7 +146,7 @@ Panel `/zarzadca/` wymaga aktywnego konta **superusera**. Samo `is_staff` nie wy
 
 ### Wybór postaci
 
-Wskaż konto w polu „Postać” i naciśnij „Wybierz postać”. Operacje dotyczą wybranego profilu aktualnego świata, także profilu bota. Przed nadaniem sprawdź nazwę odbiorcy.
+Wskaż imię postaci, konto i slot w polu „Postać” i naciśnij „Wybierz postać”. Operacje dotyczą wybranego profilu aktualnego świata, także profilu bota. Przed nadaniem sprawdź nazwę odbiorcy.
 
 ### Odnowienie zasobów
 
@@ -184,7 +184,8 @@ Wydarzenie ma typ, daty, procenty rudy/PD i bonus odłamków; koniec musi być p
 | Adres | Przeznaczenie |
 |---|---|
 | `/zarzadca/` | Postacie, nadania, zasoby, statystyki, kronika i stan ostatniej kopii |
-| `/zarzadca/swiat/reset/` | Ustawienia bez resetu oraz oddzielny pełny reset SQLite |
+| `/zarzadca/swiat/reset/` | Wybór regionu, ustawienia bez resetu, otwarcie Khorinis oraz oddzielny pełny reset całej instalacji SQLite |
+| `/zarzadca/bariera/` | Kwalifikacja, HP/wkład, stan kopii i audyt połączenia, pauza/wznowienie |
 | `/zarzadca/swiat/` | Rzeczywiste decyzje, postęp botów, okno analizy i replay |
 | `/zarzadca/gospodarka/` | Źródła, ujścia, transfery, różnica uzgodnienia i symulowane premium |
 | `/rynek/monitor/` | Monitor transakcji dostępny uprawnionemu personelowi |
@@ -204,7 +205,7 @@ Ta procedura **usuwa postęp** i nie jest potrzebna do restartu procesu. W bież
 4. Zatwierdź. Najpierw tworzona jest prywatna spójna kopia.
 5. Po udanym wyczyszczeniu i inicjalizacji zaloguj się ponownie.
 
-**Zachowane:** wszystkie konta superuserów, ich loginy, hasła, ID i uprawnienia oraz pliki kopii/archiwów. **Usuwane i tworzone od nowa:** zwykłe konta, postacie i ich rozwój, ekwipunek, rynek, zadania, wspólnoty, rankingi i historie świata. Sesje zostają unieważnione. Błąd backupu blokuje reset, błąd inicjalizacji wycofuje czyszczenie, a stary formularz nie resetuje ponownie nowego świata. Jest to nowa edycja Gothic I, bez transferu do Gothic II.
+**Zachowane: ** wszystkie konta superuserów, ich loginy, hasła, ID i uprawnienia oraz pliki kopii/archiwów. **Usuwane i tworzone od nowa: ** zwykłe konta, postacie i ich rozwój, ekwipunek, rynek, zadania, wspólnoty, rankingi i historie świata. Sesje zostają unieważnione. Błąd backupu blokuje reset, błąd inicjalizacji wycofuje czyszczenie, a stary formularz nie resetuje ponownie nowego świata. Reset obejmuje całą instalację z oboma regionami i tworzy nową Kolonię. Khorinis można ponownie otworzyć; reset nie jest połączeniem ani sposobem aktualizacji.
 
 ## Backup i odtwarzanie
 
@@ -261,6 +262,7 @@ docker compose --env-file .env.production -f deploy/compose.production.yml confi
 docker compose --env-file .env.production -f deploy/compose.production.yml build
 docker compose --env-file .env.production -f deploy/compose.production.yml up -d db migrate
 docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name "Moja Kolonia" --username TWOJ_LOGIN --bots 125
+docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py open_khorinis --bots 125
 docker compose --env-file .env.production -f deploy/compose.production.yml up -d web worker proxy
 ```
 
@@ -281,7 +283,9 @@ python manage.py check
 python manage.py makemigrations --check --dry-run
 python manage.py validate_content
 python manage.py test --noinput
-python manage.py simulate_release --report /tmp/nowy-raport.json
+python manage.py simulate_release --suite quick --report /tmp/nowy-raport.json
+python manage.py simulate_builds --report /tmp/buildy-nowa-proba.json
+python manage.py simulate_journey --report /tmp/droga-nowa-proba.json
 ```
 
 Windows: dla raportu wybierz własną nową ścieżkę, np. `C:\MojaKolonia\raport.json`. Komendy symulacji wymagające nowego raportu nie nadpisują istniejącego pliku. Testy Django i `simulate_release` korzystają z odizolowanych baz, nie z prywatnego zapisu jako świata testowego. Konto PostgreSQL do testów musi mieć prawo tworzenia bazy testowej.
@@ -319,8 +323,18 @@ Wyszukiwarka przeszukuje tekst rozdziałów i raportów. Spis treści działa ta
 
 Od migracji 0042: [pięć postaci, fabuła i przywileje rang](../CHARACTERS_AND_WORLDS.md). Kreator pojawia się po rejestracji; w zarządcy wybierz imię postaci wraz z kontem i slotem. Konta administratorów i hasła pozostają.
 
-Regionalny endgame po NK i zgodność migracji0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat23; stare odtworzenia pozostają zgodne.
+Regionalny endgame po NK i zgodność migracji 0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat 23; stare odtworzenia pozostają zgodne.
 
 [Dziewięć organicznych dróg buildów i frakcji](../BUILD_PLAYTHROUGHS.md) można sprawdzić przez `simulate_builds --report /tmp/ore-builds.json`; `--case` wybiera pojedyncze drogi. Komenda używa własnej bazy, a pełne CI dzieli macierz na trzy grupy. Poprawka zapasu zwojów nie wymaga migracji ani łączenia historycznych przedmiotów.
 
-[Wydarzenia i odsłony świata](../WORLD_UPDATES.md): migracja0054, wspólny harmonogram i historia odkryć. Odczyty są bez nagród; stary dorobek nie jest ponownie blokowany.
+[Wydarzenia i odsłony świata](../WORLD_UPDATES.md): migracja 0054, wspólny harmonogram i historia odkryć. Odczyty są bez nagród; stary dorobek nie jest ponownie blokowany.
+
+## Dwa początki i dostęp do pełnej kampanii
+
+Po konfiguracji Kolonii otwórz Khorinis przyciskiem w ustawieniach albo przy zatrzymanej grze `python manage.py open_khorinis --bots 125`. Ponowienie nie zmienia istniejącej liczby/nazwy. Przed Barierą oba początki działają niezależnie; osobisty finał nie łączy serwerów. Globalny Śniący wymaga wspólnoty 10 i wkładu trzech kwalifikujących się kont.
+
+Po zwycięstwie worker tworzy świeżą kopię i sprawdza odtworzenie. PostgreSQL potrzebuje klienta zgodnego z serwerem oraz prawa utworzenia/usunięcia bazy próbnej dla procesu wykonującego aktywację. Brak narzędzi/miejsca/uprawnień zatrzymuje przejście, bez utraty zwycięstwa. Stan i wznowienie są w panelu Bariery; nie ustawiaj `joined` ręcznie.
+
+Sukces daje jeden serwer, wspólny rynek/ranking/podróże i pięć następczych frakcji, z zachowaniem danych. Portal Jarkendaru, rejs i osobiste kontrakty nadal trzeba zdobyć. Cztery wyższe rangi, regionalny endgame i siedem odsłon są wdrożone. [Przewodnik gracza](../GAME_GUIDE.md), [pełna droga](../COMPLETE_JOURNEY.md), [rangi](../CAMPS.md), [kalendarz](../WORLD_UPDATES.md).
+
+Przy aktualizacji produkcyjnej po `migrate` uruchom `seed_khorinis`, jeśli wyspa jest otwarta; zawiera Jarkendar/NK i zachowuje edycje operatora. Launcher lokalny wykonuje to przy starcie. Szczegóły [wdrożenia](../PRODUCTION.md) i [kopii 0054](../BACKUPS.md). Bieżący raport opisuje dziewięć organicznych dróg i rzeczywistą aktywację, nie wszystkie mechaniki oryginału ani wielotygodniowy balans.

@@ -49,3 +49,7 @@ Rights and credits remain documented in ASSETS.md; imported art is not original 
 and static collection. Browser smoke verified login, illustrated location directory
 and populated staff decision monitor. SQLite tests do not validate production row
 locking or simultaneous multiplayer load.
+
+## Obecny punkt odniesienia — 13 XI 2026
+
+Powyższy opis zachowuje historię konkretnej zmiany; nie jest instrukcją bieżącego wdrożenia. Dziś działają dwa początki, jednorazowe połączenie, pięć frakcji, NK, regionalny endgame i wydarzenia, z PostgreSQL i kopiami do 0054. Aktualne procedury: [operator](public/OPERATOR_GUIDE.md), [kopie](BACKUPS.md), [roadmapa](ROADMAP.md).

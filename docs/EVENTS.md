@@ -1,5 +1,7 @@
 # Wszystkie wydarzenia, święta i premie
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 Domyślny kalendarz najnowszej wersji. Wszystkie podane daty i godziny są w **Europe/Warsaw**: CET (UTC+1) zimą, CEST (UTC+2) latem. Zmiana czasu jest automatyczna. Początek należy do wydarzenia, koniec już nie. „5–9” oznacza od 5. dnia 00:00 do 9. dnia 00:00, czyli cztery dni kalendarzowe.
 
 Administrator może zmieniać terminy i premie albo wyłączać eventy. Poniższe tabele dotyczą domyślnych definicji; bieżące działanie pokazuje `/wydarzenia/`. Ceny i koszty energii pozostają takie same podczas eventów.
@@ -38,7 +40,7 @@ Każde trwa od 5. do 9. dnia wskazanego miesiąca. Brak dodatkowych odłamków.
 
 ## Wydarzenie losowe
 
-**Szczęśliwa żyła rudy:** 150% rudy, 100% PD, bez bonusowych odłamków. Przy zmianie polskiej daty serwer liczy SHA-256 tekstu `ore-empire-events-v1:YYYY-MM-DD`. Pierwsze osiem cyfr szesnastkowych daje liczbę `draw`; zdarzenie istnieje, jeśli `draw % 4 == 0`. Godzina startu w Polsce to `draw % 20`, czyli 00:00–19:00. Trwa cztery rzeczywiste godziny, również podczas zmiany czasu.
+**Szczęśliwa żyła rudy: ** 150% rudy, 100% PD, bez bonusowych odłamków. Przy zmianie polskiej daty serwer liczy SHA-256 tekstu `ore-empire-events-v1:YYYY-MM-DD`. Pierwsze osiem cyfr szesnastkowych daje liczbę `draw`; zdarzenie istnieje, jeśli `draw % 4 == 0`. Godzina startu w Polsce to `draw % 20`, czyli 00:00–19:00. Trwa cztery rzeczywiste godziny, również podczas zmiany czasu.
 
 To odtwarzalne losowanie daty, nie gwarancja wydarzenia dokładnie co cztery dni. Restart, ponowne logowanie i odświeżanie nie losują go na nowo. W świeżym świecie wydarzenie pojawi się po inicjalizacji kalendarza; launcher odświeża kalendarz przy zmianie lokalnej daty.
 
@@ -62,4 +64,6 @@ Dzienne/tygodniowe wyzwania i zlecenia obozu nie są eventami premiującymi wszy
 
 ## Regionalne okna i aktualizacje świata — #137
 
-[Cztery pule regionalne i siedem nazwanych odsłon](WORLD_UPDATES.md). Dwie czterogodzinne odsłony na krainę i dobę, zależne od pory roku i odkryć świata. Do3 faktycznie podwyższonych nagród,300 dodatkowej rudy i3000 dodatkowych PD na postać/polski dzień, łącznie we wszystkich krainach. Bez nowych odłamków; obowiązuje maksimum z premią globalną. Odczyt kalendarza nie przyznaje ani nie rezerwuje nagród.
+[Cztery pule regionalne i siedem nazwanych odsłon](WORLD_UPDATES.md). Dwie czterogodzinne odsłony na krainę i dobę, zależne od pory roku i odkryć świata. Do 3 faktycznie podwyższonych nagród, 300 dodatkowej rudy i 3000 dodatkowych PD na postać/polski dzień, łącznie we wszystkich krainach. Bez nowych odłamków; obowiązuje maksimum z premią globalną. Odczyt kalendarza nie przyznaje ani nie rezerwuje nagród.
+
+Po połączeniu aktywne premie globalne obejmują wspólną grupę regionów przez maksimum, bez drugiej wypłaty za podróż. Regionalne okno wymaga właściwej aktywności i celu oraz osobistych bramek regionu. Previews zleceń używają wspólnego odczytu aktywnych eventów; odczyt nie zużywa budżetu. Bonus odłamków nie tworzy konta premium ani uprawnienia portalu.

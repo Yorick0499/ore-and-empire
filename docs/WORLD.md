@@ -1,38 +1,23 @@
-# Gothic I world catalog
+# Świat, regiony i lokacje
 
-The browser adaptation now includes 53 repeatable creature types and quest
-variants, plus the minecrawler queen, ancient swampshark and echo of the Sleeper as three boss expeditions. The
-roster includes wildlife, goblins, minecrawlers, undead, golems, demons and orc
-combat classes. Summoned duplicates share species entries; named human NPCs and
-cosmetic weapon/animation variants do not become separate monster species.
+Stan: 13 XI 2026. Mapa jest katalogiem wypraw mieszkańca, nie odwzorowaniem swobodnego ruchu z oryginalnego Gothic. [Pełne tabele z kodu](GAME_CONTENT.md#lokacje) · [Bramki świata](CHARACTERS_AND_WORLDS.md).
 
-Sources used to audit coverage:
-- https://gothic.fandom.com/pl/wiki/Kategoria:Stworzenia_z_Gothic
-- https://gothic.fandom.com/pl/wiki/Liczba_stworze%C5%84_w_Gothic
-- https://gothic.fandom.com/pl/wiki/Kategoria:Miejsca_z_Gothic
+## Dwa początki, jeden serwer po Barierze
 
-41 main destinations cover the three camps, mines and their depths, forests,
-ruins, focus-stone landmarks, orc territory, Xardas's towers and the Sleeper's
-temple. Individual residential huts are represented by their camp rather than
-hundreds of empty navigation cards. Destinations have distinct creature rosters;
-trade, training and mining places use the shared services. There is no claim of
-reproducing the original game's map, chapter triggers or complete quest script.
+Przed wydarzeniem Kolonia i Khorinis mają własne społeczności, rynki, rankingi i kampanie. Po globalnym Śniącym istnieje jeden serwer z regionami Kolonii/Khorinis, wspólnym rynkiem/rankingiem i podróżami. Jarkendar i Irdorath należą do mapy Khorinis i wymagają własnego dostępu, bez dodatkowego konta/serwera/premium.
 
-Every creature and destination has locally bundled, attributed artwork. Where
-quest variants use the same model, their manifest entries share the same file.
-The importer reads the first creature infobox (Gothic I), resolves its image via
-MediaWiki imageinfo and downloads a thumbnail up to 640px wide when available.
-Existing full-resolution images remain valid. The manifest preserves the original
-CDN image URL separately from the downloaded thumbnail URL.
+41 podstawowych miejsc G1 obejmuje obozy, kopalnie/głębie, lasy, ruiny, kręgi, orkowe ziemie, wieże i świątynię. Pierwsza paczka Khorinis ma 16 miejsc; Jarkendar i katalog NK dodają kolejne tereny. Późniejszy Wulkan w Górniczej Dolinie jest zawartością po Barierze, a nie częścią 41 podstawowych lokacji. Aktualne sumy i wszystkie klucze są generowane w katalogu, zamiast wyliczane z historycznych raportów.
 
-The bestiary is searchable, paginated and links each species to its habitats.
-Location levels are server enforced on GET and POST. Direct hunting services also
-validate the location gate and its roster, so bots and future clients cannot
-request an arbitrary late-game enemy. Monster levels are recommendations; location
-entry levels are requirements. The combat stats, entry levels, rewards and boss
-adaptations are original provisional balance, not a transcription of Gothic I.
+## Dostęp do wyprawy
 
-Validation covers catalog/habitat/image completeness, every location's GET/POST level boundary, bestiary search/escaping, economy and boss regression tests, migration consistency and static collection. Current CI and release reports are linked from [INDEX.md](INDEX.md). The complete table is in [GAME_CONTENT.md](GAME_CONTENT.md).
+Lokacja sprawdza poziom, odwiedzany region, obóz/szczebel, połączenie i wymagane odebrane zadanie. Portal od 10 otwiera Jarkendar, kontrakt rejsu Irdorath. Bezpośredni URL nie omija warunków. Serwis polowania sprawdza też, czy przeciwnik faktycznie występuje w danej lokacji. Zalecany poziom potwora nie zastępuje wymaganego poziomu miejsca.
 
-Camp interiors add rank requirements alongside level and allegiance: Old Camp
-castle (tier 1), Water Mages headquarters and Brotherhood temple (tier 2).
+Wnętrza mają dodatkowe bramki: zamek Starego Obozu od szczebla 1/poziomu 3, siedziba Magów Wody i świątynia Bractwa od szczebla 2/poziomu 8. Sukcesja zachowuje historyczne przejścia potrzebne rodzimej kampanii; nie usuwa ich przy zmianie bieżącej frakcji.
+
+Podróż Kolonia↔Khorinis jest bezpłatna po połączeniu i wymaga zakończenia czynności. Fabularne odwiedzenie celu kosztuje 2 energii. Wybór lokacji wyprawy nie oznacza utrzymywania osobnej współrzędnej w każdym regionie.
+
+## Bestiariusz, bossowie i grafiki
+
+Bestiariusz ma wyszukiwanie, strony i siedliska. Populacje/odmiany mogą współdzielić ilustrację; nie każdy źródłowy kod istoty jest osobnym przeciwnikiem polowania. Bossowie solo, wspólne wyprawy, globalny Śniący i warty są odrębnymi rodzajami starć. [NK](GOTHIC_II_CONTENT.md), [wyprawy](CAMP_RAIDS.md), [endgame](REGIONAL_ENDGAME.md).
+
+Każda używana lokacja, populacja i klucz obrazu bossa ma lokalny asset z atrybucją. Miejsca/gatunki mogą korzystać z jawnej ilustracji regionu lub wspólnego modelu. Runtime nie pobiera obrazów z wiki. [Źródła, wybory plików i walidacja](ASSETS.md).

@@ -1,137 +1,59 @@
-# Próba gry solo i buildów — 8 listopada 2026
+# Grywalność, scenariusze i granice pomiarów
 
-Próby wykonano na osobnych bazach. Konto administratora, hasła i postęp prywatnego świata nie były danymi testowymi. Zadania: #90–#93.
+Stan: 13 XI 2026, po #141. Wszystkie próby wykonujemy na odizolowanych bazach, bez danych prywatnego świata. [Raport bieżącego wydania](reports/grywalnosc-wydania-2026-11-13.json), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [pełna droga](COMPLETE_JOURNEY.md).
 
-## Rzeczywista sesja w przeglądarce
+## Co sprawdzono w bieżącej wersji
 
-Zarejestrowano zwykłego `Wedrowiec_Samotnik` w nowym świecie ze 100 botami. Bez panelu admina, nadawania zasobów i przestawiania zegara: rozmowa otwierająca, kopalnia z rzeczywistym oczekiwaniem po 15 sekund, zakup i założenie zardzewiałego miecza, wybór Starego Obozu, cztery zwycięskie polowania, podróż, kolejne zadania oraz nauka siły i broni jednoręcznej. Stan po tej części: poziom 1, 732 PD, 141 rudy, 8 pozostałych PN, 11 siły i 1% broni jednoręcznej. Utracona energia regenerowała się według zwykłych zasad.
+| Próba | Zakres | Wynik |
+|---|---|---|
+| Dziewięć organicznych dróg | Stary/Nowy Obóz wojskowo i magicznie, straż/klasztor/Onar, Guru i Templariusz; od 0 do 8 rangi, NK i pierwszych regionalnych wart |9/9, poziomy 59–63; zwykłe koszty, zarobiony sprzęt/PN/magia|
+| Rzeczywista Bariera |3 konta od 0, wspólnota 10, prawdziwe 124 uderzenia, kopia/odtworzenie, pojedyncza aktywacja, NK i endgame |zaliczona, poziom 58, w 17 wirtualnych dniach|
+| Regresja modułów wydarzeń/zleceń/bota | podgląd, brak zużycia limitu przez GET, deduplikacja i aktywna zakupowa tura |26 testów, 2 pominięte na SQLite (wymagają PostgreSQL); 2 nowe regresje oddzielnie zaliczone|
+| Boty, rynek, sklep i nadużycia |48 h zwykłych sesji 7 osobowości, handel, itemshop, fałszowane parametry/powtórzenia |40 testów bez błędów|
+| Człowiek kupuje od bota | rzeczywista oferta nadwyżki, ponowienie zakupu, dalsza tura i ochrona własnej broni bota |zaliczona|
+|250 świeżych botów 125+125|20 s zwykłych sesji i zalogowane HTTP, po 2 turach rozgrzewki każdego bota |152 odpowiedzi, 0 błędów HTTP/decyzji, RSS 71,73 MiB, p95=51,83 ms|
 
-W karczmie opublikowano pytanie o rudę i handel. Odpowiedział **Brann z Kopalni**, powołując się na zapisaną zmianę oręża. To rzeczywista odpowiedź schedulera, nie wpis przygotowany przez test. Dawna treść wiadomości zachowuje historyczny zapis UTC; nowe wiadomości używają czasu polskiego. Publiczny autor i tytuł nie odsłaniają technicznego `colony-bot-N`.
+W 20-sekundowym oknie kolejka wykonała 24 zaplanowane aktywne boty. Nie oznacza to zagubienia pozostałych kont ani 250 tur/s; respektuje sesje i kadencję. Pomiar obejmuje serwer/kolejkę/HTTP, bez przeglądarki i przygotowania danych. Był wykonywany obok innych lokalnych prób, więc nie służy do porównywania małych różnic wydajności między rewizjami.
 
-Sześć ekranów (kolonia, kupiec, trening, polowanie, karczma i wspólnota) sprawdzono przy 1366, 390 i 320 px: 18 odpowiedzi HTTP 200, bez poziomego przepełnienia. [Dowody sesji i GUI](reports/gra-solo-gui-2026-11-08.json), [odświeżone zrzuty](SCREENSHOTS.md).
+[CI wydania](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831) przeszedł w całości: Python 3.12/3.13, PostgreSQL, rzeczywista współbieżność, mieszane obciążenie ludzi/botów, macierz buildów, prawdziwa Bariera, dokumentacja i obraz produkcyjny.
 
-## Odtworzone przeszkody i poprawki
+## Jak czytać czas i postęp
 
-| Obszar | Obserwacja podczas gry | Zmiana |
-| --- | --- | --- |
-| Pierwszy zakup | Zardzewiały miecz znaleziono dopiero na czwartej stronie kupca. | Filtry nazwy, kategorii, typu broni, sakwy i wymagań; skrót do osiągalnej broni. Towar i plecak mają niezależne strony. |
-| Łucznik | Zakupy zapasów wymagały osobnego kliknięcia każdej sztuki. | Zakup 1–100 sztuk amunicji/zapasów, z pełną ceną i walidacją serwera. Sprzęt nadal pojedynczo. |
-| Build fizyczny | Cztery umiejętności wpływały na walkę, ale nie miały normalnego treningu. | Lekcje 1–10 punktów za własne PN i rudę, do 100%. Weterani botów mogą uczyć się po finale. |
-| Czytelność rozwoju | Stały nagłówek rozdziału I i ogólne instrukcje po wykonaniu prologu. | Faktyczny etap, pasek PD, najbliższe odbiory/cele/PN i powiadomienie o poziomie. |
-| Ryzyko polowania | Brak diagnozy amunicji, many i własnego potencjału. | Odczytowa prognoza HP, wyjaśnienie braków i odsyłacze. Ryzykowna walka pozostaje dozwolona. |
-| Mieszkańcy | Techniczne loginy w karczmie i błędne maksimum HP w życiu kolonii. | Imiona publiczne, zgodne maksimum zdrowia i pięć rzeczywistych ostatnich akcji na stronie kolonii. |
+Macierz buildów zna cele, wybiera kupca NPC i nie konkuruje na targu/PvP. Osobisty postęp jest zdobywany, ale globalna Bariera jest w niej zewnętrznym zdarzeniem po podstawowej ścieżce. Nie mierzy oczekiwania społeczności. Otrzymano 2,16–5,43 wirtualnych dni do badanego celu, zależnie od drogi, bez czasu wyścigu całego serwera.
 
-## Symulacje rozwoju
+Osobna pełna próba trzech kont rzeczywiście zdobywa poziom wspólnoty i pokonuje Śniącego, dlatego jej 17 dni nie można dodać ani bezpośrednio porównać do czasów macierzy. Modele przesuwają zegar regeneracji/timerów, a operację szacują na 10 sekund. Nie jest to pomiar aktywnego klikania człowieka. Nie przechodzą wszystkich 400 regionalnych stopni.
 
-`python manage.py simulate_release --report /tmp/nowa-proba.json` obejmuje testy i scenariusze, w tym trzy zwykłe buildy w dwóch strategiach finansowania z `characters.playtest_scenarios` oraz model tempa z `characters.playtest_pacing`. Aktualną listę testów i liczbę zapisanych scenariuszy zawiera wygenerowany raport. Ta wolniejsza symulacja jest uruchamiana jawnie, poza standardowym wykrywaniem testów.
+## Odtwarzanie bez długiego pełnego audytu
 
-Wojownik Starego Obozu, łucznik Nowego Obozu i mag Bractwa zaczynają od normalnych parametrów. Używają formularzy zakupów, treningu, polowania, wypraw i awansu; wyposażenie, sprzedaż i regeneracja korzystają ze zwykłych serwisów. Za zasoby płacą sami. Trzej botowi współmieszkańcy równolegle wykonują normalne tury. Bez nadania XP, statystyk, przedmiotów i walut; bez podmieniania wyników walk.
-
-| Build | Zweryfikowana droga |
-| --- | --- |
-| Wojownik | Poziom 6, rozwijana siła i broń jednoręczna, zmieniane kupowane miecze, co najmniej 10 polowań. |
-| Łucznik | Poziom 6, rozwijana zręczność i łuki, paczki właściwej amunicji, co najmniej 10 polowań. |
-| Mag | Poziom 6, zdobyte próby Zbieracza i Nowicjusza, mana, kupiony krąg i runa Uderzenia wiatru, co najmniej 10 walk z magią. |
-
-Osobno: pełna kampania gracza do poziomu 30, finał trzech obozów botów, dalsze warty i kuźnia tych samych zarobionych postaci, zakup rzeczywistej oferty bota oraz kontrolowana macierz dziewięciu walk z bossami. Ta ostatnia używa nadanych buildów i jest wyraźnie oznaczona jako syntetyczna. Próby nadużyć obejmują m.in. podwójne nagrody, zmienioną cenę, cudze przedmioty, brak zasobów, fałszowane parametry, przekroczenie 100% i niedozwolone ilości zakupu.
-
-[Pełny raport](reports/gra-solo-buildy-petla-2026-11-08.json) zawiera wyniki konkretnego uruchomienia. Kampania przesuwa zegar po 30 minut, trzy buildy po 15 minut na krok. **Symulowane godziny nie są czasem klikania ani oszacowaniem czasu przejścia.** Przykładowo scenariusz kampanii trenuje po jednym punkcie z osobnym półgodzinnym krokiem, a gracz może trenować dziesięć naraz. Dokładna ścieżka i łupy zależą też od pory roku/dnia oraz losowości.
-
-## Ocena grywalności i granice
-
-Podstawowa pętla daje widoczny przyrost siły: praca/zlecenie → zakup i wyposażenie → mocniejszy przeciwnik → PN/łup → rozwój postaci i obozu. Wszystkie trzy kierunki da się utrzymać za zarobione zasoby. Powtarzalne zlecenia są bezpiecznym źródłem finansowania, a polowania dają powód do wymiany sprzętu. Finał pozostawia dalsze cele. Boty faktycznie awansują i zużywają zasoby w tym samym świecie; nie są samymi animowanymi licznikami.
-
-Wersja nadaje się do rozpoczęcia lokalnej gry solo. To nadal nie jest dowód jakości na poziomie produktu komercyjnego: krótkie regułowe rozmowy są powtarzalne, zlecenia czasowe mają podobny schemat, a walka rozstrzyga się automatycznie. Najbardziej wartościowe kolejne kierunki to większe zróżnicowanie reakcji karczmy na faktyczne osiągnięcia, dłuższe obozowe cele społeczne oraz pomiar gospodarki i retencji przez wiele dni. Nie należy stroić wszystkich nagród wyłącznie pod jeden automatyczny skrypt.
-
-Pełna regresja lokalna: 386 testów, 12 pominiętych świadomie przez wymagania PostgreSQL/produkcji. Oddzielny job CI wykonuje regresję PostgreSQL i rzeczywiste współbieżne żądania. [Pomiar 100 botów](reports/gra-solo-sto-botow-2026-11-08.json) jest osobną krótką próbą zasobów, nie dowodem wielodniowej stabilności rynku.
-
-## Rozbudowa po próbie — 8 listopada 2026
-
-44 zlecenia w sześciu kategoriach różnią się proporcjami czasu, energii, rudy i PD. Dziennik ma filtry, strony oraz osobne zakończenia, a przyjęta treść pozostaje stała. Pięć rzadkości wyposażenia ma własne gotyckie ramy i plakietki. [Ponowna symulacja: 138 scenariuszy](reports/zlecenia-buildy-petla-2026-11-08.json), [GUI i rzeczywiste nowe zlecenie](reports/zlecenia-rzadkosc-gui-2026-11-08.json). To większy wybór prac czasowych; nie zmienia ich w ręcznie sterowane walki ani rozmowy oparte na modelu językowym.
-
-## Ponowna próba i model tempa — 11 listopada 2026
-
-Pierwsze uruchomienie `simulate_release` odtworzyło dwa błędy: oba scenariusze trzech buildów wybierały obóz przed wymaganym prologiem. Poprawiono je tak, by przechodziły prolog i niezbędne bramki własnej frakcji zwykłymi formularzami. Nie dopisują ukończonych questów ani nie nadają zasobów. Błąd testu lokalnego serwera polityk wymagał osobno uruchomienia z dostępem do localhost.
-
-Dodano osiem scenariuszy `characters.playtest_pacing`. Każdy tworzy świeżą postać i przechodzi obecną kampanię wojownikiem, płacąc zarobioną rudą. Zegar przesuwa się o 10 sekund na próbę akcji oraz o rzeczywiste timery i czas regeneracji; nie dodaje 30 minut do każdego kliknięcia. Porównuje kopalnię, zakup pancerzy i napoje za zarobione odłamki oraz finansowanie zleceniami. Osobny wariant ma godzinę gry dziennie i regenerację podczas przerw. Sesje nie wykorzystują prawdziwego zapisu.
-
-| Strategia modelu | Kolonia: obecna fabuła + osobisty finał | Khorinis: obecna kampania mieszkańca |
-|---|---:|---:|
-| Kopalnia i broń, bez itemshopu, ciągła sesja | 23,16 h | 11,24 h |
-| Ta sama droga, godzina dziennie | 12. sesja / 12. dzień kalendarzowy | 6. sesja / 6. dzień kalendarzowy |
-| Kopalnia + kolejne pancerze + zarobione napoje | 32,15 h | 10,36 h |
-| Finansowanie zleceniami + pancerze + zarobione napoje | 12,00 h | 6,50 h |
-
-Są to **godziny czasu świata z oczekiwaniem**, nie godziny samego klikania ani obietnica czasu dla każdego gracza. Wszystkie warianty znały cele, trenowały siłę i korzystały z NPC, bez awansów rang oraz handlu łupami. Brak konkurencji rynku. Zwyciężyły we wszystkich swoich walkach. Drogi kończą się na poziomach 30–31 w Kolonii (310 siły) i 26–27 w Khorinis (240 siły); to mocni wojownicy względem obecnej kampanii, a nie maksymalne postacie. Pełne 100 stopni wart, wszystkie rzadkości, rozwój wspólnot i przyszła fabuła NK nie są objęte tym czasem. Nie ma skończonego czasu na zebranie każdego losowego łupu.
-
-Wyniki pokazują praktyczny problem: koncentracja wyłącznie na kopalni i kupowanie każdego kolejnego pancerza mogą wydłużyć drogę, bo zużywają energię na zarobek. Warto mieszać fabułę, dochodowe zlecenia i znalezione wyposażenie. W modelu zleceń Kolonia kupiła 5 napojów energii i 12 zdrowia, Khorinis 5 energii i 7 zdrowia, wyłącznie za uzyskane odłamki. Dzienne ograniczenie energii nadal obowiązuje. Nie zmieniano globalnych nagród na podstawie jednej strategii.
-
-### Poprawki UX po próbie
-
-- Itemshop ukrywa przedmioty innego świata, wyjaśnia każdy niedostępny zakup i pokazuje cenę na przycisku. Te same warunki obsługują zakup i boty. Ponowienie zakupu pozostaje idempotentne; pełny zasób nie pobiera opłaty.
-- Khorinis ma właściwą etykietę gry, kupca, kartę mieszkańca, powrót do wyspy i odsyłacz do własnej kampanii. Zakończenie warty prowadzi do zleceń i jawnie opisuje brak dalszego NK.
-- Karta postaci na telefonie startuje zwinięta. Nadal widać poziom, energię i zdrowie; natywny przycisk rozwija wszystkie atrybuty. Na komputerze startuje otwarta. Bez JavaScript pozostaje otwarta.
-- Rejestracja zapowiada konto, wybór świata i pięć slotów; cel treningu w dzienniku ma bezpośredni odsyłacz do nauczyciela.
-
-[Raport z aktualnego uruchomienia](reports/grywalnosc-2026-11-11.json) rozdziela przejścia, model czasu i GUI. Jego sekcja kompletności potwierdza, że **pełnego G2 NK nadal nie ma**; dokładny zakres i brakujące etapy opisuje [audyt Khorinis](KHORINIS.md).
-
-## Rozwój po połączeniu — #31, 11 listopada 2026
-
-[Raport źródłowy](reports/balans-po-polaczeniu-2026-11-11.json) porównuje cztery organiczne ścieżki wojownika. Weteran zdobywa kampanię przed połączeniem, nowa postać zaczyna już w połączonym świecie. Połączenie jest fixture otoczenia, bez nadawania postaci statystyk. Zlecenia, treningi, wyposażenie NPC i itemshop zużywają rzeczywiście zarobione zasoby. Zegar startuje 11 listopada o 09:00 czasu polskiego; kalendarz świata działa przy zmianie dnia.
-
-| Droga od poziomu 0 | Próg 30 | Poziom 35 | Poziom 40 |
-| --- | ---: | ---: | ---: |
-| Weteran Kolonii | 11,26 h (poziom 31) | 25,14 h | 45,26 h |
-| Nowy mieszkaniec Kolonii po połączeniu | 11,54 h (poziom 31) | 25,45 h | 45,56 h |
-| Weteran Khorinis | 13,47 h | 22,66 h | 42,35 h |
-| Nowy mieszkaniec Khorinis po połączeniu | 15,61 h | 24,96 h | 44,24 h |
-
-To godziny czasu świata z oczekiwaniem, nie samego klikania. Różnice obejmują dostęp do wspólnego wyposażenia i kalendarz. Na 35/40 wszystkie cztery ścieżki pokonały smoka w rzeczywistej płatnej walce. Osobne 25 prognoz z różnymi ziarnami na każdym zdobytym zestawie również dało zwycięstwa; prognozy nie wypłacały nagród.
-
-Trzy zwykłe buildy (wojownik, łucznik, mag) sprawdzono do poziomu 6 z faktycznymi atakami i kosztem amunicji/many. Trzy boty obozowe zdobyły kampanię oraz grały dalej w połączonym świecie. Nie jest to pomiar trzech buildów endgame. Pełne NK, premium, wszystkie warty i konkurencja rynku pozostają poza tym pomiarem. Brak podstaw do resetu lub limitowania dorobku; liczbowych nagród i statystyk nie zmieniono.
-
-Chromium przeszedł rejestrację, wybór Khorinis, prolog, zakup i założenie broni, polowanie, frakcję i zakup napoju za zdobyte odłamki; następnie utworzył postać Kolonii. 24 widoki (dwa regiony, cztery strony, 320/390/1440 px) nie wykazały przewijania poziomego, brakujących obrazów ani błędów JS. Wszystko na osobnej bazie.
-
-## Krótkie, rozdzielone pakiety symulacji
-
-W aktywnym środowisku wirtualnym zwykłą iterację zaczynamy od:
-
-```sh
+```bash
+python manage.py simulate_builds --case new-archer --report /tmp/ore-archer-01.json
+python manage.py simulate_builds --report /tmp/ore-builds-01.json
+python manage.py simulate_journey --report /tmp/ore-journey-01.json
 python manage.py simulate_release --suite quick --report /tmp/ore-quick-01.json
 ```
 
-Każdy przebieg wymaga nowej nazwy raportu; istniejący plik nie jest nadpisywany. Polecenie zawsze uruchamia oddzielną bazę SQLite, także gdy środowisko operatora wskazuje PostgreSQL. Raport schema2 zawiera wybrany `suite`, rzeczywistą listę testów, scenariusze i wynik.
+Każdy raport wymaga nowej ścieżki. Polecenia tworzą własną tymczasową bazę SQLite, bez dziedziczenia prywatnego PostgreSQL jako świata prób. `simulate_concurrency` osobno wymaga PostgreSQL i prawa utworzenia bazy testowej.
 
-| Pakiet `--suite` | Zakres i zastosowanie |
-| --- | --- |
-| `quick` | Rangi, bramki, nadużycia, podstawowy UX i kontrakt polecenia; bez długich kampanii. Obejmuje także sukcesję i wybór Bractwa; historyczny pomiar #124:42testy/około18s. Bieżący wynik w raporcie #126. |
-| `campaign` | Gracz G1, trzy obozy botów, trzy frakcje Khorinis, boty po połączeniu i trzy wczesne buildy. 5 przypadków, około5min w opisanej próbie; zwykłe zasoby i usługi, bez nadawania postępu. |
-| `pacing` | Osobne modele czasu wojownika, rzeczywiste koszty/regeneracja i wirtualnie przesuwany zegar; nie czekamy fizycznie na upływ godzin świata. |
-| `world` | Osobowości botów, rynek i cykle życia świata. |
-| `full` | Dotychczasowy pełny zestaw symulacyjny plus szybkie kontrole; nadal domyślny dla zgodności starszych wywołań. |
+| `simulate_release --suite` | Zastosowanie |
+|---|---|
+|quick|Kontrakty rang, frakcji, bramek, NK, endgame, wydarzeń i UX, bez długich przebiegów|
+|campaign|Kampania gracza G1, boty obozów, frakcje Khorinis, Jarkendar/NK i sukcesja; część przypadków używa jawnych przygotowanych weteranów|
+|pacing|Modele tempa i kosztów, wirtualne oczekiwanie; nie czas człowieka|
+|world|Osobowości, rynek i dwudobowe sesje|
+|full|Zachowana pełna lista symulacji; nie jest to wszystkie testy repozytorium|
 
-Po zmianie konkretnego modułu uruchamiamy jego testy i `quick`, następnie tylko właściwy pakiet (`campaign`, `pacing` lub `world`). Pełny przebieg symulacyjny pozostaje kontrolą przed wydaniem. **Pełna automatyczna regresja to osobno `python manage.py test --noinput`; `--suite full` nie oznacza wszystkich testów repozytorium.** Rzeczywiste blokady i współbieżność nadal sprawdzamy na PostgreSQL, nie zastępujemy ich SQLite.
+Pełna regresja aplikacji to osobno `python manage.py test --noinput`. Przy poprawce zaczynaj od testów modułu i właściwego pakietu; nie uruchamiaj wszystkich długich dróg po każdej zmianie tekstu. CI dzieli organiczną macierz na 3 grupy.
 
-Długie kampanie botów używają `TransactionTestCase`: planowanie i wykonanie jednej tury mają krótką transakcję jak worker, po turze następuje commit. Cała wielodniowa symulacja nie jest jedną rosnącą transakcją. Zachowano asercje ukończeń, zasobów, łupów, późniejszych wart i kuźni. Kampania trzech obozów na PostgreSQL przeszła w około2min. Preferencje aktorów są jawne i niezależne od przypadkowych sekwencji ID; nie nadają statystyk ani nagród.
+## Rzeczywiste sesje przeglądarkowe i GUI
 
-[Raport pakietów, pełnej regresji i PostgreSQL](reports/pakiety-symulacji-2026-11-11.json) odróżnia wyniki mechaniki sprzed zmiany oprawy od końcowej walidacji pakietów. Czasy zależą od maszyny i obciążenia, nie są obietnicą wydajności serwera ani czasem przejścia gry.
+[Próba 8 XI](reports/gra-solo-gui-2026-11-08.json) bez grantów wykonała prolog, kopalnię z rzeczywistym 15-sekundowym oczekiwaniem, zakup/założenie, meldunki, polowania i naukę, osiągając poziom 1. Bot odpowiedział w karczmie na podstawie zapisanej akcji. Wyniki były punktem wyjścia do filtrów kupca, paczek amunicji, nauki broni, najbliższych kroków i prognoz.
 
-### Scenariusze po sukcesji — #126
+[Kontrola buildów 12 XI](reports/buildy-frakcje-2026-11-12.json) sprawdza magię i formularze w 320/390/1440 px; [wydarzenia 13 XI](reports/wydarzenia-aktualizacje-2026-11-13.json) obejmują kalendarz/odsłony, brak przepełnienia i zwykłe polowanie z CSRF zużywające jeden slot premii. W ponownym audycie usług 13 XI nie wykonano nowej pełnej sesji wizualnej; zachowujemy daty tych dowodów.
 
-Świeży adept magii po połączeniu nie dołącza do rozwiązanego Bractwa: test zaczyna historyczną drogą Starego Obozu do Cienia, zdobywa wymagane15siły i naukę pierwszego kręgu za rzeczywiste PN/rudę, kupuje Ognisty pocisk. To wczesny build do poziomu6, nie pełna kampania maga. Trzy dotychczasowe obozy botów dołączają przed zewnętrznym globalnym wydarzeniem, a następnie korzystają z sukcesji i jednorazowego wyboru Bractwa. Test wymaga ukończenia kampanii i dalszych zwykłych aktywności. Samo zwycięstwo całej wspólnoty nie jest odgrywane w tej symulacji.
+## Poprawki i pozostałe ograniczenia
 
-### Osiem rang zdobytych od nowej postaci — #127
+Nowsze próby wykryły m.in. brak wspólnego zapasu oddzielnie kupionych zwojów G1, dwa odczyty wydarzeń na liście zleceń oraz test zakupowej tury zależny od rzeczywistej godziny sesji. Poprawiono je bez osłabiania limitu zapytań ani zmiany godzin aktywności botów. [Rejestr poprawek](BUG_AUDIT.md).
 
-Model wojownika z normalnie zarobionymi zasobami/PN, sprzętem NPC i itemshopem wyłącznie za zdobyte odłamki osiągnął rangę8/poziom45po80,35hczasu świata. Obejmuje to9,15hmodelowych operacji (także prób niedostępnych akcji),45,42hregeneracji i25,79htimerów. To nie jest80haktywnego klikania ani pomiar czasu człowieka. W wariancie godziny dziennie cel osiągnięto w34.dniu kalendarza. Strategia najpierw kończy kampanię, potem zdobywa rangi — sprawniejsza gra równoległa może być krótsza. Brak konkurencji rynku i botów, brak pełnego G2NK/Jarkendaru. Globalne połączenie jest zewnętrzną fiksturą, nie nadaniem progresji aktorowi.
+Przejścia potwierdzają wykonalną progresję i trwały stan, nie subiektywną satysfakcję. Nie zweryfikowano wszystkich kombinacji broni/wyborów, 400 głębokości, wielotygodniowego rynku 250 botów ani pełnej retencji ludzi. Walka jest automatyczna, rozmowy botów regułowe, a część źródłowych efektów NK nieaktywna. Dalsze cele: [roadmapa](ROADMAP.md).
 
-Przygotowany bot poziomu45 zdobył cztery nowe rangi przez zwykłe decyzje i usługi w176turach; jego początkowe statystyki/sprzęt są jawnie syntetyczną fiksturą, a dwugodzinny krok nie jest pomiarem czasu gry. To test autonomii, nie drugie organiczne przejście.
-
-[Raport ośmiu rang, PostgreSQL, kopii zapisu i GUI](reports/osiem-rang-2026-11-12.json). Dziewięć widoków w szerokościach320/390/1440 bez poziomego przewijania i błędów JS. Próba formularza awansu korzysta z jawnie przygotowanych celów; odrębny scenariusz zdobywa cele prawdziwymi akcjami.
-
-### Publiczny Jarkendar — #33
-
-[Przebieg i ograniczenia](JARKENDAR.md): organiczny wojownik od zera i pięć przygotowanych frakcji botów; osobno 18 widoków GUI, blokady usług/URL oraz rzeczywisty równoczesny odbiór portalu na PostgreSQL. To początkowa wyprawa, nie pełne NK ani pełny test trzech buildów.
-
-## Wyprawa NK — #32
-
-[Nowy zakres i ograniczenia](GOTHIC_II_CONTENT.md): model wojownika od zera do finału Irdorath, realne koszty i dostawy, osobne przygotowane buildy oraz GUI. To nie pomiar zachowania człowieka ani dowód implementacji wszystkich oryginalnych zadań.
+Starsze raporty tempa, rang i pierwszych paczek pozostają w `docs/reports/` z datami. Ich ograniczenia opisują tamtą próbę, a nie brak mechaniki wdrożonej później.

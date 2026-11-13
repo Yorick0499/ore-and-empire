@@ -1,6 +1,8 @@
 # Opcjonalne lokalne polityki AI (#28)
 
-**Domyślnie działają boty regułowe baseline-21.** Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment `ollama-1` jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+**Domyślnie działają boty regułowe baseline-24.** Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment `ollama-1` jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.
 
 ## Co model może wybrać
 
@@ -21,7 +23,7 @@ Adapter wymusza 0 warstw GPU i dwa wątki inferencji, kontekst 4096 i maksymalni
 
 ## Audyt i replay
 
-Obserwacje/rekordy mają schemat 22. Reguły to baseline-21; wersje 7–21 są odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. `BotDecision.policy_snapshot` zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.
+Obserwacje/rekordy mają schemat 23. Reguły to baseline-24; historyczne wersje pozostają odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. `BotDecision.policy_snapshot` zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.
 
 Replay weryfikuje listę wyborów i hash na podstawie zapisanej obserwacji oraz zamrożonej baseline-18. **Nie pyta ponownie modelu**. Status `forced-rules` oznacza obowiązkową decyzję reguł, `accepted` poprawny wybór modelu, `fallback` błąd, a `budget-or-cooldown` brak dostępnego budżetu. Sam napis `ollama-1` nie znaczy, że każdą akcję wybrał model.
 
@@ -43,10 +45,14 @@ Polecenie tworzy dwie osobne kopie jednego syntetycznego zapisu: trzy boty, 100 
 | Nieudane akcje | 0 | 0 |
 | Wybory modelu | 0 | 8 |
 
-W obu wariantach różnica uzgodnienia ledgeru rudy/odłamków wynosiła zero. Model przesunął aktywność w stronę zasobów, ale kosztował więcej czasu i uzyskał mniej PD. Wynik nie uzasadnia włączenia go domyślnie. Boty regułowe pozostają właściwym domyślnym wyborem dla stu mieszkańców.
+W obu wariantach różnica uzgodnienia ledgeru rudy/odłamków wynosiła zero. Model przesunął aktywność w stronę zasobów, ale kosztował więcej czasu i uzyskał mniej PD. Wynik nie uzasadnia włączenia go domyślnie. Domyślna populacja obecnej gry wynosi 125+125 botów i nadal korzysta z reguł; powyższy raport zachowuje zakres eksperymentu z 7 XI.
 
 [Osobny staging](reports/ai-budzet-po-restarcie-2026-11-07.json) wykonał dwie rzeczywiste, poprawne decyzje modelu na trzech aktywnych botach. Restart workera zachował licznik 2/2 i nie odnowił limitu. Po próbie procesy testowe zatrzymano. Testy automatyczne używają małego kontrolowanego serwera HTTP, nie pobierają modelu; sprawdzają timeout, złośliwe indeksy/pola, przekierowania, sekrety, replay, fallback oraz budżet po restarcie.
 
 Źródło protokołu: [Ollama — lokalne chat API](https://docs.ollama.com/api/chat).
 
 Porównanie `benchmark_policies` wymusza ograniczoną liczbę aktywnych tur: pomija sesje i symulowane zakupy premium, aby porównywać decyzje przy tym samym czasie gry. Osobny scenariusz 48 godzin w `simulate_release` respektuje prawdziwe sesje i rejestruje symulowane zakupy jako oddzielne źródło.
+
+## Bieżący świat
+
+Eksperyment nie zastępuje osobnych testów sukcesji, NK, regionalnych wart i wydarzeń. Wynik historycznego porównania trzech botów nie potwierdza zachowania całej populacji 250 ani wszystkich później dodanych mechanik. [Bieżące testy i ograniczenia](SOLO_PLAYTEST.md).

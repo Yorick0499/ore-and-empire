@@ -27,7 +27,7 @@ cofnięcie całej aktualizacji wymaga uprzedniej kopii.
 ## Procedura lokalna SQLite
 
 1. Zatrzymaj grę i boty przed aktualizacją. Zrób prywatną, spójną kopię SQLite
-   przez sqlite3.Connection.backup (nie kopiuj działającego pliku bez WAL).
+   przez sqlite 3.Connection.backup (nie kopiuj działającego pliku bez WAL).
    Baza zawiera dane kont i hashe haseł — nie umieszczaj jej w repozytorium.
 2. Zastosuj aktualizację najpierw do oddzielnej kopii bazy. Uruchom
    `python manage.py migrate` i `python manage.py check`.
@@ -44,3 +44,7 @@ Test regresyjny rzeczywiście cofa schemat do 0009, tworzy poprawne i nieprawid�
 rekordy, migruje do bieżącej wersji i sprawdza zachowanie dorobku, ponowienie oraz
 aktywność ograniczeń. Osobny przypadek obejmuje częściową aktualizację do 0010.
 Dla przyszłego PostgreSQL nadal wymagane są jego testy i narzędzia backupu (#19).
+
+## Obecny punkt odniesienia — 13 XI 2026
+
+Powyższy opis zachowuje historię konkretnej zmiany; nie jest instrukcją bieżącego wdrożenia. Dziś działają dwa początki, jednorazowe połączenie, pięć frakcji, NK, regionalny endgame i wydarzenia, z PostgreSQL i kopiami do 0054. Aktualne procedury: [operator](public/OPERATOR_GUIDE.md), [kopie](BACKUPS.md), [roadmapa](ROADMAP.md).
