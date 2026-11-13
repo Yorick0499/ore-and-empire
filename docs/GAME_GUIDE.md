@@ -38,7 +38,7 @@ Sześć slotów: broń, pancerz, amulet, dwa pierścienie i pas. Po zakupie zał
 
 Walki rozstrzygają się automatycznie. Umiejętność broni do 100% daje szansę krytyka, a typ obrażeń trafia we właściwą ochronę. Łuk/kusza zużywa jedną strzałę/bełt na całe starcie — to reguła adaptacji. Przeczytaj prognozę zdrowia i mechaniki bossa. Rany, energia, amunicja, mana i nagrody są rzeczywiste; ryzykowna walka nie jest obietnicą zwycięstwa.
 
-Runa jest wielokrotna, wymaga szkoły, kręgu i pełnej many rzutu. Zwój wymaga 1 many i jednej sztuki za rzut. Oddzielne dostępne egzemplarze tego samego typu tworzą zapas walki; dodatkowe wystawione/chronione rzeczy są pomijane. Po wyczerpaniu czaru postać walczy pięściami; przed kolejną walką możesz wyłączyć przygotowanie. [Magia i 11 czarów](MAGIC.md).
+Runa jest wielokrotna, wymaga szkoły, kręgu i pełnej many rzutu. Zwój wymaga 1 many i jednej sztuki za rzut. Oddzielne dostępne egzemplarze tego samego typu tworzą zapas walki; dodatkowe wystawione/chronione rzeczy są pomijane. Po wyczerpaniu czaru postać walczy pięściami; przed kolejną walką możesz wyłączyć przygotowanie. [Magia, 14 czarów i sześć run Wody](MAGIC.md).
 
 Łup ma stałą rzadkość: Niewykończony → Mistrzowski → Nasycony magią → Runiczny → Pradawny. Kuźnia osobno podnosi przekucie do +3 za rudę i pył, z pewnym powodzeniem. Nie podnosi rzadkości. Zabezpiecz cenny sprzęt przed sprzedażą, rozbiórką i dostawą. [Wyposażenie](EQUIPMENT.md) · [Łupy i koszty kuźni](LOOT_AND_ENDGAME.md).
 

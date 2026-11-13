@@ -12,6 +12,8 @@ class Command(BaseCommand):
     def handle(self,*args,**options):
         from characters.gear_loot import seed_gear
         seed_gear()
+        from characters.magic import seed_water_runes
+        seed_water_runes()
         definitions = [
             ('queen-trophy','Odłamek pancerza królowej','quest',0,{'tradeable':False,'merchant':False,'stackable':True}),
             ('swamp-trophy','Kieł prastarego węża','quest',0,{'tradeable':False,'merchant':False,'stackable':True}),

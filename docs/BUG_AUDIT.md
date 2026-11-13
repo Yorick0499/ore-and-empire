@@ -2,6 +2,10 @@
 
 Stan bieżących testów: [audyt 13 XI](SOLO_PLAYTEST.md). Poniższe sekcje 6–9 XI są historią wykrytych błędów i nie opisują dzisiejszych limitów/wersji.
 
+## 13 XI — runiczny mag Wody (#150)
+
+Trzy podstawowe runy na sześć kręgów pozostawiały lukę przed awansem: Bryła lodu 40 nie przebijała magicznej ochrony 50 lodowego golema. Starsza macierz dopuszczała zakup zwojów. Dodano runy II/IV/VI i mocniejsze wersje szkolne I/III/V; zwoje zachowują obrażenia. Przejście Nowego Obozu od zera przez NK/rangę8/warty ma teraz zakaz kupowania zwojów. Bot nie kupuje ponownie posiadanej wyższej runy, gdy do aktualnego celu wybiera bezpieczniejszy niższy krąg; rozpoznaje też lepszą runę NK tego samego VI kręgu. [Wyniki i ograniczenia](reports/mag-wody-runy-2026-11-13.json), [parametry](MAGIC.md).
+
 Historyczny przegląd 6 XI obejmuje transakcje, duży plecak, odbiór nagród, boty dystansowe, kampanię i grę po finale. Scenariusze wykonano na izolowanych bazach; zapis użytkownika i hasła administratorów nie służą jako dane testowe. Zadanie: [#69](https://github.com/Yorick0499/ore-and-empire/issues/69).
 
 ## Potwierdzone błędy i poprawki

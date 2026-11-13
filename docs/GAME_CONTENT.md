@@ -15,7 +15,7 @@ Tabele obejmują także definicje instalowane przy aktywacji Bariery. Pochodzą 
 | Bossowie solo | 15 |
 | Rodzime tożsamości rang (gałęzie) | 30 |
 | Wyższe awanse pięciu frakcji | 20 |
-| Zaklęcia działające (nie liczba modeli run/zwojów) | 11 |
+| Zaklęcia działające (nie liczba modeli run/zwojów) | 14 |
 | Zlecenia czasowe | 54 |
 | Definicje zadań jednorazowych | 95 |
 | Receptury | 4 |
@@ -516,19 +516,22 @@ Przyjęcie → rozpoczęcie → wykonanie → odbiór. Część gałęzi wymaga 
 
 ## Zaklęcia
 
-Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. [Nauka, zapasy i odporności](MAGIC.md).
+Tabela pokazuje parametry run. Runy Wody mają osobną ścieżkę I–VI; zwoje Sopla/Bryły/Fali zachowują 20/40/75 obrażeń, a nowe runy szkolne nie mają zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. [Nauka, zapasy i odporności](MAGIC.md).
 
 | Klucz / zaklęcie | Szkoła | Krąg | Mana runy | Obrażenia / typ | Redukcja % | Przerwanie co N rzutów |
 |---|---|---|---|---|---|---|
 | firebolt — Ognisty pocisk | Magowie Ognia | 1 | 4 | 24 / ogień | 0 | — |
 | fireball — Kula ognia | Magowie Ognia | 3 | 8 | 55 / ogień | 0 | — |
 | firerain — Deszcz ognia | Magowie Ognia | 5 | 16 | 100 / ogień | 0 | — |
-| thunderbolt — Sopel lodu | Magowie Wody | 1 | 4 | 20 / magia | 25 | — |
-| icecube — Bryła lodu | Magowie Wody | 3 | 7 | 40 / magia | 40 | — |
-| icewave — Lodowa fala | Magowie Wody | 5 | 13 | 75 / magia | 50 | — |
+| thunderbolt — Sopel lodu | Magowie Wody | 1 | 4 | 30 / magia | 25 | — |
+| icecube — Bryła lodu | Magowie Wody | 3 | 8 | 85 / magia | 40 | — |
+| icewave — Lodowa fala | Magowie Wody | 5 | 13 | 175 / magia | 50 | — |
 | windfist — Uderzenie wiatru | Bractwo Śniącego | 1 | 3 | 18 / magia | 0 | 3 |
 | stormfist — Uderzenie burzy | Bractwo Śniącego | 3 | 7 | 42 / magia | 0 | 2 |
 | pyrokinesis — Pirokineza | Bractwo Śniącego | 5 | 11 | 70 / magia | 0 | 2 |
+| waterlance — Lodowa lanca | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
+| thunderball — Piorun kulisty | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
+| chainlightning — Grom | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
 | nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — |
 | nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — |
 

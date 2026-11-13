@@ -2,6 +2,8 @@
 
 Stan 13 XI 2026, po #141. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
 
+Poprawka Wody #150: `new-water` przechodzi teraz całą drogę **bez kupowania zwojów**, z runą każdego kręgu i dalszą runą NK. Wynik: poziom 61, ranga 8, 90 walk magicznych; 4,82 wirtualnego dnia bez oczekiwania na globalną Barierę. Dawna macierz dopuszczała zwoje przeciw odpornościom — jej sukces nie oznaczał wygodnej gry samymi runami. [Parametry i ograniczenia](MAGIC.md), [nowy raport](reports/mag-wody-runy-2026-11-13.json).
+
 ## Wybór własnej drogi
 
 | Początek | Build i podstawowa droga | Wspólnota po Barierze |

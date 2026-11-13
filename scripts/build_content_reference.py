@@ -93,7 +93,7 @@ def build():
     lines += ['## Receptury', '']
     table(lines, ['Produkt', 'Umiejętność', 'Poziom', 'Opłata', 'Składniki'], (
         (r.name,f'{r.discipline} {r.skill}',r.level,r.fee,', '.join(f'{names[i["blueprint"]]} ×{i["count"]}' for i in r.ingredients)) for r in CraftRecipe.objects.order_by('key')))
-    lines += ['## Zaklęcia', '', 'Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. [Nauka, zapasy i odporności](MAGIC.md).', '']
+    lines += ['## Zaklęcia', '', 'Tabela pokazuje parametry run. Runy Wody mają osobną ścieżkę I–VI; zwoje Sopla/Bryły/Fali zachowują 20/40/75 obrażeń, a nowe runy szkolne nie mają zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. [Nauka, zapasy i odporności](MAGIC.md).', '']
     table(lines, ['Klucz / zaklęcie', 'Szkoła', 'Krąg', 'Mana runy', 'Obrażenia / typ', 'Redukcja %', 'Przerwanie co N rzutów'], (
         (f'{s.key} — {s.name}',s.school_name,s.circle,s.cost,f'{s.damage} / {s.damage_name}',s.mitigation,s.stagger_every or '—') for s in ALL_SPELLS))
     lines += ['## Sklep odłamków', '', '17 definicji ofert; region i wymagania ograniczają widoczną ofertę. [Pełne limity i statystyki wyposażenia](BOT_PERSONALITIES.md). Cena dotyczy odłamków, nie pieniędzy ani konta premium.', '']
