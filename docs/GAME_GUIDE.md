@@ -74,7 +74,7 @@ Od poziomu 10 i po połączeniu odbierz „Drogę za portal”, by wejść do pu
 
 Stare Warty za Przełęczą: od poziomu 30 i po dołączeniu, 100 stopni, bez wymogu osobistego finału. Po finale NK, od poziomu 45 i z rozstrzygniętym członkostwem dochodzą cztery regionalne ścieżki po 100 stopni i cel tygodniowy wspólnoty. Regionalnie jest osiem pełnych nagród dziennie; dalsze walki dają postęp/punkty, ale nadal kosztują wpisowe. Cooldown wart jest wspólny. Ranking odnawia się miesięcznie bez kasowania postaci. [Endgame](REGIONAL_ENDGAME.md).
 
-W kalendarzu są sześć świąt, 12 miesięcznych tematów, losowa żyła oraz dwa czterogodzinne okna na odkrytą krainę dziennie. Regionalnie od poziomu 15: do trzech rzeczywiście zwiększonych nagród, 300 dodatkowej rudy i 3000 PD na polski dzień, wspólnie dla regionów. Premie globalne i regionalne stosują maksimum, nie mnożenie; brak nowych odłamków regionalnych. Podróż/restart nie odnawia limitów. Siedem nazwanych odsłon zapisuje odkrycia wspólnoty. [Kalendarz](EVENTS.md) · [Odsłony](WORLD_UPDATES.md).
+W kalendarzu są sześć świąt, 12 miesięcznych tematów, losowe odkrycie oraz dwa czterogodzinne okna na odkrytą krainę dziennie. Każda odsłona świata ma własne nazwy i opisy; przed Barierą Kolonia i Khorinis korzystają z osobnych pul. Regionalnie od poziomu 15: do trzech rzeczywiście zwiększonych nagród, 300 dodatkowej rudy i 3000 PD na polski dzień, wspólnie dla regionów. Premie globalne i regionalne stosują maksimum, nie mnożenie; brak nowych odłamków regionalnych. Podróż/restart nie odnawia limitów. Siedem nazwanych odsłon zapisuje odkrycia wspólnoty. [Kalendarz](EVENTS.md) · [Odsłony](WORLD_UPDATES.md).
 
 ## Kronika, karczma i boty
 

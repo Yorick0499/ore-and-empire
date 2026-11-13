@@ -24,6 +24,8 @@
 
 ## Dowody bieżącego wydania
 
+- [Pule wszystkich etapów: nazwy, zgodność, GUI i 250 botów](reports/pule-etapow-2026-11-13.json).
+
 - [Ponowny audyt 13 XI: dziewięć buildów, prawdziwa Bariera i boty](reports/grywalnosc-wydania-2026-11-13.json).
 - [Dziewięć organicznych dróg i GUI](reports/buildy-frakcje-2026-11-12.json).
 - [Wydarzenia regionalne, siedem odsłon i GUI](reports/wydarzenia-aktualizacje-2026-11-13.json).

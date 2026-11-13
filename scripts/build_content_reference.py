@@ -99,6 +99,27 @@ def build():
     lines += ['## Sklep odłamków', '', '17 definicji ofert; region i wymagania ograniczają widoczną ofertę. [Pełne limity i statystyki wyposażenia](BOT_PERSONALITIES.md). Cena dotyczy odłamków, nie pieniędzy ani konta premium.', '']
     table(lines, ['Oferta', 'Rodzaj', 'Odłamki', 'Poziom', 'Efekt / przedmiot'], (
         (p.name,p.get_kind_display(),p.price,p.level,p.blueprint.name if p.blueprint_id else p.effect) for p in StoreProduct.objects.select_related('blueprint').order_by('key')))
+    from characters.event_narratives import STAGES,ACTIVITIES,ANNUAL_KEYS
+    from characters.calendar_events import ANNUAL
+    lines += ['<a id="event-stage-pools"></a>', '', '## Pule wydarzeń według etapu świata', '',
+              'Każda odsłona ma osobne nazwy i opisy. Przed Barierą Kolonia i Khorinis są osobne; '
+              'później tematykę wyznacza najwyższa odkryta odsłona społeczności. '
+              'Terminy, premie i trwałe klucze pozostają wspólne dla kolejnych wersji tematyki. '
+              '[Zasady przejścia i kalendarz](EVENTS.md).', '']
+    for stage in STAGES:
+        lines += [f'### Pula: {stage.title}', '', stage.summary, '']
+        annual_rows=[]
+        for key,name in zip(ANNUAL_KEYS,stage.annual):
+            _,_,start,end,*_=ANNUAL[key]
+            term=f'{start[1]:02}.{start[0]:02}–{end[1]:02}.{end[0]:02}'
+            annual_rows.append(('Coroczne',term,name))
+        table(lines,['Rodzaj','Termin / wariant','Nazwa lub tematyka'],[
+            *annual_rows,
+            *(('Miesięczne',f'{month:02}: dni 5–9',name) for month,name in enumerate(stage.monthly,1)),
+            *(('Losowe odkrycie',str(n),name) for n,name in enumerate(stage.random,1)),
+            *(({'mine':'Regionalne wydobycie','hunt':'Regionalne polowanie','adventure':'Regionalne zlecenie','boss':'Regionalny boss'}[activity],
+               'motyw + istniejący cel i teren',name) for activity,name in zip(ACTIVITIES,stage.regional)),
+        ])
     lines += ['## Przedmioty, grafiki i endgame', '',
               'Pełne źródłowe rekordy i aktywne ograniczenia: [G1](../characters/data/gothic1-items.json), [NK](../characters/data/gothic2-items.json), [paczki](ITEM_PACKS.md), [grafiki i atrybucja](ASSETS.md). '
               'W grze katalog `/przedmioty/` jest stronicowany. Katalog referencyjny nie oznacza dostępności u kupca ani obsługi wszystkich oryginalnych efektów.', '',

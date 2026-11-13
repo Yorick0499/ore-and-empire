@@ -58,3 +58,9 @@ Harmonogram ma wspólny zapis dnia i wersji. Nie tworzy osobnego timera dla każ
 [Raport](reports/wydarzenia-aktualizacje-2026-11-13.json) obejmuje moduł i regresję, granice DST, restart/podróż, brak nagród z GET, rzeczywisty przebieg Kolonia→Śniący→połączenie→NK→endgame z siedmioma odsłonami i kopią/odtworzeniem, GUI320/390/1440 oraz próbę 250 botów z 750 opłaconymi polowaniami. Próby PostgreSQL ostatniego slotu i równoczesnego odkrycia są w CI. Wynik zdalnego CI jest widoczny w PR; lokalnie brakowało tym razem prywatnego PostgreSQL.
 
 Po scaleniu #141 komplet CI przeszedł, w tym PostgreSQL z równoczesną walką o ostatni slot i wspólnym odkryciem dwóch regionów. [Bieżący audyt wydania](reports/grywalnosc-wydania-2026-11-13.json), [CI](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831). Historyczny raport tej funkcji zachowuje informację, że lokalne binaria PostgreSQL były niedostępne w chwili tamtej próby.
+
+## Nazwy kalendarza dopasowane do każdej odsłony — #144
+
+Osiem pul narracyjnych obejmuje dwa początki sprzed Bariery oraz sześć wspólnych etapów. Każda ma 6 nazw świąt, 12 prac miesięcznych, 3 warianty losowego odkrycia i 4 motywy regionalnych aktywności. Wybór zależy od najwyższej odkrytej odsłony, nie poziomu postaci. [Pełne zasady](EVENTS.md), [wszystkie nazwy](GAME_CONTENT.md#event-stage-pools).
+
+Zmiana odsłony aktualizuje tylko rozpoznane domyślne teksty aktywnych/przyszłych wydarzeń; zachowuje cele, daty, premie, ID i budżety. Ręczne edycje oraz zakończone rekordy pozostają. Rozpoczęte zlecenia i dawne raporty zachowują własne snapshoty. Po połączeniu wspólny harmonogram powstaje również wtedy, gdy synchronizację wywoła postać Khorinis. Nie dodano migracji ani nowego źródła nagród.

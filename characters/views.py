@@ -620,7 +620,8 @@ def events_view(request):
     from .regional_events import context,REGIONS,actions
     from .world_releases import release_cards
     p=request.user.playerprofile if request.user.is_authenticated else None
-    ids=region_ids(p.world_id if p else current_world())
+    world=p.world if p else current_world()
+    ids=region_ids(world)
     now=timezone.now();regional=context(p) if p else None
     rows=list(active_events(now,world_ids=ids,include_regional=True))
     # Identical pre-merge holiday records are one announcement after joining.
@@ -634,7 +635,10 @@ def events_view(request):
     future=list(future_unique.values())[:6]
     from .regional_events import eligible
     upcoming_local=[{'event':e,'region':REGIONS.get(e.region,e.region)} for e in WorldEvent.objects.filter(world_id__in=ids,enabled=True,starts_at__gt=now).exclude(region='').order_by('starts_at','pk')[:16] if p and eligible(p,e)][:8]
-    return render(request,"characters/events.html",{'active':list(unique.values()),'upcoming':future,'regional_events':local,'regional_upcoming':upcoming_local,'regional_budget':regional,'releases':release_cards(p.world if p else current_world())})
+    from .event_narratives import stage_for
+    release_rows=release_cards(world)
+    stage=stage_for(world.universe,{r['key'] for r in release_rows if r['available']})
+    return render(request,"characters/events.html",{'calendar_stage':stage,'active':list(unique.values()),'upcoming':future,'regional_events':local,'regional_upcoming':upcoming_local,'regional_budget':regional,'releases':release_rows})
 
 
 @login_required

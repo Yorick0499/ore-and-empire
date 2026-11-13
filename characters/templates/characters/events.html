@@ -1,8 +1,70 @@
-{% extends 'characters/base.html' %}{% load gothic_media tz %}{% block title %}Ore &amp; Empire — Wydarzenia<section class="colony-panel"><h2 id="regional">Wydarzenia regionalne</h2><p>Dwie czterogodzinne odsłony na dobę w każdej otwartej krainie: od wschodu słońca i od zmierzchu Warszawy. Pula zmienia się wraz z porą roku i rozwojem świata. Aktywności od poziomu 15; dostęp do lokacji nadal sprawdza twoja postać.</p><p>Do 3 podwyższonych nagród regionalnych na postać i polski dzień, wspólnie dla wszystkich regionów. Łącznie najwyżej +300 rudy i +3000 PD dziennie. Do +20% rudy i +25% PD, bez dodatkowych odłamków; z premią globalną obowiązuje maksimum, nie mnożenie. Samo czytanie kalendarza niczego nie przyznaje. Zlecenie rezerwuje premię przy starcie, pozostałe aktywności przy zdobyciu nagrody.</p>{% if regional_budget %}<p>Pozostało: {{ regional_budget.uses }}/3 podwyższone nagrody · limit dodatkowej rudy {{ regional_budget.ore }} · limit dodatkowych PD {{ regional_budget.experience }}.</p>{% endif %}</section>
-<div class="rank-grid">{% for card in regional_events %}<article class="colony-panel"><span class="eyebrow">{{ card.region }} · edycja zasad {{ card.event.rule_version }}</span><h3>{{ card.event.name }}</h3>{% gothic_art card.event.art_key %}<p>{{ card.event.description }}</p><p>{{ card.event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ card.event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p>{% for action in card.actions %}<p><a href="{{ action.url }}">{{ action.label }}</a></p>{% empty %}<p>Najpierw zdobądź dostęp do odpowiedniego szlaku lub odwiedź jego region.</p>{% endfor %}</article>{% empty %}<p>Brak aktywnych regionalnych celów dostępnych tej postaci. Świat zapowiada następne okna poniżej; podstawowe aktywności działają przez całą dobę.</p>{% endfor %}</div>
-<details class="colony-panel"><summary>Następne regionalne okna</summary>{% for card in regional_upcoming %}<section class="colony-panel"><h3>{{ card.event.name }}</h3><p>{{ card.region }} · {{ card.event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ card.event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p></section>{% empty %}<p>Kolejne regionalne cele pojawią się po otwarciu krain i osiągnięciu poziomu15.</p>{% endfor %}</details><h2 id="updates">Aktualizacje żyjącego świata</h2><p>Kolejne odsłony odsłaniają mieszkańcy swoimi osiągnięciami. To historia rozwoju tego serwera: nazwa aktualizacji, zakres i trwała data odkrycia. Nie resetują postaci, nie dają nagród za samo ogłoszenie i nie zastępują twoich własnych przydziałów.</p><div class="rank-grid">{% for release in releases %}<article class="colony-panel"><span class="eyebrow">Aktualizacja {{ release.version }} · {% if release.available %}Odkryta{% else %}Przed nami{% endif %}</span><h3>Ore &amp; Empire: {{ release.title }}</h3>{% gothic_art release.art %}<p>{{ release.notes }}</p>{% if release.available %}<p>Odkrycie: {{ release.released_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}.</p>{% else %}<p>Warunek odsłony: {{ release.requirement }}. Termin zależy od postępu wspólnoty.</p>{% endif %}</article>{% endfor %}</div>{% endblock %}
-{% block content %}<span class="eyebrow">Kalendarz wspólnego świata</span><h1>Wydarzenia i aktualizacje świata</h1><p>Sezony, święta i niespodziewane odkrycia zmieniają nagrody. Obowiązuje najwyższa premia do rudy, doświadczenia i odłamków z aktywnych eventów. Premie wypraw są zapisywane przy starcie; bonusowe odłamki dotyczą zleceń czasowych.</p>
-<details class="colony-panel"><summary>Rytm świata: {{ world_clock.season_name }} · {{ world_clock.name }} — zasady czasu i premii</summary><p>Świat działa w rzeczywistym czasie polskim Europe/Warsaw: automatycznie CET zimą i CEST latem. Świt, poranek, południe, popołudnie, zmierzch i noc wyznaczają wschód i zachód słońca dla Warszawy. Pory roku są meteorologiczne: grudzień–luty zima, marzec–maj wiosna, czerwiec–sierpień lato, wrzesień–listopad jesień.</p><p>Świt, południe i noc: ruda +5%, PD +10%. Poranek, popołudnie i zmierzch: ruda +10%, PD +5%. Każda pora daje premie, żadna nie zamyka lokacji, handlu ani zadań. Event i pora dnia nie mnożą się — dla każdej waluty liczy się najwyższa premia. Zlecenia czasowe zachowują premię z chwili rozpoczęcia; polowania i bossowie z chwili walki, kopalnia z odbioru urobku. Odłamki nie otrzymują premii za porę dnia.</p><p>Co miesiąc od 5. do 9. dnia o 00:00 czasu polskiego trwa wydarzenie sezonowych prac mieszkańców. Są też święta i losowe odkrycia.</p></details><nav class="camp-tabs" aria-label="Kalendarz i odsłony"><a class="colony-button" href="#regional">Wydarzenia regionalne</a><a class="colony-button" href="#updates">Aktualizacje świata</a></nav><h2>Wydarzenia ogólne</h2><div class="rank-grid">{% for event in active %}<article class="colony-panel"><span class="eyebrow">{{ event.get_kind_display }}</span><h3>{{ event.name }}</h3><p>{{ event.description }}</p><p>Ruda: {{ event.ore_percent }}% · PD: {{ event.experience_percent }}% · Odłamki z wypraw: +{{ event.premium_bonus }}</p><p class="requirements">Do {{ event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p></article>{% empty %}<p>Spokojny dzień. Nagrody mają swoje podstawowe wartości.</p>{% endfor %}</div>
-<details class="colony-panel"><summary>Nadchodzące wydarzenia ogólne</summary>{% for event in upcoming %}<section class="colony-panel"><h3>{{ event.name }}</h3><p>{{ event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} · {{ event.get_kind_display }}</p></section>{% empty %}<p>Na razie brak zapowiedzianych wydarzeń.</p>{% endfor %}</details><section class="colony-panel"><h2 id="regional">Wydarzenia regionalne</h2><p>Dwie czterogodzinne odsłony na dobę w każdej otwartej krainie: od wschodu słońca i od zmierzchu Warszawy. Pula zmienia się wraz z porą roku i rozwojem świata. Aktywności od poziomu 15; dostęp do lokacji nadal sprawdza twoja postać.</p><p>Do 3 podwyższonych nagród regionalnych na postać i polski dzień, wspólnie dla wszystkich regionów. Łącznie najwyżej +300 rudy i +3000 PD dziennie. Do +20% rudy i +25% PD, bez dodatkowych odłamków; z premią globalną obowiązuje maksimum, nie mnożenie. Samo czytanie kalendarza niczego nie przyznaje. Zlecenie rezerwuje premię przy starcie, pozostałe aktywności przy zdobyciu nagrody.</p>{% if regional_budget %}<p>Pozostało: {{ regional_budget.uses }}/3 podwyższone nagrody · limit dodatkowej rudy {{ regional_budget.ore }} · limit dodatkowych PD {{ regional_budget.experience }}.</p>{% endif %}</section>
-<div class="rank-grid">{% for card in regional_events %}<article class="colony-panel"><span class="eyebrow">{{ card.region }} · edycja zasad {{ card.event.rule_version }}</span><h3>{{ card.event.name }}</h3>{% gothic_art card.event.art_key %}<p>{{ card.event.description }}</p><p>{{ card.event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ card.event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p>{% for action in card.actions %}<p><a href="{{ action.url }}">{{ action.label }}</a></p>{% empty %}<p>Najpierw zdobądź dostęp do odpowiedniego szlaku lub odwiedź jego region.</p>{% endfor %}</article>{% empty %}<p>Brak aktywnych regionalnych celów dostępnych tej postaci. Świat zapowiada następne okna poniżej; podstawowe aktywności działają przez całą dobę.</p>{% endfor %}</div>
-<details class="colony-panel"><summary>Następne regionalne okna</summary>{% for card in regional_upcoming %}<section class="colony-panel"><h3>{{ card.event.name }}</h3><p>{{ card.region }} · {{ card.event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ card.event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p></section>{% empty %}<p>Kolejne regionalne cele pojawią się po otwarciu krain i osiągnięciu poziomu15.</p>{% endfor %}</details><h2 id="updates">Aktualizacje żyjącego świata</h2><p>Kolejne odsłony odsłaniają mieszkańcy swoimi osiągnięciami. To historia rozwoju tego serwera: nazwa aktualizacji, zakres i trwała data odkrycia. Nie resetują postaci, nie dają nagród za samo ogłoszenie i nie zastępują twoich własnych przydziałów.</p><div class="rank-grid">{% for release in releases %}<article class="colony-panel"><span class="eyebrow">Aktualizacja {{ release.version }} · {% if release.available %}Odkryta{% else %}Przed nami{% endif %}</span><h3>Ore &amp; Empire: {{ release.title }}</h3>{% gothic_art release.art %}<p>{{ release.notes }}</p>{% if release.available %}<p>Odkrycie: {{ release.released_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}.</p>{% else %}<p>Warunek odsłony: {{ release.requirement }}. Termin zależy od postępu wspólnoty.</p>{% endif %}</article>{% endfor %}</div>{% endblock %}
+{% extends 'characters/base.html' %}
+{% load gothic_media tz %}
+{% block title %}Ore &amp; Empire — Wydarzenia{% endblock %}
+{% block content %}
+<span class="eyebrow">Kalendarz świata · {{ calendar_stage.title }}</span>
+<h1>Wydarzenia i aktualizacje świata</h1>
+<section class="colony-panel">
+  <h2>Obecny etap: {{ calendar_stage.title }}</h2>
+  <p>{{ calendar_stage.summary }}</p>
+  <p>Święta, prace miesięczne, odkrycia i regionalne okna mają pule dopasowane do tej odsłony. Po odkryciu następnej odsłony zmieniają się automatyczne nazwy i opisy, bez ponownego losowania aktywnych celów, terminów i nagród. Ręcznie zmienione wydarzenia zarządcy zachowują własne zasady.</p>
+</section>
+<p>Obowiązuje najwyższa premia dla rudy i doświadczenia, bez mnożenia. Premie zleceń zapisują się przy starcie; dodatkowe odłamki dotyczą tylko zleceń, które już je przyznają.</p>
+<details class="colony-panel">
+  <summary>Rytm świata: {{ world_clock.season_name }} · {{ world_clock.name }} — czas i premie</summary>
+  <p>Rzeczywisty czas polski Europe/Warsaw, automatycznie CET/CEST. Sześć pór doby wyznaczają świt, wschód, południe słoneczne i zmierzch Warszawy. Sezony meteorologiczne: grudzień–luty zima, marzec–maj wiosna, czerwiec–sierpień lato, wrzesień–listopad jesień.</p>
+  <p>Świt, południe i noc: ruda +5%, PD +10%. Poranek, popołudnie i zmierzch: ruda +10%, PD +5%. Żadna pora nie zamyka gry. Pora dnia i wydarzenia stosują maksimum; odłamki nie otrzymują premii za porę dnia.</p>
+  <p>Prace miesięczne trwają od 5. do 9. dnia, od polskiej północy. Coroczne święta zachowują terminy, a losowe odkrycia swój trwały rzut daty. Zapowiedzi opisują obecną odsłonę; przyszły rozwój świata może zmienić ich tematykę.</p>
+</details>
+<nav class="camp-tabs" aria-label="Kalendarz i odsłony">
+  <a class="colony-button" href="#global">Wydarzenia ogólne</a>
+  <a class="colony-button" href="#regional">Wydarzenia regionalne</a>
+  <a class="colony-button" href="#updates">Aktualizacje świata</a>
+</nav>
+<h2 id="global">Wydarzenia ogólne</h2>
+<div class="rank-grid">
+{% for event in active %}
+  <article class="colony-panel">
+    <span class="eyebrow">{{ event.get_kind_display }}</span><h3>{{ event.name }}</h3>
+    <p>{{ event.description }}</p>
+    <p>Ruda: {{ event.ore_percent }}% · PD: {{ event.experience_percent }}% · Odłamki ze zleceń: +{{ event.premium_bonus }}</p>
+    <p class="requirements">Do {{ event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p>
+  </article>
+{% empty %}<p>Brak ogólnego wydarzenia. Nadal działają premie rytmu świata i zwykłe aktywności.</p>{% endfor %}
+</div>
+<details class="colony-panel"><summary>Nadchodzące wydarzenia ogólne</summary>
+{% for event in upcoming %}
+  <section class="colony-panel"><h3>{{ event.name }}</h3><p>{{ event.description }}</p><p>{{ event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} · {{ event.get_kind_display }}</p></section>
+{% empty %}<p>Na razie brak zapowiedzianych wydarzeń.</p>{% endfor %}
+</details>
+<section class="colony-panel">
+  <h2 id="regional">Wydarzenia regionalne</h2>
+  <p>Dwie czterogodzinne odsłony na dobę w każdej odkrytej krainie: od wschodu i od końca zmierzchu Warszawy. Tematy zależą od sezonu i etapu świata. Zwykłe aktywności od poziomu 15; lokacje nadal sprawdzają własne bramki. Cel tygodnia wymaga finału NK i poziomu 45.</p>
+  <p>Do 3 faktycznie podwyższonych nagród regionalnych, łącznie najwyżej +300 rudy i +3000 PD na postać/polski dzień we wszystkich krainach. Do +20% rudy i +25% PD, bez dodatkowych odłamków; maksimum z premią globalną. Czytanie nie rezerwuje budżetu. Zlecenie rezerwuje premię przy starcie, polowanie/boss przy wygranej, kopalnia przy odbiorze.</p>
+  {% if regional_budget %}<p>Pozostało: {{ regional_budget.uses }}/3 nagrody · dodatkowa ruda {{ regional_budget.ore }} · dodatkowe PD {{ regional_budget.experience }}.</p>{% endif %}
+</section>
+<div class="rank-grid">
+{% for card in regional_events %}
+  <article class="colony-panel"><span class="eyebrow">{{ card.region }}</span><h3>{{ card.event.name }}</h3>
+    {% gothic_art card.event.art_key %}<p>{{ card.event.description }}</p>
+    <p>{{ card.event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ card.event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p>
+    {% for action in card.actions %}<p><a href="{{ action.url }}">{{ action.label }}</a></p>{% empty %}<p>Najpierw zdobądź dostęp do szlaku lub odwiedź jego region.</p>{% endfor %}
+  </article>
+{% empty %}<p>Brak aktywnych regionalnych celów dostępnych tej postaci. Podstawowe aktywności działają przez całą dobę.</p>{% endfor %}
+</div>
+<details class="colony-panel"><summary>Następne regionalne okna</summary>
+{% for card in regional_upcoming %}
+  <section class="colony-panel"><h3>{{ card.event.name }}</h3><p>{{ card.event.description }}</p><p>{{ card.region }} · {{ card.event.starts_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }} — {{ card.event.ends_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}</p></section>
+{% empty %}<p>Kolejne cele pojawią się po odkryciu krain i osiągnięciu poziomu 15.</p>{% endfor %}
+</details>
+<h2 id="updates">Aktualizacje żyjącego świata</h2>
+<p>Odsłony odkrywają mieszkańcy swoimi osiągnięciami. Nie resetują postaci i nie zastępują osobistych przydziałów. Kolejny etap jest wybierany według najwyższej faktycznie odkrytej odsłony, nie poziomu oglądającej postaci.</p>
+<div class="rank-grid">
+{% for release in releases %}
+  <article class="colony-panel"><span class="eyebrow">Aktualizacja {{ release.version }} · {% if release.available %}Odkryta{% else %}Przed nami{% endif %}</span>
+    <h3>Ore &amp; Empire: {{ release.title }}</h3>{% gothic_art release.art %}<p>{{ release.notes }}</p>
+    {% if release.available %}<p>Odkrycie: {{ release.released_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}.</p>{% else %}<p>Warunek: {{ release.requirement }}. Termin zależy od postępu wspólnoty.</p>{% endif %}
+  </article>
+{% endfor %}
+</div>
+{% endblock %}

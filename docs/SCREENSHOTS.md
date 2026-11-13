@@ -1,6 +1,13 @@
 # Galeria ekranów i wersje ujęć
 
-Stan galerii: 13 XI 2026, **82 ujęcia** w `screenshots/manifest.json`, zestawy z różnych dni/migracji. Najnowsze pokazują wydarzenia/odsłony 0054; starsze zachowują warunki wykonania i mogą zawierać dawne etykiety rang, liczbę botów lub wcześniejszy zakres. Zmiana tekstu dokumentacji nie jest ponownym wykonaniem screenshotu. [Bieżące zasady gry](GAME_GUIDE.md).
+Stan galerii: 13 XI 2026, **86 ujęć** w `screenshots/manifest.json`, zestawy z różnych dni/migracji. Najnowsze pokazują pule etapów świata oraz wydarzenia/odsłony 0054; starsze zachowują warunki wykonania i mogą zawierać dawne etykiety rang, liczbę botów lub wcześniejszy zakres. Zmiana tekstu dokumentacji nie jest ponownym wykonaniem screenshotu. [Bieżące zasady gry](GAME_GUIDE.md).
+
+## Pule zgodne z etapem świata — #144
+
+Cztery nowe ujęcia pokazują Khorinis przed połączeniem i wspólny świat podczas wojny z orkami. To osobna baza, jawna fikstura odkrycia/poziomu 50 i zamrożony czas 6 XI 2026, nie dowód rozwoju postaci. Chromium sprawdził 24 warianty 8 etapów przy 320/390/1440 px bez błędów JS, brakujących obrazów i poziomego przepełnienia. [Raport](reports/pule-etapow-2026-11-13.json).
+
+![Khorinis przed połączeniem — własne święto](screenshots/stage-events-island-390.png)
+![Święto zaopatrzenia podczas wojny z orkami](screenshots/stage-events-orc-war-1440.png)
 
 Najnowszy kalendarz i odsłony:
 
@@ -123,7 +130,7 @@ Aktualne widoki [telefon 390 px](screenshots/bariera-390.png) i [desktop 1440 px
 
 ## Równe rangi — #124
 
-54 ujęcia w manifeście. Nowe ekrany pokazują zgodność starej drogi Wody (390 px) i podstawową straż Khorinis (1440 px). Oddzielna baza 0048; postacie syntetyczne poziomu 25 z maną 55, bez botów. To kontrola GUI, nie organiczna kampania. Dziewięć widoków przy 320/390/1440 bez overflow, błędówJS i brakujących obrazów.
+54 ujęcia w manifeście. Nowe ekrany pokazują zgodność starej drogi Wody (390 px) i podstawową straż Khorinis (1440 px). Oddzielna baza 0048; postacie syntetyczne poziomu 25 z maną 55, bez botów. To kontrola GUI, nie organiczna kampania. Dziewięć widoków przy 320/390/1440 bez overflow, błędów JS i brakujących obrazów.
 
 ![Zachowana droga Wody](screenshots/rank-water-390.png)
 

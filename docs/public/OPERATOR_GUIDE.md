@@ -338,3 +338,5 @@ Po zwycięstwie worker tworzy świeżą kopię i sprawdza odtworzenie. PostgreSQ
 Sukces daje jeden serwer, wspólny rynek/ranking/podróże i pięć następczych frakcji, z zachowaniem danych. Portal Jarkendaru, rejs i osobiste kontrakty nadal trzeba zdobyć. Cztery wyższe rangi, regionalny endgame i siedem odsłon są wdrożone. [Przewodnik gracza](../GAME_GUIDE.md), [pełna droga](../COMPLETE_JOURNEY.md), [rangi](../CAMPS.md), [kalendarz](../WORLD_UPDATES.md).
 
 Przy aktualizacji produkcyjnej po `migrate` uruchom `seed_khorinis`, jeśli wyspa jest otwarta; zawiera Jarkendar/NK i zachowuje edycje operatora. Launcher lokalny wykonuje to przy starcie. Szczegóły [wdrożenia](../PRODUCTION.md) i [kopii 0054](../BACKUPS.md). Bieżący raport opisuje dziewięć organicznych dróg i rzeczywistą aktywację, nie wszystkie mechaniki oryginału ani wielotygodniowy balans.
+
+Kalendarz #144 dobiera osiem pul nazw/opisów do aktualnej odsłony całej społeczności. Automatyczne aktywne/przyszłe teksty odświeża worker i odbiór kamienia milowego; dawne snapshoty, premie i własne edycje pozostają. Aktualizacja nie wymaga nowej migracji, resetu ani drugiego schedulera. [Pełne zasady pul](../EVENTS.md).

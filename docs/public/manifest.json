@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-13",
-  "code_revision": "64a7866 — grywalne wydanie po #141; dokumentacja #142",
+  "code_revision": "pule wydarzeń według odsłon świata / #144 (po #143)",
   "migration": "0054_world_updates_events",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -280,6 +280,7 @@
     "docs/reports/buildy-frakcje-2026-11-12.json",
     "docs/reports/wydarzenia-aktualizacje-2026-11-13.json",
     "docs/reports/grywalnosc-wydania-2026-11-13.json",
-    "docs/reports/dokumentacja-wydania-2026-11-13.json"
+    "docs/reports/dokumentacja-wydania-2026-11-13.json",
+    "docs/reports/pule-etapow-2026-11-13.json"
   ]
 }

@@ -1,0 +1,378 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "issue": 144,
+  "base_revision": "447f8564bf53f3ec9c15102c245db83b56541574",
+  "narrative_version": 1,
+  "migration": "0054_world_updates_events (no new migration)",
+  "pools": {
+    "stages": 8,
+    "annual_per_stage": 6,
+    "monthly_per_stage": 12,
+    "random_per_stage": 3,
+    "regional_themes_per_stage": 4,
+    "periodic_titles_total": 168,
+    "regional_themes_total": 32
+  },
+  "tests": {
+    "calendar_regression": {
+      "run": 46,
+      "skipped_postgresql": 2,
+      "success": true
+    },
+    "final_module": {
+      "run": 14,
+      "skipped_postgresql": 1,
+      "success": true
+    },
+    "broader_regression": {
+      "run": 146,
+      "skipped_postgresql": 8,
+      "success": true
+    },
+    "final_view_check": {
+      "run": 1,
+      "success": true
+    },
+    "final_calendar_and_lock_checks": {
+      "run": 16,
+      "skipped_postgresql": 1,
+      "success": true,
+      "includes_new_stale_scope_and_hot_query_budget_checks": true
+    }
+  },
+  "real_journey": {
+    "success": true,
+    "seconds": 83.97,
+    "result": {
+      "scenario": "complete-earned-journey",
+      "accounts": 3,
+      "initial_level_each": 0,
+      "all_joined_steps_real": true,
+      "nk_contracts": 23,
+      "post_nk_patrols": 3,
+      "regional_patrols": 4,
+      "weekly_strikes": 10,
+      "regional_backup_restore_verified": true,
+      "world_updates": [
+        "foundations",
+        "barrier",
+        "jarkendar",
+        "night",
+        "dragons",
+        "irdorath",
+        "orc-war"
+      ],
+      "level": 58,
+      "world_days": 17.0,
+      "limits": [
+        "Three sequential knowledgeable warrior strategies, not human elapsed time.",
+        "No competing player market/PvP or live 250-bot population in this scenario.",
+        "Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank."
+      ]
+    }
+  },
+  "population_probe": {
+    "schema": 2,
+    "isolated_database": true,
+    "engine": "sqlite",
+    "population": 250,
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "source_sha256": {
+      "characters/bot_scheduler.py": "4eae8aad4573f42672fd3d314e29feef4a0fc9e46b6d3fd9635ac338f48a5e7a",
+      "characters/bots.py": "0d90a42bdaaed924147048f6621027bcdb7717e776ba7b5b8b9a761f7c4fb6f7",
+      "characters/models.py": "2c6b277d1ea3ba95428662eeebce9d50d34ebf5653e25bb80095935bb70912ba"
+    },
+    "realm_populations": [
+      125,
+      125
+    ],
+    "mode": "sessions",
+    "mature_fixture": true,
+    "global_join_fixture": true,
+    "endgame_fixture": true,
+    "duration_seconds": 20.09,
+    "http_requests": 132,
+    "http_errors": [],
+    "started_at": "2026-11-13T12:07:08.673475+00:00",
+    "warmup": "Two forced ordinary decisions per bot before the measured launcher.",
+    "http_p50_ms": 47.69,
+    "http_p95_ms": 138.07,
+    "routes_p95_ms": {
+      "/": 213.98,
+      "/zadania/": 157.93,
+      "/sklep-odlamkow/": 174.98,
+      "/zycie-kolonii/": 138.07,
+      "/wydarzenia/": 127.17,
+      "/warty/?track=khorinis": 143.82,
+      "/wspolnota/": 121.56
+    },
+    "rss_peak_mib": 85.89,
+    "rss_start_mib": 70.61,
+    "rss_end_mib": 85.89,
+    "cpu_percent_one_core": 37.28,
+    "initial_tick_p50_ms": 57.12,
+    "initial_tick_p95_ms": 127.26,
+    "initial_queries_median": 95.0,
+    "initial_actions": {
+      "regional_patrol": 172,
+      "equip": 208,
+      "salvage": 39,
+      "improve": 39,
+      "stock": 32,
+      "sell": 10
+    },
+    "residents_ticked": 25,
+    "ticked_per_realm": [
+      17,
+      8
+    ],
+    "failed_decisions": 0,
+    "last_tick_age_p95_seconds": 34.3,
+    "oldest_last_tick_seconds": 35.45,
+    "limits": [
+      "Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.",
+      "RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.",
+      "HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.",
+      "Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.",
+      "Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii."
+    ],
+    "regional_reward_probe": {
+      "synthetic_windows": true,
+      "paid_ordinary_hunts": 750,
+      "uses": 750,
+      "extra_ore": 0,
+      "extra_xp": 14250,
+      "ore_bound": 75000,
+      "xp_bound": 750000,
+      "ledger_after_fixture": [
+        {
+          "category": "sink",
+          "resource": "ore",
+          "amount": -81300,
+          "entries": 87
+        },
+        {
+          "category": "source",
+          "resource": "ore",
+          "amount": 14058,
+          "entries": 182
+        }
+      ],
+      "limits": [
+        "Ekonomia obejmuje próbę polowań, rozgrzewkę i pomiar; metryki HTTP/RAM tylko okno launchera.",
+        "Syntetyczni weterani i okna; nie wielodniowa gospodarka ani organiczna kampania botów."
+      ]
+    },
+    "validation": {
+      "http_ok": true,
+      "actions_ok": true,
+      "all_residents_ticked": false,
+      "regional_budget_ok": true
+    }
+  },
+  "gui": {
+    "isolated_database": true,
+    "synthetic_world_stages_and_level50_actor": true,
+    "frozen_polish_time": "2026-11-06T10:00:00+01:00",
+    "pages": [
+      {
+        "stage": "colony",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "colony",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "colony",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "island",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "island",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "island",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "barrier",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "barrier",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "barrier",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "jarkendar",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "jarkendar",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "jarkendar",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "night",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "night",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "night",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "dragons",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "dragons",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "dragons",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "irdorath",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "irdorath",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "irdorath",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "orc-war",
+        "width": 320,
+        "scroll": 320,
+        "missing": []
+      },
+      {
+        "stage": "orc-war",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "orc-war",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      }
+    ],
+    "javascript_errors": []
+  },
+  "screenshot_layout": {
+    "isolated_database": true,
+    "synthetic_world_stages_and_level50_actor": true,
+    "frozen_polish_time": "2026-11-06T10:00:00+01:00",
+    "pages": [
+      {
+        "stage": "island",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "island",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      },
+      {
+        "stage": "orc-war",
+        "width": 390,
+        "scroll": 390,
+        "missing": []
+      },
+      {
+        "stage": "orc-war",
+        "width": 1440,
+        "scroll": 1440,
+        "missing": []
+      }
+    ],
+    "javascript_errors": []
+  },
+  "checks": [
+    "validate_content passed including all narrative stages, names and referenced assets",
+    "Django check passed",
+    "No migration drift",
+    "Content reference --check passed using an isolated SQLite despite an invalid external database URL",
+    "git diff --check passed"
+  ],
+  "postgresql": {
+    "local_run": false,
+    "remote_status": "Consult the linked pull request CI; no unconfirmed result claimed.",
+    "new_race_test": "ChapterScheduleRaceTests.test_two_regions_initialize_one_canonical_calendar"
+  },
+  "limits": [
+    "Titles/descriptions only; no new rewards, targets, release gates or event frequency.",
+    "Historical event rows, activity snapshots, ledger facts and manual text/parameter changes remain intact.",
+    "GUI uses synthetic stage discovery and a level50 actor; it is not organic progression.",
+    "The population probe uses prepared veterans, fake active windows, paid hunts and a20-second local measurement.",
+    "No private save was migrated, reset or deployed."
+  ]
+}

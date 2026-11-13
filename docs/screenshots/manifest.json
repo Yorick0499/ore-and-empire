@@ -635,6 +635,38 @@
       "captured_at_utc": "2026-11-13T07:06:49.585418+00:00",
       "fixture": "Prywatna baza, syntetyczny weteran50 po finale NK i aktywne okna czterech krain; zwykły formularz polowania CSRF",
       "theme": "wydarzenia-aktualizacje-137"
+    },
+    {
+      "file": "stage-events-island-390.png",
+      "bytes": 141239,
+      "sha256": "1274ba6325b7102945ae31542c510cf4c6900fd2345bcceffe72926aa02595fa",
+      "captured_at_utc": "2026-11-13T12:16:38.547400+00:00",
+      "fixture": "Osobna baza i syntetyczny czytelnik poziomu50; jawnie ustawiony etap; czas Europe/Warsaw zamrożony na6XI2026; mobilny kadr aktywnego święta, desktop: etap i kalendarz",
+      "theme": "pule-etapow-144"
+    },
+    {
+      "file": "stage-events-island-1440.png",
+      "bytes": 401440,
+      "sha256": "06e8d15988e140befbb78ffc908ec6a6920c68e950d0b734d300af7a1491ba4c",
+      "captured_at_utc": "2026-11-13T12:16:38.548040+00:00",
+      "fixture": "Osobna baza i syntetyczny czytelnik poziomu50; jawnie ustawiony etap; czas Europe/Warsaw zamrożony na6XI2026; mobilny kadr aktywnego święta, desktop: etap i kalendarz",
+      "theme": "pule-etapow-144"
+    },
+    {
+      "file": "stage-events-orc-war-390.png",
+      "bytes": 138597,
+      "sha256": "4579d7a7e99e33a71ca315819d681ce6b520ecf618e647cfd160d59217dca110",
+      "captured_at_utc": "2026-11-13T12:16:38.548332+00:00",
+      "fixture": "Osobna baza i syntetyczny czytelnik poziomu50; jawnie ustawiony etap; czas Europe/Warsaw zamrożony na6XI2026; mobilny kadr aktywnego święta, desktop: etap i kalendarz",
+      "theme": "pule-etapow-144"
+    },
+    {
+      "file": "stage-events-orc-war-1440.png",
+      "bytes": 415900,
+      "sha256": "c59ba3e716079d8cddfd6f2f5440be35c4e5220a928845ed2df39eb9121e9405",
+      "captured_at_utc": "2026-11-13T12:16:38.548952+00:00",
+      "fixture": "Osobna baza i syntetyczny czytelnik poziomu50; jawnie ustawiony etap; czas Europe/Warsaw zamrożony na6XI2026; mobilny kadr aktywnego święta, desktop: etap i kalendarz",
+      "theme": "pule-etapow-144"
     }
   ]
 }
