@@ -87,10 +87,10 @@ class LargeSchedulerTests(SimpleTestCase):
     def test_public_names_remain_distinct_for_two_maximum_populations(self):
         names=[PlayerProfile(pk=n,user_id=1,world_id=1,is_bot=True).display_name for n in range(1,601)]
         self.assertEqual(len(set(names)),600)
-        self.assertEqual(names[0],'Brann')
-        self.assertEqual(names[100],'Brann z Warty')
-        self.assertEqual(names[120],'Brann z Kopalni 2')
-        self.assertEqual(names[220],'Brann z Kopalni 3')
+        self.assertEqual(names[0],'MrocznyKruk')
+        self.assertEqual(names[100],'MrocznyStraznik')
+        self.assertEqual(names[120],'MrocznyMag')
+        self.assertEqual(names[220],'MrocznyZwiadowca')
 
     def test_benchmark_environment_cannot_inherit_a_live_postgres_url(self):
         import os

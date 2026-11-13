@@ -301,17 +301,26 @@ class PlayerProfile(models.Model):
 
     @property
     def display_name(self):
-        names = ("Brann", "Kord", "Mira", "Hagen ze Sztolni", "Ruda", "Silas z Traktu", "Nela", "Jarven", "Falk", "Toran", "Dagna", "Orrik", "Bora", "Velin", "Gerta", "Arvid", "Tessa", "Kurt", "Nordin", "Wolmar")
         if not self.is_bot:
             return self.name or self.user.username
-        name=names[(self.pk-1)%len(names)]
-        group=(self.pk-1)//len(names)
-        if group:
-            name += " z " + ("Kopalni", "Przełęczy", "Bagien", "Kanionu", "Warty")[(group-1)%5]
-            if self.pk>120:
-                # Surnames repeat every 100 IDs (20 names × 5 places), not 120.
-                name += f" {((self.pk-1)//100)+1}"
-        return name
+        prefixes = (
+            "Mroczny", "Krwawy", "Zelazny", "Popielny", "Cichy",
+            "Nocny", "Runiczny", "Wygnany", "Zapomniany", "Bagienny",
+            "Gorniczy", "Burzowy", "Kamienny", "Zloty", "Czarny",
+            "Wilczy", "Stalowy", "Ognisty", "Pradawny", "Nieugiety",
+        )
+        titles = (
+            "Kruk", "Wilk", "Cien", "Lowca", "Wloczega", "Straznik",
+            "Mag", "Skazaniec", "Najemnik", "Kopacz", "Wojownik",
+            "Zwiadowca", "Gryf", "Kiel", "Ork", "Smok", "Golem",
+            "Templariusz", "Banita", "Wedrowiec", "Berserk", "Paladyn",
+            "Msciciel", "Pirat", "Szaman", "Zebacz", "Brzytwiak",
+            "Warg", "Zwiastun", "Ognik",
+        )
+        # Stable public handles; account identifiers and saved progress stay intact.
+        cycle, index = divmod(self.pk - 1, len(prefixes) * len(titles))
+        name = prefixes[index % len(prefixes)] + titles[index // len(prefixes)]
+        return name + (f"_{cycle + 1}" if cycle else "")
 
     @property
     def training_cost(self):
