@@ -1,5 +1,7 @@
 # Monitoring i retencja świata
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 Panel `/zarzadca/swiat/` jest tylko dla superusera. Okno 1–90 dni zaczyna się o północy UTC; domyślnie 7. Eksport JSON ma `schema: 1`. Pokazuje aktywne/odpoczywające/odrzucone/offline boty, PD/h całej populacji, poziomy/rangi, wyniki walk, wykonane/odrzucone akcje, salda przepływów z rozdzieleniem ludzi/botów/admina oraz rzeczywiste ceny i wolumen rynku. Obrót nie jest emisją. Listę ostatnich decyzji ograniczono do 40, ceny do 40 grup, agregaty dzienne do 100 widocznych wpisów. Sumy okna nie mają limitu wierszy. Brak świeżego sygnału to 90 s od ostatniej tury; „blocked” oznacza wyłącznie odrzucenie ostatniej akcji, nie dowód trwałego zakleszczenia.
 
 Schemat decyzji 7 zapisuje przyrost doświadczenia, wersję polityki i powód odpoczynku/odrzucenia. Dane sprzed tego schematu mają PD delta 0 i oznaczenie legacy; nie rekonstruujemy historii z obecnego poziomu. Wykonanie polowania to nie to samo co wygrana: wyniki pochodzą z BattleRecord. `baseline-7` jest zachowaną implementacją polityki. Link przy decyzji odtwarza tylko wybór z zapisanej obserwacji, bez akcji/losowania w świecie. Zewnętrzne i nieznane historyczne polityki są jawnie nieobsługiwane; replay nie próbuje odtwarzać wyniku losowej walki.
@@ -14,4 +16,8 @@ Testy obejmują zgodność sum, replay bez mutacji, idempotencję, rollback arch
 
 ## Odczyt po dodaniu sesji osobowości
 
-Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny `/zycie-kolonii/` uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 22, a polityka domyślna baseline-21; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.
+Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny `/zycie-kolonii/` uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 23, a polityka domyślna baseline-24; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.
+
+## Wspólny serwer i odkrycia
+
+Przed połączeniem wybór regionu ogranicza kontekst raportu; po Barierze wspólna grupa obejmuje oba regiony z zachowaniem pochodzenia. Sukcesja pokazuje bieżące frakcje, nie kasuje rodzimych rang i dawnych faktów. Panel `/zarzadca/bariera/` odrębnie pokazuje wyścig, stan kopii/przejścia i audyt; kalendarz przechowuje trwałe odsłony oraz wykorzystanie regionalnych premii. [Kopie i panel Bariery](BACKUPS.md), [wydarzenia](WORLD_UPDATES.md).

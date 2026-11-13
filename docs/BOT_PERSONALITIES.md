@@ -1,6 +1,8 @@
 # Osobowości, sesje i itemshop
 
-Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-20, schemat obserwacji 21. Dawne polityki 7–19 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-24, schemat obserwacji 23. Dawne polityki 7–23 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
 
 | Osobowość | Sesje na dobę | Minimalny odstęp tur | Preferencja | Szansa zasilenia / blok | Kwota | Limit odłamków / dobę |
 |---|---:|---:|---|---:|---:|---:|
@@ -14,9 +16,9 @@ Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesuni
 
 Godziny rozpoczęcia są indywidualnie przesunięte o wielokrotność 15 minut. Sesje mogą przechodzić przez północ. Obowiązuje **Europe/Warsaw**, CET/CEST; w dobie zmiany czasu rzeczywista długość sesji może różnić się o godzinę, zgodnie z lokalnym zegarem. Widok „Życie kolonii” pokazuje styl, okno gry, ostatnią turę i następną zmianę.
 
-Poza sesją bot nie wykonuje czynności. Regeneracja i czas rozpoczętych wypraw płyną normalnie; nagroda czeka na powrót. Scheduler wybiera aktywne i gotowe do następnej tury postacie, nie nadrabia opuszczonych tur. Odstępy są minimalne: obciążenie, odpoczynek i budżet harmonogramu mogą je wydłużyć. Populacja 100 botów nie oznacza 100 postaci online przez całą dobę.
+Poza sesją bot nie wykonuje czynności. Regeneracja i czas rozpoczętych wypraw płyną normalnie; nagroda czeka na powrót. Scheduler wybiera aktywne i gotowe do następnej tury postacie, nie nadrabia opuszczonych tur. Odstępy są minimalne: obciążenie, odpoczynek i budżet harmonogramu mogą je wydłużyć. Populacja 250 botów nie oznacza 250 postaci online przez całą dobę.
 
-## Symulowane zakupy premium
+## Symulowane zakupy odłamków
 
 Przy aktywnej turze bot ma stabilny rzut w jednym z bloków 00–06, 06–12, 12–18, 18–24 czasu polskiego. Maksymalnie jedno zasilenie na blok i dodatkowy limit dobowy. Restart, retry i powtórzona jesienna godzina nie dają drugiego zasilenia. Pominięte bloki nie są nadrabiane. Człowiek nie otrzymuje takich przelewów.
 
@@ -55,3 +57,9 @@ Limity wspólne na polski dzień: pięć odnowień energii (także z plecaka), p
 Panel zarządcy pozwala przyznać 1–20 nowych egzemplarzy z wybraną rzadkością i przekuciem +0. Materiały nie mogą mieć dodatniej rzadkości. Kronika zachowuje wykonawcę, ilość, rzadkość i ID egzemplarzy; istniejące przedmioty nie zmieniają odmiany.
 
 Migracje 0039–0041 dodają osobowości, ustawienia świata, kategorię zakupów do limitów i migawkę rzadkości/przekucia transakcji. Dawne transakcje mają nieznany wariant; nie zgadujemy ich historii. Historyczny krok 0024 dostał inicjalizację świata historycznym modelem przed domyślnymi kluczami obcymi, aby działały świeże instalacje i odtworzenie dawnych zapisów. W istniejącej bazie nie wykonuje się ponownie. Postęp i hasła nie są resetowane.
+
+## Region i dostęp do oferty
+
+17 to liczba definicji, nie gwarancja 17 dostępnych kart dla każdej postaci. Przed Barierą Khorinis nie kupuje koloniowego sprzętu przez podmienione ID; po połączeniu wspólna oferta nadal sprawdza poziom, regiony źródłowe i wymagania. Limity są osobiste i nie odnawiają się przez podróż ani zmianę aktywnej postaci na tym samym profilu. Odłamki nie są uprawnieniem do Jarkendaru; kont premium nie ma.
+
+Boty wykonują także sukcesję, wybór Bractwa, rangi 5–8, portal, NK i regionalny endgame przez zwykłe płatne usługi. [Gra z botami](LIVING_WORLD.md), [wyniki i ograniczenia prób](SOLO_PLAYTEST.md).

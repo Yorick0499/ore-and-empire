@@ -1,6 +1,14 @@
-# Aktualne zrzuty ekranów
+# Galeria ekranów i wersje ujęć
 
-**Migracja 0043 — równoległe Khorinis:** sześć nowych ujęć (46 w manifeście): wyspa, fabuła, frakcje, Martwa Harpia i dwa wybory postaci. Osobna syntetyczna instalacja 6/12 botów, bez danych prywatnego administratora. Kontrola pięciu stron w 320/390/1440 px oraz rzeczywisty pierwszy quest i odrzucenie formularza po zmianie serwera. [Raport](reports/khorinis-przed-polaczeniem-2026-11-09.json).
+Stan galerii: 13 XI 2026, **82 ujęcia** w `screenshots/manifest.json`, zestawy z różnych dni/migracji. Najnowsze pokazują wydarzenia/odsłony 0054; starsze zachowują warunki wykonania i mogą zawierać dawne etykiety rang, liczbę botów lub wcześniejszy zakres. Zmiana tekstu dokumentacji nie jest ponownym wykonaniem screenshotu. [Bieżące zasady gry](GAME_GUIDE.md).
+
+Najnowszy kalendarz i odsłony:
+
+![Regionalne wydarzenia na telefonie](screenshots/regional-events-390.png)
+![Odsłony wspólnego świata](screenshots/world-updates-1440.png)
+
+
+**Zestaw historyczny 9 XI, migracja 0043 — równoległe Khorinis: ** sześć nowych ujęć (46 w manifeście): wyspa, fabuła, frakcje, Martwa Harpia i dwa wybory postaci. Osobna syntetyczna instalacja 6/12 botów, bez danych prywatnego administratora. Kontrola pięciu stron w 320/390/1440 px oraz rzeczywisty pierwszy quest i odrzucenie formularza po zmianie serwera. [Raport](reports/khorinis-przed-polaczeniem-2026-11-09.json).
 
 ![Khorinis](screenshots/khorinis.jpg)
 ![Fabuła wyspy](screenshots/khorinis-story.jpg)
@@ -22,7 +30,7 @@ Starszy zestaw 37 ujęć z dwóch osobnych światów testowych, każdy ze 100 bo
 
 **8 listopada 2026, migracja 0038:** odświeżono ekwipunek, kuźnię, targ, kupca i porównywarkę wraz z trzema mobilnymi odpowiednikami. Dodano dziennik zleceń i pięć osobnych kart. Motyw `zlecenia-i-rzadkosc-5`. `Zbrojmistrz_Proba` to jawny syntetyczny zestaw do porównania pięciu rzadkości; poziom 30, zasoby i Pradawny +3 nie pochodzą z przejścia. Osobny zwykły gracz testował nowe zlecenie bez nadań. Starsze ekrany zachowują własną datę w manifeście.
 
-**8 listopada 2026, bez nowej migracji:** odświeżono kolonię, kupca z filtrami, nauczyciela z umiejętnościami, polowanie z prognozą, karczmę, życie kolonii i mobilną kolonię. Postać tego zestawu jest zwykłym graczem na poziomie 1, rozwiniętym w przeglądarce bez darów administratora. Motyw `gra-solo-i-buildy-4`.
+**8 listopada 2026, bez nowej migracji: ** odświeżono kolonię, kupca z filtrami, nauczyciela z umiejętnościami, polowanie z prognozą, karczmę, życie kolonii i mobilną kolonię. Postać tego zestawu jest zwykłym graczem na poziomie 1, rozwiniętym w przeglądarce bez darów administratora. Motyw `gra-solo-i-buildy-4`.
 
 **7 listopada 2026, migracja 0037:** odświeżono siedem ujęć — ekwipunek,
 kuźnię Pradawnego +3, targ, porównywarkę oraz trzy odpowiedniki mobilne.
@@ -115,7 +123,7 @@ Aktualne widoki [telefon 390 px](screenshots/bariera-390.png) i [desktop 1440 px
 
 ## Równe rangi — #124
 
-54ujęcia w manifeście. Nowe ekrany pokazują zgodność starej drogi Wody (390px) i podstawową straż Khorinis (1440px). Oddzielna baza0048; postacie syntetyczne poziomu25 z maną55, bez botów. To kontrola GUI, nie organiczna kampania. Dziewięć widoków przy320/390/1440 bez overflow, błędówJS i brakujących obrazów.
+54 ujęcia w manifeście. Nowe ekrany pokazują zgodność starej drogi Wody (390 px) i podstawową straż Khorinis (1440 px). Oddzielna baza 0048; postacie syntetyczne poziomu 25 z maną 55, bez botów. To kontrola GUI, nie organiczna kampania. Dziewięć widoków przy 320/390/1440 bez overflow, błędówJS i brakujących obrazów.
 
 ![Zachowana droga Wody](screenshots/rank-water-390.png)
 

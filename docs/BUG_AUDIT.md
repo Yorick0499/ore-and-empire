@@ -1,6 +1,8 @@
-# Przegląd błędów pierwszej pełnej edycji — 6 listopada 2026
+# Rejestr poprawek i scenariuszy regresji
 
-Przegląd obejmuje transakcje, duży plecak, odbiór nagród, boty dystansowe, kampanię i grę po finale. Scenariusze wykonano na izolowanych bazach; zapis użytkownika i hasła administratorów nie służą jako dane testowe. Zadanie: [#69](https://github.com/Yorick0499/ore-and-empire/issues/69).
+Stan bieżących testów: [audyt 13 XI](SOLO_PLAYTEST.md). Poniższe sekcje 6–9 XI są historią wykrytych błędów i nie opisują dzisiejszych limitów/wersji.
+
+Historyczny przegląd 6 XI obejmuje transakcje, duży plecak, odbiór nagród, boty dystansowe, kampanię i grę po finale. Scenariusze wykonano na izolowanych bazach; zapis użytkownika i hasła administratorów nie służą jako dane testowe. Zadanie: [#69](https://github.com/Yorick0499/ore-and-empire/issues/69).
 
 ## Potwierdzone błędy i poprawki
 
@@ -32,7 +34,7 @@ python manage.py simulate_release --report /tmp/audyt-nowej-proby.json
 python scripts/benchmark_bots.py --seconds 60 --report /tmp/audyt-stu-botow.json
 ```
 
-`simulate_release` obejmuje teraz **53 scenariusze**, w tym pełną kampanię człowieka, wszystkie trzy obozy botów i dalszą grę tych samych postaci po finale. Kampania korzysta ze zwykłych usług i zarobionych zasobów; kontrolowane buildy w testach granic są od niej oddzielone.
+W raporcie 6 XI `simulate_release` obejmował **53 scenariusze**, w tym pełną kampanię człowieka, wszystkie trzy obozy botów i dalszą grę tych samych postaci po finale. Kampania korzysta ze zwykłych usług i zarobionych zasobów; kontrolowane buildy w testach granic są od niej oddzielone.
 
 - [Raport kampanii, endgame i audytu](reports/audyt-bledow-2026-11-06.json).
 - [Oddzielny pomiar 100 botów](reports/audyt-stu-botow-2026-11-06.json).
@@ -70,3 +72,13 @@ Chromium: sklep, osobowości i zarządca przy 320/390/1440 px bez poziomego prze
 Próba migracji prywatnej kopii istniejącego świata do 0041 zachowała wszystkie stare wartości i identyfikatory: 144 015 wierszy w 56 tabelach; kontrola kluczowego postępu i kont objęła 28 tabel. Syntetyczne testy i publiczne raporty nie zawierają tego zapisu ani haseł.
 
 CI ujawniło niestabilność krótkiej wspólnej sesji: dostępność oferty zależała od niekontrolowanej losowości. Scenariusz ma teraz własny seed i stałą datę, trwa 80 tur zamiast 40 i nadal wymaga realnego zakupu od bota. Powtórzenie uzyskało jeden zakup, 970 PD i 20 rodzajów akcji botów, bez sztucznego towaru. Wynik dopisano jako osobną kontrolę do raportu.
+
+## Pełna droga i późniejsze regresje — 12–13 XI
+
+- Zapas osobno kupionych zwojów G1 jest agregowany w walce; przygotowany egzemplarz zużywa się pierwszy, pozostałe chronione/wystawione nie są pobierane. Koszty prewaliduje transakcja, a ponowione UUID nie zużywa zapasu drugi raz.
+- Zlecenia odczytują aktywne wydarzenia raz na stronę i rozdzielają premie globalne od ukierunkowanych regionalnych. Zachowano limit jednego odczytu i brak zapisu przy podglądzie.
+- Regresja pierwszego zakupu bota jawnie wymusza aktywną turę; realna godzina offline nie jest błędem ekonomii i nie zmieniono sesji, by spełnić test.
+- Handel człowiek–bot sprawdza pojedynczą zapłatę, zmianę właściciela, zachowanie najlepszej broni i dalszą turę bota.
+- Połączenie unieważnia cache regionów także przy rollbacku; tygodniowy temat orkowy używa polskiego poniedziałku, bez przeskoku w niedzielę.
+
+[Raport wydania](reports/grywalnosc-wydania-2026-11-13.json): wszystkie dziewięć dróg, rzeczywista Bariera, rangi, NK i endgame oraz pełny zielony CI. Źródła testów: `test_world_updates`, `test_adventure_variety`, `test_market_intelligence`, `test_build_readiness` i opt-in przejścia. Nie oznacza to braku wszystkich możliwych błędów ani stabilnej wielotygodniowej ekonomii.

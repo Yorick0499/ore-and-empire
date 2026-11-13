@@ -1,6 +1,8 @@
 # Profil serwera, staging i operacje (#24)
 
-Domyślna gra lokalna pozostaje przy SQLite i `play.py`. Ten profil dotyczy **osobnej instalacji PostgreSQL**. Gotowy kod i staging nie oznaczają, że prywatny świat został opublikowany. Potrzebne są własna domena, prywatne sekrety i konfiguracja hosta. Nie uruchamiamy tu realnych płatności ani Gothic II.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+Domyślna gra lokalna pozostaje przy SQLite i `play.py`. Ten profil dotyczy **osobnej instalacji PostgreSQL**. Gotowy kod i staging nie oznaczają, że prywatny świat został opublikowany. Potrzebne są własna domena, prywatne sekrety i konfiguracja hosta. Nie ma realnych płatności. Kod tego samego wdrożenia obsługuje oba początki i etap NK po Barierze; dostęp wynika z postępu świata, nie z innego obrazu/serwera.
 
 ## Procesy i konfiguracja
 
@@ -17,7 +19,7 @@ Domyślna gra lokalna pozostaje przy SQLite i `play.py`. Ten profil dotyczy **os
 1. Skopiuj `.env.production.example` do prywatnego `.env.production`, ustaw uprawnienia 0600 i własne wartości. Wygeneruj długi losowy SECRET_KEY oraz hasło bazy. Plik jest ignorowany przez Git i Docker build; dane do admina nie trafiają do niego automatycznie.
 2. Ustaw nazwę hosta/domenę i odpowiadający HTTPS origin. Dla stagingu użyj oddzielnej bazy i wolumenów, np. innej nazwy projektu Compose. Nie podłączaj stagingu do zapisu gracza.
 3. Walidacja: `docker compose --env-file .env.production -f deploy/compose.production.yml config --quiet`. Zbuduj obraz i uruchom bazę/migracje. Pierwszy start nie tworzy domyślnego administratora.
-4. Uruchom interaktywnie `docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name "Moja Kolonia" --username TWOJ_LOGIN --bots 100`. Hasło wpisuje się dwukrotnie bez echa, nigdy jako argument procesu. Polecenie sprawdza walidatory haseł i odmawia ponownej inicjalizacji.
+4. Uruchom interaktywnie `docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py bootstrap_world --name "Moja Kolonia" --username TWOJ_LOGIN --bots 125`. Hasło wpisuje się dwukrotnie bez echa, nigdy jako argument procesu. Polecenie sprawdza walidatory haseł i odmawia ponownej inicjalizacji.
 5. Uruchom web/worker/proxy. W stagingu dodaj `-f deploy/compose.staging.yml`; certyfikat testowego CA wymaga świadomego zaufania po stronie klienta. Nie omijaj ostrzeżeń przeglądarki. Publiczna instalacja korzysta z Caddy/ACME i własnej domeny.
 6. Domyślne porty 8088/8448 są lokalne. Publiczne udostępnienie jest osobnym krokiem operatora: właściwe DNS, firewall i konfiguracja bind/80/443 oraz prawdziwego HTTPS. Nie zmieniaj tego przypadkiem podczas testu.
 
@@ -33,7 +35,7 @@ Narzędzia zarządcy wymagają właściwych uprawnień; gracz dostaje odmowę al
 
 - `/health/live/`: sam proces HTTP, bez bazy.
 - `/health/ready/`: baza, skonfigurowany aktywny świat i żywa dzierżawa, jeśli mają działać boty. Brak gotowości daje 503, bez prywatnych szczegółów błędu.
-- `python manage.py check_worker`: kod wyjścia do healthcheck procesu; wymaga żywej dzierżawy.
+- `python manage.py check_worker`: kod wyjścia do healthcheck procesu; wymaga żywej dzierżawy dla każdego otwartego regionu z botami.
 - Raport świata w panelu nadal pokazuje ostatnie rzeczywiste akcje, odpoczynek, błędy i postęp mieszkańców.
 
 Compose/systemd uruchamiają ponownie uszkodzony worker. Drugi scheduler nie przejmuje aktywnej dzierżawy. Nie łącz `play.py`, `run_bots --loop` i `run_worker` na tym samym świecie. Zegar heartbeat pochodzi z bazy, a logi nie zawierają haseł.
@@ -62,3 +64,15 @@ Testy obejmują bezpieczną konfigurację, limity i wygaśnięcie okna, podrobio
 Opcjonalna polityka lokalnego modelu wymaga osobnego opt-in i utrzymuje budżet także po restarcie: [LOCAL_AI_POLICIES.md](LOCAL_AI_POLICIES.md). Profil produkcyjny i obraz nie wymagają modelu.
 
 Reset z panelu pozostaje obsługiwany dla lokalnego SQLite. PostgreSQL wymaga osobnej operacji operatora na bazach i kopiach; publiczny profil nie odblokowuje automatycznie panelowego kasowania całej bazy.
+
+## Khorinis, połączenie i nowe odsłony
+
+Po bootstrapie, przed uruchomieniem ruchu i workera, dodaj drugi początek:
+
+```bash
+docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py open_khorinis --bots 125
+```
+
+Standard 125+125 daje 250 kont; istniejące liczby nie zmieniają się po ponowieniu. Jeden worker obejmuje oba regiony. W etapach aktualizacji pamiętaj o seedach Khorinis/Jarkendar/NK: lokalny launcher robi je przy starcie, a produkcyjny proces wdrożenia powinien uruchomić `python manage.py seed_khorinis` po migracjach przy otwartej wyspie. Same procesy Gunicorna nie instalują treści.
+
+Globalna aktywacja potrzebuje świeżej kopii i rzeczywistej próby odtworzenia. Worker musi mieć dostęp do prywatnego katalogu, właściwego klienta pg_dump/pg_restore oraz prawo utworzenia/usunięcia bazy próbnej; sam runtime HTTP nie potrzebuje CREATE DATABASE. Na czas przejścia spodziewane jest 503. [Panel i wznowienie](BACKUPS.md). Siedem odsłon jest w zainstalowanym kodzie i odsłaniane przez postęp; serwer nie pobiera paczek w runtime.

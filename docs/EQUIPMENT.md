@@ -1,6 +1,8 @@
-# Wyposażenie i łupy (#17)
+# Wyposażenie, pasy i porównanie rynsztunku
 
-Sloty: broń, pancerz, amulet i dwa pierścienie. Wymagania opierają się na bazowej
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+Sześć slotów: broń, pancerz, amulet, dwa pierścienie i pas. Wymagania opierają się na bazowej
 sile/zręczności, poziomie oraz bramce obozowej. Bonusy nie nadpisują podstawowych
 statystyk. Zdjęcie bonusu życia przycina zdrowie do nowego maksimum; ponowne
 założenie nie leczy. Unikalność slotów i dodatnie stosy są wymuszone w bazie.
@@ -25,11 +27,9 @@ samym kluczem jest odrzucany. Boty i wywołania bez klucza tworzą nowy UUID na 
 Całość wykonuje się w transakcji: awaria tworzenia przedmiotu cofa koszt, postęp,
 PD i wynik. Boss zachowuje zgodność z istniejącym `BossAttempt` i cooldownem.
 
-Przedmioty stosowalne mają liczbę sztuk; kupiec sprzedaje jedną, a skupuje cały
+Przedmioty stosowalne mają liczbę sztuk; kupiec sprzedaje zapasy w paczkach 1–100 sztuk, a skupuje cały
 stos za 50% wartości. Materiały i amunicja łączą się wyłącznie we własnym,
-niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty nadal
-preferują walkę wręcz, zakładają zdobyte zbroje, używają zapasów i sprzedają
-nadmiar materiałów, rezerwując dostawy questowe. Obserwacje mają wersję 17; zachowano historyczne implementacje do replay.
+niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty wybierają dozwolony sprzęt według własnej ścieżki i efektywnej mocy, zakładają ochronę, używają zapasów i zachowują dostawy. Obecna polityka to baseline-24, schemat obserwacji 23; historyczne replay pozostają zachowane.
 
 ## Dopracowanie pełnej edycji
 
@@ -37,7 +37,7 @@ Ulepszenia zapisujemy na egzemplarzu `OwnedItem`, nie na współdzielonym wzorze
 
 ## Zabezpieczenie cennego sprzętu (#80)
 
-W Ekwipunku przy broni, pancerzu, pierścieniu i amulecie dostępne jest
+W Ekwipunku przy broni, pancerzu, pierścieniu, amulecie i pasie dostępne jest
 „Zabezpiecz przedmiot”. Taki egzemplarz nie trafia na listę sprzedaży NPC ani
 na targ i nie może zostać rozebrany, zużyty w recepturze ani oddany jako dostawa
 fabularna. Nadal można go zakładać, zdejmować i ulepszać. Zabezpieczenie obejmuje
@@ -74,10 +74,16 @@ handlowanie nie zeruje obu cech. Migracja historycznych stopni zachowuje ich moc
 
 ## Rozwój umiejętności broni
 
-U Nauczyciela uczysz się czterech typów broni do 100%. Punkt kosztuje 1 PN i aktualną cenę treningu (10 rudy minus poziom szkoły obozowej). Jedna lekcja obejmuje 1–10 punktów; przekroczenie limitu lub brak pełnej opłaty odrzuca całość. Umiejętność jest szansą podwojenia ciosu przed pancerzem; nie zastępuje siły, zręczności ani amunicji. Zwiększenie rzadkości w kuźni nadal jest niemożliwe.
+U Nauczyciela uczysz się czterech typów broni do 100%. Punkt kosztuje 1 PN i aktualną cenę treningu (10 rudy minus zniżka rangi i poziom szkoły obozowej, minimum 5). Jedna lekcja obejmuje 1–10 punktów; przekroczenie limitu lub brak pełnej opłaty odrzuca całość. Umiejętność jest szansą podwojenia ciosu przed pancerzem; nie zastępuje siły, zręczności ani amunicji. Zwiększenie rzadkości w kuźni nadal jest niemożliwe.
 
 ## Oprawy egzemplarzy
 
 Pięć odmian ma osobne ramy całych kart i plakietki: I Niewykończony (surowa stal), II Mistrzowski (mosiężne okucia), III Nasycony magią (błękitny krąg), IV Runiczny (fasetowany znak i poświata magicznej rudy), V Pradawny (stare złoto i podwójny ornament). Ramy działają w plecaku, na wyposażeniu, u kupca przy sprzedaży, na targu i w porównywarce. Nazwa, liczba i ornament uzupełniają kolor. Wzór towaru NPC nie udaje wylosowanego egzemplarza.
 
 Oprawa jest statycznym CSS: nie pobiera dodatkowych grafik i nie uruchamia animacji. Nie zmienia statystyk, szans łupu ani stałej rzadkości. +1–+3 pozostaje oddzielną cechą. [Przykłady pięciu kart](SCREENSHOTS.md).
+
+## Dostęp po Barierze i pasy
+
+Tożsamości oryginalnego NK wymagają połączenia; wybrane także portalu, frakcji i rangi. Pozycja referencyjna bez obsługi efektu nie trafia automatycznie do normalnego handlu. Pas ma własny slot; sześć potwierdzonych par pasa/pancerza daje dodatkowy efekt bez przepisywania bazowych atrybutów. [Zakres NK](GOTHIC_II_CONTENT.md).
+
+Wspólny rynek po Barierze zachowuje egzemplarz, jego pochodzenie, rzadkość i przekucie. Nie duplikuje plecaków ani nie dzieli konta na dwa portfele. [Konto i światy](CHARACTERS_AND_WORLDS.md).

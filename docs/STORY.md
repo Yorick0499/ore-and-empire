@@ -1,8 +1,10 @@
 # Dziennik fabuły
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 `/fabula/` przedstawia jednorazowe zadania, aktywny cel i trwałą historię decyzji.
 `python manage.py seed_story` dodaje brakujące definicje; lokalny launcher robi to
-przy starcie. Prolog zawiera trzy zadania; pełna kampania ma 41 definicji w sześciu rozdziałach, osobisty finał i salę chwały.
+przy starcie. Każdy początek ma trzy zadania prologu. Kolonia ma 41 definicji w sześciu rozdziałach, Khorinis 29 w czterech; po Barierze dochodzą 2 pierwsze wspólne, 8 Jarkendaru i 15 NK. Osobisty finał Kolonii ma salę chwały.
 
 ## Definicja i zapis postaci
 
@@ -40,7 +42,7 @@ odłamków powstają w tej samej transakcji co zakończenie questa. Powtórzony 
 nie wypłaca drugi raz. Błąd ledgeru cofa także zużycie dostaw. Nagrody fabularne
 są stałe; premie eventowe nie mnożą jednorazowych nagród.
 
-Uniwersum jest sprawdzane względem świata postaci. Od migracji 0043 działają dwa odrębne konteksty; POST nie może wybierać cudzej edycji. Khorinis ma własne 29 definicji i 17 zadań jednej ścieżki — [szczegóły](KHORINIS.md). Połączenie nadal pozostaje #111/#30.
+Rodzima kampania jest związana z pochodzeniem postaci, a cele podróży sprawdzają odwiedzany region. Przed Barierą obowiązuje izolacja; po niej kontrakty JOINED wymagają połączenia. Khorinis ma 17 zadań jednej ścieżki — [szczegóły](KHORINIS.md). Podmieniony POST nie otwiera obcego lub zablokowanego celu.
 
 ## Boty
 
@@ -79,7 +81,7 @@ Nagrody PD/rudy są jawnym, wstępnym balansem jednorazowej kampanii: nie są
 powtarzalną emisją i wymagają porównania z gospodarką w #12.
 
 `ritual-ready` oznacza osobiste przygotowanie do finału, nie zakończenie świata,
-automatyczny reset, pokonanie Śniącego ani uruchomienie II edycji. Osobisty finał i zapis końcowych rankingów operatora są wdrożone (#29). Przejście do II edycji nadal należy do #35.
+automatyczny reset, pokonanie Śniącego ani uruchomienie II edycji. Osobisty finał i zapis rankingów działają. Globalne połączenie uruchamia osobna walka wspólnoty, z panelem operatora i świeżą kopią. [Warunki](CHARACTERS_AND_WORLDS.md).
 
 Bot z aktywnym celem bojowym, również kupiec, wybiera poprawę oręża i odpoczynek
 potrzebny do wykonalnej walki fabularnej. Nie zużywa bez końca odzyskanego zdrowia
@@ -92,7 +94,8 @@ a osobny test przechodzi całość graczem przez formularze i wspólne serwisy g
 z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
 wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.
 
-Aktualna polityka i obserwacje mają wersję 14. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
+Aktualna polityka to baseline-24, schemat obserwacji 23; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
 
+## Kampania po połączeniu
 
-Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywileje rang i aktualny plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).
+Jarkendar wymaga własnego odebranego portalu od 10. Następne kontrakty NK prowadzą do Kruka, smoków, rejsu i finału Irdorath. Status „joined” nie kończy ich za postać. Odbiór kamieni milowych może ujawnić trwałą odsłonę całej społeczności, nie podwaja jednak prywatnej wypłaty. [NK](GOTHIC_II_CONTENT.md), [odsłony](WORLD_UPDATES.md), [pełna generowana lista](GAME_CONTENT.md#fabula-jednorazowa).

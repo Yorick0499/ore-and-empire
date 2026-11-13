@@ -1,6 +1,8 @@
 # Rynek z rzeczywistym popytem
 
-Polityka **baseline-21 / schemat 22** porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+Polityka **baseline-24 / schemat 23** porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.
 
 Popyt oznacza **potencjalną potrzebę**, nie złożone zamówienie człowieka. Uwzględnia poziom, obóz, wymagania, aktualne wyposażenie, brak zasobów, receptury i budżet z rezerwą 20 rudy. Śmieci bez realnej wartości użytkowej nie trafiają na targ tylko dlatego, że jest pusty. Równie dobry dostępny zamiennik NPC ogranicza cenę do 95% swojej ceny. Konkurencją są również podobne oferty, nie wyłącznie identyczne nazwy.
 
@@ -42,3 +44,9 @@ zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.
 Boty porównują efektywną moc kupowanej i zapasowej broni, uwzględniając rzadkość i przekucie; oferty muszą spełniać również wymaganie zręczności.
 
 Zakup potwierdza cenę całej oferty widoczną w formularzu. Jeśli sprzedawca ją zmienił, transakcja nie pobiera rudy ani przedmiotu; odśwież targ i potwierdź nową cenę. Stare formularze bez potwierdzenia ceny są odrzucane.
+
+## Wspólny rynek po Barierze
+
+Przed połączeniem oferty i potencjalny popyt są odizolowane między serwerami. Po nim oba regiony mają jeden rynek, z zachowaniem ID ofert, cen, dat, właścicieli i ledgerów; nie ma kopiowania majątku. Oferta NK nadal wymaga połączenia, portalu i odpowiedniej frakcji, jeśli określa to wzór. Dostęp do portalu kupujących jest odczytywany zbiorczo, bez osobnego zapytania na każdego nabywcę.
+
+Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalszą aktywność sprzedającego bez utraty jego własnej broni. [Bieżące dowody](reports/grywalnosc-wydania-2026-11-13.json). Krótka próba nie dowodzi wielotygodniowego bilansu ani popytu każdego człowieka.

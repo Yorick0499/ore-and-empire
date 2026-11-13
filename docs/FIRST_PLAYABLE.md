@@ -1,50 +1,35 @@
-# Pierwsza pełna pętla gry lokalnej
+# Pierwsze kroki i droga do końca kampanii
 
-Aktualny czas: Europe/Warsaw, rzeczywiste wschody/zachody Warszawy i automatyczne CET/CEST. [Pełny podręcznik](GAME_GUIDE.md) · [Kalendarz wydarzeń](EVENTS.md).
+Stan: 13 XI 2026. [Pełna instrukcja](GAME_GUIDE.md) · [Instalacja obu regionów](COMPLETE_JOURNEY.md).
 
-Uruchom `python play.py --bots 6 --port 8001` w środowisku z requirements.txt. Otwórz `http://127.0.0.1:8001/`. Nowa instalacja: `/inicjalizacja/` prosi o nazwę serwera, liczbę botów oraz własny login i hasło administratora. Do zwykłej gry zarejestruj osobne konto bez uprawnień. Istniejący zapis i hasła pozostają; aktualizacja nie wymaga resetu.
+## Pierwsza sesja
 
-1. Otwórz fabułę, przyjmij i rozpocznij rozmowę z kopaczem.
-2. Ukończ zmianę w kopalni i odbierz urobek. Kup i załóż pierwszą broń.
-3. Poluj na dostępne stworzenia. Zdrowie/energia/mana regenerują się także poza stroną; po porażce pozostaje 1 HP.
-4. Wydawaj zdobyte punkty nauki u nauczyciela. Możesz trenować atrybuty i cztery umiejętności broni (limit 100%), po 1–10 punktów naraz, płacąc za każdy. Obozowa szkoła obniża cenę punktu.
-5. Wybierz obóz, wykonuj osobiste awanse oraz wspólne zlecenia i wyprawy. Przynależność pozostaje stała również w późnych rozdziałach.
-6. Korzystaj z rynku, kuźni/alchemii, zleceń czasowych, wyzwań i odłamków. To źródła dodatkowego rozwoju, a nie wymaganie opłacenia premium.
-7. Przejdź sześć rozdziałów, odbierz przygotowania „Zabezpieczyć dolinę”, osiągnij poziom 30. Przygotuj zdrowie, energię i oręż, a potem podejmij wartę w sanktuarium.
-8. Zwycięstwo nad echem Śniącego zapisuje osobiste ukończenie w sali chwały. Świat pozostaje grywalny. Administrator może utrwalić ranking dopiero po finale gracza; bot nie kończy serwera.
+1. Uruchom instalację według README i zarejestruj zwykłe konto. Wybierz imię i otwarty świat w kreatorze; konto ma pięć slotów.
+2. W dzienniku fabuły przyjmij i rozpocznij pierwszą rozmowę. Kolonia zaczyna przy kopaczu, Khorinis pod dachami portu.
+3. Rozpocznij zmianę w kopalni, odczekaj 15 sekund i odbierz rudę. Kup osiągalną broń i załóż ją w Ekwipunku.
+4. Poluj w otwartych lokacjach, czytaj prognozę i odpoczywaj. Energia/zdrowie odnawiają po 1/min, mana po 1/30 s, także poza stroną.
+5. Przeznaczaj PN i rudę na wybrany atrybut i umiejętność; nauczyciel obsługuje 1–10 punktów naraz. Łucznik potrzebuje amunicji, mag kręgu i runy/zwojów.
+6. Odbierz trzy zadania prologu, dołącz do lokalnej wspólnoty i przyjmij próbę pierwszej rangi przed wykonaniem jej celów.
+7. Finansuj zakupy pracą i zleceniami; korzystaj z targu, wyzwań i osiągnięć. Zdobyte odłamki mogą opłacić itemshop, lecz kont premium i realnych płatności nie ma.
 
-## Mieszkańcy i immersja
+Kupno nie zakłada broni. Wcześniejsze zabicia nie zaliczają później przyjętej próby. Ukończona praca nadal wymaga odbioru. Ozdoba nie odnawia zdrowia/many przez ponowne założenie. Przy braku środków wybierz dochodowe zlecenie zamiast kupować sprzęt ponad potrzeby.
 
-Boty mają stałe imiona mieszkańców w publicznych ekranach, a oznaczenie „bot” pozostaje jawne. Wykonują rzeczywiste akcje, ponoszą koszty, regenerują się, rozwijają obozy i potrafią ukończyć finał. Nie generujemy fikcyjnych transakcji ani rozmów podszywających się pod ludzi. „Życie kolonii”, rynek i kronika wspólnoty pokazują ich faktyczne działania. Konto techniczne `colony-bot-N` pozostaje dostępne administratorowi.
+## Co dalej
 
-Polityka baseline-20 uwzględnia przygotowanie do finału i konserwatywne prognozy silnych ataków. Trofea fabularne nie zajmują miękkiego limitu zakupów roboczego zapasu polityki; dodatkowe łupy mogą go przekroczyć i są porządkowane przez odzysk pyłu. Trofea nadal istnieją w plecaku na tych samych zasadach dla ludzi i botów.
+W Kolonii przejdź sześć rozdziałów i osobisty finał od poziomu 30. Echo Śniącego jest osobistą wyprawą, nie globalnym zwycięstwem. Stare 100 wart odblokowuje poziom 30 i członkostwo; finał nie jest wymagany.
 
-## Bossowie i finał
+W Khorinis przejdź 17 zadań własnej ścieżki, rozwijaj cztery podstawowe rangi i wspólnotę. Paladyni są dopiero wyższą drogą po Barierze. Finał lokalnego przydziału nie łączy serwerów.
 
-Królowa: rój podnosi siłę o 3 i pancerz o 3 poniżej 65% HP; ogień zadaje +20% obrażeń. Wąż: poniżej połowy HP naprzemiennie zanurza się (+6 pancerza) i wynurza (-6). Echo: osłona słabnie przy 65% i 30% HP; co trzeci atak korzysta z ochrony magicznej obrońcy. Każdy boss zapowiada w drugiej rundzie mocniejszy trzeci atak (+10 siły). Przebieg automatycznej walki jest zapisany w raporcie; zapowiedź objaśnia wynik, nie jest przyciskiem reakcji podczas animacji.
+Wspólnota Kolonii poziomu 10 walczy osobno ze Śniącym; potrzebne są kwalifikujące się postacie z trzech różnych kont. Boty mogą pomóc. Po zwycięstwie worker wykonuje kopię, próbę odtworzenia i trwałe połączenie bez kasowania dorobku. [Warunki Bariery](CHARACTERS_AND_WORLDS.md).
 
-Każdy przeciwnik ma własne niezbywalne trofeum i tabelę łupu. Jajo pełzacza do alchemii pochodzi też z polowań na zwykłe pełzacze. Seed zachowuje ręczne edycje tabel; wymienia jedynie rozpoznane domyślne stare tabele bossów wersji 1. Zwycięstwo/przegrana/retry/łup i osobiste ukończenie są jedną transakcją. Klucz powtórzonej walki zwraca poprzedni raport bez kosztu ani nagrody.
+Następnie zdobywaj rangi 5–8 w jednej z pięciu frakcji, otwórz portal od poziomu 10 i wykonuj kontrakty Jarkendaru/NK do Irdorath. Po finale NK dochodzą cztery ścieżki po 100 stopni oraz cel tygodniowy. [Pełna droga](COMPLETE_JOURNEY.md), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [endgame](REGIONAL_ENDGAME.md).
 
-Finał postaci nie oznacza odegrania roli Bezimiennego: jest udziałem mieszkańca w utrzymaniu pieczęci. Sala chwały przechowuje imię, obóz, datę, edycję i wersję zasad z chwili ukończenia. Osobne, jednorazowe podsumowanie operatora zamraża ranking i listę zwycięzców. Nie archiwizuje automatycznie serwera, nie usuwa postaci i nie uruchamia Gothic II. Pełny reset świata nadal celowo czyści również salę chwały; wcześniej zapisuje prywatny backup.
+## Boty i trwałość świata
 
-## Powtarzalna symulacja i granice walidacji
+Domyślne dwa regiony mają łącznie 250 botów, z osobowościami, sesjami i zwykłymi kosztami. „Życie kolonii”, targ, wspólnota i karczma pokazują ich rzeczywiste działania. Nazwa i oznaczenie bota są jawne; bot nie udaje człowieka. Zatrzymanie programu wstrzymuje tury, bez nadrabiania całej przerwy.
 
-`python manage.py simulate_release --report /tmp/przejscie-01.json` uruchamia prawdziwe reguły na izolowanej bazie testowej. Nie nadpisuje istniejącego raportu ani zapisu użytkownika. Scenariusz gracza miesza formularze fabuły i zwykłe serwisy domenowe; boty przechodzą wszystkie trzy obozy. Przyspieszany jest zegar (30 minut na krok), wyłącznie ze zwykłą regeneracją. Nie nadajemy statystyk, doświadczenia ani walut i nie podmieniamy wyników walk. Osobne testy jednostkowe bossów używają kontrolowanych buildów do badania granic i awarii transakcji.
+Restart nie jest resetem. Nie kasuj bazy, by zacząć ponownie; utwórz kolejną postać w wolnym slocie. [Operator i bezpieczna aktualizacja](public/OPERATOR_GUIDE.md).
 
-Raport zawiera liczbę kroków, poziomy, salda, akcje botów, ukończenia i wynik testów nadużyć. Zegar/losowy loot mogą zmieniać dokładny przebieg; raport jest wynikiem danego uruchomienia, nie gwarancją czasu przejścia dla każdego stylu gry. Symulowane godziny nie są czasem aktywnego klikania. GUI jest dodatkowo sprawdzane ręcznie w przeglądarce.
+## Jak sprawdzamy przejście
 
-To wersja lokalna z jednym serializującym launcherem i SQLite. Opcjonalne PostgreSQL, dzierżawa schedulera i profil publicznego hostingu są opisane w [POSTGRESQL.md](POSTGRESQL.md) i [PRODUCTION.md](PRODUCTION.md); #19/#24 są wdrożone. Nie łącz `play.py` z niezależnym `run_bots --loop` na tym samym zapisie.
-
-Historyczny raport pierwszej wersji (przyspieszony zegar świata sprzed synchronizacji z Polską): [przejście i próby nadużyć](reports/pierwsza-pelna-edycja-2026-11-05.json). Obejmuje także mieszaną sesję, w której zwykły gracz kupuje rzeczywistą ofertę bota i zdobywa poziom podczas równoległych tur trzech mieszkańców. Oddzielna kontrolowana macierz porównuje wojownika, łucznika i maga przeciw trzem bossom; te syntetyczne buildy są oznaczone osobno i nie stanowią przebiegu postaci od zera.
-
-Aktualny raport po synchronizacji z Polską: [22 scenariusze](reports/czas-polski-2026-11-06.json), w tym CET/CEST, lokalna północ, kalendarz i dobowe limity.
-
-## Dopracowanie pełnej edycji
-
-Od poziomu 30 i po dołączeniu do obozu przejdź do Wart za Przełęczą, bez kończenia fabuły: odblokowuj 100 stopni, farm sprzęt i pył, szukaj Pradawnych łupów i przekuwaj egzemplarz do +3 oraz walcz o nowy wynik każdego miesiąca. [Pełne reguły łupów i endgame](LOOT_AND_ENDGAME.md). Ten sam świat pozostaje w Gothic I; nie ma automatycznego transferu.
-
-Najnowszy [raport łupów i endgame](reports/lupy-endgame-2026-11-06.json) obejmuje dalszą grę tych samych postaci po finale, ulepszanie, powtarzalne warty oraz próby nadużyć. [Pomiary 100 botów](BOT_PERFORMANCE.md) są osobnymi testami wydajności.
-
-## Próba zwykłej gry — 8 listopada 2026
-
-[Przegląd grywalności](SOLO_PLAYTEST.md) opisuje rzeczywistą sesję w przeglądarce, trzy buildy od zera oraz pełną kampanię i dalszą grę botów. Raporty rozdzielają czas rzeczywisty, przyspieszony zegar i syntetyczne testy granic.
+`simulate_builds` sprawdza dziewięć organicznych dróg do NK/rangi 8; `simulate_journey` osobno odgrywa prawdziwą walkę wspólnoty i aktywację. Testy formularzy, rynku i botów uzupełniają PostgreSQL oraz próby współbieżności. [Aktualne dowody i ograniczenia](SOLO_PLAYTEST.md). Wirtualnego oczekiwania nie traktujemy jako czasu człowieka ani gwarancji satysfakcji.

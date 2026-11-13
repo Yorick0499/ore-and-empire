@@ -1,6 +1,6 @@
 # Buildy i drogi frakcyjne od nowej postaci
 
-Etap #128, 12 XI 2026. Kandydat do gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
+Stan 13 XI 2026, po #141. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
 
 ## Wybór własnej drogi
 
@@ -42,12 +42,12 @@ python manage.py simulate_builds --report /tmp/ore-builds.json
 python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 ```
 
-Nowe pliki raportów; istniejące nie są nadpisywane. Komenda zawsze uruchamia osobną bazę SQLite, nie dziedziczy prywatnego PostgreSQL ani bazy gry. Scenariusze zaczynają z normalną postacią poziomu0. Punkty, atrybuty, sprzęt, zaklęcia, amunicja, zadania i wszystkie osiem rang są rzeczywiście zdobywane/opłacane. Nie włącza się zwycięstw ani osobistych kamieni milowych fiksturą.
+Nowe pliki raportów; istniejące nie są nadpisywane. Komenda zawsze uruchamia osobną bazę SQLite, nie dziedziczy prywatnego PostgreSQL ani bazy gry. Scenariusze zaczynają z normalną postacią poziomu 0. Punkty, atrybuty, sprzęt, zaklęcia, amunicja, zadania i wszystkie osiem rang są rzeczywiście zdobywane/opłacane. Nie włącza się zwycięstw ani osobistych kamieni milowych fiksturą.
 
-W tej macierzy globalne zwycięstwo społeczności jest zdarzeniem zewnętrznym po ukończeniu podstawowej drogi; **nie mierzy czasu oczekiwania całego serwera na Barierę**. Osobna komenda `simulate_journey` sprawdza prawdziwą walkę trzech zdobytych od0 kont, kopię, odtworzenie i aktywację. Te dowody uzupełniają się, nie należy dodawać ani bezpośrednio porównywać ich czasów.
+W tej macierzy globalne zwycięstwo społeczności jest zdarzeniem zewnętrznym po ukończeniu podstawowej drogi; **nie mierzy czasu oczekiwania całego serwera na Barierę**. Osobna komenda `simulate_journey` sprawdza prawdziwą walkę trzech zdobytych od 0 kont, kopię, odtworzenie i aktywację. Te dowody uzupełniają się, nie należy dodawać ani bezpośrednio porównywać ich czasów.
 
-Czas każdej operacji jest modelowany jako10 sekund, regeneracja i timery są wirtualne. Oczekiwanie na wydobycie pochodzi teraz z faktycznego `action_end_time`: zmiana w UI trwa15 **sekund**, nie15 minut. Poprzednie raporty pełnej drogi zawierały konserwatywne nadmiarowe czekanie i pozostają historyczne. Nie zmieniono timera gry ani zapisów.
+Czas każdej operacji jest modelowany jako 10 sekund, regeneracja i timery są wirtualne. Oczekiwanie na wydobycie pochodzi teraz z faktycznego `action_end_time`: zmiana w UI trwa 15 **sekund**, nie 15 minut. Poprzednie raporty pełnej drogi zawierały konserwatywne nadmiarowe czekanie i pozostają historyczne. Nie zmieniono timera gry ani zapisów.
 
 CI dzieli dziewięć organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. [Wyniki i ograniczenia](reports/buildy-frakcje-2026-11-12.json).
 
-Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich400 regionalnych stopni. Dłuższa gospodarka250 botów i regionalne wydarzenia #137 są dalszym rozwojem; nie są warunkiem otwarcia przetestowanej podstawowej drogi.
+Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich 400 regionalnych stopni. Regionalne wydarzenia #137 są wdrożone. Dłuższa gospodarka 250 botów i obserwacje ludzi pozostają dalszym rozwojem w #9. [Świeża powtórka wszystkich dziewięciu dróg i ograniczenia](reports/grywalnosc-wydania-2026-11-13.json).

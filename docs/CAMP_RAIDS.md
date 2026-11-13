@@ -1,13 +1,27 @@
-# Asynchroniczne wyprawy obozowe
+# Asynchroniczne wyprawy wspólnoty
 
-Członek od osobistego szczebla 1 może ogłosić dla obozu jedną wyprawę dziennie czasu polskiego na ekranie wspólnoty. To oddzielny cel gildii, nie ponownie przeżywany indywidualny finał Bezimiennego. Stary Obóz zabezpiecza boczny szyb przed matką pełzaczy, Nowy odpiera orkowego zwiadowcę przy zaporze, Bractwo walczy z wężem z rozlewiska. Ilustracje pochodzą z istniejącej lokalnej paczki Gothicpedii. Bossowie solo, osobisty finał i sala chwały są wdrożone (#6/#29); zobacz [FIRST_PLAYABLE.md](FIRST_PLAYABLE.md).
+Stan: 13 XI 2026. Wyprawa wspólnoty ma wspólne HP i osobne wypady uczestników. Nie jest bossem solo ani globalnym wyścigiem Śniącego. Nie wymaga drużyny lub jednoczesnego zalogowania. Przed Barierą dotyczy rodzimego obozu/frakcji; po niej bieżącej wspólnoty sukcesji. [Sukcesja](CAMP_GUILDS.md).
 
-HP i statystyki zamrażają się przy ogłoszeniu: 500 + 100×poziom obozu HP, atak 10 + 2×poziom, pancerz 4 + 2×poziom. Minimalny poziom uczestnika 3. Każdy wypad to do 3 rund, koszt 20 energii i rzeczywiste zdrowie/mana/zwoje lub jedna sztuka amunicji jak w polowaniach. Przygotowany czar bez zasobów jest odrzucany. Po wyczerpaniu czaru postać broni się pięściami, zgodnie z regułami magii. Cooldown własnego wypadu wynosi 60 s; inni członkowie mogą w tym czasie działać. Nie ma drużyny, przycisku gotowości ani wymagania jednoczesnego połączenia.
+## Wyprawa dzienna
 
-Etapy zależą od wspólnego pozostałego HP, także w środku wypadu: powyżej 60% rozpoznanie; od 60% szał (+5 ataku); od 25% ostatni zryw (+10 ataku, połowa pancerza). Raport zapowiada przejście. Lód i przerwania Bractwa działają na kontrataki. Ochrona magiczna wynosi połowę fizycznego pancerza w tym autorskim balansie. Ranny uczestnik kończy z 1 HP i wycofaniem; zadane obrażenia pozostają wkładem. Obrażenia ostatniego ciosu są przycinane do pozostałego HP — bez nabijania wyniku ponad zdrowie celu.
+Członek od osobistego szczebla 1 może ogłosić jeden cel na wspólnotę/polski dzień. Podstawowe tematy obejmują ochronę szybu, orkowy patrol i węża rozlewiska; inne frakcje mają własne etykiety. Parametry utrwalają się przy zwołaniu: `500+100×poziom` HP, atak `10+2×poziom`, ochrona `4+2×poziom`. Minimalny poziom uczestnika 3.
 
-Wspólne zwycięstwo daje raz 60 PD i 100 rudy do skarbca. Uczestnik z faktycznymi obrażeniami może odebrać raz 50 PD, 10 rudy i 1 odłamek. Odbiór działa również po zmianie dnia; nowe wejście ani restart nie odnawia nagrody. Samo członkostwo lub odwiedzanie strony nie daje łupu. Nowy dzień daje nowy pełny cel, a stary pozostaje historią — obrażenia i niewykorzystane ataki nie przechodzą. Przynależność nadal jest stała dla graczy; administracyjne przeniesienie nie udostępnia cudzych wypraw.
+Wypad: do 3 rund, 20 energii, rzeczywiste zdrowie, mana/zwoje albo amunicja; 60 sekund cooldownu postaci. Przygotowany czar wymaga zasobów. Po jego wyczerpaniu walka przechodzi na pięści. Ranny uczestnik wycofuje się z 1 HP, zachowując zadane obrażenia jako wkład.
 
-UUID żądania i trwały CampRaidStrike chronią koszt/obrażenia przed podwójnym wykonaniem. Zmiana ID wyprawy przy tym samym UUID jest odrzucana. Rozliczenie kosztów, wspólnego HP, zwycięstwa, PD/skarbca i raportu ma jedną transakcję. Odbiór nagrody ma unikalny klucz uczestnik/wyprawa, ledger odłamków i zwykły ledger portfela. Retencja decyzji botów nie kasuje tych faktów, a backup uwzględnia wyprawy/wkład/nagrody. Obsługiwany model wdrożenia pozostaje pojedynczym lokalnym schedulerem SQLite; PostgreSQL i wieloprocesowość nadal #19.
+Powyżej 60% HP trwa rozpoznanie, potem szał (+5 ataku), od 25% ostatni zryw (+10 ataku i połowa pancerza). Fazy działają również wewnątrz wypadu. Końcowy cios liczy najwyżej pozostałe HP. Lód i przerwania działają przez zwykły silnik.
 
-Baseline-10 ogłasza wyprawę i okresowo atakuje przy wystarczającym zdrowiu/energii, respektuje cooldown oraz przygotowaną manę i odbiera własny łup. Wszystko przez zwykłą allowlistę. Baseline-7/8/9 pozostają odtwarzalne. Testy obejmują wspólne HP, izolację obozów, powtórzone żądania, cooldown, fazy, porażkę, brak zasobów, magię/zwoje, limit końcowego ciosu, jeden podział nagród, zmianę dnia i rollback obu etapów rozliczania.
+Zwycięstwo daje wspólnocie raz 60 PD i 100 rudy. Uczestnik z dodatnimi obrażeniami odbiera raz 50 PD, 10 rudy i 1 odłamek. Samo członkostwo nie daje nagrody. Odbiór może nastąpić później, także po zmianie dnia. Nowy dzień otwiera nowy cel, bez przenoszenia obrażeń.
+
+## Cel tygodniowy po NK
+
+Od poziomu 45, po odebranym `nk-undead`, połączeniu i rozstrzygniętej frakcji działa dodatkowy cel tygodnia, niezależny od dziennego. Tydzień zaczyna się w poniedziałek 00:00 Europe/Warsaw. HP: `10000+1000×poziom` wspólnoty, atak 100, ochrona 60; zwykły koszt wypadu 20 energii i odstęp 60 sekund. Nagroda uczestnika: raz 100 rudy, 1000 PD i 5 pyłu, bez odłamków. Zwycięstwo daje wspólnocie istniejące 60 PD i 100 rudy.
+
+Tematy regionalne rotują; po odkryciu „Orkowie u bram” co piąty tydzień może przypaść orkowy wódz. Zwołana wyprawa zachowuje snapshot, nawet gdy później zmieni się odsłona lub tydzień. Orkowy temat nie tworzy drugiej wypłaty ani dodatkowej premii regionalnej. [Endgame](REGIONAL_ENDGAME.md), [aktualizacje](WORLD_UPDATES.md).
+
+## Nagrody, stare wyprawy i blokady
+
+UUID, trwały zapis wypadu i blokady chronią koszt, obrażenia, ostatni cios i nagrody. Zmiana celu przy użytym UUID jest odrzucana. Wynik, koszty, wspólne HP, skarbiec/PD i raport są jedną transakcją; awaria cofa całość. Odbiór ma unikalny klucz uczestnik/wyprawa.
+
+Przy sukcesji niedokończone wyprawy rozdzielanych wspólnot są archiwizowane, bez kopiowania postępu. Za zakończone historyczne cele nadal odbiera nagrodę rzeczywisty uczestnik. [Dokładne zasady](CAMP_GUILDS.md). Kopie zachowują wkład i wypłaty; retencja telemetrii ich nie kasuje.
+
+Boty baseline-24 zwołują, atakują i odbierają przez te same usługi, ze zwykłymi zasobami i bramkami. Lokalnie działa jeden launcher SQLite; produkcyjnie PostgreSQL i jeden worker z dzierżawami. Rzeczywiste współbieżne uderzenia i odbiory sprawdza CI PostgreSQL. [Weryfikacja](SOLO_PLAYTEST.md).

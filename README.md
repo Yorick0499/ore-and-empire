@@ -1,12 +1,12 @@
 # Ore & Empire — Kroniki Kolonii
 
-Fanowskie, polskojęzyczne RPG przeglądarkowe inspirowane Gothic I, II i III. Możesz grać solo w kolonię zaludnioną autonomicznymi botami: pracują, walczą, awansują, handlują i rozwijają wspólnoty obozowe. Boty są jawnie oznaczone i nie wymagają płatnego API AI.
+Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-**[Publiczna dokumentacja HTML — cała księga offline](docs/dokumentacja.html)**: stack, instalacja, restart, panel zarządcy, zasady gry, katalogi, screenshoty i raporty. Pobierz plik i otwórz go w przeglądarce; podgląd GitHuba pokazuje kod HTML.
+Stan dokumentacji: **13 listopada 2026, po PR #141, migracja 0054**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
-## Uruchomienie lokalne
+## Uruchomienie
 
-Wymagany Python 3.12 lub 3.13. W terminalu w katalogu projektu:
+Python 3.12 lub 3.13, z katalogu repozytorium:
 
 ```bash
 python3 -m venv .venv
@@ -15,109 +15,60 @@ python -m pip install -r requirements.txt
 python play.py --bots 125 --port 8001
 ```
 
-Otwórz [grę lokalną](http://127.0.0.1:8001/). Nowa instalacja udostępnia `/inicjalizacja/`: wybierz nazwę serwera, 0–300 botów oraz własny login i hasło administratora. Do zwykłego przejścia zarejestruj osobne konto gracza. Po zapisaniu konfiguracji liczba botów pochodzi z panelu świata; `--bots` służy do wartości początkowej. Ctrl+C zatrzymuje launcher, zapis pozostaje.
-
-Nie uruchamiaj drugiego schedulera na tej samej bazie. Wersja lokalna używa SQLite i jednego procesu obsługującego graczy i boty. Opcjonalny profil produkcyjny, PostgreSQL i procedury wdrożenia są w [dokumentacji operatora](docs/PRODUCTION.md).
-
-Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabularne obozów i przywileje rang. [Zasady oraz plan Kolonia + Khorinis](docs/CHARACTERS_AND_WORLDS.md). **Khorinis jest już grywalne przed połączeniem**: 29 definicji fabuły, trzy frakcje i własna pętla. [Zakres paczki i otwarcie serwera](docs/KHORINIS.md). Globalne zwycięstwo wspólnoty uruchamia bezpieczne połączenie i publiczny Jarkendar. Dalej można przejść wyprawę mieszkańca do Irdorath i kontynuować warty. [Uruchomienie obu regionów, pełna droga i próba integracyjna](docs/COMPLETE_JOURNEY.md).
-
-[Buildy i frakcje od poziomu0](docs/BUILD_PLAYTHROUGHS.md): wojownik, łucznik, Ogień, Woda i obie drogi Bractwa; przygotowanie do bossów i osobna komenda kontroli przejść.
-
-[Aktualizacje żyjącego świata](docs/WORLD_UPDATES.md): nazwane odsłony odkrywane przez wspólnotę, regionalne wydarzenia i ograniczone premie.
-
-## Co możesz przejść
-
-- Sześć rozdziałów i 41 jednorazowych definicji fabularnych; 27 zadań prowadzi daną ścieżkę do przygotowania finału, dostępny jest także epilog zależny od wyboru.
-- Osobisty finał od poziomu 30, trzej bossowie z fazami i trofeami oraz trwała sala chwały. Finał bota nie zamyka świata.
-- Trzy obozy jako gildie: osobiste rangi, wspólne zadania, skarbiec, ulepszenia i asynchroniczny boss.
-- Polowanie, kopalnie, ekwipunek, rzeczywisty rynek, cztery receptury kowalstwa/alchemii i dziewięć podstawowych zaklęć oraz dwa wzory VI kręgu po połączeniu, jako runy/zwoje.
-- 44 zlecenia czasowe, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze. Bez realnych płatności.
-- Siedem osobowości botów, sesje w czasie polskim i jawne symulowane zakupy odłamków — [szczegóły](docs/BOT_PERSONALITIES.md).
-- 17 ofert itemshopu z limitami przyspieszania postępu, racjonalna wycena i ochrona wyposażenia botów.
-- Karczma na jeziorze, publiczna kronika działań botów, prywatne raporty i powiadomienia.
-- Rzeczywisty **czas polski `Europe/Warsaw`**, automatyczne CET/CEST; świt i noc według Słońca dla Warszawy, pory roku meteorologiczne. 12 wydarzeń miesięcznych, trzy coroczne i losowe odkrycia; żadna pora nie blokuje gry.
-- Panel zarządcy, inicjalizacja/reset świata z zachowaniem administratorów, prywatne kopie i sprawdzane odtwarzanie.
-
-Rozwój MMORPG od początku gry: [łupy, nazwane rangi rynsztunku i 100 stopni wart](docs/LOOT_AND_ENDGAME.md). Świat nadal żyje po osobistym finale, z miesięcznym rankingiem wart. Limit mieszkańców podniesiono do 100; [pomiar i zasady wydajności](docs/BOT_PERFORMANCE.md).
-
-Ostatni przegląd grywalności: [zwykła sesja, trzy buildy i wnioski](docs/SOLO_PLAYTEST.md). Trening obejmuje cztery typy broni, kupiec ma filtry i zakupy zapasów, a polowanie pokazuje przygotowanie oraz ryzyko.
-
-Nowość: [44 zlecenia w sześciu kategoriach](docs/ADVENTURES.md) oraz osobne gotyckie ramy i plakietki pięciu rzadkości przedmiotów.
-
-## Aktualne ekrany
-
-Zrzuty pokazują osobny świat demonstracyjny i zwykłe konta testowe; sklep, wybór postaci i wspólnotę odświeżono 9 listopada 2026, pozostałe mają daty w manifeście. Stan postaci na screenach nie jest obietnicą zasobów startowych. Grafiki Gothicpedii i czcionka są lokalne; [źródła](docs/ASSETS.md).
-
-![Kolonia i czas polski](docs/screenshots/colony.jpg)
-
-| Polowanie | Wspólnota obozu |
-|---|---|
-| ![Polowanie](docs/screenshots/hunting.jpg) | ![Wspólnota](docs/screenshots/community.jpg) |
-
-| Kalendarz sezonów | Widok mobilny |
-|---|---|
-| ![Wydarzenia](docs/screenshots/events.jpg) | ![Telefon](docs/screenshots/mobile.jpg) |
-
-[Pozostałe aktualne ekrany](docs/SCREENSHOTS.md).
-
-## Dokumentacja
-
-- **[Instrukcja całej gry](docs/GAME_GUIDE.md)** — start, zasoby, rozwój, obozy, handel, magia, finał i administrator.
-- **[Pełny katalog zawartości](docs/GAME_CONTENT.md)** — lokacje, potwory, rangi, zadania, receptury i zaklęcia.
-- **[Wszystkie święta i wydarzenia](docs/EVENTS.md)** — daty, bonusy, losowanie i zasady nakładania.
-- [Czas polski i zmiana czasu](docs/WORLD_CLOCK.md), [start i reset świata](docs/WORLD_MANAGEMENT.md), [kopie zapasowe](docs/BACKUPS.md).
-- [Indeks całej dokumentacji](docs/INDEX.md), [bieżąca roadmapa](docs/ROADMAP.md).
-
-Dokumentacja opisuje domyślną zawartość. Administrator może zmienić ceny, receptury i wydarzenia; w takim świecie obowiązują aktualne wymagania widoczne w grze.
-
-## Konto administratora
-
-Nie ma publicznego, wspólnego hasła. Na istniejącej instalacji możesz utworzyć własne konto:
+Otwórz [grę lokalną](http://127.0.0.1:8001/). W `/inicjalizacja/` ustaw nazwę Kolonii, populację i własnego administratora. Do gry zarejestruj osobne zwykłe konto. Zatrzymaj launcher Ctrl+C, otwórz Khorinis i uruchom ponownie:
 
 ```bash
-python manage.py createsuperuser
+python manage.py open_khorinis --bots 125
+python play.py --port 8001
 ```
 
-Podaj login i hasło interaktywnie, a następnie zaloguj się do `/konto/logowanie/` i otwórz `/zarzadca/` lub `/admin/`. `python manage.py changepassword TWOJ_LOGIN` zmienia zapomniane hasło lokalnie.
+Daje to domyślnie **125 + 125 = 250 botów**. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a `--bots` nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online.
 
-Alternatywnie `python manage.py create_game_admin --username TWOJ_LOGIN` generuje hasło w prywatnym `.admin-access.json` (uprawnienia 0600, ignorowany przez Git). Ten plik, `.env`, baza, backupy i rzeczywiste dane logowania nigdy nie powinny być publikowane. W repozytorium nie ma danych dostępu do prywatnego świata.
+SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. [Windows, restart, aktualizacja i zarządca](docs/public/OPERATOR_GUIDE.md) · [PostgreSQL](docs/POSTGRESQL.md) · [Profil HTTPS](docs/PRODUCTION.md). Restart zachowuje dane; pełny reset jest odrębną operacją.
 
-## Testowanie
+## Od nowej postaci do endgame
 
-[Przegląd błędów i scenariusze regresji](docs/BUG_AUDIT.md) opisuje zabezpieczenia transakcji, amunicję botów, odbiór nagród i wyniki końcowej symulacji.
+1. Konto ma do **pięciu postaci**. Nadaj imię i wybierz otwarty świat; szkic po rejestracji nie jest jeszcze grywalną postacią.
+2. Kolonia i Khorinis przed Barierą działają niezależnie: własne historie, rynki, rankingi, boty i wspólnoty. Każda podstawowa droga awansu ma cztery rangi.
+3. W Kolonii przechodzisz osobistą kampanię mieszkańca. Jej finał nie łączy światów. Wspólnota poziomu 10 podejmuje osobną walkę ze Śniącym; pieczęcie wymagają wkładu trzech różnych kont. Boty mogą uczestniczyć.
+4. Pierwsze zwycięstwo zleca trwałe połączenie, ze świeżą kopią, próbą odtworzenia i blokadą zapisów. Po nim jest **jeden serwer**, wspólny rynek i ranking oraz podróże między regionami, z zachowaniem dorobku i pochodzenia.
+5. Działa pięć frakcji: Miasto Khorinis, Klasztor Magów Ognia, Magowie Wody, Bandyci i Najemnicy. Cztery dalsze rangi trzeba zdobyć. Bractwo wybiera następcę; Guru/Arcyguru tylko frakcję magiczną.
+6. Publiczny Jarkendar wymaga własnego zadania portalu od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. **Nie ma kont premium ani realnych płatności.**
+7. Po finale pozostają stare 100 wart, cztery regionalne ścieżki po 100 stopni, tygodniowy cel wspólnoty, kuźnia, handel, wydarzenia i ranking miesiąca. Miesiąc nie kasuje postaci.
+
+[Pełna droga i bramki](docs/COMPLETE_JOURNEY.md) · [Dziewięć buildów i dróg frakcyjnych](docs/BUILD_PLAYTHROUGHS.md) · [Sukcesja](docs/CAMP_GUILDS.md) · [Rangi](docs/CAMPS.md).
+
+## Systemy i zawartość
+
+- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 11 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
+- Wydobycie, **44 zlecenia Kolonii i 10 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
+- Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.
+- Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata.
+- Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.
+
+[Katalog wygenerowany z kodu](docs/GAME_CONTENT.md) · [Zakres i ograniczenia NK](docs/GOTHIC_II_CONTENT.md) · [Zegar i wydarzenia](docs/EVENTS.md) · [Źródła grafik](docs/ASSETS.md). Katalog źródłowy nie oznacza obsługi każdego skryptu oryginału; gra ma własny balans i kampanię mieszkańca.
+
+## Weryfikacja
 
 ```bash
 python manage.py check
 python manage.py makemigrations --check --dry-run
 python manage.py validate_content
 python manage.py test --noinput
-python manage.py simulate_release --report /tmp/nowa-symulacja.json
+python manage.py simulate_builds --report /tmp/ore-builds-nowa-proba.json
+python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 ```
 
-Symulacja używa izolowanej bazy. Przechodzi kampanię graczem i trzema obozami botów, wspólną sesję handlową, próby nadużyć oraz testy buildów i czasu. Przyspiesza czas testowy, bez nadawania zasobów w przejściu od zera. [Aktualna symulacja czasu polskiego](docs/reports/czas-polski-2026-11-06.json). [Raport poprzedniej pełnej wersji](docs/reports/pierwsza-pelna-edycja-2026-11-05.json) jest zachowany jako wynik historyczny wcześniejszego zegara; aktualny zegar opisuje WORLD_CLOCK.md. CI obejmuje Python 3.12 i 3.13.
+Symulacje tworzą własne tymczasowe bazy; raport wymaga nowej ścieżki. `simulate_builds` sprawdza dziewięć organicznych dróg do rangi 8, NK i pierwszych wart. `simulate_journey` osobno wykonuje rzeczywistą walkę wspólnoty, kopię/odtworzenie i aktywację. CI obejmuje Python 3.12/3.13, PostgreSQL, współbieżność, przejścia oraz obraz produkcyjny. [Dowody i granice oceny](docs/SOLO_PLAYTEST.md).
 
-Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic. Statystyki i fabuła są adaptacją przeglądarkową, nie wierną kopią oryginalnej gry.
+Automatyczna wygrana potwierdza możliwość rozwoju, nie satysfakcję człowieka ani wielotygodniową stabilność gospodarki 250 botów. [Roadmapa](docs/ROADMAP.md) rozdziela ukończoną adaptację i dalsze prace.
 
-Nazwane rangi sprzętu i pełny katalog 522 kodów G1 opisano w [katalogu i grafikach](docs/ITEM_PACKS.md). Fabuła wyznacza wymagania członkostwa i awansów; jest też osobistym przydziałem mieszkańca; rozwój rynsztunku zaczyna się od pierwszych łupów.
+## Administrator i dokumentacja
 
-![Kuźnia i ranga runiczna](docs/screenshots/forge.jpg)
+Na istniejącej instalacji utwórz własne konto przez `python manage.py createsuperuser`. Hasło zmienisz interaktywnie przez `python manage.py changepassword TWOJ_LOGIN`. Logowanie: `/konto/logowanie/`; panele: `/zarzadca/` i `/admin/`. Alternatywne `create_game_admin --username TWOJ_LOGIN` zapisuje wygenerowany dostęp w prywatnym `.admin-access.json`.
 
-Opcjonalna instalacja PostgreSQL, import zapisu i ochrona przed dwoma schedulerami: [POSTGRESQL.md](docs/POSTGRESQL.md). Lokalny zapis nadal domyślnie używa SQLite.
+Nie publikuj `.env`, danych dostępu, baz i kopii. Aktualizacja nie wymaga resetu. [Kopie i odtwarzanie](docs/BACKUPS.md) · [Zarządzanie światem](docs/WORLD_MANAGEMENT.md).
 
-Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia: [PRODUCTION.md](docs/PRODUCTION.md).
+Publiczna księga HTML zawiera poradniki, tabele, zrzuty z datami i raporty. Pobierz ją i otwórz w przeglądarce; podgląd GitHuba pokazuje kod. Zasady utrzymania: [indeks dokumentacji](docs/INDEX.md).
 
-Opcjonalne lokalne polityki AI, bez płatnego API i z regułami jako domyślną polityką: [LOCAL_AI_POLICIES.md](docs/LOCAL_AI_POLICIES.md).
-
-### Wygoda rynsztunku i targu
-
-Cenny sprzęt można zabezpieczyć przed sprzedażą, rozbiórką i zużyciem w zadaniach.
-Porównywarka pokazuje efektywne różnice oraz wymagania przed założeniem; przy
-pierścieniach wybierasz zastępowany slot. Targ ma filtry, ceny jednostkowe i osobne
-strony ofert, własnych ogłoszeń oraz plecaka. [Ekwipunek](docs/EQUIPMENT.md) ·
-[zasady targu](docs/MARKET_POLICY.md).
-
-### Rzadkość zdobywasz z łupem
-
-**Niewykończony → Mistrzowski → Nasycony magią → Runiczny → Pradawny**.
-Rzadkość egzemplarza pozostaje stała. Kuźnia osobno podnosi jego przekucie do **+3**.
-Rzadkości nie można wykupić kolejnym przekuciem. [Drop, koszty i zachowanie starych zapisów](docs/LOOT_AND_ENDGAME.md).
+Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic. Dane oryginału, własny balans oraz prawa do ilustracji są opisane oddzielnie.

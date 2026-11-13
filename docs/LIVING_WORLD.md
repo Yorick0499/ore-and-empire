@@ -1,8 +1,10 @@
-# Żyjąca kolonia — gracze i boty
+# Żyjący świat — gracze i boty
 
-Aktualna wersja używa polityki **baseline-21** i obserwacji schema 22. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
-`python play.py --bots 6 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
+Aktualna wersja używa polityki **baseline-24** i obserwacji schema 23. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+
+`python play.py --bots 125 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 
 ## Co robi mieszkaniec
 
@@ -30,7 +32,7 @@ Bot odpowiada regułowo na świeży wpis człowieka, odwołując się do zapisan
 
 [Instrukcja całej gry](GAME_GUIDE.md) opisuje zasoby, wyprawy, premie, odłamki i rankingi. [EVENTS.md](EVENTS.md) wymienia pełny domyślny kalendarz, [WORLD_CLOCK.md](WORLD_CLOCK.md) wyjaśnia czas polski i CET/CEST. [MARKET_POLICY.md](MARKET_POLICY.md), [MAGIC.md](MAGIC.md), [CRAFTING.md](CRAFTING.md) opisują poszczególne decyzje i limity.
 
-Konta techniczne `colony-bot-N` nie mają używalnych haseł. Administrator tworzony jest lokalnie, bez wspólnych danych dostępu w repozytorium. [Zarządzanie światem](WORLD_MANAGEMENT.md), [backup](BACKUPS.md) i [monitoring](WORLD_MONITOR.md) zawierają procedury operatora.
+Konta techniczne `colony-bot-N` oraz `khorinis-bot-N` nie mają używalnych haseł. Administrator tworzony jest lokalnie, bez wspólnych danych dostępu w repozytorium. [Zarządzanie światem](WORLD_MANAGEMENT.md), [backup](BACKUPS.md) i [monitoring](WORLD_MONITOR.md) zawierają procedury operatora.
 
 ## Walidacja
 
@@ -40,11 +42,14 @@ Pełna symulacja przechodzi kampanię zwykłym graczem i trzema obozami botów b
 
 ## Dopracowanie pełnej edycji
 
-Po finale bot ocenia bezpieczną wartę, w razie potrzeby powtarza niższy stopień, ulepsza noszony sprzęt i rozbiera zbędne łupy. Pył jest chroniony przed automatycznym wystawianiem. Porównanie pancerzy uwzględnia ulepszenie, aby bot nie zamieniał mocniejszego egzemplarza na słabszy łup. [Rozłożenie pracy do 100 botów i pomiary](BOT_PERFORMANCE.md).
+Po finale bot ocenia bezpieczną wartę, w razie potrzeby powtarza niższy stopień, ulepsza noszony sprzęt i rozbiera zbędne łupy. Pył jest chroniony przed automatycznym wystawianiem. Porównanie pancerzy uwzględnia ulepszenie, aby bot nie zamieniał mocniejszego egzemplarza na słabszy łup. [Domyślne 250 botów i pomiary](BOT_PERFORMANCE.md).
 
 Opcjonalny adapter lokalnego modelu ma protokół ollama-1 i trwały budżet. Domyślna gra pozostaje przy regułach; [opis i wyniki](LOCAL_AI_POLICIES.md).
 
 [Siedem osobowości, godziny sesji, symulowane zakupy i 17 ofert itemshopu](BOT_PERSONALITIES.md).
 
+## Rozwój świata z botami
 
-Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+Domyślne 125+125 botów korzysta z jednej kolejki i odrębnych sesji. Przed Barierą aktywności społeczne są odizolowane między serwerami; po niej działa jeden świat, wspólny rynek i rankingi. Wyprawy botów mogą zasilać wspólnotę i globalny wyścig na tych samych zasadach co ludzie. Połączenie nie czeka na login konkretnego gracza.
+
+Bieżąca polityka obsługuje sukcesję, jednorazowy wybór Bractwa, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. [Pełna droga](COMPLETE_JOURNEY.md), [aktualizacje](WORLD_UPDATES.md).

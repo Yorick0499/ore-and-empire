@@ -1,70 +1,54 @@
 # Dokumentacja — indeks
 
-Stan najnowszej wersji: 9 listopada 2026. [README](../README.md) zawiera instalację i szybki start. Dokumenty opisują domyślny balans; lokalne edycje administratora mogą go zmienić.
+**Stan: 13 listopada 2026, po PR #141, migracja `0054_world_updates_events`.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
 
-**[Jednoplikowa publiczna księga HTML](dokumentacja.html)** — pełna treść, wyszukiwarka, 46 ekranów i publiczne raporty; działa offline. Źródła i odtwarzanie: `docs/public/`, `requirements-docs.txt`, `python scripts/build_public_docs.py`.
+## Gra od początku do dalszych wart
 
-## Dla gracza
+- [Pełny przewodnik gracza](GAME_GUIDE.md), [pierwsze kroki](FIRST_PLAYABLE.md), [uruchomienie obu regionów i cała droga](COMPLETE_JOURNEY.md).
+- [Konto, postacie i połączenie](CHARACTERS_AND_WORLDS.md), [Khorinis](KHORINIS.md), [publiczny Jarkendar](JARKENDAR.md), [wyprawa NK i ograniczenia katalogu](GOTHIC_II_CONTENT.md).
+- [Dziewięć dróg buildów/frakcji](BUILD_PLAYTHROUGHS.md), [rangi i koszty](CAMPS.md), [sukcesja, wybór Bractwa i skarbce](CAMP_GUILDS.md), [wyprawy wspólnoty](CAMP_RAIDS.md).
+- [Ekwipunek i porównywarka](EQUIPMENT.md), [magia i zapasy zwojów](MAGIC.md), [rynek](MARKET_POLICY.md), [rzemiosło](CRAFTING.md).
+- [Łupy, kuźnia i 100 starych wart](LOOT_AND_ENDGAME.md), [400 stopni regionalnych i cel tygodniowy](REGIONAL_ENDGAME.md).
+- [Fabuła](STORY.md), [rola mieszkańca](RESIDENT_STORY.md), [zlecenia czasowe](ADVENTURES.md), [wyzwania i reputacja](CHALLENGES.md), [prywatna kronika](JOURNAL.md).
+- [Świat i lokacje](WORLD.md), [katalog tabel z kodu](GAME_CONTENT.md), [zegar Polski](WORLD_CLOCK.md), [święta](EVENTS.md), [wydarzenia regionalne i nazwane odsłony](WORLD_UPDATES.md).
+- [Żyjący świat i karczma](LIVING_WORLD.md), [osobowości, sesje i itemshop](BOT_PERSONALITIES.md).
+- [Galeria z datami](SCREENSHOTS.md), [motyw](DESIGN.md), [grafiki i prawa](ASSETS.md), [paczki źródłowe](ITEM_PACKS.md).
 
-- [Pięć postaci, wymagania fabuły, przywileje i plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).
+## Operator i rozwój projektu
 
-- [Osobowości, sesje i itemshop](BOT_PERSONALITIES.md).
+- [Instalacja Linux/macOS/Windows, restart, zarządca i diagnostyka](public/OPERATOR_GUIDE.md).
+- [Ustawienia świata i reset](WORLD_MANAGEMENT.md), [backup i odtwarzanie](BACKUPS.md), [PostgreSQL/import](POSTGRESQL.md), [produkcja HTTPS](PRODUCTION.md).
+- [Monitoring](WORLD_MONITOR.md), [gospodarka](ECONOMY.md), [250 botów i pomiary](BOT_PERFORMANCE.md), [opcjonalne lokalne AI](LOCAL_AI_POLICIES.md).
+- [Bieżąca roadmapa](ROADMAP.md), [testy grywalności i ich granice](SOLO_PLAYTEST.md), [rejestr poprawek](BUG_AUDIT.md).
+- Materiały historyczne: [przegląd 3 XI](PROJECT_REVIEW.md), [naprawa dawnych migracji](LEGACY_SAVES.md). Nie zastępują aktualnych procedur.
 
-- [Łupy, ulepszenia i endgame](LOOT_AND_ENDGAME.md)
+## Dowody bieżącego wydania
 
-- [Instrukcja całej gry](GAME_GUIDE.md) — od nowej postaci do finału, wszystkie główne systemy.
-- [Katalog zawartości](GAME_CONTENT.md) — komplet lokacji, potworów, rang, fabuły, zleceń, receptur i zaklęć.
-- [Wszystkie wydarzenia](EVENTS.md), [czas polski i zmiana czasu](WORLD_CLOCK.md).
-- [Droga do pierwszego finału](FIRST_PLAYABLE.md), [żyjąca kolonia i karczma](LIVING_WORLD.md).
-- [Świat i lokacje](WORLD.md), [rangi obozowe](CAMPS.md), [wspólnoty](CAMP_GUILDS.md), [wyprawy obozowe](CAMP_RAIDS.md).
-- [Fabuła](STORY.md), [uniwersalna historia mieszkańców](RESIDENT_STORY.md), [wyzwania](CHALLENGES.md), [kronika](JOURNAL.md).
-- [Ekwipunek](EQUIPMENT.md), [magia](MAGIC.md), [rzemiosło](CRAFTING.md), [rynek](MARKET_POLICY.md).
-- [Aktualne zrzuty ekranów](SCREENSHOTS.md), [motyw](DESIGN.md), [źródła grafik](ASSETS.md).
+- [Ponowny audyt 13 XI: dziewięć buildów, prawdziwa Bariera i boty](reports/grywalnosc-wydania-2026-11-13.json).
+- [Dziewięć organicznych dróg i GUI](reports/buildy-frakcje-2026-11-12.json).
+- [Wydarzenia regionalne, siedem odsłon i GUI](reports/wydarzenia-aktualizacje-2026-11-13.json).
+- [Pełna droga i lokalne grafiki](reports/pelna-droga-2026-11-12.json), [regionalny endgame](reports/regionalny-endgame-2026-11-12.json).
+- [Dane NK](reports/gothic2-nk-content-2026-11-12.json), [assety NK](reports/gothic2-nk-assets-2026-11-12.json), [publiczny portal](reports/publiczny-jarkendar-2026-11-12.json).
+- [Skalowanie populacji](reports/populacja-250-2026-11-11.json), [PostgreSQL i rzeczywista współbieżność](reports/postgresql-wspolbieznosc-2026-11-07.json).
 
-## Dla operatora i programisty
+Raporty JSON i screenshoty zachowują wyniki, daty, wersje i ograniczenia konkretnej próby. Starszych liczb nie przeliczamy na nową wersję ani nie nazywamy bieżącymi. Aktualny CI: [przebieg wydania #141](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831). Dane testowe są odizolowane od prywatnego świata.
 
-- [PostgreSQL, import zapisu i dzierżawa schedulera](POSTGRESQL.md).
+## Utrzymanie dokumentacji
 
-- [100 botów: harmonogram i pomiary](BOT_PERFORMANCE.md)
+[Raport przeglądu całej dokumentacji i kontroli offline](reports/dokumentacja-wydania-2026-11-13.json).
 
-- [Świat, administrator i reset](WORLD_MANAGEMENT.md), [backup i odtwarzanie](BACKUPS.md).
-- [Monitoring](WORLD_MONITOR.md), [gospodarka i granice modeli](ECONOMY.md), [paczki danych/przedmiotów](ITEM_PACKS.md).
-- [Bieżąca roadmapa](ROADMAP.md), [historyczny przegląd architektury](PROJECT_REVIEW.md), [historia migracji dawnych zapisów](LEGACY_SAVES.md).
+Źródła publicznej księgi wskazuje `docs/public/manifest.json`. Po zmianie katalogów uruchom w środowisku aplikacji:
 
-Dane logowania, `.admin-access.json`, `.env`, bazy i backupy są prywatne. Nie dodawaj ich do GitHuba ani screenów. Repozytorium nie zawiera hasła do żadnego prywatnego serwera.
+```bash
+python scripts/build_content_reference.py
+python scripts/build_content_reference.py --check
+```
 
-## Raporty
+Generator używa własnej tymczasowej bazy SQLite i nie korzysta z prywatnego PostgreSQL. Przed przebudową HTML zainstaluj `requirements-docs.txt`, następnie:
 
-- [Aktualna symulacja rynsztunku i kampanii](reports/rynsztunek-mmorpg-2026-11-07.json), [pomiar 100 botów](reports/rynsztunek-sto-botow-2026-11-07.json).
+```bash
+python scripts/build_public_docs.py
+python scripts/build_public_docs.py --check
+```
 
-- [Audyt błędów](BUG_AUDIT.md) — odtworzone problemy, poprawki i testy nadużyć.
-
-- [Pełna kampania i dalsza gra po finale](reports/lupy-endgame-2026-11-06.json).
-- [100 nowych botów](reports/sto-botow-2026-11-06.json) oraz [100 rozwiniętych botów](reports/sto-botow-endgame-2026-11-06.json).
-
-`docs/reports/` zawiera jawne wyniki izolowanych testów i modeli, nie eksport prywatnego świata. Starsze raporty pozostają historycznym zapisem reguł, zegara i rewizji opisywanej w danym uruchomieniu; nie należy ich odczytywać jako aktualnej prognozy całej gospodarki.
-
-- [Aktualny raport — czas polski](reports/czas-polski-2026-11-06.json).
-- [Historyczny raport pierwszej pełnej pętli](reports/pierwsza-pelna-edycja-2026-11-05.json).
-- [Historyczny model budżetowy gospodarki](reports/economy-baseline-v1.json).
-
-Profil serwera, HTTPS, staging, ochrona kont i procedury wdrożenia/odtworzenia: [PRODUCTION.md](PRODUCTION.md).
-
-- [Lokalne polityki AI i porównanie z regułami](LOCAL_AI_POLICIES.md).
-- [Pełna symulacja po fundamentach serwera i AI](reports/petla-po-fundamentach-ai-2026-11-07.json).
-
-- [Pętla kampanii po dopracowaniu rynsztunku i targu](reports/rynsztunek-targ-petla-2026-11-07.json) — 87 scenariuszy.
-- [GUI rynsztunku i targu](reports/rynsztunek-targ-gui-2026-11-07.json) — formularze i 320/390/1440 px.
-
-- [Stała rzadkość i przekucie +3 — GUI](reports/rzadkosc-kuznia-gui-2026-11-07.json).
-- [Migracja rzadkości — kontrola statystyk prywatnej kopii](reports/rzadkosc-migracja-2026-11-07.json) — raport zawiera wyłącznie zbiorcze wyniki, bez zapisu i danych logowania.
-- [Kampania, boty i nadużycia po zmianie rzadkości](reports/rzadkosc-kuznia-petla-2026-11-07.json).
-
-- [Próba zwykłej gry solo, trzy buildy i ocena immersji](SOLO_PLAYTEST.md).
-
-- [44 zlecenia: kategorie, koszty i zapis rozpoczętej wyprawy](ADVENTURES.md).
-
-- [Ponowna kampania i trzy buildy po rozbudowie zleceń](reports/zlecenia-buildy-petla-2026-11-08.json), [karty i GUI](reports/zlecenia-rzadkosc-gui-2026-11-08.json).
-
-
-Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+Publikuj razem źródła Markdown, jawny manifest oraz wygenerowane `dokumentacja.html` i `public/build.json`. Zrzuty wymagają daty/warunków w swoim manifeście; nowy raport dodaj do publicznej allowlisty. Weryfikacja księgi kontroluje lokalne odsyłacze, kotwice i kompletność materiałów. `.env`, `.admin-access.json`, bazy, dumpy i kopie pozostają prywatne.

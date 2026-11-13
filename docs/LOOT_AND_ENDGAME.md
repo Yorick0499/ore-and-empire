@@ -1,6 +1,8 @@
 # Łupy, ulepszenia i życie po finale
 
-Pierwsza pełna edycja pozostaje w świecie Gothic I. Osobiste zakończenie kampanii nie wyłącza świata, nie zeruje postaci i nie przenosi do Gothic II. Codzienne i tygodniowe wyzwania, wspólne zadania obozu, dzienni bossowie obozowi, rynek, zlecenia oraz wydarzenia nadal działają. Dochodzą Warty za Przełęczą i rozwój konkretnych egzemplarzy sprzętu.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+Bieżąca gra obejmuje Kolonię, Khorinis i wspólny etap NK. Osobiste zakończenie kampanii nie wyłącza świata ani nie zeruje postaci. Połączenie następuje po osobnym zwycięstwie wspólnoty nad Śniącym, a nie przez ręczny transfer do II edycji. Codzienne i tygodniowe wyzwania, wspólne zadania obozu, dzienni bossowie obozowi, rynek, zlecenia oraz wydarzenia nadal działają. Dochodzą Warty za Przełęczą i rozwój konkretnych egzemplarzy sprzętu.
 
 ## Skąd brać wyposażenie
 
@@ -88,7 +90,7 @@ Dla stopnia `d` strażnik ma `600 + 60d` życia, `55 + 3d` siły, `25 + 2d` ochr
 
 Próba kosztuje **20 energii**, ma **5 minut** odstępu także po porażce i pozostawia rzeczywiste rany. Zwycięstwo daje bazowo `50 + 10d` rudy i `400 + 80d` PD z normalnymi premiami pory/eventów, zawsze pył najwyższego kręgu i 60% szansy na sprzęt tego kręgu. **Pierwsze zwycięstwo na każdym stopniu gwarantuje sprzęt**. Porażka nie daje nagród. Klient wybiera wyłącznie odblokowany stopień; nie przesyła statystyk, punktów ani nagród. Raport zachowuje wynik, łupy i koszty.
 
-Miesięczny ranking obejmuje ludzi i boty danego świata. Wygrana daje `10 × d` punktów; sortowanie: suma punktów, najwyższa wygrana trudność, stały identyfikator przy remisie. Nowy miesiąc zaczyna ranking od zera według **Europe/Warsaw**, bez zerowania sprzętu, odblokowanych wart ani historii. Nie ma automatycznej wypłaty waluty za samą zmianę miesiąca. Daje to odnawialny cel także po zdobyciu Pradawnego +3 i warty 100: walka o wynik miesiąca i wsparcie własnego obozu.
+Miesięczny ranking obejmuje ludzi i boty danego świata, a po Barierze oba połączone regiony. Wygrana daje `10 × d` punktów; sortowanie: suma punktów, najwyższa wygrana trudność, stały identyfikator przy remisie. Nowy miesiąc zaczyna ranking od zera według **Europe/Warsaw**, bez zerowania sprzętu, odblokowanych wart ani historii. Nie ma automatycznej wypłaty waluty za samą zmianę miesiąca. Daje to odnawialny cel także po zdobyciu Pradawnego +3 i warty 100: walka o wynik miesiąca i wsparcie własnego obozu.
 
 Boty od poziomu 30 oceniają bezpieczną trudność, wracają na łatwiejszą, gdy brakuje sił, ulepszają noszony sprzęt i rozbierają zbędne łupy. Nie otrzymują administracyjnych grantów. Kuźnia botów działa też podczas kampanii. Cztery z pięciu tur dają pierwszeństwo niezakończonym przydziałom przed opcjonalnym patrolem. Pełną kampanię i kontrolowane scenariusze endgame rozróżniamy w raportach testowych.
 
@@ -107,12 +109,13 @@ Pula sprzętu pomija definicje bez żadnej aktywnej statystyki, aby rzadki drop 
 - 0–9: prolog i lokalne polowania/zlecenia Kolonii albo Khorinis; obie historie mają świeży start.
 - 10–29: kolejne rozdziały i frakcje regionu pochodzenia; wspólny rynek nie omija wymagań sprzętu.
 - 30+: Warty za Przełęczą (wymagają obozu) i przygotowanie do obozowego Śniącego; sama trzydziestka nie zastępuje kwalifikacji wspólnoty, rangi ani rytuału.
-- 35+: po połączeniu Feomathar; 40+: dalsza hierarchia wspólnych najemników, z osobnymi warunkami rangi.
+- Po Barierze od 10: własny portal Jarkendaru; kontrakty NK od 25, Feomathar od 35. Wyższe rangi każdej z pięciu frakcji wymagają kolejno poziomów 30/35/40/45.
+- Po finale NK od 45: cztery regionalne ścieżki i tygodniowy cel wspólnoty. Szczegóły poniżej.
 
 Bossowie mają jawny `balance_version=1`, stałe bazowe statystyki oraz zapis kosztu energii, cooldownu i statystyk przeciwnika przy walce. Nagrody rzeczywiście wypłacone są zapisane w historii; wydarzenia mogą je modyfikować według zwykłych zasad kalendarza. Feomathar: 2400 życia, 120 ataku, 75 ochrony, 30 energii, 60 minut przerwy, bazowo 5000 PD i 750 rudy. Wyposażenie gracza nie podnosi jego bazowych statystyk.
 
-Warty zachowują snapshot wersji 1: dla głębokości d życie 600+60d, atak 55+3d, ochrona broni 25+2d, magia/ogień 10+d. Bazowa ruda 50+10d, PD 400+80d, koszt 20 energii i 5 minut przerwy. Trudność wybiera się postępem wart (1–100), a nie siłą aktualnego sprzętu. Zlecenia zachowują własną wersję i snapshot przy przyjęciu. Dawne raporty nie są przepisywane. [Pomiary bez nadań](SOLO_PLAYTEST.md).
+Warty zachowują snapshot wersji 1: dla głębokości d życie 600+60 d, atak 55+3 d, ochrona broni 25+2 d, magia/ogień 10+d. Bazowa ruda 50+10 d, PD 400+80 d, koszt 20 energii i 5 minut przerwy. Trudność wybiera się postępem wart (1–100), a nie siłą aktualnego sprzętu. Zlecenia zachowują własną wersję i snapshot przy przyjęciu. Dawne raporty nie są przepisywane. [Pomiary bez nadań](SOLO_PLAYTEST.md).
 
 ## Regionalne warty po NK — #136
 
-[Nowe cztery ścieżki i cel tygodniowy](REGIONAL_ENDGAME.md) rozszerzają powyższe historyczne warty. Mają osobne wpisowe i limit8 pełnych nagród regionalnych na polski dzień; stare100 stopni zachowuje zasady i dorobek.
+[Nowe cztery ścieżki i cel tygodniowy](REGIONAL_ENDGAME.md) rozszerzają powyższe historyczne warty. Mają osobne wpisowe i limit 8 pełnych nagród regionalnych na polski dzień; stare 100 stopni zachowuje zasady i dorobek.

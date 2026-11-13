@@ -1,54 +1,36 @@
-# Gothic interface assets
+# Grafiki, font i pochodzenie zasobów
 
-The interface uses stone-grey panels, bevelled metal borders and gold selections,
-inspired by Gothic I. `characters/static/characters/art/valley.svg` is an original
-project illustration, not an image extracted from Gothic or Gothicpedia.
+Stan: 13 XI 2026. Priorytet obecnej biblioteki to **broń/przedmioty, lokacje, moby i bossowie**. Portrety NPC i ilustracje scen questowych są odłożone. Wszystkie używane obrazy są lokalne; gra i CI nie wymagają połączenia z Gothicpedią.
 
-## Font
+## Manifest i źródła
 
-`characters/static/characters/fonts/GothicII.ttf` is release 1.0 from
-[Patrix9999/Gothic-2-Font](https://github.com/Patrix9999/Gothic-2-Font/releases/tag/1.0).
-The author vectorized Gothic II's original bitmap font. This is not claimed to be
-a Gothic I font. All Polish letters are present. The font is served locally with
-`font-display: swap` and a Georgia fallback. The upstream project does not provide
-a standalone font redistribution license; original game materials remain subject
-to their owners' rights. Preserve attribution and confirm applicable permissions
-before distributing the assets commercially.
+`characters/static/characters/gothicpedia.json` zapisuje grę, typ, plik lokalny, stronę i rewizję źródła, oryginalny URL, MIME, wymiary, SHA-256 i informacje o prawach. Powtarzające się modele współdzielą pliki. Liczba przypisań nie jest liczbą unikalnych obrazów. Źródła widać na kartach i `/zrodla/`.
 
-## Gothicpedia images
+G1 ma 522 tożsamości przedmiotów z lokalną ilustracją, w tym jawne modele kategorii dla wpisów technicznych. Dane NK mają 877 tożsamości: 866 dopasowań źródłowych i 11 archiwalnych wariantów z oznaczoną ilustracją kategorii. Wszystkie 167 aktywnychwzorów kupcaNK i 85 kodówistotma lokalną grafikę; referencyjne przyzwania nie stają się przez to działającym czarem. Aktualne liczby całego manifestu ustala `validate_content`, nie dawne 632/670 wpisów z etapówG1/Khorinis.
 
-Allow `gothic.fandom.com` and `static.wikia.nocookie.net` in the cloud environment's
-network settings, then run:
+Lokacje i bossowie są objęte walidacją użytych kluczy, nie tylko listą kodów źródłowych. `gothic2-location-art.json` wskazuje zdjęcia terenów, m.in. portalu, kopalni, bagna, Esmeraldy i krypty Inubisa. Gdy brak osobnego modelu odmiany/gatunek jest wspólny, podpis ujawnia zastępstwo. [Szczegóły NK i wyjątki](GOTHIC_II_CONTENT.md).
 
-```sh
-python manage.py import_gothicpedia
-# Or download just the shadowbeast first:
+## Font i motyw
+
+`characters/static/characters/fonts/GothicII.ttf` pochodzi z wydania 1.0 projektu [Patrix 9999/Gothic-2-Font](https://github.com/Patrix9999/Gothic-2-Font/releases/tag/1.0). To wektorowa rekonstrukcja fontu GothicII, z polskimi znakami, podawana lokalnie przez `font-display:swap` i fallbackGeorgia. `art/valley.svg` jest autorską ilustracją projektu. Karty rzadkości i ornamenty interfejsu korzystają także z własnego CSS. [Motyw](DESIGN.md).
+
+## Aktualizowanie biblioteki
+
+Istniejący importer G1 i jawnych wyborów Khorinis działa poza normalną rozgrywką:
+
+```bash
 python manage.py import_gothicpedia --only shadowbeast
+python manage.py validate_content
 ```
 
-The importer resolves the current main illustration through the MediaWiki API,
-downloads images to local static storage (maximum 5 MiB per image), and records
-page and original-image URLs in `characters/static/characters/gothicpedia.json`.
-Only supported image MIME types are accepted. A failed download leaves the
-existing assets and manifest unchanged. Commit downloaded images and the manifest
-together, and rebuild/collect static assets. Gameplay and CI never require access
-to Gothicpedia. Monster and location cards show only images available locally.
+Sprawdza host i przekierowania przed pobraniem, format/dekodowanie, limit 5 MiB, 8192 px/wymiar i 16 Mpix; odrzuca animacje. Wybór pliku/uniwersum jest jawny w rejestrach. Nie wybieraj przypadkowego obrazka pierwszego infoboksu przy dodawaniu treści NK. Pobrania są walidowane przed atomową publikacją, a pliki mają ścieżki zależne od hasha.
 
-Attribution links appear below images and on `/zrodla/`. Wiki page licensing does
-not automatically grant rights to the underlying game artwork. Review each
-source's terms when adding or replacing images.
+Dane/obrazy NK mają przypięte rewizje oraz osobny cache poza repo. Sekwencję builderów, suplement i kontrolowane wyjątki opisuje [GOTHIC_II_CONTENT.md](GOTHIC_II_CONTENT.md). Zmiana źródłowych faktów wymaga nowej wersji paczki; zmiana ilustracji nie powinna przepisywać statystyk posiadanych egzemplarzy.
 
-The bundled manifest now covers all creatures and main destinations listed in
-[WORLD.md](WORLD.md), plus boss portraits. Duplicate source images share a local
-file. The importer selects the first creature infobox to avoid accidentally
-choosing sequel artwork. Original CDN URLs and thumbnail download URLs are kept
-separately. Current README screenshots show the expanded local Gothicpedia assets and the latest Polish-time interface; see [SCREENSHOTS.md](SCREENSHOTS.md).
+Publikuj obraz i manifest razem. Po zmianie uruchom offline `validate_content`, a produkcyjnie przebuduj obraz/collectstatic. Cache manifestu ogranicza powtórne czytanie przy renderowaniu kart. [Paczki danych](ITEM_PACKS.md).
 
-## Pełny katalog G1 — wersja 3
+## Prawa
 
-522 pozycje mają lokalne ilustracje Gothicpedii, dobrane według kodów i wariantów G1. Cały manifest zawiera 632 przypisania; katalog przedmiotów używa 388 różnych plików. Wspólne modele i ilustracje kategorii są jawne. Szczegóły w [ITEM_PACKS.md](ITEM_PACKS.md). Cache manifestu eliminuje wielokrotny odczyt przy renderowaniu kart; runtime nie pobiera grafik z sieci.
+Atrybucja i licencja tekstu wiki nie nadają automatycznie praw do ilustracji gry. Zachowujemy zgłoszone pochodzenie i licencję obrazu, także jawny brak informacji. Projekt fontu nie podaje osobnej kompletnej licencji redystrybucji. Nie deklarujemy własności oryginalnych modeli/rysunków ani nowej licencji na nie. Przy zastępowaniu zasobu zachowaj dokładne źródło i odpowiednie prawa.
 
-
-Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
-
-Etap #120 dodaje dwie lokalne ilustracje G2: Wulkan oraz Feomathara, wybrane jawnie w `khorinis-asset-selections.json` i pobrane istniejącym importerem. Manifest zawiera SHA-256, MIME, wymiary i atrybucję Gothicpedii; łącznie 670 wpisów. Smok jest umieszczony przy Wulkanie w Górniczej Dolinie, a jego statystyki pozostają autorskim balansem MMORPG. Źródła: [Wulkan](https://gothic.fandom.com/pl/wiki/Wulkan), [Feomathar](https://gothic.fandom.com/pl/wiki/Feomathar).
+[Galeria z datami](SCREENSHOTS.md) pokazuje osobne światy testowe. Zrzut nie jest obietnicą zasobów nowej postaci i nie powinien ujawniać prywatnego administratora.

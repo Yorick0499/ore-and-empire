@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-13",
-  "code_revision": "wydarzenia regionalne i aktualizacje / #137",
+  "code_revision": "64a7866 — grywalne wydanie po #141; dokumentacja #142",
   "migration": "0054_world_updates_events",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -24,6 +24,10 @@
         [
           "docs/COMPLETE_JOURNEY.md",
           "Uruchomienie, pełna droga i plan endgame"
+        ],
+        [
+          "docs/FIRST_PLAYABLE.md",
+          "Pierwsze kroki i droga do końca kampanii"
         ]
       ]
     },
@@ -32,7 +36,7 @@
       "chapters": [
         [
           "docs/CHARACTERS_AND_WORLDS.md",
-          "Pięć postaci, progi fabuły i dwa światy"
+          "Pięć postaci, dwa początki i jeden wspólny świat"
         ],
         [
           "docs/KHORINIS.md",
@@ -40,7 +44,7 @@
         ],
         [
           "docs/JARKENDAR.md",
-          "Publiczny Jarkendar — pierwsza wyprawa"
+          "Publiczny Jarkendar — portal i dalsza wyprawa"
         ],
         [
           "docs/GOTHIC_II_CONTENT.md",
@@ -97,11 +101,11 @@
       ]
     },
     {
-      "title": "Obozy i życie kolonii",
+      "title": "Frakcje i żyjący świat",
       "chapters": [
         [
           "docs/CAMPS.md",
-          "Rangi i awanse obozowe"
+          "Rangi, próby i przywileje pięciu frakcji"
         ],
         [
           "docs/CAMP_GUILDS.md",
@@ -219,10 +223,6 @@
       "title": "Archiwum projektu",
       "chapters": [
         [
-          "docs/FIRST_PLAYABLE.md",
-          "Droga do pierwszej grywalnej edycji"
-        ],
-        [
           "docs/LEGACY_SAVES.md",
           "Naprawy dawnych zapisów"
         ],
@@ -278,6 +278,8 @@
     "docs/reports/pelna-droga-2026-11-12.json",
     "docs/reports/regionalny-endgame-2026-11-12.json",
     "docs/reports/buildy-frakcje-2026-11-12.json",
-    "docs/reports/wydarzenia-aktualizacje-2026-11-13.json"
+    "docs/reports/wydarzenia-aktualizacje-2026-11-13.json",
+    "docs/reports/grywalnosc-wydania-2026-11-13.json",
+    "docs/reports/dokumentacja-wydania-2026-11-13.json"
   ]
 }

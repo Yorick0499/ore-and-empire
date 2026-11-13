@@ -1,12 +1,14 @@
 # Paczki danych i grafik (#26)
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 ## Zakres G1
 
-Paczka **Gothic I v3** zawiera **522 osobne kody** ze źródłowej listy Gothicpedii: 140 broni, pancerze, biżuterię, runy, zwoje, żywność, mikstury, materiały, pisma, mapy i klucze. Liczba obejmuje warianty wspólnego modelu oraz trzy techniczne wpisy archiwalne, pomijane w zwykłym katalogu gry. To pełna lista przedmiotów z tej rewizji źródła, a nie deklaracja obsługi każdego skryptu oryginalnej gry.
+Paczka **Gothic I v 3** zawiera **522 osobne kody** ze źródłowej listy Gothicpedii: 140 broni, pancerze, biżuterię, runy, zwoje, żywność, mikstury, materiały, pisma, mapy i klucze. Liczba obejmuje warianty wspólnego modelu oraz trzy techniczne wpisy archiwalne, pomijane w zwykłym katalogu gry. To pełna lista przedmiotów z tej rewizji źródła, a nie deklaracja obsługi każdego skryptu oryginalnej gry.
 
 **520 wpisów** ma potwierdzone parametry, cenę lub efekt; dwa techniczne modele postaci mają tylko tożsamość. 140 broni ma zweryfikowane obrażenia i wymagania, także dwa orcze kostury z oryginalnymi zerowymi obrażeniami. Runy/zwoje korzystają z zaimplementowanej listy zaklęć; pozostałe nadal opisuje katalog. Książki i klucze nie otrzymują wymyślonej mechaniki. Złożone kanały obrażeń G1 są zachowane w danych źródłowych, a silnik przeglądarkowy używa swojego pojedynczego kanału.
 
-Indeks `gothic1-source-index.json` przechowuje wszystkie kody, rewizję 585851, skrót zestawu i mapę dwóch starych sklejonych identyfikatorów. Dodano osobno cztery klucze. Stare egzemplarze nie są kasowane. Wersja 3 naprawia niezmienione definicje v2 (np. kamienie ogniskujące błędnie oznaczone jako broń); zachowuje ręcznie dostrojony balans administratora. Niezmieniony plik referencyjny v2 służy wyłącznie do tego porównania.
+Indeks `gothic1-source-index.json` przechowuje wszystkie kody, rewizję 585851, skrót zestawu i mapę dwóch starych sklejonych identyfikatorów. Dodano osobno cztery klucze. Stare egzemplarze nie są kasowane. Wersja 3 naprawia niezmienione definicje v 2 (np. kamienie ogniskujące błędnie oznaczone jako broń); zachowuje ręcznie dostrojony balans administratora. Niezmieniony plik referencyjny v 2 służy wyłącznie do tego porównania.
 
 Każdy z 522 wpisów ma przypisaną ilustrację Gothicpedii, ze wspólnym modelem tam, gdzie źródło nie rozróżnia kodów. Zwój i runa, tomy Chromanina, odmiany ziół, listów oraz kluczy mają dobrany wariant. Techniczne modele postaci otrzymują jawną ilustrację kategorii ubioru. Nie wykorzystujemy obrazu ostrzeżenia Fandomu jako przedmiotu. Adaptacje bez własnego modelu korzystają z podpisanej ilustracji kategorii. Grafiki widać w katalogu, ekwipunku, sklepie i na targu.
 
@@ -28,7 +30,7 @@ SHA-256, format i wymiary oraz pochodzenie/prawa. `asset-selections.json` wskazu
 konkretny tytuł pliku dla gry. Importer nie wybiera pierwszego infoboksu ani obrazka
 strony. Brak jawnego wyboru dla G2 NK odrzuca import zamiast podmieniać grafikę G1.
 
-Manifest zawiera **632 przypisania grafik**, w tym 522 pozycje katalogowe korzystające z **388 różnych plików**. Obrazy są lokalne, sprawdzane hashami i dekoderem. Manifest jest buforowany według czasu modyfikacji i rozmiaru — karty przedmiotów nie odczytują wielokrotnie całego JSON-a. Ekwipunek i katalog pokazują do 24 kart na stronę.
+Cały bieżący manifest obejmuje **1676 przypisań**, w tym biblioteki G1, Khorinis, Jarkendaru i NK. Historyczny katalog G1 ma 522 pozycje; współdzielenie plików jest jawne. Obrazy są lokalne, sprawdzane hashami i dekoderem. Manifest jest buforowany według czasu modyfikacji i rozmiaru — karty przedmiotów nie odczytują wielokrotnie całego JSON-a. Ekwipunek i katalog pokazują do 24 kart na stronę.
 
 `import_gothicpedia --only item_rusty_sword --game GOTHIC_I` sprawdza host początkowy
 oraz każdy redirect **przed jego wykonaniem**. Dekodowanie Pillow sprawdza PNG/JPEG/
@@ -52,3 +54,9 @@ paczki i uruchom walidację; zachowaj rejestr pochodzenia. Runtime gry korzysta
 wyłącznie z lokalnych plików, a nie połączeń do wiki.
 
 Pięć kodów bez obrazu w infoboksie (dwa płonące miecze, pismo „Skazańcy”, ziele dla kopaczy i magiczna woda) korzysta z jawnej ilustracji kategorii z innego wpisu G1. Manifest zapisuje `reference_code`; nie pokazujemy placeholderów „BrakPrzedmiotu” jako grafik gry. Jeżeli infoboks podaje render G2 i ikonę G1, wybieramy ikonę G1.
+
+## Khorinis, Jarkendar i źródłowe NK
+
+Początkowe wyposażenie Khorinis jest oddzielną adaptacją, a `gothic2-items.json` zawiera 877 tożsamości z przypiętej listy NK. 602 rekordy mają potwierdzone fakty/efekty; 167 wzorów dopuszczono do zwykłego kupca, z kontrolą połączenia/portalu/frakcji. Pasy i dwa własne czary VI kręgu mają osobną implementację. Pozostałe referencyjne pozycje nie udają działających przyzwań, przemian, teleportów czy trwałych mikstur.
+
+Nie kopiujemy egzemplarzy między paczkami ani nie stosujemy automatycznie złotych cen oryginału jako rudy w adaptacji. Nowe wersje zachowują stare snapshoty i edycje operatora. [Pełny zakres i pipeline NK](GOTHIC_II_CONTENT.md), [bieżące tabele aktywnej gry](GAME_CONTENT.md), [grafiki](ASSETS.md).

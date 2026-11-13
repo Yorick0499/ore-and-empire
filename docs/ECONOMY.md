@@ -1,5 +1,7 @@
 # Bilans gospodarki (#12)
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 ## Fakty i źródła
 
 `EconomicEntry` zapisuje zmianę rudy/odłamków, saldo po operacji, kategorię,
@@ -54,7 +56,7 @@ zakupy wyposażenia za 80/240/500 rudy. Model nie obejmuje walk, kampanii jednor
 sprzedaży łupów, rzemiosła, decyzji LLM ani endogenicznych cen rynku. Jego wyniki
 nie są dowodem zbalansowania wszystkich polityk ani prognozą ceny danego itemu.
 
-## Wnioski z raportu v1
+## Historyczne wnioski z raportu v 1
 
 - Kurier z ciągłym bonusem eventowym: bez limitu 152743 wypraw i 25454 odnowienia
   przez 90 dni; z limitem 28168 wypraw i 450 odnowień. To porównanie przy stałej
@@ -73,16 +75,26 @@ Wynik tego ticketu to mierzalny rejestr, jawna reguła regeneracji i reprodukowa
 punkt odniesienia. Pozostała inflacja i przyszłe receptury wymagają kolejnych
 porównań. Nie uznajemy wzrostu obrotu za dowód zdrowej ekonomii.
 
-## Referencyjne ceny itemów
+## Referencyjne ceny itemów i historyczne paczki
 
-Paczka G1 v2 rozszerza weryfikację do 470/520 rekordów: 228 dodatkowych infoboksów
+Paczka G1 v 2 rozszerza weryfikację do 470/520 rekordów: 228 dodatkowych infoboksów
 zostało dopasowanych po dokładnym kodzie i cenie w rudzie. Dane źródłowe oraz aktywny
-balans pozostają rozdzielone; import v2 nie nadpisuje edycji cen w istniejącym świecie.
+balans pozostają rozdzielone; import v 2 nie nadpisuje edycji cen w istniejącym świecie.
 To podstawa porównania ofert i przyszłego rzemiosła, nie automatyczne zastosowanie
 wszystkich cen G1 do istniejących przedmiotów.
 
-Wersja G1 v3: 522 kody i 520 wpisów z potwierdzonym parametrem, ceną lub efektem. Historyczny system dziesięciu rang został zastąpiony stałą rzadkością łupu oraz niezależnym przekuciem +0–+3. Obecne pełne przekucie kosztuje 1560 rudy i 33 pyłu; pierwszy próg to 60 rudy i 3 pyłu i jest dostępny podczas fabuły. Pochodzenie łupów blokuje zamianę tanich zakupów NPC na pył. [Aktualne reguły](LOOT_AND_ENDGAME.md).
+Wersja G1 v 3: 522 kody i 520 wpisów z potwierdzonym parametrem, ceną lub efektem. Historyczny system dziesięciu rang został zastąpiony stałą rzadkością łupu oraz niezależnym przekuciem +0–+3. Obecne pełne przekucie kosztuje 1560 rudy i 33 pyłu; pierwszy próg to 60 rudy i 3 pyłu i jest dostępny podczas fabuły. Pochodzenie łupów blokuje zamianę tanich zakupów NPC na pył. [Aktualne reguły](LOOT_AND_ENDGAME.md).
 
 ## Obecny model mieszkańców
 
-Budżetowa symulacja v1 powyżej opisuje dawne założenia, nie dzisiejsze sesje botów. Aktualny system ma siedem osobowości, przerwy w grze, 17 ofert itemshopu i jawne symulowane zakupy odłamków, księgowane operacją `simulated_purchase` w kategorii `source` oraz pokazywane oddzielnie w podsumowaniu. [Osobowości i limity](BOT_PERSONALITIES.md), [model rynku](MARKET_POLICY.md).
+Budżetowa symulacja v 1 powyżej opisuje dawne założenia, nie dzisiejsze sesje botów. Aktualny system ma siedem osobowości, przerwy w grze, 17 ofert itemshopu i jawne symulowane zakupy odłamków, księgowane operacją `simulated_purchase` w kategorii `source` oraz pokazywane oddzielnie w podsumowaniu. [Osobowości i limity](BOT_PERSONALITIES.md), [model rynku](MARKET_POLICY.md).
+
+## Bieżący wspólny świat i ograniczone dodatki
+
+Przed Barierą rynki i przepływy dwóch serwerów są oddzielone. Po niej wspólny rynek/ranking nie kopiuje sald ani przedmiotów. Sukcesja dzieli skarbce według członków i zachowuje sumę majątku; depozyt Bractwa przechodzi do wybranych wspólnot. Wpłata nie jest zniszczeniem rudy. [Reguły podziału](CAMP_GUILDS.md).
+
+Nowe ujścia obejmują opłacone awanse 5–8 (łącznie 5500 rudy), kręgi/runy, sprzęt, kuźnię i wpisowe regionalnej warty 12–90 rudy. Cztery regionalne ścieżki mają wspólny limit 8 pełnych nagród na polski dzień; po nim nadal płaci się za postęp/punkty. Limit dotyczy nowego systemu, nie wszystkich źródeł świata. Cel tygodniowy daje 100 rudy/1000 PD/5 pyłu uczestnikowi raz, bez nowych odłamków.
+
+Regionalne okna wydarzeń dają do 3 faktycznie podwyższonych nagród, 300 dodatkowej rudy i 3000 PD dziennie, wspólnie dla krain, z regułą maksimum. Nie zwiększają odłamków. Zwykłe święta, stare warty i skup NPC zachowują własną emisję. [Wydarzenia](WORLD_UPDATES.md), [endgame](REGIONAL_ENDGAME.md).
+
+[Audyt 13 XI](reports/grywalnosc-wydania-2026-11-13.json) i [próba regionalnych bonusów](reports/wydarzenia-aktualizacje-2026-11-13.json) są krótkimi testami funkcji/obciążenia. Dziewięć wygrywających buildów i rosnący obrót nie dowodzą wielotygodniowego bilansu 250 botów. Bieżące mechaniki nie powinny być oceniane jako w pełni odwzorowane przez historyczny budżet v 1.

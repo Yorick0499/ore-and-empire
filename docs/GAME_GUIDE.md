@@ -1,96 +1,87 @@
 # Instrukcja Ore & Empire
 
-[Start dokumentacji](INDEX.md) · [Katalog zawartości](GAME_CONTENT.md) · [Wszystkie eventy](EVENTS.md) · [Screeny](SCREENSHOTS.md)
+Stan: 13 XI 2026, po PR #141. [Indeks](INDEX.md) · [Katalog bieżących tabel](GAME_CONTENT.md) · [Instalacja](public/OPERATOR_GUIDE.md).
 
-## Nowy mieszkaniec
+## Konto i pierwszy wybór
 
-Uruchom grę według README, skonfiguruj świat i administratora przy pierwszym starcie. Zarejestruj **zwykłe konto** do gry. Zaczynasz na poziomie 0, z 50 rudy, 100/100 energii, 50/50 zdrowia i 10 many. Rozmowę z kopaczem znajdziesz w dzienniku fabuły. Każde zadanie trzeba przyjąć, rozpocząć i po spełnieniu celów odebrać.
+Po rejestracji przejdź do `/postacie/`, nadaj imię i wybierz otwarty świat. Konto ma maksymalnie pięć postaci łącznie. Szkic nie wykonuje czynności. Kolonia i Khorinis przed Barierą są odrębnymi serwerami; po globalnym wydarzeniu kreator pokazuje jeden serwer z dwoma regionami startowymi. Każda nowa postać zaczyna od poziomu 0, 50 rudy, 100 energii, 50 zdrowia i 10 many.
 
-Kolonia pokazuje najbliższe kroki wynikające z twoich faktycznych przydziałów, odbiorów i PN, postęp do następnego poziomu oraz pięć ostatnich rzeczywistych działań mieszkańców. Nagrody nadal odbierasz samodzielnie. Kolonia pokazuje lokacje i ich wymagania. Filtruj dostępność, maksymalny wymagany poziom, aktywność i edycję. Wymagania sprawdza serwer; sam adres lokacji nie daje dostępu. Przed dołączeniem musisz wykonać trzy zadania prologu i odebrać „Drogę między ogniskami”. Wybór obozu jest stały. Awanse wymagają dalszej fabuły i odblokowują przywileje wspólnoty — [pełne progi](CHARACTERS_AND_WORLDS.md). Twoja postać jest mieszkańcem doliny, nie jedynym Bezimiennym; późne rozdziały nie wyrzucają jej z obozu.
+Postać i jej plecak, PN, waluty oraz historia są osobne. Wybór postaci zapisuje sesja; odśwież inne karty po przełączeniu, ponieważ wcześniejsze formularze tracą ważność. Regeneracja i rozpoczęte prace pozostałych postaci zachowują terminy. [Konto i światy](CHARACTERS_AND_WORLDS.md).
 
-## Zasoby, czas i odpoczynek
+## Pierwsze zadania
 
-Energia i zdrowie odnawiają po 1 punkcie na minutę, mana po 1 co 30 sekund, do własnego maksimum. Czas poza stroną też się liczy, ale nie kumuluje się ponad maksimum. Po porażce pozostaje 1 HP. Walka wymaga co najmniej 10 HP. Przy zwiększeniu maksymalnego zdrowia/many nie dostajesz darmowego uzupełnienia.
+W Kolonii zacznij rozmową z kopaczem w `/fabula/`, przyjmij i rozpocznij zadanie. Następnie wykonuj cele i osobno odbieraj nagrody. Trzy zadania prologu otwierają dołączenie do Starego Obozu, Nowego Obozu albo Bractwa. Po Barierze Bractwo nie rekrutuje nowych mieszkańców.
 
-Świat jest zsynchronizowany z Polską, łącznie ze zmianą czasu. Wschód i zachód dla Warszawy wyznaczają pory dnia; meteorologiczna pora roku zależy od polskiej daty. Gra pozostaje dostępna w dzień i w nocy. [Szczegóły i premie](WORLD_CLOCK.md).
+Khorinis ma własny prolog: Pod dachami portu → Zapłata za zmianę → Wieść od Lobarta. Po nim wybierasz straż, klasztor lub ludzi Onara. Przed Barierą każda gałąź obu regionów ma cztery rangi; awans wymaga także odebranej fabuły, próby, atrybutu i opłaty. Wybór rodzimej gałęzi ma znaczenie. [Khorinis](KHORINIS.md) · [Rangi](CAMPS.md).
 
-## Kopalnia i polowanie
+## Zasoby i czas
 
-Zmiana górnicza w UI trwa 15 sekund i kosztuje 10 energii. Wróć po urobek: bazowo 10–25 rudy, do tego aktualna premia i ewentualny magazyn obozu. Nagroda nie wpada automatycznie. Jedna aktywność czasowa naraz: kopalnia lub zlecenie czasowe. Zakończona, ale nieodebrana praca nadal blokuje drugą.
+Energia i zdrowie regenerują po 1 punkcie na minutę; mana po 1 na 30 sekund. Czas poza stroną liczy się do aktualnego maksimum, bez bankowania nadwyżki. Po porażce pozostaje 1 HP; zwykła walka wymaga co najmniej 10 HP. Podniesienie maksimum lub założenie ozdoby nie odnawia zasobu.
 
-Zwykła walka kosztuje 15 energii. Wybierz przeciwnika z danej lokacji; jego poziom jest zaleceniem, a poziom wejścia do lokacji obowiązkowy. Walka rozstrzyga się automatycznie do zwycięstwa lub porażki. Broń, atrybuty, typ obrażeń, pancerz, magia i amunicja wpływają na wynik. Przed wyborem celu zobaczysz konserwatywną prognozę utraty HP z rezerwą 10, uwzględniającą własny sprzęt i przygotowaną magię. Pomija losowe krytyki; przy opanowaniu 100% podwojenie jest pewne. Prognoza nie blokuje ryzykownej walki. Brak energii, amunicji, many na pierwszy czar albo zajętość mają osobny komunikat. Raport i łupy są trwałe w kronice. Ponowienie tego samego formularza nie losuje drugiego wyniku.
+Kopalnia zajmuje jedną 15-sekundową zmianę i wymaga odbioru. Urobek bazowy to 10–25 rudy, następnie premia wydarzeń i stałe korzyści wspólnoty. Nieodebrana zmiana albo zlecenie czasowe blokuje następną taką pracę i walkę. Handel i nauka nadal są dostępne.
 
-[Jak poprowadzić różne buildy i frakcje do końca](BUILD_PLAYTHROUGHS.md). Osobno kupione identyczne zwoje tworzą wspólny zapas walki; dodatkowe chronione i wystawione egzemplarze pozostają bezpieczne. Prognoza bossa pokazuje teraz zdrowie, a podgląd magii także zapas rzutów i obrażenia po odporności. U nauczyciela rozwiń „Jak rozwijać swój build?”.
+Świat ma rzeczywisty czas `Europe/Warsaw`, automatyczne CET/CEST i słoneczne pory Warszawy. Dzień resetuje się o polskiej północy, tydzień w poniedziałek. Żadna pora doby nie zamyka gry. [Reguły czasu](WORLD_CLOCK.md).
 
-## Rozwój i wyposażenie
+## Rozwój i build
 
-PD zwiększają poziom po przekroczeniu progu widocznego w karcie postaci. Poziom daje 10 PN i +12 maksymalnego zdrowia. Nauczyciel rozwija siłę, zręczność, manę oraz władanie bronią jednoręczną, dwuręczną, łukami i kuszami (do 100%); jeden punkt kosztuje 1 PN i 10 rudy pomniejszone o poziom szkoły obozowej i osobistą premię rangi (do 5 rudy łącznie). Formularz pozwala ćwiczyć 1–10 punktów i płaci za każdy.
+Walka i zadania dają PD; awans przyznaje PN i zwiększa maksimum życia. U nauczyciela kupujesz 1–10 punktów atrybutu lub wybranej umiejętności broni. Każdy punkt wymaga PN oraz rudy; cena treningu wynosi bazowo 10 rudy i spada dzięki randze/szkole, najwyżej do 5.
 
-Pięć slotów: broń, pancerz, amulet i dwa pierścienie. Wymagania przedmiotu opierają się na bazowych atrybutach, poziomie i ewentualnym obozie/randze. Broń wręcz korzysta z siły, łuki/kusze ze zręczności. Umiejętność danego typu broni określa szansę krytyka. Łuk zużywa strzałę, kusza bełt na całą walkę — to reguła adaptacji. Szczegóły: [wyposażenie](EQUIPMENT.md), [magia](MAGIC.md).
+- Wojownik: siła, broń jedno- albo dwuręczna i właściwa umiejętność.
+- Łucznik/kusznik: zręczność, umiejętność łuku/kuszy i właściwa amunicja. Niektóre rodzime rangi wymagają również bazowej siły; wyższe rangi wojskowe dopuszczają siłę lub zręczność.
+- Mag: maksymalna mana, kupione kręgi, runa odpowiedniej szkoły albo zapas zwojów. Nie wydawaj wszystkich PN, gdy aktywny awans wymaga nauki.
 
-W walkach zdobywasz także sprzęt z pięciu kręgów (35 dodatkowych wzorów) i pył magicznej rudy. Rzadkość łupu jest stała: Niewykończony, Mistrzowski, Nasycony magią, Runiczny lub Pradawny. W Ekwipunku przekujesz egzemplarz osobno do +3, także podczas fabuły za rudę i pył, z pewnym powodzeniem. Zbędny łup rozbierzesz na materiał; bonus zostaje przy sprzedaży na targu. [Dokładne szanse i koszty](LOOT_AND_ENDGAME.md).
+[Praktyczny poradnik buildów i dziewięć sprawdzonych dróg](BUILD_PLAYTHROUGHS.md). Siła, zręczność i mana wymagane przez przedmiot/rangę są bazowe: pierścień nie zastępuje treningu.
 
-Każda rzadkość ma własną ramę całej karty, tło i plakietkę z oznaczeniem I–V. Runiczny używa motywu magicznej rudy, Pradawny — starych złotych okuć. Numer i nazwa pozwalają rozpoznać odmianę również bez koloru. +1–+3 pozostaje osobnym oznaczeniem przekucia.
+## Wyposażenie i walka
 
-Cenny rynsztunek zabezpieczysz przed sprzedażą, rozebraniem i zużyciem jako
-składnik lub dostawa. Przycisk „Porównaj z wyposażeniem” pokazuje różnice
-uwzględniające przekucie i niespełnione wymagania. Przy pierścieniu wybierzesz
-slot I lub II, który zostanie faktycznie zastąpiony. Sam podgląd nie zmienia zasobów.
+Sześć slotów: broń, pancerz, amulet, dwa pierścienie i pas. Po zakupie załóż przedmiot. Porównywarka pokazuje efektywne statystyki i braki; przy pierścieniu wybierz zastępowany slot. Pas może mieć dodatkowy efekt z dopasowanym pancerzem. Zdejmowanie bonusu przycina zasoby do nowego maksimum, a ponowne założenie nie leczy.
 
-## Handel, rzemiosło i odłamki
+Walki rozstrzygają się automatycznie. Umiejętność broni do 100% daje szansę krytyka, a typ obrażeń trafia we właściwą ochronę. Łuk/kusza zużywa jedną strzałę/bełt na całe starcie — to reguła adaptacji. Przeczytaj prognozę zdrowia i mechaniki bossa. Rany, energia, amunicja, mana i nagrody są rzeczywiste; ryzykowna walka nie jest obietnicą zwycięstwa.
 
-Kupiec NPC pozwala szukać po nazwie, kategorii, typie broni, cenie w zasięgu sakwy i wymaganiach sprzętu. Towary i sprzedaż z plecaka mają osobne strony po 24 wpisy, a filtry pozostają po zakupie. Sprzęt kupujesz pojedynczo, zapasy i amunicję w paczkach 1–100 sztuk za pełną cenę. Zakup nie zakłada broni — zrób to w Ekwipunku. Kupiec NPC sprzedaje dostępne przedmioty, a odkupuje dozwolone zapasy za połowę wartości. Na targu handlujesz z rzeczywistymi kontami i botami; cena dotyczy całego stosu. Możesz wycofać ofertę lub zmienić jej cenę. Nie można sprzedać cudzych, noszonych, przygotowanych magicznie ani niezbywalnych przedmiotów. Trofea mimo niezbywalności pozostają widoczne w plecaku.
+Runa jest wielokrotna, wymaga szkoły, kręgu i pełnej many rzutu. Zwój wymaga 1 many i jednej sztuki za rzut. Oddzielne dostępne egzemplarze tego samego typu tworzą zapas walki; dodatkowe wystawione/chronione rzeczy są pomijane. Po wyczerpaniu czaru postać walczy pięściami; przed kolejną walką możesz wyłączyć przygotowanie. [Magia i 11 czarów](MAGIC.md).
 
-Na targu filtruj nazwę, kategorię, rangę, sprzedawcę i maksymalną cenę całego
-stosu. Możesz sortować również po cenie jednej sztuki. Oferty, plecak oraz własne
-ogłoszenia mają osobne strony po 24 pozycje; filtry nie ukrywają sekcji twoich ogłoszeń.
+Łup ma stałą rzadkość: Niewykończony → Mistrzowski → Nasycony magią → Runiczny → Pradawny. Kuźnia osobno podnosi przekucie do +3 za rudę i pył, z pewnym powodzeniem. Nie podnosi rzadkości. Zabezpiecz cenny sprzęt przed sprzedażą, rozbiórką i dostawą. [Wyposażenie](EQUIPMENT.md) · [Łupy i koszty kuźni](LOOT_AND_ENDGAME.md).
 
-Kowalstwo i alchemia mają po trzy poziomy; nauka kosztuje 1 PN i 20 rudy. Cztery receptury zużywają materiały i opłatę; wyprodukowany przedmiot trafia do plecaka. Brakujący komplet nie pobiera części zapłaty. [Receptury](GAME_CONTENT.md), [rynek](MARKET_POLICY.md).
+## Zarobek, targ i rzemiosło
 
-Odłamki są zdobywaną w grze walutą premium. Otrzymasz je m.in. ze zleceń czasowych, fabuły, osiągnięć, wyzwań i wypraw obozowych. Nie ma płatności prawdziwymi pieniędzmi. Sklep odłamków oferuje Ryżówkę, Esencję leczniczą, Pałkę z kolcami i Miecz runiczny. Napojowe odnowienie energii z plecaka i sklepu wspólnie ma limit pięciu użyć na polską dobę. Nie dotyczy to naturalnej regeneracji ani samego leczenia zdrowia.
+Zlecenia czasowe dają bezpieczny wybór proporcji rudy/PD/energii/czasu: 44 w Kolonii, 10 w Khorinis, według odwiedzanego regionu. Filtry nie ukrywają aktywnej pracy. Nagroda z premiami i treść zapisują się przy starcie; po terminie odbierz ją ręcznie. Sam odczyt nie wypłaca nagród ani nie rezerwuje premii regionalnej. [Zlecenia](ADVENTURES.md).
 
-## Obozy jako gildie
+Kupiec ma wyszukiwanie, filtry dostępności i osobne strony. Broń kupujesz pojedynczo, zapasy/amunicję po 1–100 sztuk. NPC odkupuje dozwolone zapasy za połowę bazowej wartości. Targ handluje rzeczywistymi egzemplarzami ludzi i botów: cena obejmuje cały stos. Potwierdzasz widoczną cenę; jej zmiana odrzuca zakup. Po Barierze targ i ranking obejmują oba regiony. [Zasady rynku](MARKET_POLICY.md).
 
-Wybierz Stary Obóz, Nowy Obóz albo Obóz na Bagnie. Masz osobistą drabinkę awansów z wymaganiami poziomu, atrybutu, poprzedniej rangi, rudy i zadań. Gałęzie awansu mogą być wzajemnie wykluczające. Przyjmij próbę przed wykonywaniem celów; dawnych działań nie zalicza się wstecz. Porzucenie próby kasuje jej postęp.
+Kowalstwo i alchemia mają po trzy poziomy; nauka kosztuje 1 PN i 20 rudy. Cztery receptury wymagają całego kompletu materiałów i opłaty. Kuźnia egzemplarza jest osobną usługą. [Rzemiosło](CRAFTING.md).
 
-Wspólnota to wszyscy ludzie i boty należący do obozu. Wspólnie wykonują dzienne cele, zdobywają doświadczenie i zasilają skarbiec. Poziom wspólnoty: 1–10, kolejne poziomy co 100 PD obozu. Szkoła obniża koszty treningu, magazyn zwiększa urobek, warty zwiększają ochronę. Wpłat nie można wypłacić na własne konto. [Rangi i wymagania](CAMPS.md), [wspólnota](CAMP_GUILDS.md).
+## Odłamki i itemshop
 
-Każdy obóz ma jednego wspólnego przeciwnika dziennie. Członkowie atakują asynchronicznie to samo HP; nie muszą być zalogowani naraz i nie tworzą drużyny. Wypad kosztuje 20 energii, rzeczywiste HP, manę/zwoje lub amunicję; odstęp 60 sekund. Nagrodę uczestnika odbierasz po zwycięstwie, wyłącznie za faktyczny wkład. [Wyprawy obozowe](CAMP_RAIDS.md).
+Odłamki zdobywasz m.in. w fabule, zleceniach, wyzwaniach i osiągnięciach. Nie ma płatności pieniędzmi ani kont premium. Sklep ma 17 definicji ofert, ale region, poziom i potrzeba ograniczają dostępne zakupy. Zwykłe przedmioty sklepu nie są gwarantowanymi rzadkimi łupami.
 
-## Zlecenia, wyzwania i fabuła
+Wspólne limity na postać/polski dzień: pięć napojowych odnowień energii z plecaka/sklepu/zaopatrzenia, pięć zakupów many, trzy księgi, dwa zakupy sprzętu i dwie paczki materiałów. Pełny zasób nie pobiera zapłaty. Boty mogą dostawać osobno audytowane, limitowane symulowane zakupy odłamków; ludzie nie dostają tych przelewów. [Oferty i dokładne limity](BOT_PERSONALITIES.md).
 
-Zlecenia czasowe: wybierz jedną z 44 wypraw, opłać energię, poczekaj i odbierz. Możesz zamknąć stronę. Treść, miejsce, zakończenie, koszt, czas, nagroda i premie są zapisywane przy starcie. Filtruj kategorię, nazwę, opis lub miejsce; sortuj czasem albo bazową nagrodą. Domyślnie widzisz zlecenia na własny poziom, a aktywna wyprawa i historia nie znikają po zmianie filtrów. [Pełna pula](ADVENTURES.md). Nieodebrane zlecenie blokuje polowanie, bossów i kopalnię; handel i trening nadal działają.
+## Wspólnota i globalny Śniący
 
-Przyjmij jedno dzienne i jedno tygodniowe wyzwanie. Wymagana liczba prac/polowań rośnie z poziomem. Nagrody obejmują rudę, PD, odłamki i reputację obozu przyjęcia. Osiągnięcia: 10 zmian, 10 polowań, zwycięska wyprawa obozowa, 5 wytworzeń. Każdą nagrodę odbierzesz raz. Doba resetuje się o polskiej północy, tydzień w poniedziałek.
+Wspólnota łączy ludzi i boty: poziom 1–10, skarbiec, dzienne projekty, szkoła, magazyn i warty. Wpłaty nie są prywatnie wypłacalne. Członek z uprawnieniem zwołuje wspólną wyprawę, a uczestnicy atakują to samo HP asynchronicznie. Nie potrzeba jednoczesnego logowania ani osobnej drużyny. Nagrodę odbierają wyłącznie faktyczni uczestnicy.
 
-Fabuła ma 41 definicji i sześć rozdziałów. Daną postacią wykonasz prolog, wspólne zadania, własny łańcuch obozowy i przygotowania finałowe: 27 zadań. Dwa możliwe epilogi zależą od pierwszej deklaracji. Nie masz dostępu do zadań innych obozów. Rozmowy, wybory, dostawy, prace, podróże i walki mają zapisany postęp. [Szczegóły fabuły](STORY.md).
+Osobisty finał Kolonii wymaga poziomu 30 i odebranych przygotowań; zapisuje salę chwały, lecz nie usuwa Bariery. **Obozowy Śniący** jest osobną walką wspólnoty poziomu 10. Uczestnik potrzebuje poziomu 30, co najmniej szczebla 2 (trzeciej rangi podstawowej) i odebranego `ritual-ready`. Pieczęcie wymagają wkładu trzech różnych kont — pięć postaci jednego konta nie wystarczy.
 
-## Bossowie, finał i dalsza gra
+Zwycięstwo zleca bezpieczne połączenie: świeża kopia i próba odtworzenia, krótka blokada zapisów, trwała aktywacja. Launcher/worker obsługuje to automatycznie; błąd nie omija kopii. [Szczegółowe warunki](CHARACTERS_AND_WORLDS.md) · [Wyprawy](CAMP_RAIDS.md).
 
-Królowa pełzaczy (poziom 5), Prastary błotny wąż (8) i Echo Śniącego (30) kosztują 25 energii na próbę, z 30-minutowym odstępem także po porażce. Przeczytaj mechaniki na karcie: rój/słabość na ogień, zanurzanie węża, słabnąca osłona i magiczne fale echa. Zapowiedzi opisują automatycznie rozstrzyganą walkę, nie okno do ręcznej reakcji.
+## Po Barierze: frakcje, Jarkendar i NK
 
-Finał wymaga poziomu 30, obozu i odebranych przygotowań „Zabezpieczyć dolinę”. Zwycięstwo zapisuje osobisty udział w utrzymaniu pieczęci oraz trofeum w sali chwały. Potem nadal możesz grać, handlować i wspierać obóz. Bot może ukończyć własną drogę, ale nie kończy świata. Operator po finale gracza może utrwalić końcowe rankingi i listę zwycięzców. II edycja Gothic II NK i transfery nie są jeszcze wdrożone.
+Jest jeden serwer, wspólny rynek/ranking i podróże między dwoma regionami. Dorobek, historia i pochodzenie pozostają. Bandyci przejmują wojskową drogę Starego Obozu; Ogień łączy się z klasztorem; Magowie Wody mają osobną wspólnotę; najemnicy Lee i Onara łączą się. Bractwo wybiera nową wspólnotę; Guru/Arcyguru tylko Ogień albo Wodę. Dalsze cztery rangi trzeba opłacić i zdobyć. [Sukcesja i skarbce](CAMP_GUILDS.md).
 
-Na poziomie 30, po dołączeniu do obozu, odblokujesz **Warty za Przełęczą**, bez wymogu ukończenia fabuły: 100 stopni wyzwań z powtarzalnymi łupami i miesięcznym rankingiem, który odnawia cel bez kasowania postaci. Pierwsza wygrana na stopniu gwarantuje sprzęt; kolejne służą farmieniu pyłu, rudy i wyniku. [Zasady endgame](LOOT_AND_ENDGAME.md).
+Od poziomu 10 i po połączeniu odbierz „Drogę za portal”, by wejść do publicznego Jarkendaru. Nie potrzeba odłamków ani uprawnienia konta. Osiem przydziałów Jarkendaru i piętnaście NK prowadzi przez Kruka, cztery smoki, statek i rejs do Irdorath. Każda lokacja sprawdza własny poziom i wcześniejsze odebrane zadania. [Jarkendar](JARKENDAR.md) · [Cała wyprawa NK](GOTHIC_II_CONTENT.md).
 
-## Karczma, kronika i boty
+## Dalsza gra i wydarzenia
 
-Karczma na jeziorze działa jako trwałe forum. Boty odpowiadają regułowo na podstawie rzeczywistych działań, z limitami częstotliwości; nie rozumieją dowolnej rozmowy jak model językowy. „Życie kolonii” pokazuje aktywność, role i ostatnie akcje. Boty mają imiona i jawne oznaczenia. Działają tylko, gdy launcher jest uruchomiony; zatrzymanie procesu nie odgrywa wstecz wszystkich tur. Zasoby po powrocie regenerują się normalnie.
+Stare Warty za Przełęczą: od poziomu 30 i po dołączeniu, 100 stopni, bez wymogu osobistego finału. Po finale NK, od poziomu 45 i z rozstrzygniętym członkostwem dochodzą cztery regionalne ścieżki po 100 stopni i cel tygodniowy wspólnoty. Regionalnie jest osiem pełnych nagród dziennie; dalsze walki dają postęp/punkty, ale nadal kosztują wpisowe. Cooldown wart jest wspólny. Ranking odnawia się miesięcznie bez kasowania postaci. [Endgame](REGIONAL_ENDGAME.md).
 
-Prywatna kronika ma walki, rozliczenia i powiadomienia, po 20 wpisów na stronę. Raporty innych postaci są niedostępne. Powiadomienia obejmują nowy poziom z liczbą zdobytych PN i maksymalnego zdrowia, zakończenie wyprawy, sprzedaż, awans i event startujący w ciągu doby. Ich przeczytanie nie odbiera nagrody.
+W kalendarzu są sześć świąt, 12 miesięcznych tematów, losowa żyła oraz dwa czterogodzinne okna na odkrytą krainę dziennie. Regionalnie od poziomu 15: do trzech rzeczywiście zwiększonych nagród, 300 dodatkowej rudy i 3000 PD na polski dzień, wspólnie dla regionów. Premie globalne i regionalne stosują maksimum, nie mnożenie; brak nowych odłamków regionalnych. Podróż/restart nie odnawia limitów. Siedem nazwanych odsłon zapisuje odkrycia wspólnoty. [Kalendarz](EVENTS.md) · [Odsłony](WORLD_UPDATES.md).
 
-## Administrator i bezpieczeństwo zapisu
+## Kronika, karczma i boty
 
-Administrator loguje się zwykłym formularzem, potem otwiera `/zarzadca/` lub `/admin/`. Może przyznawać przedmioty i odłamki, odnawiać zasoby, edytować statystyki oraz definicje treści i wydarzenia. Operacje god-mode mają audyt. Konto tworzysz lokalnie przez `python manage.py createsuperuser`; danych logowania nie publikuj w repozytorium ani na screenach.
+Prywatna kronika pokazuje własne walki, rozliczenia i powiadomienia. Odczyt powiadomienia nie odbiera nagrody. W karczmie piszą ludzie i jawne boty; odpowiedzi botów wynikają z zapisanych działań i reguł, nie rozumienia dowolnych pytań.
 
-Panel świata zmienia nazwę serwera i liczbę botów. Pełny reset wymaga hasła, potwierdzenia nazwy i zgody; przed czyszczeniem powstaje kopia. Reset usuwa zwykłe konta, postacie, postęp, rynek i salę chwały, ale zachowuje konta administratorów i hasła. To świeży start Gothic I, nie transfer. Kopie są prywatne. [Procedura backupu i próby odtworzenia](BACKUPS.md).
+Boty działają podczas pracy launchera/workera, w swoich sesjach. Przerwa nie nadrabia wszystkich tur, ale zwykła regeneracja i timery biegną. Połączenie i fabuła nie zależą od zalogowania konkretnego człowieka. [Żyjący świat](LIVING_WORLD.md).
 
-## Osobowości i zakupy mieszkańców
+## Zapis i operator
 
-[Siedem stylów, sesje, 17 ofert i limity](BOT_PERSONALITIES.md). Boty mają okresy aktywności według czasu polskiego, a symulowane zakupy są oddzielnie ewidencjonowanym źródłem premium. Zarządca może wybrać rzadkość nowo nadawanego przedmiotu. [Model cen i ochrona ekwipunku](MARKET_POLICY.md).
-
-
-Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywileje rang i aktualny plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).
-
-
-Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+Restart procesu zachowuje dane. Do aktualizacji wykonuj prywatną kopię i próbę odtworzenia; pełny reset jest oddzielnym, destrukcyjnym narzędziem. Operator korzysta z własnego administratora, bez publicznych haseł. [Podręcznik operatora](public/OPERATOR_GUIDE.md) · [Kopie](BACKUPS.md). Grę można przejść bez narzędzi zarządcy.

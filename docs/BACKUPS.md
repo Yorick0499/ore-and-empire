@@ -1,5 +1,7 @@
 # Kopie i odtwarzanie lokalnego świata
 
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
 SQLite: `python manage.py backup_world` zapisuje spójną kopię przez API backupu SQLite, bez zatrzymywania odczytów. Domyślnie prywatny katalog `backups/` (0700), pliki 0600, ostatnich 7 kompletnych kopii. Opcje: `--directory /prywatny/katalog --keep 14`. Katalog jest ignorowany przez Git; baza zawiera dane kont i hashe haseł, więc nie wolno publikować ani bazy, ani kopii. Nie kopiujemy `.env`, pliku dostępu admina ani sekretów do manifestu. Warto kopiować gotowe archiwa na osobny dysk, z własną retencją i ochroną dostępu. Komenda nie instaluje harmonogramu: uruchamiaj przed aktualizacją i regularnie z cron/systemd.
 
 Manifest zawiera SHA-256 bazy, rewizję kodu, migracje i wersje paczek. Odtwarzanie jest **próbą do nowego pliku**:
@@ -20,7 +22,7 @@ PostgreSQL: te same komendy wybierają natywny `pg_dump` i próbne `pg_restore`.
 
 Kopie obejmują teraz `OwnedItem.upgrade_level`, potwierdzenia `EquipmentWork`, `FrontierProgress` i historię `FrontierRecord`. Próba odtworzenia starszej bazy stosuje migrację 0031 na osobnym pliku: stare przedmioty dostają +0, a dotychczasowy postęp i hasła muszą pozostać zgodne z manifestem. Nie nadpisujemy żywego świata podczas próby.
 
-Migracja 0032 dodaje pochodzenie egzemplarza (`OwnedItem.origin`); stare egzemplarze zachowują konserwatywne oznaczenie `legacy`. Pochodzenie jest objęte manifestem kopii. Próba odtworzenia przed wdrożeniem rang i katalogu G1 v3 zachowała 27 tabel zapisu.
+Migracja 0032 dodaje pochodzenie egzemplarza (`OwnedItem.origin`); stare egzemplarze zachowują konserwatywne oznaczenie `legacy`. Pochodzenie jest objęte manifestem kopii. Próba odtworzenia przed wdrożeniem rang i katalogu G1 v 3 zachowała 27 tabel zapisu.
 
 PostgreSQL ma natywny backup MVCC i próbne odtworzenie do nowej bazy, z pełnym porównaniem logicznym. Szczegóły i wymagania klienta: [PRODUCTION.md](PRODUCTION.md). Hasła i dumpy pozostają prywatne.
 
@@ -58,4 +60,10 @@ Podczas przejścia administrator może odczytać ten panel, choć pozostała gra
 
 ## Zgodność rang od migracji 0048
 
-Nowe kopie PostgreSQL mają `rank_path_schema=1`, a dowód obejmuje `legacy_water_path`. Dla wcześniejszych kopii PG weryfikator sprawdza poprawne wyliczenie nowego znacznika z dawnej frakcji, rangi i nieodebranego awansu; dopiero potem pomija tę jedną dodaną kolumnę przy porównaniu starego hasha. Pozostałe pola i liczby rekordów nadal muszą być identyczne. Błędny znacznik odrzuca odtworzenie; nie wystarcza zgodność samej rudy. Nowe dowody SQLite również obejmują znacznik. Test0047→0048 porównuje pełny logiczny snapshot oraz wszystkie stare pola i zadania. [Zakres rang](CAMPS.md).
+Nowe kopie PostgreSQL mają `rank_path_schema=1`, a dowód obejmuje `legacy_water_path`. Dla wcześniejszych kopii PG weryfikator sprawdza poprawne wyliczenie nowego znacznika z dawnej frakcji, rangi i nieodebranego awansu; dopiero potem pomija tę jedną dodaną kolumnę przy porównaniu starego hasha. Pozostałe pola i liczby rekordów nadal muszą być identyczne. Błędny znacznik odrzuca odtworzenie; nie wystarcza zgodność samej rudy. Nowe dowody SQLite również obejmują znacznik. Test 0047→0048 porównuje pełny logiczny snapshot oraz wszystkie stare pola i zadania. [Zakres rang](CAMPS.md).
+
+## Bieżący zakres do migracji 0054
+
+Kopie i porównania obejmują członkostwa/sukcesję i audyt skarbców (0049), jednorazowy wybór Bractwa (0050), dalsze rangi (0051), slot pasa (0052), regionalne warty i cele tygodniowe (0053) oraz `WorldRelease`, `EventSchedule`, `RegionalEventUse` i pola regionalne `WorldEvent` (0054). Zachowane są koszty, daty, snapshoty i wykorzystane limity, aby odtworzenie/podróż nie naliczały nagród od nowa. Stare manifesty sprawdzane są według zapisanych pól z kontrolowanymi wyjątkami zgodności, nie z pominięciem portfeli czy historii.
+
+Odtworzenie starszego połączonego świata może wymagać dokończenia sukcesji przez worker pod świeżą kopią. Samo `migrate` nie nadaje członkostw ani darmowych awansów. [Bieżąca procedura operatora](public/OPERATOR_GUIDE.md). Pełna próba `simulate_journey` wykonuje prawdziwą aktywację, a potem ponowną kopię/odtworzenie już z endgame i siedmioma odsłonami.

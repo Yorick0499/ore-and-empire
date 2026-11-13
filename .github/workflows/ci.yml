@@ -48,6 +48,8 @@ jobs:
         run: python manage.py makemigrations --check --dry-run
       - name: Validate offline content packs
         run: python manage.py validate_content
+      - name: Check generated default-content documentation
+        run: python scripts/build_content_reference.py --check
       - name: Run gameplay and interface tests
         run: python manage.py test --noinput
       - name: Collect static assets

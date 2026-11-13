@@ -1,186 +1,40 @@
 # Bieżąca roadmapa
 
-Stan: 12 listopada 2026. Kanoniczna lista zadań: [GitHub #9](https://github.com/Yorick0499/ore-and-empire/issues/9). Pracujemy na osobnych gałęziach, z polskimi commitami i PR-ami; po zielonym CI i scaleniu gałąź jest usuwana.
+Stan: **13 listopada 2026, po scaleniu PR #141 (`64a7866`)**, migracja 0054, domyślna polityka baseline-24 i schemat obserwacji 23. Aktualizacja dokumentacji: #142. Starsze wpisy sesji i plany są zachowane w historii Git/issue; poniżej obowiązujący stan.
 
-## Wdrożone
+## Gotowa droga gry
 
-- Lokalny launcher, trwałe konto i do pięciu postaci, dwa równoległe nazwane światy, 0–300 botów na serwer (domyślnie 125+125).
-- Pełna pętla wydobycia, polowania, regeneracji, poziomów, sprzętu, magii, rynku i rzemiosła.
-- 41 lokacji, 53 zwykłych przeciwników, trzej bossowie solo, sześć rozdziałów i finał postaci.
-- Trzy obozy jako gildie, 18 osobistych rang, wspólne cele, skarbiec, ulepszenia i wyprawy przeciw wspólnemu HP. Nie planujemy osobnego systemu drużyn.
-- 44 zlecenia czasowe, wyzwania dzienne/tygodniowe, reputacja, osiągnięcia i odłamki zdobywane w grze.
-- Siedem osobowości, sesje w czasie polskim, limitowane symulowane zakupy premium i 17 ofert itemshopu.
-- Rynek reagujący na potrzeby, podaż i zamienniki NPC; ochrona najlepszego sprzętu i atomowe finansowanie wymiany.
-- Nadawanie rzadkości nowych przedmiotów przez zarządcę z audytem.
-- Boty baseline-21, jawne imiona/oznaczenia, faktyczne zakupy, regeneracja, awanse, finał i audyt działań.
-- Karczma, kroniki, powiadomienia, rankingi, sala chwały i jednorazowe podsumowanie operatora.
-- Czas polski 1:1, słoneczne pory dnia Warszawy, sezony meteorologiczne i kalendarz eventów.
-- Administrator, inicjalizacja i kontrolowany reset z zachowaniem kont administratorów, prywatne kopie oraz próby odtwarzania.
-- 522 rekordy paczki G1, 632 przypisania lokalnych ilustracji z przypisanymi źródłami i gotycki motyw.
+| Zakres | Stan i dokumentacja |
+|---|---|
+| Konto i dwa początki | Do 5 postaci, Kolonia/Khorinis przed Barierą, osobne kampanie/ekonomie/boty; [zasady](CHARACTERS_AND_WORLDS.md) |
+| Fundament rozgrywki | Walka, poziomy/PN, runy/zwoje, 6 slotów, rynek, rzemiosło, wyzwania, ledger i chronione operacje; [poradnik](GAME_GUIDE.md) |
+| Globalny Śniący i połączenie | Wyścig wspólnot, pieczęcie 3 kont, świeża kopia/odtworzenie i jedna aktywacja, wspólny rynek/ranking/podróże; #120/#31/#35 wdrożone |
+| Sukcesja | #124–#127: 4 rangi podstawowe, 5 docelowych frakcji, proporcjonalny podział majątku, wybór Bractwa, 4 dalsze awansy; [rangi](CAMPS.md), [wspólnoty](CAMP_GUILDS.md) |
+| Jarkendar | #33 ukończone: publiczny portal po Barierze od 10, 8 przydziałów; bez premium; [region](JARKENDAR.md) |
+| NK i grafiki | #32 częściowo: 877 tożsamości, 167 wzorów kupca, 67 populacji, 8 nowych bossów i 15 kontraktów do Irdorath; aktywne przedmioty/tereny/moby/bossowie z lokalnymi obrazami; [dokładny zakres](GOTHIC_II_CONTENT.md) |
+| Endgame | #136 ukończone: 4×100 regionalnych stopni i tygodniowy cel, z zachowaniem starych 100 wart; [reguły](REGIONAL_ENDGAME.md) |
+| Grywalność buildów | #128 ukończone: 9 dróg od 0 przez 4→8 rang, NK i pierwsze regionalne warty; rzeczywista Bariera osobno; [dowody](BUILD_PLAYTHROUGHS.md) |
+| Żywy świat | #137 ukończone w #141: 7 nazwanych odsłon, 4 regionalne pule, 2 okna/krainę/dobę, 6 świąt, ograniczone premie; [kalendarz](WORLD_UPDATES.md) |
+| Boty i operacje | Domyślnie 125+125, limit 0–300/region, wspólna adaptacyjna kolejka; PostgreSQL/HTTPS/kopie/monitoring i CI wdrożone; [operator](public/OPERATOR_GUIDE.md) |
 
-## Następne fundamenty
+Nie ma kont premium. Jarkendar nie jest osobnym serwerem ani szóstą frakcją. Po Barierze świat jest jeden, a dwa rekordy regionów zachowują tożsamości i pochodzenie postaci. Nie planujemy ręcznego przenoszenia graczy do nowej „II edycji”.
 
-1. **#19 wdrożone:** PostgreSQL, weryfikowany import SQLite, rzeczywiste testy współbieżności i dzierżawa schedulera. [Instrukcja](POSTGRESQL.md).
-2. **#24 wdrożone:** opcjonalny profil produkcyjny, HTTPS, nadzorowany worker, limity logowań i zweryfikowany staging. [Instrukcja](PRODUCTION.md). Domyślna instalacja pozostaje lokalna; nie opublikowano prywatnego serwera.
-3. Dalsze strojenie gospodarki na podstawie pomiarów. Rosnący obrót nie dowodzi stabilnej podaży waluty.
+## Otwarte zadania i zależności
 
-## Gothic II: Noc Kruka — nowy kierunek
+Kanoniczne GitHub: [#9](https://github.com/Yorick0499/ore-and-empire/issues/9), [epic #10](https://github.com/Yorick0499/ore-and-empire/issues/10). Zbiorcze #30/#111 pozostają otwarte, mimo wdrożonego/testowanego połączenia; samo istnienie issue nie oznacza braku tej mechaniki. #32 pozostaje otwarte dla nieobsługiwanych efektów/interakcji oryginału. Nie zamykamy tych indeksów aktualizacją tekstów.
 
-Nowy plan z 9 listopada zastępuje ręczną II edycję: dwa równoległe światy Kolonia i Khorinis, a następnie jednorazowe połączenie po obozowym pokonaniu Śniącego. [Zakres i zależności #30–#35 / #111](CHARACTERS_AND_WORLDS.md). Decyzja z 11 listopada: nie będzie kont premium; Jarkendar będzie publiczny po połączeniu (wdrożenie #33). Kolonia i pierwsza paczka Khorinis są grywalne równolegle (#34/#113). [Zakres paczki](KHORINIS.md). Osobisty finał nie uruchamia połączenia.
+Kolejne prace, bez deklaracji ich implementacji:
 
-Opcjonalne #28 wdrożone: lokalna polityka LLM, trwały budżet, fallback i porównanie z regułami. [Wyniki](LOCAL_AI_POLICIES.md). Model nie jest włączony domyślnie. Żadna z tych funkcji nie jest wymagana do lokalnego przejścia bieżącej kampanii.
+1. **Dokumentacja — #142:** jeden bieżący opis mechanik, poradników, katalogów i procedur; generowana księga i sprawdzone odsyłacze.
+2. **Dłuższa próba wydania — backlog #9:** kilka dni aktywnej populacji 250, źródła/ujścia walut, konsumpcja, postęp i restarty. Kryterium: dane pozwalające stroić gospodarkę, a nie sam rosnący obrót.
+3. **Pozostałe mechaniki NK — #32:** małe wersjonowane paczki dla efektów specjalnych, przyzwań/przemian, teleportów i interakcji NPC. Kryterium: działające usługi, koszty, boty i testy każdej faktycznie wdrożonej funkcji. Nie odblokowywać całego katalogu bez obsługi.
+4. **Ocena przez ludzi — backlog #9:** dłuższe sesje różnymi buildami, czytelność informacji, odczucie awansów i powtarzalność celów. Kryterium: obserwacje i mierzalne poprawki; automatyczny skrypt nie zastępuje oceny satysfakcji.
+5. **Dalsze konsekwencje wojny — backlog #9:** rozwinąć istniejącą odsłonę „Orkowie u bram” dopiero po pomiarach emisji i obciążenia; zachować historię, dotychczasowe koszty i brak resetu.
 
-## Dopracowanie pełnej edycji
+Portrety NPC i sceny questowe pozostają odłożone. Priorytet grafik obejmuje broń/przedmioty, lokacje, moby i bossów. Pełny katalog kodów źródłowych nie oznacza całej oryginalnej gry.
 
-Zadania [#65](https://github.com/Yorick0499/ore-and-empire/issues/65), [#66](https://github.com/Yorick0499/ore-and-empire/issues/66) i [#67](https://github.com/Yorick0499/ore-and-empire/issues/67): 35 wzorów dropu, stała rzadkość łupu i przekucie +3, 100 powtarzalnych wart i miesięczny ranking, do 100 botów z harmonogramem. [Reguły endgame](LOOT_AND_ENDGAME.md) · [wydajność](BOT_PERFORMANCE.md).
+## Weryfikacja wydania
 
-## Wygoda codziennej gry — #80–#82
+[Audyt 13 XI](reports/grywalnosc-wydania-2026-11-13.json): 9 organicznych dróg, pełna rzeczywista Bariera 3 kont, NK, endgame, itemshop/rynek/48 h sesji i krótka próba 250 botów. [CI #141](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831): wszystkie kontrole zielone, w tym Python 3.12/3.13, PostgreSQL i współbieżność. Wyniki nie dowodzą wielotygodniowego balansu ani przejścia wszystkich 400 regionalnych stopni.
 
-Przegląd obecnej pętli wyłonił trzy zadania: zabezpieczanie rynsztunku przed
-utratą (#80), filtrowany i stronicowany targ (#81) oraz odczytowe porównanie
-sprzętu z wyborem slotu pierścienia (#82). Reguły i obsługa: [ekwipunek](EQUIPMENT.md)
-i [targ](MARKET_POLICY.md). Indeksy #9/#10 pozostają otwarte; dawny plan II edycji zastąpiły połączone światy opisane niżej.
-
-## Rzadkość, kuźnia i audyt — #84–#87
-
-Pięć stałych rzadkości losowanych przy dropie i osobna kuźnia +0–+3 (#84).
-Naprawa wyboru broni botów według mocy egzemplarza i wymagań zręczności (#85).
-Migracja dorobku oraz zgodne, rygorystyczne odtwarzanie starszych kopii (#86).
-Dotychczasowe raporty i screeny opisują wersję z chwili ich wykonania;
-aktualne reguły są w [LOOT_AND_ENDGAME.md](LOOT_AND_ENDGAME.md).
-
-Zakup na targu wymaga zgodności aktualnej ceny z potwierdzonym formularzem (#87); zmiana ceny odrzuca transakcję bez pobrania rudy.
-
-#89 — pula łupu pomija nieaktywne ozdoby bez bonusów, z zachowaniem kompletności katalogu G1.
-
-## Próba gry solo — #90–#93
-
-Trening czterech umiejętności broni, filtrowany kupiec i paczki zapasów, najbliższe kroki oraz autentyczna kronika na ekranie kolonii, publiczne imiona mieszkańców i prognoza polowania. [Scenariusze oraz granice oceny](SOLO_PLAYTEST.md).
-
-## Zlecenia i oprawy — #95–#96
-
-44 powtarzalne zlecenia w sześciu kategoriach od poziomu 0 do 30, z wyborem proporcji rudy/PD/czasu/energii. Filtry, utrwalona treść i zakończenia; boty dobierają prace do roli i nie powtarzają ostatniej, gdy jest alternatywa. Pięć gotyckich opraw egzemplarzy, spójnych w ekwipunku i handlu. [Zasady zleceń](ADVENTURES.md) · [oprawy](EQUIPMENT.md).
-
-## Postacie i obowiązkowa fabuła — #107–#110
-
-Jedna ilustracja/nazwa na karcie itemshopu, prolog przed dołączeniem i kolejne zadania przed awansami, przywileje osobistych rang oraz kreator do pięciu postaci z bezpiecznym wyborem sesji. [Szczegóły](CHARACTERS_AND_WORLDS.md).
-
-## Wspólny Śniący i połączenie — #120
-
-Migracje 0046–0047 dodają wyścig wspólnot, trwałe zlecenie przejścia, świeżą zweryfikowaną kopię pod blokadą zapisu oraz atomowe otwarcie wspólnego rynku/rankingu i podróży. Najemnicy Lee/Onara otrzymują wspólną wspólnotę i dalszą hierarchię. Dwa pierwsze przydziały po Barierze prowadzą do smoka ognia. [Reguły](CHARACTERS_AND_WORLDS.md) · [wznowienie i kopie](BACKUPS.md). Nie oznacza to pełnego katalogu G2 NK, Jarkendaru; panel #35 jest już ukończony, #32/#33 i szersze #111/#30 pozostają otwarte.
-
-## Panel operatorski — #35
-
-Odczytowy plan, kwalifikacja obozów, HP i wkład kont, stan świeżej kopii i ostatnie 40 zdarzeń są dostępne w `/zarzadca/bariera/`. Administrator może wstrzymać lub wznowić oczekujące przejście; panel nie pomija zwycięstwa i nie wykonuje kopii w żądaniu HTTP. Podgląd działa również podczas blokady gry. [Instrukcja](BACKUPS.md).
-
-## Świeży start i balans — #31
-
-W połączonym świecie można zacząć w obu regionach bez dawnej kampanii. Bez zmian dorobku i liczbowych nagród; jawna wersja bossów, zapis parametrów walki, test konfliktu wspólnego imienia i porównanie zdobytych postaci na poziomach 30/35/40. [Czasy i ograniczenia](SOLO_PLAYTEST.md). To zamyka zakres startu i balansu obecnej adaptacji; pełny katalog/kampania NK (#32) i publiczny Jarkendar (#33) nadal wymagają osobnych etapów.
-
-
-## Obowiązująca zmiana projektu — 11 XI 2026, po PR #123
-
-**Docelowy plan zastępujący wcześniejsze wymagania premium i zachowania frakcji po Barierze. Etapy #124 i #125 są opisane w stanie realizacji poniżej; dalsze pozostają planowane.**
-
-Nie ma kont premium ani płatnego uprawnienia Jarkendaru. Region otwiera się dopiero po globalnym połączeniu, dla wszystkich kont i botów, bez warunku salda odłamków. Zwykłe zadania/progi fabularne mogą prowadzić przez portal; nie stanowią płatnego dostępu. Obecny itemshop i odłamki pozostają mechaniką gry; techniczne nazwy `premium_balance` i symulowane zakupy botów nie oznaczają konta premium. Nie dodawać systemu abonamentu ani premium botów.
-
-Po połączeniu istnieje jeden serwer ze wspólnym rynkiem/rankingiem i pięć frakcji: **Miasto Khorinis (straż/paladyni), Klasztor Magów Ognia, Magowie Wody, Bandyci, Najemnicy**. Piraci mogą występować fabularnie, ale nie są szóstą grywalną frakcją. Bandyci jako frakcja powstają dopiero po upadku Bariery; oddzielna wspólnota Wody również dopiero wtedy. Przed Barierą Magowie Wody należą do Nowego Obozu.
-
-| Dotychczasowa przynależność | Następstwo po Barierze |
-| --- | --- |
-| Stary Obóz: Kopacz, Cień, Strażnik, Magnat | Bandyci, odpowiadający szczebel podstawowy |
-| Stary Obóz: Mag/Arcymag Ognia | Wspólny Klasztor Ognia z magami Khorinis |
-| Nowy Obóz: Mag/Arcymag Wody | Osobna frakcja Magów Wody |
-| Pozostali Nowego Obozu i najemnicy Onara | Wspólni Najemnicy |
-| Wojownicy Bractwa | Jednorazowy wybór dowolnej z pięciu frakcji |
-| Guru/Arcyguru | Jednorazowy wybór Ognia albo Wody |
-| Zbieracz/Nowicjusz bez wybranej gałęzi | Propozycja: wybór otwarty; rozstrzygnąć w #126 przed kodowaniem |
-| Dotychczasowe frakcje Khorinis | Zachowanie członkostwa we wspólnych odpowiednikach |
-| Bez frakcji | Brak automatycznego członkostwa, zwykła rekrutacja |
-
-Szczebel jest osobisty, niezależny od poziomu wspólnoty. Magnat zostaje najwyższą podstawową rangą **Bandytów**; przykład dowódcy straży oznacza równoważność szczebla, nie kierunek przeniesienia. Połączenie odblokowuje dalsze awanse, nie przyznaje ich bez zadań. Zachować pochodzenie, historyczne obozy/rangi, osiągnięcia, zasoby, sprzęt, historię i tożsamość rekordów. Zmiana frakcji nie daje ani nie odbiera wytrenowanych atrybutów. Wojownik Bractwa może wybrać również szkołę magii, ale nie otrzymuje darmowych treningów. Oczekiwanie na wybór nie zatrzymuje zwykłej gry.
-
-### Równa długość i podwojenie dróg
-
-Ustalono z użytkownikiem: **4 rangi podstawowe i 4 dodatkowe po Barierze = 8**, bez liczenia stanu „bez frakcji”. Każda gałąź w Kolonii i Khorinis ma tę samą długość przed wydarzeniem; frakcje powstające później mają cztery rangi równoważne dawnym i cztery wyższe. Katalog podstawowy został wyrównany w #124; dawna dłuższa droga Wody i jej korzyści mają wyjątek zgodności.
-
-Nazwy zatwierdzone przez użytkownika 11 XI 2026 (zastępują wcześniejsze przykłady). Katalog nazw 5–8 nie oznacza jeszcze wdrożonych awansów — mechanika należy do #127.
-
-| Frakcja | Cztery rangi podstawowe po Barierze | Cztery wyższe po Barierze |
-| --- | --- | --- |
-| Miasto | Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży | Kandydat Zakonu → Rycerz → Paladyn → Mistrz Zakonu |
-| Ogień | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru | Mistrz Ognia → Strażnik Świętego Ognia → Mistrz Kręgu Ognia → Awatar Innosa |
-| Woda | Uczeń Wody → Adept Wody → Mag Wody → Arcymag Wody | Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa |
-| Bandyci | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
-| Najemnicy | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków |
-
-Przed Barierą bez zmian: Stary Obóz Kopacz/Cień/Strażnik/Magnat albo Mag Ognia/Arcymag Ognia; Nowy Obóz Kret/Szkodnik/Najemnik/Gwardzista Lee albo Mag Wody/Arcymag Wody; Onar Pracownik farmy/Zbrojny Onara/Najemnik Onara/Dowódca najemników. Ogień Khorinis i Miasto mają powyższe cztery rangi podstawowe. Wspólne etykiety Ognia po Barierze korzystają z nazewnictwa klasztoru; historyczne tytuły kolonistów pozostają zapisane.
-
-### Kolejność małych etapów
-
-Każdy w osobnej iteracji, z testami modułu, regresją, PR i bez automatycznego rozpoczynania następnego. Poniższe issues pozostają otwarte do rzeczywistego wdrożenia.
-
-| Etap / issue | Minimalny zakres | Kryterium ukończenia |
-| --- | --- | --- |
-| **1. #124 — PR #129** | Katalog czterech podstawowych szczebli każdej gałęzi; przed Barierą brak paladynów; wersja i mapa starych rang, obsługa przyjętych awansów | Wszystkie ścieżki mają równą długość; test każdej dawnej rangi, brak utraty korzyści/osiągnięć i ponownych opłat |
-| **2. #125 — scalone w PR #130**, po #124 | Pięć frakcji i automatyczna sukcesja z wyjątkami dla magów; historyczna przynależność; sukcesja wspólnych zasobów bez duplikacji | Atomowe, jednokrotne przejście oraz aktualizacja już połączonych zapisów, audyt i restart; bez destrukcyjnego resetu |
-| **3. #126 — scalone w PR #131**, po #125 | Oczekujący wybór Bractwa, ograniczenie Guru, odpowiedniki szczebli, ten sam serwis dla botów | Macierz dozwolonych/zakazanych wyborów, równoczesne POST/retry, zachowane zasoby i dalsza gra przed wyborem |
-| **4. #127 — scalone w PR #132**, po #126 | Cztery wyższe rangi każdej frakcji, zadania, koszty, korzyści, sprzęt/magia i bramki; zgodność z dotychczasowym alliance_rank | Każda droga ma 8 rang, wyższe tylko po połączeniu, rzeczywiście zdobywane przez ludzi i boty |
-| **5. #33 — scalone w PR #133**, po #125/#127 i minimalnej paczce #32 | Publiczny Jarkendar: portal, lokacje, przeciwnicy, questy, frakcje Wody/Bandytów i ich integracja; bez premium | Dostęp niezależny od portfela/konta, blokada przed Barierą, faktyczna grywalność i żywe boty bez grantów |
-| **6. #128**, po powyższych | Pełna macierz przejścia, organiczne buildy, ekonomia wspólnot i UX | Bez strat/duplikacji, PostgreSQL/restart/wyścigi, GUI320/390/1440, nowe pomiary awansu i raport ograniczeń |
-
-#32 nadal obejmuje pełniejszy katalog i kampanię G2 NK; pojedyncza paczka Jarkendaru nie zamyka całego zakresu. #30/#111 obejmują integrację następstwa z istniejącym przejściem; nie implementować ponownie wyścigu, kopii i wspólnego serwera. Stare raporty to dowody historycznych wersji, nie obowiązujące wymagania premium.
-
-### Stan realizacji #124
-
-Migracja0048 i katalogv2 wprowadzają cztery rangi podstawowe na każdej nowej gałęzi, straż do Dowódcy i zachowanie dawnej drogi Wody oraz jej przywilejów. [Szczegóły i wyjątek zgodności](CAMPS.md). Etap #125 opisano niżej; #126/#127/#33/#128 pozostają planowane. Handoff na życzenie użytkownika pozostawiono bez zmian — aktualne decyzje czytać tutaj.
-
-### Sprawne iteracje testów
-
-Nowe pakiety `simulate_release --suite quick/campaign/pacing/world/full` oddzielają szybkie kontrole od długich symulacji. Pełne asercje kampanii pozostają, ale transakcje mają zakres jednej tury. [Polecenia, zakresy i pomiary](SOLO_PLAYTEST.md). Zgłoszona awaria GitHuba w tej iteracji nie zastępuje testów: mechanikę sprawdzono lokalnie na SQLite i rzeczywistym PostgreSQL, łącznie z odtwarzaniem starszych kopii i współbieżnością. Handoff pozostaje bez zmian na polecenie użytkownika.
-
-### Stan realizacji #125
-
-Migracja0049 dodaje oddzielne członkostwo bieżącej frakcji i audyt sukcesji. Rodzime `camp`/`guild` oraz wszystkie osobiste rekordy pozostają bez zmian. Automatyczne przejście działa w transakcji aktywacji Bariery. Już połączone serwery obsługuje ten sam worker albo `barrier_transition ID --resume --operator LOGIN`, ze świeżą zweryfikowaną kopią przed zmianą. Sama migracja schematu nie dzieli skarbców.
-
-Użytkownik zatwierdził podział skarbców według liczby członków; [szczegóły i ograniczenia](CAMP_GUILDS.md). Rangi5–8 są katalogiem planowanym, Bractwo oczekuje na wybór #126, portal Jarkendaru pozostaje zamknięty. Handoff pozostawiono bez zmian zgodnie z poleceniem.
-
-### Stan realizacji #126 — 12 XI 2026
-
-Jednorazowy wybór Bractwa, ograniczenie Guru, zachowanie szczebli, przywilejów, dawnej kampanii i zasobów; wspólna usługa ludzi/botów. Przekazywany udział bieżącego depozytu ma równe wagi pozostających członków i deterministyczną resztę. [Dokładne reguły oraz wymagania wyboru](CAMP_GUILDS.md). Migracja0050 dodaje wyłącznie zapis decyzji. Następny etap #127: wyższe rangi i realna progresja po połączeniu; Jarkendar i pełniejsze G2 NK nadal w #33/#32.
-
-#130 scalono po pełnym zielonym CI Python3.12/3.13, PostgreSQL, współbieżności, dokumentacji i obrazu. Przekroczenie16zapytań raportu świata zostało usunięte bez podnoszenia limitu, z testem1/21botów. [Wyniki #126 i wykryte problemy scenariuszy](reports/wybor-bractwa-2026-11-12.json).
-
-### Stan realizacji #127
-
-20zadań czterech wyższych rang w istniejącym systemie awansów, poziomy30/35/40/45, opłaty500/1000/1500/2500, wymagania bazowych atrybutów i przywileje. Stare opłacone szczeble Związku zachowane bez repurchase; nowe postacie niczego nie dostają za samą Barierę. [Reguły, zgodność i boty baseline-22](CAMPS.md). Migracja0051 dodaje tylko tabelę; nie wykonano wdrożenia na prywatnej bazie. #131 scalono po pełnym zielonym CI, po naprawie sprzedaży zbędnych strzał w plecaku bota.
-
-### Publiczny Jarkendar — #33
-
-[Pierwsza grywalna wyprawa](JARKENDAR.md): portal bez premium, 8 zadań, 10 lokacji, przeciwnicy, boss, rynsztunek, zwykłe usługi gracza i botów. Brak nowego serwera i migracji schematu. Zaktualizowano komunikaty o dostępie, naprawiono oscylację podróży botów. Pełne NK pozostaje w #32, zbiorczy audyt buildów/UX w #128. Starsze sekcje opisują historyczne etapy; aktualny dostęp określa dokument Jarkendaru. Handoff pozostaje bez zmian.
-
-### Katalog i wyprawa NK — #32
-
-[Zakres integracji Gothicpedii](GOTHIC_II_CONTENT.md): 877 tożsamości przedmiotów, 85 kodów stworzeń, 352 NPC i 35 punktów z przypiętej listy; 167 aktywnych wzorów kupca, 67 populacji polowań, 8 nowych bossów i 15 kontraktów do Irdorath. Pasy, sześć zestawów pancerza, odnowienie many/zdrowia i dwa czary VI kręgu. Bez powielania serwera ani frakcji. #32 pozostaje otwarte dla nieobsługiwanych efektów/interakcji; następnie #128: organiczne pozostałe buildy, gospodarka i UX. Dawne liczby w historycznych sekcjach nie opisują nowej paczki.
-
-### Assety NK — uzupełnienie #32
-
-[Stan grafiki](GOTHIC_II_CONTENT.md): 866/877 tożsamości z dopasowaniem źródłowym, wszystkie167 wzorów kupca i85 kodów stworzeń z lokalnymi assetami. 11 archiwalnych wariantów ma oznaczone modele kategorii. Naprawiono pierwszeństwo nowych ilustracji Jarkendaru i dodano bramkę walidacji assetów aktywnego contentu. Decyzja użytkownika: portrety NPC i sceny questowe odłożone; priorytetem są przedmioty, lokacje, moby i bossowie oraz pełna droga. Brak zmian danych progresji i migracji.
-
-### Gotowość pełnej drogi — #128
-
-[Aktualna kolejność i uruchomienie](COMPLETE_JOURNEY.md): podstawowe assety → rzeczywista droga Kolonia/Śniący/połączenie/NK/warty → organiczne pozostałe buildy → regionalny endgame [#136](https://github.com/Yorick0499/ore-and-empire/issues/136) → wydarzenia większego świata [#137](https://github.com/Yorick0499/ore-and-empire/issues/137) → dłuższa gospodarka i próba wydania. Dodano osobne `simulate_journey`: trzy konta od0, zdobyta wspólnota10, prawdziwe uderzenia i zweryfikowana aktywacja, następnie Irdorath i powtarzalne warty. Stare postępy wart zachowane; komunikaty po Barierze i finale NK opisują wspólny świat. #128 pozostaje otwarte dla pełnej macierzy buildów/gospodarki.
-
-### Regionalny endgame — #136
-
-PR #138 pełnej drogi i grafik lokacji scalono po zielonym CI. [Regionalne warty](REGIONAL_ENDGAME.md) dodają cztery ścieżki po100 stopni, wspólny filtrowany ranking i rotacyjny cel wspólnoty co tydzień. Stare100 wart pozostaje; regionalna pętla ma wpisowe, wspólny cooldown i limit8 nagród dziennie. Migracja0053, kopie, boty baseline-24 i odtwarzanie dawnych polityk zachowują dane. [Raport](reports/regionalny-endgame-2026-11-12.json) obejmuje realne przejście, cztery przygotowane buildy, PostgreSQL, GUI i250 botów. Następny etap **#137**: regionalne wydarzenia; organiczne pozostałe buildy, awanse4→8 i dłuższa gospodarka nadal **#128**. Nie wdrożono #137 w tej iteracji; handoff pozostaje bez zmian.
-
-### Organiczne buildy i pięć frakcji — #128
-
-[Dziewięć pełnych dróg](BUILD_PLAYTHROUGHS.md) od0 do finału NK, ósmej rangi i regionalnego endgame: Stary/Nowy Obóz w obu gałęziach, trzy wspólnoty Khorinis oraz Guru/Templariusz z rzeczywistym wyborem następcy. Bez grantów poziomów, atrybutów, ekwipunku i osobistych kamieni milowych. Globalna Bariera jest zewnętrznym zdarzeniem w macierzy; osobna realna próba trzech kont nadal weryfikuje Śniącego, kopię i aktywację.
-
-Naprawiono zapas oddzielnych zwojów G1 w walce z zachowaniem ochrony i ofert rynku, dodano czytelne prognozy bossa/many i wskazówki buildów. Bez nowej migracji ani resetu. [Raport](reports/buildy-frakcje-2026-11-12.json): testy SQLite, PostgreSQL z wyścigiem zwojów i GUI320/390/1440. PR #139 regionalnego endgame scalono po komplecie zielonych kontroli. Następny odrębny etap **#137**: regionalne wydarzenia. Dłuższa gospodarka250 botów i obserwacje rzeczywistych graczy pozostają w backlogu wydania #9; nie twierdzimy, że automatyczna wygrana dowodzi subiektywnej satysfakcji. Handoff bez zmian.
-
-### Wydarzenia regionalne i odsłony świata — #137, 13 XI 2026
-
-[Nazwane aktualizacje](WORLD_UPDATES.md): Pęknięcie Bariery, Zaginiona Dolina, Cienie nad Khorinis, Przebudzenie smoków, Żagle ku Irdorath i Orkowie u bram. Trwałe odkrycia wspólnoty, bez grantów i ponownego blokowania starych postaci. Cztery regionalne pule, warianty sezonu/nocy, trzy nowe święta i rotacyjny orkowy cel tygodnia. Nowy bonus jest ograniczony do3 nagród/300 rudy/3000 PD na postać i dobę, wspólnie dla krain. Migracja0054, kopie i kursor harmonogramu bez osobnych timerów botów. [Dowody i ograniczenia](reports/wydarzenia-aktualizacje-2026-11-13.json). Dalsza praca: dłuższa gospodarka i obserwacje graczy, potem głębsze konsekwencje wojny; bez deklarowania pełnego oryginalnego NK. Handoff pozostaje bez zmian.
+Zmiany wykonujemy na osobnej gałęzi `codex/...`, z issue, testami właściwego zakresu i PR. Migracje zachowują dorobek; prywatne zapisy/hasła/kopie nie trafiają do repo.

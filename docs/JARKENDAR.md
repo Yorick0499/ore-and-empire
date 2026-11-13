@@ -1,6 +1,8 @@
-# Publiczny Jarkendar — pierwsza wyprawa
+# Publiczny Jarkendar — portal i dalsza wyprawa
 
-Etap #33 dodaje początkową paczkę po globalnym upadku Bariery. To część wspólnego serwera Kolonii i Khorinis: ten sam rynek, ranking, portfel, postać oraz pięć frakcji. Jarkendar nie jest trzecim światem ani regionem premium. Pełny katalog i kampania Gothic II NK pozostają w #32.
+Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+
+Publiczny portal i początkową paczkę po globalnym upadku Bariery wprowadzono w #33; późniejsza paczka NK rozbudowuje region. To część wspólnego serwera Kolonii i Khorinis: ten sam rynek, ranking, portfel, postać oraz pięć frakcji. Jarkendar nie jest trzecim światem ani regionem premium. [Dalszą kampanię NK i granice implementacji](GOTHIC_II_CONTENT.md) opisuje osobny katalog.
 
 ## Jak wejść
 
@@ -13,9 +15,9 @@ Przeprawa nie ma opłaty ani warunku salda odłamków. Zwykły cel podróży kos
 
 ## Zawartość i frakcje
 
-10 lokacji, 6 przeciwników, lokalny strażnik krypty, 8 jednorazowych zadań, 4 wzory ekwipunku wyprawy, 2 materiały i znak warty. Zadania prowadzą przez Magów Wody, piratów, kanion, obóz bandytów, kopalnię, bagna i ruiny. Statystyki, nagrody, ekwipunek i kontrakty są adaptacją przeglądarkową. Nie odgrywasz Bezimiennego; ta paczka nie inscenizuje pokonania Kruka.
+10 lokacji, 6 przeciwników, lokalny strażnik krypty, 8 jednorazowych zadań, 4 wzory ekwipunku wyprawy, 2 materiały i znak warty. Zadania prowadzą przez Magów Wody, piratów, kanion, obóz bandytów, kopalnię, bagna i ruiny. Statystyki, nagrody, ekwipunek i kontrakty są adaptacją przeglądarkową. Nie odgrywasz Bezimiennego; ta paczka w początkowych ośmiu zadaniach nie inscenizuje pokonania Kruka; starcie z nim należy do dalszego łańcucha NK.
 
-Magowie Wody i Bandyci używają już istniejącego członkostwa, historii i ośmiu rang wspólnego świata. Inne frakcje także mogą pomagać badaczom i robotnikom. Piraci są grupą fabularną, nie szóstą frakcją gracza. Kopalnia rozlicza pracę dotychczasową rudą, bez nowej waluty. Ilustracje są jawnie poglądowymi grafikami istniejących kategorii, nie nowym kompletem oryginalnych assetów NK.
+Magowie Wody i Bandyci używają już istniejącego członkostwa, historii i ośmiu rang wspólnego świata. Inne frakcje także mogą pomagać badaczom i robotnikom. Piraci są grupą fabularną, nie szóstą frakcją gracza. Kopalnia rozlicza pracę dotychczasową rudą, bez nowej waluty. Aktualne ilustracje przedmiotów, lokacji, populacji i bossów pochodzą z lokalnej biblioteki NK. Wspólny model lub ilustracja kategorii są jawnie oznaczone; portrety NPC/sceny zadań pozostają odłożone.
 
 Ekwipunek wyprawy wymaga odebranego zadania portalu. Obowiązuje to kupca, założenie i podgląd wymagań; bot nie planuje zakupu niedostępnych rzeczy. Zdobyty sprzęt można dalej nosić poza Jarkendarem. Bramka lokacji działa także przy bezpośrednim URL i wywołaniu usługi walki.
 
@@ -27,14 +29,16 @@ Boty używają tych samych usług zadań, podróży i walk. Naprawiono oscylacj�
 
 ## Dowody i ograniczenia
 
-[Raport testów, GUI i symulacji](reports/publiczny-jarkendar-2026-11-12.json). Wojownik od zera kontynuuje po kampanii Kolonii: 8 nowych zadań, poziom 38, bez porażek i grantów postaci. Jarkendar zajmuje w zachowawczym modelu 10,62h czasu świata; pełny przebieg 21,37h, w tym 179,3min modelowych operacji, 820min regeneracji i 282,7min timerów. To nie pomiar czasu człowieka ani przejście wszystkich rang.
+[Raport testów, GUI i symulacji](reports/publiczny-jarkendar-2026-11-12.json). Wojownik od zera kontynuuje po kampanii Kolonii: 8 nowych zadań, poziom 38, bez porażek i grantów postaci. Jarkendar zajmuje w zachowawczym modelu 10,62 h czasu świata; pełny przebieg 21,37 h, w tym 179,3 min modelowych operacji, 820 min regeneracji i 282,7 min timerów. To nie pomiar czasu człowieka ani przejście wszystkich rang.
 
-Pięć przygotowanych botów reprezentujących docelowe frakcje ukończyło po 8 zadań w 73 turach. Początkowy poziom25/atrybuty/ruda to jawne fikstury; brak grantów podczas gry. Dwugodzinny krok nie mierzy tempa rozwoju. W osobnej regresji zachowano populację 250, stałe limity zapytań i kampanię Khorinis.
+Pięć przygotowanych botów reprezentujących docelowe frakcje ukończyło po 8 zadań w 73 turach. Początkowy poziom 25/atrybuty/ruda to jawne fikstury; brak grantów podczas gry. Dwugodzinny krok nie mierzy tempa rozwoju. W osobnej regresji zachowano populację 250, stałe limity zapytań i kampanię Khorinis.
 
-18 widoków Chromium 320/390/1440 oraz rzeczywiste formularze portalu przeszły bez błędów JS i poziomego przepełnienia. Test przeglądarkowy przyspiesza wyłącznie oczekiwanie; osobny test usług przesuwa zegar i wymaga wykonania celów. Nadal potrzeba pełnych organicznych przejść maga i łucznika, sprawdzenia konkurencji rynku oraz pełniejszego NK. Nie są to dowody żywego serwera pod produkcyjnym obciążeniem.
+18 widoków Chromium 320/390/1440 oraz rzeczywiste formularze portalu przeszły bez błędów JS i poziomego przepełnienia. Test przeglądarkowy przyspiesza wyłącznie oczekiwanie; osobny test usług przesuwa zegar i wymaga wykonania celów. Ten historyczny raport nie obejmował pełnych dróg maga/łucznika. Obecnie sprawdza je [dziewięć organicznych przejść](BUILD_PLAYTHROUGHS.md), wraz z dalszym NK i rangą 8. Nadal nie jest to wielotygodniowe obciążenie ani dowód stabilności rynku.
 
 [Mapa na telefonie](screenshots/publiczny-jarkendar-390.jpg) · [Mapa na komputerze](screenshots/publiczny-jarkendar-1440.jpg).
 
 ## Rozszerzenie #32
 
 Trzy dalsze obszary polowań i ścieżka Kruka są częścią [wyprawy NK](GOTHIC_II_CONTENT.md). Powyższe liczby i raport dotyczą pierwszej paczki #33; nowa paczka wykorzystuje także lokalne ilustracje Jarkendaru z Gothicpedii.
+
+Po odebraniu `nk-undead`, od poziomu 45, członkowie rozstrzygniętej frakcji mogą kontynuować Straż Jarkendaru w regionalnym endgame. Odsłona „Zaginiona Dolina” ogłasza pierwsze odkrycie, ale każdy gracz nadal zdobywa własny portal. [Warty](REGIONAL_ENDGAME.md), [wydarzenia](WORLD_UPDATES.md).

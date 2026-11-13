@@ -1,82 +1,59 @@
-# Obozy jako gildie — etap 1
+# Wspólnoty, sukcesja frakcji i skarbce
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji jest wdrożona w0049; wybór Bractwa działa od0050, wyższe rangi działają od0051, portal nadal jest planowany. Starsze sekcje poniżej opisują historię.
+Stan: 13 XI 2026. Gildią jest wspólnota, bez osobnego systemu drużyn. Rodzime `camp`/`guild` oznaczają obóz i historyczną rangę; po Barierze `FactionMembership` wskazuje bieżącą frakcję i skarbiec. [Rangi](CAMPS.md) · [Połączenie](CHARACTERS_AND_WORLDS.md).
 
+## Wspólne cele i pieniądze
 
-Gildią jest istniejący Stary Obóz, Nowy Obóz albo Bractwo na bagnie. Nie ma oddzielnej rekrutacji, drużyn ani wymogu jednoczesnej obecności. Przynależność `camp` daje członkostwo; dotychczasowe `guild` oznacza **osobistą rangę** (np. Cień), nie nową organizację. Dołączenie do obozu nie zmienia wcześniejszych questów, sprzętu i poziomu. Na razie istnieje jeden lokalny świat; zakres edycji pozostaje #15/#34, współbieżność serwera #19.
+`/wspolnota/` pokazuje poziom 1–10, PD, skarbiec, dzienny projekt, ulepszenia i ostatnie 30 wkładów. Co 100 PD daje poziom, maksymalnie 10. Rotacja projektów jest deterministyczna według polskiego dnia i wspólnoty. Cele utrwalają się przy pierwszym zaliczonym działaniu; GET niczego nie tworzy i nie wypłaca.
 
-`/wspolnota/` pokazuje wspólny poziom 1–10, PD, skarbiec, dzienne zlecenie, ulepszenia i 30 ostatnich wkładów. Każde 100 PD wspólnoty daje kolejny poziom do 10. Rotacja trzech małych zleceń jest deterministyczna na dzień i obóz. Reset o północy czasu polskiego; cele są zamrażane przy pierwszym zaliczonym działaniu, a stary postęp pozostaje w historii. GET nie tworzy ani nie rozlicza projektu. Bez retroaktywnego zaliczania dawnych sukcesów. Wygrane polowanie i odbiór zmiany w kopalni przechodzą przez serwis gry i automatycznie liczą wkład członka; porażka ani ponowienie rozliczonego request_key nie dodają go ponownie. Działania bez obozu i członków innych obozów nie zasilają projektu. Liczą się wszystkie wygrane polowania, żeby nowe postacie miały użyteczne zajęcie.
+Wygrane polowania i odebrane zmiany zliczają faktyczny wkład ludzi/botów po rozpoczęciu projektu; porażka i powtórzone żądanie nie dodają go drugi raz. Ukończony projekt daje wspólnocie raz 30 PD i 50 rudy, bez prywatnej wypłaty/odłamków. Stare projekty zachowują historię.
 
-Za cały projekt obóz dostaje raz 30 PD i 50 rudy skarbca, niezależnie od liczby członków. To nagroda wspólna, bez odłamków i automatycznych wypłat osobistych. Boty liczą się na tych samych zasadach; okresowo wpłacają 10 własnej rudy przy portfelu co najmniej 250 i skarbcu poniżej 100, lub kupują dostępne ulepszenie przez tę samą allowlistę. Polityka baseline-9; baseline-7/8 nadal odtwarzalne. Nie dostają skryptowych dopłat do statystyk/skarbca.
+Wpłata 1–10000 rudy ma UUID; powtórzenie nie płaci drugi raz, zmiana kwoty jest odrzucana. Nie ma prywatnych wypłat. Ulepszenie N kosztuje 100×N rudy skarbca, wymaga poziomu wspólnoty N+1 i uprawnienia rangi, maksymalnie 3. Stary formularz nie kupuje następnego poziomu.
 
-Wpłata 1–10000 rudy posiada klucz UUID i trwały wpis: powtórzenie z tym samym kluczem nie pobiera pieniędzy drugi raz, zmiana kwoty jest odrzucana. Skarbiec nie oferuje wypłat prywatnych. Odpowiednia ranga osobista odblokowuje zakup kolejnych poziomów; członek może kupić wyłącznie jedno ze zdefiniowanych, korzystnych dla wszystkich ulepszeń. Kolejny poziom N kosztuje 100×N rudy ze skarbca i wymaga poziomu obozu N+1, maksymalnie 3. Stary formularz z innym oczekiwanym poziomem nie może dokupić kolejnego poziomu.
+- Szkoła: trening tańszy o N, łącznie z rangą najwyżej do 5 rudy za PN; nie obniża nauki kręgów.
+- Magazyn: +N rudy do faktycznie odebranej zmiany, po procentach wydarzeń.
+- Warty: +N ochrony przed bronią i pociskami, bez zmiany bazowych statystyk i ochrony ognia/magii.
 
-- Szkoła: trening atrybutu tańszy o N rudy (10 → 7 dla samej szkoły, do 5 łącznie z rangą). Nie dotyczy opłaty nauki kręgów magii.
-- Magazyn: +N rudy na rzeczywiście odebraną zmianę, po mnożnikach eventu.
-- Warty: +N ochrony przed bronią/pociskami podczas walki, bez nadpisywania bazowych statystyk. Nie zwiększa ochrony przed ogniem/magią.
+Wpłata jest odpływem z portfela, lecz transferem do skarbca w skali świata. Nagroda projektu tworzy rudę, zakup ulepszenia ją zużywa. Sam ledger portfeli nie opisuje całego majątku bez skarbców. Boty wpłacają własną rudę i kupują przez te same usługi, bez dotacji do postępu.
 
-Ledger portfeli nadal rejestruje wpłatę jako odpływ z portfela; **nie jest to zniszczenie rudy w skali świata**, bo skarbiec ma oddzielny zapis i kronikę. Nowe 50 rudy projektu jest emisją do skarbca; wykup ulepszenia jest jego ujściem. Nie należy porównywać samej sumy portfeli z pełną gospodarką bez uwzględnienia skarbców. Administratorzy nadal mogą zmieniać przynależność w god-mode; wcześniejszy wkład pozostaje zapisany przy dawnym obozie, a nowe działania i bonusy należą do aktualnego.
+## Pięć następczych frakcji po Barierze
 
-Testy: izolacja obozów, wspólna realizacja przez ludzi/boty, retry walk/darowizn, koszty, bramki ulepszeń, pochodne bonusy, reset według czasu polskiego oraz pełny rollback przy błędzie rozliczenia. Backup obejmuje również wspólnoty, projekty i wkład. Wspólni bossowie działają (#51), podobnie osobiste wyzwania, reputacja i osiągnięcia (#21).
+| Historyczne członkostwo | Bieżąca wspólnota |
+|---|---|
+| Stary Obóz, droga wojskowa | Bandyci — Jarkendar |
+| Stary Obóz, Mag/Arcymag Ognia | Wspólny Klasztor Magów Ognia |
+| Klasztor Khorinis | Wspólny Klasztor Magów Ognia |
+| Nowy Obóz, droga wojskowa i Onar | Najemnicy — Łowcy Smoków |
+| Nowy Obóz, Mag/Arcymag Wody | Krąg Magów Wody |
+| Straż Khorinis | Miasto Khorinis — Zakon Paladynów |
+| Bractwo | Oczekujący jednorazowy wybór następcy |
 
+Kopacz/Cień oraz Kret/Szkodnik trafiają do odpowiedniego wojskowego następcy, ale mogą dokończyć rodzimą magiczną gałąź jej zwykłymi wymaganiami. To kontynuacja ścieżki, nie swobodne zmienianie frakcji. Postać bez członkostwa nie jest automatycznie rekrutowana. Po Barierze Bractwo nie przyjmuje nowych ludzi.
 
-Od migracji 0042: [pięć postaci na konto, obowiązkowe progi fabularne, przywileje rang i aktualny plan dwóch serwerów](CHARACTERS_AND_WORLDS.md).
+Sukcesja zachowuje imię, ID, poziom, przedmioty, historię, oryginalną rangę oraz odpowiadający szczebel podstawowy. Dzisiejsze nazwy i pełne 8 rang podaje [CAMPS.md](CAMPS.md). Historyczne kampanie i niezbędny sprzęt nie znikają.
 
+## Podział skarbców
 
-Od migracji 0043: [równoległe Khorinis, własna historia mieszkańca, trzy frakcje i izolacja serwerów](KHORINIS.md). Jarkendar jest zamknięty do połączenia światów.
+Ruda i PD Starego/Nowego Obozu dzielą się proporcjonalnie do liczby przechodzących postaci, ludzi i botów, także nieaktywnych. Reszta całkowitoliczbowa według największej reszty, przy remisie kod frakcji. Pusty Stary Obóz przekazuje Bandytom, pusty Nowy/Onar Najemnikom. Poziom i ulepszenia nie są obniżane; przy łączeniu obowiązuje maksimum, nie suma. Ogień Kolonii łączy się ze wspólnotą klasztoru.
 
-## Związek najemników po upadku Bariery — 0046/0047
+Historyczne źródła zachowują rekordy; przekazana ruda/PD są zerowane, stan i przydziały zapisuje audyt. Starszy połączony skarbiec Lee/Onara nie nalicza PD Onara drugi raz. Nowe działania korzystają wyłącznie z bieżącej wspólnoty.
 
-Nowy Obóz i Najemnicy Onara tworzą wspólną wspólnotę Lee i Onara. Kody historycznego członkostwa, osobiste rangi, osiągnięcia oraz oba rekordy gildii zostają zachowane. Nowe projekty, wpłaty, premie i wyprawy korzystają z głównej wspólnoty Nowego Obozu. Przy jednorazowym połączeniu skarbce są sumowane, dawny skarbiec Onara zerowany (bez zmiany łącznej rudy), PD łączone, a ulepszenia zachowują wyższy dotychczasowy poziom. Audyt zapisuje kwotę i identyfikatory. Stare wyprawy i ich nagrody pozostają rozliczalne pod dawnymi ID.
+Projekty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują niedokończone projekty/wyprawy, a następcy zaczynają własne bez kopiowania postępu. Miasto i klasztor zachowują swoje projekty. Zakończona dawna wyprawa nadal płaci raz faktycznemu uczestnikowi; niedokończony projekt nie daje rekompensaty.
 
-Wspólna hierarchia odpowiada szczeblom 0–4: **Robotnik wspólnoty → Zbrojny → Najemnik → Weteran szlaków → Dowódca Związku**. Dotychczasowy wyższy szczebel nie jest odbierany. Dalsza ranga `alliance_rank` nie przepisuje historycznego kodu rangi. Najpierw wymagany jest co najmniej drugi szczebel pierwotnej frakcji. Przejście na 3 wymaga poziomu 35, odebranego **Szlaku po upadku Bariery** i 500 rudy; na 4: poziomu 40, **Zagrożenia znad szczytu** i 1000 rudy. Awans działa dla graczy i botów przez ten sam serwis; daje zwykłe przywileje danego szczebla, bez powielania portfeli. Pozostałe wspólnoty zachowują własną historię i rozwój.
+## Jednorazowy wybór Bractwa
 
-Formularz awansu Związku przesyła oczekiwany dotychczasowy szczebel. Powtórzenie starego formularza nie kupuje kolejnej rangi ani nie pobiera opłaty po raz drugi.
+Formularz w `/oboz/` pozwala wybrać raz: Guru/Arcyguru tylko Ogień lub Wodę; pozostałe rangi, w tym Zbieracz/Nowicjusz, wszystkie 5 frakcji. Przed wyborem zakończ czynność i dokończ albo świadomie porzuć aktywną próbę awansu. Formularz nie kasuje jej sam. Czekając, nadal można grać.
 
-## Sukcesja pięciu frakcji — 0049
+Wybrany następca zachowuje szczebel. Brak rangi pozostaje brakiem rangi. Nie przybywa PN, poziomów, atrybutów, kręgów, sprzętu ani prywatnej waluty. Powtórzenie tego samego wyboru jest bezpłatne; inny następca jest odrzucany. Kolejne rodzime awanse nie nadpisują wyboru.
 
-Bieżąca wspólnota jest zapisana w `FactionMembership`; rodzime `camp` i `guild` nadal prowadzą historyczne questy, wyposażenie i szkołę magii. Snapshot członkostwa przechowuje obóz i rangę z chwili sukcesji. Ogień z Kolonii i klasztoru współdzieli gildię Khorinis, Miasto zachowuje swoją, a Woda, Bandyci i Najemnicy otrzymują osobne wspólnoty przy historycznym regionie Kolonii. Ranking filtruje pięć bieżących frakcji, nie dawne obozy. Konto bez frakcji nie zostaje automatycznie wcielone.
+Po wyborze magicznym Nowicjusz kontynuuje Guru; dawny Strażnik świątynny może zdobyć Arcyguru zwykłym zadaniem/opłatą. Po wyborze wojskowym Nowicjusz idzie drogą Strażnika/Templariusza. Wybrana szkoła i sprzęt/siedziba wymagają zwykłych progów; run trzeba się nauczyć i je kupić. Rodzima szkoła/miejsca potrzebne historii pozostają używalne.
 
-Ruda i PD dzielą się proporcjonalnie do liczby dotychczasowych postaci przechodzących do każdego następcy (ludzie i boty, także postacie nieaktywne). Reszta całkowitoliczbowa trafia według największej reszty, przy remisie według kodu frakcji. Pusty Stary Obóz przekazuje środki Bandytom, pusty Nowy i Onar Najemnikom. Poziom wspólnoty i zakupione ulepszenia są dziedziczone bez obniżenia; przy łączeniu obowiązuje maksimum, nie suma. Zachowane historyczne rekordy gildii nie otrzymują już nowych wpłat/projektów. Ich przekazana ruda i PD są zerowane, stan sprzed operacji pozostaje w audycie.
+Depozyt Bractwa dzieli bieżącą rudę/PD po równo między pozostających członków oczekujących. Reszta według IDpostaci. Przy wyborze udział idzie do docelowej wspólnoty, nigdy do prywatnego portfela. Kolejne wybory uwzględniają faktyczne późniejsze wpłaty/nagrody, a blokada depozytu serializuje równoczesne decyzje. Ostatni wychodzący opróżnia przekazywalną pulę; ulepszenia/poziomy dziedziczone są maksimum. Nie kopiuje się projektów ani nagród.
 
-W starszych zapisach Lee i Onar mają już połączony skarbiec: dzieli się go według łącznej liczby członków obu wspólnot. Historyczne PD Onara były już w puli Lee — nie naliczają się ponownie. Bractwo ma stan `PENDING`; jego skarbiec i wspólnota pozostają w depozycie do #126, zwykłe akcje nadal działają. Nie rekrutuje nowych członków po upadku Bariery.
+## Awans i niezawodność
 
-Projekty, wpłaty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują bieżące projekty i niedokończone wyprawy; następcy zaczynają własne, bez kopiowania postępu i nagród. Miasto i klasztor zachowują własne projekty. Za zakończoną dawną wyprawę można nadal odebrać nagrodę wyłącznie przy rzeczywistym dodatnim wkładzie; retry pozostaje jednokrotne. Nowe ataki/bonusy/wpłaty trafiają do bieżącej wspólnoty. Niedokończony dawny projekt nie wypłaca rekompensaty.
+Dalsze rangi 5–8 działają dla każdej frakcji, przez własne próby i opłaty. Dawny pięcioszczeblowy Związek Lee/Onara jest formatem historycznym; nowych awansów nie kupuje się jego starym formularzem. Opłacone osiągnięcia zachowują korzyści bez ponownej zapłaty.
 
-Historyczna ścieżka podstawowych questów pozostaje grywalna. Dojście do jej istniejącej gałęzi maga aktualizuje bieżącą frakcję na Ogień/Wodę; nie wykonuje ponownie sukcesji skarbców. Nie jest to swobodna zmiana gildii. Ukończone awanse Związku i dawnej drogi Wody zachowują przywileje; nowe zakupy awansu Związku są dostępne tylko Najemnikom. Osiem docelowych nazw jest pokazane w GUI, lecz nowe awanse5–8 realizuje dopiero #127. Bandyci istnieją jako frakcja, nie otwierają jeszcze regionu Jarkendar.
+`FactionSuccession` jest unikalne dla wyścigu; blokady postaci/gildii i audyt tworzą jedną transakcję. Nowa aktywacja i aktualizacja starszego połączonego zapisu korzystają ze świeżej kopii/odtworzenia. Worker wznawia kontrolowane operacje; nie przepisuj członkostw ręcznym SQL. [Kopie i wznowienie](BACKUPS.md).
 
-`FactionSuccession` jest unikalne dla wyścigu. Transakcja blokuje postacie i gildie w ustalonej kolejności, a audyt zapisuje liczby członków, stany źródeł i przydziały. Błąd cofa całość. Aktywacja nowego połączenia korzysta z istniejącej kopii i blokady zapisu. Uaktualnienie już połączonego zapisu wymaga kolejnej świeżej kopii z próbą odtworzenia i jest wznawialne przez worker lub polecenie `barrier_transition ID --resume --operator LOGIN`. Migracja0049 dodaje tylko schemat; nie dotyka danych osobistych ani nie pomija mechanizmu kopii. Wdrożenie na prywatnej bazie nie jest częścią tej iteracji.
-
-Weryfikacja #125: [raport testów i ograniczeń](reports/sukcesja-frakcji-2026-11-11.json). Pakiet `quick` obejmuje teraz także sukcesję. Bieżące zadanie awansu jest przed historycznymi kartami, a porównanie frakcji można rozwinąć. Listy rankingów i mieszkańców pobierają członkostwo wraz z postaciami. Dzierżawa chroni aktualizację starego serwera przed równoczesną kopią, a błąd daje audyt i 60 sekund przerwy przed retry.
-
-Początek widoku po sukcesji, komputer1440px:
-
-![Bieżące awanse i frakcje po Barierze](screenshots/frakcje-po-barierze-1440.jpg)
-
-Telefon390px:
-
-![Bieżący awans na telefonie](screenshots/frakcje-po-barierze-390.jpg)
-
-## Jednorazowy wybór Bractwa — 0050, #126
-
-Formularz w `/oboz/` pozwala przejść raz do nowej wspólnoty. Guru i Arcyguru wybierają Ogień/Wodę, pozostali członkowie Bractwa — wszystkie pięć frakcji. Zbieracz i Nowicjusz mają otwarty wybór. Powtórzenie tego samego wyboru jest bezpłatne i nie przenosi środków ponownie; inna frakcja jest odrzucana. Wybór wymaga zakończenia trwającej czynności oraz dokończenia albo świadomego porzucenia aktywnego zadania awansu przez dotychczasowy formularz. Nie kasuje zadania za gracza. Czekając, można normalnie grać.
-
-Szczebel podstawowy i jego korzyści pozostają; postać bez rangi nadal nie ma zdobytej rangi. Nie przybywa poziomów, PN, atrybutów, kręgów, przedmiotów ani waluty osobistej. `camp`/`guild` nadal prowadzą historyczną kampanię; `FactionChoice` zapisuje oryginalną rangę i obie gildie. Kolejne rodzime awanse nie nadpisują wybranej frakcji. Po wyborze magicznym Nowicjusz kontynuuje drogę Guru; dawny Strażnik świątynny może zdobyć Arcyguru przez zwykłe wymagania, opłatę i zadanie. Po wyborze wojskowym Nowicjusz ma drogę Strażnika/Templariusza i nie może zostać Guru miasta. Awanse5–8 pozostają #127.
-
-Wybrana frakcja udostępnia swoją szkołę magii i sprzęt/siedzibę, z zachowaniem zwykłych wymagań poziomu, statystyk, rangi i regionu. Rodzima szkoła, sprzęt i miejsca potrzebne historycznej kampanii pozostają używalne. Nowej magii trzeba nauczyć się za własne PN/rudę; nie przydziela się run. Boty korzystają z tej samej usługi i allowlisty, a decyzja jest rejestrowana i odtwarzalna przez istniejącą politykę. Wybór nie zmienia automatycznie strategii rozdzielania atrybutów.
-
-Udział Bractwa przenosi się do skarbca docelowej gildii, nigdy do prywatnego portfela: bieżąca ruda i PD depozytu dzielą się po równo między pozostających członków `PENDING`. Reszta całkowitoliczbowa trafia według ID postaci. Kolejny wybór uwzględnia rzeczywiste wpłaty i nagrody od poprzedniego; wybory różnych osób są serializowane blokadą wspólnego depozytu. Przejmowane poziomy i ulepszenia mają maksimum, nie sumę. Po wyjściu ostatniego członka przekazywalny skarbiec i PD są puste, historia projektów i wypraw pozostaje. Stare ukończone wyprawy nadal wypłacają nagrodę wyłącznie raz i tylko uczestnikom z wkładem. Nie kopiuje się projektów ani nagród.
-
-Migracja0050 dodaje tylko tabelę decyzji; nie wybiera za istniejące postacie i nie przenosi zasobów podczas migracji. Prywatnej bazy użytkownika nie aktualizowano.
-
-Weryfikacja i granice pomiarów: [raport #126](reports/wybor-bractwa-2026-11-12.json). Formularze Guru→Woda oraz wojownik→Miasto wykonano w Chromium, a ich udziały skarbca zachowały całkowitą rudę. Widoki320/390/1440px bez przepełnienia.
-
-Początek widoku, telefon390px:
-
-![Jednorazowy wybór Bractwa na telefonie](screenshots/wybor-bractwa-390.jpg)
-
-Komputer1440px:
-
-![Jednorazowy wybór Bractwa na komputerze](screenshots/wybor-bractwa-1440.jpg)
-
-Od0051 działają [cztery dalsze awanse każdej z pięciu frakcji](CAMPS.md), ich zadania/opłaty i przywileje. Stare opłacone szczeble Związku nie wymagają zakupu drugi raz; nowe awanse nie są już kupowane starym formularzem Związku. Osiągnięcie rangi8nie otwiera automatycznie Jarkendaru — jego publiczny portal i zawartość są osobnym etapem #33.
+[Raport sukcesji](reports/sukcesja-frakcji-2026-11-11.json), [wybór Bractwa](reports/wybor-bractwa-2026-11-12.json), [dziewięć organicznych dróg](BUILD_PLAYTHROUGHS.md). Piraci pozostają grupą fabularną, nie szóstą frakcją; publiczny [Jarkendar](JARKENDAR.md) ma osobne zadanie portalu.

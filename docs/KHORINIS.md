@@ -1,53 +1,40 @@
-# Khorinis przed połączeniem światów
+# Khorinis: własny początek i region wspólnego świata
 
-> **Decyzja projektowa 11 XI 2026:** konto premium wycofane; Jarkendar publiczny po połączeniu. Docelowe pięć frakcji, sukcesję dawnych rang i podwojenie awansów opisuje [aktualna roadmapa](ROADMAP.md). Sukcesja pięciu frakcji działa od0049; wybór Bractwa działa od0050; wyższe rangi działają od0051; publiczny portal działa od #33/PR #133. Dalszą wyprawę i zakres danych opisuje [katalog NK](GOTHIC_II_CONTENT.md). Szczegóły bieżących i historycznych reguł poniżej.
+Stan: 13 XI 2026. Przed Barierą **Latarnia — Khorinis** działa równolegle z Kolonią: osobne postacie, rynki, rankingi, wspólnoty, wydarzenia i boty. Pięć slotów konta jest wspólne. Po zwycięstwie obozowej wspólnoty oba światy stają się jednym serwerem z dwoma regionami. [Reguły połączenia](CHARACTERS_AND_WORLDS.md).
 
+## Frakcje przed Barierą
 
-Migracja 0043 i zadania #34/#113 otwierają drugi, równolegle grywalny serwer. **Latarnia — Khorinis** oraz istniejąca Kolonia mają osobne postacie, rynki, rankingi, frakcje, karczmy, wydarzenia i populacje botów. Pięć slotów konta jest wspólne dla obu serwerów. Przełączanie postaci wybiera także cały kontekst świata; stare formularze tracą ważność. Nie można przenosić przedmiotów ani przyjmować cudzych zadań przez podmienione ID.
-
-To **pierwsza grywalna paczka Khorinis**, nie pełny katalog całego oryginalnego Gothic II. Balans i chronologia są adaptacją MMORPG: mieszkańcy wyspy żyją równolegle do Kolonii, gdy Bariera jeszcze stoi. Postać nie jest Bezimiennym. Dołączenie do frakcji jest trwałe.
-
-## Trzy frakcje
-
-| Wspólnota | Rangi i docelowa rola |
+| Wspólnota | Cztery podstawowe rangi |
 |---|---|
-| Straż Khorinis | Obywatel → Strażnik miejski → Paladyn → Komendant warty |
-| Krąg Ognia | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru |
+| Miasto Khorinis | Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży |
+| Klasztor Magów Ognia | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru |
 | Najemnicy Onara | Pracownik farmy → Zbrojny Onara → Najemnik Onara → Dowódca najemników |
 
-Najemnicy są trzecią frakcją opartą na realiach farm Onara. Każda wspólnota korzysta z osobnego skarbca, dziennych projektów, ulepszeń i wypraw przeciw wspólnemu przeciwnikowi. Rangi dają te same stopniowe przywileje co w Kolonii. Droga Kręgu Ognia odblokowuje magię ognia; pozostałe frakcje mają rozwój wojenny. Zwoje mogą być używane niezależnie od szkoły.
+Paladyni należą do wyższej drogi po połączeniu. Każda wspólnota ma skarbiec, dzienne projekty, ulepszenia i wyprawy; szkoła klasztoru otwiera odpowiednią magię. [Wymagania rang](CAMPS.md).
 
-Prolog: **Pod dachami portu → Zapłata za zmianę → Wieść od Lobarta**. Trzeba odebrać wszystkie trzy przydziały przed dołączeniem. Awans na szczebel 1 wymaga drugiego zadania własnej frakcji, szczebel 2 szóstego, a szczebel 3 dodatkowo zadania **Nocna zmiana na wybrzeżu**. Nadal trzeba wykonać próbę awansu, zapłacić rudą i spełnić wymagania poziomu/atrybutu.
+## Kampania „Szlaki zaopatrzenia”
 
-## Szlaki zaopatrzenia
+29 definicji, 17 zadań jednej postaci: 3 prologu, 6 własnej frakcji i 8 wspólnych. Cztery rozdziały: Miejsce na wyspie, Zaufanie trzech wspólnot, Szlaki zaopatrzenia, Warty przed zmianą. Nie odgrywasz Bezimiennego. Pozostałe dwie gałęzie są niedostępne dla tej postaci.
 
-29 definicji, **17 zadań dla jednej postaci**: trzy prologu, sześć własnej frakcji i osiem wspólnych. Pozostałe dwie ścieżki frakcyjne są niedostępne. Cztery rozdziały:
+Prolog **Pod dachami portu → Zapłata za zmianę → Wieść od Lobarta** trzeba odebrać przed dołączeniem. Szczebel 1/2 wymaga drugiego/szóstego zadania własnej frakcji; szczebel 3 także „Nocnej zmiany na wybrzeżu”. Nadal płacisz opłatę, spełniasz poziom/atrybut i wykonujesz przyjętą próbę.
 
-1. **Miejsce na wyspie** — zatrudnienie przy porcie i pomoc na polach.
-2. **Zaufanie trzech wspólnot** — meldunki, zapasy, dyscyplina i ochrona farm; grasz tylko swoją ścieżką.
-3. **Szlaki zaopatrzenia** — karawany, pielgrzymi, bestie niszczące zbiory oraz poborcy haraczu.
-4. **Warty przed zmianą** — odcięci drwale, porozumienie trzech ognisk i zabezpieczenie morskiego traktu.
+Ukończenie lokalnej kampanii nie kończy serwera i nie łączy światów. Pozostają handel, zlecenia, projekty, magia, rzemiosło i stare 100 wart od 30/członkostwa. Kampania jest dostępna również nowej postaci utworzonej po Barierze.
 
-Finał przydziału nie kończy świata. Pozostają zlecenia, wspólne projekty i wyprawy, polowania, rynek, magia, losowane rzadkości, przekucie do +3 i dalszy rozwój. Od poziomu 30 postać obozowa może brać udział w powtarzalnych wartach z osobnym rankingiem tego serwera.
+## Paczka sprzed połączenia
 
-## Zawartość pierwszej paczki
+16 lokacji, 8 populacji przeciwników, 2 bossów solo, 10 zleceń czasowych, 35 wzorów warty w kręgach 0/5/10/20/30,18 run/zwojów, 2 amunicje i 2 trofea. To autorski balans mieszkańca, oddzielony od danych oryginalnego G2. Wspólne podstawy adaptacji mogą działać w obu światach, ale przed połączeniem nie przenoszą fizycznych egzemplarzy.
 
-- **16 miejsc**: port, pola Lobarta, targ, kamieniołom, Martwa Harpia, farma Onara, koszary, klasztor, trakt, farmy, jezioro, wybrzeże, zasadzka, mroczny las, morska warta i gaj trolla. Progi od 0 do 22.
-- **8 przeciwników**: ścierwojad, goblin, wilk, polna bestia, krwiopijca, topielec, warg i czarny troll. Osobne klucze uniemożliwiają zaliczenie przeciwnika G1 jako celu G2.
-- **2 lokalne wyprawy solo**: Poborcy haraczu (10) i Wódz rozbójników z wybrzeża (18). Mają cooldown, koszt, trwały wynik, znaki warty i losowany sprzęt.
-- **10 zleceń czasowych** od pracy w porcie do kontraktu weterana na poziomie 25.
-- **35 wzorów rynsztunku** w pięciu kręgach 0/5/10/20/30: broń wręcz, dystansowa, pancerz i ozdoby; **18 run/zwojów**, dwie amunicje i dwa trofea.
-- Rynsztunek warty i jego liczby są balansem przeglądarkowym. Nie oznaczamy ich jako wiernie przepisanych statystyk oryginalnego G2. Wspólne bazowe przedmioty adaptacji nadal mogą być używane na obu serwerach; ich fizyczne egzemplarze i portfele nie przechodzą między nimi. Walutą rozliczeniową pozostaje ruda.
+[Pełne bieżące tabele](GAME_CONTENT.md) zawierają również późniejsze tereny — powyższe liczby opisują tylko początkową paczkę Khorinis.
 
-Grafiki: 36 przypisań do 25 odrębnych obrazów G2 z Gothicpedii. Ikony kategorii współdzielone przez adaptowane przedmioty są oznaczane jako ilustracyjne. Manifest zachowuje strony źródłowe, wybrane pliki, oryginalne adresy, atrybucję, MIME, wymiary i SHA-256. Runtime działa lokalnie, bez pobierania obrazów. [Wybór plików](../characters/data/khorinis-asset-selections.json) i [mapowania kategorii](../characters/data/khorinis-asset-aliases.json).
+## Po połączeniu
 
-## Jarkendar i połączenie
+Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Bandyci i Magowie Wody; Piraci nie są szóstą frakcją gracza. Nowe rangi 5–8 wymagają własnych awansów. [Sukcesja i skarbce](CAMP_GUILDS.md).
 
-**Jarkendar nie jest dostępny przed połączeniem, nawet przy dużym saldzie odłamków.** Ta paczka nie dodaje portalu, celów Jarkendaru, Kruka ani smoków. Po przyszłym obozowym zwycięstwie nad Śniącym i bezpiecznym połączeniu (#111/#30) otworzy się dalszy etap; wejście do Jarkendaru będzie publiczne, bez uprawnienia premium (#33). Obecne odłamki i osobowość „Gracz itemshopu” nie są takim uprawnieniem.
+Jarkendar jest publiczny po zadaniu portalu od 10. Dalsze kontrakty NK otwierają Kruka, Poszukiwaczy, cztery smoki, statek i Irdorath. Jarkendar/Irdorath korzystają z mapy i regionu podróży Khorinis; nie tworzą dodatkowych serwerów. Bramek poziomu/fabuły nie omija duży portfel. [Jarkendar](JARKENDAR.md) · [Zakres NK i źródeł](GOTHIC_II_CONTENT.md).
 
-## Uruchomienie i zarządzanie
+## Otwarcie i zarządzanie
 
-Po migracji i konfiguracji Kolonii administrator może otworzyć wyspę przyciskiem **Otwórz Khorinis** w panelu ustawień świata. Domyślnie powstaje 125 botów; razem z domyślnymi 125 w Kolonii daje to 250 mieszkańców dwóch serwerów. Alternatywnie, przy zatrzymanej grze:
+Na skonfigurowanej instalacji użyj **Otwórz Khorinis** w ustawieniach świata albo przy zatrzymanej grze:
 
 ```bash
 python manage.py migrate
@@ -55,51 +42,12 @@ python manage.py open_khorinis --bots 125 --name 'Latarnia — Khorinis'
 python play.py --port 8001
 ```
 
-Ponowienie `open_khorinis` nie resetuje ani nie nadpisuje istniejącej populacji, nazwy i dorobku. Później wybierz serwer w panelu i zapisz nazwę/liczbę botów (0–300 na serwer). Odczyt panelu nie tworzy administratorowi dodatkowej postaci. Pełny reset całej instalacji jest dostępny z panelu głównej Kolonii i obejmuje **oba serwery**; zachowuje konta administratorów i tworzy prywatny backup.
+Ponowienie nie resetuje nazwy, populacji i dorobku. Standard 125+125 daje 250 botów; zapisane liczby pozostają. Ustawienia 0–300 dotyczą każdego regionu osobno, także po Barierze. Jeden launcher/worker ma wspólną adaptacyjną kolejkę i dzierżawy; drugi świat nie uruchamia drugiej fali schedulera. Healthcheck uwzględnia wszystkie otwarte regiony z botami. [Wydajność](BOT_PERFORMANCE.md).
 
-Lokalny launcher oraz produkcyjny worker mają **jedną wspólną adaptacyjną kolejkę**, z oddzielną dzierżawą dla każdego serwera. Dodanie drugiego świata nie uruchamia drugiej równoległej fali akcji. Cel pacingu pozostaje około 20% czasu kolejki, maksymalnie pięć akcji/s; to nie twarda gwarancja CPU. Sesje i kadencje osobowości nadal obowiązują. Healthcheck wymaga dostępnego schedulera dla każdego otwartego świata z botami. Samodzielne ograniczone testy: `python manage.py run_bots --world ID --rounds 1 --limit 10`; nie uruchamiaj ich równolegle z właścicielem dzierżawy.
+Pełny reset z panelu głównej Kolonii obejmuje całą instalację, oba regiony i zwykłe konta, zachowując administratorów. Nie używaj go do aktualizacji. [Operator](public/OPERATOR_GUIDE.md).
 
-Importer jest opcjonalnym narzędziem autora: `python manage.py import_khorinis_assets --skip-existing`. Używa wyłącznie jawnej listy plików z Gothicpedii, weryfikuje obraz i publikuje manifest po walidacji. Nie wymaga go gracz.
+## Dane, grafiki i dowody
 
-## Weryfikacja
+Seeder instaluje brakujące definicje, Jarkendar i katalog NK, zachowując edycje operatora i przyjęte snapshoty. Grafiki działają lokalnie; źródła i jawne ilustracje kategorii są w manifeście. [Assety](ASSETS.md).
 
-Testy obejmują pełne przejście 17 zadań gracza przez formularze i zwykłe serwisy bez nadań; trzy boty kończą ścieżki wszystkich frakcji. Próby nadużyć sprawdzają obce oferty/questy/cele, zlecenia innego uniwersum i zamknięte regiony. Osobne testy kontrolują dzierżawy i równoległe konteksty. Chromium sprawdza pięć ekranów przy 320/390/1440 px, odrzucenie starego formularza po zmianie serwera i rzeczywiste wykonanie pierwszego zadania.
-
-[Publiczny raport grywalności, GUI i migracji](reports/khorinis-przed-polaczeniem-2026-11-09.json). W kontynuacji po kampanii wszystkie trzy boty osiągnęły szczebel 3; Krąg Ognia rzeczywiście walczył zaklęciami (131 many / 27 siły), a wojownicy rozwijali siłę.
-
-## Audyt kompletności G2 NK — 11 listopada 2026
-
-**Pełny content G2 NK nie jest zaimplementowany.** Odczytano aktualne #30–#35 i #111 oraz definicje uruchamiane przez `seed_khorinis`. Zielone testy pierwszej kampanii nie oznaczają kompletnego oryginalnego katalogu.
-
-| Obszar | Zweryfikowany stan |
-|---|---|
-| Kampania mieszkańca | 29 definicji / 17 zadań na wybraną frakcję, 4 rozdziały. Własna adaptacja, nie komplet zadań oryginalnego G2. |
-| Miejsca i stworzenia | 16 lokacji, 8 gatunków i 2 lokalnych bossów. Brakuje pełnego zestawu regionów i przeciwników G2 NK. |
-| Sprzęt | 35 wzorów warty, 18 run/zwojów, 2 amunicje i 2 trofea: 57 tożsamości G2. To adaptacje, nie pełny katalog oryginalnych przedmiotów. |
-| Frakcje i NPC | 3 wspólnoty z rangami; kontakty NPC w rozmowach fabuły. Nie ma kompletnej sieci oryginalnych NPC, dialogów, pobocznych gildii i ich zadań. |
-| Regiony późniejszej gry | Brak kampanii Górniczej Doliny w wersji G2, Jarkendaru i Irdorath. Lokacje G1 nie zastępują tych regionów. |
-| Smoki, Kruk, finał NK | Niezaimplementowane; brak etapów fabuły i nagród po połączeniu. |
-| Dostęp | Połączenie światów, obozowy wyścig Śniącego i publiczny Jarkendar pozostają otwarte (#30/#111/#33/#35). Saldo odłamków niczego tutaj nie odblokowuje. |
-| Grafiki | 36 przypisań / 25 obrazów G2. Grafika kategorii nie jest osobną wierną ilustracją każdego wzoru. |
-
-Nie ustalono pełnego referencyjnego indeksu kodów G2 NK, dlatego nie podajemy procentu kompletności. Dalsza realizacja #32 wymaga takiego indeksu i kolejnych paczek; #32 pozostaje otwarte. Zawartość za bramką połączenia musi zostać wdrożona razem z jej rzeczywistymi warunkami, a nie przez odblokowanie samego adresu.
-
-`validate_content` sprawdza teraz również grafiki lokacji i gatunków Khorinis, unikalność kluczy, zależności zadań oraz cele podróży, walk i bossów. Wypisuje wprost, że waliduje częściową adaptację sprzed połączenia. Kontrola celowo nie nazywa tej walidacji dowodem pełnego G2 NK.
-
-Aktualny [raport audytu i tempa gry](reports/grywalnosc-2026-11-11.json) oraz [opis prób nowego gracza](SOLO_PLAYTEST.md).
-
-## Aktualizacja 0046–0047: po obozowym zwycięstwie
-
-Powyższy katalog opisuje paczkę **przed** upadkiem Bariery. Po potwierdzonym obozowym zwycięstwie i zweryfikowanej świeżej kopii dostępne są teraz wspólny rynek/ranking, podróże oraz dwa pierwsze wspólne przydziały i wyprawa przeciw smokowi ognia (35). Najemnicy Onara tworzą wspólnotę z ludźmi Lee, zachowując historyczne członkostwo. Dawne zadania, prace i nagrody nie są resetowane. [Pełne reguły przejścia](CHARACTERS_AND_WORLDS.md). Jarkendar nadal pozostaje zamknięty; pełna zawartość NK i publiczny Jarkendar wymagają kolejnych etapów.
-
-## Nowy gracz po połączeniu — #31
-
-Kreator pozwala zacząć bezpośrednio w Khorinis również po globalnym wydarzeniu. Własny prolog i frakcje pozostają dostępne od początku, bez wymogu ukończenia kampanii Kolonii. Wspólny katalog wyposażenia daje dostęp do rynsztunku obu regionów według zwykłych wymagań i cen. [Porównanie nowych postaci i weteranów](SOLO_PLAYTEST.md). Historyczna tabela powyżej opisuje paczkę przed połączeniem; obecny smok ognia nie oznacza kompletnej kampanii NK.
-
-## Podstawowa straż po #124
-
-Katalog0048 nie nazywa już podstawowej rangi Paladynem: Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży. Zachowano tożsamości rekordów, wymagania i korzyści; dawne nazwy są w mapie wersji. Paladyni jako wyższe awanse pozostają w #127, po połączeniu. [Zasady zgodności](CAMPS.md).
-
-## Pierwsza publiczna wyprawa po Barierze — #33
-
-[Jarkendar](JARKENDAR.md) jest częścią mapy Khorinis wspólnego serwera, po zadaniu portalu od poziomu10. To osobna początkowa paczka, bez kont premium; nie zmienia zakresu powyższej kampanii sprzed Bariery ani nie zamyka #32.
+[Raport początkowej paczki](reports/khorinis-przed-polaczeniem-2026-11-09.json) pozostaje historyczny. [Bieżąca próba wydania](reports/grywalnosc-wydania-2026-11-13.json) obejmuje organiczną drogę straży, klasztoru i Onara do NK/rangi 8 oraz oddzielną rzeczywistą aktywację świata. Nadal nie deklarujemy implementacji wszystkich skryptów/interakcji oryginalnego G2NK.
