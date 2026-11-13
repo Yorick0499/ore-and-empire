@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: **13 listopada 2026, po scaleniu dokumentacji #143 (`447f856`), z rozwinięciem kalendarza #144**, migracja 0054, domyślna polityka baseline-24 i schemat obserwacji 23. Aktualizacja dokumentacji: #142. Starsze wpisy sesji i plany są zachowane w historii Git/issue; poniżej obowiązujący stan.
+Stan: **13 listopada 2026, po scaleniu kalendarza #145 (`08a37f3`), z ponownym audytem grywalności #146**, migracja 0054, domyślna polityka baseline-24 i schemat obserwacji 23. Aktualizacja wyników grywalności: #146. Starsze wpisy sesji i plany są zachowane w historii Git/issue; poniżej obowiązujący stan.
 
 ## Gotowa droga gry
 
@@ -13,8 +13,8 @@ Stan: **13 listopada 2026, po scaleniu dokumentacji #143 (`447f856`), z rozwini�
 | Jarkendar | #33 ukończone: publiczny portal po Barierze od 10, 8 przydziałów; bez premium; [region](JARKENDAR.md) |
 | NK i grafiki | #32 częściowo: 877 tożsamości, 167 wzorów kupca, 67 populacji, 8 nowych bossów i 15 kontraktów do Irdorath; aktywne przedmioty/tereny/moby/bossowie z lokalnymi obrazami; [dokładny zakres](GOTHIC_II_CONTENT.md) |
 | Endgame | #136 ukończone: 4×100 regionalnych stopni i tygodniowy cel, z zachowaniem starych 100 wart; [reguły](REGIONAL_ENDGAME.md) |
-| Grywalność buildów | #128 ukończone: 9 dróg od 0 przez 4→8 rang, NK i pierwsze regionalne warty; rzeczywista Bariera osobno; [dowody](BUILD_PLAYTHROUGHS.md) |
-| Żywy świat | #137 ukończone w #141: 7 nazwanych odsłon, 4 regionalne pule, 2 okna/krainę/dobę, 6 świąt, ograniczone premie; [kalendarz](WORLD_UPDATES.md) |
+| Grywalność buildów | Ponownie sprawdzone po #145 w #146; #128 ukończone: 9 dróg od 0 przez 4→8 rang, NK i pierwsze regionalne warty; rzeczywista Bariera osobno; [dowody](BUILD_PLAYTHROUGHS.md) |
+| Żywy świat | #137 ukończone w #141: 7 nazwanych odsłon i 8 zależnych od etapu pul nazw, 4 regionalne pule, 2 okna/krainę/dobę, 6 świąt, ograniczone premie; [kalendarz](WORLD_UPDATES.md) |
 | Boty i operacje | Domyślnie 125+125, limit 0–300/region, wspólna adaptacyjna kolejka; PostgreSQL/HTTPS/kopie/monitoring i CI wdrożone; [operator](public/OPERATOR_GUIDE.md) |
 
 Nie ma kont premium. Jarkendar nie jest osobnym serwerem ani szóstą frakcją. Po Barierze świat jest jeden, a dwa rekordy regionów zachowują tożsamości i pochodzenie postaci. Nie planujemy ręcznego przenoszenia graczy do nowej „II edycji”.

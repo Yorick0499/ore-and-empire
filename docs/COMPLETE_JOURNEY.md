@@ -1,6 +1,6 @@
 # Uruchomienie i pełna droga mieszkańca
 
-Stan: 13 XI 2026, po PR #141, migracja 0054. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
+Stan: 13 XI 2026, po PR #145, migracja 0054. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
 
 ## Uruchomienie lokalne
 
@@ -12,6 +12,12 @@ Po instalacji zależności według README:
 4. Dla standardowej populacji ustaw po 125 botów w Kolonii i Khorinis. Istniejące światy zachowują wcześniej zapisaną liczbę; ponowne otwarcie Khorinis nie resetuje ich ani nie nadpisuje konfiguracji.
 
 Launcher stosuje migracje i seedery. Po otwarciu Khorinis dodaje także katalog NK i jego questy; nie otwiera regionów fabularnych przed czasem. Nie uruchamiaj drugiego schedulera na tej samej bazie. To instrukcja lokalna; [profil produkcyjny](PRODUCTION.md) jest odrębną procedurą. Sam checkout nie wdraża prywatnego ani publicznego serwera.
+
+## Gotowość do gry solo z botami
+
+Wersja po #145 przeszła ponowną macierz dziewięciu dróg oraz rzeczywiste połączenie z kopią i odtworzeniem. Można rozpocząć lokalną grę jednym ludzkim kontem z botami. Warunkiem całej kampanii są oba otwarte regiony, aktywna populacja i działający launcher/worker. Boty nie zastępują wymagań poziomu, frakcji ani wspólnoty.
+
+Osobny test jednego człowieka i dwóch botów potwierdził faktyczne pokonanie pełnego Śniącego przez trzy różne konta. Zaczął od przygotowanych weteranów i wspólnoty 10; boty podejmowały zwykłe decyzje i korzystały z tego samego serwisu walki. Nie jest to pomiar czasu dojścia całej populacji od zera. [Bieżący zakres i wyniki](SOLO_PLAYTEST.md).
 
 ## Droga postaci i świata
 

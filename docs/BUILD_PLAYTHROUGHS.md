@@ -1,6 +1,8 @@
 # Buildy i drogi frakcyjne od nowej postaci
 
-Stan 13 XI 2026, po #141. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
+Stan 13 XI 2026, po #145. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
+
+Ponowny audyt po #145: wszystkie poniższe dziewięć dróg ukończyło kampanię NK, ósmą rangę i początkowe regionalne warty, osiągając poziomy 59–63. Zegar modelu: 2,16–5,43 dnia, bez oczekiwania na globalną wygraną wspólnoty. [Nowy raport](reports/gotowosc-solo-boty-2026-11-13.json). Nie zmieniano kosztów ani wymagań w celu zaliczenia prób.
 
 ## Wybór własnej drogi
 

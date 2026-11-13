@@ -1,6 +1,8 @@
 # Dokumentacja — indeks
 
-**Stan: 13 listopada 2026, po PR #141, migracja `0054_world_updates_events`.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
+**Stan: 13 listopada 2026, po PR #145, migracja `0054_world_updates_events`.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
+
+[Aktualne potwierdzenie gry solo z botami](SOLO_PLAYTEST.md): dziewięć dróg, faktyczna Bariera, sesje botów i jawne granice symulacji.
 
 ## Gra od początku do dalszych wart
 
