@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "migration": "0053_regional_endgame",
+  "migration": "0054_world_updates_events",
   "theme": "audyt-grywalnosci-2026-11-11; starsze pliki mają własne daty",
   "fixture": "Mieszany zestaw: Kolonia nad Wisłą (7 XI) i Dolina Wędrowców (8 XI); wyłącznie światy testowe",
   "files": [
@@ -603,6 +603,38 @@
       "captured_at_utc": "2026-11-12T22:27:23.302489+00:00",
       "fixture": "Prywatny syntetyczny mag45 z przygotowaną runą i krótkim zapasem many; formularz treningu CSRF",
       "theme": "buildy-frakcje-128"
+    },
+    {
+      "file": "regional-events-390.png",
+      "bytes": 181627,
+      "sha256": "6b9368b4c2e38fbea86a6d87368a0e456a7bee0ea388589c85660f327edccbb4",
+      "captured_at_utc": "2026-11-13T07:06:48.011929+00:00",
+      "fixture": "Prywatna baza, syntetyczny weteran50 po finale NK i aktywne okna czterech krain; zwykły formularz polowania CSRF",
+      "theme": "wydarzenia-aktualizacje-137"
+    },
+    {
+      "file": "regional-events-1440.png",
+      "bytes": 621081,
+      "sha256": "b378ce9b329199c721e33c96293d15e7d1e8ec5262a6212078cf8f9115f0884b",
+      "captured_at_utc": "2026-11-13T07:06:49.355090+00:00",
+      "fixture": "Prywatna baza, syntetyczny weteran50 po finale NK i aktywne okna czterech krain; zwykły formularz polowania CSRF",
+      "theme": "wydarzenia-aktualizacje-137"
+    },
+    {
+      "file": "world-updates-390.png",
+      "bytes": 323145,
+      "sha256": "896725012d6894bf40b02800aa4ff6fcb420e789ad92e420a7ffdad9a1826353",
+      "captured_at_utc": "2026-11-13T07:06:48.106478+00:00",
+      "fixture": "Prywatna baza, syntetyczny weteran50 po finale NK i aktywne okna czterech krain; zwykły formularz polowania CSRF",
+      "theme": "wydarzenia-aktualizacje-137"
+    },
+    {
+      "file": "world-updates-1440.png",
+      "bytes": 867054,
+      "sha256": "0ba0f4e64b967ff5b9a95c9a01c92cd99c180f54fe82eceeeda22cda7707338e",
+      "captured_at_utc": "2026-11-13T07:06:49.585418+00:00",
+      "fixture": "Prywatna baza, syntetyczny weteran50 po finale NK i aktywne okna czterech krain; zwykły formularz polowania CSRF",
+      "theme": "wydarzenia-aktualizacje-137"
     }
   ]
 }

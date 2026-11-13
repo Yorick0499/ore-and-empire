@@ -612,6 +612,12 @@ class AdventureTemplate(models.Model):
 
 
 class WorldEvent(models.Model):
+    region=models.CharField(max_length=12,blank=True,default='')
+    activity=models.CharField(max_length=12,blank=True,default='')
+    targets=models.JSONField(default=list,blank=True)
+    art_key=models.CharField(max_length=100,blank=True,default='')
+    release_key=models.CharField(max_length=32,blank=True,default='')
+    rule_version=models.PositiveIntegerField(default=1)
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
     key = models.SlugField(unique=True, max_length=100)
     name = models.CharField(max_length=100)
@@ -626,7 +632,10 @@ class WorldEvent(models.Model):
 
     class Meta:
         ordering = ["starts_at", "pk"]
-        constraints = [models.CheckConstraint(condition=models.Q(ends_at__gt=models.F("starts_at")), name="event_end_after_start")]
+        constraints = [models.CheckConstraint(condition=models.Q(ends_at__gt=models.F("starts_at")), name="event_end_after_start"),
+            models.CheckConstraint(condition=models.Q(region__in=['','valley','khorinis','jarkendar','irdorath']),name='event_valid_region'),
+            models.CheckConstraint(condition=models.Q(activity__in=['','mine','hunt','boss','adventure','raid']),name='event_valid_activity'),
+            models.CheckConstraint(condition=models.Q(rule_version__gte=1),name='event_positive_version')]
 
 
 class AdventureRun(models.Model):
@@ -1230,3 +1239,30 @@ class FactionRankProgress(models.Model):
     tier=models.PositiveSmallIntegerField()
     class Meta:
         constraints=[models.CheckConstraint(condition=models.Q(tier__gte=4,tier__lte=7),name='advanced_faction_rank_bounds')]
+
+
+class WorldRelease(models.Model):
+    """An announced world chapter; immutable notes never grant character progress."""
+    world=models.ForeignKey(World,on_delete=models.PROTECT)
+    key=models.SlugField(max_length=32)
+    released_at=models.DateTimeField(default=timezone.now)
+    snapshot=models.JSONField(default=dict)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['world','key'],name='one_world_release')]
+        ordering=['released_at','pk']
+
+
+class EventSchedule(models.Model):
+    world=models.OneToOneField(World,on_delete=models.CASCADE)
+    stamp=models.CharField(max_length=160,default='')
+
+
+class RegionalEventUse(models.Model):
+    profile=models.ForeignKey(PlayerProfile,on_delete=models.CASCADE,related_name='regional_event_uses')
+    event=models.ForeignKey(WorldEvent,on_delete=models.PROTECT)
+    request_key=models.CharField(max_length=100)
+    created_at=models.DateTimeField(default=timezone.now)
+    snapshot=models.JSONField(default=dict)
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['profile','request_key'],name='one_regional_event_use')]
+        indexes=[models.Index(fields=['profile','created_at'],name='regional_use_profile_time')]

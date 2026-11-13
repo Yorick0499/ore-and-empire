@@ -14,6 +14,12 @@ def region_ids(world):
     return ids
 
 
+def clear_region_cache():
+    from .realms import _union_cache
+    cached=_union_cache.get()
+    if cached is not None:cached.clear()
+
+
 def joined(world):return len(region_ids(world))>1
 
 

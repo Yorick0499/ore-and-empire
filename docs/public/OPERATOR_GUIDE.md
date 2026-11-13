@@ -1,6 +1,6 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 12 listopada 2026, wspólny świat po Barierze, migracja0053. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 12 listopada 2026, wspólny świat po Barierze, migracja0054. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
@@ -322,3 +322,5 @@ Od migracji 0042: [pięć postaci, fabuła i przywileje rang](../CHARACTERS_AND_
 Regionalny endgame po NK i zgodność migracji0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat23; stare odtworzenia pozostają zgodne.
 
 [Dziewięć organicznych dróg buildów i frakcji](../BUILD_PLAYTHROUGHS.md) można sprawdzić przez `simulate_builds --report /tmp/ore-builds.json`; `--case` wybiera pojedyncze drogi. Komenda używa własnej bazy, a pełne CI dzieli macierz na trzy grupy. Poprawka zapasu zwojów nie wymaga migracji ani łączenia historycznych przedmiotów.
+
+[Wydarzenia i odsłony świata](../WORLD_UPDATES.md): migracja0054, wspólny harmonogram i historia odkryć. Odczyty są bez nagród; stary dorobek nie jest ponownie blokowany.

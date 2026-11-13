@@ -179,7 +179,8 @@ class LegacyEndgameMigrationTests(TransactionTestCase):
             self.assertEqual((CampRaid.objects.get(pk=raid.pk).cycle,CampRaid.objects.get(pk=raid.pk).health),('daily',777))
             from .models import OwnedItem
             self.assertEqual(OwnedItem.objects.get(pk=item.pk).upgrade_level,2);self.assertEqual(PlayerProfile.objects.get(pk=p.pk).ore_balance,1234)
-        finally:MigrationExecutor(connection).migrate([('characters','0053_regional_endgame')])
+        finally:
+            executor=MigrationExecutor(connection);executor.migrate(executor.loader.graph.leaf_nodes('characters'))
 
 class RegionalContentionTests(TransactionTestCase):
     @skipUnlessDBFeature('has_select_for_update')

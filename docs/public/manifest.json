@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
-  "date": "2026-11-12",
-  "code_revision": "organiczne buildy i frakcje / #128",
-  "migration": "0053_regional_endgame",
+  "date": "2026-11-13",
+  "code_revision": "wydarzenia regionalne i aktualizacje / #137",
+  "migration": "0054_world_updates_events",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -130,6 +130,10 @@
         [
           "docs/EVENTS.md",
           "Wszystkie święta i eventy"
+        ],
+        [
+          "docs/WORLD_UPDATES.md",
+          "Aktualizacje żyjącego świata i regionalne cele"
         ]
       ]
     },
@@ -273,6 +277,7 @@
     "docs/reports/gothic2-nk-assets-2026-11-12.json",
     "docs/reports/pelna-droga-2026-11-12.json",
     "docs/reports/regionalny-endgame-2026-11-12.json",
-    "docs/reports/buildy-frakcje-2026-11-12.json"
+    "docs/reports/buildy-frakcje-2026-11-12.json",
+    "docs/reports/wydarzenia-aktualizacje-2026-11-13.json"
   ]
 }

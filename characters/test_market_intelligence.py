@@ -67,6 +67,22 @@ class IntelligentMarketTests(TestCase):
         self.assertFalse(list_bot_surplus(self.s,self.best))
         self.assertTrue(list_bot_surplus(self.s,self.item))
         duplicate=add_item(self.s,self.bp);self.assertFalse(list_bot_surplus(self.s,duplicate))
+    def test_human_buys_bot_surplus_once_and_bot_keeps_playing(self):
+        from .bots import tick_bot
+        self.assertTrue(list_bot_surplus(self.s,self.item))
+        self.item.refresh_from_db();price=self.item.market_price
+        self.assertTrue(game.buy_item_on_market(self.b,self.item,price))
+        self.assertFalse(game.buy_item_on_market(self.b,self.item,price))
+        self.b.refresh_from_db();self.s.refresh_from_db();self.item.refresh_from_db()
+        self.assertEqual(self.item.owner_id,self.b.pk)
+        self.assertEqual(self.b.ore_balance,500-price)
+        self.assertEqual(self.s.ore_balance,500+price)
+        self.assertEqual(MarketTrade.objects.count(),1)
+        self.assertTrue(tick_bot(self.s,force_active=True)[1])
+        self.best.refresh_from_db()
+        self.assertEqual(self.best.owner_id,self.s.pk)
+        self.assertTrue(self.best.is_equipped)
+
     def test_legacy_best_listing_is_rescued(self):
         game.unequip_item(self.s,self.best);game.list_item_on_market(self.s,self.best,200)
         self.assertEqual(bot_market_plan(self.s)[:2],('market_cancel',self.best.pk))

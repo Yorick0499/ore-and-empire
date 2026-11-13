@@ -23,6 +23,8 @@ Nowość: **pięć postaci na konto**, kreator po rejestracji, wymagania fabular
 
 [Buildy i frakcje od poziomu0](docs/BUILD_PLAYTHROUGHS.md): wojownik, łucznik, Ogień, Woda i obie drogi Bractwa; przygotowanie do bossów i osobna komenda kontroli przejść.
 
+[Aktualizacje żyjącego świata](docs/WORLD_UPDATES.md): nazwane odsłony odkrywane przez wspólnotę, regionalne wydarzenia i ograniczone premie.
+
 ## Co możesz przejść
 
 - Sześć rozdziałów i 41 jednorazowych definicji fabularnych; 27 zadań prowadzi daną ścieżkę do przygotowania finału, dostępny jest także epilog zależny od wyboru.

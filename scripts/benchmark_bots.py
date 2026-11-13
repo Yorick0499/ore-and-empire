@@ -2,6 +2,7 @@
 """Disposable Linux benchmark: two realms, real worker pacing and authenticated HTTP."""
 import argparse,hashlib,json,os,platform,random,socket,statistics,subprocess,sys,tempfile,time
 from collections import Counter
+from datetime import timedelta
 from io import StringIO
 from pathlib import Path
 from urllib.request import Request,urlopen
@@ -24,10 +25,12 @@ def main():
     parser.add_argument('--population',type=int,default=100)
     parser.add_argument('--mode',choices=['stress','sessions'],default='stress')
     parser.add_argument('--mature',action='store_true')
+    parser.add_argument('--regional-events',action='store_true',help='Jawne aktywne okna regionalne i trzy zwykłe polowania na bota przed pomiarem; wymaga --endgame.')
     parser.add_argument('--endgame',action='store_true',help='Jawna fikstura po finale NK; wymaga --joined i --mature.')
     parser.add_argument('--joined',action='store_true',help='Syntetyczne globalne połączenie obu istniejących regionów; bez resetu postaci.')
     args=parser.parse_args()
     if args.endgame and not (args.joined and args.mature):raise SystemExit('--endgame wymaga --joined i --mature')
+    if args.regional_events and not args.endgame:raise SystemExit('--regional-events wymaga --endgame')
     target=Path(args.report).resolve()
     if target.exists():raise SystemExit('Raport już istnieje.')
     if not 20<=args.seconds<=300 or not 2<=args.population<=300:raise SystemExit('Wymagane 20–300 sekund oraz 2–300 botów łącznie.')
@@ -83,7 +86,19 @@ def main():
             from characters.testing_story import claimed_milestone
             for p in actors:
                 p.level=45;p.experience=250*45*46;p.strength=300;p.life=600;p.current_health=600;p.ore_balance=5000;p.save()
-                for key in ('nk-undead','nk-sailing','jark-portal'):claimed_milestone(p,key)
+                for key in ('nk-undead','nk-sailing','jark-portal','nk-scouts','nk-eye'):claimed_milestone(p,key)
+        from characters.models import EconomicEntry,RegionalEventUse
+        ledger_start=EconomicEntry.objects.order_by('-pk').values_list('pk',flat=True).first() or 0
+        if args.regional_events:
+            from characters.models import WorldEvent
+            from characters import game_logic as game
+            now=timezone.now()
+            for area,key,world in [('valley','wolf',colony),('khorinis','k2_wolf',colony)]:
+                WorldEvent.objects.create(world=world,key='benchmark-regional-'+area,name='Próba regionalnego patrolu',region=area,activity='hunt',targets=[key],starts_at=now-timedelta(hours=1),ends_at=now+timedelta(days=1),experience_percent=125,art_key='orc_lands' if area=='valley' else 'k2_dark_forest')
+            for p in actors:
+                key,loc=('wolf','cavalorn') if p.world_id==colony.pk else ('k2_wolf','k2_road')
+                for _ in range(3):
+                    if not game.execute_hunt(p,key,loc):raise RuntimeError('Nieudane polowanie próby regionalnej.')
         times=[];queries=[];warm=Counter()
         for turn in range(2):
             for p in actors:
@@ -100,7 +115,7 @@ def main():
             from characters.factions import enroll
             for p in (human.playerprofile,other):
                 p.level=45;p.experience=250*45*46;p.life=600;p.current_health=600;p.ore_balance=5000;p.camp='OLD_CAMP' if p.world_id==colony.pk else 'CITY_WATCH';p.guild='GUARD' if p.world_id==colony.pk else 'K2_COMMANDER';p.save();enroll(p)
-                for key in ('nk-undead','nk-sailing','jark-portal'):claimed_milestone(p,key)
+                for key in ('nk-undead','nk-sailing','jark-portal','nk-scouts','nk-eye'):claimed_milestone(p,key)
         cookies=[]
         for profile in (human.playerprofile,other):
             client=Client();client.force_login(human);session=client.session
@@ -125,7 +140,7 @@ def main():
                     fields=Path(f'/proc/{process.pid}/stat').read_text().split()
                     return (int(fields[13])+int(fields[14]))/os.sysconf('SC_CLK_TCK')
                 live_started=timezone.now();rss=[];latencies=[];route_times={};errors=[]
-                routes=['/','/zadania/','/sklep-odlamkow/','/zycie-kolonii/']+(['/warty/?track=khorinis','/wspolnota/'] if args.endgame else [])
+                routes=['/','/zadania/','/sklep-odlamkow/','/zycie-kolonii/']+(['/wydarzenia/'] if args.regional_events else [])+(['/warty/?track=khorinis','/wspolnota/'] if args.endgame else [])
                 started=time.monotonic();cpu_start=cpu();n=0
                 while time.monotonic()-started<args.seconds:
                     route=routes[n%len(routes)];cookie=cookies[(n//len(routes))%len(cookies)]
@@ -176,8 +191,14 @@ def main():
                       'Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.',
                       'Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.'],
         }
+        if args.regional_events:
+            from django.db.models import Sum,Count
+            uses=list(RegionalEventUse.objects.filter(profile_id__in=actor_ids).values_list('snapshot',flat=True))
+            facts['regional_reward_probe']={'synthetic_windows':True,'paid_ordinary_hunts':3*args.population,'uses':len(uses),'extra_ore':sum(r['ore_bonus'] for r in uses),'extra_xp':sum(r['experience_bonus'] for r in uses),'ore_bound':300*args.population,'xp_bound':3000*args.population,'ledger_after_fixture':list(EconomicEntry.objects.filter(profile_id__in=actor_ids,pk__gt=ledger_start).values('category','resource').annotate(amount=Sum('amount'),entries=Count('id'))),'limits':['Ekonomia obejmuje próbę polowań, rozgrzewkę i pomiar; metryki HTTP/RAM tylko okno launchera.','Syntetyczni weterani i okna; nie wielodniowa gospodarka ani organiczna kampania botów.']}
         facts['validation']={'http_ok':not errors,'actions_ok':facts['failed_decisions']==0,
                              'all_residents_ticked':facts['residents_ticked']==args.population}
+        if args.regional_events:
+            probe=facts['regional_reward_probe'];facts['validation']['regional_budget_ok']=probe['uses']<=3*args.population and probe['extra_ore']<=probe['ore_bound'] and probe['extra_xp']<=probe['xp_bound']
         target.parent.mkdir(parents=True,exist_ok=True)
         with target.open('x') as stream:stream.write(json.dumps(facts,ensure_ascii=False,indent=2)+'\n')
         print(json.dumps(facts,ensure_ascii=False))

@@ -59,3 +59,13 @@ def week_start(now=None):
 def weekly_track(day=None):
     day=day or week_start()
     return tuple(TRACKS.values())[(day.toordinal()//7)%len(TRACKS)]
+
+
+def weekly_encounter(world,day=None):
+    from .models import WorldRelease
+    from .barrier import region_ids
+    day=day or week_start()
+    day=day-timedelta(days=day.weekday())
+    if (day.toordinal()//7)%5==0 and WorldRelease.objects.filter(world_id__in=region_ids(world),key='orc-war').exists():
+        return Track('orc-war','Orkowie u bram — wódz oblężenia','GOTHIC_II','nk_region_valley',('g2nk_orcelite_rest',),1200,115,65,30,30)
+    return weekly_track(day)

@@ -4,12 +4,15 @@ Domyślny kalendarz najnowszej wersji. Wszystkie podane daty i godziny są w **E
 
 Administrator może zmieniać terminy i premie albo wyłączać eventy. Poniższe tabele dotyczą domyślnych definicji; bieżące działanie pokazuje `/wydarzenia/`. Ceny i koszty energii pozostają takie same podczas eventów.
 
-## Trzy wydarzenia coroczne
+## Sześć wydarzeń corocznych
 
 | Wydarzenie | Termin w Polsce | Ruda | PD | Odłamki ze zlecenia czasowego |
 |---|---|---:|---:|---:|
 | Przebudzenie lasu | 20 marca 00:00 – 28 marca 00:00 | 100% | 130% | +1 |
 | Święto Kopaczy | 25 października 00:00 – 8 listopada 00:00 | 125% | 110% | +1 |
+| Dni Równowagi | 20 marca 00:00 – 23 marca 00:00 | 115% | 120% | +0 |
+| Noc Tysiąca Ognisk | 20 czerwca 00:00 – 25 czerwca 00:00 | 110% | 120% | +0 |
+| Święto Plonów | 22 września 00:00 – 29 września 00:00 | 120% | 115% | +0 |
 | Zimowe ogniska kolonii | 20 grudnia 00:00 – 6 stycznia następnego roku 00:00 | 110% | 125% | +1 |
 
 Nazwy i terminy są fanowskim kalendarzem Kolonii, nie odtworzeniem oficjalnych świąt z Gothic ani pełnym kalendarzem świąt państwowych.
@@ -56,3 +59,7 @@ W `/admin/` zarządca może dodać WorldEvent dla bieżącego świata: nazwę, o
 ## Pozostałe cele okresowe
 
 Dzienne/tygodniowe wyzwania i zlecenia obozu nie są eventami premiującymi wszystkie nagrody. Resetują się według polskiej daty; tydzień zaczyna się w poniedziałek. Tak samo dobowa wyprawa obozowa i limit pięciu napojowych odnowień energii. Doby zmiany czasu mają odpowiednio 23 lub 25 godzin, ale nadal jeden reset o lokalnej północy.
+
+## Regionalne okna i aktualizacje świata — #137
+
+[Cztery pule regionalne i siedem nazwanych odsłon](WORLD_UPDATES.md). Dwie czterogodzinne odsłony na krainę i dobę, zależne od pory roku i odkryć świata. Do3 faktycznie podwyższonych nagród,300 dodatkowej rudy i3000 dodatkowych PD na postać/polski dzień, łącznie we wszystkich krainach. Bez nowych odłamków; obowiązuje maksimum z premią globalną. Odczyt kalendarza nie przyznaje ani nie rezerwuje nagród.

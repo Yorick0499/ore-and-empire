@@ -59,8 +59,10 @@ def hunt_view(request):
     refresh_player(profile)
     location = current_location(request, profile, "forest", "hunt_page")
     from .world_events import reward_snapshot
-    xp_percent = reward_snapshot(0,100)[1]
-    available = {key: {**BESTIARY[key], "current_reward":BESTIARY[key]["exp_reward"]*xp_percent//100} for key in location.monsters}
+    from .world_events import reward_rates
+    from .regional_events import context as event_context
+    rates=reward_rates();regional=event_context(profile)
+    available = {key: {**BESTIARY[key], "current_reward":reward_snapshot(0,BESTIARY[key]["exp_reward"],rates=rates,profile=profile,activity="hunt",target=key,regional_context=regional)[1]} for key in location.monsters}
     from .combat_preparation import hunt_preparation
     preparation=hunt_preparation(profile,available)
     for key,row in available.items():row['preparation']=preparation['forecasts'][key]
@@ -461,7 +463,7 @@ def boss_view(request):
     location = current_location(request, profile, "crawler_nest", "boss_page")
     boss = BOSSES[location.key]
     from .world_events import reward_snapshot
-    current_ore,current_xp,_,_ = reward_snapshot(boss.ore,boss.experience)
+    current_ore,current_xp,_,_ = reward_snapshot(boss.ore,boss.experience,profile=profile,activity="boss",target=boss.key)
     from .bosses import MECHANICS
     from .finale import finale_ready
     if request.method == "POST":
@@ -614,7 +616,25 @@ def events_view(request):
     from django.utils import timezone
     from .models import WorldEvent
     from .world_events import active_events
-    return render(request, "characters/events.html", {"active": active_events(), "upcoming": WorldEvent.objects.filter(world=current_world(),enabled=True, starts_at__gt=timezone.now())[:6]})
+    from .barrier import region_ids
+    from .regional_events import context,REGIONS,actions
+    from .world_releases import release_cards
+    p=request.user.playerprofile if request.user.is_authenticated else None
+    ids=region_ids(p.world_id if p else current_world())
+    now=timezone.now();regional=context(p) if p else None
+    rows=list(active_events(now,world_ids=ids,include_regional=True))
+    # Identical pre-merge holiday records are one announcement after joining.
+    unique={}
+    for e in rows:
+        if not e.region:unique.setdefault((e.name,e.starts_at,e.ends_at,e.ore_percent,e.experience_percent,e.premium_bonus),e)
+    local=[{'event':e,'region':REGIONS.get(e.region,e.region),'actions':actions(e,p) if p else []} for e in rows if e.region and p and e in (regional or {}).get('events',[])]
+    future_rows=WorldEvent.objects.filter(world_id__in=ids,enabled=True,region='',starts_at__gt=now).order_by('starts_at','pk')[:16]
+    future_unique={}
+    for e in future_rows:future_unique.setdefault((e.name,e.starts_at,e.ends_at),e)
+    future=list(future_unique.values())[:6]
+    from .regional_events import eligible
+    upcoming_local=[{'event':e,'region':REGIONS.get(e.region,e.region)} for e in WorldEvent.objects.filter(world_id__in=ids,enabled=True,starts_at__gt=now).exclude(region='').order_by('starts_at','pk')[:16] if p and eligible(p,e)][:8]
+    return render(request,"characters/events.html",{'active':list(unique.values()),'upcoming':future,'regional_events':local,'regional_upcoming':upcoming_local,'regional_budget':regional,'releases':release_cards(p.world if p else current_world())})
 
 
 @login_required

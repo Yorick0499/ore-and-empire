@@ -126,6 +126,8 @@ class Command(BaseCommand):
                 for key in (track.art,*track.species):
                     if assets.get(key,{}).get('game')!='GOTHIC_II_NK':raise ValueError('Missing regional endgame art: '+key)
                 regional_enemy(1,track.key);regional_enemy(100,track.key)
+            from characters.regional_events import validate_catalog
+            validate_catalog(assets)
             advanced=validate_advancements()
             jquests,jlocations,jcreatures=validate_jarkendar(assets)
         except Exception as exc:raise CommandError(str(exc)) from exc
