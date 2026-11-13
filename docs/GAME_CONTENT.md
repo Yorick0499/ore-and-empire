@@ -556,6 +556,268 @@ Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa
 | Mocna ryżówka | Energia | 6 | 10 | 50 |
 | Prowiant z karczmy | Zdrowie | 1 | 0 | 25 |
 
+<a id="event-stage-pools"></a>
+
+## Pule wydarzeń według etapu świata
+
+Każda odsłona ma osobne nazwy i opisy. Przed Barierą Kolonia i Khorinis są osobne; później tematykę wyznacza najwyższa odkryta odsłona społeczności. Terminy, premie i trwałe klucze pozostają wspólne dla kolejnych wersji tematyki. [Zasady przejścia i kalendarz](EVENTS.md).
+
+### Pula: Kolonia pod Barierą
+
+Bariera wciąż oddziela dolinę; trzy obozy dbają o własne zapasy i szlaki.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto Kopaczy |
+| Coroczne | 20.12–06.01 | Zimowe ogniska trzech obozów |
+| Coroczne | 20.03–28.03 | Przebudzenie lasu pod Barierą |
+| Coroczne | 22.09–29.09 | Zbiory obozowych zapasów |
+| Coroczne | 20.06–25.06 | Noc ognisk nad ryżowiskami |
+| Coroczne | 20.03–23.03 | Dni wymiany między obozami |
+| Miesięczne | 01: dni 5–9 | Obozowe drogi pod szronem |
+| Miesięczne | 02: dni 5–9 | Drewno dla zimowych ognisk |
+| Miesięczne | 03: dni 5–9 | Roztopy przy obozowych mostach |
+| Miesięczne | 04: dni 5–9 | Zioła dla obozowych uzdrowicieli |
+| Miesięczne | 05: dni 5–9 | Przeprawy przez dolinę pod Barierą |
+| Miesięczne | 06: dni 5–9 | Karawany między obozami |
+| Miesięczne | 07: dni 5–9 | Letnie obchody kopalń |
+| Miesięczne | 08: dni 5–9 | Zbiory na polach ryżowych |
+| Miesięczne | 09: dni 5–9 | Jesienne transporty rudy |
+| Miesięczne | 10: dni 5–9 | Zapasy obozów przed chłodem |
+| Miesięczne | 11: dni 5–9 | Mgły nad doliną pod Barierą |
+| Miesięczne | 12: dni 5–9 | Pierwsze zimowe warty obozów |
+| Losowe odkrycie | 1 | Szczęśliwa żyła Starej Kopalni |
+| Losowe odkrycie | 2 | Bogaty urobek Wolnej Kopalni |
+| Losowe odkrycie | 3 | Rudny uskok pod Barierą |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Ruda dla obozów |
+| Regionalne polowanie | motyw + istniejący cel i teren | Patrole pod Barierą |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Przysługi trzech obozów |
+| Regionalny boss | motyw + istniejący cel i teren | Ochrona obozowych szlaków |
+
+### Pula: Khorinis przed połączeniem
+
+Miasto, klasztor i ludzie Onara utrzymują życie wyspy, zanim upadnie odległa Bariera.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto czeladników Khorinis |
+| Coroczne | 20.12–06.01 | Zimowe ognie portu |
+| Coroczne | 20.03–28.03 | Wiosenne prace na farmach |
+| Coroczne | 22.09–29.09 | Święto plonów Lobarta i Onara |
+| Coroczne | 20.06–25.06 | Noc latarni Khorinis |
+| Coroczne | 20.03–23.03 | Dni zgody miasta i farm |
+| Miesięczne | 01: dni 5–9 | Oblodzone trakty Khorinis |
+| Miesięczne | 02: dni 5–9 | Drewno dla portowych domów |
+| Miesięczne | 03: dni 5–9 | Roztopy przy farmie Lobarta |
+| Miesięczne | 04: dni 5–9 | Zioła dla klasztornych aptekarzy |
+| Miesięczne | 05: dni 5–9 | Naprawa mostów na wyspie |
+| Miesięczne | 06: dni 5–9 | Letnie dostawy do portu |
+| Miesięczne | 07: dni 5–9 | Patrole pól Onara |
+| Miesięczne | 08: dni 5–9 | Żniwa na farmach Khorinis |
+| Miesięczne | 09: dni 5–9 | Jesienne zapasy miasta |
+| Miesięczne | 10: dni 5–9 | Opał dla klasztoru i farm |
+| Miesięczne | 11: dni 5–9 | Mgły na wybrzeżu Khorinis |
+| Miesięczne | 12: dni 5–9 | Zimowa straż portowych bram |
+| Losowe odkrycie | 1 | Rudny uskok kamieniołomu |
+| Losowe odkrycie | 2 | Cenny urobek dla portowych kupców |
+| Losowe odkrycie | 3 | Odkrycie wyspiarskich górników |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Zapasy kamieniołomu |
+| Regionalne polowanie | motyw + istniejący cel i teren | Patrole wokół Khorinis |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Dostawy miasta i farm |
+| Regionalny boss | motyw + istniejący cel i teren | Ochrona wyspiarskich szlaków |
+
+### Pula: Pęknięcie Bariery
+
+Bariera upadła; dawni mieszkańcy Kolonii i Khorinis otwierają wspólne drogi.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto wolnych kopaczy |
+| Coroczne | 20.12–06.01 | Zimowe ognie połączonych osad |
+| Coroczne | 20.03–28.03 | Wiosna otwartych przełęczy |
+| Coroczne | 22.09–29.09 | Plony wspólnych szlaków |
+| Coroczne | 20.06–25.06 | Noc ognisk bez Bariery |
+| Coroczne | 20.03–23.03 | Dni spotkania dwóch krain |
+| Miesięczne | 01: dni 5–9 | Odśnieżanie otwartej przełęczy |
+| Miesięczne | 02: dni 5–9 | Zimowe dostawy między krainami |
+| Miesięczne | 03: dni 5–9 | Roztopy na wolnych szlakach |
+| Miesięczne | 04: dni 5–9 | Wspólne wyprawy zielarzy |
+| Miesięczne | 05: dni 5–9 | Naprawa przepraw po upadku Bariery |
+| Miesięczne | 06: dni 5–9 | Karawany wolnych osad |
+| Miesięczne | 07: dni 5–9 | Obchody nowo otwartych dróg |
+| Miesięczne | 08: dni 5–9 | Zbiory dla przybyszów z Kolonii |
+| Miesięczne | 09: dni 5–9 | Ruda na odbudowę przełęczy |
+| Miesięczne | 10: dni 5–9 | Wspólne zapasy na zimę |
+| Miesięczne | 11: dni 5–9 | Meldunki z zamglonej przełęczy |
+| Miesięczne | 12: dni 5–9 | Zimowe warty połączonych osad |
+| Losowe odkrycie | 1 | Żyła odsłonięta po upadku Bariery |
+| Losowe odkrycie | 2 | Znalezisko na wolnym szlaku |
+| Losowe odkrycie | 3 | Ruda dla odbudowy przełęczy |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Ruda wolnych szlaków |
+| Regionalne polowanie | motyw + istniejący cel i teren | Patrole po upadku Bariery |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Karawany dwóch krain |
+| Regionalny boss | motyw + istniejący cel i teren | Ochrona otwartych przejść |
+
+### Pula: Zaginiona Dolina
+
+Badacze dotarli do Jarkendaru; wyprawy potrzebują zaopatrzenia i ochrony ruin.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto robotników kanionu |
+| Coroczne | 20.12–06.01 | Zimowe ogniska badaczy |
+| Coroczne | 20.03–28.03 | Wiosenne obchody Zaginionej Doliny |
+| Coroczne | 22.09–29.09 | Zbiory dla ekspedycji Budowniczych |
+| Coroczne | 20.06–25.06 | Noc ognisk pirackiego brzegu |
+| Coroczne | 20.03–23.03 | Dni badaczy równowagi |
+| Miesięczne | 01: dni 5–9 | Zimowe dostawy za portal |
+| Miesięczne | 02: dni 5–9 | Ogniska w obozach ekspedycji |
+| Miesięczne | 03: dni 5–9 | Roztopy na szlakach badaczy |
+| Miesięczne | 04: dni 5–9 | Zioła z bagien Jarkendaru |
+| Miesięczne | 05: dni 5–9 | Naprawa przepraw w kanionie |
+| Miesięczne | 06: dni 5–9 | Karawany do Zaginionej Doliny |
+| Miesięczne | 07: dni 5–9 | Letnie obchody ruin Budowniczych |
+| Miesięczne | 08: dni 5–9 | Zbiory dla robotników kopalni |
+| Miesięczne | 09: dni 5–9 | Jesienne transporty za portal |
+| Miesięczne | 10: dni 5–9 | Zapasy ekspedycji przed zimą |
+| Miesięczne | 11: dni 5–9 | Meldunki z mgieł Jarkendaru |
+| Miesięczne | 12: dni 5–9 | Zimowe straże przy portalu |
+| Losowe odkrycie | 1 | Rudna szczelina kanionu |
+| Losowe odkrycie | 2 | Znalezisko robotników Zaginionej Doliny |
+| Losowe odkrycie | 3 | Urobek dla ekspedycji za portalem |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Zapasy ekspedycji |
+| Regionalne polowanie | motyw + istniejący cel i teren | Obchody badaczy |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Zaopatrzenie Zaginionej Doliny |
+| Regionalny boss | motyw + istniejący cel i teren | Ochrona badań i ruin |
+
+### Pula: Cienie nad Khorinis
+
+Zwiadowcy ostrzegają przed Poszukiwaczami; osady wzmacniają straże i sieć meldunków.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto strażników zaopatrzenia |
+| Coroczne | 20.12–06.01 | Zimowe ogniska przeciw ciemności |
+| Coroczne | 20.03–28.03 | Wiosenne obchody zwiadowców |
+| Coroczne | 22.09–29.09 | Plony pod strażą osad |
+| Coroczne | 20.06–25.06 | Noc latarni na zagrożonych traktach |
+| Coroczne | 20.03–23.03 | Dni czujności wspólnot |
+| Miesięczne | 01: dni 5–9 | Zwiad na ośnieżonych traktach |
+| Miesięczne | 02: dni 5–9 | Dostawy dla zimowych strażnic |
+| Miesięczne | 03: dni 5–9 | Roztopy pod okiem zwiadowców |
+| Miesięczne | 04: dni 5–9 | Zioła dla rannych strażników |
+| Miesięczne | 05: dni 5–9 | Łącznicy na wezbranych przeprawach |
+| Miesięczne | 06: dni 5–9 | Konwoje pod osłoną patroli |
+| Miesięczne | 07: dni 5–9 | Letnie meldunki o Poszukiwaczach |
+| Miesięczne | 08: dni 5–9 | Zbiory pod strażą wspólnot |
+| Miesięczne | 09: dni 5–9 | Transporty do zagrożonych osad |
+| Miesięczne | 10: dni 5–9 | Zapasy w strażnicach szlaków |
+| Miesięczne | 11: dni 5–9 | Sygnały latarni we mgle |
+| Miesięczne | 12: dni 5–9 | Zimowe obchody przeciw ciemności |
+| Losowe odkrycie | 1 | Rudne znalezisko zwiadowców |
+| Losowe odkrycie | 2 | Zabezpieczona żyła przy strażnicy |
+| Losowe odkrycie | 3 | Cenny urobek spod zagrożonego traktu |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Zapasy strażnic |
+| Regionalne polowanie | motyw + istniejący cel i teren | Zwiad przeciw ciemności |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Konwoje pod strażą |
+| Regionalny boss | motyw + istniejący cel i teren | Ochrona przed ciemnością |
+
+### Pula: Przebudzenie smoków
+
+Rozpoczynają się smocze wyprawy; pięć frakcji gromadzi zapasy dla łowców.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto kopalń smoczych wypraw |
+| Coroczne | 20.12–06.01 | Zimowe ogniska łowców smoków |
+| Coroczne | 20.03–28.03 | Wiosenne przygotowania łowców |
+| Coroczne | 22.09–29.09 | Plony dla smoczych patroli |
+| Coroczne | 20.06–25.06 | Noc sygnałowych ognisk łowców |
+| Coroczne | 20.03–23.03 | Dni przymierza przeciw smokom |
+| Miesięczne | 01: dni 5–9 | Ośnieżone szlaki łowców smoków |
+| Miesięczne | 02: dni 5–9 | Opał dla obozów łowców |
+| Miesięczne | 03: dni 5–9 | Roztopy pod smoczymi szczytami |
+| Miesięczne | 04: dni 5–9 | Zioła na wyprawy przeciw smokom |
+| Miesięczne | 05: dni 5–9 | Przeprawy dla smoczych patroli |
+| Miesięczne | 06: dni 5–9 | Letnie konwoje łowców |
+| Miesięczne | 07: dni 5–9 | Zwiad u podnóża smoczych leży |
+| Miesięczne | 08: dni 5–9 | Zbiory dla obozów łowców |
+| Miesięczne | 09: dni 5–9 | Ruda na oręż przeciw smokom |
+| Miesięczne | 10: dni 5–9 | Zapasy smoczych wypraw na zimę |
+| Miesięczne | 11: dni 5–9 | Sygnały patroli pod smoczymi szczytami |
+| Miesięczne | 12: dni 5–9 | Zimowe straże łowców smoków |
+| Losowe odkrycie | 1 | Żyła rudy na oręż łowców |
+| Losowe odkrycie | 2 | Znalezisko pod smoczymi szczytami |
+| Losowe odkrycie | 3 | Urobek dla smoczych wypraw |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Ruda dla łowców |
+| Regionalne polowanie | motyw + istniejący cel i teren | Zwiad smoczych wypraw |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Konwoje łowców |
+| Regionalny boss | motyw + istniejący cel i teren | Osłona smoczych wypraw |
+
+### Pula: Żagle ku Irdorath
+
+Otwarto przeprawę ku Irdorath; port i patrole wspierają wyprawę morską.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto stoczni i kopalń |
+| Coroczne | 20.12–06.01 | Zimowe ognie wyprawy morskiej |
+| Coroczne | 20.03–28.03 | Wiosenne przygotowania floty |
+| Coroczne | 22.09–29.09 | Plony dla załóg dalekiego rejsu |
+| Coroczne | 20.06–25.06 | Noc latarni szlaku Irdorath |
+| Coroczne | 20.03–23.03 | Dni przymierza dalekich brzegów |
+| Miesięczne | 01: dni 5–9 | Zimowe transporty do stoczni |
+| Miesięczne | 02: dni 5–9 | Opał dla załóg i portowych wart |
+| Miesięczne | 03: dni 5–9 | Roztopy na szlakach do portu |
+| Miesięczne | 04: dni 5–9 | Zioła dla medyków pokładowych |
+| Miesięczne | 05: dni 5–9 | Naprawy nabrzeży przed rejsem |
+| Miesięczne | 06: dni 5–9 | Letnie zaopatrzenie floty |
+| Miesięczne | 07: dni 5–9 | Patrole dalekich brzegów |
+| Miesięczne | 08: dni 5–9 | Zbiory dla załóg wyprawy |
+| Miesięczne | 09: dni 5–9 | Jesienne konwoje do portu |
+| Miesięczne | 10: dni 5–9 | Zapasy pokładowe przed sztormami |
+| Miesięczne | 11: dni 5–9 | Latarnie we mgle dalekich brzegów |
+| Miesięczne | 12: dni 5–9 | Zimowe warty szlaku Irdorath |
+| Losowe odkrycie | 1 | Rudne znalezisko dla stoczni |
+| Losowe odkrycie | 2 | Żyła na zapasy dalekiej wyprawy |
+| Losowe odkrycie | 3 | Cenny urobek portowego konwoju |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Zapasy wyprawy morskiej |
+| Regionalne polowanie | motyw + istniejący cel i teren | Patrole dalekich brzegów |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Konwoje dla floty |
+| Regionalny boss | motyw + istniejący cel i teren | Osłona szlaku Irdorath |
+
+### Pula: Orkowie u bram
+
+Po finale NK wspólnoty bronią osad i dostaw przed orkowym naporem.
+
+| Rodzaj | Termin / wariant | Nazwa lub tematyka |
+|---|---|---|
+| Coroczne | 25.10–08.11 | Święto zaopatrzenia twierdz |
+| Coroczne | 20.12–06.01 | Zimowe ognie obrońców |
+| Coroczne | 20.03–28.03 | Wiosenne obchody linii obrony |
+| Coroczne | 22.09–29.09 | Żniwa pod osłoną obrońców |
+| Coroczne | 20.06–25.06 | Noc sygnałowych ognisk twierdz |
+| Coroczne | 20.03–23.03 | Dni jedności obrońców krain |
+| Miesięczne | 01: dni 5–9 | Odśnieżanie linii zaopatrzenia |
+| Miesięczne | 02: dni 5–9 | Opał dla obleganych strażnic |
+| Miesięczne | 03: dni 5–9 | Roztopy przy obronnych mostach |
+| Miesięczne | 04: dni 5–9 | Zioła dla lazaretów wspólnot |
+| Miesięczne | 05: dni 5–9 | Naprawa przepraw obrońców |
+| Miesięczne | 06: dni 5–9 | Letnie konwoje do twierdz |
+| Miesięczne | 07: dni 5–9 | Patrole przeciw orkowym zwiadowcom |
+| Miesięczne | 08: dni 5–9 | Żniwa pod strażą frakcji |
+| Miesięczne | 09: dni 5–9 | Ruda na uzbrojenie obrońców |
+| Miesięczne | 10: dni 5–9 | Zapasy osad przed oblężeniem |
+| Miesięczne | 11: dni 5–9 | Meldunki z mgieł orkowego pogranicza |
+| Miesięczne | 12: dni 5–9 | Zimowe straże wspólnych granic |
+| Losowe odkrycie | 1 | Zabezpieczona żyła na orkowym pograniczu |
+| Losowe odkrycie | 2 | Ruda dla obrońców twierdz |
+| Losowe odkrycie | 3 | Znalezisko eskorty zaopatrzenia |
+| Regionalne wydobycie | motyw + istniejący cel i teren | Zapasy obrońców |
+| Regionalne polowanie | motyw + istniejący cel i teren | Patrole przeciw orkom |
+| Regionalne zlecenie | motyw + istniejący cel i teren | Konwoje do twierdz |
+| Regionalny boss | motyw + istniejący cel i teren | Osłona wspólnej obrony |
+
 ## Przedmioty, grafiki i endgame
 
 Pełne źródłowe rekordy i aktywne ograniczenia: [G1](../characters/data/gothic1-items.json), [NK](../characters/data/gothic2-items.json), [paczki](ITEM_PACKS.md), [grafiki i atrybucja](ASSETS.md). W grze katalog `/przedmioty/` jest stronicowany. Katalog referencyjny nie oznacza dostępności u kupca ani obsługi wszystkich oryginalnych efektów.

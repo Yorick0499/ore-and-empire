@@ -45,3 +45,5 @@ Każda próba tworzy własny plik SQLite i lokalny launcher na wolnym porcie, ni
 [Skalowanie 11 XI](reports/populacja-250-2026-11-11.json) obejmuje 100/200/300 kont i osobne naturalne sesje 250; wszystkie próby bez błędów. Dla rozwiniętych 300 kont trzeba było 240 s, by objąć wszystkie tury — 120 s było za krótkie. [Starsze 100 botów](reports/sto-botow-2026-11-06.json), [po finale](reports/sto-botow-endgame-2026-11-06.json) i [sesje 9 XI](reports/osobowosci-sto-botow-2026-11-09.json) zachowują dawne reguły.
 
 RSS obejmuje serwer i kolejkę, nie przeglądarkę, PostgreSQL ani przygotowanie fikstury. CPU obejmuje także HTTP i nie jest pomiarem samego celu 20%. Krótki SQLite nie jest SLA, testem wielu równoległych klientów ani dowodem zdrowej wielotygodniowej gospodarki. Współbieżność sprawdza odrębny [PostgreSQL](POSTGRESQL.md); dłuższe próby pozostają w [roadmapie](ROADMAP.md).
+
+Synchronizacja pul etapów korzysta ze wspólnego kursora dnia/odkryć. Rozpoznawanie i odświeżanie nazw odbywa się przy zmianie etapu lub utrzymaniu, nie dla każdego bota i nie w GET. Zwykła tura i nagroda nie pobierają osobno katalogu narracyjnego; gorąca kontrola ma stały budżet zapytań.

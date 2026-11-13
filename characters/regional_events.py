@@ -71,10 +71,66 @@ def candidates(profile,activity,target,now=None):
     from .world_events import active_events
     return [e for e in active_events(now,world_ids=region_ids(profile.world_id),include_regional=True).exclude(region='').filter(region=area(profile,activity,target),activity=activity) if eligible(profile,e) and (not e.targets or target in e.targets)]
 
+def season_name(day):
+    return 'Zima' if day.month in (12,1,2) else 'Wiosna' if day.month in (3,4,5) else 'Lato' if day.month in (6,7,8) else 'Jesień'
+
+
+def pool_for(key,flags,day):
+    winter=day.month in (12,1,2)
+    pool=[r for r in POOLS[key] if ('zimow' not in r[0].lower() or winter) and ('przed zimą' not in r[0].lower() or day.month in (9,10,11,12))]
+    label=('Zimowe zabezpieczenie szlaków' if winter else 'Wiosenny obchód badaczy' if day.month in (3,4,5) else 'Letnia ochrona karawan' if day.month in (6,7,8) else 'Jesienne zabezpieczenie dostaw')
+    pool.append((label+' — '+REGIONS[key],*pool[0][1:]))
+    if 'orc-war' in flags and key=='valley':pool.append(('Orkowie u bram: meldunki warty','hunt',('g2nk_orcelite_rest','g2nk_orcwarrior_rest'),'g2nk_orcelite_rest'))
+    if 'orc-war' in flags and key=='khorinis' and ((day-timedelta(days=day.weekday())).toordinal()//7)%5==0:pool.append(('Orkowie u bram: wypad na wodza','raid',('orc-war',),'g2nk_orcelite_rest'))
+    return pool
+
+
+def old_description(event,season):
+    return (f'{season} · {REGIONS[event.region]}. Wykonuj wskazaną aktywność od poziomu15. Do trzech podwyższonych nagród regionalnych na polski dzień, wspólnie dla wszystkich krain. Bez dodatkowych odłamków.' if event.activity!='raid' else 'Cel tygodnia dla wspólnoty: po finale NK, od poziomu45. Wspólne HP i zwykłe nagrody tygodnia, bez dodatkowej premii regionalnej.')
+
+
+def managed_pattern(event):
+    from .event_narratives import STAGES,regional_text
+    if event.region not in POOLS or event.rule_version!=VERSION:return None
+    day=polish_day(event.starts_at);season=season_name(day)
+    prefix=f'regional-v{VERSION}-{event.world_id}-{event.region}-{day}-'
+    if event.key not in {prefix+'0',prefix+'1'}:return None
+    start=phase_boundaries(day)[1 if event.key.endswith('-0') else 5]
+    if event.starts_at!=start or event.ends_at!=start.astimezone(utc.utc)+timedelta(hours=4):return None
+    if event.ore_percent!=(120 if event.activity in {'mine','adventure','boss'} else 100) or event.experience_percent!=(125 if event.activity not in {'mine','raid'} else 100) or event.premium_bonus:return None
+    for title,activity,targets,art in pool_for(event.region,{'orc-war'},day):
+        if event.activity!=activity or event.targets!=list(targets) or event.art_key!=art:continue
+        pairs={(title,old_description(event,season)),*(regional_text(s,title,activity,REGIONS[event.region],season) for s in STAGES)}
+        if (event.name,event.description) in pairs:return title,activity
+    return None
+
+
+def retire_regional_duplicates(world,ids,now):
+    rows=WorldEvent.objects.select_for_update().filter(world_id__in=ids,enabled=True,ends_at__gt=now,key__startswith='regional-v1-').exclude(world=world).exclude(region='').order_by('pk')
+    keys=[event.pk for event in rows if managed_pattern(event)]
+    if keys:WorldEvent.objects.filter(pk__in=keys).update(enabled=False)
+
+
+def refresh_regional_text(world,stage,now):
+    from .event_narratives import regional_text
+    rows=WorldEvent.objects.select_for_update().filter(world=world,enabled=True,ends_at__gt=now,key__startswith=f'regional-v{VERSION}-{world.pk}-').exclude(region='').order_by('pk')
+    updates=[]
+    for event in rows:
+        if not (pattern:=managed_pattern(event)):continue
+        title,activity=pattern
+        name,description=regional_text(stage,title,activity,REGIONS[event.region],season_name(polish_day(event.starts_at)))
+        release='foundations' if stage.key in {'colony','island'} else stage.key
+        if (event.name,event.description,event.release_key)!=(name,description,release):
+            event.name=name;event.description=description;event.release_key=release;updates.append(event)
+    if updates:WorldEvent.objects.bulk_update(updates,['name','description','release_key'])
+
+
 def seed_regional(world,flags,now):
     from .locations import BY_KEY
     from .bestiary import BESTIARY
     from .models import AdventureTemplate
+    from .event_narratives import stage_for,regional_text
+    stage=stage_for(world.universe,flags)
     joined='barrier' in flags
     regions=['valley'] if world.universe=='GOTHIC_I' else ['khorinis']
     if joined:
@@ -82,13 +138,7 @@ def seed_regional(world,flags,now):
     for offset in (-1,0,1):
         day=polish_day(now)+timedelta(days=offset)
         for key in regions:
-            pool=list(POOLS[key])
-            winter=day.month in (12,1,2)
-            pool=[r for r in pool if ('zimow' not in r[0].lower() or winter) and ('przed zimą' not in r[0].lower() or day.month in (9,10,11,12))]
-            label=('Zimowe zabezpieczenie szlaków' if winter else 'Wiosenny obchód badaczy' if day.month in (3,4,5) else 'Letnia ochrona karawan' if day.month in (6,7,8) else 'Jesienne zabezpieczenie dostaw')
-            pattern=pool[0];pool.append((label+' — '+REGIONS[key],*pattern[1:]))
-            if 'orc-war' in flags and key=='valley':pool.append(('Orkowie u bram: meldunki warty','hunt',('g2nk_orcelite_rest','g2nk_orcwarrior_rest'),'g2nk_orcelite_rest'))
-            if 'orc-war' in flags and key=='khorinis' and ((day-timedelta(days=day.weekday())).toordinal()//7)%5==0:pool.append(('Orkowie u bram: wypad na wodza','raid',('orc-war',),'g2nk_orcelite_rest'))
+            pool=pool_for(key,flags,day)
             for slot in (0,1):
                 draw=int(hashlib.sha256(f'ore-regional-v{VERSION}:{world.pk}:{key}:{day}:{slot}'.encode()).hexdigest()[:8],16)
                 available=[r for r in pool if slot or ('noc' not in r[0].lower() and 'po zmroku' not in r[0].lower())]
@@ -98,10 +148,9 @@ def seed_regional(world,flags,now):
                 if activity!='mine' and not targets:continue
                 start=phase_boundaries(day)[1 if slot==0 else 5]
                 end=start.astimezone(utc.utc)+timedelta(hours=4)
-                season=('Zima' if day.month in (12,1,2) else 'Wiosna' if day.month in (3,4,5) else 'Lato' if day.month in (6,7,8) else 'Jesień')
-                release='jarkendar' if key=='jarkendar' else 'irdorath' if key=='irdorath' else 'barrier' if joined else ''
-                if activity=='raid':release='orc-war'
-                description=(f'{season} · {REGIONS[key]}. Wykonuj wskazaną aktywność od poziomu15. Do trzech podwyższonych nagród regionalnych na polski dzień, wspólnie dla wszystkich krain. Bez dodatkowych odłamków.' if activity!='raid' else 'Cel tygodnia dla wspólnoty: po finale NK, od poziomu45. Wspólne HP i zwykłe nagrody tygodnia, bez dodatkowej premii regionalnej.')
+                season=season_name(day)
+                title,description=regional_text(stage,title,activity,REGIONS[key],season)
+                release='foundations' if stage.key in {'colony','island'} else stage.key
                 WorldEvent.objects.get_or_create(key=f'regional-v{VERSION}-{world.pk}-{key}-{day}-{slot}',defaults={'world':world,'name':title,'kind':'random' if slot else 'seasonal','description':description,'starts_at':start,'ends_at':end,'ore_percent':120 if activity in {'mine','adventure','boss'} else 100,'experience_percent':125 if activity not in {'mine','raid'} else 100,'region':key,'activity':activity,'targets':list(targets),'art_key':art,'release_key':release,'rule_version':VERSION})
 
 
@@ -151,6 +200,10 @@ def actions(event,profile):
 
 def validate_catalog(assets):
     from .world_releases import RELEASES
+    from .event_narratives import STAGES,validate_pools,regional_text
+    validate_pools()
+    if {r[0] for r in RELEASES}-{'foundations'} != {s.key for s in STAGES}-{'colony','island'}:
+        raise ValueError('Missing event pool for a world update')
     from .adventures import ADVENTURES
     from .bestiary import BESTIARY
     from .bosses import BOSSES
@@ -162,4 +215,12 @@ def validate_catalog(assets):
             if any(t not in known for t in targets):raise ValueError('Unknown event target: '+title+' '+str(targets))
     for row in RELEASES:
         if row[4] not in assets:raise ValueError('Missing update art: '+row[4])
+    from datetime import date
+    for stage in STAGES:
+        for region_key in POOLS:
+            for month in (1,4,7,10):
+                for title,activity,targets,art in pool_for(region_key,{'orc-war'},date(2026,month,15)):
+                    name,_=regional_text(stage,title,activity,REGIONS[region_key],season_name(date(2026,month,15)))
+                    if len(name)>100:raise ValueError('Event name too long: '+name)
+                    if art not in assets:raise ValueError('Missing stage event art: '+art)
     return sum(map(len,POOLS.values()))

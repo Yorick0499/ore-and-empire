@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: **13 listopada 2026, po scaleniu PR #141 (`64a7866`)**, migracja 0054, domyślna polityka baseline-24 i schemat obserwacji 23. Aktualizacja dokumentacji: #142. Starsze wpisy sesji i plany są zachowane w historii Git/issue; poniżej obowiązujący stan.
+Stan: **13 listopada 2026, po scaleniu dokumentacji #143 (`447f856`), z rozwinięciem kalendarza #144**, migracja 0054, domyślna polityka baseline-24 i schemat obserwacji 23. Aktualizacja dokumentacji: #142. Starsze wpisy sesji i plany są zachowane w historii Git/issue; poniżej obowiązujący stan.
 
 ## Gotowa droga gry
 
@@ -25,7 +25,7 @@ Kanoniczne GitHub: [#9](https://github.com/Yorick0499/ore-and-empire/issues/9), 
 
 Kolejne prace, bez deklaracji ich implementacji:
 
-1. **Dokumentacja — #142:** jeden bieżący opis mechanik, poradników, katalogów i procedur; generowana księga i sprawdzone odsyłacze.
+1. **Dokumentacja — #142 ukończone w #143:** bieżące poradniki, generowany katalog i księga z kontrolą odsyłaczy.
 2. **Dłuższa próba wydania — backlog #9:** kilka dni aktywnej populacji 250, źródła/ujścia walut, konsumpcja, postęp i restarty. Kryterium: dane pozwalające stroić gospodarkę, a nie sam rosnący obrót.
 3. **Pozostałe mechaniki NK — #32:** małe wersjonowane paczki dla efektów specjalnych, przyzwań/przemian, teleportów i interakcji NPC. Kryterium: działające usługi, koszty, boty i testy każdej faktycznie wdrożonej funkcji. Nie odblokowywać całego katalogu bez obsługi.
 4. **Ocena przez ludzi — backlog #9:** dłuższe sesje różnymi buildami, czytelność informacji, odczucie awansów i powtarzalność celów. Kryterium: obserwacje i mierzalne poprawki; automatyczny skrypt nie zastępuje oceny satysfakcji.
@@ -38,3 +38,7 @@ Portrety NPC i sceny questowe pozostają odłożone. Priorytet grafik obejmuje b
 [Audyt 13 XI](reports/grywalnosc-wydania-2026-11-13.json): 9 organicznych dróg, pełna rzeczywista Bariera 3 kont, NK, endgame, itemshop/rynek/48 h sesji i krótka próba 250 botów. [CI #141](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831): wszystkie kontrole zielone, w tym Python 3.12/3.13, PostgreSQL i współbieżność. Wyniki nie dowodzą wielotygodniowego balansu ani przejścia wszystkich 400 regionalnych stopni.
 
 Zmiany wykonujemy na osobnej gałęzi `codex/...`, z issue, testami właściwego zakresu i PR. Migracje zachowują dorobek; prywatne zapisy/hasła/kopie nie trafiają do repo.
+
+## Bieżące rozwinięcie kalendarza — #144
+
+Osiem pul dopasowuje święta, prace miesięczne, sezonowe okna i losowe odkrycia do kolejnych odsłon świata. Przed Barierą nazwy Kolonii i Khorinis są osobne; po niej działa jeden kanoniczny harmonogram. Aktualizacja tekstów nie losuje ponownie aktywnych celów i nie zmienia premii/snapshotów. Ręczne edycje operatora pozostają. [Reguły](EVENTS.md).

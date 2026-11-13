@@ -43,7 +43,7 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie u
 - Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 11 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
 - Wydobycie, **44 zlecenia Kolonii i 10 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
 - Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.
-- Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata.
+- Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.
 - Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.
 
 [Katalog wygenerowany z kodu](docs/GAME_CONTENT.md) · [Zakres i ograniczenia NK](docs/GOTHIC_II_CONTENT.md) · [Zegar i wydarzenia](docs/EVENTS.md) · [Źródła grafik](docs/ASSETS.md). Katalog źródłowy nie oznacza obsługi każdego skryptu oryginału; gra ma własny balans i kampanię mieszkańca.
