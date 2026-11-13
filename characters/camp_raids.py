@@ -24,7 +24,7 @@ def phase(raid):
 @player_action
 def rally_camp_raid(profile,cycle="daily"):
     if cycle not in {"daily","weekly"}:return False
-    from .regional_endgame import unlocked,week_start,weekly_track
+    from .regional_endgame import unlocked,week_start,weekly_encounter
     if cycle=="weekly" and not unlocked(profile):return False
     from .camp_privileges import privileges
     if not privileges(profile)["can_rally"]:return False
@@ -33,7 +33,7 @@ def rally_camp_raid(profile,cycle="daily"):
     name,art=ENCOUNTERS[guild.camp];health=500+guild.level*100
     day=timezone.now().astimezone(POLISH_TIME).date()
     if cycle=='weekly':
-        day=week_start();track=weekly_track(day);name='Tygodniowy cel: '+track.name;art=track.species[-1];health=10000+guild.level*1000
+        day=week_start();track=weekly_encounter(profile.world_id,day);name='Tygodniowy cel: '+track.name;art=track.species[-1];health=10000+guild.level*1000
     raid,_=CampRaid.objects.get_or_create(guild=guild,day=day,cycle=cycle,defaults={'name':name,'art_key':art,'health':health,'maximum_health':health,'attack':100 if cycle=='weekly' else 10+guild.level*2,'protection':60 if cycle=='weekly' else 4+guild.level*2,'minimum_level':45 if cycle=='weekly' else 3})
     return raid
 
@@ -117,13 +117,13 @@ def claim_camp_raid(profile,raid_id):
 
 
 def raid_card(profile,cycle='daily'):
-    from .regional_endgame import week_start,weekly_track,unlocked
+    from .regional_endgame import week_start,weekly_encounter,unlocked
     allowed=cycle=='daily' or (cycle=='weekly' and unlocked(profile))
     day=week_start() if cycle=='weekly' else timezone.now().astimezone(POLISH_TIME).date()
     raid=CampRaid.objects.filter(guild_id__in=raid_guild_ids(profile),day=day,cycle=cycle).first() if allowed else None
     rewards=CampRaid.objects.filter(cycle=cycle,completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).exclude(campraidreward__profile=profile).distinct().order_by('-day')[:10]
     ends=datetime.combine(day+timedelta(days=7 if cycle=='weekly' else 1),time.min,tzinfo=POLISH_TIME)
-    if not raid:return {'raid':None,'rewards':rewards,'ends_at':ends,'preview':weekly_track(day) if cycle=='weekly' else None}
+    if not raid:return {'raid':None,'rewards':rewards,'ends_at':ends,'preview':weekly_encounter(profile.world_id,day) if cycle=='weekly' else None}
     last=raid.strikes.filter(profile=profile).first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)
     contributions=list(raid.strikes.values('profile_id','profile__user__username','profile__name','profile__is_bot').annotate(damage=Sum('damage')).order_by('-damage')[:30])

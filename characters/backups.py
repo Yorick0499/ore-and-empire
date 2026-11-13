@@ -12,6 +12,10 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 STABLE = {
+    'characters_worldrelease':['id','world_id','key','released_at','snapshot'],
+    'characters_eventschedule':['id','world_id','stamp'],
+    'characters_regionaleventuse':['id','profile_id','event_id','request_key','created_at','snapshot'],
+    'characters_worldevent':['id','world_id','key','name','description','kind','starts_at','ends_at','enabled','ore_percent','experience_percent','premium_bonus','region','activity','targets','art_key','release_key','rule_version'],
     'characters_factionsuccession':['id','race_id','details','created_at'],
     'characters_factionmembership':['id','profile_id','succession_id','faction','guild_id','historical_camp','historical_rank'],
     'characters_factionchoice':['id','membership_id','destination','original_rank','source_guild_id','target_guild_id','ore','experience','created_at'],

@@ -138,7 +138,7 @@ def claim_ore_reward(profile):
     if profile.action_end_time > timezone.now():
         return False
     from .world_events import reward_snapshot
-    ore_reward = reward_snapshot(random.randint(10, 25), 0)[0]+profile.camp_perks["supply_level"]
+    ore_reward = reward_snapshot(random.randint(10, 25), 0,profile=profile,activity="mine",consume_key="mine:"+profile.action_end_time.isoformat())[0]+profile.camp_perks["supply_level"]
     profile.ore_balance = profile.ore_balance + ore_reward
     profile.action_end_time = None
     profile.save()
@@ -271,7 +271,7 @@ def execute_hunt(profile, monster_key, location_key="forest", request_key=None):
     if win:
         monster = BESTIARY[monster_key]
         from .world_events import reward_snapshot
-        experience = reward_snapshot(0, monster["exp_reward"])[1]
+        experience = reward_snapshot(0, monster["exp_reward"],profile=profile,activity="hunt",target=monster_key,consume_key="hunt:"+str(request_key))[1]
         profile.experience += experience
         log.append(f"Zyskałeś {experience} EXP.")
         check_level_up(profile)
@@ -503,7 +503,7 @@ def execute_boss(profile, boss_key, request_key=None):
     ore = boss.ore if won else 0
     if won:
         from .world_events import reward_snapshot
-        ore, experience, _, _ = reward_snapshot(ore, experience)
+        ore, experience, _, _ = reward_snapshot(ore, experience,profile=profile,activity="boss",target=boss_key,consume_key="boss:"+str(request_key))
     if won:
         profile.experience += experience
         profile.ore_balance += ore

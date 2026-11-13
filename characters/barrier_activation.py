@@ -75,13 +75,20 @@ def activate(race_id,root=None):
             seed()
             union=uuid5(NAMESPACE_URL,'ore-barrier:'+str(race.pk)+':'+str(race.colony_id))
             World.objects.filter(pk__in=[race.colony_id,race.khorinis_id]).update(union_key=union)
+            from .barrier import clear_region_cache
+            clear_region_cache()
             race.state='joined';race.joined_at=timezone.now();race.backup_path=path;race.backup_digest=digest;race.proof=proof;race.lease_owner=None;race.lease_expires_at=None
             race.save(update_fields=['state','joined_at','backup_path','backup_digest','proof','lease_owner','lease_expires_at'])
             BarrierEvent.objects.create(race=race,kind='joined',details={'backup_digest':digest,'winner':race.winner_id})
+            from .world_events import ensure_world_events
+            from .realms import world_scope
+            with world_scope(race.colony):ensure_world_events()
         from .market_intelligence import _cache
         _cache.clear()
         return True
     except Exception:
+        from .barrier import clear_region_cache
+        clear_region_cache()
         with transaction.atomic():
             changed=SleeperRace.objects.filter(pk=race.pk,lease_owner=owner).exclude(state='joined').update(state='failed',lease_owner=None,lease_expires_at=timezone.now()+timedelta(seconds=60))
             if changed:BarrierEvent.objects.create(race_id=race.pk,kind='activation_failed')

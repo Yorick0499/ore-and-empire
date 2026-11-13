@@ -127,8 +127,11 @@ class CompleteJourney(unittest.TestCase):
         from .convergence import snapshot
         with tempfile.TemporaryDirectory(prefix='ore-journey-endgame-backup-') as root:
             _,digest,proof=snapshot(Path(root));self.assertTrue(digest);self.assertTrue(proof)
+        from .models import WorldRelease
+        releases=list(WorldRelease.objects.filter(world=colony).values_list('key',flat=True))
+        self.assertEqual(len(releases),7)
         self.assertTrue(board(p.world));self.clock=steps['now']()
-        record_scenario('complete-earned-journey',{'accounts':3,'initial_level_each':0,'all_joined_steps_real':True,'nk_contracts':23,'post_nk_patrols':3,'regional_patrols':4,'weekly_strikes':weekly.strikes.count(),'regional_backup_restore_verified':True,'level':p.level,'world_days':round((self.clock-self.start).total_seconds()/86400,2),'limits':['Three sequential knowledgeable warrior strategies, not human elapsed time.','No competing player market/PvP or live 250-bot population in this scenario.','Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank.']})
+        record_scenario('complete-earned-journey',{'accounts':3,'initial_level_each':0,'all_joined_steps_real':True,'nk_contracts':23,'post_nk_patrols':3,'regional_patrols':4,'weekly_strikes':weekly.strikes.count(),'regional_backup_restore_verified':True,'world_updates':releases,'level':p.level,'world_days':round((self.clock-self.start).total_seconds()/86400,2),'limits':['Three sequential knowledgeable warrior strategies, not human elapsed time.','No competing player market/PvP or live 250-bot population in this scenario.','Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank.']})
 
     def test_colony_to_real_barrier_nk_and_repeatable_endgame(self):
         from datetime import datetime

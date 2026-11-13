@@ -224,6 +224,14 @@ def claim_story(profile, run_id):
     run.save(update_fields=['claimed_at', 'status'])
     if hasattr(profile,'_jarkendar_unlocked'):del profile._jarkendar_unlocked
     if hasattr(profile,'_nk_claimed'):del profile._nk_claimed
+    from .world_releases import MILESTONES
+    if run.snapshot.get('key') in MILESTONES:
+        from .world_events import ensure_world_events
+        from .models import World
+        from .barrier import region_ids
+        from .realms import world_scope
+        canonical=World.objects.filter(pk__in=region_ids(profile.world_id),is_current=True).first() or profile.world
+        with world_scope(canonical):ensure_world_events()
     return True
 
 

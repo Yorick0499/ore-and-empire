@@ -1,6 +1,6 @@
 from .barrier import region
 """Premium rewards and shop effects use the same transactions for people and bots."""
-from uuid import UUID
+from uuid import UUID,uuid4
 from datetime import timedelta
 from django.utils import timezone
 from .models import PremiumEntry, StoreProduct, StorePurchase, OwnedItem, AdventureRun, AdventureTemplate
@@ -23,7 +23,7 @@ def start_adventure(profile, template_id):
         return False
     if profile.action_end_time is not None or profile.adventures.filter(claimed_at__isnull=True).exists():
         return False
-    ore, experience, premium, events = reward_snapshot(template.ore_reward, template.experience_reward, template.premium_reward)
+    ore, experience, premium, events = reward_snapshot(template.ore_reward, template.experience_reward, template.premium_reward,profile=profile,activity="adventure",target=template.key,consume_key="adventure:"+str(uuid4()))
     run = AdventureRun.objects.create(profile=profile, template=template, briefing={"name":template.name,"description":template.description,"category":template.category,"category_label":template.get_category_display(),"place":template.place,"success_text":template.success_text,"duration_seconds":template.duration_seconds,"energy_cost":template.energy_cost}, ends_at=timezone.now() + timedelta(seconds=template.duration_seconds), ore_reward=ore, experience_reward=experience, premium_reward=premium, event_names=events)
     profile.current_energy -= template.energy_cost
     profile.save(update_fields=["current_energy"])

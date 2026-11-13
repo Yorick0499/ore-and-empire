@@ -23,8 +23,10 @@ def adventure_context(profile, params):
     quests=[]
     # The event snapshot is identical for all offers on this response.
     rates=reward_rates()
+    from .regional_events import context
+    regional=context(profile)
     for quest in stock:
-        ore,xp,premium,events=reward_snapshot(quest.ore_reward,quest.experience_reward,quest.premium_reward,rates=rates)
+        ore,xp,premium,events=reward_snapshot(quest.ore_reward,quest.experience_reward,quest.premium_reward,rates=rates,profile=profile,activity="adventure",target=quest.key,regional_context=regional)
         reason=''
         if run:reason='Najpierw odbierz trwającą wyprawę.'
         elif profile.action_end_time:reason='Najpierw zakończ zmianę i odbierz urobek.'
