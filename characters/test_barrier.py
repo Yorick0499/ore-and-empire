@@ -288,6 +288,69 @@ class DragonBuildTests(TestCase):
             with patch('characters.game_logic.random.randint',return_value=100):result=simulate_combat(p,'k2_dragon_fire',monster=BOSSES['k2_dragon_fire'].monster,magic_plan=plan)
             self.assertTrue(result.won,(build,result.log[-4:]));self.assertGreater(result.remaining_health,0)
 
+class SleeperStartGuidanceTests(TestCase):
+    def setUp(self):
+        self.colony,self.island,self.guild,self.people=fixture();self.p=self.people[0]
+        self.p.camp='NEW_CAMP';self.p.guild='ARCH_WATER';self.p.level=31
+        self.p.current_energy=75;self.p.current_health=158;self.p.mana=150;self.p.current_mana=99
+        self.p.magic_skill=6;self.p.save()
+        CampGuild.objects.filter(world=self.colony,camp='NEW_CAMP').update(level=10,experience=900)
+        bp=ItemBluePrint.objects.get(catalog_key='oe-water-g1-chainlightning-rune')
+        from .magic import prepare_magic
+        self.assertTrue(prepare_magic(self.p,OwnedItem.objects.create(owner=self.p,blueprint=bp).pk))
+        self.client.force_login(self.p.user)
+
+    def test_ready_water_mage_can_start_and_make_first_paid_strike_via_forms(self):
+        response=self.client.get('/wspolnota/');html=response.content.decode()
+        self.assertContains(response,'Rozpocznij walkę ze Śniącym')
+        self.assertLess(html.index('id="sleeper-race"'),html.index('Wspólna wyprawa obozowa'))
+        self.assertFalse(SleeperRace.objects.exists())
+        for _ in range(2):
+            self.assertEqual(self.client.post('/wspolnota/',{'action':'sleeper_rally'}).status_code,302)
+        self.assertEqual(SleeperSiege.objects.count(),1)
+        self.p.refresh_from_db();self.assertEqual(self.p.current_energy,75)
+        siege=SleeperSiege.objects.get()
+        response=self.client.get('/wspolnota/')
+        self.assertContains(response,'Wyrusz przeciw Śniącemu — 25 energii')
+        key=uuid4()
+        self.client.post('/wspolnota/',{'action':'sleeper_strike','siege':siege.pk,'request_key':key})
+        self.p.refresh_from_db();siege.refresh_from_db()
+        self.assertEqual(self.p.current_energy,50);self.assertLess(self.p.current_mana,99)
+        self.assertLess(siege.health,120000)
+        hit=SleeperStrike.objects.get();self.assertGreater(hit.damage,0)
+        self.client.post('/wspolnota/',{'action':'sleeper_strike','siege':siege.pk,'request_key':key})
+        self.assertEqual(SleeperStrike.objects.count(),1)
+
+    def test_closed_island_explains_block_instead_of_offering_a_failing_start(self):
+        self.island.is_open=False;self.island.save()
+        card=sleeper.card(self.p,explain=True)
+        self.assertFalse(card['can_rally']);self.assertFalse(sleeper.rally(self.p))
+        self.assertTrue(any(not r['met'] and 'Khorinis' in r['label'] for r in card['requirements']))
+        response=self.client.get('/wspolnota/')
+        self.assertNotContains(response,'value="sleeper_rally"')
+        self.assertContains(response,'Khorinis jest otwarte i skonfigurowane')
+
+    def test_level_nine_shows_missing_requirement(self):
+        CampGuild.objects.filter(world=self.colony,camp='NEW_CAMP').update(level=9)
+        card=sleeper.card(self.p,explain=True)
+        self.assertFalse(card['can_rally'])
+        self.assertTrue(any(not r['met'] and 'poziom 10' in r['label'] for r in card['requirements']))
+
+    def test_empty_mana_disables_attack_and_explains_the_real_service_gate(self):
+        siege=sleeper.rally(self.p);self.assertTrue(siege)
+        self.p.current_mana=0;self.p.mana_updated_at=timezone.now();self.p.save()
+        card=sleeper.card(self.p,explain=True)
+        self.assertFalse(card['can_strike'])
+        self.assertTrue(any('manę' in reason for reason in card['strike_blockers']))
+        self.assertFalse(sleeper.strike(self.p,siege.pk,uuid4()))
+
+    def test_paused_race_is_visible_and_cannot_be_started_or_attacked(self):
+        siege=sleeper.rally(self.p);race=siege.race;race.paused=True;race.save()
+        card=sleeper.card(self.p,explain=True)
+        self.assertFalse(card['can_rally']);self.assertFalse(card['can_strike'])
+        self.assertTrue(any('wstrzymany' in reason for reason in card['strike_blockers']))
+
+
 class RestoreEnvironmentTests(SimpleTestCase):
     def test_explicit_restore_targets_cannot_inherit_live_database_url(self):
         from ore_empire.database import sqlite_environment,database_config

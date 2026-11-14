@@ -2,6 +2,10 @@
 
 Stan bieżących testów: [audyt 13 XI](SOLO_PLAYTEST.md). Poniższe sekcje 6–9 XI są historią wykrytych błędów i nie opisują dzisiejszych limitów/wersji.
 
+## 14 XI — rozpoczęcie globalnego Śniącego (#156)
+
+Poziom10 wspólnoty był osiągalny, ale przycisk rozpoczęcia znajdował się na końcu długiej strony, a odmowy nie wyjaśniały wszystkich warunków. Panel gotowej wspólnoty/oblężenia przeniesiono na górę, dodano listę wymagań, wyraźny start i powody blokady ataku, w tym brak many przygotowanego czaru. Linki ze stanu Bariery i ukończonych rozkazów prowadzą bezpośrednio do panelu. Bot nie próbuje ogłaszać niedostępnego wyścigu. Progi, koszty,120000HP i pieczęć trzech kont pozostają zgodne z serwisem. Test i prawdziwy HTTP/CSRF odtwarzają warunki Arcymaga Wody31: ogłoszenie i pierwszy płatny atak działają. [Raport](reports/start-sniacego-2026-11-14.json).
+
 ## 14 XI — mylące „etapy” i powtarzalne cele (#154)
 
 Brak rozróżnienia faz pojedynczej walki od poziomu wspólnoty oraz identyczne nazwy kolejnych orkowych celów sprawiały wrażenie pętli. Dodano osobne numery wypraw, fazę1–3 z wyjaśnieniem, PD do kolejnego poziomu i informację o ostatnim zwycięstwie. Nowe cele Kolonii mają rotację czterech przeciwników; aktywne zachowują snapshot i pozostałe HP. Test odtwarza 360PD/poziom4 i258/900HP, kończy ten cel, a potem potwierdza nowy numer, innego przeciwnika oraz420PD/poziom5, bez resetowania postępu. [Raport](reports/czytelnosc-wypraw-2026-11-14.json).
