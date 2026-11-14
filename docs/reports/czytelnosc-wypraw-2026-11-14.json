@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "issue": 154,
+  "base_revision": "cd42f16621d5244a7af459e2ebf527b34d2ecaa9",
+  "migration": "0055, no new migration",
+  "diagnosis": "Misleading phase labels and identical target names; no reproduced HP or guild XP reset on the same raid.",
+  "preservation": [
+    "Existing raids retain names/art, HP, parameters, damage contributions and rewards.",
+    "New-target selection only; combat balance, costs and guild progression unchanged.",
+    "Numbering and progress labels are read-only and not requested by bot cards."
+  ],
+  "local_tests": {
+    "module": {
+      "tests": 33,
+      "skipped_postgresql": 3,
+      "success": true
+    },
+    "regression": {
+      "tests": 45,
+      "skipped_postgresql": 4,
+      "success": true
+    }
+  },
+  "cases": [
+    "Four target variants in each Colony camp; no adjacent repeats, valid existing local artwork.",
+    "Same request/current target retains258/900HP; next target starts a new phase with a distinct number.",
+    "360guildXP atlevel4 becomes420XP/level5 after one earned victory, not zero.",
+    "Daily snapshot remains unchanged when manual target rotates.",
+    "Completed daily target no longer shows an active phase.",
+    "Original manual guild1→10 resource simulation still passes."
+  ],
+  "gui": {
+    "success": true,
+    "isolated_database": true,
+    "prepared_water_archmage": true,
+    "checks": [
+      {
+        "width": 320,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      },
+      {
+        "width": 390,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      },
+      {
+        "width": 1440,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      }
+    ],
+    "actual_csrf_post_flow": [
+      "rally",
+      "paid_strike",
+      "claim",
+      "rally_same_day"
+    ],
+    "completed_notice_and_next_number": true,
+    "next_target_art_differs": true,
+    "guild_xp_after_first_victory": 60,
+    "strike_energy_cost": 20,
+    "javascript_errors": []
+  },
+  "source_sha256": {
+    "characters/camp_raids.py": "b07bc1f6ae0f1e7967271fefe570798a71bfc6c6d0a613ebe207c2eeddce8793",
+    "characters/camp_guilds.py": "07a44bb754a7f99add6276faa96a366f903f1b2af37acd7a0051ffd502289121",
+    "characters/test_manual_camp_raids.py": "dc70dda2ecd0163f95d5266c8b63ce9626c36f2e109a599901d4cce9e9c2a7c2"
+  },
+  "limits": [
+    "Only local read-only inspection of the private world; no private rows or credentials in this report.",
+    "Test worlds and GUI fixtures are isolated.",
+    "Target variants reuse the common raid combat model, not new monster-specific mechanics.",
+    "Real PostgreSQL regression runs in CI separately."
+  ]
+}

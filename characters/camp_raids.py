@@ -16,6 +16,25 @@ ENCOUNTERS.update({'CITY_WATCH':('Banda z leśnego traktu','k2_goblin'),'FIRE_OR
 
 ENCOUNTERS.update({'BANDITS':ENCOUNTERS['OLD_CAMP'],'WATER_CIRCLE':ENCOUNTERS['NEW_CAMP'],'MERCENARIES':ENCOUNTERS['ONAR_MERCS']})
 
+COLONY_ENCOUNTERS={
+    'OLD_CAMP':(ENCOUNTERS['OLD_CAMP'],('Pełzacz wojownik z opuszczonego szybu','minecrawler_warrior'),('Orkowy maruder przy szlaku rudy','orc_warrior'),('Cieniostwór pod bramą obozu','shadowbeast')),
+    'NEW_CAMP':(ENCOUNTERS['NEW_CAMP'],('Pełzacz wojownik z bocznego wyrobiska','minecrawler_warrior'),('Przywódca wilków na przełęczy','wolf'),('Lodowy golem na szlaku Magów Wody','ice_golem')),
+    'SWAMP_CAMP':(ENCOUNTERS['SWAMP_CAMP'],('Topielec przy pomoście zbieraczy','lurker'),('Pełzacz z podmokłej groty','minecrawler'),('Jaszczur na drodze do świątyni','lizard')),
+}
+
+
+def next_encounter(guild):
+    """Only choose a new snapshot; never relabel or heal an existing target."""
+    pool=COLONY_ENCOUNTERS.get(guild.camp)
+    if not pool:return ENCOUNTERS[guild.camp]
+    previous=CampRaid.objects.filter(guild=guild,cycle__in=['daily','manual']).order_by('-pk').values_list('art_key',flat=True).first()
+    index=next((i for i,row in enumerate(pool) if row[1]==previous),-1)
+    return pool[(index+1)%len(pool)]
+
+
+def raid_number(raid):
+    return CampRaid.objects.filter(guild_id=raid.guild_id,cycle=raid.cycle,pk__lte=raid.pk).count()
+
 
 def manual_region(profile):
     from .barrier import joined
@@ -50,7 +69,7 @@ def rally_manual_raid(profile,request_key):
     prior=CampRaid.objects.filter(rallied_by=profile,rally_request=key).first()
     if prior:return prior if prior.rallied_by_id==profile.pk and prior.guild_id==guild.pk else False
     if guild.level>=10 or CampRaid.objects.filter(guild=guild,cycle='manual',completed_at__isnull=True).exists():return False
-    name,art=ENCOUNTERS[guild.camp];health=500+guild.level*100
+    name,art=next_encounter(guild);health=500+guild.level*100
     return CampRaid.objects.create(guild=guild,day=timezone.now().astimezone(POLISH_TIME).date(),cycle='manual',
         rallied_by=profile,rally_request=key,name='Wyprawa na rozkaz: '+name,art_key=art,
         health=health,maximum_health=health,attack=10+guild.level*2,protection=4+guild.level*2,minimum_level=3)
@@ -69,7 +88,7 @@ def rally_camp_raid(profile,cycle="daily"):
     if not privileges(profile)["can_rally"]:return False
     if profile.camp not in CAMPS:return False
     guild=guild_for(profile,lock=True)
-    name,art=ENCOUNTERS[guild.camp];health=500+guild.level*100
+    name,art=next_encounter(guild);health=500+guild.level*100
     day=timezone.now().astimezone(POLISH_TIME).date()
     if cycle=='weekly':
         day=week_start();track=weekly_encounter(profile.world_id,day);name='Tygodniowy cel: '+track.name;art=track.species[-1];health=10000+guild.level*1000
@@ -93,7 +112,7 @@ def exchange(profile,raid,plan):
         # This encounter has physical armor and a small ward, not an imported G1 stat.
         actual=min(raid.health,max(1,power-(armor if attack_kind in {'weapon','arrow'} else armor//2)))
         raid.health-=actual;total+=actual
-        log.append(f'Etap {before}: zadajesz {actual} obrażeń; przeciwnik ma {raid.health}/{raid.maximum_health} zdrowia.')
+        log.append(f'Faza walki {before}/3: zadajesz {actual} obrażeń; przeciwnik ma {raid.health}/{raid.maximum_health} zdrowia.')
         if raid.health<=0:log.append('Wspólnymi siłami obóz pokonał zagrożenie.');break
         after=phase(raid)
         if after!=before:log.append('Przeciwnik wpada w szał!' if after==2 else 'Odsłania pancerz i przygotowuje ostatni zryw!')
@@ -160,7 +179,7 @@ def claim_camp_raid(profile,raid_id):
     check_level_up(profile);profile.save();return True
 
 
-def raid_card(profile,cycle='daily',*,include_manual=False):
+def raid_card(profile,cycle='daily',*,include_manual=False,with_number=False):
     from .regional_endgame import week_start,weekly_encounter,unlocked
     allowed=cycle=='daily' or (cycle=='weekly' and unlocked(profile)) or (cycle=='manual' and manual_region(profile))
     day=week_start() if cycle=='weekly' else timezone.now().astimezone(POLISH_TIME).date()
@@ -173,7 +192,14 @@ def raid_card(profile,cycle='daily',*,include_manual=False):
     rewards=CampRaid.objects.filter(cycle__in=['daily','manual'] if include_manual and cycle=='daily' else [cycle],completed_at__isnull=False,strikes__profile=profile,strikes__damage__gt=0).exclude(campraidreward__profile=profile).distinct().order_by('-day','-pk')[:10]
     ends=datetime.combine(day+timedelta(days=7 if cycle=='weekly' else 1),time.min,tzinfo=POLISH_TIME)
     if cycle=='manual' or (raid and raid.cycle=='manual'):ends=None
-    if not raid:return {'raid':None,'rewards':rewards,'ends_at':ends,'preview':weekly_encounter(profile.world_id,day) if cycle=='weekly' else None}
+    extra={}
+    if with_number:
+        extra['number']=raid_number(raid) if raid else None
+        extra['target_name']=raid.name.removeprefix('Wyprawa na rozkaz: ') if raid else ''
+        if cycle=='manual':
+            previous=CampRaid.objects.filter(guild_id__in=raid_guild_ids(profile),cycle='manual',health=0,completed_at__isnull=False).order_by('-pk').first()
+            extra.update(latest_completed=previous,latest_number=raid_number(previous) if previous else None)
+    if not raid:return {'raid':None,'rewards':rewards,'ends_at':ends,'preview':weekly_encounter(profile.world_id,day) if cycle=='weekly' else None,**extra}
     last=raid.strikes.filter(profile=profile).first()
     ready=not last or timezone.now()>=last.created_at+timedelta(seconds=60)
     contributions=list(raid.strikes.values('profile_id','profile__user__username','profile__name','profile__is_bot').annotate(damage=Sum('damage')).order_by('-damage')[:30])
@@ -181,4 +207,4 @@ def raid_card(profile,cycle='daily',*,include_manual=False):
     names={p.pk:p.display_name for p in PlayerProfile.objects.filter(pk__in=[row['profile_id'] for row in contributions]).select_related('user')}
     for row in contributions:row['name']=names[row['profile_id']]
     return {'raid':raid,'ends_at':ends,'phase':phase(raid),'can_attack':allowed and not raid.completed_at and ready and profile.level>=raid.minimum_level and profile.current_energy>=20 and profile.current_health>=10 and not profile.is_busy,
-        'rewards':rewards,'contributions':contributions,'logs':raid.strikes.select_related('profile__user')[:10]}
+        'rewards':rewards,'contributions':contributions,'logs':raid.strikes.select_related('profile__user')[:10],**extra}

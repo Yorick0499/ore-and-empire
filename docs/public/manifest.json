@@ -2,7 +2,7 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-14",
-  "code_revision": "wyprawy na rozkaz gracza / #152 (po #151)",
+  "code_revision": "czytelny postęp i rotacja celów / #154 (po #153)",
   "migration": "0055_manual_camp_raids",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -283,6 +283,7 @@
     "docs/reports/dokumentacja-wydania-2026-11-13.json",
     "docs/reports/pule-etapow-2026-11-13.json",
     "docs/reports/mag-wody-runy-2026-11-13.json",
-    "docs/reports/wyprawy-na-rozkaz-2026-11-14.json"
+    "docs/reports/wyprawy-na-rozkaz-2026-11-14.json",
+    "docs/reports/czytelnosc-wypraw-2026-11-14.json"
   ]
 }
