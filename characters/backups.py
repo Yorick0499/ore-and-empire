@@ -45,7 +45,7 @@ STABLE = {
     'characters_storepurchase':['id','profile_id','product_id','request_key','price','effect','kind_snapshot'],
     'characters_adventuretemplate':['id','key','universe','name','level','duration_seconds','energy_cost','ore_reward','experience_reward','premium_reward','enabled'],
     'characters_world':['union_key','is_open','bot_personality_cycles','bot_simulated_purchases','id','name','edition','universe','rules_version','status','is_current','bot_count'],
-    'characters_campraid':['cycle','rule_version','id','guild_id','day','name','maximum_health','health','attack','protection','minimum_level','completed_at'],
+    'characters_campraid':['cycle','rule_version','rallied_by_id','rally_request','id','guild_id','day','name','maximum_health','health','attack','protection','minimum_level','completed_at'],
     'characters_campraidstrike':['id','raid_id','profile_id','request_key','damage','health_cost','mana_cost','casts','log'],
     'characters_campraidreward':['id','raid_id','profile_id','ore','experience','premium'],
     'characters_campguild':['id','world_id','camp','experience','level','treasury','training_level','supply_level','defense_level'],

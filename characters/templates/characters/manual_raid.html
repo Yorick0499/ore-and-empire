@@ -1,0 +1,29 @@
+{% load gothic_media %}
+{% if manual_region or manual_card.rewards %}
+<section class="colony-panel">
+  <h2>Wyprawy na rozkaz — droga do poziomu 10</h2>
+  <p>Gracz z najwyższą, czwartą rangą swojego obozu w Kolonii może ogłaszać dodatkowe cele przed upadkiem Bariery. Po pokonaniu celu możesz ogłosić następny, bez czekania do jutra. Jedna dodatkowa wyprawa naraz, do poziomu 10 wspólnoty. Boty pomagają przez zwykłe wypady, ale nie ogłaszają takich celów.</p>
+  {% if manual_card.raid %}
+    {% with raid=manual_card.raid %}
+    <h3>{{ raid.name }}</h3>{% gothic_art raid.art_key %}
+    <p>Zdrowie: <strong>{{ raid.health }}/{{ raid.maximum_health }}</strong> · etap {{ manual_card.phase }} · poziom uczestnika od {{ raid.minimum_level }}. Cel pozostaje aktywny do pokonania lub połączenia światów, również po północy.</p>
+    <p>Wypad: do trzech rund, 20 energii i rzeczywiste zdrowie, mana albo amunicja. Odstęp twoich wypadów na ten cel: 60 sekund.</p>
+    <form method="post">{% csrf_token %}
+      <input type="hidden" name="raid" value="{{ raid.pk }}"><input type="hidden" name="request_key" value="{{ request_key }}">
+      <button name="action" value="strike" {% if not manual_card.can_attack %}disabled{% endif %}>Wyrusz na rozkaz (20 energii)</button>
+    </form>
+    <h3>Wkład uczestników</h3>
+    {% for row in manual_card.contributions %}<p>{{ row.name }}{% if row.profile__is_bot %} (bot){% endif %}: {{ row.damage }} obrażeń</p>{% empty %}<p>Wyprawa czeka na pierwszy wypad.</p>{% endfor %}
+    <details><summary>Raporty wypadów</summary>{% for strike in manual_card.logs %}<h4>{{ strike.profile.display_name }} · {{ strike.damage }} obrażeń</h4>{% for line in strike.log %}<p>{{ line }}</p>{% endfor %}{% endfor %}</details>
+    {% endwith %}
+  {% elif can_rally_manual %}
+    <form method="post">{% csrf_token %}<input type="hidden" name="request_key" value="{{ request_key }}"><button name="action" value="manual_rally">Ogłoś dodatkową wyprawę na rozkaz</button></form>
+  {% elif card.guild.level >= 10 %}
+    <p><strong>Wspólnota osiągnęła poziom 10.</strong> Możesz przygotować wyprawę przeciw Śniącemu; dodatkowe cele na rozkaz nie są już potrzebne.</p>
+  {% elif manual_region %}
+    <p>Ogłaszanie odblokujesz jako Magnat, Arcymag Ognia, Gwardzista Lee, Arcymag Wody, Templariusz lub Arcyguru. Uczestniczyć może każdy członek obozu od poziomu 3.</p>
+  {% endif %}
+  <p>Zwycięstwo daje raz 60 PD wspólnoty i 100 rudy do skarbca. Uczestnik z rzeczywistym wkładem odbiera raz 50 PD, 10 rudy i 1 odłamek. Ogłoszenie nie daje PD ani nagrody — cel trzeba rzeczywiście pokonać.</p>
+  {% for raid in manual_card.rewards %}<form method="post">{% csrf_token %}<input type="hidden" name="raid" value="{{ raid.pk }}"><p>{{ raid.name }} · {{ raid.day|date:'d.m.Y' }}</p><button name="action" value="claim_raid">Odbierz nagrodę za wyprawę na rozkaz</button></form>{% endfor %}
+</section>
+{% endif %}

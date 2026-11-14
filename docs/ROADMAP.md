@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: **13 listopada 2026, po scaleniu dokumentacji #143 (`447f856`), z rozwinięciem kalendarza #144**, migracja 0054, domyślna polityka baseline-24 i schemat obserwacji 23. Aktualizacja dokumentacji: #142. Starsze wpisy sesji i plany są zachowane w historii Git/issue; poniżej obowiązujący stan.
+Stan: **14 listopada 2026, po #151 z wyprawami na rozkaz #152**, migracja 0055, domyślna polityka baseline-24 i schemat obserwacji 23. Starsze wpisy pozostają historią zmian.
 
 ## Gotowa droga gry
 

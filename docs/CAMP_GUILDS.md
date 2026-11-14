@@ -1,12 +1,14 @@
 # Wspólnoty, sukcesja frakcji i skarbce
 
-Stan: 13 XI 2026. Gildią jest wspólnota, bez osobnego systemu drużyn. Rodzime `camp`/`guild` oznaczają obóz i historyczną rangę; po Barierze `FactionMembership` wskazuje bieżącą frakcję i skarbiec. [Rangi](CAMPS.md) · [Połączenie](CHARACTERS_AND_WORLDS.md).
+Stan: 14 XI 2026. Gildią jest wspólnota, bez osobnego systemu drużyn. Rodzime `camp`/`guild` oznaczają obóz i historyczną rangę; po Barierze `FactionMembership` wskazuje bieżącą frakcję i skarbiec. [Rangi](CAMPS.md) · [Połączenie](CHARACTERS_AND_WORLDS.md).
 
 ## Wspólne cele i pieniądze
 
 `/wspolnota/` pokazuje poziom 1–10, PD, skarbiec, dzienny projekt, ulepszenia i ostatnie 30 wkładów. Co 100 PD daje poziom, maksymalnie 10. Rotacja projektów jest deterministyczna według polskiego dnia i wspólnoty. Cele utrwalają się przy pierwszym zaliczonym działaniu; GET niczego nie tworzy i nie wypłaca.
 
 Wygrane polowania i odebrane zmiany zliczają faktyczny wkład ludzi/botów po rozpoczęciu projektu; porażka i powtórzone żądanie nie dodają go drugi raz. Ukończony projekt daje wspólnocie raz 30 PD i 50 rudy, bez prywatnej wypłaty/odłamków. Stare projekty zachowują historię.
+
+Po najwyższej czwartej randze Kolonii ludzki gracz może przyspieszać wspólnotę do poziomu 10 przez **wyprawy na rozkaz**, bez oczekiwania na kolejną dobę. Boty pomagają w walce, lecz nie uruchamiają dodatkowych celów. Zwycięstwo trzeba wypracować normalnymi zasobami; ogłoszenie nie przyznaje PD. [Warunki, nagrody i próba dojścia do 10](CAMP_RAIDS.md).
 
 Wpłata 1–10000 rudy ma UUID; powtórzenie nie płaci drugi raz, zmiana kwoty jest odrzucana. Nie ma prywatnych wypłat. Ulepszenie N kosztuje 100×N rudy skarbca, wymaga poziomu wspólnoty N+1 i uprawnienia rangi, maksymalnie 3. Stary formularz nie kupuje następnego poziomu.
 

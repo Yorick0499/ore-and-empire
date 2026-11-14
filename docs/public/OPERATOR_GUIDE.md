@@ -1,6 +1,6 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 13 listopada 2026, po PR #141, wspólny świat po Barierze, migracja 0054. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 14 listopada 2026, wyprawy na rozkaz #152, wspólny świat po Barierze, migracja 0055_manual_camp_raids. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
@@ -337,6 +337,10 @@ Po zwycięstwie worker tworzy świeżą kopię i sprawdza odtworzenie. PostgreSQ
 
 Sukces daje jeden serwer, wspólny rynek/ranking/podróże i pięć następczych frakcji, z zachowaniem danych. Portal Jarkendaru, rejs i osobiste kontrakty nadal trzeba zdobyć. Cztery wyższe rangi, regionalny endgame i siedem odsłon są wdrożone. [Przewodnik gracza](../GAME_GUIDE.md), [pełna droga](../COMPLETE_JOURNEY.md), [rangi](../CAMPS.md), [kalendarz](../WORLD_UPDATES.md).
 
-Przy aktualizacji produkcyjnej po `migrate` uruchom `seed_khorinis`, jeśli wyspa jest otwarta; zawiera Jarkendar/NK i zachowuje edycje operatora. Launcher lokalny wykonuje to przy starcie. Szczegóły [wdrożenia](../PRODUCTION.md) i [kopii 0054](../BACKUPS.md). Bieżący raport opisuje dziewięć organicznych dróg i rzeczywistą aktywację, nie wszystkie mechaniki oryginału ani wielotygodniowy balans.
+Przy aktualizacji produkcyjnej po `migrate` uruchom `seed_khorinis`, jeśli wyspa jest otwarta; zawiera Jarkendar/NK i zachowuje edycje operatora. Launcher lokalny wykonuje to przy starcie. Szczegóły [wdrożenia](../PRODUCTION.md) i [kopii i migracji](../BACKUPS.md). Bieżący raport opisuje dziewięć organicznych dróg i rzeczywistą aktywację, nie wszystkie mechaniki oryginału ani wielotygodniowy balans.
 
 Kalendarz #144 dobiera osiem pul nazw/opisów do aktualnej odsłony całej społeczności. Automatyczne aktywne/przyszłe teksty odświeża worker i odbiór kamienia milowego; dawne snapshoty, premie i własne edycje pozostają. Aktualizacja nie wymaga nowej migracji, resetu ani drugiego schedulera. [Pełne zasady pul](../EVENTS.md).
+
+### Dodatkowe wyprawy gracza — migracja 0055
+
+Po zwykłym restarcie launcher stosuje migrację zachowującą stare wyprawy, wkład, nagrody i konta. Najwyższa rodzima ranga Kolonii może ogłaszać cele do poziomu10 przez sekcję „Wyprawy na rozkaz” na `/wspolnota/`. Po pokonaniu celu można ogłosić następny tego samego dnia. Boty uczestniczą zwykłymi turami. Nie potrzeba resetu świata ani ręcznej edycji PD. [Reguły i ograniczenia](../CAMP_RAIDS.md).

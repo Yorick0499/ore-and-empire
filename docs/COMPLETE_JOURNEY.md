@@ -1,6 +1,6 @@
 # Uruchomienie i pełna droga mieszkańca
 
-Stan: 13 XI 2026, po PR #141, migracja 0054. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
+Stan: 14 XI 2026, po #151 z wyprawami na rozkaz #152, migracja 0055. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
 
 ## Uruchomienie lokalne
 
@@ -16,7 +16,7 @@ Launcher stosuje migracje i seedery. Po otwarciu Khorinis dodaje także katalog 
 ## Droga postaci i świata
 
 - W Kolonii wykonuj prolog, dołącz do obozu i zdobywaj rangi. Osobisty finał nie jest globalnym upadkiem Bariery.
-- Wspólnota zdobywa poziom 10 przez faktyczne projekty i wspólne wyprawy. Do Śniącego potrzebne są kwalifikujące się postacie, a pieczęć wymaga wkładu minimum trzech różnych kont; alternatywne postacie jednego konta nie zastępują społeczności. Boty mogą uczestniczyć na zwykłych zasadach.
+- Wspólnota zdobywa poziom 10 przez faktyczne projekty i wspólne wyprawy. Najwyższa czwarta ranga ludzkiej postaci Kolonii odblokowuje w panelu Wspólnota dodatkowe [wyprawy na rozkaz](CAMP_RAIDS.md), powtarzalne po pokonaniu celu aż do poziomu 10, bez czekania na reset doby. Do Śniącego potrzebne są kwalifikujące się postacie, a pieczęć wymaga wkładu minimum trzech różnych kont; alternatywne postacie jednego konta nie zastępują społeczności. Boty mogą uczestniczyć na zwykłych zasadach.
 - Zwycięstwo zleca połączenie. Działający launcher/worker automatycznie obsługuje kolejkę: świeża kopia, próba odtworzenia, blokady i jednorazowa aktywacja. Przy błędzie kopii światy nie łączą się na skróty; stan i wznowienie są w panelu Bariery.
 - Po połączeniu kreator pokazuje jeden serwer z dwoma regionami. Zachowujesz postać, ekwipunek, portfele, historię i pochodzenie; działa wspólny rynek/ranking oraz sukcesja pięciu frakcji.
 - Publiczny portal, Jarkendar, kontrakty NK, Kruk, cztery smoki i rejs prowadzą do Irdorath. [Szczegóły progów i zawartości](GOTHIC_II_CONTENT.md). Nie ma kont premium.
