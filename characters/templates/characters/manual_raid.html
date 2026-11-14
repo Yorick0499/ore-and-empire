@@ -3,10 +3,12 @@
 <section class="colony-panel">
   <h2>Wyprawy na rozkaz — droga do poziomu 10</h2>
   <p>Gracz z najwyższą, czwartą rangą swojego obozu w Kolonii może ogłaszać dodatkowe cele przed upadkiem Bariery. Po pokonaniu celu możesz ogłosić następny, bez czekania do jutra. Jedna dodatkowa wyprawa naraz, do poziomu 10 wspólnoty. Boty pomagają przez zwykłe wypady, ale nie ogłaszają takich celów.</p>
+  {% if manual_card.latest_completed %}<p><strong>Wyprawa na rozkaz #{{ manual_card.latest_number }} ukończona.</strong> {{ manual_card.latest_completed.name }}. Zwycięstwo i 60 PD wspólnoty są zapisane.</p>{% endif %}
+  <p>Każdy nowy cel zaczyna własną fazę walki 1/3. To nie resetuje poziomu ani PD wspólnoty. Po zwycięstwie wybierany jest inny przeciwnik.</p>
   {% if manual_card.raid %}
     {% with raid=manual_card.raid %}
-    <h3>{{ raid.name }}</h3>{% gothic_art raid.art_key %}
-    <p>Zdrowie: <strong>{{ raid.health }}/{{ raid.maximum_health }}</strong> · etap {{ manual_card.phase }} · poziom uczestnika od {{ raid.minimum_level }}. Cel pozostaje aktywny do pokonania lub połączenia światów, również po północy.</p>
+    <h3>Wyprawa na rozkaz #{{ manual_card.number }} — {{ manual_card.target_name }}</h3>{% gothic_art raid.art_key %}
+    <p>Zdrowie: <strong>{{ raid.health }}/{{ raid.maximum_health }}</strong> · faza walki {{ manual_card.phase }}/3 tego przeciwnika · poziom uczestnika od {{ raid.minimum_level }}. Cel pozostaje aktywny do pokonania lub połączenia światów, również po północy.</p>
     <p>Wypad: do trzech rund, 20 energii i rzeczywiste zdrowie, mana albo amunicja. Odstęp twoich wypadów na ten cel: 60 sekund.</p>
     <form method="post">{% csrf_token %}
       <input type="hidden" name="raid" value="{{ raid.pk }}"><input type="hidden" name="request_key" value="{{ request_key }}">

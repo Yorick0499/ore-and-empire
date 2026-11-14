@@ -26,6 +26,12 @@ Boty nie mogą ogłaszać dodatkowych celów. Mogą normalnie uczestniczyć i od
 
 UUID ogłoszenia identyfikuje rozkaz danej postaci. Powtórzenie ukończonego rozkazu nie tworzy nowego celu. Blokada wspólnoty i ograniczenie bazy chronią przed dwoma równoczesnymi aktywnymi rozkazami, również gdy ogłasza je dwóch graczy. Zwycięstwo i poziom wspólnoty zapisują się razem.
 
+## Numer celu, faza walki i poziom wspólnoty — #154
+
+To trzy różne informacje: **numer wyprawy** rozróżnia kolejne cele (osobno dzienne i na rozkaz); **faza walki 1–3** zależy od pozostałego HP wyłącznie aktualnego przeciwnika; **poziom wspólnoty 1–10** wynika z trwałych PD. Po pokonaniu przeciwnika nowa wyprawa zaczyna fazę1 z pełnym HP, ale nie zeruje PD ani poziomu wspólnoty. Panel pokazuje ile PD brakuje do następnego poziomu oraz zapisany wynik ostatniej dodatkowej wyprawy. Przykład: 360PD oznacza poziom4 i brak40PD do5; zwycięstwo +60 daje420PD i poziom5.
+
+Nowe cele trzech obozów Kolonii rotują między czterema nazwami/grafikami. W Nowym Obozie są to ork przy zaporze, pełzacz wojownik, przywódca wilków i lodowy golem. Rotacja łączy historię celów dziennych i na rozkaz, aby nie wybierać tego samego przeciwnika dwa razy z rzędu. To warianty istniejących wypraw z tą samą formułą HP/ataku/ochrony, kosztami i nagrodami. Aktywne i historyczne cele zachowują nazwy, HP oraz wkład; poprawka nie przepisuje zapisu ani nie leczy przeciwnika. [Regresja i GUI](reports/czytelnosc-wypraw-2026-11-14.json).
+
 ## Cel tygodniowy po NK
 
 Od poziomu 45, po odebranym `nk-undead`, połączeniu i rozstrzygniętej frakcji działa dodatkowy cel tygodnia, niezależny od dziennego. Tydzień zaczyna się w poniedziałek 00:00 Europe/Warsaw. HP: `10000+1000×poziom` wspólnoty, atak 100, ochrona 60; zwykły koszt wypadu 20 energii i odstęp 60 sekund. Nagroda uczestnika: raz 100 rudy, 1000 PD i 5 pyłu, bez odłamków. Zwycięstwo daje wspólnocie istniejące 60 PD i 100 rudy.

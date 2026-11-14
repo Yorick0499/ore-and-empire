@@ -2,6 +2,10 @@
 
 Stan bieżących testów: [audyt 13 XI](SOLO_PLAYTEST.md). Poniższe sekcje 6–9 XI są historią wykrytych błędów i nie opisują dzisiejszych limitów/wersji.
 
+## 14 XI — mylące „etapy” i powtarzalne cele (#154)
+
+Brak rozróżnienia faz pojedynczej walki od poziomu wspólnoty oraz identyczne nazwy kolejnych orkowych celów sprawiały wrażenie pętli. Dodano osobne numery wypraw, fazę1–3 z wyjaśnieniem, PD do kolejnego poziomu i informację o ostatnim zwycięstwie. Nowe cele Kolonii mają rotację czterech przeciwników; aktywne zachowują snapshot i pozostałe HP. Test odtwarza 360PD/poziom4 i258/900HP, kończy ten cel, a potem potwierdza nowy numer, innego przeciwnika oraz420PD/poziom5, bez resetowania postępu. [Raport](reports/czytelnosc-wypraw-2026-11-14.json).
+
 ## 14 XI — ręczne wyprawy i ekran wspólnoty (#152)
 
 Dodano dodatkowe cele dla ludzkiej najwyższej rangi Kolonii do poziomu10 wspólnoty, bez dziennego oczekiwania. Rozkaz nie jest wypłatą PD: wymaga prawdziwej walki i zasobów. UUID, jedna aktywna wyprawa, blokada wspólnoty, ponowne sprawdzenie fazy po oczekiwaniu na blokadę i atomowe zwycięstwo chronią przed duplikacją. Bot nie ogłasza rozkazu, ale może pomóc przez dotychczasowy serwis. Naprawiono też zduplikowane sekcje HTML umieszczone omyłkowo w tytule strony Wspólnoty. [Zasady](CAMP_RAIDS.md), [raport](reports/wyprawy-na-rozkaz-2026-11-14.json).

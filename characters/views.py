@@ -885,8 +885,8 @@ def camp_guild_view(request):
     from .barrier import alliance_card
     from .regional_endgame import unlocked as endgame_unlocked
     weekly_eligible=endgame_unlocked(profile)
-    manual_card=raid_card(profile,'manual')
-    return render(request,'characters/camp_guild.html',{'manual_card':manual_card,'manual_region':manual_region(profile),'can_rally_manual':can_rally_manual(profile),'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile),'request_key':uuid4()})
+    manual_card=raid_card(profile,'manual',with_number=True)
+    return render(request,'characters/camp_guild.html',{'manual_card':manual_card,'manual_region':manual_region(profile),'can_rally_manual':can_rally_manual(profile),'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile,with_number=True),'request_key':uuid4()})
 
 
 @sensitive_post_parameters("password")

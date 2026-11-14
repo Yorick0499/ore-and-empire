@@ -201,6 +201,70 @@ class ManualRaidConcurrencyTests(TransactionTestCase):
         self.assertEqual(CampRaid.objects.count(),1);self.assertEqual(CampRaidStrike.objects.count(),1)
 
 
+class RaidProgressClarityTests(TestCase):
+    def setUp(self):self.p=captain('clarity','NEW_CAMP','ARCH_WATER')
+
+    def test_same_target_never_resets_and_new_target_has_distinct_number_and_progress(self):
+        guild=CampGuild.objects.get(world=self.p.world,camp='NEW_CAMP')
+        guild.level=4;guild.experience=360;guild.save()
+        key=uuid4();raid=rally_manual_raid(self.p,key)
+        raid.health=258;raid.save(update_fields=['health'])
+        self.client.force_login(self.p.user)
+        before=(raid.name,raid.art_key,raid.maximum_health,raid.health)
+        response=self.client.get('/wspolnota/')
+        self.assertContains(response,'Do poziomu 5 brakuje 40 PD.')
+        self.assertContains(response,'faza walki 2/3 tego przeciwnika')
+        self.assertContains(response,'Wyprawa na rozkaz #1')
+        self.assertEqual(rally_manual_raid(self.p,key).pk,raid.pk)
+        raid.refresh_from_db();self.assertEqual((raid.name,raid.art_key,raid.maximum_health,raid.health),before)
+        self.assertTrue(strike_camp_raid(self.p,raid.pk,uuid4()))
+        second=rally_manual_raid(self.p,uuid4());self.assertNotEqual(second.art_key,raid.art_key)
+        response=self.client.get('/wspolnota/')
+        self.assertContains(response,'Wyprawa na rozkaz #1 ukończona.')
+        self.assertContains(response,'Wyprawa na rozkaz #2')
+        self.assertContains(response,'faza walki 1/3 tego przeciwnika')
+        self.assertContains(response,'Do poziomu 6 brakuje 80 PD.')
+        guild.refresh_from_db();self.assertEqual((guild.level,guild.experience),(5,420))
+
+    def test_new_orders_rotate_in_all_colony_camps_without_changing_encounter_balance(self):
+        from .camp_raids import COLONY_ENCOUNTERS
+        import json
+        from .gothic_assets import MANIFEST_PATH
+        available=json.loads(MANIFEST_PATH.read_bytes())
+        self.assertTrue(all(art in available for pool in COLONY_ENCOUNTERS.values() for _,art in pool))
+        for n,(camp,rank) in enumerate([('OLD_CAMP','BARON'),('NEW_CAMP','ARCH_WATER'),('SWAMP_CAMP','ARCH_GURU')]):
+            p=captain('rotation'+str(n),camp,rank);arts=[]
+            for _ in range(5):
+                guild=CampGuild.objects.get(world=p.world,camp=camp)
+                raid=rally_manual_raid(p,uuid4());self.assertTrue(raid)
+                self.assertEqual((raid.maximum_health,raid.attack,raid.protection),(500+100*guild.level,10+2*guild.level,4+2*guild.level))
+                arts.append(raid.art_key)
+                self.assertTrue(strike_camp_raid(p,raid.pk,uuid4()))
+                raid.refresh_from_db();self.assertEqual(raid.health,0)
+            self.assertEqual(len(set(arts[:4])),4)
+            self.assertTrue(all(a!=b for a,b in zip(arts,arts[1:])))
+            self.assertEqual(arts[0],arts[4])
+            self.assertEqual(set(arts),{row[1] for row in COLONY_ENCOUNTERS[camp]})
+
+    def test_daily_snapshot_survives_rotation_and_bot_cards_do_not_request_ui_counts(self):
+        daily=rally_camp_raid(self.p);before=(daily.name,daily.art_key,daily.health)
+        manual=rally_manual_raid(self.p,uuid4())
+        self.assertNotEqual(daily.art_key,manual.art_key)
+        self.assertEqual(rally_camp_raid(self.p).pk,daily.pk)
+        daily.refresh_from_db();self.assertEqual((daily.name,daily.art_key,daily.health),before)
+        card=raid_card(self.p,include_manual=True)
+        self.assertNotIn('number',card);self.assertNotIn('latest_completed',card)
+
+    def test_completed_daily_does_not_show_a_phase_as_if_it_were_ongoing(self):
+        raid=rally_camp_raid(self.p)
+        self.assertTrue(strike_camp_raid(self.p,raid.pk,uuid4()))
+        self.client.force_login(self.p.user)
+        response=self.client.get('/wspolnota/')
+        self.assertContains(response,'Wyprawa dzienna #1')
+        self.assertContains(response,'cel pokonany')
+        self.assertNotContains(response,'faza walki 3/3 tego przeciwnika')
+
+
 class ManualRaidMigrationTests(TransactionTestCase):
     def test_forward_upgrade_keeps_daily_weekly_history_and_resources(self):
         from django.db.migrations.executor import MigrationExecutor
