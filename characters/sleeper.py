@@ -89,7 +89,7 @@ def claim_reward(profile):
     check_level_up(profile);profile.save();return True
 
 
-def card(profile):
+def card(profile,*,explain=False):
     race=SleeperRace.objects.filter(colony_id=profile.world_id).select_related('winner').first()
     siege=SleeperSiege.objects.filter(race=race,guild__camp=profile.camp).first() if race else None
     guild=CampGuild.objects.filter(world_id=profile.world_id,camp=profile.camp).first()
@@ -98,6 +98,33 @@ def card(profile):
     accounts=set(siege.strikes.filter(damage__gt=0).values_list('account_id',flat=True)) if siege else set()
     floor=siege.maximum_health*max(0,MINIMUM_ACCOUNTS-len(accounts|{profile.user_id}))//MINIMUM_ACCOUNTS if siege else 0
     seal_blocked=bool(siege and race.state=='racing' and floor and siege.health<=floor)
-    return {'race':race,'siege':siege,'eligible':eligible(profile),'guild_ready':bool(guild and guild.level==10),'cooldown_ready':ready,
-            'seal_blocked':seal_blocked,'can_strike':bool(siege and not seal_blocked and race.state=='racing' and not race.paused and eligible(profile) and ready and not profile.is_busy and profile.current_energy>=25 and profile.current_health>=50),
+    qualified=eligible(profile);guild_ready=bool(guild and guild.level==10)
+    world_ready=bool(profile.world.is_current and profile.world.configured and not profile.world.union_key and profile.world.status=='active' and not profile.is_draft)
+    race_ready=not race or (race.state=='racing' and not race.paused)
+    island_ready=World.objects.filter(universe='GOTHIC_II',is_open=True,configured=True,status='active').exists() if (qualified and guild_ready and world_ready and race_ready) or explain else False
+    can_rally=bool(qualified and guild_ready and world_ready and race_ready and island_ready and not siege)
+    magic_ready=True
+    if siege and profile.prepared_magic_id:
+        from .magic import combat_plan
+        plan=combat_plan(profile)
+        magic_ready=bool(plan and profile.current_mana>=plan.cost)
+    requirements=[];strike_blockers=[]
+    if explain:
+        ritual=profile.story_runs.filter(quest__key='ritual-ready',status='claimed').exists()
+        requirements=[
+            {'label':'Aktywna postać należy do obozu Kolonii','met':profile.camp in G1 and profile.world.universe=='GOTHIC_I'},
+            {'label':'Poziom postaci co najmniej 30','met':profile.level>=30},
+            {'label':'Przygotowanie rytuału odebrane w dzienniku','met':ritual},
+            {'label':'Ranga obozowa co najmniej drugiego szczebla','met':profile.camp_tier>=2},
+            {'label':'Wspólnota osiągnęła poziom 10','met':guild_ready},
+            {'label':'Kolonia jest aktywna i niepołączona','met':world_ready},
+            {'label':'Khorinis jest otwarte i skonfigurowane','met':island_ready},
+            {'label':'Wyścig nie jest wstrzymany ani zakończony','met':bool(race_ready)},
+        ]
+        if siege:
+            for ok,reason in [(qualified,'Nie spełniasz osobistych wymagań wyprawy.'),(guild_ready,'Wspólnota musi mieć poziom 10.'),(race_ready,'Wyścig jest wstrzymany lub trwa obsługa wyniku.'),(ready,'Odczekaj 60 sekund od poprzedniego wypadu tego konta.'),(not profile.is_busy,'Zakończ trwającą czynność.'),(profile.current_energy>=25,'Potrzebujesz co najmniej 25 energii.'),(profile.current_health>=50,'Potrzebujesz co najmniej 50 zdrowia.'),(magic_ready,'Przygotuj dozwoloną runę/zwój i odnów manę na pierwszy rzut albo wyłącz przygotowaną magię.'),(not seal_blocked,'Pieczęć czeka na wkład kolejnego konta; mogą pomagać boty.')]:
+                if not ok:strike_blockers.append(reason)
+    return {'race':race,'siege':siege,'eligible':qualified,'guild_ready':guild_ready,'cooldown_ready':ready,
+            'can_rally':can_rally,'requirements':requirements,'strike_blockers':strike_blockers,
+            'seal_blocked':seal_blocked,'can_strike':bool(siege and not seal_blocked and race.state=='racing' and not race.paused and qualified and guild_ready and ready and not profile.is_busy and profile.current_energy>=25 and profile.current_health>=50 and magic_ready),
             'contributions':list(siege.strikes.filter(damage__gt=0).values('account_id').distinct()) if siege else [],'logs':siege.strikes.select_related('profile__user')[:10] if siege else []}

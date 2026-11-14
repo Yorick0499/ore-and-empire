@@ -876,7 +876,11 @@ def camp_guild_view(request):
         elif action=='strike':result=strike_camp_raid(profile,positive_id(request.POST.get('raid')),request.POST.get('request_key'))
         elif action=='claim_raid':result=claim_camp_raid(profile,positive_id(request.POST.get('raid')))
         else:result=donate_to_camp(profile,amount,request.POST.get('request_key')) if action=='donate' else upgrade_camp(profile,request.POST.get('upgrade'),expected) if action=='upgrade' else False
-        if action=='manual_rally':
+        if action=='sleeper_rally':
+            (messages.success if result else messages.error)(request,'Oblężenie Śniącego rozpoczęte. Wykonaj teraz pierwszy wypad w panelu Śniącego u góry strony.' if result else 'Nie rozpoczęto oblężenia. Panel Śniącego pokazuje niespełnione wymagania lub stan wyścigu.')
+        elif action=='sleeper_strike' and not result:
+            messages.error(request,'Wypad nie został wykonany. Sprawdź komunikaty o zasobach, odczekaniu i pieczęci w panelu Śniącego.')
+        elif action=='manual_rally':
             (messages.success if result else messages.error)(request,'Wyprawa na rozkaz jest zapisana.' if result else 'Nie ogłoszono kolejnej wyprawy. Potrzebujesz najwyższej rangi Kolonii, wspólnoty poniżej poziomu 10 i braku innej aktywnej wyprawy na rozkaz. Opcja jest dla graczy przed połączeniem światów.')
         else:
             (messages.success if result else messages.error)(request,'Wspólnota zapisała twój wkład.' if result else 'Nie udało się wykonać działania. Sprawdź rudę, poziom obozu i stan ulepszenia.')
@@ -886,7 +890,7 @@ def camp_guild_view(request):
     from .regional_endgame import unlocked as endgame_unlocked
     weekly_eligible=endgame_unlocked(profile)
     manual_card=raid_card(profile,'manual',with_number=True)
-    return render(request,'characters/camp_guild.html',{'manual_card':manual_card,'manual_region':manual_region(profile),'can_rally_manual':can_rally_manual(profile),'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile,with_number=True),'request_key':uuid4()})
+    return render(request,'characters/camp_guild.html',{'manual_card':manual_card,'manual_region':manual_region(profile),'can_rally_manual':can_rally_manual(profile),'weekly_eligible':weekly_eligible,'weekly_raid':raid_card(profile,'weekly') if weekly_eligible else None,'alliance':alliance_card(profile),'sleeper':sleeper_card(profile,explain=True),'profile':profile,'card':guild_cards(profile),'raid_card':raid_card(profile,with_number=True),'request_key':uuid4()})
 
 
 @sensitive_post_parameters("password")

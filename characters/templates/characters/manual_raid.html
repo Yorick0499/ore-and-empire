@@ -21,7 +21,7 @@
   {% elif can_rally_manual %}
     <form method="post">{% csrf_token %}<input type="hidden" name="request_key" value="{{ request_key }}"><button name="action" value="manual_rally">Ogłoś dodatkową wyprawę na rozkaz</button></form>
   {% elif card.guild.level >= 10 %}
-    <p><strong>Wspólnota osiągnęła poziom 10.</strong> Możesz przygotować wyprawę przeciw Śniącemu; dodatkowe cele na rozkaz nie są już potrzebne.</p>
+    <p><strong>Wspólnota osiągnęła poziom 10.</strong> Możesz przygotować wyprawę przeciw Śniącemu; dodatkowe cele na rozkaz nie są już potrzebne. <a href="#sleeper-race">Przejdź do rozpoczęcia walki ze Śniącym</a>.</p>
   {% elif manual_region %}
     <p>Ogłaszanie odblokujesz jako Magnat, Arcymag Ognia, Gwardzista Lee, Arcymag Wody, Templariusz lub Arcyguru. Uczestniczyć może każdy członek obozu od poziomu 3.</p>
   {% endif %}

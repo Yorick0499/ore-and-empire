@@ -588,7 +588,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if sc['race'] and sc['race'].state=='joined' and sc['race'].winner and sc['race'].winner.camp==profile.camp and not SleeperReward.objects.filter(race=sc['race'],account_id=profile.user_id).exists():
             if sc['siege'] and sc['siege'].strikes.filter(account_id=profile.user_id,damage__gt=0).exists():raid_action='sleeper_claim';raid_target=None
         elif sc['eligible'] and sc['guild_ready']:
-            if not sc['siege']:raid_action='sleeper_rally';raid_target=None
+            if not sc['siege'] and sc['can_rally']:raid_action='sleeper_rally';raid_target=None
             elif sc['can_strike'] and profile.current_health>=min(profile.max_health,460):raid_action='sleeper_strike';raid_target=sc['siege'].pk
     if joined(profile.world_id) and not profile.is_busy:
         from .barrier import alliance_card

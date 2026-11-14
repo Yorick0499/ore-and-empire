@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "issue": 156,
+  "base_revision": "f6c1304796bde7854c108e63b953f8b4933d6141",
+  "migration": "0055, no new migration",
+  "diagnosis": "Read-only inspection confirmed fulfilled prerequisites and no existing siege; start action was rendered near the bottom of the long guild page. No mechanical start failure reproduced with matching prepared state.",
+  "local_tests": {
+    "focused": {
+      "run": 16,
+      "success": true
+    },
+    "regression": {
+      "run": 69,
+      "skipped_postgresql": 8,
+      "success": true,
+      "focused_is_subset": true
+    }
+  },
+  "gui": {
+    "success": true,
+    "isolated_database": true,
+    "prepared_water_archmage_level31": true,
+    "initial_energy": 75,
+    "initial_health": 158,
+    "initial_mana": 99,
+    "checks": [
+      {
+        "width": 320,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      },
+      {
+        "width": 390,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      },
+      {
+        "width": 1440,
+        "http": 200,
+        "horizontal_overflow": false,
+        "read_only_no_raid_created": true
+      }
+    ],
+    "actual_csrf_post_flow": [
+      "sleeper_rally",
+      "paid_sleeper_strike"
+    ],
+    "energy_after_first_strike": 50,
+    "sleeper_health_after_strike": 119475,
+    "javascript_errors": []
+  },
+  "changes": [
+    "Prominent top-of-page start/attack panel for guild10 or ongoing race.",
+    "Read-only checklist includes story, level, rank, guild, Colony, island and race state.",
+    "Attack blocks explain health/energy/mana/cooldown/busy/seal/pause.",
+    "Bot rally uses the availability flag.",
+    "Direct anchors from Barrier and manual guild10 notice."
+  ],
+  "preserved": [
+    "Existing world, characters, guildXP, current resources and raid progress.",
+    "Actual rally/strike services, costs and global victory/activation prerequisites.",
+    "No test writes or HTTP actions against the private world."
+  ],
+  "source_sha256": {
+    "characters/sleeper.py": "aeef743008e2c0d128ccf5aba7114f0f7e1599dbe6ab9bd502e4738ee1ec8cfb",
+    "characters/test_barrier.py": "fd87f1dc7c355cbec10e186fdd4d1856405c893881f57a054b7cbb93d1b52d20"
+  },
+  "limits": [
+    "Prepared isolated level31 Water Archmage fixture, not fresh-character progression.",
+    "First strike only, not entire120000HP community victory.",
+    "Local SQLite; PostgreSQL cases run separately in CI."
+  ]
+}
