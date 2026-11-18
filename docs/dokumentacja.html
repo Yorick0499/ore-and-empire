@@ -437,7 +437,7 @@ python play.py --port 8001
 <p><a href="#doc-complete-journey">Pełna droga i bramki</a> · <a href="#doc-build-playthroughs">Dziewięć buildów i dróg frakcyjnych</a> · <a href="#doc-camp-guilds">Sukcesja</a> · <a href="#doc-camps">Rangi</a>.</p>
 <h3 id="doc-readme--systemy-i-zawartosc">Systemy i zawartość</h3>
 <ul>
-<li>Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 11 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.</li>
+<li>Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 20 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.</li>
 <li>Wydobycie, <strong>44 zlecenia Kolonii i 10 Khorinis</strong>, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.</li>
 <li>Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.</li>
 <li>Czas Polski <code>Europe/Warsaw</code> 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.</li>
@@ -1009,8 +1009,8 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <p>Warty zachowują snapshot wersji 1: dla głębokości d życie 600+60 d, atak 55+3 d, ochrona broni 25+2 d, magia/ogień 10+d. Bazowa ruda 50+10 d, PD 400+80 d, koszt 20 energii i 5 minut przerwy. Trudność wybiera się postępem wart (1–100), a nie siłą aktualnego sprzętu. Zlecenia zachowują własną wersję i snapshot przy przyjęciu. Dawne raporty nie są przepisywane. <a href="#doc-solo-playtest">Pomiary bez nadań</a>.</p>
 <h3 id="doc-loot-and-endgame--regionalne-warty-po-nk-136">Regionalne warty po NK — #136</h3>
 <p><a href="#doc-regional-endgame">Nowe cztery ścieżki i cel tygodniowy</a> rozszerzają powyższe historyczne warty. Mają osobne wpisowe i limit 8 pełnych nagród regionalnych na polski dzień; stare 100 stopni zachowuje zasady i dorobek.</p></article><article id="doc-magic" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/MAGIC.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/MAGIC.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-magic--magia-kregi-runy-zwoje-i-odpornosci">Magia — kręgi, runy, zwoje i odporności</h2>
-<p>Stan zasad: 13 listopada 2026, poprawka ścieżki Wody #150 (bez nowej migracji, nadal 0054).</p>
-<p><code>/magia/</code> udostępnia 14 działających zaklęć: 9 dotychczasowych jako runy/zwoje, 3 nowe szkolne runy Wody oraz 2 zaklęcia VI kręgu po Barierze. Krąg Wody ma teraz własną runę na każdy krąg. Parametry walki są <strong>autorskim balansem adaptacji</strong>, nie tabelą oryginalnego Gothica. Nowe runy szkolne mają osobne klucze adaptacji; nie zmieniają tożsamości ani cen źródłowego katalogu.</p>
+<p>Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Zmiana nie wymaga migracji.</p>
+<p>Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło paleniska z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dwa dodatkowe zaklęcia VI kręgu są dostępne po Barierze.</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -1033,6 +1033,14 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Ogień</td>
+<td>Żar paleniska</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">42 ognia</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Ogień</td>
 <td>Kula ognia</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">8</td>
@@ -1041,11 +1049,27 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Ogień</td>
+<td>Światło paleniska</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">125 magii</td>
+<td>skuteczne przeciw odporności na ogień</td>
+</tr>
+<tr>
+<td>Ogień</td>
 <td>Deszcz ognia</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">175 ognia</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Ogień</td>
+<td>Korona płomieni</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: right;">16</td>
-<td style="text-align: right;">100 ognia</td>
-<td>pojedynczy przeciwnik tej adaptacji</td>
+<td style="text-align: right;">225 ognia</td>
+<td>—</td>
 </tr>
 <tr>
 <td>Woda</td>
@@ -1105,6 +1129,14 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Bractwo</td>
+<td>Puls bagien</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">33 magii</td>
+<td>co trzeci rzut przerywa turę przeciwnika</td>
+</tr>
+<tr>
+<td>Bractwo</td>
 <td>Uderzenie burzy</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">7</td>
@@ -1113,10 +1145,26 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Bractwo</td>
+<td>Rezonans bagien</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">105 magii</td>
+<td>co drugi rzut przerywa turę przeciwnika</td>
+</tr>
+<tr>
+<td>Bractwo</td>
 <td>Pirokineza</td>
 <td style="text-align: right;">5</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">70 magii</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">150 magii</td>
+<td>co drugi rzut przerywa turę przeciwnika</td>
+</tr>
+<tr>
+<td>Bractwo</td>
+<td>Cisza bagien</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">210 magii</td>
 <td>co drugi rzut przerywa turę przeciwnika</td>
 </tr>
 <tr>
@@ -1137,7 +1185,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 </tbody>
 </table></div>
-<p>Tabela pokazuje obrażenia <strong>run</strong>. Ogólnodostępne zwoje Sopla/Bryły/Fali zachowują 20/40/75 obrażeń; nie otrzymują siły run szkoły Wody. Nowe runy II/IV/VI nie mają ogólnodostępnej wersji zwoju. Ich jednorazowe ceny w Kolonii to 650/900/1500 rudy; w Khorinis 70/110/150, zgodnie z odrębną ekonomią wcześniejszej paczki wyspy. Nauka kręgów i trening many pozostają płatne. Posiadane stare runy otrzymują nowe parametry bez wymiany przedmiotu; nowe pojawiają się po zwykłym restarcie launchera. Seeder zachowuje własne ceny operatora, ekwipunek i postęp.</p>
+<p>Tabela pokazuje obrażenia <strong>run</strong>. Ogólnodostępne zwoje zachowują dotychczasowe obrażenia, w tym 20/40/75 dla Sopla/Bryły/Fali oraz 100/70 dla Deszczu ognia/Pirokinezy. Nowe runy II/IV/VI nie mają ogólnodostępnej wersji zwoju. Ich jednorazowe ceny w Kolonii to 650/900/1500 rudy; w Khorinis 70/110/150, zgodnie z odrębną ekonomią wcześniejszej paczki wyspy. Nauka kręgów i trening many pozostają płatne. Posiadane stare runy otrzymują nowe parametry bez wymiany przedmiotu; nowe pojawiają się po zwykłym restarcie launchera. Przy osobnym uruchamianiu WSGI operator może dodać je poleceniem <code>python manage.py seed_equipment</code>. Seeder zachowuje własne ceny operatora, ekwipunek i postęp.</p>
 <p>Każdy zwój kosztuje 1 many/rzut i jedną sztukę na <strong>rzeczywiste rzucenie</strong>, bez wymogu szkoły/kręgu. Runa jest wielokrotnego użytku, wymaga kręgu i szkoły obozu. Dostępne oddzielnie kupione egzemplarze tego samego zwoju tworzą wspólny zapas walki. Najpierw zużywa się przygotowany, potem pozostałe według ID. Dodatkowe chronione i wystawione egzemplarze nie są pobierane; ostatni dostępny zapas/mana ogranicza liczbę rzutów. Pierwszy rzut musi być opłacalny przed rozpoczęciem walki; po wyczerpaniu zapasu postać broni się pięściami do końca starcia, bez darmowej amunicji. Przed kolejną walką można wrócić do broni na ekranie magii. Zużyty ostatni dostępny zwój czyści przygotowanie; jeśli pozostał dostępny egzemplarz tego samego typu, przygotowanie przechodzi na niego. Przedmiot przygotowany nie może być wystawiony/sprzedany bez wcześniejszego wyłączenia go. Cudzy, wystawiony albo niedozwolony przedmiot jest odrzucany także przez serwis walki.</p>
 <p>Nauka kolejnego kręgu N kosztuje 5×N PN i 50×N rudy, wymaga poziomu 2×N. Wtajemniczeni obozowi (ranga od tier 1) mogą nauczyć się dwóch kręgów, Mag Ognia/Wody lub Guru czterech, arcyrangi sześciu. Dostęp do run jest ograniczony także rangą i obozem; samo ustawienie <code>magic_skill</code> nie usuwa blokady szkoły/rangi. Maksymalną manę rozwija istniejący trening (1 PN i 10 rudy za punkt, pomniejszone o zniżkę szkoły obozowej). Zwiększenie maksimum ani założenie biżuterii nie leczy/nie odnawia many. Zdjęcie lub usunięcie sprzętu przycina aktualną manę do nowego maksimum.</p>
 <p>Bieżąca mana regeneruje się o 1 co 30 s z zachowaniem reszty czasu; odnowa nie bankuje czasu ponad maksimum. Migracja inicjalizuje ją do istniejącego maksimum (raz przy wprowadzeniu zasobu), zachowuje statystyki bazowe, wylicza bonus noszonego wyposażenia. Panel god-mode odnawia również manę i pozwala ją edytować z kontrolą maksimum.</p>
@@ -1188,7 +1236,7 @@ magii na podstawie innej oceny pancerza ani nie farmi, gdy finał jest osiągaln
 po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bossów.</p>
 <h3 id="doc-magic--frakcja-po-sukcesji-i-przygotowanie-do-bossa">Frakcja po sukcesji i przygotowanie do bossa</h3>
 <p>Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; po wyborze Bractwa zachowana rodzima szkoła pozostaje dostępna do historycznej kampanii. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. <a href="#doc-camp-guilds">Frakcje</a>.</p>
-<p>Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Część starć wymaga zwoju innego żywiołu, ochrony i odpoczynku. <a href="#doc-build-playthroughs">Organiczne drogi Ognia/Wody i Bractwa</a>.</p>
+<p>Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Odporności mogą premiować runę z niższego kręgu. Przed trudnym starciem warto sprawdzić ochronę i odpocząć. <a href="#doc-build-playthroughs">Organiczne drogi Ognia/Wody i Bractwa</a>.</p>
 <h3 id="doc-magic--ponowne-przejscie-wody-bez-zwojow-150">Ponowne przejście Wody bez zwojów — #150</h3>
 <p><a href="#report-mag-wody-runy-2026-11-13">Raport</a>: nowa postać Kolonii, Nowy Obóz, sześć opłaconych run przed Barierą, awanse, dalsza runa NK, finał Irdorath, ósma ranga i pierwsze regionalne warty. Próba zabrania zakupów zwojów, nie przyznaje PN/many/rudy ani run. Regeneracja jest zwykła; opcjonalny itemshop zdrowia/energii korzysta z zarobionych odłamków. Doświadczenie przed uzyskaniem szkoły obejmuje podstawową broń.</p>
 <p>Ukończono na poziomie 61, 90 walk z magią, w 4,82 wirtualnego dnia bez oczekiwania na wspólnotowe zwycięstwo Bariery (zewnętrzny stan tej macierzy). To strategia znająca cele, nie czas rzeczywistej gry człowieka ani dowód przejścia wszystkich 400 stopni.</p>
@@ -1458,7 +1506,7 @@ wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i 
 <p>To dziewięć scenariuszy, a nie wszystkie kombinacje broni i wyborów. Ograniczenia Guru i pozostałe dozwolone wybory mają oddzielne testy macierzy. Przed Barierą są cztery szczeble; dalsze cztery wymagają połączenia i własnych opłaconych awansów. Historyczne pochodzenie pozostaje zapisane.</p>
 <h3 id="doc-build-playthroughs--przygotowanie-ktore-ma-znaczenie">Przygotowanie, które ma znaczenie</h3>
 <p>Wojownik rozwija siłę i umiejętność wybranej broni. Łucznik potrzebuje zręczności, łuku i strzał; podstawowe rangi mogą wymagać także siły. Wyższe rangi wojowników przyjmują siłę <strong>lub</strong> zręczność. Broń trzeba założyć po zakupie, a łupy można porównać przed wymianą.</p>
-<p>Mag rozwija manę i płaci PN/rudą za kręgi. Pierwsze kręgi są dostępne przed tytułem pełnego maga po osiągnięciu odpowiedniej rangi. Runy i zwoje kupuj w <strong>Magii</strong> — oferta wiedzy jest oddzielna od zwykłego kupca. Nie każda tożsamość z katalogu jest działającym zaklęciem. Osobno kupione zwoje tego samego typu są teraz wspólnym zapasem walki. Po zużyciu przygotowanego egzemplarza pozostający zapas nadal jest przygotowany. Dodatkowe chronione i wystawione na targ egzemplarze nie są zużywane. Runa ma wymaganą szkołę/krąg; zwoju może użyć każdy, lecz każda inkantacja zużywa sztukę i manę. Odporność na własny żywioł może wymagać kupionego zwoju innego typu albo innej taktyki.</p>
+<p>Mag rozwija manę i płaci PN/rudą za kręgi. Pierwsze kręgi są dostępne przed tytułem pełnego maga po osiągnięciu odpowiedniej rangi. Runy i zwoje kupuj w <strong>Magii</strong> — oferta wiedzy jest oddzielna od zwykłego kupca. Nie każda tożsamość z katalogu jest działającym zaklęciem. Osobno kupione zwoje tego samego typu są teraz wspólnym zapasem walki. Po zużyciu przygotowanego egzemplarza pozostający zapas nadal jest przygotowany. Dodatkowe chronione i wystawione na targ egzemplarze nie są zużywane. Runa ma wymaganą szkołę/krąg; zwoju może użyć każdy, lecz każda inkantacja zużywa sztukę i manę. Każda szkoła ma runę na każdy krąg. Ognisty golem mocno odpiera ogień, więc przed próbą Arcymaga Ognia warto kupić Światło paleniska IV i przygotować zapas many.</p>
 <p>Sama mana na pierwszy rzut nie wystarcza na długą walkę. Polowanie i boss pokazują obrażenia czaru po odporności, orientacyjną liczbę potrzebnych rzutów, koszt many i rzuty dostępne z obecnego zapasu. Prognoza zdrowia uwzględnia brak many/zwojów oraz późniejszą walkę pięściami. Fazy bossa są liczone w prognozie zdrowia. Zapas rzutów jest szacunkiem pokonania samym czarem, nie warunkiem wejścia ani obietnicą zwycięstwa.</p>
 <p>Ochrona, pierścienie, amulet i pas są częścią przygotowania, nie tylko broń. Przy wzroście maksymalnego zdrowia/many poczekaj na rzeczywistą regenerację albo zużyj legalne zapasy. Zachowaj kilka PN na treningi wymagane w zadaniu awansu. Gdy zabraknie rudy, zlecenia dochodowe finansują dalsze lekcje; odłamki zdobyte w grze mogą opłacić istniejący itemshop. Konto premium nie jest potrzebne.</p>
 <h3 id="doc-build-playthroughs--od-mieszkanca-do-dalszej-gry">Od mieszkańca do dalszej gry</h3>
@@ -1472,6 +1520,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <p>Nowe pliki raportów; istniejące nie są nadpisywane. Komenda zawsze uruchamia osobną bazę SQLite, nie dziedziczy prywatnego PostgreSQL ani bazy gry. Scenariusze zaczynają z normalną postacią poziomu 0. Punkty, atrybuty, sprzęt, zaklęcia, amunicja, zadania i wszystkie osiem rang są rzeczywiście zdobywane/opłacane. Nie włącza się zwycięstw ani osobistych kamieni milowych fiksturą.</p>
 <p>W tej macierzy globalne zwycięstwo społeczności jest zdarzeniem zewnętrznym po ukończeniu podstawowej drogi; <strong>nie mierzy czasu oczekiwania całego serwera na Barierę</strong>. Osobna komenda <code>simulate_journey</code> sprawdza prawdziwą walkę trzech zdobytych od 0 kont, kopię, odtworzenie i aktywację. Te dowody uzupełniają się, nie należy dodawać ani bezpośrednio porównywać ich czasów.</p>
 <p>Czas każdej operacji jest modelowany jako 10 sekund, regeneracja i timery są wirtualne. Oczekiwanie na wydobycie pochodzi teraz z faktycznego <code>action_end_time</code>: zmiana w UI trwa 15 <strong>sekund</strong>, nie 15 minut. Poprzednie raporty pełnej drogi zawierały konserwatywne nadmiarowe czekanie i pozostają historyczne. Nie zmieniono timera gry ani zapisów.</p>
+<p>Macierz sprawdza Ogień w obu regionach, Wodę i Guru wyłącznie z runami własnych szkół po rozpoczęciu nauki magii. Dla Nowego Obozu i Farmy Onara raport zapisuje kolejne zakupione łuki, poziom i zręczność w chwili zmiany oraz liczbę walk, w których silnik pobrał strzałę. Rejestruje też najdłuższą serię zleceń powtarzanych pod rząd dla PD.</p>
 <p>CI dzieli dziewięć organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. <a href="#report-buildy-frakcje-2026-11-12">Wyniki i ograniczenia</a>.</p>
 <p>Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich 400 regionalnych stopni. Regionalne wydarzenia #137 są wdrożone. Dłuższa gospodarka 250 botów i obserwacje ludzi pozostają dalszym rozwojem w #9. <a href="#report-grywalnosc-wydania-2026-11-13">Świeża powtórka wszystkich dziewięciu dróg i ograniczenia</a>.</p></article><article id="doc-camps" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/CAMPS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CAMPS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-camps--rangi-proby-awansow-i-przywileje">Rangi, próby awansów i przywileje</h2>
 <p>Stan: 13 XI 2026. Podstawowy katalog rang ma wersję 2, dalsze awanse działają od 0051. To własna progresja MMORPG inspirowana Gothic, nie kopia oryginalnych skryptów rekrutacji. <a href="#doc-game-content--podstawowe-rangi">Pełne tabele podstawowych rang z kodu</a>.</p>
@@ -2621,7 +2670,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>Zaklęcia działające (nie liczba modeli run/zwojów)</td>
-<td>14</td>
+<td>20</td>
 </tr>
 <tr>
 <td>Zlecenia czasowe</td>
@@ -6281,7 +6330,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tbody>
 </table></div>
 <h3 id="doc-game-content--zaklecia">Zaklęcia</h3>
-<p>Tabela pokazuje parametry run. Runy Wody mają osobną ścieżkę I–VI; zwoje Sopla/Bryły/Fali zachowują 20/40/75 obrażeń, a nowe runy szkolne nie mają zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. <a href="#doc-magic">Nauka, zapasy i odporności</a>.</p>
+<p>Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwoje zachowują dotychczasowe obrażenia. Runy szkolne II, IV i VI nie mają wersji zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. <a href="#doc-magic">Nauka, zapasy i odporności</a>.</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -6317,8 +6366,8 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>firerain — Deszcz ognia</td>
 <td>Magowie Ognia</td>
 <td>5</td>
-<td>16</td>
-<td>100 / ogień</td>
+<td>13</td>
+<td>175 / ogień</td>
 <td>0</td>
 <td>—</td>
 </tr>
@@ -6371,8 +6420,8 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>pyrokinesis — Pirokineza</td>
 <td>Bractwo Śniącego</td>
 <td>5</td>
-<td>11</td>
-<td>70 / magia</td>
+<td>13</td>
+<td>150 / magia</td>
 <td>0</td>
 <td>2</td>
 </tr>
@@ -6402,6 +6451,60 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>220 / magia</td>
 <td>35</td>
 <td>—</td>
+</tr>
+<tr>
+<td>emberburst — Żar paleniska</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>42 / ogień</td>
+<td>0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>hearthlight — Światło paleniska</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>10</td>
+<td>125 / magia</td>
+<td>0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>flamecrest — Korona płomieni</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>16</td>
+<td>225 / ogień</td>
+<td>0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>marshpulse — Puls bagien</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>33 / magia</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>marshresonance — Rezonans bagien</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>9</td>
+<td>105 / magia</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>marshsilence — Cisza bagien</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>16</td>
+<td>210 / magia</td>
+<td>0</td>
+<td>2</td>
 </tr>
 <tr>
 <td>nk_firerain — Deszcz ognia VI</td>

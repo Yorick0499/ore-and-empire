@@ -28,12 +28,15 @@ CASES={
  'city-warrior':('GOTHIC_II','CITY_WATCH','warrior',('K2_CITIZEN','K2_MILITIA','K2_PALADIN','K2_COMMANDER'),'CITY_WATCH'),
  'monastery-fire':('GOTHIC_II','FIRE_ORDER','fire',('K2_NOVICE','K2_ADEPT','K2_MAGE','K2_ARCHMAGE'),'FIRE_ORDER'),
  'onar-archer':('GOTHIC_II','ONAR_MERCS','archer',('K2_LABORER','K2_RECRUIT','K2_MERC','K2_CAPTAIN'),'MERCENARIES'),
- 'swamp-guru':('GOTHIC_I','SWAMP_CAMP','water',('PICKER','NOVICE','GURU','ARCH_GURU'),'WATER_CIRCLE'),
+ 'swamp-guru':('GOTHIC_I','SWAMP_CAMP','brotherhood',('PICKER','NOVICE','GURU','ARCH_GURU'),'WATER_CIRCLE'),
  'swamp-templar':('GOTHIC_I','SWAMP_CAMP','warrior',('PICKER','NOVICE','SWAMP_GUARD','TEMPLAR'),'CITY_WATCH'),
 }
 
 class EarnedBuild:
-    def __init__(self,kind,*,runes_only=False):self.kind=kind;self.runes_only=runes_only
+    def __init__(self, kind):
+        self.kind = kind
+        self.rune_school = kind if kind in {'fire', 'water', 'brotherhood'} else None
+        self.bow_upgrades = []
     def train(self,test,p,steps,attribute,amount):
         while amount>0:
             n=min(10,amount,p.skill_points)
@@ -43,7 +46,7 @@ class EarnedBuild:
             amount-=n
     def prepare(self,test,p,steps,target=None):
         from .magic import learn_circle,circle_cap,BY_CODE,purchase_magic,prepare_magic
-        magic=self.kind in {'fire','water'}
+        magic=self.rune_school is not None
         # Reserve earned points for promotion training objectives rather than
         # spending every point before accepting the quest.
         if magic:
@@ -66,6 +69,9 @@ class EarnedBuild:
                 owned=p.inventory.filter(blueprint=bp,is_market_listed=False).first()
                 if not owned:steps['funds'](bp.base_value);test.assertTrue(steps['do']('build_buy_weapon',lambda:game.buy_item_from_npc(p,bp)));owned=p.inventory.get(blueprint=bp)
                 test.assertTrue(steps['do']('build_equip_weapon',lambda:game.equip_item(p,owned)))
+                if self.kind == 'archer':
+                    self.bow_upgrades.append({'name': bp.name, 'damage': bp.damage,
+                                              'level': p.level, 'dexterity': p.dexterity})
         # Buy ordinary protective jewelry; no free fixture armor/health.
         def value(item):
             return item.weapon_prot*3+item.fire_prot+item.magic_prot+item.life_bonus/5+item.mana_bonus/5
@@ -90,20 +96,13 @@ class EarnedBuild:
             candidates=[]
             for b in ItemBluePrint.objects.filter(source_game__in=source_games(p),catalog_key__in=BY_CODE):
                 spell,scroll=BY_CODE[b.catalog_key]
-                if self.runes_only and scroll:continue
+                if scroll or spell.school != self.rune_school:continue
                 if allowed(p,b) and (scroll or rune_allowed(p,spell)):
                     damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
-                    # Prefer sustainable runes; a bought opposite-element scroll
-                    # is a deliberate option when own-school damage is resisted.
-                    score=damage if not scroll else damage//10
-                    candidates.append((score,not scroll,-b.base_value,b))
+                    candidates.append((damage, -spell.cost, -b.base_value, b))
             if candidates:
-                own=max((score for score,rune,_,_ in candidates if rune),default=0)
-                if target and own<=15:
-                    candidates=[((max(1,BY_CODE[b.catalog_key][0].damage-monster.get(BY_CODE[b.catalog_key][0].damage_type+'_prot',0)) if not rune else score),rune,price,b) for score,rune,price,b in candidates]
-                b=max(candidates,key=lambda x:x[:3])[3];spell,scroll=BY_CODE[b.catalog_key]
-                count=min(40,max(1,(monster.get('life',200)+max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))-1)//max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))+2)) if scroll else 1
-                if target and not scroll:
+                b=max(candidates,key=lambda x:x[:3])[3];spell,_=BY_CODE[b.catalog_key]
+                if target:
                     needed=((monster.get('life',0)+max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))-1)//max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))+2)*spell.cost
                     for _ in range(100):
                         if p.max_mana>=needed:break
@@ -114,13 +113,11 @@ class EarnedBuild:
                         if p.skill_points>reserve:self.train(test,p,steps,'mana',min(needed-p.max_mana,p.skill_points-reserve))
                     test.assertGreaterEqual(p.max_mana,needed,(target,spell.key))
 
-                stock=p.inventory.filter(blueprint=b,is_market_listed=False)
-                owned=stock.first();quantity=sum(stock.values_list('quantity',flat=True)) if scroll else (owned.quantity if owned else 0)
-                if quantity<count:
-                    amount=count-quantity;steps['funds'](b.base_value*amount);test.assertTrue(steps['do']('build_buy_magic',lambda:purchase_magic(p,b.pk)))
-                    # purchase_magic buys one; repeated buys use the same service.
-                    for _ in range(amount-1):test.assertTrue(steps['do']('build_buy_magic',lambda:purchase_magic(p,b.pk)))
-                    owned=p.inventory.filter(blueprint=b,is_market_listed=False).first()
+                owned=p.inventory.filter(blueprint=b,is_market_listed=False).first()
+                if not owned:
+                    steps['funds'](b.base_value)
+                    test.assertTrue(steps['do']('build_buy_magic',lambda:purchase_magic(p,b.pk)))
+                    owned=p.inventory.get(blueprint=b)
                 test.assertTrue(steps['do']('build_prepare_magic',lambda:prepare_magic(p,owned.pk)))
 
 class EarnedBuildJourneys(TestCase):
@@ -131,13 +128,24 @@ class EarnedBuildJourneys(TestCase):
         from unittest.mock import patch
         from .magic import purchase_magic
         self.magic_purchases=[]
+        self.strategy = EarnedBuild(self.build)
+        from .equipment import consume_ammo, weapon_for
+        self.arrow_battles = 0
+
+        def tracked_ammo(profile):
+            weapon = weapon_for(profile)
+            success = consume_ammo(profile)
+            if success and weapon and weapon.weapon_type == 'bow':
+                self.arrow_battles += 1
+            return success
+
         def checked_purchase(profile,blueprint_id):
             bp=ItemBluePrint.objects.get(pk=blueprint_id)
-            if key=='new-water':self.assertEqual(bp.kind,'rune',bp.catalog_key)
+            self.assertEqual(bp.kind, 'rune', bp.catalog_key)
             self.magic_purchases.append(bp.catalog_key)
             return purchase_magic(profile,blueprint_id)
-        with patch('characters.magic.purchase_magic',side_effect=checked_purchase):
-            self.play(self.universe,None,support=True,income_first=True,camp=self.camp,build_strategy=EarnedBuild(self.build,runes_only=key=='new-water'),on_checkpoint=self.native_ranks,after_campaign=self.finish,actor_name='b-'+key)
+        with patch('characters.magic.purchase_magic',side_effect=checked_purchase), patch('characters.equipment.consume_ammo',side_effect=tracked_ammo):
+            self.play(self.universe,None,support=True,income_first=True,camp=self.camp,build_strategy=self.strategy,on_checkpoint=self.native_ranks,after_campaign=self.finish,actor_name='b-'+key)
     def native_ranks(self,p,steps):
         for key in self.path:
             rank=BY_RANK[key]
@@ -212,13 +220,16 @@ class EarnedBuildJourneys(TestCase):
         from .magic import BY_KEY
         from collections import Counter
         spell_usage=dict(Counter(p.battles.filter(combat_details__casts__gt=0).values_list('combat_details__magic',flat=True)))
-        if self.case=='new-water':
+        if self.strategy.rune_school:
             self.assertFalse(p.inventory.filter(blueprint__kind='scroll').exists())
-            self.assertTrue(all(BY_KEY[key].school=='water' for key in spell_usage),spell_usage)
+            self.assertTrue(all(BY_KEY[key].school==self.strategy.rune_school for key in spell_usage),spell_usage)
             self.assertTrue(self.magic_purchases)
-        if self.build in {'fire','water'}:self.assertGreater(casts,20)
-        if self.build=='archer':self.assertEqual(p.inventory.get(is_equipped=True,equipped_slot='weapon').blueprint.weapon_type,'bow')
-        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
+            self.assertGreater(casts,20)
+        if self.build == 'archer':
+            self.assertEqual(p.inventory.get(is_equipped=True,equipped_slot='weapon').blueprint.weapon_type,'bow')
+            self.assertGreaterEqual(len(self.strategy.bow_upgrades), 3)
+            self.assertGreater(self.arrow_battles, 20)
+        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.bow_upgrades,'arrow_battles':self.arrow_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
 
 for _key in CASES:
     def _test(self,key=_key):self.run_case(key)

@@ -40,7 +40,7 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie u
 
 ## Systemy i zawartość
 
-- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 11 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
+- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 20 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
 - Wydobycie, **44 zlecenia Kolonii i 10 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
 - Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.
 - Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.

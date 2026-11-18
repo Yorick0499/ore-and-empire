@@ -1,6 +1,6 @@
 from .barrier import source_games
 """Explicitly balanced browser adaptation; source prices remain in the item catalog."""
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from django.utils import timezone
 from .game_logic import player_action
 from .models import ItemBluePrint,OwnedItem
@@ -42,35 +42,62 @@ WATER_RUNES=(
     Spell('icewave','Lodowa fala','water',5,13,175,'magic',50),
     Spell('chainlightning','Grom','water',6,16,220,'magic',35),
 )
-_water={spell.key:spell for spell in WATER_RUNES}
-WATER_ADDITIONS=tuple(spell for spell in WATER_RUNES if spell.key not in {s.key for s in SPELLS})
-ALL_SPELLS=tuple(_water.get(spell.key,spell) for spell in SPELLS)+WATER_ADDITIONS+NK_SPELLS
-BY_KEY={spell.key:spell for spell in ALL_SPELLS}
-BY_CODE={'g1-itar'+kind+spell.key:(spell,kind=='scroll') for spell in SPELLS for kind in ('rune','scroll')}
-BY_CODE.update({'g2-itar'+kind+spell.key:(spell,kind=='scroll') for spell in SPELLS for kind in ('rune','scroll')})
-for prefix in ('g1','g2'):
-    for spell in WATER_RUNES:
-        key=(f'oe-water-{prefix}-{spell.key}-rune' if spell in WATER_ADDITIONS else f'{prefix}-itarrune{spell.key}')
-        BY_CODE[key]=(spell,False)
+FIRE_ADDITIONS = (
+    Spell('emberburst', 'Żar paleniska', 'fire', 2, 6, 42, 'fire'),
+    # A magical strike gives the fourth circle an answer to fire resistance.
+    Spell('hearthlight', 'Światło paleniska', 'fire', 4, 10, 125, 'magic'),
+    Spell('flamecrest', 'Korona płomieni', 'fire', 6, 16, 225, 'fire'),
+)
+BROTHERHOOD_ADDITIONS = (
+    Spell('marshpulse', 'Puls bagien', 'brotherhood', 2, 5, 33, 'magic', stagger_every=3),
+    Spell('marshresonance', 'Rezonans bagien', 'brotherhood', 4, 9, 105, 'magic', stagger_every=2),
+    Spell('marshsilence', 'Cisza bagien', 'brotherhood', 6, 16, 210, 'magic', stagger_every=2),
+)
+_rune_stats = {spell.key: spell for spell in WATER_RUNES}
+_rune_stats.update({
+    spell.key: replace(spell, cost=13, damage=damage)
+    for spell in SPELLS
+    if (damage := {'firerain': 175, 'pyrokinesis': 150}.get(spell.key))
+})
+WATER_ADDITIONS = tuple(spell for spell in WATER_RUNES if spell.key not in {s.key for s in SPELLS})
+TRAINING_RUNES = WATER_ADDITIONS + FIRE_ADDITIONS + BROTHERHOOD_ADDITIONS
+ALL_SPELLS = tuple(_rune_stats.get(spell.key, spell) for spell in SPELLS) + TRAINING_RUNES + NK_SPELLS
+BY_KEY = {spell.key: spell for spell in ALL_SPELLS}
+BY_CODE = {}
+for prefix in ('g1', 'g2'):
+    for spell in SPELLS:
+        BY_CODE[f'{prefix}-itarscroll{spell.key}'] = (spell, True)
+        BY_CODE[f'{prefix}-itarrune{spell.key}'] = (_rune_stats.get(spell.key, spell), False)
+    for spell in TRAINING_RUNES:
+        BY_CODE[f'oe-{spell.school}-{prefix}-{spell.key}-rune'] = (spell, False)
 BY_CODE.update({f'oe-nk-{spell.key}-{kind}':(spell,kind=='scroll') for spell in NK_SPELLS for kind in ('rune','scroll')})
 SCHOOLS={'FIRE_ORDER':('fire','Krąg Ognia Khorinis'),'OLD_CAMP':('fire','Krąg Ognia'),'NEW_CAMP':('water','Krąg Wody'),'SWAMP_CAMP':('brotherhood','Bractwo Śniącego')}
 MAGE_RANKS={'K2_MAGE','K2_ARCHMAGE','FIRE_MAGE','ARCH_FIRE','WATER_MAGE','ARCH_WATER','GURU','ARCH_GURU'}
 ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
 
 
-def seed_water_runes():
-    """Add missing training runes; never replace owned items or operator edits."""
-    art={2:'thunderbolt',4:'thunderball',6:'chainlightning'}
-    colony_prices={2:650,4:900,6:1500}
-    for prefix,game in (('g1','GOTHIC_I'),('g2','GOTHIC_II')):
-        for spell in WATER_ADDITIONS:
-            ItemBluePrint.objects.get_or_create(catalog_key=f'oe-water-{prefix}-{spell.key}-rune',defaults={
-                'name':spell.name+' — runa Kręgu Wody','kind':'rune','source_game':game,
-                'base_value':colony_prices[spell.circle] if prefix=='g1' else 30+spell.circle*20,
-                'min_level':spell.circle*2,'merchant':True,'tradeable':True,
-                'art_key':'item_g1_itarrune'+art[spell.circle],
-                'original_stats':{'balance':'water-runes-v1','runtime_supported':True,
-                                  'note':'School training rune; browser adaptation, not an original item identity.'},
+def seed_training_runes():
+    """Add missing training runes; preserve owned items and operator edits."""
+    art = {
+        'water': {2: 'thunderbolt', 4: 'thunderball', 6: 'chainlightning'},
+        'fire': {2: 'firebolt', 4: 'fireball', 6: 'firerain'},
+        'brotherhood': {2: 'windfist', 4: 'stormfist', 6: 'pyrokinesis'},
+    }
+    school_names = {'water': 'Kręgu Wody', 'fire': 'Kręgu Ognia', 'brotherhood': 'Bractwa'}
+    colony_prices = {2: 650, 4: 900, 6: 1500}
+    for prefix, game in (('g1', 'GOTHIC_I'), ('g2', 'GOTHIC_II')):
+        for spell in TRAINING_RUNES:
+            key = f'oe-{spell.school}-{prefix}-{spell.key}-rune'
+            ItemBluePrint.objects.get_or_create(catalog_key=key, defaults={
+                'name': f'{spell.name} — runa {school_names[spell.school]}',
+                'kind': 'rune', 'source_game': game,
+                'base_value': colony_prices[spell.circle] if prefix == 'g1' else 30 + spell.circle * 20,
+                'min_level': spell.circle * 2, 'merchant': True, 'tradeable': True,
+                'art_key': 'item_g1_itarrune' + art[spell.school][spell.circle],
+                'original_stats': {
+                    'balance': f'{spell.school}-runes-v1', 'runtime_supported': True,
+                    'note': 'School training rune; browser adaptation, not an original item identity.',
+                },
             })
 
 
@@ -237,9 +264,29 @@ def bot_magic_plan(profile,inventory,target=None):
         if profile.current_mana<BY_CODE[best.blueprint.catalog_key][0].cost or forecast>=physical:
             return ('clear_magic',None) if profile.prepared_magic_id else ('',None)
     if best and profile.prepared_magic_id!=best.pk:return 'prepare_magic',best.pk
-    desired=max((spell for spell in ALL_SPELLS if rune_allowed(profile,spell)),key=priority,default=None)
-    if desired and (not strongest_owned or priority(BY_CODE[strongest_owned.blueprint.catalog_key][0])<priority(desired)):
-        keys=[key for key,(spell,scroll) in BY_CODE.items() if spell.key==desired.key and not scroll]
-        blueprint=ItemBluePrint.objects.filter(catalog_key__in=keys,source_game__in=source_games(profile),base_value__gt=0,base_value__lte=max(0,profile.ore_balance-20)).order_by('base_value','pk').first()
-        if blueprint:return 'buy_magic',blueprint.pk
-    return '',None
+    owned_priority = priority(BY_CODE[strongest_owned.blueprint.catalog_key][0]) if strongest_owned else ()
+    eligible = {
+        spell.key: priority(spell)
+        for spell in ALL_SPELLS
+        if priority(spell) > owned_priority and rune_allowed(profile, spell)
+    }
+    upgrades = {
+        key: eligible[spell.key]
+        for key, (spell, scroll) in BY_CODE.items()
+        if not scroll and spell.key in eligible
+    }
+    if upgrades:
+        affordable = ItemBluePrint.objects.filter(
+            catalog_key__in=upgrades, source_game__in=source_games(profile),
+            base_value__gt=0, base_value__lte=profile.ore_balance - 20,
+            min_level__lte=profile.level,
+        )
+        from .equipment import allowed
+        blueprint = max(
+            (row for row in affordable if allowed(profile, row)),
+            key=lambda row: (upgrades[row.catalog_key], -row.base_value, -row.pk),
+            default=None,
+        )
+        if blueprint:
+            return 'buy_magic', blueprint.pk
+    return '', None

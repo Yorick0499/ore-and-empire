@@ -120,7 +120,7 @@ class WaterRuneTests(TestCase):
         self.p.guild='ARCH_WATER';self.p.level=40;self.p.magic_skill=6;self.p.save()
         rune=add_item(self.p,self.blueprint(6));prepare_magic(self.p,rune.pk)
         call_command('seed_gothic2_world',stdout=StringIO())
-        with patch('characters.magic.rune_allowed',side_effect=lambda p,s:s.school=='water'),patch('characters.magic.source_games',return_value=['GOTHIC_I','GOTHIC_II']):
+        with patch('characters.barrier.joined', return_value=True):
             action,pk=bot_magic_plan(self.p,list(self.p.inventory.select_related('blueprint')))
         self.assertEqual(action,'buy_magic')
         self.assertEqual(ItemBluePrint.objects.get(pk=pk).catalog_key,'oe-nk-nk_thunderstorm-rune')

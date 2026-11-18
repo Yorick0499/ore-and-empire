@@ -1,14 +1,17 @@
 # Magia — kręgi, runy, zwoje i odporności
 
-Stan zasad: 13 listopada 2026, poprawka ścieżki Wody #150 (bez nowej migracji, nadal 0054).
+Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Zmiana nie wymaga migracji.
 
-`/magia/` udostępnia 14 działających zaklęć: 9 dotychczasowych jako runy/zwoje, 3 nowe szkolne runy Wody oraz 2 zaklęcia VI kręgu po Barierze. Krąg Wody ma teraz własną runę na każdy krąg. Parametry walki są **autorskim balansem adaptacji**, nie tabelą oryginalnego Gothica. Nowe runy szkolne mają osobne klucze adaptacji; nie zmieniają tożsamości ani cen źródłowego katalogu.
+Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło paleniska z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dwa dodatkowe zaklęcia VI kręgu są dostępne po Barierze.
 
 | Szkoła | Zaklęcie | Krąg | Mana/rzut runy | Obrażenia | Efekt |
 |---|---|---:|---:|---:|---|
 | Ogień | Ognisty pocisk | 1 | 4 | 24 ognia | wysoki bezpośredni atak |
+| Ogień | Żar paleniska | 2 | 6 | 42 ognia | — |
 | Ogień | Kula ognia | 3 | 8 | 55 ognia | wysoki bezpośredni atak |
-| Ogień | Deszcz ognia | 5 | 16 | 100 ognia | pojedynczy przeciwnik tej adaptacji |
+| Ogień | Światło paleniska | 4 | 10 | 125 magii | skuteczne przeciw odporności na ogień |
+| Ogień | Deszcz ognia | 5 | 13 | 175 ognia | — |
+| Ogień | Korona płomieni | 6 | 16 | 225 ognia | — |
 | Woda | Sopel lodu | 1 | 4 | 30 magii | 25% mniej obrażeń w turze rzutu |
 | Woda | Lodowa lanca | 2 | 6 | 55 magii | 25% mniej obrażeń w turze rzutu |
 | Woda | Bryła lodu | 3 | 8 | 85 magii | 40% mniej obrażeń w turze rzutu |
@@ -16,12 +19,15 @@ Stan zasad: 13 listopada 2026, poprawka ścieżki Wody #150 (bez nowej migracji,
 | Woda | Lodowa fala | 5 | 13 | 175 magii | 50% mniej obrażeń w turze rzutu |
 | Woda | Grom | 6 | 16 | 220 magii | 35% mniej obrażeń w turze rzutu |
 | Bractwo | Uderzenie wiatru | 1 | 3 | 18 magii | co trzeci rzut przerywa turę przeciwnika |
+| Bractwo | Puls bagien | 2 | 5 | 33 magii | co trzeci rzut przerywa turę przeciwnika |
 | Bractwo | Uderzenie burzy | 3 | 7 | 42 magii | co drugi rzut przerywa turę przeciwnika |
-| Bractwo | Pirokineza | 5 | 11 | 70 magii | co drugi rzut przerywa turę przeciwnika |
+| Bractwo | Rezonans bagien | 4 | 9 | 105 magii | co drugi rzut przerywa turę przeciwnika |
+| Bractwo | Pirokineza | 5 | 13 | 150 magii | co drugi rzut przerywa turę przeciwnika |
+| Bractwo | Cisza bagien | 6 | 16 | 210 magii | co drugi rzut przerywa turę przeciwnika |
 | Ogień po Barierze | Deszcz ognia VI | 6 | 18 | 260 ognia | 25% mniej obrażeń w turze rzutu |
 | Woda po Barierze | Grom VI | 6 | 18 | 240 magii | 50% mniej obrażeń w turze rzutu |
 
-Tabela pokazuje obrażenia **run**. Ogólnodostępne zwoje Sopla/Bryły/Fali zachowują 20/40/75 obrażeń; nie otrzymują siły run szkoły Wody. Nowe runy II/IV/VI nie mają ogólnodostępnej wersji zwoju. Ich jednorazowe ceny w Kolonii to 650/900/1500 rudy; w Khorinis 70/110/150, zgodnie z odrębną ekonomią wcześniejszej paczki wyspy. Nauka kręgów i trening many pozostają płatne. Posiadane stare runy otrzymują nowe parametry bez wymiany przedmiotu; nowe pojawiają się po zwykłym restarcie launchera. Seeder zachowuje własne ceny operatora, ekwipunek i postęp.
+Tabela pokazuje obrażenia **run**. Ogólnodostępne zwoje zachowują dotychczasowe obrażenia, w tym 20/40/75 dla Sopla/Bryły/Fali oraz 100/70 dla Deszczu ognia/Pirokinezy. Nowe runy II/IV/VI nie mają ogólnodostępnej wersji zwoju. Ich jednorazowe ceny w Kolonii to 650/900/1500 rudy; w Khorinis 70/110/150, zgodnie z odrębną ekonomią wcześniejszej paczki wyspy. Nauka kręgów i trening many pozostają płatne. Posiadane stare runy otrzymują nowe parametry bez wymiany przedmiotu; nowe pojawiają się po zwykłym restarcie launchera. Przy osobnym uruchamianiu WSGI operator może dodać je poleceniem `python manage.py seed_equipment`. Seeder zachowuje własne ceny operatora, ekwipunek i postęp.
 
 Każdy zwój kosztuje 1 many/rzut i jedną sztukę na **rzeczywiste rzucenie**, bez wymogu szkoły/kręgu. Runa jest wielokrotnego użytku, wymaga kręgu i szkoły obozu. Dostępne oddzielnie kupione egzemplarze tego samego zwoju tworzą wspólny zapas walki. Najpierw zużywa się przygotowany, potem pozostałe według ID. Dodatkowe chronione i wystawione egzemplarze nie są pobierane; ostatni dostępny zapas/mana ogranicza liczbę rzutów. Pierwszy rzut musi być opłacalny przed rozpoczęciem walki; po wyczerpaniu zapasu postać broni się pięściami do końca starcia, bez darmowej amunicji. Przed kolejną walką można wrócić do broni na ekranie magii. Zużyty ostatni dostępny zwój czyści przygotowanie; jeśli pozostał dostępny egzemplarz tego samego typu, przygotowanie przechodzi na niego. Przedmiot przygotowany nie może być wystawiony/sprzedany bez wcześniejszego wyłączenia go. Cudzy, wystawiony albo niedozwolony przedmiot jest odrzucany także przez serwis walki.
 
@@ -62,7 +68,7 @@ po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bo
 
 Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; po wyborze Bractwa zachowana rodzima szkoła pozostaje dostępna do historycznej kampanii. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. [Frakcje](CAMP_GUILDS.md).
 
-Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Część starć wymaga zwoju innego żywiołu, ochrony i odpoczynku. [Organiczne drogi Ognia/Wody i Bractwa](BUILD_PLAYTHROUGHS.md).
+Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Odporności mogą premiować runę z niższego kręgu. Przed trudnym starciem warto sprawdzić ochronę i odpocząć. [Organiczne drogi Ognia/Wody i Bractwa](BUILD_PLAYTHROUGHS.md).
 
 ## Ponowne przejście Wody bez zwojów — #150
 
