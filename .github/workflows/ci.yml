@@ -113,7 +113,8 @@ jobs:
           retention-days: 7
 
   postgres:
-    runs-on: ubuntu-latest
+    # Ubuntu 24.04 provides the PostgreSQL 16 client used by this job.
+    runs-on: ubuntu-24.04
     services:
       postgres:
         image: postgres:16
