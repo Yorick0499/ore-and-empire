@@ -91,12 +91,22 @@ class CampaignPacingTests(TestCase):
                     product=next((q for q in StoreProduct.objects.filter(enabled=True,kind__in=['health','energy'],price__lte=hero.premium_balance,level__lte=hero.level).order_by('price','pk') if helpful(hero,q,refills_remaining(hero)) and ((q.kind=='health' and hero.max_health-hero.current_health>=q.effect) or (q.kind=='energy' and hero.current_energy<15))),None)
                     if not product:return
                     advance(10);self.assertTrue(purchase_product(hero,product.pk,uuid4()));actions['earned_shop_'+product.kind]+=1
+            level_grind_streak = 0
+            longest_level_grind = 0
+
             def do(label,fn):
+                nonlocal level_grind_streak, longest_level_grind
                 for _ in range(300):
                     advance(10);hero.refresh_from_db();game.refresh_player(hero)
                     resupply()
                     result=fn();actions[label]+=1
-                    if result is not False:return result
+                    if result is not False:
+                        if label == 'adventure_claim':
+                            level_grind_streak += 1
+                            longest_level_grind = max(longest_level_grind, level_grind_streak)
+                        elif label != 'adventure_start':
+                            level_grind_streak = 0
+                        return result
                     advance(60,'recovery')
                 self.fail((label,hero.level,hero.current_energy,hero.current_health,hero.ore_balance))
             def post(action,target,**kwargs):
@@ -108,16 +118,32 @@ class CampaignPacingTests(TestCase):
                 hero.refresh_from_db()
             def mine():
                 do('mine',lambda:game.start_mining(hero,15));advance(max(0,int((hero.action_end_time-now).total_seconds())),'timer');do('mine_claim',lambda:game.claim_ore_reward(hero))
+            longest_income_grind = 0
+
             def funds(amount):
+                nonlocal longest_income_grind
+                jobs = 0
                 for _ in range(2000):
                     hero.refresh_from_db()
                     if hero.ore_balance>=amount:return
+                    if build_strategy and build_strategy.kind == 'archer':
+                        # Use ordinary vendor sales for surplus hunting materials.
+                        loot = hero.inventory.filter(
+                            origin='loot', blueprint__kind='material', blueprint__tradeable=True,
+                            blueprint__base_value__gte=2, is_market_listed=False,
+                            is_equipped=False, is_protected=False,
+                        ).select_related('blueprint').order_by('-blueprint__base_value', 'pk').first()
+                        if loot:
+                            do('income_sell_loot', lambda:game.sell_item_from_npc(hero, loot))
+                            continue
                     if income_first:
                         from .economy import start_adventure,claim_adventure
                         template=AdventureTemplate.objects.filter(universe=region(hero).universe,enabled=True,level__lte=hero.level).order_by('-ore_reward','duration_seconds').first()
                         run=do('income_adventure',lambda:start_adventure(hero,template.pk))
                         advance(max(0,int((run.ends_at-now).total_seconds())),'timer')
                         do('income_claim',lambda:claim_adventure(hero,run.pk))
+                        jobs += 1
+                        longest_income_grind = max(longest_income_grind, jobs)
                     else:mine()
                 self.fail('Income budget exceeded')
             def prepare(target=None):
@@ -194,4 +220,9 @@ class CampaignPacingTests(TestCase):
                 prepare('sleeper_sanctum');result=do('personal_finale',lambda:game.execute_boss(hero,'sleeper_sanctum'));self.assertTrue(result.won,(hero.level,hero.max_health,hero.mana,hero.equipment_stats,result.combat_log))
             hero.refresh_from_db()
             if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start})
-            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'build':build_strategy.kind if build_strategy else 'warrior','universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.' if build_strategy else 'Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Bez handlu łupami; model podstawowy nie awansuje rang, kontynuacja ma własny zakres.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})
+            if build_strategy and build_strategy.kind == 'archer':
+                # Deterministic smoke limits for the worst individual gap,
+                # not promises about the total duration of human sessions.
+                self.assertLessEqual(longest_level_grind, 3, universe)
+                self.assertLessEqual(longest_income_grind, 12, universe)
+            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'build':build_strategy.kind if build_strategy else 'warrior','universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'longest_level_grind':longest_level_grind,'longest_income_grind':longest_income_grind,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.' if build_strategy else 'Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Łucznik może sprzedać zbędne materiały u NPC; pozostali nie handlują łupami. Model podstawowy nie awansuje rang.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})

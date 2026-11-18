@@ -24,7 +24,7 @@ To dziewięć scenariuszy, a nie wszystkie kombinacje broni i wyborów. Ogranicz
 
 Wojownik rozwija siłę i umiejętność wybranej broni. Łucznik potrzebuje zręczności, łuku i strzał; podstawowe rangi mogą wymagać także siły. Wyższe rangi wojowników przyjmują siłę **lub** zręczność. Broń trzeba założyć po zakupie, a łupy można porównać przed wymianą.
 
-Mag rozwija manę i płaci PN/rudą za kręgi. Pierwsze kręgi są dostępne przed tytułem pełnego maga po osiągnięciu odpowiedniej rangi. Runy i zwoje kupuj w **Magii** — oferta wiedzy jest oddzielna od zwykłego kupca. Nie każda tożsamość z katalogu jest działającym zaklęciem. Osobno kupione zwoje tego samego typu są teraz wspólnym zapasem walki. Po zużyciu przygotowanego egzemplarza pozostający zapas nadal jest przygotowany. Dodatkowe chronione i wystawione na targ egzemplarze nie są zużywane. Runa ma wymaganą szkołę/krąg; zwoju może użyć każdy, lecz każda inkantacja zużywa sztukę i manę. Odporność na własny żywioł może wymagać kupionego zwoju innego typu albo innej taktyki.
+Mag rozwija manę i płaci PN/rudą za kręgi. Pierwsze kręgi są dostępne przed tytułem pełnego maga po osiągnięciu odpowiedniej rangi. Runy i zwoje kupuj w **Magii** — oferta wiedzy jest oddzielna od zwykłego kupca. Nie każda tożsamość z katalogu jest działającym zaklęciem. Osobno kupione zwoje tego samego typu są teraz wspólnym zapasem walki. Po zużyciu przygotowanego egzemplarza pozostający zapas nadal jest przygotowany. Dodatkowe chronione i wystawione na targ egzemplarze nie są zużywane. Runa ma wymaganą szkołę/krąg; zwoju może użyć każdy, lecz każda inkantacja zużywa sztukę i manę. Każda szkoła ma runę na każdy krąg. Ognisty golem mocno odpiera ogień, więc przed próbą Arcymaga Ognia warto kupić Światło Innosa IV i przygotować zapas many.
 
 Sama mana na pierwszy rzut nie wystarcza na długą walkę. Polowanie i boss pokazują obrażenia czaru po odporności, orientacyjną liczbę potrzebnych rzutów, koszt many i rzuty dostępne z obecnego zapasu. Prognoza zdrowia uwzględnia brak many/zwojów oraz późniejszą walkę pięściami. Fazy bossa są liczone w prognozie zdrowia. Zapas rzutów jest szacunkiem pokonania samym czarem, nie warunkiem wejścia ani obietnicą zwycięstwa.
 
@@ -49,6 +49,17 @@ Nowe pliki raportów; istniejące nie są nadpisywane. Komenda zawsze uruchamia 
 W tej macierzy globalne zwycięstwo społeczności jest zdarzeniem zewnętrznym po ukończeniu podstawowej drogi; **nie mierzy czasu oczekiwania całego serwera na Barierę**. Osobna komenda `simulate_journey` sprawdza prawdziwą walkę trzech zdobytych od 0 kont, kopię, odtworzenie i aktywację. Te dowody uzupełniają się, nie należy dodawać ani bezpośrednio porównywać ich czasów.
 
 Czas każdej operacji jest modelowany jako 10 sekund, regeneracja i timery są wirtualne. Oczekiwanie na wydobycie pochodzi teraz z faktycznego `action_end_time`: zmiana w UI trwa 15 **sekund**, nie 15 minut. Poprzednie raporty pełnej drogi zawierały konserwatywne nadmiarowe czekanie i pozostają historyczne. Nie zmieniono timera gry ani zapisów.
+
+Macierz sprawdza Ogień w obu regionach, Wodę i Guru wyłącznie z runami własnych szkół po rozpoczęciu nauki magii. Dla Nowego Obozu i Farmy Onara raport zapisuje kolejne zakupione łuki, poziom i zręczność w chwili zmiany oraz liczbę walk, w których silnik pobrał strzałę. Rejestruje też najdłuższą serię zleceń powtarzanych pod rząd dla PD.
+
+Próby łucznika od 0 do rangi 8, Irdorath i pierwszych regionalnych wart:
+
+| Początek | Poziom na końcu | Łuki po drodze | Walki ze strzałą | Najdłuższa seria zleceń na PD / na jedną płatność | Zlecenia zarobkowe łącznie |
+|---|---:|---:|---:|---:|---:|
+| Nowy Obóz | 60 | 9 | 105 | 0 / 10 | 148 |
+| Farma Onara | 60 | 5 | 96 | 0 / 8 | 62 |
+
+Obie próby mieszczą punkty treningu w budżecie i w razie potrzeby sprzedają u NPC zbędne materiały z polowań. W Nowym Obozie ulepszenia pojawiły się m.in. na poziomach 4, 7 i 8, na Farmie Onara na 10, 24 i 27. Obaj kupili Smoczy łuk na poziomie 34. Większy łączny koszt startu w Kolonii pozostaje widoczny. Próby sprawdzają dostęp do dalszego etapu bez zmieniania progów łuków, czasu odnowy ani nagród świata.
 
 CI dzieli dziewięć organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. [Wyniki i ograniczenia](reports/buildy-frakcje-2026-11-12.json).
 
