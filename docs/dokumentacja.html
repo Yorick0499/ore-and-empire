@@ -1521,6 +1521,38 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <p>W tej macierzy globalne zwycięstwo społeczności jest zdarzeniem zewnętrznym po ukończeniu podstawowej drogi; <strong>nie mierzy czasu oczekiwania całego serwera na Barierę</strong>. Osobna komenda <code>simulate_journey</code> sprawdza prawdziwą walkę trzech zdobytych od 0 kont, kopię, odtworzenie i aktywację. Te dowody uzupełniają się, nie należy dodawać ani bezpośrednio porównywać ich czasów.</p>
 <p>Czas każdej operacji jest modelowany jako 10 sekund, regeneracja i timery są wirtualne. Oczekiwanie na wydobycie pochodzi teraz z faktycznego <code>action_end_time</code>: zmiana w UI trwa 15 <strong>sekund</strong>, nie 15 minut. Poprzednie raporty pełnej drogi zawierały konserwatywne nadmiarowe czekanie i pozostają historyczne. Nie zmieniono timera gry ani zapisów.</p>
 <p>Macierz sprawdza Ogień w obu regionach, Wodę i Guru wyłącznie z runami własnych szkół po rozpoczęciu nauki magii. Dla Nowego Obozu i Farmy Onara raport zapisuje kolejne zakupione łuki, poziom i zręczność w chwili zmiany oraz liczbę walk, w których silnik pobrał strzałę. Rejestruje też najdłuższą serię zleceń powtarzanych pod rząd dla PD.</p>
+<p>Próby łucznika od 0 do rangi 8, Irdorath i pierwszych regionalnych wart:</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Początek</th>
+<th style="text-align: right;">Poziom na końcu</th>
+<th style="text-align: right;">Łuki po drodze</th>
+<th style="text-align: right;">Walki ze strzałą</th>
+<th style="text-align: right;">Najdłuższa seria zleceń na PD / na jedną płatność</th>
+<th style="text-align: right;">Zlecenia zarobkowe łącznie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nowy Obóz</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">0 / 10</td>
+<td style="text-align: right;">148</td>
+</tr>
+<tr>
+<td>Farma Onara</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">0 / 8</td>
+<td style="text-align: right;">62</td>
+</tr>
+</tbody>
+</table></div>
+<p>Obie próby mieszczą punkty treningu w budżecie i w razie potrzeby sprzedają u NPC zbędne materiały z polowań. W Nowym Obozie ulepszenia pojawiły się m.in. na poziomach 4, 7 i 8, na Farmie Onara na 10, 24 i 27. Obaj kupili Smoczy łuk na poziomie 34. Większy łączny koszt startu w Kolonii pozostaje widoczny. Próby sprawdzają dostęp do dalszego etapu bez zmieniania progów łuków, czasu odnowy ani nagród świata.</p>
 <p>CI dzieli dziewięć organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. <a href="#report-buildy-frakcje-2026-11-12">Wyniki i ograniczenia</a>.</p>
 <p>Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich 400 regionalnych stopni. Regionalne wydarzenia #137 są wdrożone. Dłuższa gospodarka 250 botów i obserwacje ludzi pozostają dalszym rozwojem w #9. <a href="#report-grywalnosc-wydania-2026-11-13">Świeża powtórka wszystkich dziewięciu dróg i ograniczenia</a>.</p></article><article id="doc-camps" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/CAMPS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CAMPS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-camps--rangi-proby-awansow-i-przywileje">Rangi, próby awansów i przywileje</h2>
 <p>Stan: 13 XI 2026. Podstawowy katalog rang ma wersję 2, dalsze awanse działają od 0051. To własna progresja MMORPG inspirowana Gothic, nie kopia oryginalnych skryptów rekrutacji. <a href="#doc-game-content--podstawowe-rangi">Pełne tabele podstawowych rang z kodu</a>.</p>

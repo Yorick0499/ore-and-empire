@@ -59,7 +59,13 @@ class EarnedBuild:
         if not magic:
             skill='bow_skill' if self.kind=='archer' else 'onehand_skill'
             if getattr(p,skill)<min(60,p.level*2) and p.skill_points>10:self.train(test,p,steps,skill,min(min(60,p.level*2)-getattr(p,skill),p.skill_points-10))
-        if p.skill_points>reserve:self.train(test,p,steps,attr,p.skill_points-reserve)
+        points = max(0, p.skill_points - reserve)
+        if self.kind == 'archer':
+            # Keep a useful dexterity target for this level without treating
+            # every unspent point as a mandatory purchase before the next fight.
+            points = min(points, max(0, 10 + 6 * p.level - p.dexterity))
+        if points:
+            self.train(test, p, steps, attr, points)
         kind='bow' if self.kind=='archer' else 'onehand'
         choices=ItemBluePrint.objects.filter(source_game__in=source_games(p),merchant=True,kind='weapon',weapon_type=kind,required_strength__lte=p.strength,required_dexterity__lte=p.dexterity,base_value__lte=max(100,p.level*80)).order_by('-damage','base_value','pk')
         bp=next((b for b in choices if allowed(p,b)),None)

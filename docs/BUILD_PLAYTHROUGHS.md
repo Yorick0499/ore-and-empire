@@ -52,6 +52,15 @@ Czas każdej operacji jest modelowany jako 10 sekund, regeneracja i timery są w
 
 Macierz sprawdza Ogień w obu regionach, Wodę i Guru wyłącznie z runami własnych szkół po rozpoczęciu nauki magii. Dla Nowego Obozu i Farmy Onara raport zapisuje kolejne zakupione łuki, poziom i zręczność w chwili zmiany oraz liczbę walk, w których silnik pobrał strzałę. Rejestruje też najdłuższą serię zleceń powtarzanych pod rząd dla PD.
 
+Próby łucznika od 0 do rangi 8, Irdorath i pierwszych regionalnych wart:
+
+| Początek | Poziom na końcu | Łuki po drodze | Walki ze strzałą | Najdłuższa seria zleceń na PD / na jedną płatność | Zlecenia zarobkowe łącznie |
+|---|---:|---:|---:|---:|---:|
+| Nowy Obóz | 60 | 9 | 105 | 0 / 10 | 148 |
+| Farma Onara | 60 | 5 | 96 | 0 / 8 | 62 |
+
+Obie próby mieszczą punkty treningu w budżecie i w razie potrzeby sprzedają u NPC zbędne materiały z polowań. W Nowym Obozie ulepszenia pojawiły się m.in. na poziomach 4, 7 i 8, na Farmie Onara na 10, 24 i 27. Obaj kupili Smoczy łuk na poziomie 34. Większy łączny koszt startu w Kolonii pozostaje widoczny. Próby sprawdzają dostęp do dalszego etapu bez zmieniania progów łuków, czasu odnowy ani nagród świata.
+
 CI dzieli dziewięć organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. [Wyniki i ograniczenia](reports/buildy-frakcje-2026-11-12.json).
 
 Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich 400 regionalnych stopni. Regionalne wydarzenia #137 są wdrożone. Dłuższa gospodarka 250 botów i obserwacje ludzi pozostają dalszym rozwojem w #9. [Świeża powtórka wszystkich dziewięciu dróg i ograniczenia](reports/grywalnosc-wydania-2026-11-13.json).
