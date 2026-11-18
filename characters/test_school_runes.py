@@ -95,13 +95,30 @@ class SchoolRuneTests(TestCase):
         self.assertLess(BY_CODE[blueprint.catalog_key][0].circle, 4)
         self.assertTrue(purchase_magic(profile, blueprint_id))
 
-    def test_reseed_preserves_new_runes_and_existing_scroll_balance(self):
+    def test_reseed_renames_existing_runes_and_preserves_items_and_operator_edits(self):
+        profile = self.student('brotherhood', 'GURU')
+        profile.magic_skill = 4
+        profile.save(update_fields=['magic_skill'])
         blueprint = ItemBluePrint.objects.get(catalog_key='oe-brotherhood-g1-marshresonance-rune')
+        owned = purchase_magic(profile, blueprint.pk)
+        self.assertTrue(prepare_magic(profile, owned.pk))
+        blueprint.name = 'Rezonans bagien — runa Bractwa'
         blueprint.base_value = 1234
-        blueprint.save(update_fields=['base_value'])
+        blueprint.save(update_fields=['name', 'base_value'])
+        custom = ItemBluePrint.objects.get(catalog_key='oe-brotherhood-g2-marshresonance-rune')
+        custom.name = 'Runa ze sklepu operatora'
+        custom.save(update_fields=['name'])
         count = ItemBluePrint.objects.count()
         call_command('seed_equipment', stdout=StringIO())
         blueprint.refresh_from_db()
+        custom.refresh_from_db()
+        owned.refresh_from_db()
+        self.assertEqual(blueprint.name, 'Uścisk Śniącego — runa Bractwa')
+        self.assertEqual(custom.name, 'Runa ze sklepu operatora')
+        self.assertEqual(owned.blueprint_id, blueprint.pk)
+        self.assertEqual(combat_plan(profile).spell.name, 'Uścisk Śniącego')
+        self.client.force_login(profile.user)
+        self.assertContains(self.client.get('/magia/'), 'Uścisk Śniącego')
         self.assertEqual(blueprint.base_value, 1234)
         self.assertEqual(ItemBluePrint.objects.count(), count)
         self.assertEqual(BY_CODE['g1-itarscrollfirerain'][0].damage, 100)

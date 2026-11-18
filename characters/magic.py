@@ -43,15 +43,15 @@ WATER_RUNES=(
     Spell('chainlightning','Grom','water',6,16,220,'magic',35),
 )
 FIRE_ADDITIONS = (
-    Spell('emberburst', 'Żar paleniska', 'fire', 2, 6, 42, 'fire'),
+    Spell('emberburst', 'Żar Innosa', 'fire', 2, 6, 42, 'fire'),
     # A magical strike gives the fourth circle an answer to fire resistance.
-    Spell('hearthlight', 'Światło paleniska', 'fire', 4, 10, 125, 'magic'),
-    Spell('flamecrest', 'Korona płomieni', 'fire', 6, 16, 225, 'fire'),
+    Spell('hearthlight', 'Światło Innosa', 'fire', 4, 10, 125, 'magic'),
+    Spell('flamecrest', 'Gniew Innosa', 'fire', 6, 16, 225, 'fire'),
 )
 BROTHERHOOD_ADDITIONS = (
-    Spell('marshpulse', 'Puls bagien', 'brotherhood', 2, 5, 33, 'magic', stagger_every=3),
-    Spell('marshresonance', 'Rezonans bagien', 'brotherhood', 4, 9, 105, 'magic', stagger_every=2),
-    Spell('marshsilence', 'Cisza bagien', 'brotherhood', 6, 16, 210, 'magic', stagger_every=2),
+    Spell('marshpulse', 'Podmuch Śniącego', 'brotherhood', 2, 5, 33, 'magic', stagger_every=3),
+    Spell('marshresonance', 'Uścisk Śniącego', 'brotherhood', 4, 9, 105, 'magic', stagger_every=2),
+    Spell('marshsilence', 'Wola Śniącego', 'brotherhood', 6, 16, 210, 'magic', stagger_every=2),
 )
 _rune_stats = {spell.key: spell for spell in WATER_RUNES}
 _rune_stats.update({
@@ -77,19 +77,29 @@ ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
 
 
 def seed_training_runes():
-    """Add missing training runes; preserve owned items and operator edits."""
+    """Add training runes and refresh earlier default names in place."""
     art = {
         'water': {2: 'thunderbolt', 4: 'thunderball', 6: 'chainlightning'},
         'fire': {2: 'firebolt', 4: 'fireball', 6: 'firerain'},
         'brotherhood': {2: 'windfist', 4: 'stormfist', 6: 'pyrokinesis'},
     }
     school_names = {'water': 'Kręgu Wody', 'fire': 'Kręgu Ognia', 'brotherhood': 'Bractwa'}
+    previous_names = {
+        'emberburst': 'Żar paleniska',
+        'hearthlight': 'Światło paleniska',
+        'flamecrest': 'Korona płomieni',
+        'marshpulse': 'Puls bagien',
+        'marshresonance': 'Rezonans bagien',
+        'marshsilence': 'Cisza bagien',
+    }
     colony_prices = {2: 650, 4: 900, 6: 1500}
     for prefix, game in (('g1', 'GOTHIC_I'), ('g2', 'GOTHIC_II')):
         for spell in TRAINING_RUNES:
             key = f'oe-{spell.school}-{prefix}-{spell.key}-rune'
-            ItemBluePrint.objects.get_or_create(catalog_key=key, defaults={
-                'name': f'{spell.name} — runa {school_names[spell.school]}',
+            suffix = f' — runa {school_names[spell.school]}'
+            name = spell.name + suffix
+            blueprint, created = ItemBluePrint.objects.get_or_create(catalog_key=key, defaults={
+                'name': name,
                 'kind': 'rune', 'source_game': game,
                 'base_value': colony_prices[spell.circle] if prefix == 'g1' else 30 + spell.circle * 20,
                 'min_level': spell.circle * 2, 'merchant': True, 'tradeable': True,
@@ -99,6 +109,9 @@ def seed_training_runes():
                     'note': 'School training rune; browser adaptation, not an original item identity.',
                 },
             })
+            previous = previous_names.get(spell.key)
+            if not created and previous and blueprint.name == previous + suffix:
+                ItemBluePrint.objects.filter(pk=blueprint.pk, name=blueprint.name).update(name=name)
 
 
 def school_for(profile):

@@ -2,16 +2,16 @@
 
 Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Zmiana nie wymaga migracji.
 
-Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło paleniska z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dwa dodatkowe zaklęcia VI kręgu są dostępne po Barierze.
+Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło Innosa z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dwa dodatkowe zaklęcia VI kręgu są dostępne po Barierze.
 
 | Szkoła | Zaklęcie | Krąg | Mana/rzut runy | Obrażenia | Efekt |
 |---|---|---:|---:|---:|---|
 | Ogień | Ognisty pocisk | 1 | 4 | 24 ognia | wysoki bezpośredni atak |
-| Ogień | Żar paleniska | 2 | 6 | 42 ognia | — |
+| Ogień | Żar Innosa | 2 | 6 | 42 ognia | — |
 | Ogień | Kula ognia | 3 | 8 | 55 ognia | wysoki bezpośredni atak |
-| Ogień | Światło paleniska | 4 | 10 | 125 magii | skuteczne przeciw odporności na ogień |
+| Ogień | Światło Innosa | 4 | 10 | 125 magii | skuteczne przeciw odporności na ogień |
 | Ogień | Deszcz ognia | 5 | 13 | 175 ognia | — |
-| Ogień | Korona płomieni | 6 | 16 | 225 ognia | — |
+| Ogień | Gniew Innosa | 6 | 16 | 225 ognia | — |
 | Woda | Sopel lodu | 1 | 4 | 30 magii | 25% mniej obrażeń w turze rzutu |
 | Woda | Lodowa lanca | 2 | 6 | 55 magii | 25% mniej obrażeń w turze rzutu |
 | Woda | Bryła lodu | 3 | 8 | 85 magii | 40% mniej obrażeń w turze rzutu |
@@ -19,11 +19,11 @@ Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Świat
 | Woda | Lodowa fala | 5 | 13 | 175 magii | 50% mniej obrażeń w turze rzutu |
 | Woda | Grom | 6 | 16 | 220 magii | 35% mniej obrażeń w turze rzutu |
 | Bractwo | Uderzenie wiatru | 1 | 3 | 18 magii | co trzeci rzut przerywa turę przeciwnika |
-| Bractwo | Puls bagien | 2 | 5 | 33 magii | co trzeci rzut przerywa turę przeciwnika |
+| Bractwo | Podmuch Śniącego | 2 | 5 | 33 magii | co trzeci rzut przerywa turę przeciwnika |
 | Bractwo | Uderzenie burzy | 3 | 7 | 42 magii | co drugi rzut przerywa turę przeciwnika |
-| Bractwo | Rezonans bagien | 4 | 9 | 105 magii | co drugi rzut przerywa turę przeciwnika |
+| Bractwo | Uścisk Śniącego | 4 | 9 | 105 magii | co drugi rzut przerywa turę przeciwnika |
 | Bractwo | Pirokineza | 5 | 13 | 150 magii | co drugi rzut przerywa turę przeciwnika |
-| Bractwo | Cisza bagien | 6 | 16 | 210 magii | co drugi rzut przerywa turę przeciwnika |
+| Bractwo | Wola Śniącego | 6 | 16 | 210 magii | co drugi rzut przerywa turę przeciwnika |
 | Ogień po Barierze | Deszcz ognia VI | 6 | 18 | 260 ognia | 25% mniej obrażeń w turze rzutu |
 | Woda po Barierze | Grom VI | 6 | 18 | 240 magii | 50% mniej obrażeń w turze rzutu |
 

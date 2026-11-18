@@ -532,12 +532,12 @@ Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwo
 | waterlance — Lodowa lanca | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
 | thunderball — Piorun kulisty | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
 | chainlightning — Grom | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
-| emberburst — Żar paleniska | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — |
-| hearthlight — Światło paleniska | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — |
-| flamecrest — Korona płomieni | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — |
-| marshpulse — Puls bagien | Bractwo Śniącego | 2 | 5 | 33 / magia | 0 | 3 |
-| marshresonance — Rezonans bagien | Bractwo Śniącego | 4 | 9 | 105 / magia | 0 | 2 |
-| marshsilence — Cisza bagien | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 |
+| emberburst — Żar Innosa | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — |
+| hearthlight — Światło Innosa | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — |
+| flamecrest — Gniew Innosa | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — |
+| marshpulse — Podmuch Śniącego | Bractwo Śniącego | 2 | 5 | 33 / magia | 0 | 3 |
+| marshresonance — Uścisk Śniącego | Bractwo Śniącego | 4 | 9 | 105 / magia | 0 | 2 |
+| marshsilence — Wola Śniącego | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 |
 | nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — |
 | nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — |
 
