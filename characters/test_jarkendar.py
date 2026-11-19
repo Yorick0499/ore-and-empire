@@ -97,12 +97,32 @@ class PublicJarkendarTests(TestCase):
         q.refresh_from_db();run.refresh_from_db();self.assertEqual(q.title,'Własny tytuł operatora');self.assertEqual(run.snapshot,snapshot)
         self.assertEqual(before,(StoryQuest.objects.count(),ItemBluePrint.objects.count()))
     def test_all_factions_and_unaffiliated_accounts_have_same_free_access(self):
-        for camp,rank,world in [('OLD_CAMP','BARON',self.c),('OLD_CAMP','FIRE_MAGE',self.c),('NEW_CAMP','WATER_MAGE',self.c),('NEW_CAMP','MERCENARY',self.c),('CITY_WATCH','K2_COMMANDER',self.i),('NONE','NONE',self.i)]:
-            p=person(world,camp,rank);p.level=10;p.premium_balance=0;p.save()
-            from .barrier import travel
-            self.assertTrue(travel(p,self.i.pk));self.finish_portal(p);self.assertTrue(unlocked(p))
-        from .factions import FACTIONS
-        self.assertEqual(len(FACTIONS),5)
+        from django.apps import apps
+        from .barrier import travel
+        from .faction_succession_v2 import apply
+        from .factions import FACTIONS, enroll, membership
+
+        apply(apps, self.race)
+        paths = (
+            ('OLD_CAMP', 'BARON', self.c), ('OLD_CAMP', 'FIRE_MAGE', self.c),
+            ('NEW_CAMP', 'WATER_MAGE', self.c), ('NEW_CAMP', 'MERCENARY', self.c),
+            ('CITY_WATCH', 'K2_COMMANDER', self.i), ('SWAMP_CAMP', 'ARCH_GURU', self.c),
+            ('NONE', 'NONE', self.i),
+        )
+        checked = set()
+        for camp, rank, world in paths:
+            with self.subTest(camp=camp, rank=rank):
+                p = person(world, camp, rank)
+                p.level = 10
+                p.premium_balance = 0
+                p.save(update_fields=['level', 'premium_balance'])
+                enroll(p)
+                member = membership(p)
+                checked.add(member.faction if member else None)
+                self.assertTrue(travel(p, self.i.pk))
+                self.finish_portal(p)
+                self.assertTrue(unlocked(p))
+        self.assertEqual(checked, set(dict(FACTIONS)) | {None})
     def test_normal_actions_finish_eight_contracts_and_award_trophy(self):
         now=timezone.now();counts={}
         def advance(minutes):
