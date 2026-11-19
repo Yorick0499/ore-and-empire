@@ -10,6 +10,12 @@ Stan: 13 XI 2026, po #141. Wszystkie próby wykonujemy na odizolowanych bazach, 
 
 Nowa próba Nowego Obozu zabrania zakupu zwojów i przechodzi od zera do NK, rangi8 i pierwszych wart, kupując runy wszystkich sześciu kręgów oraz runę NK. Poprzednie wyniki dopuszczały zwoje, więc nie potwierdzały samowystarczalności szkolnej magii. [Nowy raport](reports/mag-wody-runy-2026-11-13.json), [balans i ograniczenia próby](MAGIC.md).
 
+## Współpraca ze Śniącym z botami
+
+Scenariusz `characters.playtest_sleeper_team` zaczyna od trzech przygotowanych kont w Starym Obozie. Gracz używa Gniewu Innosa, dwa boty zaczynają jako łucznik i wojownik. Poprzednia polityka pozostawiała 25 016 z 120 000 HP po 420 rundach, przy 13 uderzeniach botów. Po nadaniu pierwszeństwa gotowym turom Śniącego drużyna zwycięża, a wszystkie trzy konta wnoszą wkład. Zmiana nie narusza pieczęci, kosztu, wymagań ani limitu czasu między uderzeniami.
+
+Uruchomienie w odizolowanej bazie testowej: `python manage.py test characters.playtest_sleeper_team --noinput`. Dwie godziny między rundami są wirtualne, boty grają w wymuszonych aktywnych turach, a poziom 10 wspólnoty stanowi warunek wstępny. Zwycięstwo zleca upadek Bariery. Kopię, odtworzenie i aktywację sprawdza osobno `simulate_journey`.
+
 ## Co sprawdzono w bieżącej wersji
 
 | Próba | Zakres | Wynik |

@@ -94,7 +94,7 @@ a osobny test przechodzi całość graczem przez formularze i wspólne serwisy g
 z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
 wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.
 
-Aktualna polityka to baseline-24, schemat obserwacji 23; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
+Aktualna polityka to baseline-25, schemat obserwacji 23; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
 
 ## Kampania po połączeniu
 

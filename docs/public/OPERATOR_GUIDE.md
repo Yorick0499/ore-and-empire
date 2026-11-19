@@ -20,7 +20,7 @@ Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwyci�
 | Opcjonalny serwer | PostgreSQL, psycopg 3.3.8; szablon Compose używa PostgreSQL 17 |
 | Procesy produkcyjne | Gunicorn 26.2.0, osobny `run_worker`, WhiteNoise 6.12.0, Caddy 2, Docker Compose / szablony systemd |
 | Reguły gry | Wspólne usługi domenowe i transakcje Django dla ludzi oraz botów |
-| Boty | Reguły `baseline-24`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
+| Boty | Reguły `baseline-25`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
 | Opcjonalny eksperyment AI | Lokalny adapter Ollama, jawny opt-in; model i GPU nie są wymagane do normalnej gry |
 | Zegar | `zoneinfo`, `Europe/Warsaw`, Astral 3.2; automatyczne CET/CEST |
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |

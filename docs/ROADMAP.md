@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan: **14 listopada 2026, po #151 z wyprawami na rozkaz #152**, migracja 0055, domyślna polityka baseline-24 i schemat obserwacji 23. Starsze wpisy pozostają historią zmian.
+Stan: **14 listopada 2026, po #151 z wyprawami na rozkaz #152**, migracja 0055, domyślna polityka baseline-25 i schemat obserwacji 23. Starsze wpisy pozostają historią zmian.
 
 ## Gotowa droga gry
 

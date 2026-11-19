@@ -2,7 +2,7 @@
 
 Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
-Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-24, schemat obserwacji 23. Dawne polityki 7–23 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
+Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-25, schemat obserwacji 23. Dawne polityki 7–24 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
 
 | Osobowość | Sesje na dobę | Minimalny odstęp tur | Preferencja | Szansa zasilenia / blok | Kwota | Limit odłamków / dobę |
 |---|---:|---:|---|---:|---:|---:|
