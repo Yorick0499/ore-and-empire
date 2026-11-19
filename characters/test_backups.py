@@ -5,7 +5,56 @@ from django.conf import settings
 from django.test import SimpleTestCase
 from .backups import create_backup,restore_drill,backup_status,inspect_database
 
+LEGACY_BROTHERHOOD = """
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ore_empire.settings')
+import django
+django.setup()
+from django.core.management import call_command
+from characters.test_faction_succession import fixture, person, succeed
+from characters.faction_choice import choose
+from characters.models import CampGuild, CampQuest, FactionRankProgress, FactionMembership
+from characters.postgres_backups import historical_release_dump
+from io import StringIO
+
+call_command('migrate', 'characters', '0058', interactive=False, stdout=StringIO())
+for app in ('auth', 'admin', 'sessions'):
+    call_command('migrate', app, interactive=False, stdout=StringIO())
+colony, island, race = fixture()
+guru = person(colony, 'SWAMP_CAMP', 'ARCH_GURU')
+other = person(colony, 'SWAMP_CAMP', 'TEMPLAR')
+CampGuild.objects.filter(world=colony, camp='SWAMP_CAMP').update(treasury=1001)
+succession = succeed(race)
+assert choose(guru, 'WATER_CIRCLE')
+member = FactionMembership.objects.get(profile=guru)
+FactionRankProgress.objects.create(membership=member, tier=4)
+CampQuest.objects.create(profile=guru, rank_key='ADV_WATER_CIRCLE_5', progress={'mine': 2})
+print(historical_release_dump())
+"""
+
+
 class WorldBackupTests(SimpleTestCase):
+    def test_legacy_brotherhood_backup_restores_into_veil_order(self):
+        from ore_empire.database import sqlite_environment
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, target = root/'old-veil.sqlite3', root/'new-veil.sqlite3'
+            result = subprocess.run([sys.executable, '-c', LEGACY_BROTHERHOOD],
+                                    env=sqlite_environment(source), cwd=settings.BASE_DIR, capture_output=True)
+            self.assertEqual(result.returncode, 0, result.stderr.decode())
+            backup = create_backup(source, root/'copies')
+            self.assertTrue(restore_drill(backup, target, source)['migration_applied'])
+            with sqlite3.connect(source) as legacy, sqlite3.connect(target) as modern:
+                self.assertEqual(legacy.execute('SELECT faction FROM characters_factionmembership ORDER BY profile_id').fetchall(),
+                                 [('WATER_CIRCLE',), ('PENDING',)])
+                self.assertEqual(modern.execute('SELECT faction FROM characters_factionmembership').fetchall(),
+                                 [('VEIL_ORDER',), ('VEIL_ORDER',)])
+                self.assertEqual(modern.execute('SELECT SUM(treasury) FROM characters_campguild').fetchone(), (1001,))
+                self.assertEqual(modern.execute('SELECT tier FROM characters_factionrankprogress').fetchone(), (4,))
+                rank, progress = modern.execute('SELECT rank_key, progress FROM characters_campquest').fetchone()
+                self.assertEqual((rank, json.loads(progress)), ('ADV_VEIL_ORDER_5', {'mine': 2}))
+                self.assertEqual(modern.execute('SELECT destination FROM characters_factionchoice').fetchone(), ('WATER_CIRCLE',))
+
     def test_old_save_restore_migrates_preserves_facts_and_retains_only_owned_snapshots(self):
         with TemporaryDirectory() as directory:
             root=Path(directory);source=root/'old.sqlite3';dest=root/'snapshots'

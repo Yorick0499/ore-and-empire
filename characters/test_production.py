@@ -150,6 +150,53 @@ print(canonical(historical_fixture(apps,EXCLUDES))[0].decode())
             root=Path(tmp);(root/'world.pgdump').write_bytes(b'broken');(root/'manifest.json').write_text(json.dumps({'schema':1,'engine':'postgresql','database_sha256':'wrong'}))
             with self.assertRaises(ValueError):restore_pg_drill(root,'ore_never_created')
 
+    def test_legacy_brotherhood_dump_preserves_balances_rank_and_quest(self):
+        import hashlib
+        import subprocess
+        import sys
+        import psycopg
+        from psycopg import sql
+        from uuid import uuid4
+        from .backups import sha
+        from .management.commands.import_sqlite_world import canonical
+        from .postgres_backups import pg_env, restore_pg_drill, tool
+        from .test_backups import LEGACY_BROTHERHOOD
+
+        config = settings.DATABASES['default']
+        source = 'ore_veil_old_' + uuid4().hex[:12]
+        target = 'ore_veil_new_' + uuid4().hex[:12]
+        kwargs = dict(dbname=config['NAME'], host=config.get('HOST'), port=config.get('PORT'),
+                      user=config.get('USER'), password=config.get('PASSWORD'), autocommit=True)
+        with psycopg.connect(**kwargs) as admin, tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            admin.execute(sql.SQL('CREATE DATABASE {}').format(sql.Identifier(source)))
+            try:
+                env = pg_env(config, source)
+                facts = subprocess.run([sys.executable, '-c', LEGACY_BROTHERHOOD],
+                                       cwd=settings.BASE_DIR, env=env, capture_output=True)
+                self.assertEqual(facts.returncode, 0, facts.stderr.decode())
+                logical, counts = canonical(facts.stdout)
+                dump = root/'world.pgdump'
+                result = subprocess.run([tool('pg_dump'), '--format=custom', '--file='+str(dump)],
+                                        env=env, capture_output=True)
+                self.assertEqual(result.returncode, 0, result.stderr.decode())
+                manifest = {key: 1 for key in ('schema', 'adventure_schema', 'bot_schema',
+                            'character_schema', 'realm_schema', 'origin_schema', 'barrier_schema', 'rank_path_schema')}
+                manifest.update(engine='postgresql', inventory_schema=2, database_sha256=sha(dump),
+                                logical_sha256=hashlib.sha256(logical).hexdigest(), models=counts)
+                (root/'manifest.json').write_text(json.dumps(manifest))
+                self.assertTrue(restore_pg_drill(root, target)['migration_applied'])
+                with psycopg.connect(**{**kwargs, 'dbname': target}) as restored:
+                    self.assertEqual(restored.execute('SELECT faction FROM characters_factionmembership').fetchall(),
+                                     [('VEIL_ORDER',), ('VEIL_ORDER',)])
+                    self.assertEqual(restored.execute('SELECT SUM(treasury) FROM characters_campguild').fetchone(), (1001,))
+                    self.assertEqual(restored.execute('SELECT tier FROM characters_factionrankprogress').fetchone(), (4,))
+                    self.assertEqual(restored.execute('SELECT rank_key, progress FROM characters_campquest').fetchone(),
+                                     ('ADV_VEIL_ORDER_5', {'mine': 2}))
+            finally:
+                for name in (source, target):
+                    admin.execute(sql.SQL('DROP DATABASE IF EXISTS {} WITH (FORCE)').format(sql.Identifier(name)))
+
 @override_settings(PRODUCTION=True,SECURE_SSL_REDIRECT=True,SESSION_COOKIE_SECURE=True,CSRF_COOKIE_SECURE=True,CSRF_TRUSTED_ORIGINS=['https://testserver'])
 class SecurePlayerLoopTests(TestCase):
     def test_registration_mining_purchase_equipping_and_battle_over_secure_forms(self):

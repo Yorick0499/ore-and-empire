@@ -11,8 +11,17 @@ import tempfile
 from datetime import datetime, timezone
 from uuid import uuid4
 
+SUCCESSION_BASELINE = ('characters', '0058_worldrelease_bot_arrivals')
+SUCCESSION_UPGRADE = ('characters', '0059_veil_order')
+REFORMED_FIELDS = {
+    'campguild': {'camp'},
+    'factionmembership': {'faction', 'guild'},
+    'campquest': {'rank_key'},
+    'playerprofile': {'prepared_magic'},
+}
+
 STABLE = {
-    'characters_worldrelease':['id','world_id','key','released_at','snapshot'],
+    'characters_worldrelease':['id','world_id','key','released_at','snapshot','bot_arrivals','bot_arrivals_at','bot_arrivals_finished'],
     'characters_eventschedule':['id','world_id','stamp'],
     'characters_regionaleventuse':['id','profile_id','event_id','request_key','created_at','snapshot'],
     'characters_worldevent':['id','world_id','key','name','description','kind','starts_at','ends_at','enabled','ore_percent','experience_percent','premium_bonus','region','activity','targets','art_key','release_key','rule_version'],
@@ -137,6 +146,15 @@ def backups(root):
     return sorted((p for p in root.glob('world-*') if re.fullmatch(r'world-\d{8}T\d{6}-[a-f0-9]{8}',p.name) and not p.is_symlink() and (p/'manifest.json').is_file() and ((p/'world.sqlite3').is_file() or (p/'world.pgdump').is_file())),key=lambda p:((p/'manifest.json').stat().st_mtime_ns,p.name),reverse=True)
 
 
+def restore_migrate(env, repo, *target):
+    process = subprocess.run(
+        [sys.executable, str(repo/'manage.py'), 'migrate', *target, '--noinput'],
+        cwd=repo, env=env, capture_output=True, timeout=300,
+    )
+    if process.returncode:
+        raise ValueError('Restore migration failed; original backup remains untouched')
+
+
 def restore_drill(backup, target, live):
     backup=Path(backup).resolve(); target=Path(target).resolve();live=Path(live).resolve()
     if target==live or target.exists(): raise ValueError('Restore requires a new, separate database path')
@@ -154,9 +172,22 @@ def restore_drill(backup, target, live):
         repo=Path(__file__).resolve().parent.parent
         from ore_empire.database import sqlite_environment
         env=sqlite_environment(target)
-        process=subprocess.run([sys.executable,str(repo/'manage.py'),'migrate','--noinput'],cwd=repo,env=env,capture_output=True,text=True)
-        if process.returncode: raise ValueError('Restore migration failed; original backup remains untouched')
-        if inspect_database(target,spec)!=manifest['facts']: raise ValueError('Restored progression/ledger differs from snapshot')
+        expected = manifest['facts']
+        if list(SUCCESSION_UPGRADE) not in manifest['migrations']:
+            restore_migrate(env, repo, *SUCCESSION_BASELINE)
+            if inspect_database(target, spec) != expected:
+                raise ValueError('Restored progression/ledger differs from snapshot')
+            # The original facts have been checked in full. Across the reform,
+            # compare every protected field other than those it changes by design.
+            spec = {
+                table: [field for field in columns
+                        if field.removesuffix('_id') not in REFORMED_FIELDS.get(table.removeprefix('characters_'), ())]
+                for table, columns in spec.items()
+            }
+            expected = inspect_database(target, spec)
+        restore_migrate(env, repo)
+        if inspect_database(target, spec) != expected:
+            raise ValueError('Restored progression/ledger differs from snapshot')
         proof={'schema':1,'verified_at':datetime.now(timezone.utc).isoformat(),'database_sha256':sha(target),'migration_applied':True,'tables':len(spec)}
         temporary=backup/'.verification.tmp';temporary.write_text(json.dumps(proof,indent=2)+'\n');temporary.chmod(0o600);temporary.replace(backup/'verification.json')
         return proof

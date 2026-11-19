@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.db import connection,transaction
 from .management.commands.import_sqlite_world import canonical,EXCLUDES
-from .backups import sha,backups
+from .backups import sha, backups, restore_migrate, SUCCESSION_BASELINE, SUCCESSION_UPGRADE
 
 def pg_env(config,database=None):
     env={**os.environ,'ORE_DATABASE_ENGINE':'postgresql','PGDATABASE':database or config['NAME'],'PGHOST':str(config.get('HOST','')),'PGPORT':str(config.get('PORT') or 5432),'PGUSER':config.get('USER',''),'PGPASSWORD':config.get('PASSWORD','')}
@@ -24,6 +24,40 @@ def tool(name):
 def logical_dump():
     out=io.StringIO();call_command('dumpdata',format='precise_json',use_base_manager=True,use_natural_foreign_keys=True,exclude=EXCLUDES,stdout=out)
     return canonical(out.getvalue())
+
+def historical_release_dump():
+    from django.db.migrations.executor import MigrationExecutor
+    from .migration_testing import historical_fixture
+    state = MigrationExecutor(connection).loader.project_state([SUCCESSION_BASELINE])
+    return historical_fixture(state.apps, EXCLUDES)
+
+
+def restored_dump(env, *, historical=False):
+    if historical:
+        command = ['shell', '--verbosity', '0', '-c',
+                   'from characters.postgres_backups import historical_release_dump\nprint(historical_release_dump())']
+    else:
+        command = ['dumpdata', '--format', 'precise_json', '--all', '--natural-foreign',
+                   *[arg for model in EXCLUDES for arg in ('--exclude', model)]]
+    result = subprocess.run([sys.executable, str(settings.BASE_DIR/'manage.py'), *command],
+                            cwd=settings.BASE_DIR, env=env, capture_output=True, timeout=300)
+    if result.returncode:
+        raise ValueError('Nie udało się zweryfikować osobnej kopii.')
+    return result.stdout
+
+
+def verify_manifest(raw, manifest, *, legacy_bot_arrivals=False):
+    logical, counts = canonical(
+        raw, legacy_equipment=manifest.get('inventory_schema', 1) == 1,
+        legacy_adventures=not manifest.get('adventure_schema'), legacy_bots=not manifest.get('bot_schema'),
+        legacy_characters=not manifest.get('character_schema'), legacy_realms=not manifest.get('realm_schema'),
+        legacy_origins=not manifest.get('origin_schema'), legacy_barrier=not manifest.get('barrier_schema'),
+        legacy_rank_paths=not manifest.get('rank_path_schema'), legacy_bot_arrivals=legacy_bot_arrivals,
+    )
+    if hashlib.sha256(logical).hexdigest() != manifest['logical_sha256'] or counts != manifest['models']:
+        raise ValueError('Odtworzony zapis różni się od snapshotu.')
+    return counts
+
 
 def create_pg_backup(root,keep=7):
     if connection.vendor!='postgresql' or not 1<=keep<=365:raise ValueError('Wymagany PostgreSQL i retencja 1..365.')
@@ -64,15 +98,24 @@ def restore_pg_drill(backup,target):
             env=pg_env(config,target)
             result=subprocess.run([tool('pg_restore'),'--exit-on-error','--single-transaction','--no-owner','--no-acl','--dbname='+target,str(dump)],env=env,capture_output=True,timeout=300)
             if result.returncode:raise ValueError('Odtworzenie nie powiodło się; żywa baza jest nienaruszona.')
-            migrated=subprocess.run([sys.executable,str(settings.BASE_DIR/'manage.py'),'migrate','--noinput'],cwd=settings.BASE_DIR,env=env,capture_output=True,timeout=300)
-            if migrated.returncode:raise ValueError('Migracja osobnej kopii nie powiodła się.')
+            with psycopg.connect(**{**kwargs,'dbname':target},autocommit=True) as restored:
+                applied = set(restored.execute('SELECT app, name FROM django_migrations WHERE app = %s',
+                                               [SUCCESSION_UPGRADE[0]]).fetchall())
+            legacy = SUCCESSION_UPGRADE not in applied
+            if legacy:
+                restore_migrate(env, settings.BASE_DIR, *SUCCESSION_BASELINE)
+                baseline = restored_dump(env, historical=True)
+                counts = verify_manifest(baseline, manifest, legacy_bot_arrivals=SUCCESSION_BASELINE not in applied)
+            restore_migrate(env, settings.BASE_DIR)
             with psycopg.connect(**{**kwargs,'dbname':target},autocommit=True) as restored:
                 restored.execute('DELETE FROM django_session')
                 restored.execute('UPDATE characters_schedulerlease SET owner=NULL,expires_at=CURRENT_TIMESTAMP')
-            facts=subprocess.run([sys.executable,str(settings.BASE_DIR/'manage.py'),'dumpdata','--format','precise_json','--all','--natural-foreign',*[arg for item in EXCLUDES for arg in ('--exclude',item)]],cwd=settings.BASE_DIR,env=env,capture_output=True,timeout=300)
-            if facts.returncode:raise ValueError('Nie udało się zweryfikować osobnej kopii.')
-            logical,counts=canonical(facts.stdout,legacy_equipment=manifest.get("inventory_schema",1)==1,legacy_adventures=manifest.get("adventure_schema",0)==0,legacy_bots=manifest.get("bot_schema",0)==0,legacy_characters=manifest.get("character_schema",0)==0,legacy_realms=manifest.get("realm_schema",0)==0,legacy_origins=manifest.get("origin_schema",0)==0,legacy_barrier=manifest.get("barrier_schema",0)==0,legacy_rank_paths=manifest.get('rank_path_schema',0)==0)
-            if hashlib.sha256(logical).hexdigest()!=manifest['logical_sha256'] or counts!=manifest['models']:raise ValueError('Odtworzony zapis różni się od snapshotu.')
+            facts = restored_dump(env, historical=legacy)
+            if legacy:
+                if canonical(facts, compare_reform=True) != canonical(baseline, compare_reform=True):
+                    raise ValueError('Odtworzony zapis różni się po sukcesji.')
+            else:
+                counts = verify_manifest(facts, manifest)
             proof={'schema':1,'verified_at':datetime.now(timezone.utc).isoformat(),'engine':'postgresql','tables':len(counts),'database_sha256':sha(dump),'migration_applied':True,'target':target}
             tmp=backup/'.verification.tmp';tmp.write_text(json.dumps(proof,indent=2));tmp.chmod(0o600);tmp.replace(backup/'verification.json')
             return proof
