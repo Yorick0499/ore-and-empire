@@ -894,7 +894,7 @@ class BotDailySummary(models.Model):
 
 class CampGuild(models.Model):
     world = models.ForeignKey(World,on_delete=models.PROTECT,default=default_world_id)
-    camp = models.CharField(max_length=20,choices=PlayerProfile.CAMP_LIST[1:]+[('BANDITS','Bandyci Khorinis'),('WATER_CIRCLE','Krąg Magów Wody'),('MERCENARIES','Najemnicy — Łowcy Smoków'),('VEIL_ORDER','Zakon Czarnej Zasłony')])
+    camp = models.CharField(max_length=20,choices=PlayerProfile.CAMP_LIST[1:]+[('BANDITS','Bandyci Khorinis'),('WATER_CIRCLE','Krąg Magów Wody'),('MERCENARIES','Najemnicy — Łowcy Smoków'),('VEIL_ORDER','Zakon Mroku')])
     experience = models.PositiveIntegerField(default=0)
     level = models.PositiveSmallIntegerField(default=1)
     treasury = models.PositiveIntegerField(default=0)
@@ -1215,7 +1215,7 @@ class FactionSuccession(models.Model):
 class FactionMembership(models.Model):
     profile=models.OneToOneField(PlayerProfile,on_delete=models.PROTECT,related_name='faction_membership')
     succession=models.ForeignKey(FactionSuccession,on_delete=models.PROTECT)
-    faction=models.CharField(max_length=20,choices=[('CITY_WATCH','Miasto Khorinis'),('FIRE_ORDER','Klasztor Magów Ognia'),('WATER_CIRCLE','Krąg Magów Wody'),('BANDITS','Bandyci'),('MERCENARIES','Najemnicy'),('VEIL_ORDER','Zakon Czarnej Zasłony'),('PENDING','Oczekuje na wybór')])
+    faction=models.CharField(max_length=20,choices=[('CITY_WATCH','Miasto Khorinis'),('FIRE_ORDER','Klasztor Magów Ognia'),('WATER_CIRCLE','Krąg Magów Wody'),('BANDITS','Bandyci'),('MERCENARIES','Najemnicy'),('VEIL_ORDER','Zakon Mroku'),('PENDING','Oczekuje na wybór')])
     guild=models.ForeignKey(CampGuild,on_delete=models.PROTECT)
     historical_camp=models.CharField(max_length=20)
     historical_rank=models.CharField(max_length=20)

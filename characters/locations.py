@@ -20,12 +20,12 @@ class Location:
     required_story: str = ""
     story_label: str = ""
 
-    def accessible(self, profile):
+    def accessible(self, profile, *, universe=None):
         from .barrier import region,joined
         from .faction_choice import equipment_camp_allowed
         from .jarkendar import unlocked
         from .gothic2_world import story_unlocked
-        return story_unlocked(profile,self.required_story) and (not self.requires_portal or unlocked(profile)) and (not self.post_barrier or joined(profile.world_id)) and region(profile).universe == self.universe and profile.level >= self.level and (
+        return (universe or region(profile).universe) == self.universe and profile.level >= self.level and story_unlocked(profile,self.required_story) and (not self.requires_portal or unlocked(profile)) and (not self.post_barrier or joined(profile.world_id)) and (
             not self.camps or any(equipment_camp_allowed(profile,camp) for camp in self.camps)
         ) and profile.camp_tier >= self.min_tier
 
@@ -86,7 +86,7 @@ LOCATIONS += (Location('k2_dragon_fire','Szczyt smoka ognia','Wyprawa mieszkańc
 LOCATIONS += (
     Location('dexter_tower', 'Wieża Dextera', 'Siedziba bandytów Khorinis na wzgórzu przy farmie Onara.',
              camps=('BANDITS',), route='train_page', universe='GOTHIC_II', post_barrier=True, wiki='Obóz Dextera'),
-    Location('veil_refuge', 'Krypta Czarnej Zasłony', 'Schronienie dawnych członków Bractwa. Z popiołów kultu Śniącego powstał zakon Poszukiwaczy oddany Beliarowi.',
+    Location('veil_refuge', 'Krypta Zakonu Mroku', 'Schronienie dawnych członków Bractwa. Z popiołów kultu Śniącego powstał zakon Poszukiwaczy oddany Beliarowi.',
              camps=('VEIL_ORDER',), route='train_page', universe='GOTHIC_II', post_barrier=True, wiki='Poszukiwacze'),
 )
 from .jarkendar import DESTINATIONS as JARKENDAR_DESTINATIONS

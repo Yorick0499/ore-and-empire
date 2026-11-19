@@ -7,14 +7,14 @@ FACTIONS = (
     ('WATER_CIRCLE', 'Krąg Magów Wody'),
     ('BANDITS', 'Bandyci Khorinis'),
     ('MERCENARIES', 'Najemnicy — Łowcy Smoków'),
-    ('VEIL_ORDER', 'Zakon Czarnej Zasłony'),
+    ('VEIL_ORDER', 'Zakon Mroku'),
 )
 RANK_NAMES = {
     'CITY_WATCH': ('Rekrut straży', 'Strażnik miejski', 'Sierżant straży', 'Dowódca straży', 'Kandydat Zakonu', 'Rycerz', 'Paladyn', 'Mistrz Zakonu'),
     'FIRE_ORDER': ('Nowicjusz Ognia', 'Adept Ognia', 'Mag Ognia Khorinis', 'Arcymag klasztoru', 'Mistrz Ognia', 'Strażnik Świętego Ognia', 'Mistrz Kręgu Ognia', 'Awatar Innosa'),
     'WATER_CIRCLE': ('Uczeń Wody', 'Adept Wody', 'Mag Wody', 'Arcymag Wody', 'Mistrz Wody', 'Strażnik Równowagi', 'Mistrz Kręgu Wody', 'Awatar Adanosa'),
     'BANDITS': ('Kopacz', 'Rzezimieszek', 'Bandyta', 'Watażka', 'Przywódca szajki', 'Dowódca bandytów', 'Herszt bandytów', 'Baron bandytów'),
-    'VEIL_ORDER': ('Słuchacz Cienia', 'Nowicjusz Popiołu', 'Wysłannik Zasłony', 'Poszukiwacz', 'Powiernik Popiołu', 'Strażnik Czarnego Płomienia', 'Herold Mroku', 'Hierofant Beliara'),
+    'VEIL_ORDER': ('Słuchacz Cienia', 'Nowicjusz Mroku', 'Wysłannik Mroku', 'Poszukiwacz', 'Powiernik Mroku', 'Strażnik Czarnego Płomienia', 'Herold Mroku', 'Awatar Beliara'),
     'MERCENARIES': ('Pomocnik', 'Rekrut', 'Najemnik', 'Kapitan Najemników', 'Łowca Smoków', 'Weteran Łowców Smoków', 'Dowódca Łowców Smoków', 'Mistrz Łowców Smoków'),
 }
 

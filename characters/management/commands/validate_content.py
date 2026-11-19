@@ -81,7 +81,9 @@ def validate_advancements():
     from characters.factions import FACTIONS,RANK_NAMES
     from characters.bestiary import BESTIARY
     from characters.bosses import BOSSES
+    from characters.locations import LOCATIONS, BY_KEY
     keys=set()
+    trials=set()
     for rank in RANKS:
         if rank.key in keys or len(rank.key)>20 or rank.attribute not in {'mana','martial'}:raise ValueError('Invalid advanced rank: '+rank.key)
         keys.add(rank.key)
@@ -89,8 +91,14 @@ def validate_advancements():
         for goal in rank.objectives:
             kind,_,target=goal.event.partition(':')
             if goal.count<1 or kind not in {'mine','hunt','boss'}:raise ValueError('Invalid advanced objective: '+rank.key)
-            if kind=='hunt' and target not in BESTIARY:raise ValueError('Unknown rank hunt: '+target)
-            if kind=='boss' and target not in BOSSES:raise ValueError('Unknown rank boss: '+target)
+            if kind=='hunt' and (target not in BESTIARY or not any(target in loc.monsters for loc in LOCATIONS)):
+                raise ValueError('Unknown rank hunt: '+target)
+            if kind=='boss' and (target not in BOSSES or target not in BY_KEY):
+                raise ValueError('Unknown rank boss: '+target)
+        signature = frozenset((goal.event, goal.count) for goal in rank.objectives)
+        if signature in trials or len({goal.event for goal in rank.objectives}) != len(rank.objectives):
+            raise ValueError('Duplicate advanced trial: '+rank.key)
+        trials.add(signature)
     for faction,_ in FACTIONS:
         if [r.tier for r in RANKS if r.camp==faction]!=[4,5,6,7]:raise ValueError('Incomplete advanced path: '+faction)
     return len(RANKS)
