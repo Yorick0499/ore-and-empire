@@ -7,8 +7,8 @@
   "chapters": 49,
   "screenshots": 86,
   "reports": 52,
-  "html_bytes": 48302160,
-  "sha256": "723e2ec0b5cbc97cfe706ffcff960142ad920bf5e73dff43664bcd0573525854",
+  "html_bytes": 48305856,
+  "sha256": "abda2ff545c87e2fe11ef90e3bc85ec1716890ba28935db93e65f862853e0415",
   "offline": true,
   "source_files": [
     "docs/public/OPERATOR_GUIDE.md",

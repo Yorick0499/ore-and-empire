@@ -60,3 +60,10 @@ Starsze `prepare_convergence` służy do odczytowego planu/przygotowania history
 ## Weryfikacja
 
 [Audyt wydania](reports/grywalnosc-wydania-2026-11-13.json): prawdziwy Śniący 3 zdobytych od 0 kont, kopia/odtworzenie, pojedyncza aktywacja, NK i endgame. [Dziewięć dróg](BUILD_PLAYTHROUGHS.md) oddzielnie sprawdza rangi/buildy. PostgreSQL CI testuje rzeczywiste blokady; SQLite ich nie zastępuje.
+
+
+## Kronika postaci i odznaki
+
+Publiczny profil mieszkańca pokazuje awanse, udział w zakończeniu epoki Bariery oraz osobiste kamienie milowe, takie jak droga do Jarkendaru i finał Irdorath. Dane biorą się z zapisów rozgrywki. Przy zwycięstwie nad Śniącym i późniejszym połączeniu regionów gra zapisuje dwa składy. Odznaka zwycięskiego obozu przypada jego ówczesnym członkom, a odznakę udziału otrzymuje postać z zapisanym trafieniem w zwycięskiej wyprawie. Dawne Bractwo otrzymuje „Byłego wyznawcę Śniącego”, a na profilach mieszkańców Kolonii widać także odznaki dawnych rang. W starych zapisach odznaki wynikają z potwierdzonych, datowanych zdarzeń.
+
+Rzadkość przelicza się na podstawie odsetka widocznych mieszkańców (ludzi i botów) w bieżącym świecie. Po połączeniu oba regiony liczą się razem. Odznaka jest legendarna przy udziale poniżej 2%, epicka poniżej 10%, rzadka poniżej 30%, niepospolita poniżej 60% i pospolita od 60%. Profil podaje aktualną liczbę posiadaczy.

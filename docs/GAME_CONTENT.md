@@ -16,7 +16,7 @@ Tabele obejmują także definicje instalowane przy aktywacji Bariery. Pochodzą 
 | Rodzime tożsamości rang (gałęzie) | 30 |
 | Wyższe awanse sześciu frakcji | 24 |
 | Zaklęcia działające (nie liczba modeli run/zwojów) | 24 |
-| Zlecenia czasowe | 54 |
+| Zlecenia czasowe | 63 |
 | Definicje zadań jednorazowych | 95 |
 | Receptury | 4 |
 | Oferty sklepu odłamków | 17 |
@@ -306,17 +306,17 @@ Cztery szczeble w każdej gałęzi. Brak rangi nie jest piątym szczeblem. Tabel
 | SWAMP_CAMP | Guru | Nowicjusz | 15 | Mana 25 | 150 | Ukończ trening many ×3; Pokonaj szkielety magów ×2 |
 | SWAMP_CAMP | Arcyguru | Guru | 25 | Mana 45 | 350 | Pokonaj opiekunów świątyni ×3; Pokonaj pomniejsze demony ×3 |
 | CITY_WATCH | Rekrut straży | brak rangi | 0 | Siła 10 | 0 | Odbierz urobek na potrzeby straży ×1 |
-| CITY_WATCH | Strażnik miejski | Rekrut straży | 3 | Siła 15 | 30 | Rozprosz gobliny spod mostu ×2; Przepędź wilki z traktu ×2 |
-| CITY_WATCH | Sierżant straży | Strażnik miejski | 10 | Siła 28 | 100 | Zabezpiecz podejście do bramy ×3; Pokonaj poborców haraczu ×1 |
-| CITY_WATCH | Dowódca straży | Sierżant straży | 22 | Siła 45 | 400 | Oczyść wybrzeże z topielców ×3; Osłoń drogę karawan przez las ×3; Pokonaj wodza rozbójników z wybrzeża ×1 |
+| CITY_WATCH | Strażnik miejski | Rekrut straży | 3 | Siła 15 | 30 | Rozprosz gobliny spod mostu ×2; Przepędź wilki z traktu ×2; Odbierz trzy zlecenia służby w Khorinis ×3 |
+| CITY_WATCH | Sierżant straży | Strażnik miejski | 10 | Siła 28 | 100 | Zabezpiecz podejście do bramy ×3; Pokonaj poborców haraczu ×1; Odbierz zlecenia ochrony szlaków ×7 |
+| CITY_WATCH | Dowódca straży | Sierżant straży | 22 | Siła 45 | 400 | Oczyść wybrzeże z topielców ×3; Osłoń drogę karawan przez las ×3; Pokonaj wodza rozbójników z wybrzeża ×1; Odbierz zlecenia dalekiej warty ×10 |
 | FIRE_ORDER | Nowicjusz Ognia | brak rangi | 0 | Mana 11 | 0 | Przećwicz koncentrację ×1 |
-| FIRE_ORDER | Adept Ognia | Nowicjusz Ognia | 3 | Mana 14 | 30 | Odpędź wilki od pielgrzymów ×3 |
-| FIRE_ORDER | Mag Ognia Khorinis | Adept Ognia | 9 | Mana 23 | 100 | Ukończ dwie lekcje koncentracji ×2; Przepędź krwiopijce znad jeziora ×4 |
-| FIRE_ORDER | Arcymag klasztoru | Mag Ognia Khorinis | 22 | Mana 40 | 300 | Bezpiecznie przeprowadź posłańców przez las ×4; Pokonaj topielce na trasie pielgrzymów ×3; Rozbij bandę napadającą na pielgrzymów ×1 |
+| FIRE_ORDER | Adept Ognia | Nowicjusz Ognia | 3 | Mana 14 | 30 | Odpędź wilki od pielgrzymów ×3; Odbierz trzy zlecenia służby w Khorinis ×3 |
+| FIRE_ORDER | Mag Ognia Khorinis | Adept Ognia | 9 | Mana 23 | 100 | Ukończ dwie lekcje koncentracji ×2; Przepędź krwiopijce znad jeziora ×4; Odbierz zlecenia ochrony szlaków ×7 |
+| FIRE_ORDER | Arcymag klasztoru | Mag Ognia Khorinis | 22 | Mana 40 | 300 | Bezpiecznie przeprowadź posłańców przez las ×4; Pokonaj topielce na trasie pielgrzymów ×3; Rozbij bandę napadającą na pielgrzymów ×1; Odbierz zlecenia dalekiej warty ×12 |
 | ONAR_MERCS | Pracownik farmy | brak rangi | 0 | Siła lub zręczność 10 | 0 | Przepędź ścierwojady z pól ×2 |
-| ONAR_MERCS | Zbrojny Onara | Pracownik farmy | 3 | Siła lub zręczność 15 | 30 | Odbierz zapasy na wyprawę ×1; Wypędź gobliny spod mostu ×3 |
-| ONAR_MERCS | Najemnik Onara | Zbrojny Onara | 8 | Siła lub zręczność 25 | 100 | Oczyść pola z bestii ×4; Odeprzyj krwiopijce przy szlaku ×2 |
-| ONAR_MERCS | Dowódca najemników | Najemnik Onara | 22 | Siła lub zręczność 44 | 275 | Udrożnij szlak najemników w lesie ×3; Osłoń pola przed bestiami ×3; Pokonaj czarnego trolla ×1 |
+| ONAR_MERCS | Zbrojny Onara | Pracownik farmy | 3 | Siła lub zręczność 15 | 30 | Odbierz zapasy na wyprawę ×1; Wypędź gobliny spod mostu ×3; Odbierz trzy zlecenia służby w Khorinis ×3 |
+| ONAR_MERCS | Najemnik Onara | Zbrojny Onara | 8 | Siła lub zręczność 25 | 100 | Oczyść pola z bestii ×4; Odeprzyj krwiopijce przy szlaku ×2; Odbierz zlecenia ochrony szlaków ×7 |
+| ONAR_MERCS | Dowódca najemników | Najemnik Onara | 22 | Siła lub zręczność 44 | 275 | Udrożnij szlak najemników w lesie ×3; Osłoń pola przed bestiami ×3; Pokonaj czarnego trolla ×1; Odbierz zlecenia dalekiej warty ×10 |
 
 ## Frakcje i osiem rang po Barierze
 
@@ -363,7 +363,7 @@ Cztery szczeble w każdej gałęzi. Brak rangi nie jest piątym szczeblem. Tabel
 
 ## Zlecenia czasowe
 
-Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 10 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).
+Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 19 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).
 
 | Klucz / zlecenie | Region | Kategoria / miejsce | Poziom | Sekundy | Energia | Ruda / PD / odłamki |
 |---|---|---|---|---|---|---|
@@ -414,9 +414,18 @@ Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 10 Khorinis. Nagroda z p
 | k2-fields — Pomoc na polach | GOTHIC_II | Kopalnie i zaopatrzenie / Pola Lobarta | 0 | 90 | 8 | 35 / 110 / 1 |
 | k2-port — Rozładunek w porcie | GOTHIC_II | Kopalnie i zaopatrzenie / Port Khorinis | 0 | 60 | 5 | 25 / 80 / 1 |
 | k2-courier — Goniec do Martwej Harpii | GOTHIC_II | Posłańcy i dostawy / Martwa Harpia | 2 | 120 | 10 | 45 / 180 / 1 |
+| k2-duty-service-city — Warta miejska | GOTHIC_II | Warty i ochrona / Koszary w Khorinis | 3 | 2700 | 16 | 120 / 350 / 0 |
+| k2-duty-service-fields — Pomoc przy żniwach | GOTHIC_II | Kopalnie i zaopatrzenie / Farma Onara | 3 | 2700 | 16 | 120 / 350 / 0 |
+| k2-duty-service-goods — Dostawa zapasów | GOTHIC_II | Posłańcy i dostawy / Port Khorinis | 3 | 2700 | 16 | 120 / 350 / 0 |
 | k2-watch — Patrol miejskiej straży | GOTHIC_II | Warty i ochrona / Koszary Khorinis | 3 | 180 | 12 | 60 / 260 / 1 |
+| k2-duty-route-convoy — Konwój farm | GOTHIC_II | Kopalnie i zaopatrzenie / Farma Onara | 5 | 3600 | 20 | 190 / 650 / 0 |
+| k2-duty-route-patrol — Patrol szlaku kupców | GOTHIC_II | Warty i ochrona / Trakt do Martwej Harpii | 5 | 3600 | 20 | 190 / 650 / 0 |
+| k2-duty-route-pilgrims — Eskorta pielgrzymów | GOTHIC_II | Posłańcy i dostawy / Klasztor Innosa | 5 | 3600 | 20 | 190 / 650 / 0 |
 | k2-pilgrim — Ochrona pielgrzymów | GOTHIC_II | Tropy i zwiad / Klasztor Innosa | 5 | 240 | 15 | 75 / 400 / 1 |
 | k2-farm — Konwój farm Onara | GOTHIC_II | Kopalnie i zaopatrzenie / Farma Onara | 8 | 300 | 18 | 100 / 650 / 1 |
+| k2-duty-frontier-coast — Ubezpieczenie rybaków | GOTHIC_II | Tropy i zwiad / Wybrzeże Khorinis | 11 | 5400 | 25 | 290 / 1100 / 0 |
+| k2-duty-frontier-forest — Daleki zwiad leśny | GOTHIC_II | Tropy i zwiad / Mroczny las Khorinis | 11 | 5400 | 25 | 290 / 1100 / 0 |
+| k2-duty-frontier-port — Nocna warta portowa | GOTHIC_II | Warty i ochrona / Port Khorinis | 11 | 5400 | 25 | 290 / 1100 / 0 |
 | k2-coast — Nocny patrol wybrzeża | GOTHIC_II | Warty i ochrona / Wybrzeże Khorinis | 12 | 360 | 20 | 140 / 1000 / 1 |
 | k2-forest — Eskorta drwali | GOTHIC_II | Tropy i zwiad / Mroczny las Khorinis | 15 | 420 | 22 | 180 / 1500 / 1 |
 | k2-routes — Warta na szlakach | GOTHIC_II | Warty i ochrona / Martwa Harpia | 20 | 480 | 25 | 230 / 2300 / 1 |
