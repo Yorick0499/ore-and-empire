@@ -78,6 +78,10 @@ jobs:
         run: python manage.py simulate_journey --operator energy-ore --report work/complete-journey-assisted.json
       - name: Fire mage and two bots complete the Sleeper siege
         run: python manage.py test characters.playtest_sleeper_team --noinput
+      - name: Veteran bots earn the advanced ranks in all six factions
+        run: |
+          echo '[]' > work/bot-faction-trials.json
+          ORE_PROBE_REPORT="$PWD/work/bot-faction-trials.json" python manage.py test characters.playtest_faction_ranks.PreparedRankBotTests --noinput
       - name: Compare player pacing with organic income and real operator forms
         run: |
           mkdir -p work
@@ -90,6 +94,7 @@ jobs:
           path: |
             work/complete-journey.json
             work/complete-journey-assisted.json
+            work/bot-faction-trials.json
             work/comparative-timing.json
           retention-days: 7
 

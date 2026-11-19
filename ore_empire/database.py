@@ -19,7 +19,13 @@ def database_config(env,base):
         config={'ENGINE':'django.db.backends.postgresql','NAME':env.get('PGDATABASE','ore_world'),'USER':env.get('PGUSER','ore_user'),'PASSWORD':env.get('PGPASSWORD',''),'HOST':env.get('PGHOST','127.0.0.1'),'PORT':env.get('PGPORT','5432')}
         if env.get('PGSSLMODE'):config['OPTIONS']={'sslmode':env['PGSSLMODE']}
     elif engine=='sqlite':
-        return {'ENGINE':'django.db.backends.sqlite3','NAME':env.get('ORE_DATABASE_PATH',base/'db.sqlite3'),'OPTIONS':{'timeout':20}}
+        options = {'timeout': 20}
+        if env.get('ORE_SQLITE_WAL') == '1':
+            # A local save can append changed pages instead of copying them to
+            # a rollback journal on every transaction. Keep durable commits.
+            options['init_command'] = 'PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA journal_size_limit=8388608'
+        return {'ENGINE': 'django.db.backends.sqlite3', 'NAME': env.get('ORE_DATABASE_PATH', base/'db.sqlite3'),
+                'OPTIONS': options}
     else:raise ImproperlyConfigured('Unsupported ORE_DATABASE_ENGINE')
     if not config['NAME']:raise ImproperlyConfigured('PostgreSQL database name is required')
     config['CONN_MAX_AGE']=60

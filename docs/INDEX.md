@@ -6,7 +6,7 @@
 
 - [Pełny przewodnik gracza](GAME_GUIDE.md), [pierwsze kroki](FIRST_PLAYABLE.md), [uruchomienie obu regionów i cała droga](COMPLETE_JOURNEY.md).
 - [Konto, postacie i połączenie](CHARACTERS_AND_WORLDS.md), [Khorinis](KHORINIS.md), [publiczny Jarkendar](JARKENDAR.md), [wyprawa NK i ograniczenia katalogu](GOTHIC_II_CONTENT.md).
-- [Dziewięć dróg buildów/frakcji](BUILD_PLAYTHROUGHS.md), [rangi i koszty](CAMPS.md), [sukcesja, Zakon Czarnej Zasłony i skarbce](CAMP_GUILDS.md), [wyprawy wspólnoty](CAMP_RAIDS.md).
+- [Dziewięć dróg buildów/frakcji](BUILD_PLAYTHROUGHS.md), [rangi i koszty](CAMPS.md), [sukcesja, Zakon Mroku i skarbce](CAMP_GUILDS.md), [wyprawy wspólnoty](CAMP_RAIDS.md).
 - [Ekwipunek i porównywarka](EQUIPMENT.md), [magia i zapasy zwojów](MAGIC.md), [rynek](MARKET_POLICY.md), [rzemiosło](CRAFTING.md).
 - [Łupy, kuźnia i 100 starych wart](LOOT_AND_ENDGAME.md), [400 stopni regionalnych i cel tygodniowy](REGIONAL_ENDGAME.md).
 - [Fabuła](STORY.md), [rola mieszkańca](RESIDENT_STORY.md), [zlecenia czasowe](ADVENTURES.md), [wyzwania i reputacja](CHALLENGES.md), [prywatna kronika](JOURNAL.md).

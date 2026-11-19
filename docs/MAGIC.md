@@ -26,10 +26,10 @@ Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Świat
 | Bractwo | Wola Śniącego | 6 | 16 | 210 magii | co drugi rzut przerywa turę przeciwnika |
 | Ogień po Barierze | Deszcz ognia VI | 6 | 18 | 260 ognia | 25% mniej obrażeń w turze rzutu |
 | Woda po Barierze | Grom VI | 6 | 18 | 240 magii | 50% mniej obrażeń w turze rzutu |
-| Zakon Czarnej Zasłony po Barierze | Pieczęć Śniącego | 6 | 18 | 255 magii | co drugi rzut przerywa turę przeciwnika |
+| Zakon Mroku po Barierze | Pieczęć Śniącego | 6 | 18 | 255 magii | co drugi rzut przerywa turę przeciwnika |
 | Ogień po otwarciu portalu | Latarnia Innosa | 6 | 20 | 370 ognia | 25% mniej obrażeń w turze rzutu |
 | Woda po otwarciu portalu | Głębia Adanosa | 6 | 20 | 350 magii | 50% mniej obrażeń w turze rzutu |
-| Zakon Czarnej Zasłony po otwarciu portalu | Szczelina Śniącego | 6 | 20 | 340 magii | co drugi rzut przerywa turę przeciwnika |
+| Zakon Mroku po otwarciu portalu | Szczelina Śniącego | 6 | 20 | 340 magii | co drugi rzut przerywa turę przeciwnika |
 
 Runy wypraw po Barierze wymagają poziomu 35 i kosztują 2000 rudy. Runy portalu wymagają poziomu 38, odebranego osobistego zadania otwierającego Jarkendar i 3200 rudy. Dalej obowiązują szkoła, odpowiednia ranga i opłacony VI krąg. Finkregh, Feodaron, Archol i smok-ożywieniec osłabiają stare zaklęcia i zwoje o połowę po uwzględnieniu odporności. Archol i smok-ożywieniec zmniejszają też obrażenia wcześniejszych run wypraw o 25%. Pełną siłę przeciw ich osłonie mają runy portalu. Silnik, podgląd obrażeń i wybór bota stosują tę samą regułę.
 
@@ -46,7 +46,7 @@ Walka odejmuje ochronę `fire_prot`/`magic_prot`; minimum obrażeń to 1. Golemy
 
 ## Boty i odtwarzanie
 
-Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-25 i schema 23) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
+Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-26 i schemat 24) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
 
 ## Kontrola grywalności
 
@@ -73,7 +73,7 @@ po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bo
 
 ## Frakcja po sukcesji i przygotowanie do bossa
 
-Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; Zakon Czarnej Zasłony zachowuje szkołę run dawnego Bractwa. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. [Frakcje](CAMP_GUILDS.md).
+Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; Zakon Mroku zachowuje szkołę run dawnego Bractwa. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. [Frakcje](CAMP_GUILDS.md).
 
 Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Odporności mogą premiować runę z niższego kręgu. Przed trudnym starciem warto sprawdzić ochronę i odpocząć. [Organiczne drogi Ognia/Wody i Bractwa](BUILD_PLAYTHROUGHS.md).
 

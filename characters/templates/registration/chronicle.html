@@ -1,0 +1,10 @@
+{% load gothic_media %}
+<section class="colony-panel entry-chronicle" aria-labelledby="entry-chronicle-title">
+  <div class="entry-chronicle-copy">
+    <p class="eyebrow">Kronika serwera · {{ chronicle.version }}</p>
+    <h1 id="entry-chronicle-title">Ore &amp; Empire</h1>
+    <h2>{{ chronicle.title }}</h2>
+    <p>{{ chronicle.story }}</p>
+  </div>
+  {% gothic_art chronicle.art %}
+</section>

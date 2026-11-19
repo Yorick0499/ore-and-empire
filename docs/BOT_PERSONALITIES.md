@@ -2,7 +2,7 @@
 
 Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
-Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-25, schemat obserwacji 23. Dawne polityki 7–24 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
+Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-26, schemat obserwacji 24. Dawne polityki 7–25 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
 
 | Osobowość | Sesje na dobę | Minimalny odstęp tur | Preferencja | Szansa zasilenia / blok | Kwota | Limit odłamków / dobę |
 |---|---:|---:|---|---:|---:|---:|
@@ -62,4 +62,4 @@ Migracje 0039–0041 dodają osobowości, ustawienia świata, kategorię zakupó
 
 17 to liczba definicji, nie gwarancja 17 dostępnych kart dla każdej postaci. Przed Barierą Khorinis nie kupuje koloniowego sprzętu przez podmienione ID; po połączeniu wspólna oferta nadal sprawdza poziom, regiony źródłowe i wymagania. Limity są osobiste i nie odnawiają się przez podróż ani zmianę aktywnej postaci na tym samym profilu. Odłamki nie są uprawnieniem do Jarkendaru; kont premium nie ma.
 
-Boty wykonują także sukcesję, przejście Bractwa do Zakonu Czarnej Zasłony, rangi 5–8, portal, NK i regionalny endgame przez zwykłe płatne usługi. [Gra z botami](LIVING_WORLD.md), [wyniki i ograniczenia prób](SOLO_PLAYTEST.md).
+Boty wykonują także sukcesję, przejście Bractwa do Zakonu Mroku, rangi 5–8 według prób własnej gildii, portal, NK i regionalny endgame przez zwykłe płatne usługi. Przy dostępnej próbie w większości tur wybierają cel lub podróż do niego. Handel, kuźnia i patrole wciąż pojawiają się w ich planach. [Gra z botami](LIVING_WORLD.md), [wyniki i ograniczenia prób](SOLO_PLAYTEST.md).

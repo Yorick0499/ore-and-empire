@@ -126,7 +126,7 @@ def school_for(profile):
     from .factions import membership
     member=membership(profile)
     if member and member.faction == 'VEIL_ORDER':
-        return ('brotherhood', 'Zakon Czarnej Zasłony')
+        return ('brotherhood', 'Zakon Mroku')
     if member and member.faction in {'FIRE_ORDER','WATER_CIRCLE'}:
         return ('fire','Klasztor Magów Ognia') if member.faction=='FIRE_ORDER' else ('water','Krąg Magów Wody')
     return SCHOOLS.get(profile.camp)

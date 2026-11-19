@@ -2,7 +2,7 @@
 
 Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
-Aktualna wersja używa polityki **baseline-25** i obserwacji schema 23. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+Aktualna wersja używa polityki **baseline-26** i obserwacji schemat 24. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
 
 `python play.py --bots 125 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 
@@ -52,4 +52,4 @@ Opcjonalny adapter lokalnego modelu ma protokół ollama-1 i trwały budżet. Do
 
 Domyślne 125+125 botów korzysta z jednej kolejki i odrębnych sesji. Przed Barierą aktywności społeczne są odizolowane między serwerami; po niej działa jeden świat, wspólny rynek i rankingi. Wyprawy botów mogą zasilać wspólnotę i globalny wyścig na tych samych zasadach co ludzie. Połączenie nie czeka na login konkretnego gracza.
 
-Bieżąca polityka obsługuje sukcesję sześciu frakcji, w tym przejście Bractwa do Zakonu Czarnej Zasłony, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. [Pełna droga](COMPLETE_JOURNEY.md), [aktualizacje](WORLD_UPDATES.md).
+Bieżąca polityka obsługuje sukcesję sześciu frakcji, w tym przejście Bractwa do Zakonu Mroku, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. [Pełna droga](COMPLETE_JOURNEY.md), [aktualizacje](WORLD_UPDATES.md).

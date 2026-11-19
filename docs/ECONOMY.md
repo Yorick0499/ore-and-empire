@@ -93,7 +93,7 @@ Budżetowa symulacja v 1 powyżej opisuje dawne założenia, nie dzisiejsze sesj
 
 Przed Barierą rynki i przepływy dwóch serwerów są oddzielone. Po niej wspólny rynek/ranking nie kopiuje sald ani przedmiotów. Sukcesja dzieli skarbce według członków i zachowuje sumę majątku; depozyt Bractwa przechodzi do wybranych wspólnot. Wpłata nie jest zniszczeniem rudy. [Reguły podziału](CAMP_GUILDS.md).
 
-Nowe ujścia obejmują opłacone awanse 5–8 (łącznie 5500 rudy), kręgi/runy, sprzęt, kuźnię i wpisowe regionalnej warty 12–90 rudy. Cztery regionalne ścieżki mają wspólny limit 8 pełnych nagród na polski dzień; po nim nadal płaci się za postęp/punkty. Limit dotyczy nowego systemu, nie wszystkich źródeł świata. Cel tygodniowy daje 100 rudy/1000 PD/5 pyłu uczestnikowi raz, bez nowych odłamków.
+Nowe ujścia obejmują opłacone awanse 5–8 (łącznie 5300–5705 rudy zależnie od gildii), kręgi/runy, sprzęt, kuźnię i wpisowe regionalnej warty 12–90 rudy. Cztery regionalne ścieżki mają wspólny limit 8 pełnych nagród na polski dzień; po nim nadal płaci się za postęp/punkty. Limit dotyczy nowego systemu, nie wszystkich źródeł świata. Cel tygodniowy daje 100 rudy/1000 PD/5 pyłu uczestnikowi raz, bez nowych odłamków.
 
 Regionalne okna wydarzeń dają do 3 faktycznie podwyższonych nagród, 300 dodatkowej rudy i 3000 PD dziennie, wspólnie dla krain, z regułą maksimum. Nie zwiększają odłamków. Zwykłe święta, stare warty i skup NPC zachowują własną emisję. [Wydarzenia](WORLD_UPDATES.md), [endgame](REGIONAL_ENDGAME.md).
 

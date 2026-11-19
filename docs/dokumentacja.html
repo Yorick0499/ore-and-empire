@@ -43,7 +43,7 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 </tr>
 <tr>
 <td>Dane lokalne</td>
-<td>SQLite, domyślnie <code>db.sqlite3</code> w katalogu projektu</td>
+<td>SQLite z WAL przy uruchomieniu przez <code>play.py</code>, domyślnie <code>db.sqlite3</code> w katalogu projektu</td>
 </tr>
 <tr>
 <td>Opcjonalny serwer</td>
@@ -59,7 +59,7 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 </tr>
 <tr>
 <td>Boty</td>
-<td>Reguły <code>baseline-25</code>, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy</td>
+<td>Reguły <code>baseline-26</code>, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy</td>
 </tr>
 <tr>
 <td>Opcjonalny eksperyment AI</td>
@@ -282,7 +282,7 @@ python play.py --port 8001
 <pre><code class="language-bash">python manage.py backup_world
 python manage.py backup_world --directory /prywatny/katalog/kopie --keep 14
 </code></pre>
-<p>Domyślnie <code>backups/</code>, ostatnich 7 kompletnych kopii. SQLite korzysta z API spójnego snapshotu; PostgreSQL z <code>pg_dump</code> i porównania logicznego w tym samym snapshotcie MVCC. Manifest przechowuje kontrolne hashe i wersje, nie prywatny <code>.env</code> czy plik danych dostępu admina. Kopia bazy nadal zawiera dane kont i hashe haseł — traktuj ją jako prywatną.</p>
+<p>Domyślnie <code>backups/</code>, ostatnich 7 kompletnych kopii. SQLite korzysta z API spójnego snapshotu i obejmuje też zatwierdzone transakcje w lokalnym WAL. PostgreSQL z <code>pg_dump</code> i porównania logicznego w tym samym snapshotcie MVCC. Manifest przechowuje kontrolne hashe i wersje, nie prywatny <code>.env</code> czy plik danych dostępu admina. Kopia bazy nadal zawiera dane kont i hashe haseł — traktuj ją jako prywatną.</p>
 <p>Próba SQLite, zawsze do nowego pliku:</p>
 <pre><code class="language-bash">python manage.py restore_world backups/world-DATA-ID --target /prywatny/katalog/proba.sqlite3
 </code></pre>
@@ -410,7 +410,7 @@ python manage.py simulate_journey --report /tmp/droga-nowa-proba.json
 <h4 id="doc-operator-guide--dodatkowe-wyprawy-gracza-migracja-0055">Dodatkowe wyprawy gracza — migracja 0055</h4>
 <p>Po zwykłym restarcie launcher stosuje migrację zachowującą stare wyprawy, wkład, nagrody i konta. Najwyższa rodzima ranga Kolonii może ogłaszać cele do poziomu10 przez sekcję „Wyprawy na rozkaz” na <code>/wspolnota/</code>. Po pokonaniu celu można ogłosić następny tego samego dnia. Boty uczestniczą zwykłymi turami. Nie potrzeba resetu świata ani ręcznej edycji PD. <a href="#doc-camp-raids">Reguły i ograniczenia</a>.</p></article><article id="doc-readme" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>README.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/README.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-readme--ore-empire-kroniki-kolonii">Ore &amp; Empire — Kroniki Kolonii</h2>
 <p>Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.</p>
-<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0060_paced_bot_arrivals</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
+<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0061_dark_order_names</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
 <h3 id="doc-readme--uruchomienie">Uruchomienie</h3>
 <p>Python 3.12 lub 3.13, z katalogu repozytorium:</p>
 <pre><code class="language-bash">python3 -m venv .venv
@@ -423,14 +423,14 @@ python play.py --bots 125 --port 8001
 python play.py --port 8001
 </code></pre>
 <p>Daje to domyślnie <strong>125 + 125 = 250 botów</strong>. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a <code>--bots</code> nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Kolejne odsłony przyjmują od 35 do 45 nowych kont od poziomu 0 w partiach do pięciu co 30 minut, do <strong>500 botów automatycznie</strong> w połączonym świecie. Ręczne limity operatora pozostają dostępne. Adaptacyjne tempo kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.</p>
-<p>SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. <a href="#doc-operator-guide">Windows, restart, aktualizacja i zarządca</a> · <a href="#doc-postgresql">PostgreSQL</a> · <a href="#doc-production">Profil HTTPS</a>. Restart zachowuje dane; pełny reset jest odrębną operacją.</p>
+<p>SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Launcher używa lokalnego dziennika WAL z pełną synchronizacją zapisów. Nie uruchamiaj obok niego drugiego schedulera. <a href="#doc-operator-guide">Windows, restart, aktualizacja i zarządca</a> · <a href="#doc-postgresql">PostgreSQL</a> · <a href="#doc-production">Profil HTTPS</a>. Restart zachowuje dane; pełny reset jest odrębną operacją.</p>
 <h3 id="doc-readme--od-nowej-postaci-do-endgame">Od nowej postaci do endgame</h3>
 <ol>
 <li>Konto ma do <strong>pięciu postaci</strong>. Nadaj imię i wybierz otwarty świat; szkic po rejestracji nie jest jeszcze grywalną postacią.</li>
 <li>Kolonia i Khorinis przed Barierą działają niezależnie: własne historie, rynki, rankingi, boty i wspólnoty. Każda podstawowa droga awansu ma cztery rangi.</li>
 <li>W Kolonii przechodzisz osobistą kampanię mieszkańca. Jej finał nie łączy światów. Wspólnota poziomu 10 podejmuje osobną walkę ze Śniącym; pieczęcie wymagają wkładu trzech różnych kont. Boty mogą uczestniczyć.</li>
 <li>Pierwsze zwycięstwo zleca trwałe połączenie, ze świeżą kopią, próbą odtworzenia i blokadą zapisów. Po nim jest <strong>jeden serwer</strong>, wspólny rynek i ranking oraz podróże między regionami, z zachowaniem dorobku i pochodzenia.</li>
-<li>Działa sześć frakcji. Bractwo przechodzi w związany z Beliarem Zakon Czarnej Zasłony i zachowuje własne runy. Bandyci Khorinis mają siedzibę w Wieży Dextera przy farmie Onara. Każda frakcja ma osiem rang.</li>
+<li>Działa sześć frakcji. Bractwo przechodzi w związany z Beliarem Zakon Mroku i zachowuje własne runy. Bandyci Khorinis mają siedzibę w Wieży Dextera przy farmie Onara. Każda frakcja ma osiem rang. Własne próby rang 5–8 otwierają się wraz z Barierą, Jarkendarem, smokami i Irdorath.</li>
 <li>Odprawa portalu Jarkendaru jest dostępna najwcześniej dwie doby po upadku Bariery. Każdy mieszkaniec zdobywa osobisty dostęp od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. <strong>Nie ma kont premium ani realnych płatności.</strong></li>
 <li>Po finale pozostają stare 100 wart, cztery regionalne ścieżki po 100 stopni, tygodniowy cel wspólnoty, kuźnia, handel, wydarzenia i ranking miesiąca. Miesiąc nie kasuje postaci.</li>
 </ol>
@@ -440,7 +440,7 @@ python play.py --port 8001
 <li>Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 20 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.</li>
 <li>Wydobycie, <strong>44 zlecenia Kolonii i 10 Khorinis</strong>, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.</li>
 <li>Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.</li>
-<li>Czas Polski <code>Europe/Warsaw</code> 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.</li>
+<li>Czas Polski <code>Europe/Warsaw</code> 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych odsłon ogłasza odkrycia świata. Najnowsza pojawia się w kronice na ekranie logowania i rejestracji. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.</li>
 <li>Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.</li>
 </ul>
 <p><a href="#doc-game-content">Katalog wygenerowany z kodu</a> · <a href="#doc-gothic-ii-content">Zakres i ograniczenia NK</a> · <a href="#doc-events">Zegar i wydarzenia</a> · <a href="#doc-assets">Źródła grafik</a>. Katalog źródłowy nie oznacza obsługi każdego skryptu oryginału; gra ma własny balans i kampanię mieszkańca.</p>
@@ -584,7 +584,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 <h3 id="doc-characters-and-worlds--jeden-serwer-po-sukcesie">Jeden serwer po sukcesie</h3>
 <p>Oba rekordy regionów mają wspólny identyfikator. Postacie, ekwipunek, aktywności, oferty, portfele, cooldowny, nagrody i historia nie są kopiowane. <code>world</code> zachowuje tożsamość rekordu, <code>origin_world</code> pochodzenie, <code>visiting_world</code> aktualnie odwiedzany region. To <strong>jeden serwer z regionami</strong>, nie dwa niezależne serwery połączone jedynie przyciskiem.</p>
 <p>Rynek i rankingi obejmują obie strony. Kreator pokazuje jeden serwer i wybór początku Kolonia/Khorinis. Nowy gracz nadal zaczyna od 0 i wykonuje własny prolog. Bezpłatna podróż między regionami jest na ekranie <strong>Bariera i podróże</strong>, po zakończeniu trwającej czynności. Cel podróży wewnątrz zadania fabularnego kosztuje osobno 2 energii.</p>
-<p>Po połączeniu działa sześć frakcji. Bractwo przechodzi do Zakonu Czarnej Zasłony, a siedzibą Bandytów Khorinis jest Wieża Dextera. Rodzime <code>camp</code>/<code>guild</code> zachowują historię i odpowiednie zadania; bieżące członkostwo oraz wyższe rangi mają osobny zapis. Cztery dalsze awanse nie są prezentem za Barierę. <a href="#doc-camp-guilds">Skarbce i sukcesja</a>.</p>
+<p>Po połączeniu działa sześć frakcji. Bractwo przechodzi do Zakonu Mroku, a siedzibą Bandytów Khorinis jest Wieża Dextera. Rodzime <code>camp</code>/<code>guild</code> zachowują historię i odpowiednie zadania; bieżące członkostwo oraz wyższe rangi mają osobny zapis. Cztery dalsze awanse nie są prezentem za Barierę. <a href="#doc-camp-guilds">Skarbce i sukcesja</a>.</p>
 <p>Uczestnik zwycięskiego obozu z faktycznym wkładem odbiera po połączeniu 500 rudy, 1000 PD i 3 odłamki raz na konto, wybraną uprawnioną postacią. Dodatkowe sloty nie mnożą nagrody.</p>
 <h3 id="doc-characters-and-worlds--portal-i-dalszy-swiat">Portal i dalszy świat</h3>
 <p>Po połączeniu publiczny Jarkendar wymaga odebranego własnego zadania portalu od 10. Dalsza adaptowana kampania prowadzi do Kruka, smoków i Irdorath. Nie ma premium. Nazwane odsłony zapisują odkrycia społeczności bez rozdawania osobistego postępu i bez ponownego blokowania starych postaci. <a href="#doc-jarkendar">Jarkendar</a>, <a href="#doc-gothic-ii-content">NK</a>, <a href="#doc-world-updates">odsłony</a>.</p>
@@ -626,7 +626,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 <p>16 lokacji, 8 populacji przeciwników, 2 bossów solo, 10 zleceń czasowych, 35 wzorów warty w kręgach 0/5/10/20/30,18 run/zwojów, 2 amunicje i 2 trofea. To autorski balans mieszkańca, oddzielony od danych oryginalnego G2. Wspólne podstawy adaptacji mogą działać w obu światach, ale przed połączeniem nie przenoszą fizycznych egzemplarzy.</p>
 <p><a href="#doc-game-content">Pełne bieżące tabele</a> zawierają również późniejsze tereny — powyższe liczby opisują tylko początkową paczkę Khorinis.</p>
 <h3 id="doc-khorinis--po-poaczeniu">Po połączeniu</h3>
-<p>Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Magowie Wody, Bandyci Khorinis z Wieży Dextera oraz Zakon Czarnej Zasłony powstały z Bractwa. Nowe rangi 5–8 wymagają własnych awansów. <a href="#doc-camp-guilds">Sukcesja i skarbce</a>.</p>
+<p>Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Magowie Wody, Bandyci Khorinis z Wieży Dextera oraz Zakon Mroku powstały z Bractwa. Nowe rangi 5–8 wymagają własnych awansów. <a href="#doc-camp-guilds">Sukcesja i skarbce</a>.</p>
 <p>Jarkendar jest publiczny po zadaniu portalu od 10. Dalsze kontrakty NK otwierają Kruka, Poszukiwaczy, cztery smoki, statek i Irdorath. Jarkendar/Irdorath korzystają z mapy i regionu podróży Khorinis; nie tworzą dodatkowych serwerów. Bramek poziomu/fabuły nie omija duży portfel. <a href="#doc-jarkendar">Jarkendar</a> · <a href="#doc-gothic-ii-content">Zakres NK i źródeł</a>.</p>
 <h3 id="doc-khorinis--otwarcie-i-zarzadzanie">Otwarcie i zarządzanie</h3>
 <p>Na skonfigurowanej instalacji użyj <strong>Otwórz Khorinis</strong> w ustawieniach świata albo przy zatrzymanej grze:</p>
@@ -775,7 +775,7 @@ Całość wykonuje się w transakcji: awaria tworzenia przedmiotu cofa koszt, po
 PD i wynik. Boss zachowuje zgodność z istniejącym <code>BossAttempt</code> i cooldownem.</p>
 <p>Przedmioty stosowalne mają liczbę sztuk; kupiec sprzedaje zapasy w paczkach 1–100 sztuk, a skupuje cały
 stos za 50% wartości. Materiały i amunicja łączą się wyłącznie we własnym,
-niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty wybierają dozwolony sprzęt według własnej ścieżki i efektywnej mocy, zakładają ochronę, używają zapasów i zachowują dostawy. Obecna polityka to baseline-25, schemat obserwacji 23; historyczne replay pozostają zachowane.</p>
+niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty wybierają dozwolony sprzęt według własnej ścieżki i efektywnej mocy, zakładają ochronę, używają zapasów i zachowują dostawy. Obecna polityka to baseline-26, schemat obserwacji 24; historyczne replay pozostają zachowane.</p>
 <h3 id="doc-equipment--dopracowanie-penej-edycji">Dopracowanie pełnej edycji</h3>
 <p>Ulepszenia zapisujemy na egzemplarzu <code>OwnedItem</code>, nie na współdzielonym wzorze. Obejmują broń, cztery ochrony i bonusy ozdób, działają w zwykłej walce, wyprawach i wartach; przechodzą do nabywcy na targu. W Ekwipunku widzisz bazowe oraz efektywne statystyki. <a href="#doc-loot-and-endgame">Pula 35 łupów, odzysk pyłu, pięć stałych rzadkości łupu i przekucie do +3</a>.</p>
 <h3 id="doc-equipment--zabezpieczenie-cennego-sprzetu-80">Zabezpieczenie cennego sprzętu (#80)</h3>
@@ -1003,7 +1003,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <li>0–9: prolog i lokalne polowania/zlecenia Kolonii albo Khorinis; obie historie mają świeży start.</li>
 <li>10–29: kolejne rozdziały i frakcje regionu pochodzenia; wspólny rynek nie omija wymagań sprzętu.</li>
 <li>30+: Warty za Przełęczą (wymagają obozu) i przygotowanie do obozowego Śniącego; sama trzydziestka nie zastępuje kwalifikacji wspólnoty, rangi ani rytuału.</li>
-<li>Po Barierze od 10: własny portal Jarkendaru; kontrakty NK od 25, Feomathar od 35. Wyższe rangi każdej z sześciu frakcji wymagają kolejno poziomów 30/35/40/45.</li>
+<li>Po Barierze od 10: własny portal Jarkendaru; kontrakty NK od 25, Feomathar od 35. Wyższe rangi mają progi 30–48 zależnie od frakcji oraz osobne cele i wymagane odsłony.</li>
 <li>Po finale NK od 45: cztery regionalne ścieżki i tygodniowy cel wspólnoty. Szczegóły poniżej.</li>
 </ul>
 <p>Bossowie mają jawny <code>balance_version=1</code>, stałe bazowe statystyki oraz zapis kosztu energii, cooldownu i statystyk przeciwnika przy walce. Nagrody rzeczywiście wypłacone są zapisane w historii; wydarzenia mogą je modyfikować według zwykłych zasad kalendarza. Feomathar: 2400 życia, 120 ataku, 75 ochrony, 30 energii, 60 minut przerwy, bazowo 5000 PD i 750 rudy. Wyposażenie gracza nie podnosi jego bazowych statystyk.</p>
@@ -1185,7 +1185,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <td>50% mniej obrażeń w turze rzutu</td>
 </tr>
 <tr>
-<td>Zakon Czarnej Zasłony po Barierze</td>
+<td>Zakon Mroku po Barierze</td>
 <td>Pieczęć Śniącego</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">18</td>
@@ -1209,7 +1209,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <td>50% mniej obrażeń w turze rzutu</td>
 </tr>
 <tr>
-<td>Zakon Czarnej Zasłony po otwarciu portalu</td>
+<td>Zakon Mroku po otwarciu portalu</td>
 <td>Szczelina Śniącego</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">20</td>
@@ -1225,7 +1225,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <p>Bieżąca mana regeneruje się o 1 co 30 s z zachowaniem reszty czasu; odnowa nie bankuje czasu ponad maksimum. Migracja inicjalizuje ją do istniejącego maksimum (raz przy wprowadzeniu zasobu), zachowuje statystyki bazowe, wylicza bonus noszonego wyposażenia. Panel god-mode odnawia również manę i pozwala ją edytować z kontrolą maksimum.</p>
 <p>Walka odejmuje ochronę <code>fire_prot</code>/<code>magic_prot</code>; minimum obrażeń to 1. Golemy, demony i wybrani strażnicy mają jawne adaptacyjne odporności w bestiary.py, np. ognisty golem 90 ognia/10 magii, lodowy 0 ognia/50 magii. Magia nie korzysta z krytyków broni. Obrony gracza nadal uwzględniają typ ciosu potwora i bonusy sprzętu. Mana, zwoje, zdrowie, energia, nagrody i raport walki zapisują się atomowo. BattleRecord przechowuje klucz czaru, liczbę rzutów i końcową manę; ponowienie request_key zwraca ten sam zapis bez ponownego kosztu.</p>
 <h3 id="doc-magic--boty-i-odtwarzanie">Boty i odtwarzanie</h3>
-<p>Magiczny mechanizm wprowadzony w <code>baseline-8</code> (obecnie baseline-25 i schema 23) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy <code>baseline-7</code> pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.</p>
+<p>Magiczny mechanizm wprowadzony w <code>baseline-8</code> (obecnie baseline-26 i schemat 24) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy <code>baseline-7</code> pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.</p>
 <h3 id="doc-magic--kontrola-grywalnosci">Kontrola grywalności</h3>
 <p>Test porównuje wojownika (siła 40, bez broni), maga (siła 10, mana 40), te same 200 HP, bez pancerza, bez krytyków, przeciwnika 100 HP/20 ataku/15 pancerza. Wyniki rzeczywistego silnika:</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
@@ -1269,7 +1269,7 @@ walkę pięściami po wyczerpaniu many. Dzięki wspólnej prognozie bot nie porz
 magii na podstawie innej oceny pancerza ani nie farmi, gdy finał jest osiągalny
 po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bossów.</p>
 <h3 id="doc-magic--frakcja-po-sukcesji-i-przygotowanie-do-bossa">Frakcja po sukcesji i przygotowanie do bossa</h3>
-<p>Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; Zakon Czarnej Zasłony zachowuje szkołę run dawnego Bractwa. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. <a href="#doc-camp-guilds">Frakcje</a>.</p>
+<p>Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; Zakon Mroku zachowuje szkołę run dawnego Bractwa. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. <a href="#doc-camp-guilds">Frakcje</a>.</p>
 <p>Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Odporności mogą premiować runę z niższego kręgu. Przed trudnym starciem warto sprawdzić ochronę i odpocząć. <a href="#doc-build-playthroughs">Organiczne drogi Ognia/Wody i Bractwa</a>.</p>
 <h3 id="doc-magic--ponowne-przejscie-wody-bez-zwojow-150">Ponowne przejście Wody bez zwojów — #150</h3>
 <p><a href="#report-mag-wody-runy-2026-11-13">Raport</a>: nowa postać Kolonii, Nowy Obóz, sześć opłaconych run przed Barierą, awanse, dalsza runa NK, finał Irdorath, ósma ranga i pierwsze regionalne warty. Próba zabrania zakupów zwojów, nie przyznaje PN/many/rudy ani run. Regeneracja jest zwykła; opcjonalny itemshop zdrowia/energii korzysta z zarobionych odłamków. Doświadczenie przed uzyskaniem szkoły obejmuje podstawową broń.</p>
@@ -1278,7 +1278,7 @@ po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bo
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
 <p>Cztery receptury adaptacji: miecz czeladnika, kirys z płyt pełzacza, wywar ziołowy i wyciąg z jaj pełzacza. <code>seed_crafting</code> tworzy tylko brakujące definicje i nie nadpisuje ręcznych cen. Nauka poziomu kowalstwa/alchemii: 1 PN i 20 rudy, maksymalnie trzy poziomy. Receptura określa wymagany poziom postaci, umiejętność, opłatę, ilości składników i produkt. Nie są to udawane statystyki oryginalnego G1.</p>
 <p>Skóry, mięso, płyty i jaja pochodzą z istniejących wersjonowanych łupów. Stal i zioła są płatnymi materiałami warsztatowymi. Brakujące składniki można kupić u NPC lub z rzeczywistych ofert mieszkańców. Zlecenie zużywa wyłącznie własne, niewystawione i nienoszone stosy. Nie oddaje nagrody przy błędzie składnika ani nie pobiera niczego, jeśli nie ma całego kompletu. Składniki, opłata, produkt i CraftRecord tworzą jedną transakcję. UUID żądania zwraca dawny wynik zamiast produkować drugi przedmiot; zmiana receptury pod tym samym UUID jest odrzucana.</p>
-<p>Obecna polityka baseline-25 okresowo uczy się i szuka potrzebnej receptury, kupuje materiały, przetwarza trofea oraz zachowuje potrzebne składniki przed automatyczną wyprzedażą. Nie dostaje darmowych materiałów ani waluty. Boty i ludzie używają tych samych usług. Starsze polityki pozostają odtwarzalne. Rzemiosło zasila jednorazowe osiągnięcie z #21.</p>
+<p>Obecna polityka baseline-26 okresowo uczy się i szuka potrzebnej receptury, kupuje materiały, przetwarza trofea oraz zachowuje potrzebne składniki przed automatyczną wyprzedażą. Nie dostaje darmowych materiałów ani waluty. Boty i ludzie używają tych samych usług. Starsze polityki pozostają odtwarzalne. Rzemiosło zasila jednorazowe osiągnięcie z #21.</p>
 <p><code>python manage.py simulate_crafting --batches 100</code> jest odtwarzalnym modelem kosztów i podaży: porównuje zamknięty zapas po 10 jednostek składnika z płatnym zaopatrzeniem NPC. Pokazuje ograniczenie dostępności, podaż produktów przy referencyjnej cenie, opłaty i zakup materiałów jako ujście rudy oraz zerową emisję odłamków w samej recepturze. Nie przewiduje endogenicznych cen rynku, nie wykonuje działań w bazie i nie obejmuje jednorazowych nagród osiągnięć. Domyślne koszty zaopatrzenia i wytworzenia przewyższają sprzedaż produktów NPC; brak pętli darmowej rudy przez odsprzedaż. Rzeczywisty popyt i przeceny działają od #23; zobacz <a href="#doc-market-policy">MARKET_POLICY.md</a>.</p>
 <h3 id="doc-crafting--dopracowanie-penej-edycji">Dopracowanie pełnej edycji</h3>
 <p>Cztery receptury nadal tworzą nowe egzemplarze zwykłej rzadkości i +0. Osobna kuźnia w Ekwipunku ulepsza konkretny sprzęt bez wymaganego poziomu rzemiosła; płaci się rudą i pyłem. Rozbieranie działa tylko na dodatkowym sprzęcie z łupów, więc zakup najtańszego przedmiotu NPC nie tworzy darmowego materiału. <a href="#doc-loot-and-endgame">Wzory kosztów i odzysku</a>.</p>
@@ -1409,7 +1409,7 @@ potrzebę odpoczynku fabularnego. Boty nie otrzymują dotacji ani wymuszonych wy
 a osobny test przechodzi całość graczem przez formularze i wspólne serwisy gry,
 z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
 wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.</p>
-<p>Aktualna polityka to baseline-25, schemat obserwacji 23; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: <a href="#doc-game-content">GAME_CONTENT.md</a>. Finał oraz sala chwały: <a href="#doc-game-guide">GAME_GUIDE.md</a>.</p>
+<p>Aktualna polityka to baseline-26, schemat obserwacji 24; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: <a href="#doc-game-content">GAME_CONTENT.md</a>. Finał oraz sala chwały: <a href="#doc-game-guide">GAME_GUIDE.md</a>.</p>
 <h3 id="doc-story--kampania-po-poaczeniu">Kampania po połączeniu</h3>
 <p>Jarkendar wymaga własnego odebranego portalu od 10. Następne kontrakty NK prowadzą do Kruka, smoków, rejsu i finału Irdorath. Status „joined” nie kończy ich za postać. Odbiór kamieni milowych może ujawnić trwałą odsłonę całej społeczności, nie podwaja jednak prywatnej wypłaty. <a href="#doc-gothic-ii-content">NK</a>, <a href="#doc-world-updates">odsłony</a>, <a href="#doc-game-content--fabula-jednorazowa">pełna generowana lista</a>.</p></article><article id="doc-resident-story" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/RESIDENT_STORY.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/RESIDENT_STORY.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-resident-story--fabua-mieszkancow-kolonii-narracja-2">Fabuła mieszkańców kolonii — narracja 2</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
@@ -1425,7 +1425,7 @@ wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i 
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
 <p><code>/wyzwania/</code>: jeden kontrakt dzienny i jeden tygodniowy na postać oraz okres czasu polskiego. Dzień zaczyna się o północy, tydzień w poniedziałek. Rotacja pracy w kopalni/polowań jest deterministyczna; liczba działań wynosi 2 (dzień) lub 6 (tydzień), plus do 3 wraz z poziomem. Zliczają się wyłącznie rzeczywiste, dostępne postaci działania po przyjęciu. Polowania muszą przejść normalne bramki lokacji i zakończyć się zwycięstwem. Cele/rewards zamrażają się w rekordzie; ponowne logowanie ani restart nie losuje nowych. Niedokończony stary cel nie postępuje; gotowy można odebrać po granicy okresu.</p>
 <p>Nagroda dzienna: 20 rudy, 100 PD, 1 odłamek, 5 reputacji. Tygodniowa: 60 rudy, 400 PD, 2 odłamki, 15 reputacji. Reputacja trafia do obozu z chwili przyjęcia, nie przeskakuje po administracyjnej zmianie przynależności. Bez obozu nie daje reputacji. Maksimum powtarzalnych odłamków to 1 dziennie i 2 tygodniowo; eventy nie mnożą tej wypłaty. Jednorazowe osiągnięcia (10 zmian, 10 polowań, zwycięska wspólna wyprawa, 5 receptur) dają po 20 rudy i 1 odłamku. Akceptacja/ukończenie nie oznacza automatycznej wypłaty: osobny odbiór jest chroniony unikalnym kluczem i ledgerem.</p>
-<p>Boty korzystają z tych samych usług i limitów. Obecna polityka baseline-25 (mechanizm wprowadzony w baseline-11) okresowo przyjmuje kontrakty, rozlicza wykonane cele i odbiera osiągnięcia, nie nadaje sobie postępu. Starsze polityki pozostają odtwarzalne. Reset świata usuwa kontrakty, reputację i osiągnięcia wraz z postaciami; backup zachowuje je jako część zapisu. Wspólne cele obozowe pozostają odrębną osią rozwoju.</p>
+<p>Boty korzystają z tych samych usług i limitów. Obecna polityka baseline-26 (mechanizm wprowadzony w baseline-11) okresowo przyjmuje kontrakty, rozlicza wykonane cele i odbiera osiągnięcia, nie nadaje sobie postępu. Starsze polityki pozostają odtwarzalne. Reset świata usuwa kontrakty, reputację i osiągnięcia wraz z postaciami; backup zachowuje je jako część zapisu. Wspólne cele obozowe pozostają odrębną osią rozwoju.</p>
 <h3 id="doc-challenges--kontekst-swiata">Kontekst świata</h3>
 <p>Przed Barierą postęp i rankingi są odrębne dla serwerów; po połączeniu działa wspólny świat, bez powielania osobistych nagród. Wyzwania nie zastępują projektów wspólnoty, regionalnych wart ani wydarzeń. Historyczna reputacja nadal dotyczy obozu przyjęcia; sukcesja jej nie kasuje. <a href="#doc-camp-guilds">Frakcje i historia</a>.</p></article><article id="doc-journal" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/JOURNAL.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/JOURNAL.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-journal--prywatna-kronika-mieszkanca">Prywatna kronika mieszkańca</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
@@ -1474,7 +1474,7 @@ wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i 
 <p>Powtórzenie UUID nie pobiera opłat ani nie ponawia walki. Blokady PostgreSQL oraz ograniczenia bazy chronią wspólny cooldown, zwołanie, ostatni cios i odbiór nagrody.</p>
 <h3 id="doc-regional-endgame--zgodnosc-boty-i-wdrozenie">Zgodność, boty i wdrożenie</h3>
 <p>Migracja 0053 dodaje tabelę postępu regionalnego, etykietę <code>legacy</code> starym wartom oraz domyślne <code>daily</code>/wersję 1 starym wyprawom. Nie przelicza sald ani nie kasuje historii. Stosuj standardowe <code>migrate</code> albo launcher. Kopie obejmują nowe pola i tabelę; sprawdzono rzeczywiste odtworzenie z regionalnymi rekordami i wyprawą tygodniową.</p>
-<p>Boty baseline-25 używają tych samych płatnych usług i bramek. Schemat bieżącej telemetrii to 23; odtwarzanie baseline-23 i starszej polityki opcjonalnej zachowane. Budżet schedulera nie został zwiększony. Grafiki terenów i stworzeń pochodzą z istniejących, zweryfikowanych assetów NK; portrety NPC i sceny questowe pozostają odłożone.</p>
+<p>Boty baseline-26 używają tych samych płatnych usług i bramek. Schemat bieżącej telemetrii to 23; odtwarzanie baseline-23 i starszej polityki opcjonalnej zachowane. Budżet schedulera nie został zwiększony. Grafiki terenów i stworzeń pochodzą z istniejących, zweryfikowanych assetów NK; portrety NPC i sceny questowe pozostają odłożone.</p>
 <h3 id="doc-regional-endgame--dowody-i-dalszy-zakres">Dowody i dalszy zakres</h3>
 <p><a href="#report-regionalny-endgame-2026-11-12">Raport testów, GUI i wydajności</a>: SQLite, rzeczywisty PostgreSQL z wyścigami i zachowaniem migracji, cztery przygotowane buildy, formularze CSRF, 15 widoków 320/390/1440 i krótka próba 250 botów. <code>simulate_journey</code> obejmuje teraz także cztery szlaki, cel tygodniowy i ponowne odtworzenie kopii po endgame.</p>
 <p>Historyczny raport #136 sprawdza wojownika organicznie i cztery przygotowane buildy. Bieżąca próba prawdziwej aktywacji doszła do poziomu 58 i endgame w 17 wirtualnych dniach; osobna macierz obejmuje dziewięć organicznych dróg do rangi 8, NK i pierwszych wart regionalnych. <a href="#report-grywalnosc-wydania-2026-11-13">Aktualne dowody</a>. Nie sprawdzono wszystkich 400 stopni ani wielotygodniowej gospodarki 250 botów. Regionalne wydarzenia #137 są już wdrożone: <a href="#doc-world-updates">reguły</a>.</p></article><article id="doc-build-playthroughs" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/BUILD_PLAYTHROUGHS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/BUILD_PLAYTHROUGHS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-build-playthroughs--buildy-i-drogi-frakcyjne-od-nowej-postaci">Buildy i drogi frakcyjne od nowej postaci</h2>
@@ -1528,12 +1528,12 @@ wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i 
 <tr>
 <td>Bractwo</td>
 <td>Guru: Zbieracz → Nowicjusz → Guru → Arcyguru</td>
-<td>Zakon Czarnej Zasłony, droga magiczna</td>
+<td>Zakon Mroku, droga magiczna</td>
 </tr>
 <tr>
 <td>Bractwo</td>
 <td>Wojownik: Zbieracz → Nowicjusz → Strażnik → Templariusz</td>
-<td>Zakon Czarnej Zasłony, droga wojskowa</td>
+<td>Zakon Mroku, droga wojskowa</td>
 </tr>
 </tbody>
 </table></div>
@@ -1675,9 +1675,9 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <td>Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków</td>
 </tr>
 <tr>
-<td>Zakon Czarnej Zasłony</td>
-<td>Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz</td>
-<td>Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara</td>
+<td>Zakon Mroku</td>
+<td>Słuchacz Cienia → Nowicjusz Mroku → Wysłannik Mroku → Poszukiwacz</td>
+<td>Powiernik Mroku → Strażnik Czarnego Płomienia → Herold Mroku → Awatar Beliara</td>
 </tr>
 </tbody>
 </table></div>
@@ -1686,49 +1686,35 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <thead>
 <tr>
 <th>Ranga</th>
-<th style="text-align: right;">Poziom</th>
-<th style="text-align: right;">Ruda</th>
-<th style="text-align: right;">Wojskowe: bazowa siła lub zręczność</th>
-<th style="text-align: right;">Szkoły magiczne: bazowa mana</th>
-<th>Cele</th>
+<th>Najwcześniejsza odsłona</th>
+<th style="text-align: right;">Poziom zależnie od gildii</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>5</td>
-<td style="text-align: right;">30</td>
-<td style="text-align: right;">500</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">50</td>
-<td>3 zmiany wydobycia, 5 orkowych zwiadowców</td>
+<td>Pęknięcie Bariery</td>
+<td style="text-align: right;">30–31</td>
 </tr>
 <tr>
 <td>6</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">1000</td>
-<td style="text-align: right;">90</td>
-<td style="text-align: right;">70</td>
-<td>5 orkowych wiarusów, 1 smok ognia</td>
+<td>Zaginiona Dolina</td>
+<td style="text-align: right;">34–35</td>
 </tr>
 <tr>
 <td>7</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">1500</td>
-<td style="text-align: right;">110</td>
-<td style="text-align: right;">90</td>
-<td>6 pomniejszych demonów, 1 smok ognia</td>
+<td>Przebudzenie smoków</td>
+<td style="text-align: right;">39–40</td>
 </tr>
 <tr>
 <td>8</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: right;">130</td>
-<td style="text-align: right;">110</td>
-<td>8 opiekunów świątyni, 2 smoki ognia, 10 zmian wydobycia</td>
+<td>Żagle ku Irdorath</td>
+<td style="text-align: right;">46–48</td>
 </tr>
 </tbody>
 </table></div>
-<p>Łącznie 5500 rudy. Cele są w Górniczej Dolinie; postać Khorinis podróżuje normalnie. Smok respektuje energię, zdrowie, walkę i 60-minutowy cooldown. Nie zalicza się działań sprzed przyjęcia. Bieżące wyższe rangi są w <code>FactionRankProgress</code>; historyczne pola i zadania pozostają. Ludzie i boty wykonują te same próby i opłaty.</p>
+<p>Gildie mają osobne kombinacje celów, progi atrybutów i opłaty. Straż chroni trakty i uczestniczy w wyprawie do Irdorath, Magowie Wody zabezpieczają badania w Jarkendarze, Bandyci utrzymują szlaki Wieży Dextera, a najemnicy przyjmują kontrakty łowieckie. Magowie Ognia oczyszczają ruiny, a Zakon Mroku walczy z opiekunami i demonami. Wykaz wszystkich 24 prób znajduje się w <a href="#doc-game-content--proby-frakcji">katalogu gry</a>.</p>
+<p>Liczą się działania wykonane po przyjęciu próby. Jedna wygrana może zaliczyć cel fabuły i gildii, jeśli oba zadania są aktywne. Rozpoczęte próby zachowują swoje cele, próg, koszt i postęp po aktualizacji. Ludzie i boty korzystają z tych samych zasad. Próby w Jarkendarze i Irdorath nadal wymagają osobistej odprawy.</p>
 <h3 id="doc-camps--przywileje">Przywileje</h3>
 <p>Osobisty szczebel oraz ulepszenia wspólnoty dają zniżkę treningu, stały bonus urobku i ochrony. Dla zwykłych podstawowych szczebli 0/1/2/3: zniżka 0/1/1/2 rudy, urobek+0/1/2/3, ochrona+0/0/1/1. Zachowane historyczne przywileje mogą być wyższe od numeru rangi. Pierwszy szczebel pozwala uczestniczyć we wspólnych celach i wyprawie od 3; od 1 można zwoływać wyprawy i kupić pierwszy poziom ulepszenia, od 2 drugi i zaopatrzenie, od 3 trzeci poziom.</p>
 <p>Dla rang 5/6/7/8: urobek+4/5/6/7, ochrona+2/2/3/3. Osobista zniżka maksymalnie 2, szkoła maksymalnie 3; cena treningu nie spada poniżej 5 rudy. Zaopatrzenie za 10 rudy raz na polski dzień odnawia do <code>10+5×szczebel</code> energii i <code>20+5×szczebel</code> zdrowia; rangi 5–8 dają odpowiednio 30/35/40/45 energii i 40/45/50/55 zdrowia. Energia wlicza się do wspólnego limitu 5 odnowień. Pełne zasoby nie pobierają opłaty, UUID nie odnawia nagrody po północy.</p>
@@ -1782,7 +1768,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 </tr>
 <tr>
 <td>Bractwo</td>
-<td>Zakon Czarnej Zasłony</td>
+<td>Zakon Mroku</td>
 </tr>
 </tbody>
 </table></div>
@@ -1792,8 +1778,8 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <p>Ruda i PD Starego/Nowego Obozu dzielą się proporcjonalnie do liczby przechodzących postaci, ludzi i botów, także nieaktywnych. Reszta całkowitoliczbowa według największej reszty, przy remisie kod frakcji. Pusty Stary Obóz przekazuje Bandytom, pusty Nowy/Onar Najemnikom. Poziom i ulepszenia nie są obniżane; przy łączeniu obowiązuje maksimum, nie suma. Ogień Kolonii łączy się ze wspólnotą klasztoru.</p>
 <p>Historyczne źródła zachowują rekordy; przekazana ruda/PD są zerowane, stan i przydziały zapisuje audyt. Starszy połączony skarbiec Lee/Onara nie nalicza PD Onara drugi raz. Nowe działania korzystają wyłącznie z bieżącej wspólnoty.</p>
 <p>Projekty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują niedokończone projekty/wyprawy, a następcy zaczynają własne bez kopiowania postępu. Miasto i klasztor zachowują swoje projekty. Zakończona dawna wyprawa nadal płaci raz faktycznemu uczestnikowi; niedokończony projekt nie daje rekompensaty.</p>
-<h3 id="doc-camp-guilds--zakon-czarnej-zasony">Zakon Czarnej Zasłony</h3>
-<p>Po śmierci Śniącego ocaleni opuszczają dawną świątynię. W krypcie Khorinis składają przysięgę Beliarowi i przyjmują miano Zakonu Czarnej Zasłony. Poszukiwacze strzegą odzyskanych zapisków i uczą nowych członków. Guru zachowują szkołę run Bractwa, a dawni templariusze rozwijają drogę władania bronią. Osiem rang odpowiada ośmiu szczeblom pozostałych frakcji. Za wyższe awanse magowie odpowiadają maną, a strażnicy siłą lub zręcznością.</p>
+<h3 id="doc-camp-guilds--zakon-mroku">Zakon Mroku</h3>
+<p>Po śmierci Śniącego ocaleni opuszczają dawną świątynię. W krypcie Khorinis składają przysięgę Beliarowi i przyjmują miano Zakonu Mroku. Poszukiwacze strzegą odzyskanych zapisków i uczą nowych członków. Guru zachowują szkołę run Bractwa, a dawni templariusze rozwijają drogę władania bronią. Osiem rang odpowiada ośmiu szczeblom pozostałych frakcji. Za wyższe awanse magowie odpowiadają maną, a strażnicy siłą lub zręcznością.</p>
 <p>Dawny skarbiec Bractwa, jego dowody wpłat i wyprawy przechodzą do Zakonu z zachowaniem identyfikatora wspólnoty. Na już połączonym zapisie migracja 0059 przenosi byłych członków Bractwa do nowej frakcji. Zachowuje opłacony szczebel, postęp rozpoczętego awansu, ekwipunek i historię. Zapisane transfery dawnych wyborów pozostają w skarbcach, które je otrzymały. Niedostępna runa Ognia lub Wody zostaje zdjęta z przygotowania i nadal jest w plecaku.</p>
 <p>Wieża Dextera stanowi siedzibę Bandytów Khorinis od upadku Bariery. Placówka zaopatrzeniowa w Jarkendarze staje się dostępna po otwarciu osobistego przejścia przez portal, także dla bandytów.</p>
 <h3 id="doc-camp-guilds--awans-i-niezawodnosc">Awans i niezawodność</h3>
@@ -1822,9 +1808,9 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <h3 id="doc-camp-raids--nagrody-stare-wyprawy-i-blokady">Nagrody, stare wyprawy i blokady</h3>
 <p>UUID, trwały zapis wypadu i blokady chronią koszt, obrażenia, ostatni cios i nagrody. Zmiana celu przy użytym UUID jest odrzucana. Wynik, koszty, wspólne HP, skarbiec/PD i raport są jedną transakcją; awaria cofa całość. Odbiór ma unikalny klucz uczestnik/wyprawa.</p>
 <p>Przy sukcesji niedokończone wyprawy rozdzielanych wspólnot są archiwizowane, bez kopiowania postępu. Za zakończone historyczne cele nadal odbiera nagrodę rzeczywisty uczestnik. <a href="#doc-camp-guilds">Dokładne zasady</a>. Kopie zachowują wkład i wypłaty; retencja telemetrii ich nie kasuje.</p>
-<p>Boty baseline-25 zwołują, atakują i odbierają przez te same usługi, ze zwykłymi zasobami i bramkami. Gdy wypada gotowa tura Śniącego, bot wybiera ją przed opcjonalnym patrolem, kuźnią i zmianą ceny. Najpierw kończy bieżące zajęcie albo uzupełnia potrzebne zasoby. Historia baseline-24 pozostaje odtwarzalna. Lokalnie działa jeden launcher SQLite; produkcyjnie PostgreSQL i jeden worker z dzierżawami. Rzeczywiste współbieżne uderzenia i odbiory sprawdza CI PostgreSQL. <a href="#doc-solo-playtest">Weryfikacja</a>.</p></article><article id="doc-living-world" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/LIVING_WORLD.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LIVING_WORLD.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-living-world--zyjacy-swiat-gracze-i-boty">Żyjący świat — gracze i boty</h2>
+<p>Boty baseline-26 zwołują, atakują i odbierają przez te same usługi, ze zwykłymi zasobami i bramkami. Gdy wypada gotowa tura Śniącego, bot wybiera ją przed opcjonalnym patrolem, kuźnią i zmianą ceny. Najpierw kończy bieżące zajęcie albo uzupełnia potrzebne zasoby. Historia baseline-24 pozostaje odtwarzalna. Lokalnie działa jeden launcher SQLite; produkcyjnie PostgreSQL i jeden worker z dzierżawami. Rzeczywiste współbieżne uderzenia i odbiory sprawdza CI PostgreSQL. <a href="#doc-solo-playtest">Weryfikacja</a>.</p></article><article id="doc-living-world" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/LIVING_WORLD.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LIVING_WORLD.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-living-world--zyjacy-swiat-gracze-i-boty">Żyjący świat — gracze i boty</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
-<p>Aktualna wersja używa polityki <strong>baseline-25</strong> i obserwacji schema 23. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.</p>
+<p>Aktualna wersja używa polityki <strong>baseline-26</strong> i obserwacji schemat 24. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.</p>
 <p><code>python play.py --bots 125 --port 8001</code> uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim <code>run_bots --loop</code>. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.</p>
 <h3 id="doc-living-world--co-robi-mieszkaniec">Co robi mieszkaniec</h3>
 <ul>
@@ -1854,9 +1840,9 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <p><a href="#doc-bot-personalities">Siedem osobowości, godziny sesji, symulowane zakupy i 17 ofert itemshopu</a>.</p>
 <h3 id="doc-living-world--rozwoj-swiata-z-botami">Rozwój świata z botami</h3>
 <p>Domyślne 125+125 botów korzysta z jednej kolejki i odrębnych sesji. Przed Barierą aktywności społeczne są odizolowane między serwerami; po niej działa jeden świat, wspólny rynek i rankingi. Wyprawy botów mogą zasilać wspólnotę i globalny wyścig na tych samych zasadach co ludzie. Połączenie nie czeka na login konkretnego gracza.</p>
-<p>Bieżąca polityka obsługuje sukcesję sześciu frakcji, w tym przejście Bractwa do Zakonu Czarnej Zasłony, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. <a href="#doc-complete-journey">Pełna droga</a>, <a href="#doc-world-updates">aktualizacje</a>.</p></article><article id="doc-bot-personalities" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/BOT_PERSONALITIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/BOT_PERSONALITIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-bot-personalities--osobowosci-sesje-i-itemshop">Osobowości, sesje i itemshop</h2>
+<p>Bieżąca polityka obsługuje sukcesję sześciu frakcji, w tym przejście Bractwa do Zakonu Mroku, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. <a href="#doc-complete-journey">Pełna droga</a>, <a href="#doc-world-updates">aktualizacje</a>.</p></article><article id="doc-bot-personalities" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/BOT_PERSONALITIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/BOT_PERSONALITIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-bot-personalities--osobowosci-sesje-i-itemshop">Osobowości, sesje i itemshop</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
-<p>Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-25, schemat obserwacji 23. Dawne polityki 7–24 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.</p>
+<p>Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-26, schemat obserwacji 24. Dawne polityki 7–25 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -2063,9 +2049,9 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <p>Migracje 0039–0041 dodają osobowości, ustawienia świata, kategorię zakupów do limitów i migawkę rzadkości/przekucia transakcji. Dawne transakcje mają nieznany wariant; nie zgadujemy ich historii. Historyczny krok 0024 dostał inicjalizację świata historycznym modelem przed domyślnymi kluczami obcymi, aby działały świeże instalacje i odtworzenie dawnych zapisów. W istniejącej bazie nie wykonuje się ponownie. Postęp i hasła nie są resetowane.</p>
 <h3 id="doc-bot-personalities--region-i-dostep-do-oferty">Region i dostęp do oferty</h3>
 <p>17 to liczba definicji, nie gwarancja 17 dostępnych kart dla każdej postaci. Przed Barierą Khorinis nie kupuje koloniowego sprzętu przez podmienione ID; po połączeniu wspólna oferta nadal sprawdza poziom, regiony źródłowe i wymagania. Limity są osobiste i nie odnawiają się przez podróż ani zmianę aktywnej postaci na tym samym profilu. Odłamki nie są uprawnieniem do Jarkendaru; kont premium nie ma.</p>
-<p>Boty wykonują także sukcesję, przejście Bractwa do Zakonu Czarnej Zasłony, rangi 5–8, portal, NK i regionalny endgame przez zwykłe płatne usługi. <a href="#doc-living-world">Gra z botami</a>, <a href="#doc-solo-playtest">wyniki i ograniczenia prób</a>.</p></article><article id="doc-market-policy" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/MARKET_POLICY.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/MARKET_POLICY.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-market-policy--rynek-z-rzeczywistym-popytem">Rynek z rzeczywistym popytem</h2>
+<p>Boty wykonują także sukcesję, przejście Bractwa do Zakonu Mroku, rangi 5–8 według prób własnej gildii, portal, NK i regionalny endgame przez zwykłe płatne usługi. Przy dostępnej próbie w większości tur wybierają cel lub podróż do niego. Handel, kuźnia i patrole wciąż pojawiają się w ich planach. <a href="#doc-living-world">Gra z botami</a>, <a href="#doc-solo-playtest">wyniki i ograniczenia prób</a>.</p></article><article id="doc-market-policy" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/MARKET_POLICY.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/MARKET_POLICY.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-market-policy--rynek-z-rzeczywistym-popytem">Rynek z rzeczywistym popytem</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
-<p>Polityka <strong>baseline-25 / schemat 23</strong> porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.</p>
+<p>Polityka <strong>baseline-26 / schemat 24</strong> porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.</p>
 <p>Popyt oznacza <strong>potencjalną potrzebę</strong>, nie złożone zamówienie człowieka. Uwzględnia poziom, obóz, wymagania, aktualne wyposażenie, brak zasobów, receptury i budżet z rezerwą 20 rudy. Śmieci bez realnej wartości użytkowej nie trafiają na targ tylko dlatego, że jest pusty. Równie dobry dostępny zamiennik NPC ogranicza cenę do 95% swojej ceny. Konkurencją są również podobne oferty, nie wyłącznie identyczne nazwy.</p>
 <p>Kotwica ceny to wartość bazowa × (1 + 0,18 × rzadkość + 0,08 × przekucie). Mediana transakcji tego wariantu z siedmiu dni jest ograniczona do 65–145% kotwicy; próba obejmuje do 2000 ostatnich transakcji i najwyżej 20 różnych kupujących. Wielokrotny obrót jednego kupującego daje jeden sygnał. Podaż obniża, potencjalne potrzeby i potwierdzone zakupy podnoszą cenę w ograniczonym zakresie. Brak nabywcy oznacza brak oferty. Wszystkie ceny dotyczą całego stosu.</p>
 <p>Najwyżej trzy ogłoszenia bota, bez powielania własnego wariantu i dokładania do nasyconego rynku. Przecena lub podwyżka następuje najwyżej raz na sześć godzin przy zmianie co najmniej 10% i dwóch sztuk rudy. Po dobie dochodzi presja przeceny, po trzech dobach lub zaniku popytu — wycofanie. Potrzebny sprzęt wraca do użytku, zbędny można sprzedać NPC. Stare oferty bez daty zachowują nieznaną datę i osobną pierwszą obserwację.</p>
@@ -2573,10 +2559,10 @@ python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
 <p>Retencja nie usuwa ledgerów, transakcji, walk ani questów. Dzienne agregaty i surowe decyzje są rozłączne; sumy PD/liczby decyzji pozostają zgodne przed i po archiwizacji. Akcje historyczne są dostępne w sekcji agregatów dziennych. Same archiwa nie zastępują backup_world: kopiuj również katalog archiwów, jeśli potrzebujesz zachować wszystkie dawne obserwacje po awarii dysku.</p>
 <p>Testy obejmują zgodność sum, replay bez mutacji, idempotencję, rollback archiwizacji, autoryzację i budżet liczby zapytań dla 2000 dawnych decyzji. Jest to ochrona przed N+1, nie obietnica czasu odpowiedzi na niezmierzonym produkcyjnym PostgreSQL.</p>
 <h3 id="doc-world-monitor--odczyt-po-dodaniu-sesji-osobowosci">Odczyt po dodaniu sesji osobowości</h3>
-<p>Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny <code>/zycie-kolonii/</code> uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 23, a polityka domyślna baseline-25; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.</p>
+<p>Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jest to samo co plan sesji: casual ma minimalny odstęp 90 s, a bywalec karczmy 120 s, więc monitor może pokazać offline także między prawidłowymi turami. Widok publiczny <code>/zycie-kolonii/</code> uwzględnia otwarte okno sesji oraz próg większy z 180 s i dwukrotności kadencji. Sprawdzaj oba wskaźniki wraz z heartbeat workera i rzeczywistymi zapisami; sam stan offline nie potwierdza awarii. Aktualny schemat obserwacji to 23, a polityka domyślna baseline-26; historyczny schemat 7 wyjaśniony wyżej opisuje początek rejestrowania tych danych.</p>
 <h3 id="doc-world-monitor--wspolny-serwer-i-odkrycia">Wspólny serwer i odkrycia</h3>
 <p>Przed połączeniem wybór regionu ogranicza kontekst raportu; po Barierze wspólna grupa obejmuje oba regiony z zachowaniem pochodzenia. Sukcesja pokazuje bieżące frakcje, nie kasuje rodzimych rang i dawnych faktów. Panel <code>/zarzadca/bariera/</code> odrębnie pokazuje wyścig, stan kopii/przejścia i audyt; kalendarz przechowuje trwałe odsłony oraz wykorzystanie regionalnych premii. <a href="#doc-backups">Kopie i panel Bariery</a>, <a href="#doc-world-updates">wydarzenia</a>.</p></article><article id="doc-bot-performance" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/BOT_PERFORMANCE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/BOT_PERFORMANCE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><aside class="history-note">Rozdział zawiera datowane wyniki i modele. Wynik historyczny nie jest prognozą obecnego świata; aktualne reguły są opisane w odpowiednich sekcjach.</aside><h2 id="doc-bot-performance--populacja-botow-harmonogram-i-wydajnosc">Populacja botów, harmonogram i wydajność</h2>
-<p>Stan: 13 XI 2026, baseline-25 / schemat 23. Domyślnie Kolonia ma 125 botów, a otwarte Khorinis kolejne 125: <strong>250 łącznie</strong>. Każdy region można ustawić na 0–300. Po Barierze jest jeden serwer, ale zachowane konfiguracje dwóch regionów nadal sterują ich populacjami. Nie ma globalnego limitu 300 sumującego oba regiony; maksimum 600 nie było kompleksowo mierzone.</p>
+<p>Stan: 19 XI 2026, baseline-26 / schemat 24. Domyślnie Kolonia ma 125 botów, a otwarte Khorinis kolejne 125: <strong>250 łącznie</strong>. Każdy region można ustawić na 0–300. Po Barierze jest jeden serwer, ale zachowane konfiguracje dwóch regionów nadal sterują ich populacjami. Domyślne fale po Barierze prowadzą do 500 botów łącznie. Administrator może ustawić do 300 w każdym regionie, zatem tryb ręczny może przekroczyć populację mierzoną w tym teście.</p>
 <h3 id="doc-bot-performance--ustawienia-bez-resetu">Ustawienia bez resetu</h3>
 <p>W Zarządca → Świat → Ustawienia wybierz region, populację, sesje i symulowane zakupy. Zwiększenie tworzy brakujące konta, zmniejszenie usypia nadmiarowe bez kasowania postępu. Nowa konfiguracja ma domyślne 125; istniejące liczby pozostają, migracja ich nie wyrównuje. <code>play.py --bots 125</code> ustala początek przed konfiguracją, nie nadpisuje panelu. <code>open_khorinis --bots 125</code> nie resetuje otwartej już wyspy.</p>
 <p>Konta <code>colony-bot-N</code> i <code>khorinis-bot-N</code> nie mają używalnego hasła. Publiczne imiona/oznaczenia są stabilne i rozróżniają także większe populacje. Lista mieszkańców jest stronicowana po 30, a osobowości inicjalizowane partiami do 100, tylko w wybranym regionie.</p>
@@ -2586,11 +2572,12 @@ python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
 <p>Gotowe konta i konfiguracja odświeżają się co 5 s; odpoczynek ma co najmniej 30 s nawet po czasowym zniknięciu z listy. Kosztowniejsza akcja spowalnia kolejkę, nie wywołuje nadrabiania falą. Siedem osobowości nie oznacza 250 kont online przez całą dobę. <a href="#doc-bot-personalities">Sesje i odłamki</a>.</p>
 <h3 id="doc-bot-performance--co-ogranicza-zasoby">Co ogranicza zasoby</h3>
 <p>Paginated listy i <code>select_related</code>, ograniczone migawki rynku, cache manifestu oraz kontekst połączonych regionów ograniczają N+1. Lista zleceń pobiera wydarzenia raz dla całej strony. Wydarzenia regionalne używają wspólnego kursora dnia/wersji, bez timera na każdego bota. Po wyczerpaniu budżetu nagroda pomija odczyt regionalnych okien.</p>
+<p>Lokalny launcher stosuje WAL z pełną synchronizacją transakcji SQLite. Kopia przez narzędzie gry obejmuje zatwierdzone dane z WAL. Przy pomiarze SQL licz bajty kierowane do bazy i jej dziennika, ponieważ licznik zapisów całego procesu obejmuje również logi.</p>
 <p>Retencja szczegółowych decyzji to domyślnie 30 pełnych dni UTC, z prywatnym archiwum i agregatami. Powtarzane czekanie nie zapisuje decyzji częściej niż co 5 minut. Retencja nie usuwa przedmiotów, ledgerów, walk, wypraw i questów. <a href="#doc-world-monitor">Monitoring</a>.</p>
 <p>Nie ma domyślnego LLM, płatnego API ani pracy GPU. <a href="#doc-local-ai-policies">Opcjonalny eksperyment</a> jest osobny i ma trwały budżet.</p>
 <h3 id="doc-bot-performance--powtarzalny-pomiar">Powtarzalny pomiar</h3>
 <pre><code class="language-bash">python scripts/benchmark_bots.py --population 250 --seconds 120 --mode sessions --report /tmp/boty-sesje-01.json
-python scripts/benchmark_bots.py --population 300 --seconds 240 --mode stress --mature --joined --report /tmp/boty-weterani-01.json
+python scripts/benchmark_bots.py --population 500 --seconds 660 --mode stress --mature --joined --endgame --report /tmp/boty-weterani-01.json
 python scripts/benchmark_bots.py --population 250 --seconds 60 --mode sessions --mature --joined --endgame --regional-events --report /tmp/boty-wydarzenia-01.json
 </code></pre>
 <p>Każda próba tworzy własny plik SQLite i lokalny launcher na wolnym porcie, niezależnie od prywatnego <code>DATABASE_URL</code>. Zamyka tylko własny proces. <code>--mode sessions</code> respektuje przerwy; <code>stress</code> usuwa okna i ustawia gotowość, ale zachowuje normalne reguły i kadencje. Dwie zwykłe tury każdego bota poprzedzają pomiar HTTP.</p>
@@ -2602,7 +2589,7 @@ python scripts/benchmark_bots.py --population 250 --seconds 60 --mode sessions -
 <p>RSS obejmuje serwer i kolejkę, nie przeglądarkę, PostgreSQL ani przygotowanie fikstury. CPU obejmuje także HTTP i nie jest pomiarem samego celu 20%. Krótki SQLite nie jest SLA, testem wielu równoległych klientów ani dowodem zdrowej wielotygodniowej gospodarki. Współbieżność sprawdza odrębny <a href="#doc-postgresql">PostgreSQL</a>; dłuższe próby pozostają w <a href="#doc-roadmap">roadmapie</a>.</p>
 <p>Synchronizacja pul etapów korzysta ze wspólnego kursora dnia/odkryć. Rozpoznawanie i odświeżanie nazw odbywa się przy zmianie etapu lub utrzymaniu, nie dla każdego bota i nie w GET. Zwykła tura i nagroda nie pobierają osobno katalogu narracyjnego; gorąca kontrola ma stały budżet zapytań.</p></article><article id="doc-local-ai-policies" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/LOCAL_AI_POLICIES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOCAL_AI_POLICIES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-local-ai-policies--opcjonalne-lokalne-polityki-ai-28">Opcjonalne lokalne polityki AI (#28)</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
-<p><strong>Domyślnie działają boty regułowe baseline-25.</strong> Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment <code>ollama-1</code> jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.</p>
+<p><strong>Domyślnie działają boty regułowe baseline-26.</strong> Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment <code>ollama-1</code> jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.</p>
 <h3 id="doc-local-ai-policies--co-model-moze-wybrac">Co model może wybrać</h3>
 <p>Gra buduje małą listę dozwolonych par akcja/cel na podstawie niemutowalnej obserwacji. Model zwraca wyłącznie numer pozycji. Może wybrać zwykłą pracę w kopalni, zaplanowane bezpieczne polowanie albo dostępną wyprawę. Może podejmować te zwykłe zajęcia także w trakcie realizacji celów łowieckich/wydobywczych. Nie wybiera dowolnego ID, ceny, statystyk, nagrody ani SQL.</p>
 <p>Rozmowy/odbiór fabuły, awanse, nagrody, zakupy, odzysk, przekuwanie, krytyczna regeneracja i przygotowanie walk pozostają obsługiwane regułami. Każdą akcję i własność celu ponownie sprawdzają zwykłe serwisy gry. Model nie dostaje ORM, kont, haseł, nazw graczy, panelu zarządcy, czatu ani narzędzi. Odpowiedź tekstowa nie jest wykonywana ani publikowana w karczmie.</p>
@@ -2616,7 +2603,7 @@ python scripts/benchmark_bots.py --population 250 --seconds 60 --mode sessions -
 <p>W Compose adres loopback oznacza ten sam kontener/sieć procesów; domyślny obraz nie zawiera Ollama. Eksperyment sprawdzono na natywnym workerze i serwerze modelu na jednym hoście. Nie otwieraj endpointu modelu publicznie i nie zastępuj loopback adresem zewnętrznego dostawcy — adapter go nie obsługuje.</p>
 <p>Adapter wymusza 0 warstw GPU i dwa wątki inferencji, kontekst 4096 i maksymalnie 48 tokenów odpowiedzi. Wywołanie HTTP odbywa się w małym osobnym procesie bez odziedziczonych sekretów aplikacji/bazy. Cały proces jest kończony po deadline, także przy powolnych nagłówkach/DNS. Błąd, timeout, przekroczenie odpowiedzi, nieprawidłowy indeks lub budżet prowadzą do decyzji regułowej. Po błędzie działa trwała przerwa 60 s. Timeout nie jest gwarancją natychmiastowego zatrzymania obliczeń po stronie serwera modelu, dlatego ograniczamy także liczbę prób i długość odpowiedzi. Nie ma opłat za zewnętrzne API; pozostaje lokalny koszt CPU/RAM/czasu.</p>
 <h3 id="doc-local-ai-policies--audyt-i-replay">Audyt i replay</h3>
-<p>Obserwacje/rekordy mają schemat 23. Reguły to baseline-25; historyczne wersje pozostają odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. <code>BotDecision.policy_snapshot</code> zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.</p>
+<p>Obserwacje/rekordy mają schemat 24. Reguły to baseline-26; historyczne wersje pozostają odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. <code>BotDecision.policy_snapshot</code> zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.</p>
 <p>Replay weryfikuje listę wyborów i hash na podstawie zapisanej obserwacji oraz zamrożonej baseline-18. <strong>Nie pyta ponownie modelu</strong>. Status <code>forced-rules</code> oznacza obowiązkową decyzję reguł, <code>accepted</code> poprawny wybór modelu, <code>fallback</code> błąd, a <code>budget-or-cooldown</code> brak dostępnego budżetu. Sam napis <code>ollama-1</code> nie znaczy, że każdą akcję wybrał model.</p>
 <h3 id="doc-local-ai-policies--rzeczywiste-porownanie">Rzeczywiste porównanie</h3>
 <p><code>python manage.py benchmark_policies --model qwen2.5:0.5b --endpoint http://127.0.0.1:11434/api/chat --steps 100 --calls 8 --timeout 5 --report /nowy/raport.json</code></p>
@@ -2749,7 +2736,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <p>Budżetowa symulacja v 1 powyżej opisuje dawne założenia, nie dzisiejsze sesje botów. Aktualny system ma siedem osobowości, przerwy w grze, 17 ofert itemshopu i jawne symulowane zakupy odłamków, księgowane operacją <code>simulated_purchase</code> w kategorii <code>source</code> oraz pokazywane oddzielnie w podsumowaniu. <a href="#doc-bot-personalities">Osobowości i limity</a>, <a href="#doc-market-policy">model rynku</a>.</p>
 <h3 id="doc-economy--biezacy-wspolny-swiat-i-ograniczone-dodatki">Bieżący wspólny świat i ograniczone dodatki</h3>
 <p>Przed Barierą rynki i przepływy dwóch serwerów są oddzielone. Po niej wspólny rynek/ranking nie kopiuje sald ani przedmiotów. Sukcesja dzieli skarbce według członków i zachowuje sumę majątku; depozyt Bractwa przechodzi do wybranych wspólnot. Wpłata nie jest zniszczeniem rudy. <a href="#doc-camp-guilds">Reguły podziału</a>.</p>
-<p>Nowe ujścia obejmują opłacone awanse 5–8 (łącznie 5500 rudy), kręgi/runy, sprzęt, kuźnię i wpisowe regionalnej warty 12–90 rudy. Cztery regionalne ścieżki mają wspólny limit 8 pełnych nagród na polski dzień; po nim nadal płaci się za postęp/punkty. Limit dotyczy nowego systemu, nie wszystkich źródeł świata. Cel tygodniowy daje 100 rudy/1000 PD/5 pyłu uczestnikowi raz, bez nowych odłamków.</p>
+<p>Nowe ujścia obejmują opłacone awanse 5–8 (łącznie 5300–5705 rudy zależnie od gildii), kręgi/runy, sprzęt, kuźnię i wpisowe regionalnej warty 12–90 rudy. Cztery regionalne ścieżki mają wspólny limit 8 pełnych nagród na polski dzień; po nim nadal płaci się za postęp/punkty. Limit dotyczy nowego systemu, nie wszystkich źródeł świata. Cel tygodniowy daje 100 rudy/1000 PD/5 pyłu uczestnikowi raz, bez nowych odłamków.</p>
 <p>Regionalne okna wydarzeń dają do 3 faktycznie podwyższonych nagród, 300 dodatkowej rudy i 3000 PD dziennie, wspólnie dla krain, z regułą maksimum. Nie zwiększają odłamków. Zwykłe święta, stare warty i skup NPC zachowują własną emisję. <a href="#doc-world-updates">Wydarzenia</a>, <a href="#doc-regional-endgame">endgame</a>.</p>
 <p><a href="#report-grywalnosc-wydania-2026-11-13">Audyt 13 XI</a> i <a href="#report-wydarzenia-aktualizacje-2026-11-13">próba regionalnych bonusów</a> są krótkimi testami funkcji/obciążenia. Dziewięć wygrywających buildów i rosnący obrót nie dowodzą wielotygodniowego bilansu 250 botów. Bieżące mechaniki nie powinny być oceniane jako w pełni odwzorowane przez historyczny budżet v 1.</p></article><article id="doc-game-content" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/GAME_CONTENT.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/GAME_CONTENT.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-game-content--katalog-domyslnej-zawartosci-biezacej-gry">Katalog domyślnej zawartości bieżącej gry</h2>
 <p><a href="#doc-game-guide">Instrukcja</a> · <a href="#doc-camps">Frakcje</a> · <a href="#doc-gothic-ii-content">NK</a> · <a href="#doc-index">Indeks</a></p>
@@ -2957,7 +2944,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td></td>
 </tr>
 <tr>
-<td>veil_refuge — Krypta Czarnej Zasłony</td>
+<td>veil_refuge — Krypta Zakonu Mroku</td>
 <td>GOTHIC_II</td>
 <td>0</td>
 <td>VEIL_ORDER; po Barierze</td>
@@ -5113,13 +5100,246 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków</td>
 </tr>
 <tr>
-<td>Zakon Czarnej Zasłony</td>
-<td>Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz</td>
-<td>Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara</td>
+<td>Zakon Mroku</td>
+<td>Słuchacz Cienia → Nowicjusz Mroku → Wysłannik Mroku → Poszukiwacz</td>
+<td>Powiernik Mroku → Strażnik Czarnego Płomienia → Herold Mroku → Awatar Beliara</td>
 </tr>
 </tbody>
 </table></div>
-<p><a href="#doc-camp-guilds">Sukcesja i skarbce</a>. Wyższe awanse wymagają kolejno poziomów 30/35/40/45, opłat 500/1000/1500/2500 rudy oraz własnych prób; <a href="#doc-camps">pełne warunki</a>.</p>
+<p><a href="#doc-camp-guilds">Sukcesja i skarbce</a> · <a href="#doc-camps">zasady awansu</a>.</p>
+<p><a id="doc-game-content--proby-frakcji"></a></p>
+<h4 id="doc-game-content--zadania-rang-58">Zadania rang 5–8</h4>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Frakcja</th>
+<th>Ranga i próba</th>
+<th>Odsłona</th>
+<th>Poziom</th>
+<th>Atrybut</th>
+<th>Ruda</th>
+<th>Cele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Miasto Khorinis — Zakon Paladynów</td>
+<td>5. Kandydat Zakonu — Patrol dla straży</td>
+<td>Pęknięcie Bariery</td>
+<td>30</td>
+<td>Siła lub zręczność 70</td>
+<td>500</td>
+<td>Rozbij grupy orkowych żołnierzy ×5, Pokonaj orkowych wojowników ×2</td>
+</tr>
+<tr>
+<td>Miasto Khorinis — Zakon Paladynów</td>
+<td>6. Rycerz — Eskorta przez przełęcz</td>
+<td>Zaginiona Dolina</td>
+<td>34</td>
+<td>Siła lub zręczność 88</td>
+<td>900</td>
+<td>Usuń orkowych strażników ×4, Dostarcz rudę na naprawę bram ×4</td>
+</tr>
+<tr>
+<td>Miasto Khorinis — Zakon Paladynów</td>
+<td>7. Paladyn — Warta na lodowym szlaku</td>
+<td>Przebudzenie smoków</td>
+<td>40</td>
+<td>Siła lub zręczność 112</td>
+<td>1500</td>
+<td>Odeprzyj orkowych wiarusów ×5, Pokonaj smoka lodu ×1</td>
+</tr>
+<tr>
+<td>Miasto Khorinis — Zakon Paladynów</td>
+<td>8. Mistrz Zakonu — Ostatnia straż Zakonu</td>
+<td>Żagle ku Irdorath</td>
+<td>48</td>
+<td>Siła lub zręczność 140</td>
+<td>2600</td>
+<td>Pokonaj starszych opiekunów świątyni ×5, Przełam wartę Archola na Irdorath ×1</td>
+</tr>
+<tr>
+<td>Klasztor Magów Ognia</td>
+<td>5. Mistrz Ognia — Światło w ruinach</td>
+<td>Pęknięcie Bariery</td>
+<td>30</td>
+<td>Mana 55</td>
+<td>550</td>
+<td>Rozprosz szkielety magów ×4, Oczyść ruiny ze szkieletów wojowników ×3</td>
+</tr>
+<tr>
+<td>Klasztor Magów Ognia</td>
+<td>6. Strażnik Świętego Ognia — Próba płomienia</td>
+<td>Zaginiona Dolina</td>
+<td>35</td>
+<td>Mana 72</td>
+<td>1000</td>
+<td>Rozbij lodowe golemy ×4, Wytęp świątynne pełzacze ×4</td>
+</tr>
+<tr>
+<td>Klasztor Magów Ognia</td>
+<td>7. Mistrz Kręgu Ognia — Płomień na granicy lodu</td>
+<td>Przebudzenie smoków</td>
+<td>39</td>
+<td>Mana 94</td>
+<td>1550</td>
+<td>Zabezpiecz szlak przed lodowymi golemami ×3, Pokonaj smoka lodu ×1</td>
+</tr>
+<tr>
+<td>Klasztor Magów Ognia</td>
+<td>8. Awatar Innosa — Oczyszczenie sanktuarium</td>
+<td>Żagle ku Irdorath</td>
+<td>47</td>
+<td>Mana 120</td>
+<td>2500</td>
+<td>Usuwaj opiekunów świątyni ×5, Pokonaj smoka skały ×1</td>
+</tr>
+<tr>
+<td>Krąg Magów Wody</td>
+<td>5. Mistrz Wody — Zabezpieczenie dawnej drogi</td>
+<td>Pęknięcie Bariery</td>
+<td>30</td>
+<td>Mana 50</td>
+<td>500</td>
+<td>Pokonaj kamienne golemy ×4, Udrożnij przejście przez bagno ×3</td>
+</tr>
+<tr>
+<td>Krąg Magów Wody</td>
+<td>6. Strażnik Równowagi — Badacze za portalem</td>
+<td>Zaginiona Dolina</td>
+<td>34</td>
+<td>Mana 68</td>
+<td>950</td>
+<td>Oczyść przejście z kamiennych strażników Jarkendaru ×3, Zabezpiecz plażę przed topielcami ×4</td>
+</tr>
+<tr>
+<td>Krąg Magów Wody</td>
+<td>7. Mistrz Kręgu Wody — Równowaga pod ognistym szczytem</td>
+<td>Przebudzenie smoków</td>
+<td>40</td>
+<td>Mana 90</td>
+<td>1450</td>
+<td>Pokonaj błotne węże Jarkendaru ×4, Pokonaj smoka ognia ×1</td>
+</tr>
+<tr>
+<td>Krąg Magów Wody</td>
+<td>8. Awatar Adanosa — Pieczęcie Budowniczych</td>
+<td>Żagle ku Irdorath</td>
+<td>46</td>
+<td>Mana 116</td>
+<td>2450</td>
+<td>Odeprzyj strażników ruin ×5, Pokonaj strażnika krypty Jarkendaru ×1</td>
+</tr>
+<tr>
+<td>Bandyci Khorinis</td>
+<td>5. Przywódca szajki — Zaopatrzenie dla Wieży Dextera</td>
+<td>Pęknięcie Bariery</td>
+<td>30</td>
+<td>Siła lub zręczność 70</td>
+<td>500</td>
+<td>Odbierz trzy zmiany dla nowej wspólnoty ×3, Pokonaj orkowych zwiadowców w Górniczej Dolinie ×5</td>
+</tr>
+<tr>
+<td>Bandyci Khorinis</td>
+<td>6. Dowódca bandytów — Szlak przemytników</td>
+<td>Zaginiona Dolina</td>
+<td>35</td>
+<td>Siła lub zręczność 90</td>
+<td>900</td>
+<td>Rozprosz orkowych myśliwych ×5, Udrożnij leśny szlak ×2</td>
+</tr>
+<tr>
+<td>Bandyci Khorinis</td>
+<td>7. Herszt bandytów — Przeprawa przez bagno</td>
+<td>Przebudzenie smoków</td>
+<td>39</td>
+<td>Siła lub zręczność 110</td>
+<td>1450</td>
+<td>Odpędź orkowych wiarusów ×4, Pokonaj smoka bagien ×1</td>
+</tr>
+<tr>
+<td>Bandyci Khorinis</td>
+<td>8. Baron bandytów — Twierdza pod znakiem szajki</td>
+<td>Żagle ku Irdorath</td>
+<td>46</td>
+<td>Siła lub zręczność 136</td>
+<td>2450</td>
+<td>Usuń starszych opiekunów świątyni ×4, Pokonaj smoka skały ×1</td>
+</tr>
+<tr>
+<td>Najemnicy — Łowcy Smoków</td>
+<td>5. Łowca Smoków — Kontrakt za owce Onara</td>
+<td>Pęknięcie Bariery</td>
+<td>31</td>
+<td>Siła lub zręczność 72</td>
+<td>525</td>
+<td>Wytęp brzytwiaki ×5, Pokonaj cieniostwory ×2</td>
+</tr>
+<tr>
+<td>Najemnicy — Łowcy Smoków</td>
+<td>6. Weteran Łowców Smoków — Stal na przeprawie</td>
+<td>Zaginiona Dolina</td>
+<td>35</td>
+<td>Siła lub zręczność 92</td>
+<td>980</td>
+<td>Odeprzyj orkowych wiarusów ×5, Zabezpiecz przejście przed trollami ×2</td>
+</tr>
+<tr>
+<td>Najemnicy — Łowcy Smoków</td>
+<td>7. Dowódca Łowców Smoków — Kontrakt na smoka skały</td>
+<td>Przebudzenie smoków</td>
+<td>40</td>
+<td>Siła lub zręczność 116</td>
+<td>1550</td>
+<td>Rozbij golemy na podejściu ×4, Pokonaj smoka skały ×1</td>
+</tr>
+<tr>
+<td>Najemnicy — Łowcy Smoków</td>
+<td>8. Mistrz Łowców Smoków — Ostatni list żelazny</td>
+<td>Żagle ku Irdorath</td>
+<td>48</td>
+<td>Siła lub zręczność 145</td>
+<td>2650</td>
+<td>Odeprzyj książęta demonów ×4, Pokonaj smoka z Irdorath ×1</td>
+</tr>
+<tr>
+<td>Zakon Mroku</td>
+<td>5. Powiernik Mroku — Zejście do krypty</td>
+<td>Pęknięcie Bariery</td>
+<td>30</td>
+<td>Mana 52 / siła lub zręczność 72 (templariusze)</td>
+<td>500</td>
+<td>Pokonaj świątynne pełzacze ×4, Rozprosz szkielety magów ×3</td>
+</tr>
+<tr>
+<td>Zakon Mroku</td>
+<td>6. Strażnik Czarnego Płomienia — Służba pod znakiem Beliara</td>
+<td>Zaginiona Dolina</td>
+<td>34</td>
+<td>Mana 70 / siła lub zręczność 90 (templariusze)</td>
+<td>925</td>
+<td>Pokonaj pomniejsze demony ×4, Odeprzyj orkowych szamanów ×3</td>
+</tr>
+<tr>
+<td>Zakon Mroku</td>
+<td>7. Herold Mroku — Warta Czarnego Płomienia</td>
+<td>Przebudzenie smoków</td>
+<td>40</td>
+<td>Mana 93 / siła lub zręczność 113 (templariusze)</td>
+<td>1500</td>
+<td>Odeprzyj opiekunów świątyni ×4, Pokonaj smoka bagien ×1</td>
+</tr>
+<tr>
+<td>Zakon Mroku</td>
+<td>8. Awatar Beliara — Próba Awatara Beliara</td>
+<td>Żagle ku Irdorath</td>
+<td>47</td>
+<td>Mana 118 / siła lub zręczność 138 (templariusze)</td>
+<td>2550</td>
+<td>Pokonaj Nadzorców w głębi krypty ×3, Pokonaj książęta demonów ×4, Pokonaj smoka ognia ×1</td>
+</tr>
+</tbody>
+</table></div>
 <h3 id="doc-game-content--zlecenia-czasowe">Zlecenia czasowe</h3>
 <p>Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 10 Khorinis. Nagroda z premiami zapisuje się przy starcie; <a href="#doc-adventures">zasady i wspólny odczyt podglądu</a>.</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
@@ -8457,7 +8677,7 @@ python manage.py simulate_release --suite quick --report /tmp/ore-quick-01.json
 <ul>
 <li><a href="#doc-game-guide">Pełny przewodnik gracza</a>, <a href="#doc-first-playable">pierwsze kroki</a>, <a href="#doc-complete-journey">uruchomienie obu regionów i cała droga</a>.</li>
 <li><a href="#doc-characters-and-worlds">Konto, postacie i połączenie</a>, <a href="#doc-khorinis">Khorinis</a>, <a href="#doc-jarkendar">publiczny Jarkendar</a>, <a href="#doc-gothic-ii-content">wyprawa NK i ograniczenia katalogu</a>.</li>
-<li><a href="#doc-build-playthroughs">Dziewięć dróg buildów/frakcji</a>, <a href="#doc-camps">rangi i koszty</a>, <a href="#doc-camp-guilds">sukcesja, Zakon Czarnej Zasłony i skarbce</a>, <a href="#doc-camp-raids">wyprawy wspólnoty</a>.</li>
+<li><a href="#doc-build-playthroughs">Dziewięć dróg buildów/frakcji</a>, <a href="#doc-camps">rangi i koszty</a>, <a href="#doc-camp-guilds">sukcesja, Zakon Mroku i skarbce</a>, <a href="#doc-camp-raids">wyprawy wspólnoty</a>.</li>
 <li><a href="#doc-equipment">Ekwipunek i porównywarka</a>, <a href="#doc-magic">magia i zapasy zwojów</a>, <a href="#doc-market-policy">rynek</a>, <a href="#doc-crafting">rzemiosło</a>.</li>
 <li><a href="#doc-loot-and-endgame">Łupy, kuźnia i 100 starych wart</a>, <a href="#doc-regional-endgame">400 stopni regionalnych i cel tygodniowy</a>.</li>
 <li><a href="#doc-story">Fabuła</a>, <a href="#doc-resident-story">rola mieszkańca</a>, <a href="#doc-adventures">zlecenia czasowe</a>, <a href="#doc-challenges">wyzwania i reputacja</a>, <a href="#doc-journal">prywatna kronika</a>.</li>

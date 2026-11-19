@@ -34,6 +34,40 @@ print(historical_release_dump())
 
 
 class WorldBackupTests(SimpleTestCase):
+    def test_live_wal_save_backs_up_recent_commits_and_restores(self):
+        from ore_empire.database import sqlite_environment
+        script = '''
+import django
+django.setup()
+from django.core.management import call_command
+from django.db import connection
+from characters.backups import create_backup, restore_drill
+from characters.models import World
+from pathlib import Path
+import sys
+
+source = Path(sys.argv[1])
+call_command('migrate', interactive=False, verbosity=0)
+with connection.cursor() as cursor:
+    assert cursor.execute('PRAGMA journal_mode').fetchone() == ('wal',)
+    assert cursor.execute('PRAGMA synchronous').fetchone() == (2,)
+    cursor.execute('PRAGMA wal_autocheckpoint=0')
+World.objects.filter(is_current=True).update(name='Recent durable WAL commit')
+assert source.with_name(source.name + '-wal').stat().st_size > 0
+snapshot = create_backup(source, source.parent/'snapshots')
+target = source.parent/'restored.sqlite3'
+assert restore_drill(snapshot, target, source)['migration_applied']
+import sqlite3
+with sqlite3.connect(target) as restored:
+    assert restored.execute('SELECT name FROM characters_world WHERE is_current').fetchone() == ('Recent durable WAL commit',)
+'''
+        with TemporaryDirectory() as folder:
+            path = Path(folder)/'online.sqlite3'
+            env = {**sqlite_environment(path), 'ORE_SQLITE_WAL': '1'}
+            result = subprocess.run([sys.executable, '-c', script, str(path)], env=env,
+                                    cwd=settings.BASE_DIR, capture_output=True)
+            self.assertEqual(result.returncode, 0, result.stderr.decode())
+
     def test_legacy_brotherhood_backup_restores_into_veil_order(self):
         from ore_empire.database import sqlite_environment
         with TemporaryDirectory() as directory:

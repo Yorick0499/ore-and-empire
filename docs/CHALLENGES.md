@@ -6,7 +6,7 @@ Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
 Nagroda dzienna: 20 rudy, 100 PD, 1 odłamek, 5 reputacji. Tygodniowa: 60 rudy, 400 PD, 2 odłamki, 15 reputacji. Reputacja trafia do obozu z chwili przyjęcia, nie przeskakuje po administracyjnej zmianie przynależności. Bez obozu nie daje reputacji. Maksimum powtarzalnych odłamków to 1 dziennie i 2 tygodniowo; eventy nie mnożą tej wypłaty. Jednorazowe osiągnięcia (10 zmian, 10 polowań, zwycięska wspólna wyprawa, 5 receptur) dają po 20 rudy i 1 odłamku. Akceptacja/ukończenie nie oznacza automatycznej wypłaty: osobny odbiór jest chroniony unikalnym kluczem i ledgerem.
 
-Boty korzystają z tych samych usług i limitów. Obecna polityka baseline-25 (mechanizm wprowadzony w baseline-11) okresowo przyjmuje kontrakty, rozlicza wykonane cele i odbiera osiągnięcia, nie nadaje sobie postępu. Starsze polityki pozostają odtwarzalne. Reset świata usuwa kontrakty, reputację i osiągnięcia wraz z postaciami; backup zachowuje je jako część zapisu. Wspólne cele obozowe pozostają odrębną osią rozwoju.
+Boty korzystają z tych samych usług i limitów. Obecna polityka baseline-26 (mechanizm wprowadzony w baseline-11) okresowo przyjmuje kontrakty, rozlicza wykonane cele i odbiera osiągnięcia, nie nadaje sobie postępu. Starsze polityki pozostają odtwarzalne. Reset świata usuwa kontrakty, reputację i osiągnięcia wraz z postaciami; backup zachowuje je jako część zapisu. Wspólne cele obozowe pozostają odrębną osią rozwoju.
 
 ## Kontekst świata
 

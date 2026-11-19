@@ -28,7 +28,7 @@ Wpłata jest odpływem z portfela, lecz transferem do skarbca w skali świata. N
 | Nowy Obóz, droga wojskowa i Onar | Najemnicy — Łowcy Smoków |
 | Nowy Obóz, Mag/Arcymag Wody | Krąg Magów Wody |
 | Straż Khorinis | Miasto Khorinis — Zakon Paladynów |
-| Bractwo | Zakon Czarnej Zasłony |
+| Bractwo | Zakon Mroku |
 
 Kopacz/Cień oraz Kret/Szkodnik trafiają do odpowiedniego wojskowego następcy, ale mogą dokończyć rodzimą magiczną gałąź jej zwykłymi wymaganiami. To kontynuacja ścieżki, nie swobodne zmienianie frakcji. Postać bez członkostwa nie jest automatycznie rekrutowana. Nowe postacie z Kolonii mogą dołączyć do Zakonu zwykłą ścieżką rekrutacji.
 
@@ -42,9 +42,9 @@ Historyczne źródła zachowują rekordy; przekazana ruda/PD są zerowane, stan 
 
 Projekty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują niedokończone projekty/wyprawy, a następcy zaczynają własne bez kopiowania postępu. Miasto i klasztor zachowują swoje projekty. Zakończona dawna wyprawa nadal płaci raz faktycznemu uczestnikowi; niedokończony projekt nie daje rekompensaty.
 
-## Zakon Czarnej Zasłony
+## Zakon Mroku
 
-Po śmierci Śniącego ocaleni opuszczają dawną świątynię. W krypcie Khorinis składają przysięgę Beliarowi i przyjmują miano Zakonu Czarnej Zasłony. Poszukiwacze strzegą odzyskanych zapisków i uczą nowych członków. Guru zachowują szkołę run Bractwa, a dawni templariusze rozwijają drogę władania bronią. Osiem rang odpowiada ośmiu szczeblom pozostałych frakcji. Za wyższe awanse magowie odpowiadają maną, a strażnicy siłą lub zręcznością.
+Po śmierci Śniącego ocaleni opuszczają dawną świątynię. W krypcie Khorinis składają przysięgę Beliarowi i przyjmują miano Zakonu Mroku. Poszukiwacze strzegą odzyskanych zapisków i uczą nowych członków. Guru zachowują szkołę run Bractwa, a dawni templariusze rozwijają drogę władania bronią. Osiem rang odpowiada ośmiu szczeblom pozostałych frakcji. Za wyższe awanse magowie odpowiadają maną, a strażnicy siłą lub zręcznością.
 
 Dawny skarbiec Bractwa, jego dowody wpłat i wyprawy przechodzą do Zakonu z zachowaniem identyfikatora wspólnoty. Na już połączonym zapisie migracja 0059 przenosi byłych członków Bractwa do nowej frakcji. Zachowuje opłacony szczebel, postęp rozpoczętego awansu, ekwipunek i historię. Zapisane transfery dawnych wyborów pozostają w skarbcach, które je otrzymały. Niedostępna runa Ognia lub Wody zostaje zdjęta z przygotowania i nadal jest w plecaku.
 

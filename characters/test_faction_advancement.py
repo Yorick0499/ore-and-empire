@@ -12,20 +12,29 @@ from .factions import FACTIONS,RANK_NAMES
 
 
 class CatalogTests(SimpleTestCase):
-    def test_twenty_advanced_ranks_use_real_targets_and_fit_persisted_keys(self):
+    def test_twenty_four_advanced_ranks_use_real_targets_and_fit_persisted_keys(self):
         from .bestiary import BESTIARY
         from .bosses import BOSSES
         self.assertEqual(len(RANKS),24)
         for faction,_ in FACTIONS:
             branch=[r for r in RANKS if r.camp==faction]
-            self.assertEqual([r.tier for r in branch],[4,5,6,7]);self.assertEqual([r.level for r in branch],[30,35,40,45])
+            self.assertEqual([r.tier for r in branch],[4,5,6,7]);self.assertEqual([r.level for r in branch],sorted({r.level for r in branch}))
             self.assertEqual([r.name for r in branch],list(RANK_NAMES[faction][4:]))
+        self.assertEqual(len({tuple((goal.event, goal.count) for goal in rank.objectives) for rank in RANKS}), 24)
         for rank in RANKS:
             self.assertLessEqual(len(rank.key),20)
             for goal in rank.objectives:
                 kind,_,key=goal.event.partition(':')
                 if kind=='hunt':self.assertIn(key,BESTIARY)
                 if kind=='boss':self.assertIn(key,BOSSES)
+
+    def test_native_bot_trials_keep_native_objectives(self):
+        from types import SimpleNamespace
+        from .camp_progression import BY_RANK
+        from .faction_advancement import rank_for
+        for key in ('DIGGER', 'NOVICE', 'K2_CITIZEN', 'MOLE'):
+            rank = BY_RANK[key]
+            self.assertIs(rank_for(None, rank, SimpleNamespace(progress={})), rank)
 
     def test_offline_validator_rejects_missing_advanced_boss(self):
         from dataclasses import replace
@@ -37,6 +46,22 @@ class CatalogTests(SimpleTestCase):
 
 
 class PromotionPolicyTests(SimpleTestCase):
+    def test_current_policy_prioritizes_trial_travel_and_still_takes_optional_turns(self):
+        from dataclasses import asdict, replace
+        from types import SimpleNamespace
+        from .bot_telemetry import replay_decision
+        from .bots import BaselinePolicy, BaselinePolicyV25, Observation
+
+        obs = Observation(100, 500, False, False, None, None, None, None, True,
+                          turn=3, advanced_trial=True, forge_action='salvage', forge_target=12,
+                          raid_action='region_travel', raid_target=2)
+        self.assertEqual(BaselinePolicyV25().choose(obs), ('salvage', 12))
+        self.assertEqual(BaselinePolicy().choose(obs), ('region_travel', 2))
+        self.assertEqual(BaselinePolicy().choose(replace(obs, turn=5)), ('salvage', 12))
+        for version, action, target in [('baseline-25', 'salvage', 12), ('baseline-26', 'region_travel', 2)]:
+            decision = SimpleNamespace(policy_version=version, observation=asdict(obs), action=action, target_id=target)
+            self.assertTrue(replay_decision(decision)['matches'])
+
     def test_new_priority_does_not_change_historical_replay(self):
         from dataclasses import asdict
         from types import SimpleNamespace
@@ -51,18 +76,24 @@ class PromotionPolicyTests(SimpleTestCase):
 
 
 class AdvancementTests(TestCase):
-    def setUp(self):self.c,self.i,self.race=fixture()
+    def setUp(self):
+        self.c, self.i, self.race = fixture()
+        from .models import WorldRelease
+        for key in ('jarkendar', 'dragons', 'irdorath'):
+            WorldRelease.objects.create(world=self.c, key=key)
     def veteran(self,camp='OLD_CAMP',rank='BARON',legacy=0):
         p=person(self.i if camp in {'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'} else self.c,camp,rank)
-        p.level=45;p.strength=180;p.dexterity=180;p.mana=200;p.life=6000;p.current_health=6000;p.current_energy=100;p.fire_prot=100;p.weapon_prot=100;p.ore_balance=20000;p.alliance_rank=legacy;p.save()
+        p.level=48;p.strength=180;p.dexterity=180;p.mana=200;p.life=6000;p.current_health=6000;p.current_energy=100;p.fire_prot=100;p.weapon_prot=100;p.ore_balance=20000;p.alliance_rank=legacy;p.save()
         return p
     def complete(self,p,rank):
         for goal in rank.objectives:
             for _ in range(goal.count):
                 with transaction.atomic():record_camp_event(p,goal.event)
     def test_every_faction_advances_four_times_with_one_charge_and_preserved_native_identity(self):
-        people=[self.veteran(camp,key) for camp,key in [('OLD_CAMP','BARON'),('OLD_CAMP','ARCH_FIRE'),('NEW_CAMP','ARCH_WATER'),('CITY_WATCH','K2_COMMANDER'),('ONAR_MERCS','K2_CAPTAIN')]]
-        succeed(self.race)
+        people=[self.veteran(camp,key) for camp,key in [('OLD_CAMP','BARON'),('OLD_CAMP','ARCH_FIRE'),('NEW_CAMP','ARCH_WATER'),('CITY_WATCH','K2_COMMANDER'),('ONAR_MERCS','K2_CAPTAIN'),('SWAMP_CAMP','ARCH_GURU'),('SWAMP_CAMP','TEMPLAR')]]
+        from django.apps import apps
+        from .faction_succession_v2 import apply
+        apply(apps,self.race)
         for p in people:
             p.refresh_from_db();native=(p.camp,p.guild);ore=p.ore_balance
             for rank in [r for r in RANKS if r.camp==p.faction_membership.faction]:
@@ -86,6 +117,42 @@ class AdvancementTests(TestCase):
         from .models import World
         World.objects.filter(pk__in=[self.c.pk,self.i.pk]).update(union_key=None)
         self.assertFalse(promote_in_camp(p,rank.key))
+    def test_veteran_cannot_skip_public_milestones(self):
+        from .models import WorldRelease
+        WorldRelease.objects.all().delete()
+        hero = self.veteran()
+        succeed(self.race)
+        for tier, release in [(4, None), (5, 'jarkendar'), (6, 'dragons'), (7, 'irdorath')]:
+            rank = BY_KEY[f'ADV_BANDITS_{tier}']
+            if release:
+                self.assertFalse(accept_camp_quest(hero, rank.key))
+                card = next(c for c in cards(hero) if c['rank'].key == rank.key)
+                self.assertTrue(card['release_needed'])
+                WorldRelease.objects.create(world=self.c, key=release)
+            self.assertTrue(accept_camp_quest(hero, rank.key))
+            self.complete(hero, rank)
+            hero.level = 48
+            hero.save(update_fields=['level'])
+            self.assertTrue(promote_in_camp(hero, rank.key))
+            hero.refresh_from_db()
+
+    def test_existing_trial_keeps_its_targets_progress_and_price(self):
+        from .faction_advancement import rank_for
+        from .models import WorldRelease
+        hero = self.veteran()
+        succeed(self.race)
+        FactionRankProgress.objects.create(membership=hero.faction_membership, tier=4)
+        WorldRelease.objects.all().delete()
+        quest = CampQuest.objects.create(profile=hero, rank_key='ADV_BANDITS_5', progress={'hunt:orc_veteran': 2})
+        legacy = rank_for(hero, BY_KEY[quest.rank_key], quest)
+        self.assertEqual(legacy.cost, 1000)
+        self.assertEqual([(g.event, g.count) for g in legacy.objectives],
+                         [('hunt:orc_veteran', 5), ('boss:k2_dragon_fire', 1)])
+        self.complete(hero, legacy)
+        self.assertTrue(promote_in_camp(hero, quest.rank_key))
+        hero.refresh_from_db()
+        self.assertEqual(hero.ore_balance, 19000)
+
     def test_archer_can_qualify_with_dexterity_without_strength_build_conversion(self):
         p=self.veteran();p.strength=10;p.save();succeed(self.race)
         rank=BY_KEY['ADV_BANDITS_4'];self.assertTrue(accept_camp_quest(p,rank.key));self.complete(p,rank)
@@ -159,7 +226,7 @@ class AdvancementTests(TestCase):
             with patch('django.utils.timezone.now',return_value=now):self.assertTrue(promote_in_camp(p,rank.key))
         self.assertEqual(current_tier(p),7)
         entries=p.economic_entries.filter(resource='ore',operation='promote_in_camp')
-        self.assertEqual(entries.count(),4);self.assertEqual(sum(entries.values_list('amount',flat=True)),-5500)
+        self.assertEqual(entries.count(),4);self.assertEqual(sum(entries.values_list('amount',flat=True)), -sum(r.cost for r in RANKS if r.camp=='BANDITS'))
 
 
 @skipUnlessDBFeature('has_select_for_update')

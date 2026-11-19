@@ -29,18 +29,20 @@ Przyjmij próbę przed działaniami. Jedna próba naraz; porzucenie kasuje jej p
 | Krąg Magów Wody | Uczeń Wody → Adept Wody → Mag Wody → Arcymag Wody | Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa |
 | Bandyci Khorinis | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
 | Najemnicy — Łowcy Smoków | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków |
-| Zakon Czarnej Zasłony | Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz | Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara |
+| Zakon Mroku | Słuchacz Cienia → Nowicjusz Mroku → Wysłannik Mroku → Poszukiwacz | Powiernik Mroku → Strażnik Czarnego Płomienia → Herold Mroku → Awatar Beliara |
 
 Sukcesja zachowuje odpowiedni zdobyty szczebel, bez darmowych rang 5–8. [Mapowanie, Bractwo i majątek](CAMP_GUILDS.md). Wysoka ranga nie zastępuje portalu/rejsu ani fabuły NK.
 
-| Ranga | Poziom | Ruda | Wojskowe: bazowa siła lub zręczność | Szkoły magiczne: bazowa mana | Cele |
-|---|---:|---:|---:|---:|---|
-|5|30|500|70|50|3 zmiany wydobycia, 5 orkowych zwiadowców|
-|6|35|1000|90|70|5 orkowych wiarusów, 1 smok ognia|
-|7|40|1500|110|90|6 pomniejszych demonów, 1 smok ognia|
-|8|45|2500|130|110|8 opiekunów świątyni, 2 smoki ognia, 10 zmian wydobycia|
+| Ranga | Najwcześniejsza odsłona | Poziom zależnie od gildii |
+|---|---|---:|
+|5|Pęknięcie Bariery|30–31|
+|6|Zaginiona Dolina|34–35|
+|7|Przebudzenie smoków|39–40|
+|8|Żagle ku Irdorath|46–48|
 
-Łącznie 5500 rudy. Cele są w Górniczej Dolinie; postać Khorinis podróżuje normalnie. Smok respektuje energię, zdrowie, walkę i 60-minutowy cooldown. Nie zalicza się działań sprzed przyjęcia. Bieżące wyższe rangi są w `FactionRankProgress`; historyczne pola i zadania pozostają. Ludzie i boty wykonują te same próby i opłaty.
+Gildie mają osobne kombinacje celów, progi atrybutów i opłaty. Straż chroni trakty i uczestniczy w wyprawie do Irdorath, Magowie Wody zabezpieczają badania w Jarkendarze, Bandyci utrzymują szlaki Wieży Dextera, a najemnicy przyjmują kontrakty łowieckie. Magowie Ognia oczyszczają ruiny, a Zakon Mroku walczy z opiekunami i demonami. Wykaz wszystkich 24 prób znajduje się w [katalogu gry](GAME_CONTENT.md#proby-frakcji).
+
+Liczą się działania wykonane po przyjęciu próby. Jedna wygrana może zaliczyć cel fabuły i gildii, jeśli oba zadania są aktywne. Rozpoczęte próby zachowują swoje cele, próg, koszt i postęp po aktualizacji. Ludzie i boty korzystają z tych samych zasad. Próby w Jarkendarze i Irdorath nadal wymagają osobistej odprawy.
 
 ## Przywileje
 

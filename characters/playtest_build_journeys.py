@@ -132,6 +132,7 @@ class EarnedBuildJourneys(TestCase):
     expedition=EarnedNkCampaign.expedition
     def run_case(self,key):
         self.case=key;self.universe,self.camp,self.build,self.path,self.destination=CASES[key];self.checkpoints=[]
+        self.trial_bosses = []
         from unittest.mock import patch
         from .magic import purchase_magic
         self.magic_purchases=[]
@@ -184,6 +185,11 @@ class EarnedBuildJourneys(TestCase):
                             remaining=(last.created_at+timedelta(minutes=game.BOSSES[target].cooldown_minutes)-steps['now']()).total_seconds()
                             if remaining>0:advance(int(remaining)+1,'timer')
                         result=do('matrix_boss',lambda:game.execute_boss(p,target));self.assertTrue(result.won,(self.case,rank.key,target,result.combat_log))
+                        if rank.key.startswith('ADV_'):
+                            strikes = sum(line.startswith(f'{p.display_name} zadaje ') and line.endswith('obrażeń.')
+                                          for line in result.combat_log)
+                            self.assertGreater(strikes, 1, (self.case, rank.key, target))
+                            self.trial_bosses.append({'rank': rank.name, 'target': target, 'strikes': strikes})
                     else:self.fail(kind)
         attribute=rank.attribute
         while getattr(p,attribute)<rank.attribute_value:
@@ -234,7 +240,7 @@ class EarnedBuildJourneys(TestCase):
             self.assertEqual(p.inventory.get(is_equipped=True,equipped_slot='weapon').blueprint.weapon_type,'bow')
             self.assertGreaterEqual(len(self.strategy.bow_upgrades), 3)
             self.assertGreater(self.arrow_battles, 20)
-        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.bow_upgrades,'arrow_battles':self.arrow_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
+        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.bow_upgrades,'arrow_battles':self.arrow_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'trial_bosses':self.trial_bosses,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
 
 for _key in CASES:
     def _test(self,key=_key):self.run_case(key)

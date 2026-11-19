@@ -95,6 +95,7 @@ class Observation:
     finance_id: int | None = None
     finance_old_id: int | None = None
     finance_price: int = 0
+    advanced_trial: bool = False
 
 
 class Policy(Protocol):
@@ -319,7 +320,22 @@ class BaselinePolicyV25(BaselinePolicyV24):
         return super().choose(replace(o, raid_action='', raid_target=None))
 
 
-class BaselinePolicy(BaselinePolicyV25):
+class BaselinePolicyV26(BaselinePolicyV25):
+    def choose(self, o):
+        traveling = o.raid_action == 'region_travel'
+        trial_ready = o.advanced_trial and (
+            traveling or o.quest_hunt or o.quest_mine or o.boss_key or o.story_recover
+        )
+        if trial_ready and o.turn % 5:
+            # Optional jobs still get a turn. They cannot spend every turn
+            # patrolling, repricing or salvaging while a trial can progress.
+            o = replace(o, patrol_depth=None, forge_action='', market_action='', inventory_id=None,
+                        personal_action='', craft_action='', camp_action='',
+                        raid_action=o.raid_action if traveling else '')
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV26):
     pass
 
 
@@ -370,7 +386,8 @@ from .realms import profile_scope,camps as realm_camps
 @profile_scope
 def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
-    from .faction_advancement import RANKS as ADVANCED_RANKS, rank_for
+    from .faction_advancement import RANKS as ADVANCED_RANKS, published_trials, rank_for
+    from .faction_trials import RELEASE_BY_TIER
     RANKS=RANKS+ADVANCED_RANKS
     from .locations import LOCATIONS,BY_KEY
     from .economy import start_adventure, claim_adventure, purchase_product
@@ -481,7 +498,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if quest:
         rank = next((r for r in RANKS if r.key == quest.rank_key and available_rank(profile, r)), None)
         if rank:
-            rank = rank_for(profile, rank)
+            rank = rank_for(profile, rank, quest)
             if quest_complete(quest, rank):
                 needs_ore = needs_ore or profile.ore_balance < rank.cost
                 if getattr(profile, rank.attribute) < rank.attribute_value:
@@ -499,7 +516,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     elif profile.camp != "NONE" and profile.bot_turn >= 2:
         candidates=[r for r in RANKS if available_rank(profile,r)]
         advanced_candidates=[r for r in candidates if r.key.startswith('ADV_')]
-        if advanced_candidates:candidates=advanced_candidates
+        if advanced_candidates:
+            released = published_trials(profile)
+            candidates = [r for r in advanced_candidates if RELEASE_BY_TIER[r.tier] in released]
         from .magic import MAGE_RANKS
         wants_magic=profile.bot_role!='trader' and profile.pk%2==0
         rank=next((r for r in candidates if r.key in MAGE_RANKS),None) if wants_magic else None
@@ -540,7 +559,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     # permit training/leveling/gear upgrades rather than causing permanent rest.
     story_fights = [(game.BOSSES["sleeper_sanctum"].monster,25)] if final_goal else []
     for kind, key in (*story.events,*(('hunt',key) for key in hunt_goals),*(('boss',key) for key in boss_goals)):
-        if kind == 'hunt' and any(loc.accessible(profile) and key in loc.monsters for loc in LOCATIONS):
+        if kind == 'hunt' and any(key in loc.monsters and loc.accessible(profile) for loc in LOCATIONS):
             story_fights.append((game.BESTIARY[key], 15))
         elif kind == 'boss' and BY_KEY[key].accessible(profile) and profile.level >= game.BOSSES[key].level:
             story_fights.append((game.BOSSES[key].monster, 25))
@@ -611,11 +630,24 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         from .locations import BY_KEY
         # Finish the active story route before traveling for a parallel rank.
         # Mixing both routes caused endless Colony/island oscillation.
-        route_events=story.events if story.action or story.events else tuple(('boss',key) for key in boss_goals)
-        route_hunts=[key for kind,key in route_events if kind=='hunt'] if story.action or story.events else hunt_goals
-        desired=next((BY_KEY.get(key) for kind,key in route_events if kind in {'boss','travel'} and BY_KEY.get(key) and BY_KEY[key].universe!=region(profile).universe),None)
-        if not desired:
-            desired=next((loc for loc in LOCATIONS if loc.universe!=region(profile).universe and any(key in loc.monsters for key in route_hunts) and profile.level>=loc.level and profile.camp_tier>=loc.min_tier),None)
+        here = region(profile).universe
+        if story.action or story.events:
+            route_events = story.events
+            route_hunts = {key for kind, key in route_events if kind == 'hunt'}
+        else:
+            route_events = [('boss', key) for key in boss_goals]
+            route_hunts = set(hunt_goals)
+
+        destinations = [BY_KEY[key] for kind, key in route_events if kind in {'boss', 'travel'} and key in BY_KEY]
+        if route_hunts:
+            destinations.extend(loc for loc in LOCATIONS if route_hunts.intersection(loc.monsters))
+        destinations = [loc for loc in destinations if loc.accessible(profile, universe=loc.universe)]
+        if not story.action and not story.events:
+            # Rank objectives may be split between regions. Finish a reachable
+            # local objective before traveling and respect personal portal and sailing requirements.
+            if any(loc.universe == here for loc in destinations):
+                destinations = []
+        desired = next((loc for loc in destinations if loc.universe != here), None)
         if desired:
             from .models import World
             destination=World.objects.filter(pk__in=region_ids(profile.world_id),universe=desired.universe).first()
@@ -670,8 +702,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         armed=equipped is not None, role=profile.bot_role, skill_points=profile.skill_points,
         strength=profile.strength, health=profile.current_health, max_health=profile.max_health,
         premium=profile.premium_balance, turn=profile.bot_turn, camp=profile.camp,
-        camp_target=camp_target, rank_target=RANKS.index(rank) + 1 if rank else None,
+        camp_target=camp_target, rank_target=next(i for i, candidate in enumerate(RANKS, 1) if candidate.key == rank.key) if rank else None,
         rank_action=rank_action, needs_ore=needs_ore, training=training,
+        advanced_trial=bool(quest and rank and rank.key.startswith('ADV_')),
         training_needed=training_needed, quest_mine=quest_mine,
         quest_hunt=bool(hunt and hunt[0]), boss_key=boss_key, hunt_key=hunt[2] if hunt else None, hunt_location=hunt[3] if hunt else None,
         adventure_id=run.pk if run else None, adventure_ready=bool(run and timezone.now() >= run.ends_at),
@@ -692,10 +725,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-25" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-26" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
     if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
-        policy=None;policy_version="baseline-25"
+        policy=None;policy_version="baseline-26"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
     if isinstance(policy,OllamaPolicy):policy_version=policy.version
