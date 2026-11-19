@@ -128,6 +128,14 @@ class CompleteJourney(unittest.TestCase):
     def finish_leader(self,p,steps):
         from .frontier import patrol,board
         self.finish_member(p,steps);self.expedition(p,steps)
+        from .resident_chronicle import profile_history
+        earned_badges = {card['definition'].title for card in profile_history(p)[0]}
+        self.assertTrue({
+            'Pierwsi za progiem', 'Szabla znad zatoki', 'Nieprzespana warta', 'Pióro ze świątyni',
+            'Zanim zagrzmiały skrzydła', 'Światło na trakcie', 'Cztery smocze kły',
+            'Warta przed odpłynięciem', 'Pod żaglami ku Irdorath', 'Łuska z czarnej wyspy',
+            'Strażnik ostatniej przeprawy', 'Powrót przed oblężeniem',
+        } <= earned_badges, earned_badges)
         irdorath_days = round((steps['now']() - self.start).total_seconds() / 86400, 2)
         irdorath_timing_since_leader_start = steps['timing_snapshot']()
         for depth in range(1,4):

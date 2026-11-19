@@ -12,7 +12,7 @@ Lokacje i bossowie są objęte walidacją użytych kluczy, nie tylko listą kod�
 
 ## Font i motyw
 
-Sylwetka w profilu mieszkańca to wygenerowana ilustracja postaci w `art/profile-adventurer.webp`. Odznaki korzystają z oryginalnych grafik wygenerowanych do profilu w `art/resident-badges.webp`. Karty założonych przedmiotów korzystają z istniejących ilustracji z manifestu.
+Sylwetka w profilu mieszkańca to wygenerowana ilustracja postaci w `art/profile-adventurer.webp`. Odznaki korzystają z oryginalnych grafik wygenerowanych do profilu w `art/resident-badges.webp` i `art/resident-chapter-badges.webp`. Karty założonych przedmiotów korzystają z istniejących ilustracji z manifestu.
 
 `characters/static/characters/fonts/GothicII.ttf` pochodzi z wydania 1.0 projektu [Patrix 9999/Gothic-2-Font](https://github.com/Patrix9999/Gothic-2-Font/releases/tag/1.0). To wektorowa rekonstrukcja fontu GothicII, z polskimi znakami, podawana lokalnie przez `font-display:swap` i fallbackGeorgia. `art/valley.svg` jest autorską ilustracją projektu. Karty rzadkości i ornamenty interfejsu korzystają także z własnego CSS. [Motyw](DESIGN.md).
 

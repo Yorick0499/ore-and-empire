@@ -66,4 +66,15 @@ Starsze `prepare_convergence` służy do odczytowego planu/przygotowania history
 
 Publiczny profil mieszkańca pokazuje awanse, udział w zakończeniu epoki Bariery oraz osobiste kamienie milowe, takie jak droga do Jarkendaru i finał Irdorath. Dane biorą się z zapisów rozgrywki. „Sztandar Pogromców Śniącego” trafia na profile członków zwycięskiego obozu natychmiast po wygranej. Odznakę udziału otrzymuje postać z zapisanym trafieniem w zwycięskiej wyprawie. Po połączeniu regionów dawne Bractwo otrzymuje „Byłego wyznawcę Śniącego”, a profile mieszkańców Kolonii pokazują odznaki dawnych rang. Gra zapisuje skład obozu przy zwycięstwie oraz rangi i przynależność mieszkańców przed połączeniem. W starych zapisach odznaki wynikają z potwierdzonych, datowanych zdarzeń.
 
+Stałe odznaki przypadają między innymi za pomoc piratom, wartę przy krypcie Budowniczych, wyprawę przeciw Krukowi, pokonanie czterech smoków Doliny Górniczej i udział w zwycięskim tygodniowym rajdzie na orkowego wodza. Cztery późniejsze odznaki historyczne mają termin na wspólnym zegarze serwera.
+
+| Odznaka historyczna | Osiągnięcie | Aktualizacja zamykająca okno |
+| --- | --- | --- |
+| Pierwsi za progiem | Zdobycie własnego przejścia do Jarkendaru | Cienie nad Khorinis |
+| Zanim zagrzmiały skrzydła | Zdanie pierwszego meldunku zwiadowczego | Przebudzenie smoków |
+| Warta przed odpłynięciem | Pokonanie wszystkich czterech smoków Doliny | Żagle ku Irdorath |
+| Powrót przed oblężeniem | Zakończenie wyprawy do Irdorath | Orkowie u bram |
+
+Osiągnięcie ukończone w chwili ogłoszenia aktualizacji jeszcze się zalicza. Zdobyta odznaka zostaje na profilu. Gra wylicza ją z dat zwycięstw, ukończenia zadań i ogłoszeń serwera.
+
 Rzadkość przelicza się na podstawie odsetka widocznych mieszkańców (ludzi i botów) w bieżącym świecie. Po połączeniu oba regiony liczą się razem. Odznaka jest legendarna przy udziale poniżej 2%, epicka poniżej 10%, rzadka poniżej 30%, niepospolita poniżej 60% i pospolita od 60%. Profil podaje aktualną liczbę posiadaczy.

@@ -7,8 +7,11 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import BarrierEvent, CampGuild, CampQuest, PlayerProfile, SleeperRace, SleeperSiege, SleeperStrike, World
-from .resident_chronicle import join_snapshot, profile_history, rarity, winning_camp_snapshot
+from .models import (
+    BarrierEvent, BossAttempt, CampGuild, CampQuest, CampRaid, CampRaidStrike, PlayerProfile, SleeperRace,
+    SleeperSiege, SleeperStrike, StoryQuest, StoryRun, World, WorldRelease,
+)
+from .resident_chronicle import VALLEY_DRAGONS, join_snapshot, profile_history, rarity, winning_camp_snapshot
 
 
 class ResidentChronicleTests(TestCase):
@@ -100,3 +103,74 @@ class ResidentChronicleTests(TestCase):
     def test_rarity_tracks_share_of_public_residents(self):
         for count, key in ((1, 'legendary'), (2, 'epic'), (10, 'rare'), (30, 'uncommon'), (60, 'common')):
             self.assertEqual(rarity(count, 100)[0], key)
+
+    def finish_story(self, profile, key, stamp, status='claimed'):
+        quest, _ = StoryQuest.objects.get_or_create(key=key, defaults={'title': key, 'universe': 'JOINED'})
+        StoryRun.objects.create(
+            profile=profile, quest=quest, snapshot={'key': key}, status=status,
+            accepted_at=stamp - timedelta(minutes=10), claimed_at=stamp if status == 'claimed' else None,
+        )
+
+    def test_historical_story_badges_use_claim_time_and_release_of_own_server(self):
+        deadline = self.joined + timedelta(days=1)
+        other = World.objects.create(name='Osobny serwer', universe='GOTHIC_I', is_open=True)
+        WorldRelease.objects.create(world=other, key='night', released_at=self.joined)
+        self.finish_story(self.cultist, 'jark-portal', deadline)
+        self.finish_story(self.port, 'jark-portal', deadline + timedelta(seconds=1))
+        self.finish_story(self.ally, 'jark-portal', deadline, status='ready')
+        self.assertIn('Pierwsi za progiem', self.badges(self.cultist))
+        self.assertIn('Pierwsi za progiem', self.badges(self.port))
+
+        WorldRelease.objects.create(world=self.colony, key='night', released_at=deadline)
+        early = self.badges(self.cultist)
+        late = self.badges(self.port)
+        self.assertEqual(early['Pierwsi za progiem']['holders'], 1)
+        self.assertIn('Ślad za portalem', late)
+        self.assertNotIn('Pierwsi za progiem', late)
+        self.assertNotIn('Ślad za portalem', self.badges(self.ally))
+
+    def test_first_victories_unlock_the_dragon_set_for_a_bot_and_a_late_player(self):
+        self.port.is_bot = True
+        self.port.save(update_fields=['is_bot'])
+        deadline = self.joined + timedelta(days=1)
+        before = deadline - timedelta(minutes=1)
+        after = deadline + timedelta(minutes=1)
+        WorldRelease.objects.create(world=self.colony, key='irdorath', released_at=deadline)
+        for boss in VALLEY_DRAGONS:
+            BossAttempt.objects.create(profile=self.port, boss_key=boss, won=True, created_at=before)
+            BossAttempt.objects.create(profile=self.port, boss_key=boss, won=True, created_at=after)
+            BossAttempt.objects.create(profile=self.ally, boss_key=boss, won=True, created_at=after)
+            BossAttempt.objects.create(profile=self.veteran, boss_key=boss, won=False, created_at=before)
+        early = self.badges(self.port)
+        self.assertEqual(early['Cztery smocze kły']['earned_at'], before)
+        self.assertEqual(early['Warta przed odpłynięciem']['holders'], 1)
+        self.assertEqual(self.badges(self.ally)['Cztery smocze kły']['holders'], 2)
+        self.assertNotIn('Warta przed odpłynięciem', self.badges(self.ally))
+        self.assertNotIn('Cztery smocze kły', self.badges(self.veteran))
+        timeline = profile_history(self.port)[1]
+        self.assertEqual(sum(title == 'Popiół ze szczytu' for _, title in timeline), 1)
+
+    def test_discoverer_keeps_the_final_historical_badge_on_the_release_tick(self):
+        stamp = self.joined + timedelta(days=1)
+        self.finish_story(self.cultist, 'nk-undead', stamp)
+        WorldRelease.objects.create(world=self.colony, key='orc-war', released_at=stamp)
+        badges = self.badges(self.cultist)
+        self.assertIn('Strażnik ostatniej przeprawy', badges)
+        self.assertIn('Powrót przed oblężeniem', badges)
+
+    def test_orc_war_badge_requires_positive_contribution_to_completed_raid(self):
+        from .regional_endgame import ORC_WAR_RAID_TITLE
+
+        raid = CampRaid.objects.create(
+            guild=self.guild, day=self.joined.date(), cycle='weekly',
+            name=f'Tygodniowy cel: {ORC_WAR_RAID_TITLE}', art_key='g2nk_orcelite_rest',
+            maximum_health=100, health=30, attack=20, protection=20,
+        )
+        for profile, damage in ((self.veteran, 70), (self.ally, 0)):
+            CampRaidStrike.objects.create(raid=raid, profile=profile, request_key=uuid4(), damage=damage, health_cost=0)
+        self.assertNotIn('Mur przed hordą', self.badges(self.veteran))
+        raid.health = 0
+        raid.completed_at = self.joined + timedelta(days=1)
+        raid.save(update_fields=['health', 'completed_at'])
+        self.assertEqual(self.badges(self.veteran)['Mur przed hordą']['earned_at'], raid.completed_at)
+        self.assertNotIn('Mur przed hordą', self.badges(self.ally))
