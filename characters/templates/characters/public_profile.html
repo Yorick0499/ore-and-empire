@@ -1,5 +1,5 @@
 {% extends 'characters/base.html' %}
-{% load static gothic_media local_dates %}
+{% load static gothic_media %}
 {% block title %}{{ character_name }} · Profil postaci{% endblock %}
 {% block content %}
 <header class="colony-panel resident-profile-heading">
@@ -58,9 +58,9 @@
   <ul class="resident-badges">
     {% for badge in badges %}
       <li class="resident-badge {{ badge.style }}">
+        <h3>{{ badge.definition.title }}</h3>
         <span class="resident-badge-icon resident-badge-{{ badge.definition.icon }}" aria-hidden="true"></span>
         <div>
-          <h3>{{ badge.definition.title }}</h3>
           <p class="resident-badge-rarity">{{ badge.rarity }}</p>
           <p>{{ badge.holders }} z {{ badge.total }} postaci</p>
           <p><time datetime="{{ badge.earned_at|date:'c' }}">{{ badge.earned_at|date:"d.m.Y" }}</time></p>
@@ -77,7 +77,7 @@
   {% if chronicle %}
   <ol class="resident-chronicle">
     {% for stamp, title in chronicle %}
-      <li><time datetime="{{ stamp|date:'c' }}">{{ stamp|local_date }}</time><span>{{ title }}</span></li>
+      <li><time datetime="{{ stamp|date:'c' }}" title="{{ stamp|date:'T' }}">{{ stamp|date:"d.m.Y, H:i" }}</time><span>{{ title }}</span></li>
     {% endfor %}
   </ol>
   {% else %}<p>Kronika zacznie się wraz z pierwszymi zapisanymi wydarzeniami postaci.</p>{% endif %}
