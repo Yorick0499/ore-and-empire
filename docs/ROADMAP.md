@@ -17,7 +17,7 @@ Stan: **14 listopada 2026, po #151 z wyprawami na rozkaz #152**, migracja 0055, 
 | Żywy świat | #137 ukończone w #141: 7 nazwanych odsłon, 4 regionalne pule, 2 okna/krainę/dobę, 6 świąt, ograniczone premie; [kalendarz](WORLD_UPDATES.md) |
 | Boty i operacje | Domyślnie 125+125, limit 0–300/region, wspólna adaptacyjna kolejka; PostgreSQL/HTTPS/kopie/monitoring i CI wdrożone; [operator](public/OPERATOR_GUIDE.md) |
 
-Nie ma kont premium. Jarkendar nie jest osobnym serwerem ani szóstą frakcją. Po Barierze świat jest jeden, a dwa rekordy regionów zachowują tożsamości i pochodzenie postaci. Nie planujemy ręcznego przenoszenia graczy do nowej „II edycji”.
+Nie ma kont premium. Jarkendar jest regionem wspólnego serwera otwieranym przez portal. Po Barierze świat jest jeden, a dwa rekordy regionów zachowują tożsamości i pochodzenie postaci. Nie planujemy ręcznego przenoszenia graczy do nowej „II edycji”.
 
 ## Otwarte zadania i zależności
 

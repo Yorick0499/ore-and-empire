@@ -1,12 +1,12 @@
 # Publiczny Jarkendar — portal i dalsza wyprawa
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Stan zasad: migracja 0060.
 
-Publiczny portal i początkową paczkę po globalnym upadku Bariery wprowadzono w #33; późniejsza paczka NK rozbudowuje region. To część wspólnego serwera Kolonii i Khorinis: ten sam rynek, ranking, portfel, postać oraz pięć frakcji. Jarkendar nie jest trzecim światem ani regionem premium. [Dalszą kampanię NK i granice implementacji](GOTHIC_II_CONTENT.md) opisuje osobny katalog.
+Publiczny portal i początkową paczkę po globalnym upadku Bariery wprowadzono w #33; późniejsza paczka NK rozbudowuje region. To część wspólnego serwera Kolonii i Khorinis: ten sam rynek, ranking, portfel, postać oraz sześć frakcji. Jarkendar nie jest trzecim światem ani regionem premium. [Dalszą kampanię NK i granice implementacji](GOTHIC_II_CONTENT.md) opisuje osobny katalog.
 
 ## Jak wejść
 
-1. Poczekaj na globalne połączenie; osobisty finał go nie zastępuje.
+1. Po globalnym połączeniu odczekaj co najmniej 48 godzin czasu serwera.
 2. Od poziomu 10 przyjmij w dzienniku „Drogę za portal”.
 3. Podróżuj do Khorinis przez panel Bariery, odwiedź portal, porozmawiaj z badaczami i odczekaj minutę od rozpoczęcia zadania.
 4. Odbierz zadanie. Lokacje Jarkendaru odblokują się na mapie Khorinis, z własnymi progami poziomu.
@@ -17,7 +17,7 @@ Przeprawa nie ma opłaty ani warunku salda odłamków. Zwykły cel podróży kos
 
 10 lokacji, 6 przeciwników, lokalny strażnik krypty, 8 jednorazowych zadań, 4 wzory ekwipunku wyprawy, 2 materiały i znak warty. Zadania prowadzą przez Magów Wody, piratów, kanion, obóz bandytów, kopalnię, bagna i ruiny. Statystyki, nagrody, ekwipunek i kontrakty są adaptacją przeglądarkową. Nie odgrywasz Bezimiennego; ta paczka w początkowych ośmiu zadaniach nie inscenizuje pokonania Kruka; starcie z nim należy do dalszego łańcucha NK.
 
-Magowie Wody i Bandyci używają już istniejącego członkostwa, historii i ośmiu rang wspólnego świata. Inne frakcje także mogą pomagać badaczom i robotnikom. Piraci są grupą fabularną, nie szóstą frakcją gracza. Kopalnia rozlicza pracę dotychczasową rudą, bez nowej waluty. Aktualne ilustracje przedmiotów, lokacji, populacji i bossów pochodzą z lokalnej biblioteki NK. Wspólny model lub ilustracja kategorii są jawnie oznaczone; portrety NPC/sceny zadań pozostają odłożone.
+Siedzibą Bandytów Khorinis jest Wieża Dextera. Ich obóz w Jarkendarze działa jako placówka zaopatrzeniowa dostępna po osobistym otwarciu portalu. Piraci handlują i zlecają zadania mieszkańcom wszystkich frakcji. Kopalnia rozlicza pracę dotychczasową rudą, bez nowej waluty. Aktualne ilustracje przedmiotów, lokacji, populacji i bossów pochodzą z lokalnej biblioteki NK. Wspólny model lub ilustracja kategorii są jawnie oznaczone; portrety NPC/sceny zadań pozostają odłożone.
 
 Ekwipunek wyprawy wymaga odebranego zadania portalu. Obowiązuje to kupca, założenie i podgląd wymagań; bot nie planuje zakupu niedostępnych rzeczy. Zdobyty sprzęt można dalej nosić poza Jarkendarem. Bramka lokacji działa także przy bezpośrednim URL i wywołaniu usługi walki.
 
@@ -25,7 +25,7 @@ Ekwipunek wyprawy wymaga odebranego zadania portalu. Obowiązuje to kupca, zało
 
 `python manage.py seed_jarkendar` dodaje brakujące definicje. Wywołuje je także `seed_khorinis`, zatem zwykły start przez `run_colony` instaluje paczkę, gdy Khorinis jest otwarte. Nie ma nowej migracji schematu. Nie nadpisujemy zmian operatora, przyjętych snapshotów ani postępu. Dostęp wynika z trwałego, odebranego StoryRun, uwzględnianego już w kopiach zapisu; nie dodajemy uprawnień konta.
 
-Boty używają tych samych usług zadań, podróży i walk. Naprawiono oscylację podróży: aktywna droga fabularna ma pierwszeństwo przy wyborze regionu przed równoległym zadaniem rangi. Nie zwiększono populacji ani limitu pracy schedulera. Rynek pobiera stan portalu wszystkich kupujących w jednym zapytaniu zamiast osobno dla każdej postaci.
+Boty używają tych samych usług zadań, podróży i walk. Naprawiono oscylację podróży: aktywna droga fabularna ma pierwszeństwo przy wyborze regionu przed równoległym zadaniem rangi. Każda publiczna odsłona po połączeniu stopniowo zwiększa populację w ramach limitu 500 botów na wspólnym serwerze. Rynek pobiera stan portalu wszystkich kupujących w jednym zapytaniu zamiast osobno dla każdej postaci.
 
 ## Dowody i ograniczenia
 

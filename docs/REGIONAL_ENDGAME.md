@@ -4,7 +4,7 @@ Stan: 13 XI 2026, po #141; system wprowadzony w #136. Cztery niezależne ścież
 
 ## Dostęp i codzienna pętla
 
-Potrzebne są: wspólny serwer po Barierze, poziom 45, odebrany finał `nk-undead` i rozstrzygnięte członkostwo jednej z pięciu frakcji. Wybór Bractwa musi być zakończony. Szlaki Khorinis, Jarkendaru i Irdorath wymagają pobytu w regionie Khorinis; Wyprawy Doliny — w Kolonii. Jarkendar sprawdza portal, Irdorath odbyty rejs. Nie ma premium.
+Potrzebne są: wspólny serwer po Barierze, poziom 45, odebrany finał `nk-undead` i rozstrzygnięte członkostwo jednej z sześciu frakcji. Szlaki Khorinis, Jarkendaru i Irdorath wymagają pobytu w regionie Khorinis; Wyprawy Doliny — w Kolonii. Jarkendar sprawdza portal, Irdorath odbyty rejs. Nie ma premium.
 
 | Szlak | Przykładowi przeciwnicy |
 |---|---|

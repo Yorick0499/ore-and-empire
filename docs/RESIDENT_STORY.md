@@ -18,4 +18,4 @@ Testy obejmują aktywne i zakończone snapshoty, zachowanie wyborów oraz przyna
 
 ## Khorinis, NK i historia społeczności
 
-Równoległa kampania Khorinis opisuje zaopatrzenie i ochronę szlaków. Po globalnym Śniącym mieszkańcy pięciu frakcji badają Jarkendar, wspierają wyprawę przeciw smokom i docierają do Irdorath. Nazwane odsłony ogłaszają rzeczywiste odkrycia świata, ale nie przypisują każdemu graczowi zwycięstw Bezimiennego ani nie dają darmowej rangi. [Cała droga](COMPLETE_JOURNEY.md).
+Równoległa kampania Khorinis opisuje zaopatrzenie i ochronę szlaków. Po globalnym Śniącym mieszkańcy sześciu frakcji badają Jarkendar, wspierają wyprawę przeciw smokom i docierają do Irdorath. Nazwane odsłony ogłaszają rzeczywiste odkrycia świata, ale nie przypisują każdemu graczowi zwycięstw Bezimiennego ani nie dają darmowej rangi. [Cała droga](COMPLETE_JOURNEY.md).

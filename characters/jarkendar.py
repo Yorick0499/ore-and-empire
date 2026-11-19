@@ -16,7 +16,7 @@ CREATURES = [
 DESTINATIONS = [
  ('jark_portal','Portal Magów Wody','Przygotuj przeprawę z badaczami ruin. Połączenie jest publiczne; żadnej opłaty za dostęp.',10,'train_page',(),'k2_monastery'),
  ('jark_water','Obóz Magów Wody','Krąg Wody bada dziedzictwo Budowniczych. Nauka i awanse korzystają ze wspólnych zasad frakcji.',10,'train_page',(),'k2_monastery'),
- ('jark_pirates','Obóz piratów','Marynarze potrzebują bezpiecznych plaż. Piraci to sąsiedzi i zleceniodawcy, nie szósta frakcja postaci.',10,'tavern_page',(),'k2_harbor'),
+ ('jark_pirates','Obóz piratów','Marynarze potrzebują bezpiecznych plaż. Piraci handlują z przybyszami i zlecają ochronę wybrzeża.',10,'tavern_page',(),'k2_harbor'),
  ('jark_beach','Plaże Jarkendaru','Topielce podchodzą pod obozowisko marynarzy.',10,'hunt_page',('jark_lurker',),'k2_landscape'),
  ('jark_canyon','Kanion Jarkendaru','Brzytwiaki i krwawe ogary odcinają drogę zwiadowcom.',15,'hunt_page',('jark_razor','jark_bloodhound'),'k2_landscape'),
  ('jark_bandits','Obóz zaopatrzeniowy bandytów','Placówka ludzi z Wieży Dextera uruchomiona po otwarciu portalu. Ruda pozostaje wspólną walutą rozliczeniową.',12,'market_page',(),'old_camp'),

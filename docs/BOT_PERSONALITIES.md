@@ -62,4 +62,4 @@ Migracje 0039–0041 dodają osobowości, ustawienia świata, kategorię zakupó
 
 17 to liczba definicji, nie gwarancja 17 dostępnych kart dla każdej postaci. Przed Barierą Khorinis nie kupuje koloniowego sprzętu przez podmienione ID; po połączeniu wspólna oferta nadal sprawdza poziom, regiony źródłowe i wymagania. Limity są osobiste i nie odnawiają się przez podróż ani zmianę aktywnej postaci na tym samym profilu. Odłamki nie są uprawnieniem do Jarkendaru; kont premium nie ma.
 
-Boty wykonują także sukcesję, wybór Bractwa, rangi 5–8, portal, NK i regionalny endgame przez zwykłe płatne usługi. [Gra z botami](LIVING_WORLD.md), [wyniki i ograniczenia prób](SOLO_PLAYTEST.md).
+Boty wykonują także sukcesję, przejście Bractwa do Zakonu Czarnej Zasłony, rangi 5–8, portal, NK i regionalny endgame przez zwykłe płatne usługi. [Gra z botami](LIVING_WORLD.md), [wyniki i ograniczenia prób](SOLO_PLAYTEST.md).

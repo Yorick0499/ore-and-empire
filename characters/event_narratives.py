@@ -69,7 +69,7 @@ STAGES = (
           ('Rudne znalezisko zwiadowców', 'Zabezpieczona żyła przy strażnicy', 'Cenny urobek spod zagrożonego traktu'),
           ('Zapasy strażnic', 'Zwiad przeciw ciemności', 'Konwoje pod strażą', 'Ochrona przed ciemnością')),
     Stage('dragons', 'Przebudzenie smoków',
-          'Rozpoczynają się smocze wyprawy; pięć frakcji gromadzi zapasy dla łowców.',
+          'Rozpoczynają się smocze wyprawy; sześć frakcji gromadzi zapasy dla łowców.',
           ('Święto kopalń smoczych wypraw', 'Zimowe ogniska łowców smoków', 'Wiosenne przygotowania łowców',
            'Plony dla smoczych patroli', 'Noc sygnałowych ognisk łowców', 'Dni przymierza przeciw smokom'),
           ('Ośnieżone szlaki łowców smoków', 'Opał dla obozów łowców', 'Roztopy pod smoczymi szczytami',

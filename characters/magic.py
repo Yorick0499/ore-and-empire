@@ -19,7 +19,7 @@ class Spell:
     stagger_every:int=0
     expedition_tier:int=0
     @property
-    def school_name(self):return {'fire':'Magowie Ognia','water':'Magowie Wody','brotherhood':'Bractwo Śniącego / Zakon Czarnej Zasłony'}[self.school]
+    def school_name(self):return {'fire':'Magowie Ognia','water':'Magowie Wody','brotherhood':'Bractwo Śniącego'}[self.school]
     @property
     def damage_name(self):return {'fire':'ogień','magic':'magia'}[self.damage_type]
 

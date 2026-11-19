@@ -529,24 +529,24 @@ Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwo
 | thunderbolt — Sopel lodu | Magowie Wody | 1 | 4 | 30 / magia | 25 | — |
 | icecube — Bryła lodu | Magowie Wody | 3 | 8 | 85 / magia | 40 | — |
 | icewave — Lodowa fala | Magowie Wody | 5 | 13 | 175 / magia | 50 | — |
-| windfist — Uderzenie wiatru | Bractwo Śniącego / Zakon Czarnej Zasłony | 1 | 3 | 18 / magia | 0 | 3 |
-| stormfist — Uderzenie burzy | Bractwo Śniącego / Zakon Czarnej Zasłony | 3 | 7 | 42 / magia | 0 | 2 |
-| pyrokinesis — Pirokineza | Bractwo Śniącego / Zakon Czarnej Zasłony | 5 | 13 | 150 / magia | 0 | 2 |
+| windfist — Uderzenie wiatru | Bractwo Śniącego | 1 | 3 | 18 / magia | 0 | 3 |
+| stormfist — Uderzenie burzy | Bractwo Śniącego | 3 | 7 | 42 / magia | 0 | 2 |
+| pyrokinesis — Pirokineza | Bractwo Śniącego | 5 | 13 | 150 / magia | 0 | 2 |
 | waterlance — Ostrze Adanosa | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
 | thunderball — Rozbłysk Adanosa | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
 | chainlightning — Wyrok Adanosa | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
 | emberburst — Żar Innosa | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — |
 | hearthlight — Światło Innosa | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — |
 | flamecrest — Gniew Innosa | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — |
-| marshpulse — Podmuch Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 2 | 5 | 33 / magia | 0 | 3 |
-| marshresonance — Uścisk Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 4 | 9 | 105 / magia | 0 | 2 |
-| marshsilence — Wola Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 6 | 16 | 210 / magia | 0 | 2 |
+| marshpulse — Podmuch Śniącego | Bractwo Śniącego | 2 | 5 | 33 / magia | 0 | 3 |
+| marshresonance — Uścisk Śniącego | Bractwo Śniącego | 4 | 9 | 105 / magia | 0 | 2 |
+| marshsilence — Wola Śniącego | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 |
 | nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — |
 | nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — |
-| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 6 | 18 | 255 / magia | 0 | 2 |
+| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego | 6 | 18 | 255 / magia | 0 | 2 |
 | adanos_depths — Głębia Adanosa | Magowie Wody | 6 | 20 | 350 / magia | 50 | — |
 | innos_beacon — Latarnia Innosa | Magowie Ognia | 6 | 20 | 370 / ogień | 25 | — |
-| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 6 | 20 | 340 / magia | 0 | 2 |
+| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego | 6 | 20 | 340 / magia | 0 | 2 |
 
 ## Sklep odłamków
 
@@ -740,7 +740,7 @@ Zwiadowcy ostrzegają przed Poszukiwaczami; osady wzmacniają straże i sieć me
 
 ### Pula: Przebudzenie smoków
 
-Rozpoczynają się smocze wyprawy; pięć frakcji gromadzi zapasy dla łowców.
+Rozpoczynają się smocze wyprawy; sześć frakcji gromadzi zapasy dla łowców.
 
 | Rodzaj | Termin / wariant | Nazwa lub tematyka |
 |---|---|---|
