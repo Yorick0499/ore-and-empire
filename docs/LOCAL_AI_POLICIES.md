@@ -2,7 +2,7 @@
 
 Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
-**Domyślnie działają boty regułowe baseline-24.** Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment `ollama-1` jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.
+**Domyślnie działają boty regułowe baseline-25.** Gra, launcher i CI nie wymagają modelu, GPU ani płatnego API. Eksperyment `ollama-1` jest dostępny wyłącznie po świadomym włączeniu w oddzielnym workerze; nie zmieniono polityki prywatnego świata użytkownika.
 
 ## Co model może wybrać
 
@@ -23,7 +23,7 @@ Adapter wymusza 0 warstw GPU i dwa wątki inferencji, kontekst 4096 i maksymalni
 
 ## Audyt i replay
 
-Obserwacje/rekordy mają schemat 23. Reguły to baseline-24; historyczne wersje pozostają odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. `BotDecision.policy_snapshot` zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.
+Obserwacje/rekordy mają schemat 23. Reguły to baseline-25; historyczne wersje pozostają odtwarzalne. Adapter ollama-1 zachowuje zamrożoną baseline-18 swojego protokołu. `BotDecision.policy_snapshot` zapisuje wersję protokołu, model, dozwolone wybory, wybrany indeks, status fallbacku, hash promptu, opóźnienie i zużycie tokenów. Nie zapisuje surowej odpowiedzi ani sekretów endpointu.
 
 Replay weryfikuje listę wyborów i hash na podstawie zapisanej obserwacji oraz zamrożonej baseline-18. **Nie pyta ponownie modelu**. Status `forced-rules` oznacza obowiązkową decyzję reguł, `accepted` poprawny wybór modelu, `fallback` błąd, a `budget-or-cooldown` brak dostępnego budżetu. Sam napis `ollama-1` nie znaczy, że każdą akcję wybrał model.
 

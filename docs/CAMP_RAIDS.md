@@ -44,4 +44,4 @@ UUID, trwały zapis wypadu i blokady chronią koszt, obrażenia, ostatni cios i 
 
 Przy sukcesji niedokończone wyprawy rozdzielanych wspólnot są archiwizowane, bez kopiowania postępu. Za zakończone historyczne cele nadal odbiera nagrodę rzeczywisty uczestnik. [Dokładne zasady](CAMP_GUILDS.md). Kopie zachowują wkład i wypłaty; retencja telemetrii ich nie kasuje.
 
-Boty baseline-24 zwołują, atakują i odbierają przez te same usługi, ze zwykłymi zasobami i bramkami. Lokalnie działa jeden launcher SQLite; produkcyjnie PostgreSQL i jeden worker z dzierżawami. Rzeczywiste współbieżne uderzenia i odbiory sprawdza CI PostgreSQL. [Weryfikacja](SOLO_PLAYTEST.md).
+Boty baseline-25 zwołują, atakują i odbierają przez te same usługi, ze zwykłymi zasobami i bramkami. Gdy wypada gotowa tura Śniącego, bot wybiera ją przed opcjonalnym patrolem, kuźnią i zmianą ceny. Najpierw kończy bieżące zajęcie albo uzupełnia potrzebne zasoby. Historia baseline-24 pozostaje odtwarzalna. Lokalnie działa jeden launcher SQLite; produkcyjnie PostgreSQL i jeden worker z dzierżawami. Rzeczywiste współbieżne uderzenia i odbiory sprawdza CI PostgreSQL. [Weryfikacja](SOLO_PLAYTEST.md).

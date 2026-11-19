@@ -307,7 +307,20 @@ class BaselinePolicyV24(BaselinePolicyV23):
         action,target=super().choose(o)
         return ('regional_patrol',target) if action=='patrol' and o.patrol_track!='legacy' else (action,target)
 
-class BaselinePolicy(BaselinePolicyV24):pass
+class BaselinePolicyV25(BaselinePolicyV24):
+    def choose(self, o):
+        if o.raid_action not in {'sleeper_rally', 'sleeper_strike', 'sleeper_claim'}:
+            return super().choose(o)
+        ready = not (o.busy or o.adventure_ready or o.reward_ready or o.consume_id or o.product_urgent)
+        has_ammo = o.raid_action != 'sleeper_strike' or not o.ammo_blocked
+        if ready and has_ammo:
+            return o.raid_action, o.raid_target
+        # The inherited generic raid rule must not bypass preparation.
+        return super().choose(replace(o, raid_action='', raid_target=None))
+
+
+class BaselinePolicy(BaselinePolicyV25):
+    pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -677,10 +690,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-24" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-25" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
     if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
-        policy=None;policy_version="baseline-24"
+        policy=None;policy_version="baseline-25"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
     if isinstance(policy,OllamaPolicy):policy_version=policy.version

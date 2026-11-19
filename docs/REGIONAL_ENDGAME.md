@@ -33,7 +33,7 @@ Powtórzenie UUID nie pobiera opłat ani nie ponawia walki. Blokady PostgreSQL o
 
 Migracja 0053 dodaje tabelę postępu regionalnego, etykietę `legacy` starym wartom oraz domyślne `daily`/wersję 1 starym wyprawom. Nie przelicza sald ani nie kasuje historii. Stosuj standardowe `migrate` albo launcher. Kopie obejmują nowe pola i tabelę; sprawdzono rzeczywiste odtworzenie z regionalnymi rekordami i wyprawą tygodniową.
 
-Boty baseline-24 używają tych samych płatnych usług i bramek. Schemat bieżącej telemetrii to 23; odtwarzanie baseline-23 i starszej polityki opcjonalnej zachowane. Budżet schedulera nie został zwiększony. Grafiki terenów i stworzeń pochodzą z istniejących, zweryfikowanych assetów NK; portrety NPC i sceny questowe pozostają odłożone.
+Boty baseline-25 używają tych samych płatnych usług i bramek. Schemat bieżącej telemetrii to 23; odtwarzanie baseline-23 i starszej polityki opcjonalnej zachowane. Budżet schedulera nie został zwiększony. Grafiki terenów i stworzeń pochodzą z istniejących, zweryfikowanych assetów NK; portrety NPC i sceny questowe pozostają odłożone.
 
 ## Dowody i dalszy zakres
 
