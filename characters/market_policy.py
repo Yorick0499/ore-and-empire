@@ -2,6 +2,7 @@ from .barrier import region_ids
 """Observed prices, bounded budgets and disposal of unsold stock; no balance setters."""
 from datetime import timedelta
 from statistics import median
+from django.db import transaction
 from django.db.models import Sum,Count
 from django.utils import timezone
 from .models import MarketEvent,MarketTrade,OwnedItem
@@ -52,7 +53,10 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
             if not observed:return 'market_observe',item.pk,0
             start=observed.created_at
         quote=market.quote(profile,item)
-        if start<=now-timedelta(days=3) or not quote.price:return 'market_cancel',item.pk,0
+        if start<=now-timedelta(days=3) or (not quote.price and start<=now-timedelta(hours=6)):
+            return 'market_cancel',item.pk,0
+        if not quote.price:
+            continue
         price=quote.price
         if start<=now-timedelta(days=1):price=max(item.blueprint.base_value*item.quantity//2+1,min(price,item.market_price*85//100))
         if abs(price-item.market_price)>=max(2,item.market_price//10) and not MarketEvent.objects.filter(item=item,action='repricing',created_at__gte=now-timedelta(hours=6)).exists():return 'market_reprice',item.pk,price
@@ -71,12 +75,24 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
 
 @player_action
 def list_bot_surplus(profile,item,reserved=()):
-    from .market_intelligence import state,sale_candidate
+    from .market_intelligence import state,sale_candidate,sale_lot
     inventory=list(profile.inventory.select_related('blueprint'));market=state(profile.world_id,fresh=True)
     candidate=sale_candidate(profile,inventory,reserved,market)
     if not candidate or candidate.pk!=item.pk:return False
     from .game_logic import list_item_on_market
-    return list_item_on_market(profile,candidate,market.quote(profile,candidate).price)
+    quantity, quote = sale_lot(market, profile, candidate, allow_split=len(inventory) < 12)
+    if quantity == candidate.quantity:
+        return list_item_on_market(profile, candidate, quote.price)
+    with transaction.atomic():
+        lot = OwnedItem.objects.create(
+            owner=profile, blueprint=candidate.blueprint, quantity=quantity, origin=candidate.origin,
+        )
+        if not list_item_on_market(profile, lot, quote.price):
+            transaction.set_rollback(True)
+            return False
+        candidate.quantity -= quantity
+        candidate.save(update_fields=['quantity'])
+    return True
 
 
 def market_effectiveness(world):

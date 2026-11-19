@@ -50,3 +50,8 @@ Zakup potwierdza cenę całej oferty widoczną w formularzu. Jeśli sprzedawca j
 Przed połączeniem oferty i potencjalny popyt są odizolowane między serwerami. Po nim oba regiony mają jeden rynek, z zachowaniem ID ofert, cen, dat, właścicieli i ledgerów; nie ma kopiowania majątku. Oferta NK nadal wymaga połączenia, portalu i odpowiedniej frakcji, jeśli określa to wzór. Dostęp do portalu kupujących jest odczytywany zbiorczo, bez osobnego zapytania na każdego nabywcę.
 
 Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalszą aktywność sprzedającego bez utraty jego własnej broni. [Bieżące dowody](reports/grywalnosc-wydania-2026-11-13.json). Krótka próba nie dowodzi wielotygodniowego bilansu ani popytu każdego człowieka.
+
+
+## Małe partie składników
+
+Bot może wystawić jedną lub dwie sztuki z większego stosu, jeżeli kupiec ma taki faktyczny brak według receptury, budżetu i ceny zastępczej. Reszta zostaje w plecaku. Osobna partia powstaje w jednej transakcji z wpisem targowym i mieści się w limicie ofert oraz miejsc. Rezerwacje, ochrona towaru i izolacja regionów nadal obowiązują. Przejściowy brak popytu może zostawić nową ofertę dostępną przez pierwsze sześć godzin. Stare, nieopłacalne zapasy wracają do zwykłej wyprzedaży.

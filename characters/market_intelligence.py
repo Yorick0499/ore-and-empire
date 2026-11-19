@@ -118,21 +118,22 @@ class MarketState:
         if a.blueprint.kind=='weapon' and a.blueprint.weapon_type!=b.blueprint.weapon_type:return False
         x=sum(a.effective_stats.values());y=sum(b.effective_stats.values())
         return min(x,y)>=max(x,y)*.85
-    def quote(self,seller,i):
+    def quote(self,seller,i, *, quantity=None):
+        quantity = i.quantity if quantity is None else quantity
         b=i.blueprint;floor=max(1,b.base_value//2+1);budgets=[]
         for p in self.people:
-            if p.pk==seller.pk or self.need(p,i)<i.quantity:continue
-            budget=max(0,p.ore_balance-20)//i.quantity;ceiling=self.ceiling(p,i)
+            if p.pk==seller.pk or self.need(p,i)<quantity:continue
+            budget=max(0,p.ore_balance-20)//quantity;ceiling=self.ceiling(p,i)
             if ceiling is not None:budget=min(budget,round(ceiling*.95))
             if budget>=floor:budgets.append(budget)
         supply=sum(x.quantity for x in self.listings if x.pk!=i.pk and self.comparable(x,i))
         history=self.history[(b.pk,i.rarity,i.upgrade_level)]
-        if not budgets or floor*i.quantity>1_000_000:return Quote(0,len(budgets),supply,len(history))
+        if not budgets or floor*quantity>1_000_000:return Quote(0,len(budgets),supply,len(history))
         anchor=max(1,round(b.base_value*(1+.18*i.rarity+.08*i.upgrade_level)))
         prior=max(anchor*.65,min(anchor*1.45,median(history.values()) if history else anchor))
         pressure=max(-.4,min(.3,(len(budgets)+len(history)*.5-supply*.8)/max(2,len(budgets)+len(history)*.5)))
         price=min(round(prior*(1+pressure*.25)),sorted(budgets)[len(budgets)//2])
-        return Quote(min(1_000_000,max(floor,price)*i.quantity),len(budgets),supply,len(history))
+        return Quote(min(1_000_000,max(floor,price)*quantity),len(budgets),supply,len(history))
 
 def state(world_id,fresh=False):
     key=(connection.alias,str(connection.settings_dict['NAME']),world_id);old=_cache.get(key)
@@ -143,6 +144,19 @@ def state(world_id,fresh=False):
         _cache[key]=result
     return result
 
+def sale_lot(market, seller, item, *, allow_split=True):
+    quote = market.quote(seller, item)
+    if quote.price or not allow_split or item.blueprint.kind != 'material' or not item.blueprint.stackable:
+        return item.quantity, quote
+    # Standard recipes require one or two units at a time. Keep the rest available
+    # in inventory while a buyer with an actual shortfall can take a small lot.
+    for quantity in range(min(2, item.quantity - 1), 0, -1):
+        quote = market.quote(seller, item, quantity=quantity)
+        if quote.price:
+            return quantity, quote
+    return item.quantity, quote
+
+
 def sale_candidate(p,items,reserved=(),market=None):
     market=market or state(p.world_id);keep=retention(p,items,reserved)
     own=[i for i in items if i.is_market_listed]
@@ -151,6 +165,6 @@ def sale_candidate(p,items,reserved=(),market=None):
     for i in items:
         if i.pk in keep or i.is_market_listed or i.blueprint.base_value<=0:continue
         if any(x.blueprint_id==i.blueprint_id and x.rarity==i.rarity and x.upgrade_level==i.upgrade_level for x in own):continue
-        quote=market.quote(p,i)
-        if quote.price and quote.supply<max(2,quote.buyers):choices.append((quote.price-i.blueprint.base_value*i.quantity//2,-i.pk,i))
+        quantity, quote = sale_lot(market, p, i, allow_split=len(items) < 12)
+        if quote.price and quote.supply<max(2,quote.buyers):choices.append((quote.price-i.blueprint.base_value*quantity//2,-i.pk,i))
     return max(choices,key=lambda x:x[:2])[-1] if choices else None
