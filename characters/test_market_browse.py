@@ -178,3 +178,27 @@ class MarketBrowseTests(TestCase):
         self.offer(bow, price=10)
         OwnedItem.objects.create(blueprint=bow, owner=self.profile)
         self.assertContains(self.client.get('/plac_targowy/'), 'Wymagana zręczność: 24', count=2)
+
+    def test_seller_can_return_to_market_after_another_account_buys_offer(self):
+        from django.test import Client
+
+        seller_session = Client()
+        seller_session.force_login(self.seller.user)
+        item = self.offer(price=20)
+        market = '/plac_targowy/?seller=mine'
+        self.assertContains(seller_session.get(market), 'name="expected" value="20"')
+        purchase = self.client.post('/plac_targowy/', {
+            'action': 'buy', 'buy_item_id': item.pk, 'expected_price': 20,
+        })
+        self.assertRedirects(purchase, '/plac_targowy/')
+        for data in (
+            {'action': 'reprice', 'item': item.pk, 'price': 35, 'expected': 20},
+            {'action': 'delist', 'delist_item_id': item.pk},
+        ):
+            with self.subTest(action=data['action']):
+                response = seller_session.post(market, data, follow=True)
+                self.assertRedirects(response, market)
+                self.assertContains(response, 'Oferta już nie jest dostępna')
+        item.refresh_from_db()
+        self.assertEqual(item.owner_id, self.profile.pk)
+        self.assertFalse(item.is_market_listed)
