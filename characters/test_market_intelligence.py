@@ -113,7 +113,10 @@ class IntelligentMarketTests(TestCase):
 
     def test_own_equivalent_listing_is_not_a_reason_to_buy_the_same_weapon_again(self):
         game.list_item_on_market(self.b,add_item(self.b,self.bp),100)
-        self.assertEqual(MarketState(self.s.world_id).need(self.b,self.item),0)
+        self.assertTrue(game.list_item_on_market(self.s,self.item,5))
+        market = MarketState(self.s.world_id)
+        self.assertEqual(market.need(self.b,self.item),0)
+        self.assertFalse(market.can_buy(self.b,self.item))
     def test_inactive_seller_does_not_break_bot_planning(self):
         self.b.user.is_active=False;self.b.user.save()
         game.list_item_on_market(self.b,add_item(self.b,self.bp),10)
