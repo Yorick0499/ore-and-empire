@@ -1,5 +1,5 @@
 {% extends 'characters/base.html' %}
-{% load static gothic_media %}
+{% load static gothic_media local_dates %}
 {% block title %}{{ character_name }} · Profil postaci{% endblock %}
 {% block content %}
 <header class="colony-panel resident-profile-heading">
@@ -51,4 +51,35 @@
     {% if user.is_authenticated %}<p><a href="{% url 'rankings_page' %}">Rankingi mieszkańców</a></p>{% endif %}
   </aside>
 </div>
+
+<section class="colony-panel" aria-labelledby="resident-badge-title">
+  <h2 id="resident-badge-title">Odznaki</h2>
+  {% if badges %}
+  <ul class="resident-badges">
+    {% for badge in badges %}
+      <li class="resident-badge {{ badge.style }}">
+        <span class="resident-badge-icon resident-badge-{{ badge.definition.icon }}" aria-hidden="true"></span>
+        <div>
+          <h3>{{ badge.definition.title }}</h3>
+          <p class="resident-badge-rarity">{{ badge.rarity }}</p>
+          <p>{{ badge.holders }} z {{ badge.total }} postaci</p>
+          <p><time datetime="{{ badge.earned_at|date:'c' }}">{{ badge.earned_at|date:"d.m.Y" }}</time></p>
+        </div>
+        <p class="resident-badge-description">{{ badge.definition.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}<p>Ta postać jeszcze nie zdobyła odznak.</p>{% endif %}
+</section>
+
+<section class="colony-panel" aria-labelledby="resident-chronicle-title">
+  <h2 id="resident-chronicle-title">Kronika postaci</h2>
+  {% if chronicle %}
+  <ol class="resident-chronicle">
+    {% for stamp, title in chronicle %}
+      <li><time datetime="{{ stamp|date:'c' }}">{{ stamp|local_date }}</time><span>{{ title }}</span></li>
+    {% endfor %}
+  </ol>
+  {% else %}<p>Kronika zacznie się wraz z pierwszymi zapisanymi wydarzeniami postaci.</p>{% endif %}
+</section>
 {% endblock %}

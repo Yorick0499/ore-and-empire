@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_safe
 
 from .barrier import region
-from .models import OwnedItem, PlayerProfile
-from .realms import open_worlds
+from .models import OwnedItem
+from .resident_chronicle import profile_history, public_characters
 
 
 EQUIPMENT = (
@@ -34,9 +34,7 @@ ITEM_STATS = (
 def character_profile(request, character_id):
     equipped = OwnedItem.objects.filter(is_equipped=True).select_related('blueprint')
     subject = get_object_or_404(
-        PlayerProfile.objects.filter(
-            world__in=open_worlds(), user__is_active=True, user__is_staff=False, is_draft=False,
-        ).select_related('world', 'origin_world', 'visiting_world', 'faction_membership__rank_progress')
+        public_characters().select_related('world', 'origin_world', 'visiting_world', 'faction_membership__rank_progress')
         .prefetch_related(Prefetch('inventory', queryset=equipped, to_attr='public_equipment')),
         pk=character_id,
     )
@@ -48,10 +46,13 @@ def character_profile(request, character_id):
         slots.append({'key': key, 'label': label, 'symbol': symbol, 'item': item,
                       'stats': [(name, values[stat]) for stat, name in ITEM_STATS if values.get(stat)]})
     name = subject.display_name if subject.is_bot else subject.name or f'Mieszkaniec #{subject.pk}'
+    badges, chronicle = profile_history(subject)
     return render(request, 'characters/public_profile.html', {
         'character_name': name,
         'character': subject,
         'character_origin': subject.origin_world or subject.world,
         'character_region': region(subject),
         'slots': slots,
+        'badges': badges,
+        'chronicle': chronicle,
     })

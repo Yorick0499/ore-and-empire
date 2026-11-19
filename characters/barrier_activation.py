@@ -70,6 +70,8 @@ def activate(race_id,root=None):
             if race.lease_owner!=owner or not SleeperRace.objects.filter(pk=race.pk,lease_expires_at__gt=Now()).exists():raise ValueError('Dzierżawa wygasła podczas weryfikacji.')
             from django.apps import apps
             from .faction_succession_v2 import apply
+            from .resident_chronicle import join_snapshot
+            residents = join_snapshot(race)
             apply(apps,race)
             from .post_barrier import seed
             seed()
@@ -79,7 +81,9 @@ def activate(race_id,root=None):
             clear_region_cache()
             race.state='joined';race.joined_at=timezone.now();race.backup_path=path;race.backup_digest=digest;race.proof=proof;race.lease_owner=None;race.lease_expires_at=None
             race.save(update_fields=['state','joined_at','backup_path','backup_digest','proof','lease_owner','lease_expires_at'])
-            BarrierEvent.objects.create(race=race,kind='joined',details={'backup_digest':digest,'winner':race.winner_id})
+            BarrierEvent.objects.create(race=race, kind='joined', details={
+                'backup_digest': digest, 'winner': race.winner_id, 'residents': residents,
+            })
             from .world_events import ensure_world_events
             from .realms import world_scope
             with world_scope(race.colony):ensure_world_events()

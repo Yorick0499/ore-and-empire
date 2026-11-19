@@ -105,7 +105,15 @@ class CompleteJourney(unittest.TestCase):
             self.assertTrue(activate(race.pk,Path(folder)))
         from .barrier import creation_worlds,region_ids
         self.assertEqual(creation_worlds().count(),1);self.assertEqual(set(region_ids(colony.pk)),{colony.pk,island.pk})
-        self.assertTrue(joined(colony.pk));self.assertEqual(BarrierEvent.objects.filter(race=race,kind='joined').count(),1)
+        self.assertTrue(joined(colony.pk))
+        joined_event = BarrierEvent.objects.get(race=race, kind='joined')
+        victory = BarrierEvent.objects.get(race=race, kind='victory')
+        self.assertTrue(all(str(peer.pk) in joined_event.details['residents'] for peer in self.people))
+        self.assertTrue(all(peer.pk in victory.details['winning_residents'] for peer in self.people))
+        from .resident_chronicle import profile_history
+        self.assertIn('Ręka, która złamała pieczęć', [
+            card['definition'].title for card in profile_history(p)[0]
+        ])
         after=list(PlayerProfile.objects.filter(pk__in=[a.pk for a in self.people]).order_by('pk').values('pk','level','experience','ore_balance','premium_balance','strength','dexterity','life','mana','skill_points','current_health','current_energy','current_mana','camp','guild'))
         self.assertEqual(before,after)
         self.assertEqual(items,list(OwnedItem.objects.order_by('pk').values('pk','owner_id','blueprint_id','quantity','upgrade_level','is_equipped','equipped_slot','is_market_listed','market_price')))
