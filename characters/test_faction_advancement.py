@@ -28,6 +28,14 @@ class CatalogTests(SimpleTestCase):
                 if kind=='hunt':self.assertIn(key,BESTIARY)
                 if kind=='boss':self.assertIn(key,BOSSES)
 
+    def test_native_bot_trials_keep_native_objectives(self):
+        from types import SimpleNamespace
+        from .camp_progression import BY_RANK
+        from .faction_advancement import rank_for
+        for key in ('DIGGER', 'NOVICE', 'K2_CITIZEN', 'MOLE'):
+            rank = BY_RANK[key]
+            self.assertIs(rank_for(None, rank, SimpleNamespace(progress={})), rank)
+
     def test_offline_validator_rejects_missing_advanced_boss(self):
         from dataclasses import replace
         from .camp_progression import obj

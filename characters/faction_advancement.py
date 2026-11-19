@@ -37,6 +37,8 @@ BY_KEY = {rank.key: rank for rank in RANKS}
 
 
 def rank_for(profile, rank, quest=None):
+    if not rank.key.startswith('ADV_'):
+        return rank
     if quest is not None and quest.progress.get(VERSION_KEY, 1) == 1:
         step = rank.tier - 4
         rank = replace(rank, level=30 + 5 * step, cost=(500, 1000, 1500, 2500)[step],

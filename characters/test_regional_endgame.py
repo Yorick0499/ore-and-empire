@@ -152,7 +152,7 @@ class RegionalBotTests(TestCase):
         from .models import BotDecision
         o=Observation(100,100,False,False,None,None,None,None,True,patrol_depth=1,patrol_track='khorinis')
         for version,action in [('baseline-23','patrol'),('baseline-24','regional_patrol')]:
-            record_decision(self.p,o,action,1,True,policy_version=version);record=BotDecision.objects.filter(profile=self.p).first();self.assertTrue(replay_decision(record)['matches']);self.assertEqual(record.schema_version,23)
+            record_decision(self.p,o,action,1,True,policy_version=version);record=BotDecision.objects.filter(profile=self.p).first();self.assertTrue(replay_decision(record)['matches']);self.assertEqual(record.schema_version,24)
     def test_bot_executor_can_rally_and_strike_the_weekly_objective(self):
         from .bots import tick_bot
         self.p.is_bot=True;self.p.bot_turn=0;self.p.save()
