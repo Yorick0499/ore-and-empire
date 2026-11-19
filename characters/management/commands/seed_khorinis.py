@@ -40,8 +40,10 @@ class Command(BaseCommand):
         offers=[('port','Rozładunek w porcie','k2_harbor',0,60,5,25,80),('fields','Pomoc na polach','k2_fields',0,90,8,35,110),('courier','Goniec do Martwej Harpii','k2_tavern',2,120,10,45,180),('watch','Patrol miejskiej straży','k2_barracks',3,180,12,60,260),('pilgrim','Ochrona pielgrzymów','k2_monastery',5,240,15,75,400),('farm','Konwój farm Onara','k2_onar',8,300,18,100,650),('coast','Nocny patrol wybrzeża','k2_coast',12,360,20,140,1000),('forest','Eskorta drwali','k2_dark_forest',15,420,22,180,1500),('routes','Warta na szlakach','k2_tavern',20,480,25,230,2300),('veteran','Kontrakt doświadczonej warty','k2_harbor',25,600,25,300,3200)]
         for key,name,place,level,seconds,energy,ore,xp in offers:
             AdventureTemplate.objects.get_or_create(key='k2-'+key,defaults={'name':name,'description':'Codzienna służba na wyspie przed połączeniem światów. Twoje działania podtrzymują miejscową społeczność.','place':next(row[1] for row in __import__('characters.khorinis',fromlist=['DESTINATIONS']).DESTINATIONS if row[0]==place),'universe':'GOTHIC_II','category':('supply' if key in {'port','fields','farm'} else 'delivery' if key=='courier' else 'scout' if key in {'pilgrim','forest'} else 'watch'),'level':level,'duration_seconds':seconds,'energy_cost':energy,'ore_reward':ore,'experience_reward':xp,'premium_reward':1})
+        from characters.khorinis_duties import seed_duties
+        seed_duties()
         call_command('seed_jarkendar',stdout=self.stdout)
         from characters.gothic2_content import PACK_PATH as nk_pack
         call_command('seed_catalog',pack=nk_pack,stdout=self.stdout)
         call_command('seed_gothic2_world',stdout=self.stdout)
-        self.stdout.write('Khorinis: 29 zadań fabularnych, 10 zleceń, 35 wzorów rynsztunku i 18 run/zwojów; istniejące definicje zachowano.')
+        self.stdout.write('Khorinis: 29 zadań fabularnych, 19 zleceń, 35 wzorów rynsztunku i 18 run/zwojów; istniejące definicje zachowano.')

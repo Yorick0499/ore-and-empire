@@ -130,11 +130,21 @@ class TwoRealmTests(TestCase):
                     action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(step,bot.pk,action));actions[action]+=1
                     if bot.story_runs.filter(status='claimed',snapshot__key='k2-supply-8').exists():done[bot.pk]=step
             if len(done)==3:break
-        # The same earned characters keep playing after their pre-merge story.
-        for extra in range(80):
-            with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*(step+extra+1))):
+        # Keep playing until the earned native ranks also catch up with the completed story.
+        promoted_at = {}
+        for extra in range(300):
+            turn = step + extra + 1
+            with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30 * turn)):
                 for bot in bots:
-                    action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(extra,bot.pk,action));actions[action]+=1
+                    action, ok = tick_bot(bot, force_active=True)
+                    self.assertTrue(ok, (extra, bot.pk, action))
+                    actions[action] += 1
+                    bot.refresh_from_db()
+                    if bot.camp_tier == 3:
+                        promoted_at.setdefault(bot.camp, turn / 2)
+            mage_actor = next((bot for bot in bots if bot.camp == 'FIRE_ORDER'), None)
+            if len(promoted_at) == 3 and mage_actor and mage_actor.battles.filter(combat_details__casts__gt=0).exists():
+                break
         status=list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('id','camp','guild','level','strength','mana','ore_balance'))
         self.assertEqual(len(done),3,(status,actions,{b.pk:list(b.story_runs.exclude(status='claimed').values('snapshot__key','progress')) for b in bots}))
         self.assertEqual({p['camp'] for p in status},{'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'})
@@ -146,7 +156,7 @@ class TwoRealmTests(TestCase):
             self.assertFalse(bot.story_runs.exclude(snapshot__universe='GOTHIC_II').exists())
         self.assertEqual(current_world().pk,self.colony.pk)
         from .release_probe import record_scenario
-        record_scenario('khorinis-trzy-frakcje',{'ticks':step+1,'cadence_minutes':30,'forces_sessions':True,'finish_hours':{b.camp:done[b.pk]/2 for b in bots},'quests_each':17,'actions':dict(actions),'characters':status,'ordinary_services_without_grants':True})
+        record_scenario('khorinis-trzy-frakcje',{'ticks':step+1,'cadence_minutes':30,'forces_sessions':True,'finish_hours':{b.camp:done[b.pk]/2 for b in bots},'quests_each':17,'top_rank_hours':promoted_at,'actions':dict(actions),'characters':status,'ordinary_services_without_grants':True})
 
     def test_human_completes_island_campaign_using_forms_without_grants(self):
         from .story_quests import available

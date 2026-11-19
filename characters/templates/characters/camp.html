@@ -24,7 +24,7 @@
 <h2>{{ card.rank.name }}</h2><p class="requirements">Droga od: {{ card.parents }}</p>
 <dl class="rank-requirements"><div><dt>Poziom</dt><dd>{{ profile.level }} / {{ card.rank.level }}</dd></div><div><dt>{{ card.attribute_name }}</dt><dd>{{ card.attribute_current }} / {{ card.rank.attribute_value }}</dd></div><div><dt>Koszt awansu</dt><dd>{{ card.rank.cost }} rudy</dd></div></dl>
 {% if card.story_missing %}<p class="requirements">Wymagana fabuła: {% for gate in card.story_missing %}{{ gate.title }}{% if not forloop.last %}, {% endif %}{% endfor %}. <a href="{% url 'story_page' %}">Przejdź do dziennika</a>.</p>{% endif %}<h3>{{ card.rank.quest_name }}</h3><p>{{ card.rank.description }}</p>
-<ul class="quest-goals">{% for goal in card.goals %}<li>{{ goal.label }} <strong>{{ goal.progress }} / {{ goal.count }}</strong></li>{% endfor %}</ul>
+<ul class="quest-goals">{% for goal in card.goals %}<li>{{ goal.label }} <strong>{{ goal.progress }} / {{ goal.count }}</strong>{% if goal.duty %} · <a href="{% url 'adventures_page' %}?duty={{ goal.duty }}">Pokaż zlecenia</a>{% endif %}</li>{% endfor %}</ul>
 {% if card.quest and not card.quest.promoted_at %}
 <p>{% if card.complete %}Zadanie wykonane. Sprawdź pozostałe wymagania awansu.{% else %}Zadanie aktywne.{% endif %}</p>
 <div class="rank-actions"><form method="post">{% csrf_token %}<input type="hidden" name="rank" value="{{ card.rank.key }}"><button name="action" value="promote" {% if not card.can_promote %}disabled{% endif %}>Awansuj na stałe</button></form>

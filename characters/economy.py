@@ -44,6 +44,12 @@ def claim_adventure(profile, run_id):
         change_premium(profile, run.premium_reward, "Wyprawa: " + run.public_name, f"adventure:{run.pk}")
     run.claimed_at = now
     run.save(update_fields=["claimed_at"])
+    if profile.world.universe == 'GOTHIC_II':
+        from .khorinis_duties import duty_stage
+        stage = duty_stage(run.template.key)
+        if stage:
+            from .camp_progression import record_camp_event
+            record_camp_event(profile, f'duty:{stage}')
     return True
 
 

@@ -41,8 +41,8 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Launc
 ## Systemy i zawartość
 
 - Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 20 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
-- Wydobycie, **44 zlecenia Kolonii i 10 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
-- Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci i sześcioma miejscami na założony ekwipunek. Otworzysz je z rankingu lub z „Życia kolonii”.
+- Wydobycie, **44 zlecenia Kolonii i 19 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
+- Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci, założonym ekwipunkiem, kroniką awansów i odznakami. Otworzysz je z rankingu lub z „Życia kolonii”.
 - Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.
 - Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych odsłon ogłasza odkrycia świata. Najnowsza pojawia się w kronice na ekranie logowania i rejestracji. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.
 - Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.

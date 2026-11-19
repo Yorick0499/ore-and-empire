@@ -567,3 +567,69 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
   .gear-amulet::before, .gear-ring1::before, .gear-ring2::before { left: 100%; }
   .gear-armor::before, .gear-weapon::before, .gear-belt::before { right: 100%; }
 }
+
+.resident-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: .75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.resident-badge {
+  --badge-edge: #988775;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-content: start;
+  gap: .75rem;
+  padding: .7rem;
+  border: 1px solid #554637;
+  border-left: 3px solid var(--badge-edge);
+  background: linear-gradient(135deg, #27221c, #151718 65%);
+}
+
+.resident-badge.uncommon { --badge-edge: #a0c389; }
+.resident-badge.rare { --badge-edge: #80b7d1; }
+.resident-badge.epic { --badge-edge: #c4a0da; }
+.resident-badge.legendary { --badge-edge: #efc476; }
+.resident-badge h3 { grid-column: 1 / -1; margin: 0; font-size: 1rem; }
+.resident-badge p { margin: .2rem 0; font-size: .85rem; }
+.resident-badge-rarity { color: var(--badge-edge); font-weight: bold; }
+.resident-badge-description { grid-column: 1 / -1; }
+
+.resident-badge-icon {
+  display: block;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  border: 1px solid #69523b;
+  background: #0d1013 url("art/resident-badges.webp") no-repeat;
+  background-size: 300% 300%;
+}
+.resident-badge-eye { background-position: 0 0; }
+.resident-badge-valley { background-position: 50% 0; }
+.resident-badge-port { background-position: 100% 0; }
+.resident-badge-crown { background-position: 0 50%; }
+.resident-badge-swords { background-position: 50% 50%; }
+.resident-badge-candle { background-position: 100% 50%; }
+.resident-badge-barrier { background-position: 0 100%; }
+.resident-badge-laurel { background-position: 50% 100%; }
+.resident-badge-portal { background-position: 100% 100%; }
+
+.resident-chronicle {
+  list-style: none;
+  margin: .75rem 0 0;
+  padding: 0;
+}
+.resident-chronicle li {
+  display: grid;
+  grid-template-columns: minmax(10rem, .35fr) 1fr;
+  gap: .55rem;
+  padding: .55rem .7rem;
+  border-left: 2px solid #766349;
+  border-bottom: 1px solid #393027;
+}
+.resident-chronicle time { color: #d3ba90; }
+
+@media (max-width: 540px) {
+  .resident-chronicle li { grid-template-columns: 1fr; gap: .2rem; }
+}

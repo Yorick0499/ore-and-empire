@@ -8,12 +8,17 @@ from .world_events import reward_snapshot, reward_rates, active_events
 
 
 def adventure_context(profile, params):
+    from .khorinis_duties import DUTIES, duty_prefix
     categories=AdventureTemplate._meta.get_field('category').choices
     filters={'q':params.get('q','').strip()[:100],
              'category':params.get('category','') if params.get('category') in dict(categories) else '',
              'access':params.get('access','open') if params.get('access','open') in {'open','all'} else 'open',
              'sort':params.get('sort','level') if params.get('sort','level') in {'level','short','ore','experience'} else 'level'}
     stock=AdventureTemplate.objects.filter(enabled=True,universe=region(profile).universe)
+    duty = params.get('duty', '')
+    if duty in DUTIES:
+        filters['duty'] = duty
+        stock = stock.filter(key__startswith=duty_prefix(duty))
     if filters['q']:stock=stock.filter(Q(name__iregex=literal_pattern(filters['q']))|Q(description__iregex=literal_pattern(filters['q']))|Q(place__iregex=literal_pattern(filters['q'])))
     if filters['category']:stock=stock.filter(category=filters['category'])
     if filters['access']=='open':stock=stock.filter(level__lte=profile.level)
@@ -34,6 +39,6 @@ def adventure_context(profile, params):
         elif profile.action_end_time:reason='Najpierw zakończ zmianę i odbierz urobek.'
         elif profile.level<quest.level:reason=f'Wymagany poziom: {quest.level}.'
         elif profile.current_energy<quest.energy_cost:reason=f'Brakuje energii: potrzeba {quest.energy_cost}.'
-        quests.append({'quest':quest,'ore':ore,'experience':xp,'premium':premium,'events':events,'available':not reason,'reason':reason})
+        quests.append({'quest':quest,'ore':ore,'experience':xp,'premium':premium,'events':events,'available':not reason,'reason':reason,'duty_minutes':quest.duration_seconds//60 if quest.key.startswith('k2-duty-') else None})
     return {'run':run,'quests':quests,'adventure_filters':filters,'categories':categories,
             'quest_count':stock.paginator.count,'quest_pager':pager(stock,'page',filters,'Strony zleceń')}

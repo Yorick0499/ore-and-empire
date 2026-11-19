@@ -10,7 +10,7 @@ Stan: 13 XI 2026. Przed Barierą **Latarnia — Khorinis** działa równolegle z
 | Klasztor Magów Ognia | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru |
 | Najemnicy Onara | Pracownik farmy → Zbrojny Onara → Najemnik Onara → Dowódca najemników |
 
-Nowe próby każdej rangi mają własne cele. Straż zaopatruje koszary, patroluje trakt, a później rozbija bandy przy bramie i wybrzeżu. Magowie Ognia ćwiczą manę i osłaniają pielgrzymów. Ludzie Onara chronią pola i wozy, a na koniec mierzą się z wargami oraz czarnym trollem. Onar akceptuje siłę lub zręczność, więc łucznik może rozwijać swój główny atrybut. Ostatnia próba każdej gildii wymaga poziomu 22. Rozpoczęte próby zachowują dotychczasowe cele i opłaty. [Dokładne progi i cele](GAME_CONTENT.md#podstawowe-rangi).
+Nowe próby każdej rangi mają własne cele. Straż zaopatruje koszary, patroluje trakt, a później rozbija bandy przy bramie i wybrzeżu. Magowie Ognia ćwiczą manę i osłaniają pielgrzymów. Ludzie Onara chronią pola i wozy, a na koniec mierzą się z wargami oraz czarnym trollem. Onar akceptuje siłę lub zręczność, więc łucznik może rozwijać swój główny atrybut. Ostatnia próba każdej gildii wymaga poziomu 22. Pierwsza ranga nadal jest dostępna od razu po prologu. Kolejne trzy próby wymagają przyjętych zleceń służby (3 po 45 min), ochrony szlaków (7 po 60 min) i dalekiej warty (10 po 90 min, w klasztorze 12). Każdy etap ma trzy zadania do wyboru, z normalną zapłatą i PD. Postęp nalicza odbiór zlecenia przy aktywnej próbie. Link przy celu prowadzi do pasujących wypraw. Rozpoczęte próby zachowują dotychczasowe cele i opłaty. [Dokładne progi i cele](GAME_CONTENT.md#podstawowe-rangi).
 
 Paladyni należą do wyższej drogi po połączeniu. Każda wspólnota ma skarbiec, dzienne projekty, ulepszenia i wyprawy; szkoła klasztoru otwiera odpowiednią magię. [Wymagania rang](CAMPS.md).
 
@@ -24,7 +24,7 @@ Ukończenie lokalnej kampanii nie kończy serwera i nie łączy światów. Pozos
 
 ## Paczka sprzed połączenia
 
-16 lokacji, 8 populacji przeciwników, 2 bossów solo, 10 zleceń czasowych, 35 wzorów warty w kręgach 0/5/10/20/30,18 run/zwojów, 2 amunicje i 2 trofea. To autorski balans mieszkańca, oddzielony od danych oryginalnego G2. Wspólne podstawy adaptacji mogą działać w obu światach, ale przed połączeniem nie przenoszą fizycznych egzemplarzy.
+16 lokacji, 8 populacji przeciwników, 2 bossów solo, 19 zleceń czasowych, 35 wzorów warty w kręgach 0/5/10/20/30,18 run/zwojów, 2 amunicje i 2 trofea. To autorski balans mieszkańca, oddzielony od danych oryginalnego G2. Wspólne podstawy adaptacji mogą działać w obu światach, ale przed połączeniem nie przenoszą fizycznych egzemplarzy.
 
 [Pełne bieżące tabele](GAME_CONTENT.md) zawierają również późniejsze tereny — powyższe liczby opisują tylko początkową paczkę Khorinis.
 

@@ -75,11 +75,15 @@ for row in EXTRA_ADVENTURES:
 ADVENTURES += tuple(row[:9] for row in EXTRA_ADVENTURES)
 
 
-def choose_adventure(profile):
+def choose_adventure(profile, duty=None):
     """Rotate level-appropriate jobs using a bot's role, never a fabricated reward."""
     from .models import AdventureTemplate
-    options=list(AdventureTemplate.objects.filter(enabled=True,universe=region(profile).universe,level__lte=profile.level,
-        energy_cost__lte=profile.current_energy).order_by('-level','-experience_reward','pk')[:12])
+    from .khorinis_duties import duty_prefix
+    available = AdventureTemplate.objects.filter(enabled=True, universe=region(profile).universe,
+                                                level__lte=profile.level, energy_cost__lte=profile.current_energy)
+    available = (available.filter(key__startswith=duty_prefix(duty)) if duty
+                 else available.exclude(key__startswith='k2-duty-'))
+    options = list(available.order_by('-level', '-experience_reward', 'pk')[:12])
     if not options:return None
     # Stay in the newest earned band; older jobs remain available to human players.
     options=[q for q in options if q.level==options[0].level]

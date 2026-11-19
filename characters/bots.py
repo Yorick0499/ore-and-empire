@@ -487,6 +487,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 story = type(story)('stock', needed.pk, story.goal, story.option, story.events, story.item_ids, story.missing_items)
     rank = None
     rank_action = ""
+    duty = None
     quest_mine = any(kind == 'mine' for kind, _ in story.events)
     needs_ore = delivery_needed and profile.ore_balance<delivery_cost and not story.action
     hunt_goals = [key for kind, key in story.events if kind == 'hunt']
@@ -513,6 +514,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                 elif kind == "hunt": hunt_goals.append(key)
                 elif kind == "boss": boss_goals.append(key)
                 elif kind == "train": training, training_needed = key, True
+                elif kind == "duty": duty = key
     elif profile.camp != "NONE" and profile.bot_turn >= 2:
         candidates=[r for r in RANKS if available_rank(profile,r)]
         advanced_candidates=[r for r in candidates if r.key.startswith('ADV_')]
@@ -525,6 +527,11 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         rank=rank or next(iter(candidates),None)
         if rank:
             rank_action = "accept"
+    if duty and not (run or story.action or story.events or profile.is_busy):
+        assignment = choose_adventure(profile, duty)
+        if assignment:
+            template = assignment
+            story = replace(story, action='adventure', target=assignment.pk)
     # Optional veteran lessons use earned points without delaying the campaign.
     if hasattr(profile,'campaign_completion') and not training_needed and profile.skill_points and equipped and profile.bot_turn % 7 == 0:
         skill=equipped.blueprint.weapon_type+'_skill'

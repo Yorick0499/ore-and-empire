@@ -88,7 +88,7 @@ def build():
          f'Mana {rank.attribute_value}' + (f' / siła lub zręczność {rank.attribute_value+20} (templariusze)' if rank.camp == 'VEIL_ORDER' else '')
          if rank.attribute == 'mana' else f'Siła lub zręczność {rank.attribute_value}', rank.cost,
          ', '.join(f'{goal.label} ×{goal.count}' for goal in rank.objectives)) for rank in ADVANCED))
-    lines += ['## Zlecenia czasowe', '', 'Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 10 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).', '']
+    lines += ['## Zlecenia czasowe', '', 'Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 19 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).', '']
     table(lines, ['Klucz / zlecenie', 'Region', 'Kategoria / miejsce', 'Poziom', 'Sekundy', 'Energia', 'Ruda / PD / odłamki'], (
         (f'{q.key} — {q.name}',q.universe,f'{q.get_category_display()} / {q.place}',q.level,q.duration_seconds,q.energy_cost,f'{q.ore_reward} / {q.experience_reward} / {q.premium_reward}') for q in AdventureTemplate.objects.order_by('universe','level','key')))
     lines += ['<a id="fabula-jednorazowa"></a>', '', '## Fabuła jednorazowa', '', 'Przyjęcie → rozpoczęcie → wykonanie → odbiór. Część gałęzi wymaga konkretnej odpowiedzi lub frakcji; warunki są sprawdzane przez grę. Cele nie zaliczają wcześniejszych działań. [Opis mechaniki](STORY.md).', '']

@@ -70,7 +70,10 @@ def strike(profile,siege_id,request_key):
     hit=SleeperStrike.objects.create(siege=siege,profile=profile,account_id=profile.user_id,request_key=key,damage=damage,log=result.log,created_at=now)
     if siege.health==0:
         siege.completed_at=now;race.winner=siege.guild;race.won_at=now;race.state='pending';race.save(update_fields=['winner','won_at','state'])
-        BarrierEvent.objects.create(race=race,kind='victory',details={'guild':siege.guild_id,'strike':hit.pk})
+        from .resident_chronicle import winning_camp_snapshot
+        BarrierEvent.objects.create(race=race, kind='victory', details={
+            'guild': siege.guild_id, 'strike': hit.pk, 'winning_residents': winning_camp_snapshot(siege),
+        })
     siege.save(update_fields=['health','completed_at'])
     return hit
 

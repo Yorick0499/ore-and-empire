@@ -193,7 +193,7 @@ class CampaignPacingTests(TestCase):
                 delay=max((hero.max_health-hero.current_health)*60,(hero.max_mana-hero.current_mana)*30 if build_strategy else 0)
                 if delay>0:advance(delay,'recovery')
             def grind_level():
-                template=AdventureTemplate.objects.filter(universe=region(hero).universe,enabled=True,level__lte=hero.level).order_by('-experience_reward').first()
+                template=AdventureTemplate.objects.filter(universe=region(hero).universe,enabled=True,level__lte=hero.level).exclude(key__startswith='k2-duty-').order_by('-experience_reward').first()
                 run=do('adventure_start',lambda:__import__('characters.economy',fromlist=['start_adventure']).start_adventure(hero,template.pk))
                 advance(max(0,int((run.ends_at-now).total_seconds())),'timer')
                 do('adventure_claim',lambda:__import__('characters.economy',fromlist=['claim_adventure']).claim_adventure(hero,run.pk))
