@@ -59,9 +59,9 @@ class ResidentChronicleTests(TestCase):
         self.assertIn('Ręka, która złamała pieczęć', self.badges(self.veteran))
         self.assertNotIn('Ręka, która złamała pieczęć', self.badges(self.cultist))
         self.assertNotIn('Ręka, która złamała pieczęć', self.badges(self.ally))
-        victory = self.badges(self.ally)['Sztandar zwycięzców Śniącego']
+        victory = self.badges(self.ally)['Sztandar Pogromców Śniącego']
         self.assertEqual((victory['holders'], victory['total'], victory['rarity']), (2, 6, 'Niepospolita'))
-        self.assertNotIn('Sztandar zwycięzców Śniącego', self.badges(during_activation))
+        self.assertNotIn('Sztandar Pogromców Śniącego', self.badges(during_activation))
         self.assertEqual(self.badges(newcomer), {})
         for n in range(5):
             self.person(f'arrival-{n}', 'NONE', 'NONE', self.joined + timedelta(hours=1))
@@ -82,11 +82,20 @@ class ResidentChronicleTests(TestCase):
         later = self.person('late-winner', 'OLD_CAMP', 'GUARD', self.joined + timedelta(hours=1))
         self.assertIn('Pieczęć Guru', self.badges(self.cultist))
         self.assertNotIn('Głos Arcyguru', self.badges(self.cultist))
-        self.assertIn('Sztandar zwycięzców Śniącego', self.badges(self.ally))
-        self.assertIn('Sztandar zwycięzców Śniącego', self.badges(self.veteran))
+        self.assertIn('Sztandar Pogromców Śniącego', self.badges(self.ally))
+        self.assertIn('Sztandar Pogromców Śniącego', self.badges(self.veteran))
         self.assertEqual(self.badges(later), {})
         history = profile_history(self.cultist)[1]
         self.assertGreater(history[0][0], history[-1][0])
+
+    def test_raid_awards_appear_as_soon_as_the_camp_wins(self):
+        self.race.state, self.race.joined_at = 'pending', None
+        self.race.save(update_fields=['state', 'joined_at'])
+        World.objects.filter(pk__in=[self.colony.pk, self.island.pk]).update(union_key=None)
+        BarrierEvent.objects.create(race=self.race, kind='victory', details={'winning_residents': [self.veteran.pk, self.ally.pk]})
+        self.assertIn('Sztandar Pogromców Śniącego', self.badges(self.ally))
+        self.assertIn('Ręka, która złamała pieczęć', self.badges(self.veteran))
+        self.assertNotIn('Były wyznawca Śniącego', self.badges(self.cultist))
 
     def test_rarity_tracks_share_of_public_residents(self):
         for count, key in ((1, 'legendary'), (2, 'epic'), (10, 'rare'), (30, 'uncommon'), (60, 'common')):

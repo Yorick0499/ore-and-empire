@@ -26,7 +26,7 @@ BADGES = {
     'old': Badge('Sztandar Starego Obozu', 'laurel', 'Postać należała do Starego Obozu przed upadkiem Bariery.'),
     'new': Badge('Wolni z Górniczej Doliny', 'swords', 'Postać należała do Nowego Obozu przed upadkiem Bariery.'),
     'sleeper': Badge('Były wyznawca Śniącego', 'eye', 'Postać należała do Bractwa Śniącego przed połączeniem światów.'),
-    'winner': Badge('Sztandar zwycięzców Śniącego', 'crown', 'Postać należała do zwycięskiego obozu w chwili pokonania Śniącego.'),
+    'winner': Badge('Sztandar Pogromców Śniącego', 'crown', 'Postać należała do zwycięskiego obozu w chwili pokonania Śniącego.'),
     'strike': Badge('Ręka, która złamała pieczęć', 'barrier', 'Postać zadała obrażenia w zwycięskiej wyprawie przeciw Śniącemu.'),
     'echo': Badge('Przez echo do świtu', 'laurel', 'Postać pokonała Echo Śniącego w swojej wyprawie.'),
     'portal': Badge('Ślad za portalem', 'portal', 'Postać zdobyła osobiste przejście do Jarkendaru.'),
@@ -118,14 +118,7 @@ def _historical_residents(ids, cutoff):
     return {pk: (camps.get(pk), ranks.get(pk)) for pk in existing}
 
 
-def _barrier_awards(ids, awards, timeline, subject):
-    race = SleeperRace.objects.filter(colony_id__in=ids, state='joined', joined_at__isnull=False).select_related('winner').first()
-    if not race:
-        return
-    events = {row.kind: row for row in BarrierEvent.objects.filter(race=race, kind__in=['joined', 'victory']).order_by('pk')}
-    joined = events.get('joined')
-    if joined is None:
-        return
+def _joined_awards(race, joined, awards, timeline, subject):
     recorded = joined.details.get('residents')
     historical = ({int(pk): state for pk, state in recorded.items()} if recorded is not None
                   else _historical_residents(awards.residents, race.joined_at))
@@ -140,6 +133,15 @@ def _barrier_awards(ids, awards, timeline, subject):
             awards.add('rank:' + rank, pk, race.joined_at)
     if subject.pk in historical:
         timeline.append((race.joined_at, 'Upadek Bariery i połączenie regionów'))
+
+
+def _barrier_awards(ids, awards, timeline, subject):
+    race = SleeperRace.objects.filter(colony_id__in=ids, winner__isnull=False).select_related('winner').first()
+    if not race:
+        return
+    events = {row.kind: row for row in BarrierEvent.objects.filter(race=race, kind__in=['joined', 'victory']).order_by('pk')}
+    if race.joined_at and (joined := events.get('joined')):
+        _joined_awards(race, joined, awards, timeline, subject)
     siege = SleeperSiege.objects.filter(race=race, guild=race.winner, health=0,
                                        completed_at__isnull=False).only('completed_at').first()
     if not siege:
@@ -210,6 +212,5 @@ def profile_history(subject):
         awards.add(MILESTONES[key], pk, stamp)
         if pk == subject.pk:
             timeline.append((stamp, BADGES[MILESTONES[key]].title))
-    if len(ids) > 1:
-        _barrier_awards(ids, awards, timeline, subject)
+    _barrier_awards(ids, awards, timeline, subject)
     return list(awards.cards()), sorted(timeline, reverse=True)[:40]
