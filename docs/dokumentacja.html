@@ -530,6 +530,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 </code></pre>
 <p>Wybierz nową nazwę raportu. Polecenie zawsze tworzy własną tymczasową bazę plikową SQLite, nie używa bazy z <code>.env</code> i nie zmienia istniejących graczy. Trzy konta zaczynają na poziomie 0: normalne formularze kampanii, kupno sprzętu, trening, zdobyte odłamki, rangi Kopacza/Cienia/Strażnika, projekty i wyprawy wspólnoty. Potem rzeczywiste uderzenia Śniącego, zweryfikowana kopia/odtworzenie i powtórzona idempotentna aktywacja, 23 przydziały Jarkendaru/NK oraz 3 wygrane dawne warty, cztery ścieżki regionalne, tygodniowy cel i ponowna zweryfikowana kopia/odtworzenie z nowymi rekordami. Żądania mają kontrolę powtórzeń.</p>
 <p>Nie ustawia się zwycięstwa, wspólnej tożsamości serwera, wysokiego poziomu, wyposażenia ani salda aktorów przez fiksturę. Czas regeneracji i oczekiwania jest wirtualny. Osobny job CI wykonuje tę próbę raz, niezależnie od szybkich testów modułów i PostgreSQL.</p>
+<p>W porównaniu z panelem użyj tego samego polecenia z opcją <code>--operator energy</code> lub <code>--operator energy-ore</code>. Pomoc dotyczy trzeciego konta i trafia do kroniki przez formularze zarządcy z CSRF. W raporcie odczytaj osobno liczbę dni do aktywacji Bariery, Irdorath i pierwszych wart. Limit 60 sekund pomiędzy uderzeniami nadal działa i korzysta z tego samego zegara co zapis uderzenia. Regeneracja i kalendarz wspólnoty nadal obowiązują.</p>
 <p><a href="#report-pelna-droga-2026-11-12">Raport gotowości i granice</a>. Próba nie jest dowodem tempa człowieka, organicznego rozwoju wszystkich buildów ani stabilności wielodniowej gospodarki 250 botów. Trzy strategie wojownika są wykonywane kolejno, a nie równolegle. Pozostałe pakiety nadal sprawdzają magię, łucznika, pięć frakcji, współbieżność i populację. Poprawiono w modelu timer wydobycia oraz odczyt regeneracji/ceny przed zakupem — starsze raporty zachowują historyczny zakres i wyniki.</p>
 <h3 id="doc-complete-journey--stan-penej-drogi">Stan pełnej drogi</h3>
 <p>Grafiki aktywnych przedmiotów, lokacji, mobów i bossów są lokalne i walidowane. Pełna droga, dziewięć organicznych kombinacji buildów/frakcji, cztery dalsze awanse, regionalny endgame i wydarzenia #137 są wdrożone. <a href="#doc-roadmap">Roadmapa</a> wskazuje pozostałe efekty NK, długą gospodarkę i ocenę przez ludzi.</p>
@@ -8104,7 +8105,41 @@ python scripts/benchmark_bots.py --seconds 60 --report /tmp/audyt-stu-botow.json
 </table></div>
 <p>Pierwsza liczba to godziny zegara świata, łącznie z regeneracją i timerami. Druga to minuty wykonywania akcji w modelu przy 10 s na operację, z uwzględnieniem prób ponawianych i formularzy zarządcy. Każdy wariant gra wojownikiem od zera, kupuje sprzęt i korzysta z NPC oraz sklepu za zarobione odłamki. Model zna cele i gra bez przerw na wylogowanie. Sam przebieg nie mierzy tempa człowieka ani handlu z botami.</p>
 <p>Zarządca odnawiał energię poniżej 25 oraz w trzecim wariancie dodawał do 100 rudy przy rzeczywistym braku środków, najwyżej raz w dniu gry i maksymalnie w sześciu dniach próby. Do Irdorath użył 15 odnowień albo 14 odnowień i 66 rudy. Na Khorinis użył pięciu odnowień i opcjonalnie 26 rudy. Zmieniony moment odpoczynku i zakupu może przesunąć kolejne walki, więc wariant z rudą w Kolonii miał odrobinę mniej aktywnych operacji, lecz dłuższy czas regeneracji.</p>
-<p>W pomiarze jednej postaci Bariera otwiera się jako zewnętrzne zdarzenie po finale Kolonii. Osobna pełna próba przygotowała trzy konta od zera, dwa pozostałe wspierały właściwą postać, i zrealizowała wyścig wspólnoty, 124 uderzenia w Śniącego oraz kopię i odtworzenie. Do aktywacji upłynęło 16,18 wirtualnego dnia, a do końca 23 kontraktów NK, pierwszych regionalnych wart i celu tygodniowego 17,23 dnia. Konta rozwijano po kolei, więc wynik zależy od tej organizacji i nie wyznacza czasu oczekiwania na żywym serwerze.</p>
+<p>W tabeli jednej postaci Bariera otwiera się jako zewnętrzne zdarzenie po finale Kolonii. W poniższej próbie trzy konta od zera rzeczywiście zdobyły poziom 10 wspólnoty, wykonały 124 uderzenia i wygrały ze Śniącym. Po kopii, próbie odtworzenia i aktywacji trzecie konto przeszło 23 kontrakty NK, pierwsze warty i cel tygodniowy. Konta rozwijano po kolei. Jedynie trzecie mogło korzystać z pomocy.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Wariant pełnej próby</th>
+<th style="text-align: right;">Połączenie</th>
+<th style="text-align: right;">Irdorath</th>
+<th style="text-align: right;">Pierwsze warty i cel tygodniowy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zwykła gra</td>
+<td style="text-align: right;">15,96 dnia</td>
+<td style="text-align: right;">16,63 dnia</td>
+<td style="text-align: right;">17,00 dni</td>
+</tr>
+<tr>
+<td>Odnowienia energii</td>
+<td style="text-align: right;">15,68 dnia</td>
+<td style="text-align: right;">15,99 dnia</td>
+<td style="text-align: right;">16,10 dnia</td>
+</tr>
+<tr>
+<td>Odnowienia i ruda</td>
+<td style="text-align: right;">15,68 dnia</td>
+<td style="text-align: right;">16,00 dni</td>
+<td style="text-align: right;">16,10 dnia</td>
+</tr>
+</tbody>
+</table></div>
+<p>Wartości oznaczają dni zegara gry od utworzenia pierwszej postaci. Do Irdorath panel wykonał 22 odnowienia albo 20 odnowień i dwie wypłaty o łącznej wartości 166 rudy. Znaczną część czasu zajęły kolejne dni zadań wspólnoty i regeneracja przed uderzeniami. Oba zegary zapisów uderzeń korzystają z czasu symulacji, również w 60-sekundowym limicie. Polecenia dla tych trzech wariantów opisuje <a href="#doc-complete-journey">pełna droga</a>.</p>
+<h4 id="doc-solo-playtest--tempo-botow">Tempo botów</h4>
+<p>W izolowanych światach trzy boty Kolonii zamknęły osobisty finał po 133,7–209,7 h, a trzy boty Khorinis zakończyły Szlaki zaopatrzenia po 83,5–149,0 h. Zwykły harmonogram ustalał okna i przerwy osobowości, a kolejkę sprawdzano co 10 min. To ogranicza liczbę tur względem działającego launchera, który obsługuje krótsze odstępy.</p>
+<p>W osobnej próbie trzy boty Kolonii zaczęły od zera i dotarły do Irdorath w 429,5–555,0 h. Barierę otwarto po ich zwykłej rekrutacji jako warunek otoczenia, bez nadawania postępów i wyposażenia. Boty wykonywały po jednej aktywnej turze na 30 min zegara gry. Próby tej nie dodaje się do pomiaru okien sesji. Osobno pięć przygotowanych botów na poziomie 45 ukończyło kontrakty NK przy kroku dwugodzinnym. <a href="https://github.com/Yorick0499/ore-and-empire/issues/146" target="_blank" rel="noopener noreferrer">Audyt</a>.</p>
 <pre><code class="language-bash">mkdir -p work
 echo '[]' &gt; work/comparative-timing.json
 ORE_PROBE_REPORT=&quot;$PWD/work/comparative-timing.json&quot; python manage.py test characters.playtest_timing --noinput

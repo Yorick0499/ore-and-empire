@@ -67,7 +67,7 @@ def strike(profile,siege_id,request_key):
         result.log.append(f'Pieczęć wymaga wkładu trzech różnych kont. Po jej odpowiedzi pozostaje {siege.health}/{siege.maximum_health} HP.')
     apply_combat_magic(profile,plan,result)
     profile.current_health=result.remaining_health;profile.health_updated_at=now;profile.current_energy-=25;profile.save()
-    hit=SleeperStrike.objects.create(siege=siege,profile=profile,account_id=profile.user_id,request_key=key,damage=damage,log=result.log)
+    hit=SleeperStrike.objects.create(siege=siege,profile=profile,account_id=profile.user_id,request_key=key,damage=damage,log=result.log,created_at=now)
     if siege.health==0:
         siege.completed_at=now;race.winner=siege.guild;race.won_at=now;race.state='pending';race.save(update_fields=['winner','won_at','state'])
         BarrierEvent.objects.create(race=race,kind='victory',details={'guild':siege.guild_id,'strike':hit.pk})

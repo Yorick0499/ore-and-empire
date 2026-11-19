@@ -59,6 +59,18 @@ class BarrierTests(TestCase):
         self.assertFalse(sleeper.strike(alt,siege.pk,uuid4()))
         self.assertFalse(sleeper.strike(alt,siege.pk,key))
         self.assertEqual(SleeperStrike.objects.count(),1)
+    def test_sleeper_hit_uses_the_same_clock_as_its_cooldown(self):
+        siege = self.siege()
+        start = timezone.now() - timedelta(days=10)
+        with patch("django.utils.timezone.now", return_value=start):
+            hit = sleeper.strike(self.p, siege.pk, uuid4())
+        self.assertTrue(hit)
+        self.assertEqual(hit.created_at, start)
+        with patch("django.utils.timezone.now", return_value=start + timedelta(seconds=59)):
+            self.assertFalse(sleeper.strike(self.p, siege.pk, uuid4()))
+        with patch("django.utils.timezone.now", return_value=start + timedelta(seconds=60)):
+            self.assertTrue(sleeper.strike(self.p, siege.pk, uuid4()))
+
     def test_three_accounts_are_required_and_single_account_cannot_break_seal(self):
         siege=self.siege();self.p.strength=100000;self.p.save()
         self.assertTrue(sleeper.strike(self.p,siege.pk,uuid4()));siege.refresh_from_db()

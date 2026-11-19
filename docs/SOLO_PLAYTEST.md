@@ -28,7 +28,21 @@ Pierwsza liczba to godziny zegara świata, łącznie z regeneracją i timerami. 
 
 Zarządca odnawiał energię poniżej 25 oraz w trzecim wariancie dodawał do 100 rudy przy rzeczywistym braku środków, najwyżej raz w dniu gry i maksymalnie w sześciu dniach próby. Do Irdorath użył 15 odnowień albo 14 odnowień i 66 rudy. Na Khorinis użył pięciu odnowień i opcjonalnie 26 rudy. Zmieniony moment odpoczynku i zakupu może przesunąć kolejne walki, więc wariant z rudą w Kolonii miał odrobinę mniej aktywnych operacji, lecz dłuższy czas regeneracji.
 
-W pomiarze jednej postaci Bariera otwiera się jako zewnętrzne zdarzenie po finale Kolonii. Osobna pełna próba przygotowała trzy konta od zera, dwa pozostałe wspierały właściwą postać, i zrealizowała wyścig wspólnoty, 124 uderzenia w Śniącego oraz kopię i odtworzenie. Do aktywacji upłynęło 16,18 wirtualnego dnia, a do końca 23 kontraktów NK, pierwszych regionalnych wart i celu tygodniowego 17,23 dnia. Konta rozwijano po kolei, więc wynik zależy od tej organizacji i nie wyznacza czasu oczekiwania na żywym serwerze.
+W tabeli jednej postaci Bariera otwiera się jako zewnętrzne zdarzenie po finale Kolonii. W poniższej próbie trzy konta od zera rzeczywiście zdobyły poziom 10 wspólnoty, wykonały 124 uderzenia i wygrały ze Śniącym. Po kopii, próbie odtworzenia i aktywacji trzecie konto przeszło 23 kontrakty NK, pierwsze warty i cel tygodniowy. Konta rozwijano po kolei. Jedynie trzecie mogło korzystać z pomocy.
+
+| Wariant pełnej próby | Połączenie | Irdorath | Pierwsze warty i cel tygodniowy |
+|---|---:|---:|---:|
+| Zwykła gra | 15,96 dnia | 16,63 dnia | 17,00 dni |
+| Odnowienia energii | 15,68 dnia | 15,99 dnia | 16,10 dnia |
+| Odnowienia i ruda | 15,68 dnia | 16,00 dni | 16,10 dnia |
+
+Wartości oznaczają dni zegara gry od utworzenia pierwszej postaci. Do Irdorath panel wykonał 22 odnowienia albo 20 odnowień i dwie wypłaty o łącznej wartości 166 rudy. Znaczną część czasu zajęły kolejne dni zadań wspólnoty i regeneracja przed uderzeniami. Oba zegary zapisów uderzeń korzystają z czasu symulacji, również w 60-sekundowym limicie. Polecenia dla tych trzech wariantów opisuje [pełna droga](COMPLETE_JOURNEY.md).
+
+### Tempo botów
+
+W izolowanych światach trzy boty Kolonii zamknęły osobisty finał po 133,7–209,7 h, a trzy boty Khorinis zakończyły Szlaki zaopatrzenia po 83,5–149,0 h. Zwykły harmonogram ustalał okna i przerwy osobowości, a kolejkę sprawdzano co 10 min. To ogranicza liczbę tur względem działającego launchera, który obsługuje krótsze odstępy.
+
+W osobnej próbie trzy boty Kolonii zaczęły od zera i dotarły do Irdorath w 429,5–555,0 h. Barierę otwarto po ich zwykłej rekrutacji jako warunek otoczenia, bez nadawania postępów i wyposażenia. Boty wykonywały po jednej aktywnej turze na 30 min zegara gry. Próby tej nie dodaje się do pomiaru okien sesji. Osobno pięć przygotowanych botów na poziomie 45 ukończyło kontrakty NK przy kroku dwugodzinnym. [Audyt](https://github.com/Yorick0499/ore-and-empire/issues/146).
 
 ```bash
 mkdir -p work

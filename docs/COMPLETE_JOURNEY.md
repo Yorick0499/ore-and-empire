@@ -33,6 +33,8 @@ Wybierz nową nazwę raportu. Polecenie zawsze tworzy własną tymczasową bazę
 
 Nie ustawia się zwycięstwa, wspólnej tożsamości serwera, wysokiego poziomu, wyposażenia ani salda aktorów przez fiksturę. Czas regeneracji i oczekiwania jest wirtualny. Osobny job CI wykonuje tę próbę raz, niezależnie od szybkich testów modułów i PostgreSQL.
 
+W porównaniu z panelem użyj tego samego polecenia z opcją `--operator energy` lub `--operator energy-ore`. Pomoc dotyczy trzeciego konta i trafia do kroniki przez formularze zarządcy z CSRF. W raporcie odczytaj osobno liczbę dni do aktywacji Bariery, Irdorath i pierwszych wart. Limit 60 sekund pomiędzy uderzeniami nadal działa i korzysta z tego samego zegara co zapis uderzenia. Regeneracja i kalendarz wspólnoty nadal obowiązują.
+
 [Raport gotowości i granice](reports/pelna-droga-2026-11-12.json). Próba nie jest dowodem tempa człowieka, organicznego rozwoju wszystkich buildów ani stabilności wielodniowej gospodarki 250 botów. Trzy strategie wojownika są wykonywane kolejno, a nie równolegle. Pozostałe pakiety nadal sprawdzają magię, łucznika, pięć frakcji, współbieżność i populację. Poprawiono w modelu timer wydobycia oraz odczyt regeneracji/ceny przed zakupem — starsze raporty zachowują historyczny zakres i wyniki.
 
 ## Stan pełnej drogi
