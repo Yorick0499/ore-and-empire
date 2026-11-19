@@ -1,4 +1,5 @@
 """One adaptive queue for all realms, with a separate fenced owner per realm."""
+from itertools import zip_longest
 from time import monotonic
 from .models import World
 from .realms import open_worlds,world_scope
@@ -24,10 +25,10 @@ class ParallelRealms:
             from .bot_arrivals import admit_next_cohort
             admit_next_cohort(primary)
             self.next_arrival_check = now + 30
-        ids=[]
         from django.db.models import Q
-        for world in open_worlds().filter(Q(configured=True)|Q(pk=primary.world_id)):ids.extend(due_population(world))
-        return ids
+        worlds = open_worlds().filter(Q(configured=True) | Q(pk=primary.world_id)).order_by('pk')
+        populations = [due_population(world) for world in worlds]
+        return [pk for band in zip_longest(*populations) for pk in band if pk is not None]
     def for_profile(self,profile):return self.guards[profile.world_id]
     def events(self):
         from .world_events import ensure_world_events

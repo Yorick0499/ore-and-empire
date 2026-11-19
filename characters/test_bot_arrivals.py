@@ -1,3 +1,4 @@
+from contextlib import ExitStack
 from io import StringIO
 from uuid import uuid4
 
@@ -70,3 +71,18 @@ class BotArrivalTests(TestCase):
         self.island.refresh_from_db()
         self.assertEqual(release.bot_arrivals, 0)
         self.assertEqual(self.island.bot_count, AUTOMATIC_POPULATION_CAP)
+
+    def test_fresh_queue_alternates_regions_and_keeps_waiting_order(self):
+        from .bot_scheduler import BotScheduler
+        from .realm_scheduler import ParallelRealms
+
+        World.objects.filter(pk__in=(self.colony.pk, self.island.pk)).update(bot_personality_cycles=False)
+        with ExitStack() as cleanup, SchedulerGuard(self.colony) as worker:
+            scheduler = BotScheduler(clock=lambda: 0)
+            scheduler.population(ParallelRealms().sync(worker, cleanup))
+            worlds = dict(PlayerProfile.objects.filter(pk__in=scheduler.queue).values_list('pk', 'world_id'))
+            self.assertEqual([worlds[pk] for pk in scheduler.queue],
+                             [self.colony.pk, self.island.pk, self.colony.pk, self.island.pk])
+            prior = list(scheduler.queue)
+            scheduler.population(reversed(prior))
+            self.assertEqual(list(scheduler.queue), prior)
