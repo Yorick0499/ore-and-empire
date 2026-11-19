@@ -88,6 +88,24 @@ class TwoRealmTests(TestCase):
                 self.assertEqual(item.owner_id, buyer.pk)
         self.assertEqual(MarketTrade.objects.filter(seller=self.p, buyer=buyer).count(), 2)
 
+    def test_island_bot_buys_a_useful_player_bargain_through_its_normal_turn(self):
+        from .bots import tick_bot
+        from .models import MarketTrade
+
+        buyer = PlayerProfile.objects.filter(world=self.island, is_bot=True).order_by('pk').first()
+        ring = ItemBluePrint.objects.create(
+            catalog_key='test-island-ring', name='Pierścień rzemieślnika', source_game='GOTHIC_II',
+            kind='ring', strength_bonus=3, base_value=100, merchant=False,
+        )
+        item = OwnedItem.objects.create(owner=self.p, blueprint=ring)
+        self.assertTrue(game.list_item_on_market(self.p, item, 4))
+        self.assertFalse(game.buy_item_on_market(self.original, item, 4))
+        self.assertEqual(tick_bot(buyer, force_active=True), ('market_buy', True))
+        trade = MarketTrade.objects.get()
+        self.assertEqual((trade.seller_id, trade.buyer_id, trade.price), (self.p.pk, buyer.pk, 4))
+        buyer.refresh_from_db()
+        self.assertEqual(buyer.ore_balance, 46)
+
     def test_seeding_island_materials_preserves_operator_loot_tables(self):
         from .models import LootTable
 

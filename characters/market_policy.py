@@ -66,9 +66,7 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
     if len(inventory)>=12:return '',None,0
     candidates=[]
     for item in market.listings:
-        if item.owner_id==profile.pk or item.blueprint.kind=='weapon' or market.need(profile,item)<item.quantity:continue
-        quote=market.quote(item.owner,item)
-        if quote.price and item.market_price<=min(quote.price,profile.ore_balance-20):candidates.append(item)
+        if item.blueprint.kind!='weapon' and market.can_buy(profile,item):candidates.append(item)
     if candidates:
         best=min(candidates,key=lambda i:(i.market_price/i.quantity,i.pk));return 'market_buy',best.pk,best.market_price
     return '',None,0

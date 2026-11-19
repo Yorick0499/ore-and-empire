@@ -60,7 +60,12 @@ class MarketState:
             self.items[i.owner_id].append(i)
             if i.is_market_listed:self.listings.append(i)
         self.merchants=list(ItemBluePrint.objects.filter(merchant=True))
-        self.recipes=list(CraftRecipe.objects.filter(enabled=True).select_related("output"))
+        from .crafting import valid_recipe
+        self.recipe_inputs = defaultdict(list)
+        for recipe in CraftRecipe.objects.filter(enabled=True).select_related('output'):
+            if valid_recipe(recipe):
+                for ingredient in recipe.ingredients:
+                    self.recipe_inputs[ingredient['blueprint']].append((recipe, ingredient['count']))
         self.history=defaultdict(dict);self._need={};self._value={};self._ceil={}
         for row in MarketTrade.objects.filter(seller__world_id__in=worlds,buyer__world_id__in=worlds,created_at__gte=self.now-timedelta(days=7),rarity__isnull=False,quantity__gt=0).order_by('-created_at','-pk').values('blueprint_id','rarity','upgrade_level','buyer__user_id','price','quantity')[:2000]:
             h=self.history[(row['blueprint_id'],row['rarity'],row['upgrade_level'])]
@@ -81,6 +86,8 @@ class MarketState:
         if b.equippable:
             values=sorted((self.value(p,x) for x in self.items[p.pk] if x.blueprint.kind==b.kind and usable(p,x.blueprint)),reverse=True)
             slots=2 if b.kind=='ring' else 1
+            if b.kind != 'weapon' and len(values) < slots:
+                return int(self.value(p, i) > 0)
             current=values[slots-1] if len(values)>=slots else fists(p) if b.kind=='weapon' else 0
             return int(self.value(p,i)-current>=max(5,current//20))
         if b.kind=='consumable':
@@ -93,10 +100,11 @@ class MarketState:
             if kind and b.original_stats.get('ammo_type')==kind:return max(0,10-sum(x.quantity for x in held if x.blueprint.kind=='ammo' and x.blueprint.original_stats.get('ammo_type')==kind))
         if b.catalog_key=='rune-dust' and any(x.is_equipped and x.upgrade_level<3 for x in held):return max(0,10-sum(x.quantity for x in held if x.blueprint_id==b.pk))
         if b.kind=='material':
-            from .crafting import valid_recipe
+            from .crafting import wants_restorative
             def interested(r):
-                return (r.output.kind=='consumable' and p.current_health<p.max_health-20) or (r.output.kind=='weapon' and not any(x.blueprint_id==r.output_id for x in held) and not any(x.is_equipped and x.blueprint.kind=='weapon' and self.value(p,x)>=self.value(p,r.output) for x in held))
-            counts=[g['count'] for r in self.recipes if valid_recipe(r) and interested(r) and p.level>=r.level and getattr(p,r.discipline+'_skill')>=r.skill for g in r.ingredients if g['blueprint']==b.pk]
+                return wants_restorative(p, r.output, held) or (r.output.kind=='weapon' and not any(x.blueprint_id==r.output_id for x in held) and not any(x.is_equipped and x.blueprint.kind=='weapon' and self.value(p,x)>=self.value(p,r.output) for x in held))
+            counts = [count for r, count in self.recipe_inputs[b.pk]
+                      if p.level >= r.level and getattr(p, r.discipline + '_skill') >= r.skill and interested(r)]
             return max(0,max(counts,default=0)-sum(x.quantity for x in held if x.blueprint_id==b.pk))
         return 0
     def ceiling(self,p,i):
@@ -110,6 +118,22 @@ class MarketState:
                 if equivalent:prices.append(other.base_value)
             self._ceil[key]=min(prices) if prices else None
         return self._ceil[key]
+
+    def unit_budget(self, buyer, item, quantity):
+        budget = max(0, buyer.ore_balance - 20) // quantity
+        ceiling = self.ceiling(buyer, item)
+        return min(budget, round(ceiling * .95)) if ceiling is not None else budget
+
+    @staticmethod
+    def anchor(item):
+        return max(1, round(item.blueprint.base_value * (1 + .18 * item.rarity + .08 * item.upgrade_level)))
+
+    def can_buy(self, buyer, item):
+        if item.quantity < 1 or buyer.user_id == item.owner.user_id or self.need(buyer, item) < item.quantity:
+            return False
+        price_limit = min(self.unit_budget(buyer, item, item.quantity), round(self.anchor(item) * 1.45))
+        return 0 < (item.market_price or 0) <= price_limit * item.quantity
+
     @staticmethod
     def comparable(a,b):
         if a.blueprint.kind!=b.blueprint.kind:return False
@@ -122,14 +146,13 @@ class MarketState:
         quantity = i.quantity if quantity is None else quantity
         b=i.blueprint;floor=max(1,b.base_value//2+1);budgets=[]
         for p in self.people:
-            if p.pk==seller.pk or self.need(p,i)<quantity:continue
-            budget=max(0,p.ore_balance-20)//quantity;ceiling=self.ceiling(p,i)
-            if ceiling is not None:budget=min(budget,round(ceiling*.95))
+            if p.user_id==seller.user_id or self.need(p,i)<quantity:continue
+            budget=self.unit_budget(p,i,quantity)
             if budget>=floor:budgets.append(budget)
         supply=sum(x.quantity for x in self.listings if x.pk!=i.pk and self.comparable(x,i))
         history=self.history[(b.pk,i.rarity,i.upgrade_level)]
         if not budgets or floor*quantity>1_000_000:return Quote(0,len(budgets),supply,len(history))
-        anchor=max(1,round(b.base_value*(1+.18*i.rarity+.08*i.upgrade_level)))
+        anchor=self.anchor(i)
         prior=max(anchor*.65,min(anchor*1.45,median(history.values()) if history else anchor))
         pressure=max(-.4,min(.3,(len(budgets)+len(history)*.5-supply*.8)/max(2,len(budgets)+len(history)*.5)))
         price=min(round(prior*(1+pressure*.25)),sorted(budgets)[len(budgets)//2])
