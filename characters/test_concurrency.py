@@ -176,11 +176,14 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
         from .bots import tick_bot
         self.a.is_bot=True;self.a.bot_role='trader';self.a.save()
         offered=OwnedItem.objects.create(owner=self.seller,blueprint=self.bp,is_market_listed=True,market_price=5)
-        bot_offer=OwnedItem.objects.create(owner=self.a,blueprint=self.bp,is_market_listed=True,market_price=5)
+        # The bot already counts its own listed gear when deciding whether it
+        # needs another copy. Test simultaneous trades with two distinct goods.
+        armor = ItemBluePrint.objects.create(name='Pancerz testowy', kind='armor', weapon_prot=5, base_value=25)
+        bot_offer=OwnedItem.objects.create(owner=self.a,blueprint=armor,is_market_listed=True,market_price=5)
         entered=Event();release=Event()
         class SlowPolicy:
             def choose(policy,obs):
-                entered.set();release.wait(timeout=10);return 'buy',offered.pk
+                entered.set();release.wait(timeout=10);return 'buy',obs.offer_id
         def bot():
             connections.close_all()
             try:return tick_bot(PlayerProfile.objects.get(pk=self.a.pk),SlowPolicy(), force_active=True)
@@ -196,7 +199,8 @@ class PostgreSQLConcurrencyTests(TransactionTestCase):
                 self.assertTrue(pool.submit(human).result(timeout=8))
             finally:release.set()
             self.assertEqual(pending.result(timeout=10),('buy',True))
-        self.assertEqual(MarketTrade.objects.count(),2)
+        self.assertCountEqual(MarketTrade.objects.values_list('blueprint_id', 'buyer_id'),
+                              [(offered.blueprint_id, self.a.pk), (bot_offer.blueprint_id, self.seller.pk)])
 
     def test_lock_timeout_is_a_clean_conflict_with_no_resource_loss(self):
         from django.db import transaction

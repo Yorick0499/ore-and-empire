@@ -26,6 +26,8 @@ Ukończenie lokalnej kampanii nie kończy serwera i nie łączy światów. Pozos
 
 16 lokacji, 8 populacji przeciwników, 2 bossów solo, 19 zleceń czasowych, 35 wzorów warty w kręgach 0/5/10/20/30,18 run/zwojów, 2 amunicje i 2 trofea. To autorski balans mieszkańca, oddzielony od danych oryginalnego G2. Wspólne podstawy adaptacji mogą działać w obu światach, ale przed połączeniem nie przenoszą fizycznych egzemplarzy.
 
+Łupy z lokalnych polowań zasilają targ rzemieślniczy. Ścierwojady i wilki dają mięso oraz skóry, a z wypraw przeciw goblinom przy trakcie i polnym bestiom można przynieść odpowiednio zioła alchemiczne i stal. Gracze i boty mogą sprzedać te materiały albo użyć ich do istniejących receptur.
+
 [Pełne bieżące tabele](GAME_CONTENT.md) zawierają również późniejsze tereny — powyższe liczby opisują tylko początkową paczkę Khorinis.
 
 ## Po połączeniu

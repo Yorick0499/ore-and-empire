@@ -300,11 +300,13 @@ def bot_magic_plan(profile,inventory,target=None):
         physical = physical_survival_health(profile, target)
         best = min(usable, key=lambda item: survival_health(profile, target, MagicPlan(BY_CODE[item.blueprint.catalog_key][0], item.pk, False, item.quantity)))
         forecast = survival_health(profile, target, MagicPlan(BY_CODE[best.blueprint.catalog_key][0], best.pk, False, best.quantity))
-        if profile.current_mana < BY_CODE[best.blueprint.catalog_key][0].cost or forecast >= physical:
+        if profile.current_mana < BY_CODE[best.blueprint.catalog_key][0].cost or forecast > physical:
             combat_choice = ('clear_magic', None) if profile.prepared_magic_id else ('', None)
     if combat_choice is None and best and profile.prepared_magic_id != best.pk:
         combat_choice = ('prepare_magic', best.pk)
-    if combat_choice is not None and not ward_upgrade:
+    # An early rune can be worse than the current weapon. That fallback should
+    # still let the mage buy a stronger rune for the next fight.
+    if combat_choice and combat_choice[0] == 'prepare_magic' and not ward_upgrade:
         return combat_choice
     owned_priority = priority(BY_CODE[strongest_owned.blueprint.catalog_key][0]) if strongest_owned else ()
     eligible = {

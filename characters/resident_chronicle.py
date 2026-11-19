@@ -7,10 +7,12 @@ from django.db.models import Min
 
 from .camp_progression import BY_RANK
 from .models import (
-    BarrierEvent, CampContribution, CampQuest, CampaignCompletion, EconomicEntry,
-    PlayerProfile, SleeperRace, SleeperSiege, SleeperStrike, StoryRun,
+    BarrierEvent, BossAttempt, CampContribution, CampQuest, CampRaidStrike,
+    CampaignCompletion, EconomicEntry, PlayerProfile, SleeperRace, SleeperSiege, SleeperStrike, StoryRun,
+    WorldRelease,
 )
 from .realms import G1, G2, open_worlds
+from .regional_endgame import ORC_WAR_RAID_TITLE
 
 
 @dataclass(frozen=True)
@@ -31,6 +33,22 @@ BADGES = {
     'echo': Badge('Przez echo do świtu', 'laurel', 'Postać pokonała Echo Śniącego w swojej wyprawie.'),
     'portal': Badge('Ślad za portalem', 'portal', 'Postać zdobyła osobiste przejście do Jarkendaru.'),
     'irdorath': Badge('Strażnik ostatniej przeprawy', 'port', 'Postać ukończyła finał wyprawy do Irdorath.'),
+    'pirates': Badge('Szabla znad zatoki', 'cutlass', 'Postać ochroniła wybrzeże dla piratów z Jarkendaru.'),
+    'crypt': Badge('Nieprzespana warta', 'crypt', 'Postać ukończyła wartę przy krypcie Budowniczych.'),
+    'raven': Badge('Pióro ze świątyni', 'raven', 'Postać ukończyła wyprawę przeciw Krukowi i zdała meldunek badaczom.'),
+    'seekers': Badge('Światło na trakcie', 'candle', 'Postać oczyściła trakt z Poszukiwaczy i ostrzegła klasztor.'),
+    'sailing': Badge('Pod żaglami ku Irdorath', 'ship', 'Postać zgłosiła się na wartę podczas przeprawy na Irdorath.'),
+    'swamp-dragon': Badge('Kieł z bagien', 'swamp-dragon', 'Postać pokonała Pandrodora, smoka bagiennego.'),
+    'stone-dragon': Badge('Pęknięte skrzydło', 'stone-dragon', 'Postać pokonała Pedrakhana, smoka skalnego.'),
+    'fire-dragon': Badge('Popiół ze szczytu', 'fire-dragon', 'Postać pokonała Feomathara, smoka ognia.'),
+    'ice-dragon': Badge('Kieł pod szronem', 'ice-dragon', 'Postać pokonała Finkregha, smoka lodowego.'),
+    'island-dragon': Badge('Łuska z czarnej wyspy', 'fire-dragon', 'Postać pokonała Feodarona podczas wyprawy na Irdorath.'),
+    'dragon-four': Badge('Cztery smocze kły', 'talons', 'Postać pokonała wszystkie cztery smoki Doliny Górniczej.'),
+    'early-portal': Badge('Pierwsi za progiem', 'portal', 'Postać zdobyła osobisty portal przed aktualizacją „Cienie nad Khorinis”.'),
+    'early-scout': Badge('Zanim zagrzmiały skrzydła', 'raven', 'Postać zdała meldunek zwiadowców przed aktualizacją „Przebudzenie smoków”.'),
+    'early-dragons': Badge('Warta przed odpłynięciem', 'talons', 'Postać pokonała cztery smoki Doliny przed aktualizacją „Żagle ku Irdorath”.'),
+    'early-irdorath': Badge('Powrót przed oblężeniem', 'ship', 'Postać ukończyła finał Irdorath przed aktualizacją „Orkowie u bram”.'),
+    'orc-chief': Badge('Mur przed hordą', 'swords', 'Postać zadała obrażenia w zwycięskiej tygodniowej wyprawie przeciw orkowi dowodzącemu oblężeniem.'),
 }
 
 RANK_TITLES = {
@@ -45,7 +63,20 @@ RANK_TITLES = {
     'GURU': 'Pieczęć Guru', 'ARCH_GURU': 'Głos Arcyguru',
 }
 CAMP_BADGES = {'OLD_CAMP': 'old', 'NEW_CAMP': 'new', 'SWAMP_CAMP': 'sleeper'}
-MILESTONES = {'jark-portal': 'portal', 'nk-undead': 'irdorath'}
+MILESTONES = {
+    'jark-portal': 'portal', 'jark-pirates': 'pirates', 'jark-crypt-watch': 'crypt',
+    'nk-seekers': 'seekers', 'nk-raven': 'raven', 'nk-sailing': 'sailing', 'nk-undead': 'irdorath',
+}
+HISTORICAL_STORY = {
+    'jark-portal': ('night', 'early-portal'),
+    'nk-scouts': ('dragons', 'early-scout'),
+    'nk-undead': ('orc-war', 'early-irdorath'),
+}
+VALLEY_DRAGONS = {
+    'g2nk_dragon_swamp': 'swamp-dragon', 'g2nk_dragon_rock': 'stone-dragon',
+    'k2_dragon_fire': 'fire-dragon', 'g2nk_dragon_ice': 'ice-dragon',
+}
+DRAGONS = {**VALLEY_DRAGONS, 'g2nk_dragon_island': 'island-dragon'}
 for key, title in RANK_TITLES.items():
     rank = BY_RANK[key]
     icon = 'candle' if rank.attribute == 'mana' else 'swords'
@@ -185,6 +216,55 @@ class _Awards:
                    'style': style, 'rarity': label, 'earned_at': stamp}
 
 
+def _chapter_awards(ids, awards, timeline):
+    cutoffs = dict(WorldRelease.objects.filter(
+        world_id__in=ids, key__in=['night', 'dragons', 'irdorath', 'orc-war'],
+    ).order_by().values('key').annotate(first=Min('released_at')).values_list('key', 'first'))
+
+    def add(key, pk, stamp):
+        awards.add(key, pk, stamp)
+        if pk == awards.subject:
+            timeline.append((stamp, BADGES[key].title))
+
+    stories = StoryRun.objects.filter(
+        profile_id__in=awards.residents, status='claimed', claimed_at__isnull=False,
+        snapshot__key__in=set(MILESTONES) | set(HISTORICAL_STORY),
+    ).order_by().values('profile_id', 'snapshot__key').annotate(first=Min('claimed_at'))
+    for pk, story, stamp in stories.values_list('profile_id', 'snapshot__key', 'first'):
+        if story in MILESTONES:
+            add(MILESTONES[story], pk, stamp)
+        if story in HISTORICAL_STORY:
+            deadline, badge = HISTORICAL_STORY[story]
+            # A claim can itself announce the next chapter, including at the
+            # very same clock tick. Preserve that triggering achievement.
+            if deadline not in cutoffs or stamp <= cutoffs[deadline]:
+                awards.add(badge, pk, stamp)
+                if story not in MILESTONES and pk == awards.subject:
+                    timeline.append((stamp, BADGES[badge].title))
+
+    valley_wins = defaultdict(list)
+    victories = BossAttempt.objects.filter(
+        profile_id__in=awards.residents, won=True, boss_key__in=DRAGONS.keys(),
+    ).order_by().values('profile_id', 'boss_key').annotate(first=Min('created_at'))
+    for pk, boss, stamp in victories.values_list('profile_id', 'boss_key', 'first'):
+        add(DRAGONS[boss], pk, stamp)
+        if boss in VALLEY_DRAGONS:
+            valley_wins[pk].append(stamp)
+    for pk, kills in valley_wins.items():
+        if len(kills) == len(VALLEY_DRAGONS):
+            stamp = max(kills)
+            add('dragon-four', pk, stamp)
+            if 'irdorath' not in cutoffs or stamp <= cutoffs['irdorath']:
+                awards.add('early-dragons', pk, stamp)
+
+    orc_strikes = CampRaidStrike.objects.filter(
+        profile_id__in=awards.residents, damage__gt=0, raid__cycle='weekly',
+        raid__name=f'Tygodniowy cel: {ORC_WAR_RAID_TITLE}', raid__completed_at__isnull=False, raid__health=0,
+    ).order_by().values('profile_id').annotate(first=Min('raid__completed_at'))
+    for pk, stamp in orc_strikes.values_list('profile_id', 'first'):
+        add('orc-chief', pk, stamp)
+
+
 def profile_history(subject):
     from .barrier import region_ids
     from .faction_advancement import BY_KEY as ADVANCED
@@ -206,11 +286,7 @@ def profile_history(subject):
         awards.add('echo', pk, stamp)
         if pk == subject.pk:
             timeline.append((stamp, 'Pokonanie Echa Śniącego'))
-    for pk, key, stamp in StoryRun.objects.filter(
-        profile_id__in=residents, status='claimed', claimed_at__isnull=False, snapshot__key__in=MILESTONES,
-    ).values_list('profile_id', 'snapshot__key', 'claimed_at'):
-        awards.add(MILESTONES[key], pk, stamp)
-        if pk == subject.pk:
-            timeline.append((stamp, BADGES[MILESTONES[key]].title))
+    if len(ids) > 1:
+        _chapter_awards(ids, awards, timeline)
     _barrier_awards(ids, awards, timeline, subject)
     return list(awards.cards()), sorted(timeline, reverse=True)[:40]

@@ -113,7 +113,10 @@ class IntelligentMarketTests(TestCase):
 
     def test_own_equivalent_listing_is_not_a_reason_to_buy_the_same_weapon_again(self):
         game.list_item_on_market(self.b,add_item(self.b,self.bp),100)
-        self.assertEqual(MarketState(self.s.world_id).need(self.b,self.item),0)
+        self.assertTrue(game.list_item_on_market(self.s,self.item,5))
+        market = MarketState(self.s.world_id)
+        self.assertEqual(market.need(self.b,self.item),0)
+        self.assertFalse(market.can_buy(self.b,self.item))
     def test_inactive_seller_does_not_break_bot_planning(self):
         self.b.user.is_active=False;self.b.user.save()
         game.list_item_on_market(self.b,add_item(self.b,self.bp),10)
@@ -133,6 +136,54 @@ class IntelligentMarketTests(TestCase):
         self.assertEqual(MarketState(self.s.world_id).quote(self.s,self.item).sales,1)
         self.b.is_draft=True;self.b.save();alt.is_draft=True;alt.save()
         self.assertEqual(MarketState(self.s.world_id).quote(self.s,self.item).price,0)
+
+    def test_small_accessory_bonus_has_value_when_a_ring_slot_is_empty(self):
+        ring = ItemBluePrint.objects.create(name='Pierścień z drobnym bonusem', kind='ring',
+                                            strength_bonus=1, merchant=False, base_value=12)
+        offered = add_item(self.s, ring)
+        self.assertEqual(MarketState(self.s.world_id).need(self.b, offered), 1)
+        add_item(self.b, ring)
+        self.assertEqual(MarketState(self.s.world_id).need(self.b, offered), 1)
+        add_item(self.b, ring)
+        self.assertEqual(MarketState(self.s.world_id).need(self.b, offered), 0)
+
+    def test_player_bargain_is_judged_against_buyers_npc_alternative(self):
+        costly = ItemBluePrint.objects.create(name='Pierścień z łupu', kind='ring',
+                                              strength_bonus=3, merchant=False, base_value=100)
+        ItemBluePrint.objects.create(name='Zamiennik kupca', kind='ring', strength_bonus=3,
+                                     merchant=True, base_value=12)
+        offered = add_item(self.s, costly)
+        self.assertEqual(MarketState(self.s.world_id).quote(self.s, offered).price, 0)
+        self.assertTrue(game.list_item_on_market(self.s, offered, 15))
+        self.assertEqual(bot_market_plan(self.b), ('', None, 0))
+        from .market_policy import reprice_listing
+        self.assertTrue(reprice_listing(self.s, offered, 9, 15))
+        self.assertEqual(bot_market_plan(self.b), ('market_buy', offered.pk, 9))
+
+    def test_healthy_alchemist_can_buy_ingredients_for_one_spare_potion(self):
+        from .crafting import craft_item
+        from .models import CraftRecipe
+        from uuid import uuid4
+
+        material = ItemBluePrint.objects.create(name='Zioła zapasowe', kind='material', stackable=True,
+                                                merchant=False, base_value=4)
+        tonic = ItemBluePrint.objects.create(name='Wywar wędrowca', kind='consumable', heal_amount=30)
+        recipe = CraftRecipe.objects.create(
+            key='tonic-for-the-road', name='Wywar wędrowca', discipline='alchemy', level=0, skill=1,
+            fee=5, ingredients=[{'blueprint': material.pk, 'count': 1}], output=tonic,
+        )
+        self.b.alchemy_skill = 1
+        self.b.current_health = self.b.max_health
+        self.b.save(update_fields=['alchemy_skill', 'current_health'])
+        self.item.delete()
+        offered = add_item(self.s, material, origin='loot')
+        self.assertTrue(list_bot_surplus(self.s, offered))
+        offered.refresh_from_db()
+        self.assertEqual(bot_market_plan(self.b)[:2], ('market_buy', offered.pk))
+        self.assertTrue(game.buy_item_on_market(self.b, offered, offered.market_price))
+        self.assertTrue(craft_item(self.b, recipe.pk, uuid4()))
+        fresh = add_item(self.s, material, origin='loot')
+        self.assertFalse(MarketState(self.s.world_id).need(self.b, fresh))
 
     def test_bot_can_list_a_real_recipe_shortfall_from_a_surplus_stack(self):
         from .models import CraftRecipe

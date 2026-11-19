@@ -614,6 +614,20 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .resident-badge-barrier { background-position: 0 100%; }
 .resident-badge-laurel { background-position: 50% 100%; }
 .resident-badge-portal { background-position: 100% 100%; }
+.resident-badge-cutlass, .resident-badge-crypt, .resident-badge-raven,
+.resident-badge-swamp-dragon, .resident-badge-stone-dragon, .resident-badge-fire-dragon,
+.resident-badge-ice-dragon, .resident-badge-ship, .resident-badge-talons {
+  background-image: url("art/resident-chapter-badges.webp");
+}
+.resident-badge-cutlass { background-position: 0 0; }
+.resident-badge-crypt { background-position: 50% 0; }
+.resident-badge-raven { background-position: 100% 0; }
+.resident-badge-swamp-dragon { background-position: 0 50%; }
+.resident-badge-stone-dragon { background-position: 50% 50%; }
+.resident-badge-fire-dragon { background-position: 100% 50%; }
+.resident-badge-ice-dragon { background-position: 0 100%; }
+.resident-badge-ship { background-position: 50% 100%; }
+.resident-badge-talons { background-position: 100% 100%; }
 
 .resident-chronicle {
   list-style: none;

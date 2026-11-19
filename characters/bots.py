@@ -427,7 +427,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             ammo_stock=next((bp for bp in choices if allowed(profile,bp)),None)
     from .models import CraftRecipe
     from .crafting import valid_recipe,interested
-    reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True) if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
+    reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True).select_related('output') if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r,inventory) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
     reserved_materials.update(i.blueprint_id for i in inventory if ammo_kind and i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind)
     spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials and item.blueprint.catalog_key!='rune-dust']
     from .market_intelligence import state,sale_candidate,retention,score,usable,fists
@@ -456,7 +456,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
     offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
-    offers=[o for o in offers if allowed(profile,o.blueprint) and o.market_price<=market.quote(o.owner,o).price]
+    offers=[o for o in offers if market.can_buy(profile,o)]
     upgrade = None
     if equipped and combat_equipment:
         upgrade = choose_upgrade(stock, offers, score(profile,equipped), profile.ore_balance,profile)

@@ -65,10 +65,32 @@ def recipe_cards(profile):
         'can_craft':profile.level>=r.level and getattr(profile,r.discipline+'_skill')>=r.skill and profile.ore_balance>=r.fee and all(inventory.get(i['blueprint'],0)>=i['count'] for i in r.ingredients)} for r in recipes if valid_recipe(r)]
 
 
-def interested(profile,recipe):
-    return ((recipe.output.kind=='consumable' and profile.current_health<profile.max_health-20)
-        or (recipe.output.kind=='weapon' and not profile.inventory.filter(blueprint=recipe.output).exists()
-            and (profile.bot_role=='trader' or not profile.inventory.filter(is_equipped=True,blueprint__kind='weapon',blueprint__damage__gte=recipe.output.damage).exists())))
+def wants_restorative(profile, output, inventory):
+    if output.kind != 'consumable':
+        return False
+    from .consumables import potential
+    useful = potential(profile, output)
+    targets = (
+        (2 if profile.current_health < profile.max_health - 20 else 1) if useful[0] else 0,
+        int(bool(useful[1])),
+        int(bool(useful[2] and (profile.magic_skill or profile.prepared_magic_id))),
+    )
+    stocked = [0, 0, 0]
+    for item in inventory:
+        if item.blueprint.kind == 'consumable' and not item.is_market_listed:
+            for index, amount in enumerate(potential(profile, item.blueprint)):
+                if amount:
+                    stocked[index] += item.quantity
+    return any(have < target for have, target in zip(stocked, targets))
+
+
+def interested(profile,recipe,inventory=None):
+    if recipe.output.kind == 'consumable':
+        if inventory is None:
+            inventory = profile.inventory.filter(blueprint__kind='consumable').select_related('blueprint')
+        return wants_restorative(profile, recipe.output, inventory)
+    return (recipe.output.kind=='weapon' and not profile.inventory.filter(blueprint=recipe.output).exists()
+            and (profile.bot_role=='trader' or not profile.inventory.filter(is_equipped=True,blueprint__kind='weapon',blueprint__damage__gte=recipe.output.damage).exists()))
 
 
 def bot_craft_plan(profile):

@@ -410,7 +410,7 @@ python manage.py simulate_journey --report /tmp/droga-nowa-proba.json
 <h4 id="doc-operator-guide--dodatkowe-wyprawy-gracza-migracja-0055">Dodatkowe wyprawy gracza — migracja 0055</h4>
 <p>Po zwykłym restarcie launcher stosuje migrację zachowującą stare wyprawy, wkład, nagrody i konta. Najwyższa rodzima ranga Kolonii może ogłaszać cele do poziomu10 przez sekcję „Wyprawy na rozkaz” na <code>/wspolnota/</code>. Po pokonaniu celu można ogłosić następny tego samego dnia. Boty uczestniczą zwykłymi turami. Nie potrzeba resetu świata ani ręcznej edycji PD. <a href="#doc-camp-raids">Reguły i ograniczenia</a>.</p></article><article id="doc-readme" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>README.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/README.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-readme--ore-empire-kroniki-kolonii">Ore &amp; Empire — Kroniki Kolonii</h2>
 <p>Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.</p>
-<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0061_dark_order_names</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
+<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0062_khorinis_campaign_hunting_materials</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
 <h3 id="doc-readme--uruchomienie">Uruchomienie</h3>
 <p>Python 3.12 lub 3.13, z katalogu repozytorium:</p>
 <pre><code class="language-bash">python3 -m venv .venv
@@ -596,6 +596,39 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 <p><a href="#report-grywalnosc-wydania-2026-11-13">Audyt wydania</a>: prawdziwy Śniący 3 zdobytych od 0 kont, kopia/odtworzenie, pojedyncza aktywacja, NK i endgame. <a href="#doc-build-playthroughs">Dziewięć dróg</a> oddzielnie sprawdza rangi/buildy. PostgreSQL CI testuje rzeczywiste blokady; SQLite ich nie zastępuje.</p>
 <h3 id="doc-characters-and-worlds--kronika-postaci-i-odznaki">Kronika postaci i odznaki</h3>
 <p>Publiczny profil mieszkańca pokazuje awanse, udział w zakończeniu epoki Bariery oraz osobiste kamienie milowe, takie jak droga do Jarkendaru i finał Irdorath. Dane biorą się z zapisów rozgrywki. „Sztandar Pogromców Śniącego” trafia na profile członków zwycięskiego obozu natychmiast po wygranej. Odznakę udziału otrzymuje postać z zapisanym trafieniem w zwycięskiej wyprawie. Po połączeniu regionów dawne Bractwo otrzymuje „Byłego wyznawcę Śniącego”, a profile mieszkańców Kolonii pokazują odznaki dawnych rang. Gra zapisuje skład obozu przy zwycięstwie oraz rangi i przynależność mieszkańców przed połączeniem. W starych zapisach odznaki wynikają z potwierdzonych, datowanych zdarzeń.</p>
+<p>Stałe odznaki przypadają między innymi za pomoc piratom, wartę przy krypcie Budowniczych, wyprawę przeciw Krukowi, pokonanie czterech smoków Doliny Górniczej i udział w zwycięskim tygodniowym rajdzie na orkowego wodza. Cztery późniejsze odznaki historyczne mają termin na wspólnym zegarze serwera.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Odznaka historyczna</th>
+<th>Osiągnięcie</th>
+<th>Aktualizacja zamykająca okno</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pierwsi za progiem</td>
+<td>Zdobycie własnego przejścia do Jarkendaru</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>Zanim zagrzmiały skrzydła</td>
+<td>Zdanie pierwszego meldunku zwiadowczego</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>Warta przed odpłynięciem</td>
+<td>Pokonanie wszystkich czterech smoków Doliny</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>Powrót przed oblężeniem</td>
+<td>Zakończenie wyprawy do Irdorath</td>
+<td>Orkowie u bram</td>
+</tr>
+</tbody>
+</table></div>
+<p>Osiągnięcie ukończone w chwili ogłoszenia aktualizacji jeszcze się zalicza. Zdobyta odznaka zostaje na profilu. Gra wylicza ją z dat zwycięstw, ukończenia zadań i ogłoszeń serwera.</p>
 <p>Rzadkość przelicza się na podstawie odsetka widocznych mieszkańców (ludzi i botów) w bieżącym świecie. Po połączeniu oba regiony liczą się razem. Odznaka jest legendarna przy udziale poniżej 2%, epicka poniżej 10%, rzadka poniżej 30%, niepospolita poniżej 60% i pospolita od 60%. Profil podaje aktualną liczbę posiadaczy.</p></article><article id="doc-khorinis" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/KHORINIS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/KHORINIS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-khorinis--khorinis-wasny-poczatek-i-region-wspolnego-swiata">Khorinis: własny początek i region wspólnego świata</h2>
 <p>Stan: 13 XI 2026. Przed Barierą <strong>Latarnia — Khorinis</strong> działa równolegle z Kolonią: osobne postacie, rynki, rankingi, wspólnoty, wydarzenia i boty. Pięć slotów konta jest wspólne. Po zwycięstwie obozowej wspólnoty oba światy stają się jednym serwerem z dwoma regionami. <a href="#doc-characters-and-worlds">Reguły połączenia</a>.</p>
 <h3 id="doc-khorinis--frakcje-przed-bariera">Frakcje przed Barierą</h3>
@@ -629,6 +662,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 <p>Ukończenie lokalnej kampanii nie kończy serwera i nie łączy światów. Pozostają handel, zlecenia, projekty, magia, rzemiosło i stare 100 wart od 30/członkostwa. Kampania jest dostępna również nowej postaci utworzonej po Barierze.</p>
 <h3 id="doc-khorinis--paczka-sprzed-poaczenia">Paczka sprzed połączenia</h3>
 <p>16 lokacji, 8 populacji przeciwników, 2 bossów solo, 19 zleceń czasowych, 35 wzorów warty w kręgach 0/5/10/20/30,18 run/zwojów, 2 amunicje i 2 trofea. To autorski balans mieszkańca, oddzielony od danych oryginalnego G2. Wspólne podstawy adaptacji mogą działać w obu światach, ale przed połączeniem nie przenoszą fizycznych egzemplarzy.</p>
+<p>Łupy z lokalnych polowań zasilają targ rzemieślniczy. Ścierwojady i wilki dają mięso oraz skóry, a z wypraw przeciw goblinom przy trakcie i polnym bestiom można przynieść odpowiednio zioła alchemiczne i stal. Gracze i boty mogą sprzedać te materiały albo użyć ich do istniejących receptur.</p>
 <p><a href="#doc-game-content">Pełne bieżące tabele</a> zawierają również późniejsze tereny — powyższe liczby opisują tylko początkową paczkę Khorinis.</p>
 <h3 id="doc-khorinis--po-poaczeniu">Po połączeniu</h3>
 <p>Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Magowie Wody, Bandyci Khorinis z Wieży Dextera oraz Zakon Mroku powstały z Bractwa. Nowe rangi 5–8 wymagają własnych awansów. <a href="#doc-camp-guilds">Sukcesja i skarbce</a>.</p>
@@ -8310,7 +8344,7 @@ wyłącznie z lokalnych plików, a nie połączeń do wiki.</p>
 <p>G1 ma 522 tożsamości przedmiotów z lokalną ilustracją, w tym jawne modele kategorii dla wpisów technicznych. Dane NK mają 877 tożsamości: 866 dopasowań źródłowych i 11 archiwalnych wariantów z oznaczoną ilustracją kategorii. Wszystkie 167 aktywnychwzorów kupcaNK i 85 kodówistotma lokalną grafikę; referencyjne przyzwania nie stają się przez to działającym czarem. Aktualne liczby całego manifestu ustala <code>validate_content</code>, nie dawne 632/670 wpisów z etapówG1/Khorinis.</p>
 <p>Lokacje i bossowie są objęte walidacją użytych kluczy, nie tylko listą kodów źródłowych. <code>gothic2-location-art.json</code> wskazuje zdjęcia terenów, m.in. portalu, kopalni, bagna, Esmeraldy i krypty Inubisa. Gdy brak osobnego modelu odmiany/gatunek jest wspólny, podpis ujawnia zastępstwo. <a href="#doc-gothic-ii-content">Szczegóły NK i wyjątki</a>.</p>
 <h3 id="doc-assets--font-i-motyw">Font i motyw</h3>
-<p>Sylwetka w profilu mieszkańca to wygenerowana ilustracja postaci w <code>art/profile-adventurer.webp</code>. Odznaki korzystają z oryginalnych grafik wygenerowanych do profilu w <code>art/resident-badges.webp</code>. Karty założonych przedmiotów korzystają z istniejących ilustracji z manifestu.</p>
+<p>Sylwetka w profilu mieszkańca to wygenerowana ilustracja postaci w <code>art/profile-adventurer.webp</code>. Odznaki korzystają z oryginalnych grafik wygenerowanych do profilu w <code>art/resident-badges.webp</code> i <code>art/resident-chapter-badges.webp</code>. Karty założonych przedmiotów korzystają z istniejących ilustracji z manifestu.</p>
 <p><code>characters/static/characters/fonts/GothicII.ttf</code> pochodzi z wydania 1.0 projektu <a href="https://github.com/Patrix9999/Gothic-2-Font/releases/tag/1.0" target="_blank" rel="noopener noreferrer">Patrix 9999/Gothic-2-Font</a>. To wektorowa rekonstrukcja fontu GothicII, z polskimi znakami, podawana lokalnie przez <code>font-display:swap</code> i fallbackGeorgia. <code>art/valley.svg</code> jest autorską ilustracją projektu. Karty rzadkości i ornamenty interfejsu korzystają także z własnego CSS. <a href="#doc-design">Motyw</a>.</p>
 <h3 id="doc-assets--aktualizowanie-biblioteki">Aktualizowanie biblioteki</h3>
 <p>Istniejący importer G1 i jawnych wyborów Khorinis działa poza normalną rozgrywką:</p>

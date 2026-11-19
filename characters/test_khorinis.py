@@ -66,15 +66,17 @@ class TwoRealmTests(TestCase):
     def test_native_hunting_yields_tradeable_crafting_ingredients(self):
         from .models import MarketTrade
 
-        self.p.level = 3
+        self.p.level = 5
         self.p.strength = 100
         self.p.save(update_fields=["level", "strength"])
         buyer = PlayerProfile.objects.filter(world=self.island, is_bot=True).first()
-        for creature, location, material in (
-            ("k2_scavenger", "k2_fields", "raw-meat"),
-            ("k2_wolf", "k2_road", "wolf-skin"),
+        for creature, location, material, roll in (
+            ("k2_scavenger", "k2_fields", "raw-meat", 5000),
+            ("k2_wolf", "k2_road", "wolf-skin", 5000),
+            ("k2_goblin", "k2_road", "craft-herbs", 2000),
+            ("k2_field_raider", "k2_farms", "craft-steel", 1500),
         ):
-            with self.subTest(creature=creature), patch("characters.loot.random.randrange", return_value=5000):
+            with self.subTest(creature=creature), patch("characters.loot.random.randrange", return_value=roll):
                 self.assertTrue(game.execute_hunt(self.p, creature, location))
                 battle = self.p.battles.get(monster_key=creature)
                 self.assertTrue(battle.won)
@@ -86,7 +88,25 @@ class TwoRealmTests(TestCase):
                 self.assertTrue(game.buy_item_on_market(buyer, item, 3))
                 item.refresh_from_db()
                 self.assertEqual(item.owner_id, buyer.pk)
-        self.assertEqual(MarketTrade.objects.filter(seller=self.p, buyer=buyer).count(), 2)
+        self.assertEqual(MarketTrade.objects.filter(seller=self.p, buyer=buyer).count(), 4)
+
+    def test_island_bot_buys_a_useful_player_bargain_through_its_normal_turn(self):
+        from .bots import tick_bot
+        from .models import MarketTrade
+
+        buyer = PlayerProfile.objects.filter(world=self.island, is_bot=True).order_by('pk').first()
+        ring = ItemBluePrint.objects.create(
+            catalog_key='test-island-ring', name='Pierścień rzemieślnika', source_game='GOTHIC_II',
+            kind='ring', strength_bonus=3, base_value=100, merchant=False,
+        )
+        item = OwnedItem.objects.create(owner=self.p, blueprint=ring)
+        self.assertTrue(game.list_item_on_market(self.p, item, 4))
+        self.assertFalse(game.buy_item_on_market(self.original, item, 4))
+        self.assertEqual(tick_bot(buyer, force_active=True), ('market_buy', True))
+        trade = MarketTrade.objects.get()
+        self.assertEqual((trade.seller_id, trade.buyer_id, trade.price), (self.p.pk, buyer.pk, 4))
+        buyer.refresh_from_db()
+        self.assertEqual(buyer.ore_balance, 46)
 
     def test_seeding_island_materials_preserves_operator_loot_tables(self):
         from .models import LootTable
@@ -130,9 +150,11 @@ class TwoRealmTests(TestCase):
                     action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(step,bot.pk,action));actions[action]+=1
                     if bot.story_runs.filter(status='claimed',snapshot__key='k2-supply-8').exists():done[bot.pk]=step
             if len(done)==3:break
-        # Keep playing until the earned native ranks also catch up with the completed story.
+        # Keep playing until the earned native ranks catch up with the story.
+        # The fixed cadence allows one decision per turn, including ordinary
+        # shopping, crafting and refilling between the last patrols.
         promoted_at = {}
-        for extra in range(300):
+        for extra in range(360):
             turn = step + extra + 1
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30 * turn)):
                 for bot in bots:
@@ -149,9 +171,24 @@ class TwoRealmTests(TestCase):
         self.assertEqual(len(done),3,(status,actions,{b.pk:list(b.story_runs.exclude(status='claimed').values('snapshot__key','progress')) for b in bots}))
         self.assertEqual({p['camp'] for p in status},{'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'})
         mage=next(b for b in bots if PlayerProfile.objects.get(pk=b.pk).camp=='FIRE_ORDER')
-        self.assertTrue(mage.battles.filter(combat_details__casts__gt=0).exists(),(status,dict(actions),list(mage.inventory.values('blueprint__catalog_key')),PlayerProfile.objects.filter(pk=mage.pk).values('magic_skill','bot_role','bot_personality','prepared_magic_id').first()))
+        if not mage.battles.filter(combat_details__casts__gt=0).exists():
+            from .models import BotDecision
+            self.fail((status, dict(actions), list(mage.inventory.values_list('blueprint__catalog_key', flat=True)),
+                       list(mage.camp_quests.filter(promoted_at__isnull=True).values('rank_key', 'progress')),
+                       list(BotDecision.objects.filter(profile=mage).values_list('action', 'observation')[:3])))
         for bot in bots:
-            bot.refresh_from_db();self.assertEqual(bot.camp_tier,3)
+            bot.refresh_from_db()
+            if bot.camp_tier != 3:
+                from .models import BotDecision
+                recent = [
+                    (action, {key: observations.get(key) for key in (
+                        'energy', 'health', 'mana', 'hunt_key', 'hunt_location', 'quest_hunt', 'boss_key',
+                        'market_action', 'forge_action', 'story_recover', 'magic_action', 'training_needed', 'inventory_id',
+                    )})
+                    for action, observations in BotDecision.objects.filter(profile=bot).values_list('action', 'observation')[:12]
+                ]
+                self.fail((bot.camp, bot.level,
+                           list(bot.camp_quests.filter(promoted_at__isnull=True).values('rank_key', 'progress')), recent))
             self.assertEqual(bot.story_runs.filter(status='claimed').count(),17)
             self.assertFalse(bot.story_runs.exclude(snapshot__universe='GOTHIC_II').exists())
         self.assertEqual(current_world().pk,self.colony.pk)
@@ -295,3 +332,28 @@ class HuntingMaterialsMigrationTests(TransactionTestCase):
         self.assertEqual((custom.entries, custom.version, custom.enabled), ([], 7, False))
         wolf = loot.objects.get(key="k2_wolf")
         self.assertEqual(wolf.entries, [{"blueprint": blueprint.objects.get(catalog_key="wolf-skin").pk, "weight": 6000}])
+
+    def test_existing_campaign_hunts_receive_only_missing_material_defaults(self):
+        from django.db import connection
+        from django.db.migrations.executor import MigrationExecutor
+
+        previous = ('characters', '0061_dark_order_names')
+        current = ('characters', '0062_khorinis_campaign_hunting_materials')
+        targets = MigrationExecutor(connection).loader.graph.leaf_nodes('characters')
+        self.addCleanup(lambda: MigrationExecutor(connection).migrate(targets))
+        executor = MigrationExecutor(connection)
+        executor.migrate([previous])
+        apps = executor.loader.project_state([previous]).apps
+        world = apps.get_model('characters', 'World')
+        blueprint = apps.get_model('characters', 'ItemBluePrint')
+        loot = apps.get_model('characters', 'LootTable')
+        world.objects.create(name='Stara Latarnia', universe='GOTHIC_II', is_open=True)
+        blueprint.objects.get_or_create(catalog_key='craft-herbs', defaults={'name': 'Zioła'})
+        steel, _ = blueprint.objects.get_or_create(catalog_key='craft-steel', defaults={'name': 'Stal'})
+        loot.objects.update_or_create(key='k2_goblin', defaults={'version': 7, 'enabled': False, 'entries': []})
+        loot.objects.filter(key='k2_field_raider').delete()
+
+        MigrationExecutor(connection).migrate([current])
+
+        self.assertEqual(loot.objects.values_list('entries', 'version', 'enabled').get(key='k2_goblin'), ([], 7, False))
+        self.assertEqual(loot.objects.get(key='k2_field_raider').entries, [{'blueprint': steel.pk, 'weight': 1800}])
