@@ -75,7 +75,8 @@ RANKS = (
 from .khorinis import ranks as khorinis_ranks
 KHORINIS_RANKS, KHORINIS_PATHS = khorinis_ranks(Rank, obj)
 OLD_KHORINIS_RANKS = {rank.key: rank for rank in khorinis_ranks(Rank, obj, legacy=True)[0]}
-KHORINIS_TRIAL_VERSION = 2
+KHORINIS_RANKS_V2 = {rank.key: rank for rank in khorinis_ranks(Rank, obj, duties=False)[0]}
+KHORINIS_TRIAL_VERSION = 3
 TRIAL_VERSION_KEY = '_trial_version'
 RANKS += KHORINIS_RANKS
 BY_RANK = {rank.key: rank for rank in RANKS}
@@ -105,8 +106,12 @@ ATTRIBUTE_NAMES = {"strength": "Siła", "dexterity": "Zręczność", "mana": "Ma
 
 
 def rank_for_quest(profile, rank, quest):
-    if rank.key in OLD_KHORINIS_RANKS and quest.progress.get(TRIAL_VERSION_KEY, 1) == 1:
-        return OLD_KHORINIS_RANKS[rank.key]
+    if rank.key in OLD_KHORINIS_RANKS:
+        version = quest.progress.get(TRIAL_VERSION_KEY, 1)
+        if version == 1:
+            return OLD_KHORINIS_RANKS[rank.key]
+        if version == 2:
+            return KHORINIS_RANKS_V2[rank.key]
     if rank.key.startswith('ADV_'):
         from .faction_advancement import rank_for
         return rank_for(profile, rank, quest)
@@ -151,6 +156,10 @@ def accept_camp_quest(profile, rank_key):
     if CampQuest.objects.filter(profile=profile, promoted_at__isnull=True).exists():
         return False
     progress = {TRIAL_VERSION_KEY: KHORINIS_TRIAL_VERSION} if rank.key in OLD_KHORINIS_RANKS else {}
+    for goal in rank.objectives:
+        if goal.event.startswith('duty:'):
+            from .khorinis_duties import seed_duties
+            seed_duties(goal.event.removeprefix('duty:'))
     CampQuest.objects.create(profile=profile, rank_key=rank.key, progress=progress)
     return True
 
@@ -232,6 +241,7 @@ def rank_cards(profile, camp=None):
             "eligible": eligible, "can_accept": eligible and not active,
             "complete": complete,
             "can_promote": eligible and complete and profile.level >= rank.level and getattr(profile, rank.attribute) >= rank.attribute_value and profile.ore_balance >= rank.cost and not profile.is_busy,
-            "goals": [{"label": goal.label, "count": goal.count, "progress": quest.progress.get(goal.event, 0) if quest else 0} for goal in rank.objectives],
+            "goals": [{"label": goal.label, "count": goal.count,
+                       "duty": goal.event.removeprefix("duty:") if goal.event.startswith("duty:") else None, "progress": quest.progress.get(goal.event, 0) if quest else 0} for goal in rank.objectives],
         })
     return cards

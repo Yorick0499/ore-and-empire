@@ -90,7 +90,8 @@ RANK_TRIALS = {
 }
 
 
-def ranks(Rank, obj, *, legacy=False):
+def ranks(Rank, obj, *, legacy=False, duties=True):
+    from .khorinis_duties import RANK_DUTIES
     result = []
     for camp, path in RANK_NAMES.items():
         for tier, (key, name) in enumerate(path):
@@ -99,6 +100,11 @@ def ranks(Rank, obj, *, legacy=False):
             else:
                 spec = RANK_TRIALS[camp][tier]
             level, attribute, threshold, cost, title, *goals = spec
+            if duties and not legacy and RANK_DUTIES[tier]:
+                event, count, label = RANK_DUTIES[tier]
+                if tier == 3 and camp == 'FIRE_ORDER':
+                    count = 12
+                goals.append((event, count, label))
             parent = 'NONE' if tier == 0 else path[tier - 1][0]
             result.append(Rank(key, name, camp, (parent,), tier, level, attribute, threshold, cost,
                                title, 'Zalicz próbę awansu oraz wymagane przydziały wspólnoty.',

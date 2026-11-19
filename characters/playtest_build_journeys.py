@@ -173,6 +173,18 @@ class EarnedBuildJourneys(TestCase):
                     steps['funds'](p.training_cost);self.assertTrue(do('matrix_train_goal',lambda:game.train_attribute(p,target)))
                 elif kind=='mine':
                     self.assertTrue(do('matrix_mine',lambda:game.start_mining(p,15)));advance(max(0,int((p.action_end_time-steps['now']()).total_seconds())),'timer');self.assertTrue(do('matrix_mine_claim',lambda:game.claim_ore_reward(p)))
+                elif kind=='duty':
+                    from .economy import start_adventure, claim_adventure
+                    from .khorinis_duties import duty_prefix
+                    from .models import AdventureTemplate
+                    options = list(AdventureTemplate.objects.filter(key__startswith=duty_prefix(target),
+                                                                   level__lte=p.level).order_by('pk'))
+                    assignment = options[_ % len(options)]
+                    self.route(p, BY_KEY['k2_harbor'])
+                    run = do('matrix_duty', lambda: start_adventure(p, assignment.pk))
+                    self.assertTrue(run)
+                    advance(max(0, int((run.ends_at - steps['now']()).total_seconds())), 'timer')
+                    self.assertTrue(do('matrix_duty_claim', lambda: claim_adventure(p, run.pk)))
                 else:
                     prepare(target)
                     if kind=='hunt':

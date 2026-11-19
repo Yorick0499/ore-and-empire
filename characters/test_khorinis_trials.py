@@ -100,3 +100,38 @@ class KhorinisTrialTests(TestCase):
         self.assertFalse(promote_in_camp(hero, rank.key))
         hero.refresh_from_db()
         self.assertEqual((hero.guild, hero.strength, hero.ore_balance), (rank.key, 10, 0))
+
+    def test_duties_count_only_after_claim_and_only_for_their_trial(self):
+        from datetime import timedelta
+        from unittest.mock import patch
+        from django.utils import timezone
+        from .economy import claim_adventure, start_adventure
+        from .models import AdventureTemplate
+
+        rank = BY_RANK['K2_MERC']
+        hero = self.recruit('route-duty-test', rank.camp, 'K2_RECRUIT', level=8, ore=100)
+        self.qualify(hero, rank)
+        self.assertTrue(accept_camp_quest(hero, rank.key))
+        wrong = AdventureTemplate.objects.get(key='k2-duty-service-city')
+        right = AdventureTemplate.objects.get(key='k2-duty-route-convoy')
+        self.assertEqual((wrong.duration_seconds, right.duration_seconds), (2700, 3600))
+        now = timezone.now()
+        for template in (wrong, right):
+            with patch('django.utils.timezone.now', return_value=now):
+                run = start_adventure(hero, template.pk)
+                self.assertTrue(run)
+                self.assertFalse(claim_adventure(hero, run.pk))
+            now = run.ends_at + timedelta(seconds=1)
+            with patch('django.utils.timezone.now', return_value=now):
+                self.assertTrue(claim_adventure(hero, run.pk))
+                self.assertFalse(claim_adventure(hero, run.pk))
+            progress = hero.camp_quests.get(rank_key=rank.key).progress
+            self.assertEqual(progress.get('duty:route', 0), int(template == right))
+
+    def test_previous_version_of_rebalanced_trial_has_no_new_duties(self):
+        rank = BY_RANK['K2_MERC']
+        hero = self.recruit('v2-khorinis', rank.camp, 'K2_RECRUIT', level=8, ore=100)
+        self.qualify(hero, rank)
+        CampQuest.objects.create(profile=hero, rank_key=rank.key,
+                                progress={'_trial_version': 2, 'hunt:k2_field_raider': 4, 'hunt:k2_bloodfly': 2})
+        self.assertTrue(promote_in_camp(hero, rank.key))
