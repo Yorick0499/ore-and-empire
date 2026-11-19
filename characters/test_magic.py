@@ -113,6 +113,19 @@ class MagicTests(TestCase):
         fact=BotDecision.objects.first();self.assertEqual(fact.policy_version,'external-unknown')
         self.assertTrue(BattleRecord.objects.filter(profile=self.profile,combat_details__casts__gt=0).exists())
 
+    def test_bot_can_upgrade_an_owned_rune_it_currently_falls_back_from(self):
+        from .magic import bot_magic_plan
+
+        self.profile.magic_skill = 4
+        self.profile.strength = 95
+        self.profile.save(update_fields=['magic_skill', 'strength'])
+        weak = self.item()
+        target = {'life': 100, 'strength': 25, 'weapon_prot': 0, 'fire_prot': 20}
+        action, target_id = bot_magic_plan(self.profile, [weak], target)
+        self.assertEqual(action, 'buy_magic')
+        upgrade = ItemBluePrint.objects.get(pk=target_id)
+        self.assertGreater(BY_CODE[upgrade.catalog_key][0].circle, 1)
+
     def test_three_schools_and_warrior_have_explicit_matchup_tradeoffs(self):
         warrior=User.objects.create_user('warrior').playerprofile
         warrior.strength=40;warrior.life=200;warrior.current_health=200;warrior.save()

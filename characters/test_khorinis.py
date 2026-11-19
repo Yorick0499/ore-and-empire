@@ -150,9 +150,11 @@ class TwoRealmTests(TestCase):
                     action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(step,bot.pk,action));actions[action]+=1
                     if bot.story_runs.filter(status='claimed',snapshot__key='k2-supply-8').exists():done[bot.pk]=step
             if len(done)==3:break
-        # Keep playing until the earned native ranks also catch up with the completed story.
+        # Keep playing until the earned native ranks catch up with the story.
+        # The fixed cadence allows one decision per turn, including ordinary
+        # shopping, crafting and refilling between the last patrols.
         promoted_at = {}
-        for extra in range(300):
+        for extra in range(360):
             turn = step + extra + 1
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30 * turn)):
                 for bot in bots:
@@ -169,9 +171,24 @@ class TwoRealmTests(TestCase):
         self.assertEqual(len(done),3,(status,actions,{b.pk:list(b.story_runs.exclude(status='claimed').values('snapshot__key','progress')) for b in bots}))
         self.assertEqual({p['camp'] for p in status},{'CITY_WATCH','FIRE_ORDER','ONAR_MERCS'})
         mage=next(b for b in bots if PlayerProfile.objects.get(pk=b.pk).camp=='FIRE_ORDER')
-        self.assertTrue(mage.battles.filter(combat_details__casts__gt=0).exists(),(status,dict(actions),list(mage.inventory.values('blueprint__catalog_key')),PlayerProfile.objects.filter(pk=mage.pk).values('magic_skill','bot_role','bot_personality','prepared_magic_id').first()))
+        if not mage.battles.filter(combat_details__casts__gt=0).exists():
+            from .models import BotDecision
+            self.fail((status, dict(actions), list(mage.inventory.values_list('blueprint__catalog_key', flat=True)),
+                       list(mage.camp_quests.filter(promoted_at__isnull=True).values('rank_key', 'progress')),
+                       list(BotDecision.objects.filter(profile=mage).values_list('action', 'observation')[:3])))
         for bot in bots:
-            bot.refresh_from_db();self.assertEqual(bot.camp_tier,3)
+            bot.refresh_from_db()
+            if bot.camp_tier != 3:
+                from .models import BotDecision
+                recent = [
+                    (action, {key: observations.get(key) for key in (
+                        'energy', 'health', 'mana', 'hunt_key', 'hunt_location', 'quest_hunt', 'boss_key',
+                        'market_action', 'forge_action', 'story_recover', 'magic_action', 'training_needed', 'inventory_id',
+                    )})
+                    for action, observations in BotDecision.objects.filter(profile=bot).values_list('action', 'observation')[:12]
+                ]
+                self.fail((bot.camp, bot.level,
+                           list(bot.camp_quests.filter(promoted_at__isnull=True).values('rank_key', 'progress')), recent))
             self.assertEqual(bot.story_runs.filter(status='claimed').count(),17)
             self.assertFalse(bot.story_runs.exclude(snapshot__universe='GOTHIC_II').exists())
         self.assertEqual(current_world().pk,self.colony.pk)
