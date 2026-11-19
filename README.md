@@ -2,7 +2,7 @@
 
 Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-Stan dokumentacji: **19 listopada 2026, migracja 0060_paced_bot_arrivals**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
+Stan dokumentacji: **19 listopada 2026, migracja 0061_dark_order_names**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
 ## Uruchomienie
 
@@ -24,7 +24,7 @@ python play.py --port 8001
 
 Daje to domyślnie **125 + 125 = 250 botów**. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a `--bots` nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Kolejne odsłony przyjmują od 35 do 45 nowych kont od poziomu 0 w partiach do pięciu co 30 minut, do **500 botów automatycznie** w połączonym świecie. Ręczne limity operatora pozostają dostępne. Adaptacyjne tempo kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.
 
-SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. [Windows, restart, aktualizacja i zarządca](docs/public/OPERATOR_GUIDE.md) · [PostgreSQL](docs/POSTGRESQL.md) · [Profil HTTPS](docs/PRODUCTION.md). Restart zachowuje dane; pełny reset jest odrębną operacją.
+SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Launcher używa lokalnego dziennika WAL z pełną synchronizacją zapisów. Nie uruchamiaj obok niego drugiego schedulera. [Windows, restart, aktualizacja i zarządca](docs/public/OPERATOR_GUIDE.md) · [PostgreSQL](docs/POSTGRESQL.md) · [Profil HTTPS](docs/PRODUCTION.md). Restart zachowuje dane; pełny reset jest odrębną operacją.
 
 ## Od nowej postaci do endgame
 
@@ -32,7 +32,7 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie u
 2. Kolonia i Khorinis przed Barierą działają niezależnie: własne historie, rynki, rankingi, boty i wspólnoty. Każda podstawowa droga awansu ma cztery rangi.
 3. W Kolonii przechodzisz osobistą kampanię mieszkańca. Jej finał nie łączy światów. Wspólnota poziomu 10 podejmuje osobną walkę ze Śniącym; pieczęcie wymagają wkładu trzech różnych kont. Boty mogą uczestniczyć.
 4. Pierwsze zwycięstwo zleca trwałe połączenie, ze świeżą kopią, próbą odtworzenia i blokadą zapisów. Po nim jest **jeden serwer**, wspólny rynek i ranking oraz podróże między regionami, z zachowaniem dorobku i pochodzenia.
-5. Działa sześć frakcji. Bractwo przechodzi w związany z Beliarem Zakon Czarnej Zasłony i zachowuje własne runy. Bandyci Khorinis mają siedzibę w Wieży Dextera przy farmie Onara. Każda frakcja ma osiem rang.
+5. Działa sześć frakcji. Bractwo przechodzi w związany z Beliarem Zakon Mroku i zachowuje własne runy. Bandyci Khorinis mają siedzibę w Wieży Dextera przy farmie Onara. Każda frakcja ma osiem rang. Własne próby rang 5–8 otwierają się wraz z Barierą, Jarkendarem, smokami i Irdorath.
 6. Odprawa portalu Jarkendaru jest dostępna najwcześniej dwie doby po upadku Bariery. Każdy mieszkaniec zdobywa osobisty dostęp od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. **Nie ma kont premium ani realnych płatności.**
 7. Po finale pozostają stare 100 wart, cztery regionalne ścieżki po 100 stopni, tygodniowy cel wspólnoty, kuźnia, handel, wydarzenia i ranking miesiąca. Miesiąc nie kasuje postaci.
 
@@ -43,7 +43,7 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie u
 - Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 20 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
 - Wydobycie, **44 zlecenia Kolonii i 10 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
 - Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.
-- Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych, nazwanych odsłon ogłasza odkrycia świata. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.
+- Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych odsłon ogłasza odkrycia świata. Najnowsza pojawia się w kronice na ekranie logowania i rejestracji. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.
 - Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.
 
 [Katalog wygenerowany z kodu](docs/GAME_CONTENT.md) · [Zakres i ograniczenia NK](docs/GOTHIC_II_CONTENT.md) · [Zegar i wydarzenia](docs/EVENTS.md) · [Źródła grafik](docs/ASSETS.md). Katalog źródłowy nie oznacza obsługi każdego skryptu oryginału; gra ma własny balans i kampanię mieszkańca.

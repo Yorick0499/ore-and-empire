@@ -2,7 +2,7 @@
 
 Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
 
-Polityka **baseline-25 / schemat 23** porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.
+Polityka **baseline-26 / schemat 24** porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.
 
 Popyt oznacza **potencjalną potrzebę**, nie złożone zamówienie człowieka. Uwzględnia poziom, obóz, wymagania, aktualne wyposażenie, brak zasobów, receptury i budżet z rezerwą 20 rudy. Śmieci bez realnej wartości użytkowej nie trafiają na targ tylko dlatego, że jest pusty. Równie dobry dostępny zamiennik NPC ogranicza cenę do 95% swojej ceny. Konkurencją są również podobne oferty, nie wyłącznie identyczne nazwy.
 

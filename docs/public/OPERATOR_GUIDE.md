@@ -16,11 +16,11 @@ Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwyci�
 |---|---|
 | Język i framework | Python 3.12 / 3.13, Django 6.0.7 |
 | Interfejs | Szablony Django renderowane na serwerze, HTML, własny CSS, niewielki JavaScript; brak wymogu Node.js i osobnego buildu frontendu |
-| Dane lokalne | SQLite, domyślnie `db.sqlite3` w katalogu projektu |
+| Dane lokalne | SQLite z WAL przy uruchomieniu przez `play.py`, domyślnie `db.sqlite3` w katalogu projektu |
 | Opcjonalny serwer | PostgreSQL, psycopg 3.3.8; szablon Compose używa PostgreSQL 17 |
 | Procesy produkcyjne | Gunicorn 26.2.0, osobny `run_worker`, WhiteNoise 6.12.0, Caddy 2, Docker Compose / szablony systemd |
 | Reguły gry | Wspólne usługi domenowe i transakcje Django dla ludzi oraz botów |
-| Boty | Reguły `baseline-25`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
+| Boty | Reguły `baseline-26`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
 | Opcjonalny eksperyment AI | Lokalny adapter Ollama, jawny opt-in; model i GPU nie są wymagane do normalnej gry |
 | Zegar | `zoneinfo`, `Europe/Warsaw`, Astral 3.2; automatyczne CET/CEST |
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |
@@ -216,7 +216,7 @@ python manage.py backup_world
 python manage.py backup_world --directory /prywatny/katalog/kopie --keep 14
 ```
 
-Domyślnie `backups/`, ostatnich 7 kompletnych kopii. SQLite korzysta z API spójnego snapshotu; PostgreSQL z `pg_dump` i porównania logicznego w tym samym snapshotcie MVCC. Manifest przechowuje kontrolne hashe i wersje, nie prywatny `.env` czy plik danych dostępu admina. Kopia bazy nadal zawiera dane kont i hashe haseł — traktuj ją jako prywatną.
+Domyślnie `backups/`, ostatnich 7 kompletnych kopii. SQLite korzysta z API spójnego snapshotu i obejmuje też zatwierdzone transakcje w lokalnym WAL. PostgreSQL z `pg_dump` i porównania logicznego w tym samym snapshotcie MVCC. Manifest przechowuje kontrolne hashe i wersje, nie prywatny `.env` czy plik danych dostępu admina. Kopia bazy nadal zawiera dane kont i hashe haseł — traktuj ją jako prywatną.
 
 Próba SQLite, zawsze do nowego pliku:
 

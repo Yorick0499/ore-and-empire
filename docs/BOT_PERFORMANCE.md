@@ -1,6 +1,6 @@
 # Populacja botów, harmonogram i wydajność
 
-Stan: 13 XI 2026, baseline-25 / schemat 23. Domyślnie Kolonia ma 125 botów, a otwarte Khorinis kolejne 125: **250 łącznie**. Każdy region można ustawić na 0–300. Po Barierze jest jeden serwer, ale zachowane konfiguracje dwóch regionów nadal sterują ich populacjami. Nie ma globalnego limitu 300 sumującego oba regiony; maksimum 600 nie było kompleksowo mierzone.
+Stan: 19 XI 2026, baseline-26 / schemat 24. Domyślnie Kolonia ma 125 botów, a otwarte Khorinis kolejne 125: **250 łącznie**. Każdy region można ustawić na 0–300. Po Barierze jest jeden serwer, ale zachowane konfiguracje dwóch regionów nadal sterują ich populacjami. Domyślne fale po Barierze prowadzą do 500 botów łącznie. Administrator może ustawić do 300 w każdym regionie, zatem tryb ręczny może przekroczyć populację mierzoną w tym teście.
 
 ## Ustawienia bez resetu
 
@@ -20,6 +20,8 @@ Gotowe konta i konfiguracja odświeżają się co 5 s; odpoczynek ma co najmniej
 
 Paginated listy i `select_related`, ograniczone migawki rynku, cache manifestu oraz kontekst połączonych regionów ograniczają N+1. Lista zleceń pobiera wydarzenia raz dla całej strony. Wydarzenia regionalne używają wspólnego kursora dnia/wersji, bez timera na każdego bota. Po wyczerpaniu budżetu nagroda pomija odczyt regionalnych okien.
 
+Lokalny launcher stosuje WAL z pełną synchronizacją transakcji SQLite. Kopia przez narzędzie gry obejmuje zatwierdzone dane z WAL. Przy pomiarze SQL licz bajty kierowane do bazy i jej dziennika, ponieważ licznik zapisów całego procesu obejmuje również logi.
+
 Retencja szczegółowych decyzji to domyślnie 30 pełnych dni UTC, z prywatnym archiwum i agregatami. Powtarzane czekanie nie zapisuje decyzji częściej niż co 5 minut. Retencja nie usuwa przedmiotów, ledgerów, walk, wypraw i questów. [Monitoring](WORLD_MONITOR.md).
 
 Nie ma domyślnego LLM, płatnego API ani pracy GPU. [Opcjonalny eksperyment](LOCAL_AI_POLICIES.md) jest osobny i ma trwały budżet.
@@ -28,7 +30,7 @@ Nie ma domyślnego LLM, płatnego API ani pracy GPU. [Opcjonalny eksperyment](LO
 
 ```bash
 python scripts/benchmark_bots.py --population 250 --seconds 120 --mode sessions --report /tmp/boty-sesje-01.json
-python scripts/benchmark_bots.py --population 300 --seconds 240 --mode stress --mature --joined --report /tmp/boty-weterani-01.json
+python scripts/benchmark_bots.py --population 500 --seconds 660 --mode stress --mature --joined --endgame --report /tmp/boty-weterani-01.json
 python scripts/benchmark_bots.py --population 250 --seconds 60 --mode sessions --mature --joined --endgame --regional-events --report /tmp/boty-wydarzenia-01.json
 ```
 

@@ -45,7 +45,7 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | k2_barracks — Koszary Khorinis | GOTHIC_II | 0 | — | train_page |  |
 | k2_monastery — Klasztor Innosa | GOTHIC_II | 0 | — | train_page |  |
 | dexter_tower — Wieża Dextera | GOTHIC_II | 0 | BANDITS; po Barierze | train_page |  |
-| veil_refuge — Krypta Czarnej Zasłony | GOTHIC_II | 0 | VEIL_ORDER; po Barierze | train_page |  |
+| veil_refuge — Krypta Zakonu Mroku | GOTHIC_II | 0 | VEIL_ORDER; po Barierze | train_page |  |
 | g2nk_fields — Łąki i rozstaje Khorinis | GOTHIC_II | 0 | po Barierze | hunt_page | Krwiopijca, Olbrzymi szczur, Goblin, Dzik, Chrząszcz, Kretoszczur, Ścierwojad, Owca, Młoda polna bestia, Młody olbrzymi szczur, Goblin, Młody wilk |
 | abandoned_mine — Opuszczona kopalnia | GOTHIC_I | 1 | — | hunt_page | Chrząszcz, Kretoszczur, Goblin |
 | cavalorn — Chata Cavalorna | GOTHIC_I | 2 | — | hunt_page | Goblin, Wilk |
@@ -327,9 +327,39 @@ Cztery szczeble w każdej gałęzi. Brak rangi nie jest piątym szczeblem. Tabel
 | Krąg Magów Wody | Uczeń Wody → Adept Wody → Mag Wody → Arcymag Wody | Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa |
 | Bandyci Khorinis | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
 | Najemnicy — Łowcy Smoków | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków |
-| Zakon Czarnej Zasłony | Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz | Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara |
+| Zakon Mroku | Słuchacz Cienia → Nowicjusz Mroku → Wysłannik Mroku → Poszukiwacz | Powiernik Mroku → Strażnik Czarnego Płomienia → Herold Mroku → Awatar Beliara |
 
-[Sukcesja i skarbce](CAMP_GUILDS.md). Wyższe awanse wymagają kolejno poziomów 30/35/40/45, opłat 500/1000/1500/2500 rudy oraz własnych prób; [pełne warunki](CAMPS.md).
+[Sukcesja i skarbce](CAMP_GUILDS.md) · [zasady awansu](CAMPS.md).
+
+<a id="proby-frakcji"></a>
+### Zadania rang 5–8
+
+| Frakcja | Ranga i próba | Odsłona | Poziom | Atrybut | Ruda | Cele |
+|---|---|---|---|---|---|---|
+| Miasto Khorinis — Zakon Paladynów | 5. Kandydat Zakonu — Patrol dla straży | Pęknięcie Bariery | 30 | Siła lub zręczność 70 | 500 | Rozbij grupy orkowych żołnierzy ×5, Pokonaj orkowych wojowników ×2 |
+| Miasto Khorinis — Zakon Paladynów | 6. Rycerz — Eskorta przez przełęcz | Zaginiona Dolina | 34 | Siła lub zręczność 88 | 900 | Usuń orkowych strażników ×4, Dostarcz rudę na naprawę bram ×4 |
+| Miasto Khorinis — Zakon Paladynów | 7. Paladyn — Warta na lodowym szlaku | Przebudzenie smoków | 40 | Siła lub zręczność 112 | 1500 | Odeprzyj orkowych wiarusów ×5, Pokonaj smoka lodu ×1 |
+| Miasto Khorinis — Zakon Paladynów | 8. Mistrz Zakonu — Ostatnia straż Zakonu | Żagle ku Irdorath | 48 | Siła lub zręczność 140 | 2600 | Pokonaj starszych opiekunów świątyni ×5, Przełam wartę Archola na Irdorath ×1 |
+| Klasztor Magów Ognia | 5. Mistrz Ognia — Światło w ruinach | Pęknięcie Bariery | 30 | Mana 55 | 550 | Rozprosz szkielety magów ×4, Oczyść ruiny ze szkieletów wojowników ×3 |
+| Klasztor Magów Ognia | 6. Strażnik Świętego Ognia — Próba płomienia | Zaginiona Dolina | 35 | Mana 72 | 1000 | Rozbij lodowe golemy ×4, Wytęp świątynne pełzacze ×4 |
+| Klasztor Magów Ognia | 7. Mistrz Kręgu Ognia — Płomień na granicy lodu | Przebudzenie smoków | 39 | Mana 94 | 1550 | Zabezpiecz szlak przed lodowymi golemami ×3, Pokonaj smoka lodu ×1 |
+| Klasztor Magów Ognia | 8. Awatar Innosa — Oczyszczenie sanktuarium | Żagle ku Irdorath | 47 | Mana 120 | 2500 | Usuwaj opiekunów świątyni ×5, Pokonaj smoka skały ×1 |
+| Krąg Magów Wody | 5. Mistrz Wody — Zabezpieczenie dawnej drogi | Pęknięcie Bariery | 30 | Mana 50 | 500 | Pokonaj kamienne golemy ×4, Udrożnij przejście przez bagno ×3 |
+| Krąg Magów Wody | 6. Strażnik Równowagi — Badacze za portalem | Zaginiona Dolina | 34 | Mana 68 | 950 | Oczyść przejście z kamiennych strażników Jarkendaru ×3, Zabezpiecz plażę przed topielcami ×4 |
+| Krąg Magów Wody | 7. Mistrz Kręgu Wody — Równowaga pod ognistym szczytem | Przebudzenie smoków | 40 | Mana 90 | 1450 | Pokonaj błotne węże Jarkendaru ×4, Pokonaj smoka ognia ×1 |
+| Krąg Magów Wody | 8. Awatar Adanosa — Pieczęcie Budowniczych | Żagle ku Irdorath | 46 | Mana 116 | 2450 | Odeprzyj strażników ruin ×5, Pokonaj strażnika krypty Jarkendaru ×1 |
+| Bandyci Khorinis | 5. Przywódca szajki — Zaopatrzenie dla Wieży Dextera | Pęknięcie Bariery | 30 | Siła lub zręczność 70 | 500 | Odbierz trzy zmiany dla nowej wspólnoty ×3, Pokonaj orkowych zwiadowców w Górniczej Dolinie ×5 |
+| Bandyci Khorinis | 6. Dowódca bandytów — Szlak przemytników | Zaginiona Dolina | 35 | Siła lub zręczność 90 | 900 | Rozprosz orkowych myśliwych ×5, Udrożnij leśny szlak ×2 |
+| Bandyci Khorinis | 7. Herszt bandytów — Przeprawa przez bagno | Przebudzenie smoków | 39 | Siła lub zręczność 110 | 1450 | Odpędź orkowych wiarusów ×4, Pokonaj smoka bagien ×1 |
+| Bandyci Khorinis | 8. Baron bandytów — Twierdza pod znakiem szajki | Żagle ku Irdorath | 46 | Siła lub zręczność 136 | 2450 | Usuń starszych opiekunów świątyni ×4, Pokonaj smoka skały ×1 |
+| Najemnicy — Łowcy Smoków | 5. Łowca Smoków — Kontrakt za owce Onara | Pęknięcie Bariery | 31 | Siła lub zręczność 72 | 525 | Wytęp brzytwiaki ×5, Pokonaj cieniostwory ×2 |
+| Najemnicy — Łowcy Smoków | 6. Weteran Łowców Smoków — Stal na przeprawie | Zaginiona Dolina | 35 | Siła lub zręczność 92 | 980 | Odeprzyj orkowych wiarusów ×5, Zabezpiecz przejście przed trollami ×2 |
+| Najemnicy — Łowcy Smoków | 7. Dowódca Łowców Smoków — Kontrakt na smoka skały | Przebudzenie smoków | 40 | Siła lub zręczność 116 | 1550 | Rozbij golemy na podejściu ×4, Pokonaj smoka skały ×1 |
+| Najemnicy — Łowcy Smoków | 8. Mistrz Łowców Smoków — Ostatni list żelazny | Żagle ku Irdorath | 48 | Siła lub zręczność 145 | 2650 | Odeprzyj książęta demonów ×4, Pokonaj smoka z Irdorath ×1 |
+| Zakon Mroku | 5. Powiernik Mroku — Zejście do krypty | Pęknięcie Bariery | 30 | Mana 52 / siła lub zręczność 72 (templariusze) | 500 | Pokonaj świątynne pełzacze ×4, Rozprosz szkielety magów ×3 |
+| Zakon Mroku | 6. Strażnik Czarnego Płomienia — Służba pod znakiem Beliara | Zaginiona Dolina | 34 | Mana 70 / siła lub zręczność 90 (templariusze) | 925 | Pokonaj pomniejsze demony ×4, Odeprzyj orkowych szamanów ×3 |
+| Zakon Mroku | 7. Herold Mroku — Warta Czarnego Płomienia | Przebudzenie smoków | 40 | Mana 93 / siła lub zręczność 113 (templariusze) | 1500 | Odeprzyj opiekunów świątyni ×4, Pokonaj smoka bagien ×1 |
+| Zakon Mroku | 8. Awatar Beliara — Próba Awatara Beliara | Żagle ku Irdorath | 47 | Mana 118 / siła lub zręczność 138 (templariusze) | 2550 | Pokonaj Nadzorców w głębi krypty ×3, Pokonaj książęta demonów ×4, Pokonaj smoka ognia ×1 |
 
 ## Zlecenia czasowe
 

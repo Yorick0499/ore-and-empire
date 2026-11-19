@@ -76,8 +76,19 @@ def build():
          f'{ATTRIBUTE_NAMES.get(r.attribute,r.attribute)} {r.attribute_value}',r.cost,'; '.join(f'{o.label} ×{o.count}' for o in r.objectives)) for r in RANKS))
     lines += ['## Frakcje i osiem rang po Barierze', '']
     table(lines, ['Frakcja', 'Rangi 1–4', 'Nowe rangi 5–8'], ((label,' → '.join(RANK_NAMES[key][:4]),' → '.join(RANK_NAMES[key][4:])) for key,label in FACTIONS))
-    lines += ['[Sukcesja i skarbce](CAMP_GUILDS.md). Wyższe awanse wymagają kolejno poziomów 30/35/40/45, opłat 500/1000/1500/2500 rudy oraz własnych prób; [pełne warunki](CAMPS.md).', '',
-              '## Zlecenia czasowe', '', 'Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 10 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).', '']
+    from characters.faction_trials import RELEASE_BY_TIER
+    from characters.world_releases import RELEASES
+    faction_names = dict(FACTIONS)
+    releases = {key: title for key, _, title, *_ in RELEASES}
+    lines += ['[Sukcesja i skarbce](CAMP_GUILDS.md) · [zasady awansu](CAMPS.md).', '',
+              '<a id="proby-frakcji"></a>', '### Zadania rang 5–8', '']
+    table(lines, ['Frakcja', 'Ranga i próba', 'Odsłona', 'Poziom', 'Atrybut', 'Ruda', 'Cele'], (
+        (faction_names[rank.camp], f'{rank.tier+1}. {rank.name} — {rank.quest_name}',
+         releases[RELEASE_BY_TIER[rank.tier]], rank.level,
+         f'Mana {rank.attribute_value}' + (f' / siła lub zręczność {rank.attribute_value+20} (templariusze)' if rank.camp == 'VEIL_ORDER' else '')
+         if rank.attribute == 'mana' else f'Siła lub zręczność {rank.attribute_value}', rank.cost,
+         ', '.join(f'{goal.label} ×{goal.count}' for goal in rank.objectives)) for rank in ADVANCED))
+    lines += ['## Zlecenia czasowe', '', 'Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 10 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).', '']
     table(lines, ['Klucz / zlecenie', 'Region', 'Kategoria / miejsce', 'Poziom', 'Sekundy', 'Energia', 'Ruda / PD / odłamki'], (
         (f'{q.key} — {q.name}',q.universe,f'{q.get_category_display()} / {q.place}',q.level,q.duration_seconds,q.energy_cost,f'{q.ore_reward} / {q.experience_reward} / {q.premium_reward}') for q in AdventureTemplate.objects.order_by('universe','level','key')))
     lines += ['<a id="fabula-jednorazowa"></a>', '', '## Fabuła jednorazowa', '', 'Przyjęcie → rozpoczęcie → wykonanie → odbiór. Część gałęzi wymaga konkretnej odpowiedzi lub frakcji; warunki są sprawdzane przez grę. Cele nie zaliczają wcześniejszych działań. [Opis mechaniki](STORY.md).', '']

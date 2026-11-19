@@ -15,8 +15,8 @@ Poprawka Wody #150: `new-water` przechodzi teraz całą drogę **bez kupowania z
 | Khorinis | Wojownik: Rekrut → Strażnik → Sierżant → Dowódca | Miasto i dalszy Zakon |
 | Klasztor Khorinis | Ogień: Nowicjusz → Adept → Mag → Arcymag | Wspólny Klasztor |
 | Farma Onara | Łucznik: Pracownik → Zbrojny → Najemnik → Dowódca | Wspólni Najemnicy |
-| Bractwo | Guru: Zbieracz → Nowicjusz → Guru → Arcyguru | Zakon Czarnej Zasłony, droga magiczna |
-| Bractwo | Wojownik: Zbieracz → Nowicjusz → Strażnik → Templariusz | Zakon Czarnej Zasłony, droga wojskowa |
+| Bractwo | Guru: Zbieracz → Nowicjusz → Guru → Arcyguru | Zakon Mroku, droga magiczna |
+| Bractwo | Wojownik: Zbieracz → Nowicjusz → Strażnik → Templariusz | Zakon Mroku, droga wojskowa |
 
 To dziewięć scenariuszy, a nie wszystkie kombinacje broni i wyborów. Ograniczenia Guru i pozostałe dozwolone wybory mają oddzielne testy macierzy. Przed Barierą są cztery szczeble; dalsze cztery wymagają połączenia i własnych opłaconych awansów. Historyczne pochodzenie pozostaje zapisane.
 

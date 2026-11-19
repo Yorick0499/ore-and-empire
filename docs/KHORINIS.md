@@ -28,7 +28,7 @@ Ukończenie lokalnej kampanii nie kończy serwera i nie łączy światów. Pozos
 
 ## Po połączeniu
 
-Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Magowie Wody, Bandyci Khorinis z Wieży Dextera oraz Zakon Czarnej Zasłony powstały z Bractwa. Nowe rangi 5–8 wymagają własnych awansów. [Sukcesja i skarbce](CAMP_GUILDS.md).
+Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Magowie Wody, Bandyci Khorinis z Wieży Dextera oraz Zakon Mroku powstały z Bractwa. Nowe rangi 5–8 wymagają własnych awansów. [Sukcesja i skarbce](CAMP_GUILDS.md).
 
 Jarkendar jest publiczny po zadaniu portalu od 10. Dalsze kontrakty NK otwierają Kruka, Poszukiwaczy, cztery smoki, statek i Irdorath. Jarkendar/Irdorath korzystają z mapy i regionu podróży Khorinis; nie tworzą dodatkowych serwerów. Bramek poziomu/fabuły nie omija duży portfel. [Jarkendar](JARKENDAR.md) · [Zakres NK i źródeł](GOTHIC_II_CONTENT.md).
 

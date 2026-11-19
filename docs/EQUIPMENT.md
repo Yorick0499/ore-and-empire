@@ -29,7 +29,7 @@ PD i wynik. Boss zachowuje zgodność z istniejącym `BossAttempt` i cooldownem.
 
 Przedmioty stosowalne mają liczbę sztuk; kupiec sprzedaje zapasy w paczkach 1–100 sztuk, a skupuje cały
 stos za 50% wartości. Materiały i amunicja łączą się wyłącznie we własnym,
-niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty wybierają dozwolony sprzęt według własnej ścieżki i efektywnej mocy, zakładają ochronę, używają zapasów i zachowują dostawy. Obecna polityka to baseline-25, schemat obserwacji 23; historyczne replay pozostają zachowane.
+niewystawionym stosie o tym samym pochodzeniu. Przedmioty fabularne mogą mieć zakaz handlu. Boty wybierają dozwolony sprzęt według własnej ścieżki i efektywnej mocy, zakładają ochronę, używają zapasów i zachowują dostawy. Obecna polityka to baseline-26, schemat obserwacji 24; historyczne replay pozostają zachowane.
 
 ## Dopracowanie pełnej edycji
 
