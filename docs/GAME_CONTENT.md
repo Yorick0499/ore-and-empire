@@ -8,13 +8,13 @@ Tabele obejmują także definicje instalowane przy aktywacji Bariery. Pochodzą 
 
 | Zakres | Liczba |
 |---|---|
-| Lokacje łącznie | 86 |
+| Lokacje łącznie | 88 |
 | Lokacje GOTHIC_I | 47 |
-| Lokacje GOTHIC_II | 39 |
+| Lokacje GOTHIC_II | 41 |
 | Populacje przeciwników do polowań | 134 |
 | Bossowie solo | 15 |
 | Rodzime tożsamości rang (gałęzie) | 30 |
-| Wyższe awanse pięciu frakcji | 20 |
+| Wyższe awanse sześciu frakcji | 24 |
 | Zaklęcia działające (nie liczba modeli run/zwojów) | 24 |
 | Zlecenia czasowe | 54 |
 | Definicje zadań jednorazowych | 95 |
@@ -44,6 +44,8 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | k2_onar — Farma Onara | GOTHIC_II | 0 | — | train_page |  |
 | k2_barracks — Koszary Khorinis | GOTHIC_II | 0 | — | train_page |  |
 | k2_monastery — Klasztor Innosa | GOTHIC_II | 0 | — | train_page |  |
+| dexter_tower — Wieża Dextera | GOTHIC_II | 0 | BANDITS; po Barierze | train_page |  |
+| veil_refuge — Krypta Czarnej Zasłony | GOTHIC_II | 0 | VEIL_ORDER; po Barierze | train_page |  |
 | g2nk_fields — Łąki i rozstaje Khorinis | GOTHIC_II | 0 | po Barierze | hunt_page | Krwiopijca, Olbrzymi szczur, Goblin, Dzik, Chrząszcz, Kretoszczur, Ścierwojad, Owca, Młoda polna bestia, Młody olbrzymi szczur, Goblin, Młody wilk |
 | abandoned_mine — Opuszczona kopalnia | GOTHIC_I | 1 | — | hunt_page | Chrząszcz, Kretoszczur, Goblin |
 | cavalorn — Chata Cavalorna | GOTHIC_I | 2 | — | hunt_page | Goblin, Wilk |
@@ -78,7 +80,7 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | quentin_camp — Obóz Quentina | GOTHIC_I | 11 | — | hunt_page | Brzytwiak, Zębacz, Orkowy pies |
 | free_mine_depths — Głębie Wolnej Kopalni | GOTHIC_I | 12 | — | hunt_page | Pełzacz wojownik, Pełzacz |
 | old_monastery — Stary klasztor | GOTHIC_I | 12 | — | hunt_page | Szkielet wojownik, Zombie, Młody troll |
-| jark_bandits — Obóz bandytów | GOTHIC_II | 12 | po Barierze; portal | market_page |  |
+| jark_bandits — Obóz zaopatrzeniowy bandytów | GOTHIC_II | 12 | po Barierze; portal | market_page |  |
 | jark_mine — Kopalnia złota | GOTHIC_II | 12 | po Barierze; portal | mine_page |  |
 | jark_swamp — Bagna Budowniczych | GOTHIC_II | 12 | po Barierze; portal | hunt_page | Modliszka, Wąż błotny z ruin |
 | northern_forest — Północny las | GOTHIC_I | 14 | — | hunt_page | Brzytwiak, Cieniostwór, Zębacz |
@@ -323,8 +325,9 @@ Cztery szczeble w każdej gałęzi. Brak rangi nie jest piątym szczeblem. Tabel
 | Miasto Khorinis — Zakon Paladynów | Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży | Kandydat Zakonu → Rycerz → Paladyn → Mistrz Zakonu |
 | Klasztor Magów Ognia | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru | Mistrz Ognia → Strażnik Świętego Ognia → Mistrz Kręgu Ognia → Awatar Innosa |
 | Krąg Magów Wody | Uczeń Wody → Adept Wody → Mag Wody → Arcymag Wody | Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa |
-| Bandyci — Jarkendar | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
+| Bandyci Khorinis | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
 | Najemnicy — Łowcy Smoków | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków |
+| Zakon Czarnej Zasłony | Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz | Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara |
 
 [Sukcesja i skarbce](CAMP_GUILDS.md). Wyższe awanse wymagają kolejno poziomów 30/35/40/45, opłat 500/1000/1500/2500 rudy oraz własnych prób; [pełne warunki](CAMPS.md).
 
@@ -526,24 +529,24 @@ Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwo
 | thunderbolt — Sopel lodu | Magowie Wody | 1 | 4 | 30 / magia | 25 | — |
 | icecube — Bryła lodu | Magowie Wody | 3 | 8 | 85 / magia | 40 | — |
 | icewave — Lodowa fala | Magowie Wody | 5 | 13 | 175 / magia | 50 | — |
-| windfist — Uderzenie wiatru | Bractwo Śniącego | 1 | 3 | 18 / magia | 0 | 3 |
-| stormfist — Uderzenie burzy | Bractwo Śniącego | 3 | 7 | 42 / magia | 0 | 2 |
-| pyrokinesis — Pirokineza | Bractwo Śniącego | 5 | 13 | 150 / magia | 0 | 2 |
+| windfist — Uderzenie wiatru | Bractwo Śniącego / Zakon Czarnej Zasłony | 1 | 3 | 18 / magia | 0 | 3 |
+| stormfist — Uderzenie burzy | Bractwo Śniącego / Zakon Czarnej Zasłony | 3 | 7 | 42 / magia | 0 | 2 |
+| pyrokinesis — Pirokineza | Bractwo Śniącego / Zakon Czarnej Zasłony | 5 | 13 | 150 / magia | 0 | 2 |
 | waterlance — Ostrze Adanosa | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
 | thunderball — Rozbłysk Adanosa | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
 | chainlightning — Wyrok Adanosa | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
 | emberburst — Żar Innosa | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — |
 | hearthlight — Światło Innosa | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — |
 | flamecrest — Gniew Innosa | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — |
-| marshpulse — Podmuch Śniącego | Bractwo Śniącego | 2 | 5 | 33 / magia | 0 | 3 |
-| marshresonance — Uścisk Śniącego | Bractwo Śniącego | 4 | 9 | 105 / magia | 0 | 2 |
-| marshsilence — Wola Śniącego | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 |
+| marshpulse — Podmuch Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 2 | 5 | 33 / magia | 0 | 3 |
+| marshresonance — Uścisk Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 4 | 9 | 105 / magia | 0 | 2 |
+| marshsilence — Wola Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 6 | 16 | 210 / magia | 0 | 2 |
 | nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — |
 | nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — |
-| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego | 6 | 18 | 255 / magia | 0 | 2 |
+| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 6 | 18 | 255 / magia | 0 | 2 |
 | adanos_depths — Głębia Adanosa | Magowie Wody | 6 | 20 | 350 / magia | 50 | — |
 | innos_beacon — Latarnia Innosa | Magowie Ognia | 6 | 20 | 370 / ogień | 25 | — |
-| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego | 6 | 20 | 340 / magia | 0 | 2 |
+| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego / Zakon Czarnej Zasłony | 6 | 20 | 340 / magia | 0 | 2 |
 
 ## Sklep odłamków
 

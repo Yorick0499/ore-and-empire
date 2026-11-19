@@ -24,7 +24,7 @@ class ParallelRealms:
         if self.next_arrival_check is None or now >= self.next_arrival_check:
             from .bot_arrivals import admit_next_cohort
             admit_next_cohort(primary)
-            self.next_arrival_check = now + 30
+            self.next_arrival_check = now + 60
         from django.db.models import Q
         worlds = open_worlds().filter(Q(configured=True) | Q(pk=primary.world_id)).order_by('pk')
         populations = [due_population(world) for world in worlds]

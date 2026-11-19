@@ -15,8 +15,8 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 @media screen{#doc-game-content td:first-child,#doc-game-content th:first-child{min-width:190px}}
 </style></head>
 <body><a class="skip" href="#main">Przejdź do treści dokumentacji</a><header class="topbar"><a class="brand" href="#top">Ore &amp; Empire<small>Publiczna księga projektu</small></a><div class="bar-actions"><span class="edition">KOLONIA · KHORINIS · NOC KRUKA</span><a href="https://github.com/Yorick0499/ore-and-empire" target="_blank" rel="noopener noreferrer">Repozytorium ↗</a><button type="button" id="menu-toggle" class="menu-button" aria-expanded="false" aria-controls="book-navigation">Spis treści</button><button type="button" id="print-book">Drukuj / PDF</button></div></header>
-<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 52.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li><li><a href="#doc-complete-journey">Uruchomienie, pełna droga i plan endgame</a></li><li><a href="#doc-first-playable">Pierwsze kroki i droga do końca kampanii</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, dwa początki i jeden wspólny świat</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-jarkendar">Publiczny Jarkendar — portal i dalsza wyprawa</a></li><li><a href="#doc-gothic-ii-content">Gothic II NK — źródła, mechaniki i wyprawa do Irdorath</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li><li><a href="#doc-regional-endgame">Regionalny endgame i tygodniowy cel wspólnoty</a></li><li><a href="#doc-build-playthroughs">Buildy i frakcje od nowej postaci</a></li></ol></details><details open><summary>Frakcje i żyjący świat</summary><ol><li><a href="#doc-camps">Rangi, próby i przywileje pięciu frakcji</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li><li><a href="#doc-world-updates">Aktualizacje żyjącego świata i regionalne cele</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 86 ekranów</a></li><li><a href="#reports">Publiczne raporty (52)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-14<br>Kod gry: widoczny start Śniącego / #156 (po #155)<br>Migracja: 0058<br>Odczyt offline · bez usług zewnętrznych</p></aside>
-<main id="main"><section class="hero" id="top"><span class="eyebrow">Przewodnik po żyjącym świecie</span><h1>Kronika projektu.<br>Od Kolonii do Irdorath.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa początki · jeden świat po Barierze</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-14 · kod widoczny start Śniącego / #156 (po #155) · migracja 0058 · fanowska adaptacja Gothic</p></section>
+<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 52.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li><li><a href="#doc-complete-journey">Uruchomienie, pełna droga i plan endgame</a></li><li><a href="#doc-first-playable">Pierwsze kroki i droga do końca kampanii</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, dwa początki i jeden wspólny świat</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-jarkendar">Publiczny Jarkendar — portal i dalsza wyprawa</a></li><li><a href="#doc-gothic-ii-content">Gothic II NK — źródła, mechaniki i wyprawa do Irdorath</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li><li><a href="#doc-regional-endgame">Regionalny endgame i tygodniowy cel wspólnoty</a></li><li><a href="#doc-build-playthroughs">Buildy i frakcje od nowej postaci</a></li></ol></details><details open><summary>Frakcje i żyjący świat</summary><ol><li><a href="#doc-camps">Rangi, próby i przywileje pięciu frakcji</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li><li><a href="#doc-world-updates">Aktualizacje żyjącego świata i regionalne cele</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 86 ekranów</a></li><li><a href="#reports">Publiczne raporty (52)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-14<br>Kod gry: widoczny start Śniącego / #156 (po #155)<br>Migracja: 0060<br>Odczyt offline · bez usług zewnętrznych</p></aside>
+<main id="main"><section class="hero" id="top"><span class="eyebrow">Przewodnik po żyjącym świecie</span><h1>Kronika projektu.<br>Od Kolonii do Irdorath.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa początki · jeden świat po Barierze</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-14 · kod widoczny start Śniącego / #156 (po #155) · migracja 0060 · fanowska adaptacja Gothic</p></section>
 <div class="quick-grid"><a href="#doc-operator-guide--wymagania-i-instalacja-lokalna"><b>Uruchom grę</b><span>Instalacja, pierwsze konto i zapis świata</span></a><a href="#doc-operator-guide--zatrzymanie-i-restart-bez-kasowania-swiata"><b>Wróć do Kolonii</b><span>Bezpieczny restart bez utraty postępu</span></a><a href="#doc-operator-guide--panel-zarzadcy-krok-po-kroku"><b>Zarządzaj światem</b><span>Przedmioty, rzadkości, boty i administrator</span></a></div>
 <p class="book-intro">Dokumenty źródłowe: 49. Dalej: pełne zależności i komendy, 86 zrzutów oraz 52 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
 <p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan funkcji: 14 listopada 2026, wyprawy na rozkaz #152, wspólny świat po Barierze, migracja 0055_manual_camp_raids. Pełne uruchomienie obu regionów opisuje <a href="#doc-complete-journey">aktualna instrukcja przejścia</a>. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
@@ -410,7 +410,7 @@ python manage.py simulate_journey --report /tmp/droga-nowa-proba.json
 <h4 id="doc-operator-guide--dodatkowe-wyprawy-gracza-migracja-0055">Dodatkowe wyprawy gracza — migracja 0055</h4>
 <p>Po zwykłym restarcie launcher stosuje migrację zachowującą stare wyprawy, wkład, nagrody i konta. Najwyższa rodzima ranga Kolonii może ogłaszać cele do poziomu10 przez sekcję „Wyprawy na rozkaz” na <code>/wspolnota/</code>. Po pokonaniu celu można ogłosić następny tego samego dnia. Boty uczestniczą zwykłymi turami. Nie potrzeba resetu świata ani ręcznej edycji PD. <a href="#doc-camp-raids">Reguły i ograniczenia</a>.</p></article><article id="doc-readme" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>README.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/README.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-readme--ore-empire-kroniki-kolonii">Ore &amp; Empire — Kroniki Kolonii</h2>
 <p>Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.</p>
-<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0058_worldrelease_bot_arrivals</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
+<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0060_paced_bot_arrivals</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
 <h3 id="doc-readme--uruchomienie">Uruchomienie</h3>
 <p>Python 3.12 lub 3.13, z katalogu repozytorium:</p>
 <pre><code class="language-bash">python3 -m venv .venv
@@ -422,7 +422,7 @@ python play.py --bots 125 --port 8001
 <pre><code class="language-bash">python manage.py open_khorinis --bots 125
 python play.py --port 8001
 </code></pre>
-<p>Daje to domyślnie <strong>125 + 125 = 250 botów</strong>. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a <code>--bots</code> nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Po Barierze każda odkryta odsłona może dodać do <strong>5 nowych kont od poziomu 0</strong>, do <strong>280 botów automatycznie</strong> w połączonym świecie. Ręczne limity operatora pozostają dostępne. Adaptacyjne tempo kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.</p>
+<p>Daje to domyślnie <strong>125 + 125 = 250 botów</strong>. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a <code>--bots</code> nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Kolejne odsłony przyjmują od 35 do 45 nowych kont od poziomu 0 w partiach do pięciu co 30 minut, do <strong>500 botów automatycznie</strong> w połączonym świecie. Ręczne limity operatora pozostają dostępne. Adaptacyjne tempo kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.</p>
 <p>SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. <a href="#doc-operator-guide">Windows, restart, aktualizacja i zarządca</a> · <a href="#doc-postgresql">PostgreSQL</a> · <a href="#doc-production">Profil HTTPS</a>. Restart zachowuje dane; pełny reset jest odrębną operacją.</p>
 <h3 id="doc-readme--od-nowej-postaci-do-endgame">Od nowej postaci do endgame</h3>
 <ol>
@@ -430,8 +430,8 @@ python play.py --port 8001
 <li>Kolonia i Khorinis przed Barierą działają niezależnie: własne historie, rynki, rankingi, boty i wspólnoty. Każda podstawowa droga awansu ma cztery rangi.</li>
 <li>W Kolonii przechodzisz osobistą kampanię mieszkańca. Jej finał nie łączy światów. Wspólnota poziomu 10 podejmuje osobną walkę ze Śniącym; pieczęcie wymagają wkładu trzech różnych kont. Boty mogą uczestniczyć.</li>
 <li>Pierwsze zwycięstwo zleca trwałe połączenie, ze świeżą kopią, próbą odtworzenia i blokadą zapisów. Po nim jest <strong>jeden serwer</strong>, wspólny rynek i ranking oraz podróże między regionami, z zachowaniem dorobku i pochodzenia.</li>
-<li>Działa pięć frakcji: Miasto Khorinis, Klasztor Magów Ognia, Magowie Wody, Bandyci i Najemnicy. Cztery dalsze rangi trzeba zdobyć. Bractwo wybiera następcę; Guru/Arcyguru tylko frakcję magiczną.</li>
-<li>Publiczny Jarkendar wymaga własnego zadania portalu od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. <strong>Nie ma kont premium ani realnych płatności.</strong></li>
+<li>Działa sześć frakcji. Bractwo przechodzi w związany z Beliarem Zakon Czarnej Zasłony i zachowuje własne runy. Bandyci Khorinis mają siedzibę w Wieży Dextera przy farmie Onara. Każda frakcja ma osiem rang.</li>
+<li>Odprawa portalu Jarkendaru jest dostępna najwcześniej dwie doby po upadku Bariery. Każdy mieszkaniec zdobywa osobisty dostęp od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. <strong>Nie ma kont premium ani realnych płatności.</strong></li>
 <li>Po finale pozostają stare 100 wart, cztery regionalne ścieżki po 100 stopni, tygodniowy cel wspólnoty, kuźnia, handel, wydarzenia i ranking miesiąca. Miesiąc nie kasuje postaci.</li>
 </ol>
 <p><a href="#doc-complete-journey">Pełna droga i bramki</a> · <a href="#doc-build-playthroughs">Dziewięć buildów i dróg frakcyjnych</a> · <a href="#doc-camp-guilds">Sukcesja</a> · <a href="#doc-camps">Rangi</a>.</p>
@@ -521,7 +521,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 <li>Wspólnota zdobywa poziom 10 przez faktyczne projekty i wspólne wyprawy. Najwyższa czwarta ranga ludzkiej postaci Kolonii odblokowuje w panelu Wspólnota dodatkowe <a href="#doc-camp-raids">wyprawy na rozkaz</a>, powtarzalne po pokonaniu celu aż do poziomu 10, bez czekania na reset doby. Do Śniącego potrzebne są kwalifikujące się postacie, a pieczęć wymaga wkładu minimum trzech różnych kont; alternatywne postacie jednego konta nie zastępują społeczności. Boty mogą uczestniczyć na zwykłych zasadach.</li>
 <li>Gdy wspólnota ma poziom10, otwórz <strong>Wspólnota → Śniący — następny krok wspólnoty</strong> u góry strony i wybierz <strong>Rozpocznij walkę ze Śniącym</strong>. Ogłoszenie nie kosztuje energii; po nim pojawia się osobny przycisk wypadu za25 energii. Lista wymagań pokazuje brakujące warunki, np. nieodebrane przygotowanie rytuału lub zamknięte Khorinis. Przy zablokowanym ataku sprawdź podany powód: zdrowie50, energia25, mana pierwszego rzutu, zajęta postać, odstęp60s, pauza albo pieczęć kolejnego konta. Nie jest wymagane jednoczesne zalogowanie trzech osób.</li>
 <li>Zwycięstwo zleca połączenie. Działający launcher/worker automatycznie obsługuje kolejkę: świeża kopia, próba odtworzenia, blokady i jednorazowa aktywacja. Przy błędzie kopii światy nie łączą się na skróty; stan i wznowienie są w panelu Bariery.</li>
-<li>Po połączeniu kreator pokazuje jeden serwer z dwoma regionami. Zachowujesz postać, ekwipunek, portfele, historię i pochodzenie; działa wspólny rynek/ranking oraz sukcesja pięciu frakcji.</li>
+<li>Po połączeniu kreator pokazuje jeden serwer z dwoma regionami. Zachowujesz postać, ekwipunek, portfele, historię i pochodzenie; działa wspólny rynek/ranking oraz sukcesja sześciu frakcji.</li>
 <li>Publiczny portal, Jarkendar, kontrakty NK, Kruk, cztery smoki i rejs prowadzą do Irdorath. <a href="#doc-gothic-ii-content">Szczegóły progów i zawartości</a>. Nie ma kont premium.</li>
 <li>Po odebraniu finału NK wskazówki prowadzą do „Wart wspólnych szlaków”. Obecne 100 stopni, powtarzalne walki, kuźnia, wspólnota i ranking miesiąca pozwalają kontynuować grę. Nowy miesiąc nie kasuje sprzętu i odblokowanych stopni. <a href="#doc-regional-endgame">Regionalny endgame</a> dodaje cztery osobne ścieżki po 100 stopni oraz tygodniowy cel wspólnoty po finale NK.</li>
 </ul>
@@ -531,7 +531,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 <p>Wybierz nową nazwę raportu. Polecenie zawsze tworzy własną tymczasową bazę plikową SQLite, nie używa bazy z <code>.env</code> i nie zmienia istniejących graczy. Trzy konta zaczynają na poziomie 0: normalne formularze kampanii, kupno sprzętu, trening, zdobyte odłamki, rangi Kopacza/Cienia/Strażnika, projekty i wyprawy wspólnoty. Potem rzeczywiste uderzenia Śniącego, zweryfikowana kopia/odtworzenie i powtórzona idempotentna aktywacja, 23 przydziały Jarkendaru/NK oraz 3 wygrane dawne warty, cztery ścieżki regionalne, tygodniowy cel i ponowna zweryfikowana kopia/odtworzenie z nowymi rekordami. Żądania mają kontrolę powtórzeń.</p>
 <p>Nie ustawia się zwycięstwa, wspólnej tożsamości serwera, wysokiego poziomu, wyposażenia ani salda aktorów przez fiksturę. Czas regeneracji i oczekiwania jest wirtualny. Osobny job CI wykonuje tę próbę raz, niezależnie od szybkich testów modułów i PostgreSQL.</p>
 <p>W porównaniu z panelem użyj tego samego polecenia z opcją <code>--operator energy</code> lub <code>--operator energy-ore</code>. Pomoc dotyczy trzeciego konta i trafia do kroniki przez formularze zarządcy z CSRF. W raporcie odczytaj osobno liczbę dni do aktywacji Bariery, Irdorath i pierwszych wart. Limit 60 sekund pomiędzy uderzeniami nadal działa i korzysta z tego samego zegara co zapis uderzenia. Regeneracja i kalendarz wspólnoty nadal obowiązują.</p>
-<p><a href="#report-pelna-droga-2026-11-12">Raport gotowości i granice</a>. Próba nie jest dowodem tempa człowieka, organicznego rozwoju wszystkich buildów ani stabilności wielodniowej gospodarki 250 botów. Trzy strategie wojownika są wykonywane kolejno, a nie równolegle. Pozostałe pakiety nadal sprawdzają magię, łucznika, pięć frakcji, współbieżność i populację. Poprawiono w modelu timer wydobycia oraz odczyt regeneracji/ceny przed zakupem — starsze raporty zachowują historyczny zakres i wyniki.</p>
+<p><a href="#report-pelna-droga-2026-11-12">Raport gotowości i granice</a>. Próba nie jest dowodem tempa człowieka, organicznego rozwoju wszystkich buildów ani stabilności wielodniowej gospodarki 250 botów. Trzy strategie wojownika są wykonywane kolejno, a nie równolegle. Pozostałe pakiety nadal sprawdzają magię, łucznika, sześć frakcji, współbieżność i populację. Poprawiono w modelu timer wydobycia oraz odczyt regeneracji/ceny przed zakupem — starsze raporty zachowują historyczny zakres i wyniki.</p>
 <h3 id="doc-complete-journey--stan-penej-drogi">Stan pełnej drogi</h3>
 <p>Grafiki aktywnych przedmiotów, lokacji, mobów i bossów są lokalne i walidowane. Pełna droga, dziewięć organicznych kombinacji buildów/frakcji, cztery dalsze awanse, regionalny endgame i wydarzenia #137 są wdrożone. <a href="#doc-roadmap">Roadmapa</a> wskazuje pozostałe efekty NK, długą gospodarkę i ocenę przez ludzi.</p>
 <p><a href="#report-grywalnosc-wydania-2026-11-13">Audyt 13 XI</a>: rzeczywista aktywacja trzech kont, NK i wejście w endgame w 17,00 wirtualnych dniach, poziom 58; osobno dziewięć dróg do rangi 8 i poziomów 59–63. Czas macierzy nie obejmuje oczekiwania społeczności na Barierę. Nie jest to pomiar czasu człowieka ani przejście wszystkich 400 stopni regionalnych. Portrety NPC i sceny questowe pozostają odłożone.</p>
@@ -1185,7 +1185,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <td>50% mniej obrażeń w turze rzutu</td>
 </tr>
 <tr>
-<td>Bractwo po Barierze</td>
+<td>Zakon Czarnej Zasłony po Barierze</td>
 <td>Pieczęć Śniącego</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">18</td>
@@ -1209,7 +1209,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <td>50% mniej obrażeń w turze rzutu</td>
 </tr>
 <tr>
-<td>Bractwo po otwarciu portalu</td>
+<td>Zakon Czarnej Zasłony po otwarciu portalu</td>
 <td>Szczelina Śniącego</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">20</td>
@@ -1269,7 +1269,7 @@ walkę pięściami po wyczerpaniu many. Dzięki wspólnej prognozie bot nie porz
 magii na podstawie innej oceny pancerza ani nie farmi, gdy finał jest osiągalny
 po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bossów.</p>
 <h3 id="doc-magic--frakcja-po-sukcesji-i-przygotowanie-do-bossa">Frakcja po sukcesji i przygotowanie do bossa</h3>
-<p>Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; po wyborze Bractwa zachowana rodzima szkoła pozostaje dostępna do historycznej kampanii. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. <a href="#doc-camp-guilds">Frakcje</a>.</p>
+<p>Bieżący Klasztor/Krąg Wody otwiera odpowiednią szkołę; Zakon Czarnej Zasłony zachowuje szkołę run dawnego Bractwa. Nowe kręgi trzeba kupić za PN/rudę, a runy osobno — sukcesja nie nadaje ich za darmo. Maksymalny krąg to 6. <a href="#doc-camp-guilds">Frakcje</a>.</p>
 <p>Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów i dostępną manę/zwoje. Sam pierwszy opłacalny rzut nie gwarantuje pokonania bossa. Odporności mogą premiować runę z niższego kręgu. Przed trudnym starciem warto sprawdzić ochronę i odpocząć. <a href="#doc-build-playthroughs">Organiczne drogi Ognia/Wody i Bractwa</a>.</p>
 <h3 id="doc-magic--ponowne-przejscie-wody-bez-zwojow-150">Ponowne przejście Wody bez zwojów — #150</h3>
 <p><a href="#report-mag-wody-runy-2026-11-13">Raport</a>: nowa postać Kolonii, Nowy Obóz, sześć opłaconych run przed Barierą, awanse, dalsza runa NK, finał Irdorath, ósma ranga i pierwsze regionalne warty. Próba zabrania zakupów zwojów, nie przyznaje PN/many/rudy ani run. Regeneracja jest zwykła; opcjonalny itemshop zdrowia/energii korzysta z zarobionych odłamków. Doświadczenie przed uzyskaniem szkoły obejmuje podstawową broń.</p>
@@ -1528,12 +1528,12 @@ wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i 
 <tr>
 <td>Bractwo</td>
 <td>Guru: Zbieracz → Nowicjusz → Guru → Arcyguru</td>
-<td>Jednorazowy wybór Ognia albo Wody; próba wybiera Wodę</td>
+<td>Zakon Czarnej Zasłony, droga magiczna</td>
 </tr>
 <tr>
 <td>Bractwo</td>
 <td>Wojownik: Zbieracz → Nowicjusz → Strażnik → Templariusz</td>
-<td>Jednorazowy wybór wspólnoty; próba wybiera Miasto</td>
+<td>Zakon Czarnej Zasłony, droga wojskowa</td>
 </tr>
 </tbody>
 </table></div>
@@ -1639,7 +1639,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 </tbody>
 </table></div>
 <p>Przyjmij próbę przed działaniami. Jedna próba naraz; porzucenie kasuje jej postęp. Odbiory wydobycia, wygrane walki i płatny trening zaliczają wyłącznie fakty po przyjęciu. Promocja ponownie sprawdza poprzednią rangę, gałąź, odebraną fabułę, poziom, bazowy atrybut, ukończenie celów i rudę. Zapłata i awans mają jedną transakcję. <a href="#doc-characters-and-worlds">Progi fabuły</a>.</p>
-<h3 id="doc-camps--po-barierze-piec-frakcji-i-osiem-rang">Po Barierze: pięć frakcji i osiem rang</h3>
+<h3 id="doc-camps--po-barierze-szesc-frakcji-i-osiem-rang">Po Barierze: sześć frakcji i osiem rang</h3>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -1665,7 +1665,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <td>Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa</td>
 </tr>
 <tr>
-<td>Bandyci — Jarkendar</td>
+<td>Bandyci Khorinis</td>
 <td>Kopacz → Rzezimieszek → Bandyta → Watażka</td>
 <td>Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów</td>
 </tr>
@@ -1673,6 +1673,11 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <td>Najemnicy — Łowcy Smoków</td>
 <td>Pomocnik → Rekrut → Najemnik → Kapitan Najemników</td>
 <td>Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków</td>
+</tr>
+<tr>
+<td>Zakon Czarnej Zasłony</td>
+<td>Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz</td>
+<td>Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara</td>
 </tr>
 </tbody>
 </table></div>
@@ -1684,7 +1689,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <th style="text-align: right;">Poziom</th>
 <th style="text-align: right;">Ruda</th>
 <th style="text-align: right;">Wojskowe: bazowa siła lub zręczność</th>
-<th style="text-align: right;">Ogień/Woda: bazowa mana</th>
+<th style="text-align: right;">Szkoły magiczne: bazowa mana</th>
 <th>Cele</th>
 </tr>
 </thead>
@@ -1742,7 +1747,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <li>Warty: +N ochrony przed bronią i pociskami, bez zmiany bazowych statystyk i ochrony ognia/magii.</li>
 </ul>
 <p>Wpłata jest odpływem z portfela, lecz transferem do skarbca w skali świata. Nagroda projektu tworzy rudę, zakup ulepszenia ją zużywa. Sam ledger portfeli nie opisuje całego majątku bez skarbców. Boty wpłacają własną rudę i kupują przez te same usługi, bez dotacji do postępu.</p>
-<h3 id="doc-camp-guilds--piec-nastepczych-frakcji-po-barierze">Pięć następczych frakcji po Barierze</h3>
+<h3 id="doc-camp-guilds--szesc-nastepczych-frakcji-po-barierze">Sześć następczych frakcji po Barierze</h3>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -1753,7 +1758,7 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 <tbody>
 <tr>
 <td>Stary Obóz, droga wojskowa</td>
-<td>Bandyci — Jarkendar</td>
+<td>Bandyci Khorinis, Wieża Dextera przy farmie Onara</td>
 </tr>
 <tr>
 <td>Stary Obóz, Mag/Arcymag Ognia</td>
@@ -1777,25 +1782,24 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 </tr>
 <tr>
 <td>Bractwo</td>
-<td>Oczekujący jednorazowy wybór następcy</td>
+<td>Zakon Czarnej Zasłony</td>
 </tr>
 </tbody>
 </table></div>
-<p>Kopacz/Cień oraz Kret/Szkodnik trafiają do odpowiedniego wojskowego następcy, ale mogą dokończyć rodzimą magiczną gałąź jej zwykłymi wymaganiami. To kontynuacja ścieżki, nie swobodne zmienianie frakcji. Postać bez członkostwa nie jest automatycznie rekrutowana. Po Barierze Bractwo nie przyjmuje nowych ludzi.</p>
+<p>Kopacz/Cień oraz Kret/Szkodnik trafiają do odpowiedniego wojskowego następcy, ale mogą dokończyć rodzimą magiczną gałąź jej zwykłymi wymaganiami. To kontynuacja ścieżki, nie swobodne zmienianie frakcji. Postać bez członkostwa nie jest automatycznie rekrutowana. Nowe postacie z Kolonii mogą dołączyć do Zakonu zwykłą ścieżką rekrutacji.</p>
 <p>Sukcesja zachowuje imię, ID, poziom, przedmioty, historię, oryginalną rangę oraz odpowiadający szczebel podstawowy. Dzisiejsze nazwy i pełne 8 rang podaje <a href="#doc-camps">CAMPS.md</a>. Historyczne kampanie i niezbędny sprzęt nie znikają.</p>
 <h3 id="doc-camp-guilds--podzia-skarbcow">Podział skarbców</h3>
 <p>Ruda i PD Starego/Nowego Obozu dzielą się proporcjonalnie do liczby przechodzących postaci, ludzi i botów, także nieaktywnych. Reszta całkowitoliczbowa według największej reszty, przy remisie kod frakcji. Pusty Stary Obóz przekazuje Bandytom, pusty Nowy/Onar Najemnikom. Poziom i ulepszenia nie są obniżane; przy łączeniu obowiązuje maksimum, nie suma. Ogień Kolonii łączy się ze wspólnotą klasztoru.</p>
 <p>Historyczne źródła zachowują rekordy; przekazana ruda/PD są zerowane, stan i przydziały zapisuje audyt. Starszy połączony skarbiec Lee/Onara nie nalicza PD Onara drugi raz. Nowe działania korzystają wyłącznie z bieżącej wspólnoty.</p>
 <p>Projekty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują niedokończone projekty/wyprawy, a następcy zaczynają własne bez kopiowania postępu. Miasto i klasztor zachowują swoje projekty. Zakończona dawna wyprawa nadal płaci raz faktycznemu uczestnikowi; niedokończony projekt nie daje rekompensaty.</p>
-<h3 id="doc-camp-guilds--jednorazowy-wybor-bractwa">Jednorazowy wybór Bractwa</h3>
-<p>Formularz w <code>/oboz/</code> pozwala wybrać raz: Guru/Arcyguru tylko Ogień lub Wodę; pozostałe rangi, w tym Zbieracz/Nowicjusz, wszystkie 5 frakcji. Przed wyborem zakończ czynność i dokończ albo świadomie porzuć aktywną próbę awansu. Formularz nie kasuje jej sam. Czekając, nadal można grać.</p>
-<p>Wybrany następca zachowuje szczebel. Brak rangi pozostaje brakiem rangi. Nie przybywa PN, poziomów, atrybutów, kręgów, sprzętu ani prywatnej waluty. Powtórzenie tego samego wyboru jest bezpłatne; inny następca jest odrzucany. Kolejne rodzime awanse nie nadpisują wyboru.</p>
-<p>Po wyborze magicznym Nowicjusz kontynuuje Guru; dawny Strażnik świątynny może zdobyć Arcyguru zwykłym zadaniem/opłatą. Po wyborze wojskowym Nowicjusz idzie drogą Strażnika/Templariusza. Wybrana szkoła i sprzęt/siedziba wymagają zwykłych progów; run trzeba się nauczyć i je kupić. Rodzima szkoła/miejsca potrzebne historii pozostają używalne.</p>
-<p>Depozyt Bractwa dzieli bieżącą rudę/PD po równo między pozostających członków oczekujących. Reszta według IDpostaci. Przy wyborze udział idzie do docelowej wspólnoty, nigdy do prywatnego portfela. Kolejne wybory uwzględniają faktyczne późniejsze wpłaty/nagrody, a blokada depozytu serializuje równoczesne decyzje. Ostatni wychodzący opróżnia przekazywalną pulę; ulepszenia/poziomy dziedziczone są maksimum. Nie kopiuje się projektów ani nagród.</p>
+<h3 id="doc-camp-guilds--zakon-czarnej-zasony">Zakon Czarnej Zasłony</h3>
+<p>Po śmierci Śniącego ocaleni opuszczają dawną świątynię. W krypcie Khorinis składają przysięgę Beliarowi i przyjmują miano Zakonu Czarnej Zasłony. Poszukiwacze strzegą odzyskanych zapisków i uczą nowych członków. Guru zachowują szkołę run Bractwa, a dawni templariusze rozwijają drogę władania bronią. Osiem rang odpowiada ośmiu szczeblom pozostałych frakcji. Za wyższe awanse magowie odpowiadają maną, a strażnicy siłą lub zręcznością.</p>
+<p>Dawny skarbiec Bractwa, jego dowody wpłat i wyprawy przechodzą do Zakonu z zachowaniem identyfikatora wspólnoty. Na już połączonym zapisie migracja 0059 przenosi byłych członków Bractwa do nowej frakcji. Zachowuje opłacony szczebel, postęp rozpoczętego awansu, ekwipunek i historię. Zapisane transfery dawnych wyborów pozostają w skarbcach, które je otrzymały. Niedostępna runa Ognia lub Wody zostaje zdjęta z przygotowania i nadal jest w plecaku.</p>
+<p>Wieża Dextera stanowi siedzibę Bandytów Khorinis od upadku Bariery. Placówka zaopatrzeniowa w Jarkendarze staje się dostępna po otwarciu osobistego przejścia przez portal, także dla bandytów.</p>
 <h3 id="doc-camp-guilds--awans-i-niezawodnosc">Awans i niezawodność</h3>
 <p>Dalsze rangi 5–8 działają dla każdej frakcji, przez własne próby i opłaty. Dawny pięcioszczeblowy Związek Lee/Onara jest formatem historycznym; nowych awansów nie kupuje się jego starym formularzem. Opłacone osiągnięcia zachowują korzyści bez ponownej zapłaty.</p>
 <p><code>FactionSuccession</code> jest unikalne dla wyścigu; blokady postaci/gildii i audyt tworzą jedną transakcję. Nowa aktywacja i aktualizacja starszego połączonego zapisu korzystają ze świeżej kopii/odtworzenia. Worker wznawia kontrolowane operacje; nie przepisuj członkostw ręcznym SQL. <a href="#doc-backups">Kopie i wznowienie</a>.</p>
-<p><a href="#report-sukcesja-frakcji-2026-11-11">Raport sukcesji</a>, <a href="#report-wybor-bractwa-2026-11-12">wybór Bractwa</a>, <a href="#doc-build-playthroughs">dziewięć organicznych dróg</a>. Piraci pozostają grupą fabularną, nie szóstą frakcją; publiczny <a href="#doc-jarkendar">Jarkendar</a> ma osobne zadanie portalu.</p></article><article id="doc-camp-raids" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/CAMP_RAIDS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CAMP_RAIDS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-camp-raids--asynchroniczne-wyprawy-wspolnoty">Asynchroniczne wyprawy wspólnoty</h2>
+<p><a href="#report-sukcesja-frakcji-2026-11-11">Raport sukcesji</a>, <a href="#report-wybor-bractwa-2026-11-12">wybór Bractwa</a>, <a href="#doc-build-playthroughs">dziewięć organicznych dróg</a>. Piraci pozostają grupą fabularną; publiczny <a href="#doc-jarkendar">Jarkendar</a> ma osobne zadanie portalu.</p></article><article id="doc-camp-raids" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/CAMP_RAIDS.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CAMP_RAIDS.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-camp-raids--asynchroniczne-wyprawy-wspolnoty">Asynchroniczne wyprawy wspólnoty</h2>
 <p>Stan: 14 XI 2026, wyprawy na rozkaz #152 (migracja 0055). Wyprawa wspólnoty ma wspólne HP i osobne wypady uczestników. Nie jest bossem solo ani globalnym wyścigiem Śniącego. Nie wymaga drużyny lub jednoczesnego zalogowania. Przed Barierą dotyczy rodzimego obozu/frakcji; po niej bieżącej wspólnoty sukcesji. <a href="#doc-camp-guilds">Sukcesja</a>.</p>
 <h3 id="doc-camp-raids--wyprawa-dzienna">Wyprawa dzienna</h3>
 <p>Członek od osobistego szczebla 1 może ogłosić jeden cel na wspólnotę/polski dzień. Podstawowe tematy obejmują ochronę szybu, orkowy patrol i węża rozlewiska; inne frakcje mają własne etykiety. Parametry utrwalają się przy zwołaniu: <code>500+100×poziom</code> HP, atak <code>10+2×poziom</code>, ochrona <code>4+2×poziom</code>. Minimalny poziom uczestnika 3.</p>
@@ -2291,7 +2295,58 @@ zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.</p>
 <h3 id="doc-events--aczenie-premii">Łączenie premii</h3>
 <p>Ruda i PD biorą osobne maksimum z rytmu świata, wydarzeń ogólnych i faktycznie użytecznej premii regionalnej — bez mnożenia. Odłamki korzystają z najwyższego bonusu ogólnego i tylko przy zleceniu z bazowymi odłamkami. Regionalny dodatek ich nie podnosi. Stałe nagrody fabularne, wyzwania, osiągnięcia i wyprawy wspólnoty mają własne reguły.</p>
 <h3 id="doc-events--weryfikacja-i-zgodnosc">Weryfikacja i zgodność</h3>
-<p><a href="#report-pule-etapow-2026-11-13">Raport pul, regresji, GUI i populacji</a>: wszystkie etapy, przejście w środku okna, stary format tekstów, własne edycje, restart i wspólna pula po połączeniu. Rzeczywisty wyścig równoległej inicjalizacji dwóch regionów jest w CI PostgreSQL; lokalny SQLite go jawnie pomija. Próba 250 botów obejmuje także 750 płatnych polowań z regionalnymi bonusami i zachowane limity. Nie jest to wielodniowa gospodarka ani nowa kampania.</p></article><article id="doc-world-updates" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/WORLD_UPDATES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD_UPDATES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world-updates--aktualizacje-zyjacego-swiata-i-wydarzenia-regionalne">Aktualizacje żyjącego świata i wydarzenia regionalne</h2>
+<p><a href="#report-pule-etapow-2026-11-13">Raport pul, regresji, GUI i populacji</a>: wszystkie etapy, przejście w środku okna, stary format tekstów, własne edycje, restart i wspólna pula po połączeniu. Rzeczywisty wyścig równoległej inicjalizacji dwóch regionów jest w CI PostgreSQL; lokalny SQLite go jawnie pomija. Próba 250 botów obejmuje także 750 płatnych polowań z regionalnymi bonusami i zachowane limity. Nie jest to wielodniowa gospodarka ani nowa kampania.</p>
+<h3 id="doc-events--odstepy-odson-i-napyw-mieszkancow">Odstępy odsłon i napływ mieszkańców</h3>
+<p>Pierwsze zwycięstwo nad Śniącym zachowuje dotychczasowe warunki. Odprawa kolejnego etapu wymaga upływu minimalnego czasu od faktycznego ogłoszenia poprzedniej odsłony oraz osiągnięcia fabularnego przez mieszkańca. Już ogłoszone odsłony i przyjęte zadania pozostają w historii.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Odsłona</th>
+<th style="text-align: right;">Minimalny odstęp</th>
+<th style="text-align: right;">Nowe konta botów</th>
+<th style="text-align: right;">Domyślna populacja po fali</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td style="text-align: right;">zwycięstwo wspólnoty</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">285</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td style="text-align: right;">48 h</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">330</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td style="text-align: right;">24 h</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">375</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td style="text-align: right;">24 h</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">420</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td style="text-align: right;">48 h</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">460</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td style="text-align: right;">24 h</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">500</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nowe postacie zaczynają na poziomie 0. Worker wpuszcza do pięciu co pół godziny i utrwala stan w jednej transakcji z utworzeniem kont. Pozostałe poziomy wynikają z wieku postaci, jej sesji, walk, zleceń i handlu. Ekran Życie kolonii pokazuje faktyczne liczby poziomów w przedziałach dla ludzi i botów.</p></article><article id="doc-world-updates" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/WORLD_UPDATES.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD_UPDATES.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world-updates--aktualizacje-zyjacego-swiata-i-wydarzenia-regionalne">Aktualizacje żyjącego świata i wydarzenia regionalne</h2>
 <p>Stan: 13 XI 2026, etap #137, migracja 0054. Kolejne odsłony mają nazwę, zakres, ilustrację i trwałą datę odkrycia. Są prezentowane jak aktualizacje MMORPG, a uruchamia je rzeczywisty rozwój wspólnoty tego serwera. Kod zawartości jest częścią instalacji gry; nie pobieramy nowych paczek z sieci w trakcie rozgrywki.</p>
 <h3 id="doc-world-updates--nazwane-odsony">Nazwane odsłony</h3>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
@@ -2710,7 +2765,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <tbody>
 <tr>
 <td>Lokacje łącznie</td>
-<td>86</td>
+<td>88</td>
 </tr>
 <tr>
 <td>Lokacje GOTHIC_I</td>
@@ -2718,7 +2773,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>Lokacje GOTHIC_II</td>
-<td>39</td>
+<td>41</td>
 </tr>
 <tr>
 <td>Populacje przeciwników do polowań</td>
@@ -2733,8 +2788,8 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>30</td>
 </tr>
 <tr>
-<td>Wyższe awanse pięciu frakcji</td>
-<td>20</td>
+<td>Wyższe awanse sześciu frakcji</td>
+<td>24</td>
 </tr>
 <tr>
 <td>Zaklęcia działające (nie liczba modeli run/zwojów)</td>
@@ -2890,6 +2945,22 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>GOTHIC_II</td>
 <td>0</td>
 <td>—</td>
+<td>train_page</td>
+<td></td>
+</tr>
+<tr>
+<td>dexter_tower — Wieża Dextera</td>
+<td>GOTHIC_II</td>
+<td>0</td>
+<td>BANDITS; po Barierze</td>
+<td>train_page</td>
+<td></td>
+</tr>
+<tr>
+<td>veil_refuge — Krypta Czarnej Zasłony</td>
+<td>GOTHIC_II</td>
+<td>0</td>
+<td>VEIL_ORDER; po Barierze</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3166,7 +3237,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>Szkielet wojownik, Zombie, Młody troll</td>
 </tr>
 <tr>
-<td>jark_bandits — Obóz bandytów</td>
+<td>jark_bandits — Obóz zaopatrzeniowy bandytów</td>
 <td>GOTHIC_II</td>
 <td>12</td>
 <td>po Barierze; portal</td>
@@ -5032,7 +5103,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa</td>
 </tr>
 <tr>
-<td>Bandyci — Jarkendar</td>
+<td>Bandyci Khorinis</td>
 <td>Kopacz → Rzezimieszek → Bandyta → Watażka</td>
 <td>Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów</td>
 </tr>
@@ -5040,6 +5111,11 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>Najemnicy — Łowcy Smoków</td>
 <td>Pomocnik → Rekrut → Najemnik → Kapitan Najemników</td>
 <td>Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków</td>
+</tr>
+<tr>
+<td>Zakon Czarnej Zasłony</td>
+<td>Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz</td>
+<td>Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara</td>
 </tr>
 </tbody>
 </table></div>
@@ -6468,7 +6544,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>windfist — Uderzenie wiatru</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>1</td>
 <td>3</td>
 <td>18 / magia</td>
@@ -6477,7 +6553,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>stormfist — Uderzenie burzy</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>3</td>
 <td>7</td>
 <td>42 / magia</td>
@@ -6486,7 +6562,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>pyrokinesis — Pirokineza</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>5</td>
 <td>13</td>
 <td>150 / magia</td>
@@ -6549,7 +6625,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>marshpulse — Podmuch Śniącego</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>2</td>
 <td>5</td>
 <td>33 / magia</td>
@@ -6558,7 +6634,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>marshresonance — Uścisk Śniącego</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>4</td>
 <td>9</td>
 <td>105 / magia</td>
@@ -6567,7 +6643,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>marshsilence — Wola Śniącego</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>6</td>
 <td>16</td>
 <td>210 / magia</td>
@@ -6594,7 +6670,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>barrier_echo — Pieczęć Śniącego</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>6</td>
 <td>18</td>
 <td>255 / magia</td>
@@ -6621,7 +6697,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>sleeper_rift — Szczelina Śniącego</td>
-<td>Bractwo Śniącego</td>
+<td>Bractwo Śniącego / Zakon Czarnej Zasłony</td>
 <td>6</td>
 <td>20</td>
 <td>340 / magia</td>

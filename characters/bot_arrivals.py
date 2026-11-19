@@ -1,19 +1,24 @@
 """Bounded arrivals when a named server milestone is reached."""
 from collections import Counter
+from datetime import timedelta
 
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.utils import timezone
 from uuid import uuid4
 
 from .barrier import region_ids
 from .bot_personalities import assignment
+from .bot_population import MAX_BOTS_PER_WORLD
 from .models import PlayerProfile, WorldRelease
 from .realms import open_worlds, world_scope
 from .world_releases import RELEASES
 
 MILESTONE_KEYS = tuple(key for key, *_ in RELEASES if key != 'foundations')
-ARRIVALS_PER_MILESTONE = 5
-AUTOMATIC_POPULATION_CAP = 280
+ARRIVAL_QUOTAS = dict(zip(MILESTONE_KEYS, (35, 45, 45, 45, 40, 40)))
+ARRIVAL_BATCH = 5
+ARRIVAL_INTERVAL = timedelta(minutes=30)
+AUTOMATIC_POPULATION_CAP = 500
 
 
 def base_bot_target(world):
@@ -27,30 +32,38 @@ def admit_next_cohort(primary):
     if len(ids) < 2:
         return
     pending = dict(WorldRelease.objects.filter(
-        world_id=primary.world_id, key__in=MILESTONE_KEYS, bot_arrivals__isnull=True,
+        world_id=primary.world_id, key__in=MILESTONE_KEYS, bot_arrivals_finished=False,
     ).values_list('key', 'pk'))
     release_id = next((pending[key] for key in MILESTONE_KEYS if key in pending), None)
     if release_id is None:
         return
     with primary.work():
         release = WorldRelease.objects.select_for_update().get(pk=release_id)
-        if release.bot_arrivals is not None:
+        if release.bot_arrivals_finished:
             return
+        now = timezone.now()
+        last_batch = WorldRelease.objects.filter(world_id=primary.world_id, bot_arrivals_at__isnull=False
+                                                ).order_by('-bot_arrivals_at').values_list('bot_arrivals_at', flat=True).first()
+        if last_batch is not None and now < last_batch + ARRIVAL_INTERVAL:
+            return
+        arrived = release.bot_arrivals or 0
+        remaining = ARRIVAL_QUOTAS[release.key] - arrived
         worlds = list(open_worlds().select_for_update().filter(pk__in=ids, configured=True).order_by('pk'))
-        capacity = min(ARRIVALS_PER_MILESTONE, AUTOMATIC_POPULATION_CAP - sum(w.bot_count for w in worlds))
+        capacity = min(ARRIVAL_BATCH, remaining, AUTOMATIC_POPULATION_CAP - sum(w.bot_count for w in worlds))
         population = dict(PlayerProfile.objects.filter(world_id__in=ids, is_bot=True, user__is_active=True)
                           .values('world_id').annotate(total=Count('pk')).values_list('world_id', 'total'))
         eligible = [w for w in worlds if w.bot_count and population.get(w.pk) == w.bot_count]
         planned = Counter()
         for n in range(max(0, capacity)):
-            if not eligible:
+            room = [world for world in eligible if world.bot_count + planned[world.pk] < MAX_BOTS_PER_WORLD]
+            if not room:
                 break
-            world = min(eligible, key=lambda w: (w.bot_count + planned[w.pk], w.pk))
+            world = min(room, key=lambda w: (w.bot_count + planned[w.pk], w.pk))
             with world_scope(world):
                 user = User.objects.create_user(f'arrival-{release.key}-{uuid4().hex}', password=None)
                 profile = user.characters.get(world=world)
                 profile.is_bot = True
-                profile.bot_role = ('hunter', 'trader', 'miner')[(release.pk + n) % 3]
+                profile.bot_role = ('hunter', 'trader', 'miner')[(release.pk + arrived + n) % 3]
                 profile.bot_personality, profile.bot_session_shift = assignment(profile.pk, world.pk)
                 profile.save(update_fields=['is_bot', 'bot_role', 'bot_personality', 'bot_session_shift'])
             planned[world.pk] += 1
@@ -58,5 +71,9 @@ def admit_next_cohort(primary):
             if planned[world.pk]:
                 world.bot_count += planned[world.pk]
                 world.save(update_fields=['bot_count'])
-        release.bot_arrivals = sum(planned.values())
-        release.save(update_fields=['bot_arrivals'])
+        admitted = sum(planned.values())
+        release.bot_arrivals = arrived + admitted
+        release.bot_arrivals_finished = not admitted or admitted >= remaining
+        if admitted:
+            release.bot_arrivals_at = now
+        release.save(update_fields=['bot_arrivals', 'bot_arrivals_finished', 'bot_arrivals_at'])

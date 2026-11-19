@@ -20,19 +20,20 @@ Każda gałąź ma 4 zdobywane rangi (technicznie 0–3). Brak rangi nie jest sz
 
 Przyjmij próbę przed działaniami. Jedna próba naraz; porzucenie kasuje jej postęp. Odbiory wydobycia, wygrane walki i płatny trening zaliczają wyłącznie fakty po przyjęciu. Promocja ponownie sprawdza poprzednią rangę, gałąź, odebraną fabułę, poziom, bazowy atrybut, ukończenie celów i rudę. Zapłata i awans mają jedną transakcję. [Progi fabuły](CHARACTERS_AND_WORLDS.md).
 
-## Po Barierze: pięć frakcji i osiem rang
+## Po Barierze: sześć frakcji i osiem rang
 
 | Frakcja | Odpowiedniki podstawowe 1–4 | Nowe 5–8 |
 |---|---|---|
 | Miasto Khorinis — Zakon Paladynów | Rekrut straży → Strażnik miejski → Sierżant straży → Dowódca straży | Kandydat Zakonu → Rycerz → Paladyn → Mistrz Zakonu |
 | Klasztor Magów Ognia | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru | Mistrz Ognia → Strażnik Świętego Ognia → Mistrz Kręgu Ognia → Awatar Innosa |
 | Krąg Magów Wody | Uczeń Wody → Adept Wody → Mag Wody → Arcymag Wody | Mistrz Wody → Strażnik Równowagi → Mistrz Kręgu Wody → Awatar Adanosa |
-| Bandyci — Jarkendar | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
+| Bandyci Khorinis | Kopacz → Rzezimieszek → Bandyta → Watażka | Przywódca szajki → Dowódca bandytów → Herszt bandytów → Baron bandytów |
 | Najemnicy — Łowcy Smoków | Pomocnik → Rekrut → Najemnik → Kapitan Najemników | Łowca Smoków → Weteran Łowców Smoków → Dowódca Łowców Smoków → Mistrz Łowców Smoków |
+| Zakon Czarnej Zasłony | Słuchacz Cienia → Nowicjusz Popiołu → Wysłannik Zasłony → Poszukiwacz | Powiernik Popiołu → Strażnik Czarnego Płomienia → Herold Mroku → Hierofant Beliara |
 
 Sukcesja zachowuje odpowiedni zdobyty szczebel, bez darmowych rang 5–8. [Mapowanie, Bractwo i majątek](CAMP_GUILDS.md). Wysoka ranga nie zastępuje portalu/rejsu ani fabuły NK.
 
-| Ranga | Poziom | Ruda | Wojskowe: bazowa siła lub zręczność | Ogień/Woda: bazowa mana | Cele |
+| Ranga | Poziom | Ruda | Wojskowe: bazowa siła lub zręczność | Szkoły magiczne: bazowa mana | Cele |
 |---|---:|---:|---:|---:|---|
 |5|30|500|70|50|3 zmiany wydobycia, 5 orkowych zwiadowców|
 |6|35|1000|90|70|5 orkowych wiarusów, 1 smok ognia|

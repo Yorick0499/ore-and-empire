@@ -77,3 +77,19 @@ Ruda i PD biorą osobne maksimum z rytmu świata, wydarzeń ogólnych i faktyczn
 ## Weryfikacja i zgodność
 
 [Raport pul, regresji, GUI i populacji](reports/pule-etapow-2026-11-13.json): wszystkie etapy, przejście w środku okna, stary format tekstów, własne edycje, restart i wspólna pula po połączeniu. Rzeczywisty wyścig równoległej inicjalizacji dwóch regionów jest w CI PostgreSQL; lokalny SQLite go jawnie pomija. Próba 250 botów obejmuje także 750 płatnych polowań z regionalnymi bonusami i zachowane limity. Nie jest to wielodniowa gospodarka ani nowa kampania.
+
+
+## Odstępy odsłon i napływ mieszkańców
+
+Pierwsze zwycięstwo nad Śniącym zachowuje dotychczasowe warunki. Odprawa kolejnego etapu wymaga upływu minimalnego czasu od faktycznego ogłoszenia poprzedniej odsłony oraz osiągnięcia fabularnego przez mieszkańca. Już ogłoszone odsłony i przyjęte zadania pozostają w historii.
+
+| Odsłona | Minimalny odstęp | Nowe konta botów | Domyślna populacja po fali |
+|---|---:|---:|---:|
+| Pęknięcie Bariery | zwycięstwo wspólnoty | 35 | 285 |
+| Zaginiona Dolina | 48 h | 45 | 330 |
+| Cienie nad Khorinis | 24 h | 45 | 375 |
+| Przebudzenie smoków | 24 h | 45 | 420 |
+| Żagle ku Irdorath | 48 h | 40 | 460 |
+| Orkowie u bram | 24 h | 40 | 500 |
+
+Nowe postacie zaczynają na poziomie 0. Worker wpuszcza do pięciu co pół godziny i utrwala stan w jednej transakcji z utworzeniem kont. Pozostałe poziomy wynikają z wieku postaci, jej sesji, walk, zleceń i handlu. Ekran Życie kolonii pokazuje faktyczne liczby poziomów w przedziałach dla ludzi i botów.

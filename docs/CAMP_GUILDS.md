@@ -18,19 +18,19 @@ Wpłata 1–10000 rudy ma UUID; powtórzenie nie płaci drugi raz, zmiana kwoty 
 
 Wpłata jest odpływem z portfela, lecz transferem do skarbca w skali świata. Nagroda projektu tworzy rudę, zakup ulepszenia ją zużywa. Sam ledger portfeli nie opisuje całego majątku bez skarbców. Boty wpłacają własną rudę i kupują przez te same usługi, bez dotacji do postępu.
 
-## Pięć następczych frakcji po Barierze
+## Sześć następczych frakcji po Barierze
 
 | Historyczne członkostwo | Bieżąca wspólnota |
 |---|---|
-| Stary Obóz, droga wojskowa | Bandyci — Jarkendar |
+| Stary Obóz, droga wojskowa | Bandyci Khorinis, Wieża Dextera przy farmie Onara |
 | Stary Obóz, Mag/Arcymag Ognia | Wspólny Klasztor Magów Ognia |
 | Klasztor Khorinis | Wspólny Klasztor Magów Ognia |
 | Nowy Obóz, droga wojskowa i Onar | Najemnicy — Łowcy Smoków |
 | Nowy Obóz, Mag/Arcymag Wody | Krąg Magów Wody |
 | Straż Khorinis | Miasto Khorinis — Zakon Paladynów |
-| Bractwo | Oczekujący jednorazowy wybór następcy |
+| Bractwo | Zakon Czarnej Zasłony |
 
-Kopacz/Cień oraz Kret/Szkodnik trafiają do odpowiedniego wojskowego następcy, ale mogą dokończyć rodzimą magiczną gałąź jej zwykłymi wymaganiami. To kontynuacja ścieżki, nie swobodne zmienianie frakcji. Postać bez członkostwa nie jest automatycznie rekrutowana. Po Barierze Bractwo nie przyjmuje nowych ludzi.
+Kopacz/Cień oraz Kret/Szkodnik trafiają do odpowiedniego wojskowego następcy, ale mogą dokończyć rodzimą magiczną gałąź jej zwykłymi wymaganiami. To kontynuacja ścieżki, nie swobodne zmienianie frakcji. Postać bez członkostwa nie jest automatycznie rekrutowana. Nowe postacie z Kolonii mogą dołączyć do Zakonu zwykłą ścieżką rekrutacji.
 
 Sukcesja zachowuje imię, ID, poziom, przedmioty, historię, oryginalną rangę oraz odpowiadający szczebel podstawowy. Dzisiejsze nazwy i pełne 8 rang podaje [CAMPS.md](CAMPS.md). Historyczne kampanie i niezbędny sprzęt nie znikają.
 
@@ -42,15 +42,13 @@ Historyczne źródła zachowują rekordy; przekazana ruda/PD są zerowane, stan 
 
 Projekty i wyprawy zachowują oryginalne ID. Rozdzielane obozy archiwizują niedokończone projekty/wyprawy, a następcy zaczynają własne bez kopiowania postępu. Miasto i klasztor zachowują swoje projekty. Zakończona dawna wyprawa nadal płaci raz faktycznemu uczestnikowi; niedokończony projekt nie daje rekompensaty.
 
-## Jednorazowy wybór Bractwa
+## Zakon Czarnej Zasłony
 
-Formularz w `/oboz/` pozwala wybrać raz: Guru/Arcyguru tylko Ogień lub Wodę; pozostałe rangi, w tym Zbieracz/Nowicjusz, wszystkie 5 frakcji. Przed wyborem zakończ czynność i dokończ albo świadomie porzuć aktywną próbę awansu. Formularz nie kasuje jej sam. Czekając, nadal można grać.
+Po śmierci Śniącego ocaleni opuszczają dawną świątynię. W krypcie Khorinis składają przysięgę Beliarowi i przyjmują miano Zakonu Czarnej Zasłony. Poszukiwacze strzegą odzyskanych zapisków i uczą nowych członków. Guru zachowują szkołę run Bractwa, a dawni templariusze rozwijają drogę władania bronią. Osiem rang odpowiada ośmiu szczeblom pozostałych frakcji. Za wyższe awanse magowie odpowiadają maną, a strażnicy siłą lub zręcznością.
 
-Wybrany następca zachowuje szczebel. Brak rangi pozostaje brakiem rangi. Nie przybywa PN, poziomów, atrybutów, kręgów, sprzętu ani prywatnej waluty. Powtórzenie tego samego wyboru jest bezpłatne; inny następca jest odrzucany. Kolejne rodzime awanse nie nadpisują wyboru.
+Dawny skarbiec Bractwa, jego dowody wpłat i wyprawy przechodzą do Zakonu z zachowaniem identyfikatora wspólnoty. Na już połączonym zapisie migracja 0059 przenosi byłych członków Bractwa do nowej frakcji. Zachowuje opłacony szczebel, postęp rozpoczętego awansu, ekwipunek i historię. Zapisane transfery dawnych wyborów pozostają w skarbcach, które je otrzymały. Niedostępna runa Ognia lub Wody zostaje zdjęta z przygotowania i nadal jest w plecaku.
 
-Po wyborze magicznym Nowicjusz kontynuuje Guru; dawny Strażnik świątynny może zdobyć Arcyguru zwykłym zadaniem/opłatą. Po wyborze wojskowym Nowicjusz idzie drogą Strażnika/Templariusza. Wybrana szkoła i sprzęt/siedziba wymagają zwykłych progów; run trzeba się nauczyć i je kupić. Rodzima szkoła/miejsca potrzebne historii pozostają używalne.
-
-Depozyt Bractwa dzieli bieżącą rudę/PD po równo między pozostających członków oczekujących. Reszta według IDpostaci. Przy wyborze udział idzie do docelowej wspólnoty, nigdy do prywatnego portfela. Kolejne wybory uwzględniają faktyczne późniejsze wpłaty/nagrody, a blokada depozytu serializuje równoczesne decyzje. Ostatni wychodzący opróżnia przekazywalną pulę; ulepszenia/poziomy dziedziczone są maksimum. Nie kopiuje się projektów ani nagród.
+Wieża Dextera stanowi siedzibę Bandytów Khorinis od upadku Bariery. Placówka zaopatrzeniowa w Jarkendarze staje się dostępna po otwarciu osobistego przejścia przez portal, także dla bandytów.
 
 ## Awans i niezawodność
 
@@ -58,4 +56,4 @@ Dalsze rangi 5–8 działają dla każdej frakcji, przez własne próby i opłat
 
 `FactionSuccession` jest unikalne dla wyścigu; blokady postaci/gildii i audyt tworzą jedną transakcję. Nowa aktywacja i aktualizacja starszego połączonego zapisu korzystają ze świeżej kopii/odtworzenia. Worker wznawia kontrolowane operacje; nie przepisuj członkostw ręcznym SQL. [Kopie i wznowienie](BACKUPS.md).
 
-[Raport sukcesji](reports/sukcesja-frakcji-2026-11-11.json), [wybór Bractwa](reports/wybor-bractwa-2026-11-12.json), [dziewięć organicznych dróg](BUILD_PLAYTHROUGHS.md). Piraci pozostają grupą fabularną, nie szóstą frakcją; publiczny [Jarkendar](JARKENDAR.md) ma osobne zadanie portalu.
+[Raport sukcesji](reports/sukcesja-frakcji-2026-11-11.json), [wybór Bractwa](reports/wybor-bractwa-2026-11-12.json), [dziewięć organicznych dróg](BUILD_PLAYTHROUGHS.md). Piraci pozostają grupą fabularną; publiczny [Jarkendar](JARKENDAR.md) ma osobne zadanie portalu.

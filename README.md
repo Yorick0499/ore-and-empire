@@ -2,7 +2,7 @@
 
 Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-Stan dokumentacji: **19 listopada 2026, migracja 0058_worldrelease_bot_arrivals**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
+Stan dokumentacji: **19 listopada 2026, migracja 0060_paced_bot_arrivals**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
 ## Uruchomienie
 
@@ -22,7 +22,7 @@ python manage.py open_khorinis --bots 125
 python play.py --port 8001
 ```
 
-Daje to domyślnie **125 + 125 = 250 botów**. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a `--bots` nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Po Barierze każda odkryta odsłona może dodać do **5 nowych kont od poziomu 0**, do **280 botów automatycznie** w połączonym świecie. Ręczne limity operatora pozostają dostępne. Adaptacyjne tempo kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.
+Daje to domyślnie **125 + 125 = 250 botów**. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a `--bots` nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Kolejne odsłony przyjmują od 35 do 45 nowych kont od poziomu 0 w partiach do pięciu co 30 minut, do **500 botów automatycznie** w połączonym świecie. Ręczne limity operatora pozostają dostępne. Adaptacyjne tempo kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.
 
 SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. [Windows, restart, aktualizacja i zarządca](docs/public/OPERATOR_GUIDE.md) · [PostgreSQL](docs/POSTGRESQL.md) · [Profil HTTPS](docs/PRODUCTION.md). Restart zachowuje dane; pełny reset jest odrębną operacją.
 
@@ -32,8 +32,8 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie u
 2. Kolonia i Khorinis przed Barierą działają niezależnie: własne historie, rynki, rankingi, boty i wspólnoty. Każda podstawowa droga awansu ma cztery rangi.
 3. W Kolonii przechodzisz osobistą kampanię mieszkańca. Jej finał nie łączy światów. Wspólnota poziomu 10 podejmuje osobną walkę ze Śniącym; pieczęcie wymagają wkładu trzech różnych kont. Boty mogą uczestniczyć.
 4. Pierwsze zwycięstwo zleca trwałe połączenie, ze świeżą kopią, próbą odtworzenia i blokadą zapisów. Po nim jest **jeden serwer**, wspólny rynek i ranking oraz podróże między regionami, z zachowaniem dorobku i pochodzenia.
-5. Działa pięć frakcji: Miasto Khorinis, Klasztor Magów Ognia, Magowie Wody, Bandyci i Najemnicy. Cztery dalsze rangi trzeba zdobyć. Bractwo wybiera następcę; Guru/Arcyguru tylko frakcję magiczną.
-6. Publiczny Jarkendar wymaga własnego zadania portalu od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. **Nie ma kont premium ani realnych płatności.**
+5. Działa sześć frakcji. Bractwo przechodzi w związany z Beliarem Zakon Czarnej Zasłony i zachowuje własne runy. Bandyci Khorinis mają siedzibę w Wieży Dextera przy farmie Onara. Każda frakcja ma osiem rang.
+6. Odprawa portalu Jarkendaru jest dostępna najwcześniej dwie doby po upadku Bariery. Każdy mieszkaniec zdobywa osobisty dostęp od poziomu 10. Dalsze kontrakty mieszkańca prowadzą przez Kruka, smoki i rejs do Irdorath. **Nie ma kont premium ani realnych płatności.**
 7. Po finale pozostają stare 100 wart, cztery regionalne ścieżki po 100 stopni, tygodniowy cel wspólnoty, kuźnia, handel, wydarzenia i ranking miesiąca. Miesiąc nie kasuje postaci.
 
 [Pełna droga i bramki](docs/COMPLETE_JOURNEY.md) · [Dziewięć buildów i dróg frakcyjnych](docs/BUILD_PLAYTHROUGHS.md) · [Sukcesja](docs/CAMP_GUILDS.md) · [Rangi](docs/CAMPS.md).

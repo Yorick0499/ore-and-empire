@@ -33,7 +33,7 @@ def main():
     if args.regional_events and not args.endgame:raise SystemExit('--regional-events wymaga --endgame')
     target=Path(args.report).resolve()
     if target.exists():raise SystemExit('Raport już istnieje.')
-    if not 20<=args.seconds<=300 or not 2<=args.population<=300:raise SystemExit('Wymagane 20–300 sekund oraz 2–300 botów łącznie.')
+    if not 20<=args.seconds<=300 or not 2<=args.population<=600:raise SystemExit('Wymagane 20–300 sekund oraz 2–600 botów łącznie.')
     sys.path.insert(0,str(ROOT))
     with tempfile.TemporaryDirectory(prefix='ore-population-benchmark-') as tmp:
         folder=Path(tmp);database=folder/'isolated.sqlite3'
