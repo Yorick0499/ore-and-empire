@@ -25,9 +25,15 @@ class Location:
         from .faction_choice import equipment_camp_allowed
         from .jarkendar import unlocked
         from .gothic2_world import story_unlocked
-        return (universe or region(profile).universe) == self.universe and profile.level >= self.level and story_unlocked(profile,self.required_story) and (not self.requires_portal or unlocked(profile)) and (not self.post_barrier or joined(profile.world_id)) and (
-            not self.camps or any(equipment_camp_allowed(profile,camp) for camp in self.camps)
-        ) and profile.camp_tier >= self.min_tier
+        return (
+            (universe or region(profile).universe) == self.universe
+            and profile.level >= self.level
+            and story_unlocked(profile, self.required_story)
+            and (not self.requires_portal or unlocked(profile))
+            and (not self.post_barrier or joined(profile.world_id))
+            and (not self.camps or any(equipment_camp_allowed(profile, camp) for camp in self.camps))
+            and profile.camp_tier >= self.min_tier
+        )
 
     @property
     def camp_names(self):

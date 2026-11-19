@@ -320,7 +320,7 @@ class BaselinePolicyV25(BaselinePolicyV24):
         return super().choose(replace(o, raid_action='', raid_target=None))
 
 
-class BaselinePolicy(BaselinePolicyV25):
+class BaselinePolicyV26(BaselinePolicyV25):
     def choose(self, o):
         traveling = o.raid_action == 'region_travel'
         trial_ready = o.advanced_trial and (
@@ -333,6 +333,10 @@ class BaselinePolicy(BaselinePolicyV25):
                         personal_action='', craft_action='', camp_action='',
                         raid_action=o.raid_action if traveling else '')
         return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV26):
+    pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.

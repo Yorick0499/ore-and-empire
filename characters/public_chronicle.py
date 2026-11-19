@@ -7,7 +7,7 @@ from .world_releases import RELEASES
 CHRONICLE = {
     'foundations': (
         'Kroniki dwóch krain',
-        'Pod Barierą ruda kupuje chleb i ochronę. Po drugiej stronie morza port Khorinis żyje z pracy doków i dostaw z farm. Wybierz, gdzie zaczniesz swoją historię.',
+        'Pod Barierą ruda kupuje chleb i ochronę. Za przełęczą port Khorinis żyje z pracy doków i dostaw z farm. Wybierz, gdzie zaczniesz swoją historię.',
     ),
     'barrier': (
         'Bariera runęła',
