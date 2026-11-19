@@ -44,7 +44,7 @@ class AllocationTests(SimpleTestCase):
                 self.assertEqual(result,shares(total,dict(reversed(list(counts.items()))),'BANDITS'))
     def test_exact_eight_rank_catalog_does_not_grant_advanced_promotions(self):
         from .factions import RANK_NAMES,FACTIONS
-        self.assertEqual(len(FACTIONS),5)
+        self.assertEqual(len(FACTIONS),6)
         for names in RANK_NAMES.values():self.assertEqual(len(names),8)
         self.assertEqual(RANK_NAMES['BANDITS'][:4],('Kopacz','Rzezimieszek','Bandyta','Watażka'))
         self.assertEqual(RANK_NAMES['MERCENARIES'][3],'Kapitan Najemników')
@@ -125,9 +125,12 @@ class SuccessionTests(TestCase):
     def test_rank_completion_enrolls_new_joined_characters_and_preserves_snapshot(self):
         from .factions import enroll
         from .game_logic import choose_camp
-        succeed(self.race);p=person(self.c,'NONE','NONE')
+        from .faction_succession_v2 import apply as apply_reform
+        with transaction.atomic():
+            apply_reform(apps, self.race)
+        p=person(self.c,'NONE','NONE')
         with patch('characters.story_gates.missing',return_value=[]):
-            self.assertFalse(choose_camp(p,'SWAMP_CAMP'));self.assertTrue(choose_camp(p,'OLD_CAMP'))
+            self.assertTrue(choose_camp(p,'OLD_CAMP'))
         p.refresh_from_db();self.assertEqual(p.faction_membership.faction,'BANDITS')
         p.guild='FIRE_MAGE';p.save()
         with transaction.atomic():enroll(p)
@@ -146,14 +149,14 @@ class SuccessionTests(TestCase):
         self.assertEqual((p.faction_membership.faction,p.faction_membership.historical_rank),('FIRE_ORDER','SHADOW'))
         self.assertGreaterEqual(circle_cap(p),4)
 
-    def test_ui_shows_five_factions_and_rank_filters_do_not_mix_water_with_mercenaries(self):
+    def test_ui_shows_six_factions_and_rank_filters_do_not_mix_water_with_mercenaries(self):
         p=person(self.c,'NEW_CAMP','WATER_MAGE');person(self.i,'ONAR_MERCS','K2_CAPTAIN');succeed(self.race)
         self.client.force_login(p.user)
         for route in ('/oboz/','/wspolnota/','/rankingi/'):
             response=self.client.get(route);self.assertEqual(response.status_code,200,route)
         response=self.client.get('/rankingi/?camp=WATER_CIRCLE')
         self.assertContains(response,'Krąg Magów Wody');self.assertEqual(response.context['page'].paginator.count,1)
-        self.assertEqual(len(response.context['camps']),5)
+        self.assertEqual(len(response.context['camps']),6)
 
 
 class ExistingSaveTests(TransactionTestCase):

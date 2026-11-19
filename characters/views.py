@@ -742,7 +742,23 @@ def colony_life_view(request):
         resident.session=cycle_state(resident,now)
         resident.in_population=resident.pk in configured
         resident.scheduler_active = bool(resident.in_population and resident.session["online"] and resident.bot_last_tick and now-resident.bot_last_tick < timedelta(seconds=max(180,resident.session["cadence"]*2)))
-    return render(request, 'characters/colony_life.html', {'residents': residents,'resident_page':page,'configured_count':len(configured), 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents)})
+    from django.db.models import Count, Q
+    from .barrier import region_ids
+    population = PlayerProfile.objects.filter(
+        world_id__in=region_ids(world.pk), is_draft=False, user__is_active=True,
+    )
+    bands = ((0, 9), (10, 19), (20, 29), (30, 39), (40, 49), (50, None))
+    counters = {}
+    for low, high in bands:
+        bounds = Q(level__gte=low) if high is None else Q(level__range=(low, high))
+        counters[f'human_{low}'] = Count('pk', filter=bounds & Q(is_bot=False))
+        counters[f'bot_{low}'] = Count('pk', filter=bounds & Q(is_bot=True))
+    totals = population.aggregate(**counters)
+    distribution = [
+        (f'{low}+' if high is None else f'{low}–{high}', totals[f'human_{low}'], totals[f'bot_{low}'])
+        for low, high in bands
+    ]
+    return render(request, 'characters/colony_life.html', {'residents': residents,'resident_page':page,'configured_count':len(configured), 'activity': activity_rows(), 'active_count': sum(r.scheduler_active for r in residents), 'distribution': distribution})
 
 
 @login_required

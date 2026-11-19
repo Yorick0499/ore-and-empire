@@ -47,7 +47,7 @@ def build():
     table(lines, ['Zakres', 'Liczba'], [
         ('Lokacje łącznie', len(LOCATIONS)), *[(f'Lokacje {key}', value) for key,value in sorted(counts.items())],
         ('Populacje przeciwników do polowań', len(BESTIARY)), ('Bossowie solo', len(BOSSES)),
-        ('Rodzime tożsamości rang (gałęzie)', len(RANKS)), ('Wyższe awanse pięciu frakcji', len(ADVANCED)),
+        ('Rodzime tożsamości rang (gałęzie)', len(RANKS)), ('Wyższe awanse sześciu frakcji', len(ADVANCED)),
         ('Zaklęcia działające (nie liczba modeli run/zwojów)', len(ALL_SPELLS)),
         ('Zlecenia czasowe', AdventureTemplate.objects.count()), ('Definicje zadań jednorazowych', StoryQuest.objects.count()),
         ('Receptury', CraftRecipe.objects.count()), ('Oferty sklepu odłamków', StoreProduct.objects.count())])

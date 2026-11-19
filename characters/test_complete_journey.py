@@ -39,13 +39,13 @@ class FullJourneyCommandTests(SimpleTestCase):
 
 class RuntimeLocationArtTests(SimpleTestCase):
     def test_every_nk_location_and_boss_has_local_g2_art(self):
-        from .gothic_assets import MANIFEST_PATH
+        from .gothic_assets import ASSET_ALIASES, MANIFEST_PATH
         from .locations import LOCATIONS
         from .bosses import BOSSES
         manifest=json.loads(MANIFEST_PATH.read_text())
         for loc in LOCATIONS:
             if loc.universe!='GOTHIC_II' and not loc.post_barrier:continue
-            self.assertEqual(manifest[loc.key]['game'],'GOTHIC_II_NK',loc.key)
+            self.assertEqual((manifest.get(loc.key) or manifest[ASSET_ALIASES[loc.key]])['game'],'GOTHIC_II_NK',loc.key)
             if loc.key in BOSSES:self.assertEqual(manifest[loc.key+'_boss']['game'],'GOTHIC_II_NK',loc.key)
         from .locations import BY_KEY
         self.assertEqual(BY_KEY['g2nk_inubis'].wiki,'Krypta Inubisa')

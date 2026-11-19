@@ -1,4 +1,5 @@
 """Four earned ranks per joined faction, using the existing promotion ledger."""
+from dataclasses import replace
 from django.utils import timezone
 from .camp_progression import Rank,obj,quest_complete
 from .factions import FACTIONS,RANK_NAMES,membership
@@ -14,7 +15,7 @@ def build_ranks():
         (obj('hunt:temple_guardian',8,'Pokonaj opiekunów świątyni'),obj('boss:k2_dragon_fire',2,'Dwukrotnie zwycięż smoka ognia'),obj('mine',10,'Zabezpiecz dziesięć zmian wydobycia')),
     )
     for faction,label in FACTIONS:
-        magic=faction in {'FIRE_ORDER','WATER_CIRCLE'}
+        magic=faction in {'FIRE_ORDER','WATER_CIRCLE','VEIL_ORDER'}
         for n,tier in enumerate(range(4,8)):
             key=f'ADV_{faction}_{tier}'
             result.append(Rank(key,RANK_NAMES[faction][tier],faction,(f'ADV_{faction}_{tier-1}',) if tier>4 else ('BASE_4',),tier,30+5*n,'mana' if magic else 'martial',(50 if magic else 70)+20*n,(500,1000,1500,2500)[n],f'Służba wspólnoty: {RANK_NAMES[faction][tier]}',f'{label}: zdobądź zaufanie pracą i rzeczywistymi zwycięstwami. To służba mieszkańca wspólnego świata, nie rola Bezimiennego.',goals[n]))
@@ -23,6 +24,12 @@ def build_ranks():
 
 RANKS=build_ranks()
 BY_KEY={r.key:r for r in RANKS}
+
+
+def rank_for(profile, rank):
+    if rank.camp == 'VEIL_ORDER' and profile.guild in {'SWAMP_GUARD', 'TEMPLAR'}:
+        return replace(rank, attribute='martial', attribute_value=rank.attribute_value + 20)
+    return rank
 
 
 def advanced_tier(profile):
@@ -62,7 +69,7 @@ def accept_locked(profile,key):
 
 def promote_locked(profile,key):
     """Only called inside promote_in_camp; one wallet ledger and one debit."""
-    rank=BY_KEY[key]
+    rank=rank_for(profile, BY_KEY[key])
     if profile.is_busy or not eligible(profile,rank):return False
     quest=CampQuest.objects.select_for_update().filter(profile=profile,rank_key=key,promoted_at__isnull=True).first()
     if not quest or not quest_complete(quest,rank) or profile.level<rank.level or getattr(profile,rank.attribute)<rank.attribute_value or profile.ore_balance<rank.cost:return False
@@ -83,6 +90,7 @@ def cards(profile):
     result=[]
     for rank in RANKS:
         if rank.camp!=member.faction:continue
+        rank = rank_for(profile, rank)
         quest=quests.get(rank.key);ready=bool(quest and quest_complete(quest,rank));allowed=eligible(profile,rank)
         result.append({'rank':rank,'ordinal':rank.tier+1,'quest':quest,'current':current_tier(profile)==rank.tier,
             'legacy':bool(rank.tier==4 and profile.alliance_rank>=4 and not quest),

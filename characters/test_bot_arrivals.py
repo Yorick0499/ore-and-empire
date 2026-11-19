@@ -1,11 +1,14 @@
 from contextlib import ExitStack
 from io import StringIO
 from uuid import uuid4
+from unittest.mock import patch
+
+from django.utils import timezone
 
 from django.core.management import call_command
 from django.test import TestCase
 
-from .bot_arrivals import AUTOMATIC_POPULATION_CAP, MILESTONE_KEYS, admit_next_cohort, base_bot_target
+from .bot_arrivals import ARRIVAL_INTERVAL, ARRIVAL_QUOTAS, AUTOMATIC_POPULATION_CAP, MILESTONE_KEYS, admit_next_cohort, base_bot_target
 from .models import PlayerProfile, World, WorldRelease
 from .scheduler_lease import SchedulerGuard
 
@@ -57,20 +60,23 @@ class BotArrivalTests(TestCase):
         with SchedulerGuard(self.colony) as worker:
             admit_next_cohort(worker)
             self.assertEqual(WorldRelease.objects.filter(bot_arrivals=5).get().key, 'barrier')
-            admit_next_cohort(worker)
-        self.assertEqual(WorldRelease.objects.filter(bot_arrivals=5).count(), 2)
+            for batch in range(1, ARRIVAL_QUOTAS['barrier'] // 5 + 1):
+                with patch('characters.bot_arrivals.timezone.now', return_value=timezone.now() + batch * ARRIVAL_INTERVAL):
+                    admit_next_cohort(worker)
+        self.assertEqual(WorldRelease.objects.get(key='barrier').bot_arrivals, ARRIVAL_QUOTAS['barrier'])
+        self.assertEqual(WorldRelease.objects.get(key='jarkendar').bot_arrivals, 5)
         self.assertFalse(PlayerProfile.objects.filter(world=self.island, user__username__startswith='arrival-').exists())
 
     def test_manual_population_at_cap_is_preserved(self):
         self.join()
-        World.objects.filter(pk=self.island.pk).update(bot_count=AUTOMATIC_POPULATION_CAP)
+        World.objects.filter(pk__in=(self.colony.pk, self.island.pk)).update(bot_count=AUTOMATIC_POPULATION_CAP // 2)
         release = WorldRelease.objects.create(world=self.colony, key='barrier')
         with SchedulerGuard(self.colony) as worker:
             admit_next_cohort(worker)
         release.refresh_from_db()
         self.island.refresh_from_db()
         self.assertEqual(release.bot_arrivals, 0)
-        self.assertEqual(self.island.bot_count, AUTOMATIC_POPULATION_CAP)
+        self.assertEqual(self.island.bot_count, AUTOMATIC_POPULATION_CAP // 2)
 
     def test_fresh_queue_alternates_regions_and_keeps_waiting_order(self):
         from .bot_scheduler import BotScheduler

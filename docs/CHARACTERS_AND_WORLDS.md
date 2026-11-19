@@ -43,7 +43,7 @@ Oba rekordy regionów mają wspólny identyfikator. Postacie, ekwipunek, aktywno
 
 Rynek i rankingi obejmują obie strony. Kreator pokazuje jeden serwer i wybór początku Kolonia/Khorinis. Nowy gracz nadal zaczyna od 0 i wykonuje własny prolog. Bezpłatna podróż między regionami jest na ekranie **Bariera i podróże**, po zakończeniu trwającej czynności. Cel podróży wewnątrz zadania fabularnego kosztuje osobno 2 energii.
 
-Działa sukcesja pięciu frakcji i jednorazowy wybór Bractwa. Rodzime `camp`/`guild` zachowują historię i odpowiednie zadania; bieżące członkostwo oraz wyższe rangi mają osobny zapis. Cztery dalsze awanse nie są prezentem za Barierę. [Skarbce i wybory](CAMP_GUILDS.md).
+Po połączeniu działa sześć frakcji. Bractwo przechodzi do Zakonu Czarnej Zasłony, a siedzibą Bandytów Khorinis jest Wieża Dextera. Rodzime `camp`/`guild` zachowują historię i odpowiednie zadania; bieżące członkostwo oraz wyższe rangi mają osobny zapis. Cztery dalsze awanse nie są prezentem za Barierę. [Skarbce i sukcesja](CAMP_GUILDS.md).
 
 Uczestnik zwycięskiego obozu z faktycznym wkładem odbiera po połączeniu 500 rudy, 1000 PD i 3 odłamki raz na konto, wybraną uprawnioną postacią. Dodatkowe sloty nie mnożą nagrody.
 

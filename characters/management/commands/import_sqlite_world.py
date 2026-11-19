@@ -11,8 +11,17 @@ from ore_empire.database import sqlite_environment
 
 EXCLUDES=['contenttypes','auth.permission','sessions.session','characters.schedulerlease']
 
-def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False, legacy_characters=False, legacy_realms=False, legacy_origins=False, legacy_barrier=False, legacy_rank_paths=False):
+def canonical(raw, *, legacy_equipment=False, legacy_adventures=False, legacy_bots=False, legacy_characters=False, legacy_realms=False, legacy_origins=False, legacy_barrier=False, legacy_rank_paths=False, legacy_bot_arrivals=False, compare_reform=False):
     rows=json.loads(raw)
+    if legacy_bot_arrivals:
+        for row in rows:
+            if row['model'] == 'characters.worldrelease' and row['fields'].pop('bot_arrivals', None) is not None:
+                raise ValueError('Starsza kopia nie powinna mieć zapisanych fal nowych botów.')
+    if compare_reform:
+        from characters.backups import REFORMED_FIELDS
+        for row in rows:
+            for field in REFORMED_FIELDS.get(row['model'].removeprefix('characters.'), ()):
+                row['fields'].pop(field, None)
     if legacy_rank_paths:
         # A pre-0048 proof has no flag. Verify its derivation before omitting
         # just that added column; all original fields still enter the digest.

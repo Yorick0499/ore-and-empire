@@ -14,7 +14,7 @@ ENCOUNTERS={'OLD_CAMP':('Matka pełzaczy z bocznego szybu','crawler_queen'),'NEW
 
 ENCOUNTERS.update({'CITY_WATCH':('Banda z leśnego traktu','k2_goblin'),'FIRE_ORDER':('Warg spod klasztoru','k2_warg'),'ONAR_MERCS':('Bestia pustosząca pola','k2_field_raider')})
 
-ENCOUNTERS.update({'BANDITS':ENCOUNTERS['OLD_CAMP'],'WATER_CIRCLE':ENCOUNTERS['NEW_CAMP'],'MERCENARIES':ENCOUNTERS['ONAR_MERCS']})
+ENCOUNTERS.update({'BANDITS':ENCOUNTERS['OLD_CAMP'],'WATER_CIRCLE':ENCOUNTERS['NEW_CAMP'],'MERCENARIES':ENCOUNTERS['ONAR_MERCS'],'VEIL_ORDER':ENCOUNTERS['SWAMP_CAMP']})
 
 COLONY_ENCOUNTERS={
     'OLD_CAMP':(ENCOUNTERS['OLD_CAMP'],('Pełzacz wojownik z opuszczonego szybu','minecrawler_warrior'),('Orkowy maruder przy szlaku rudy','orc_warrior'),('Cieniostwór pod bramą obozu','shadowbeast')),

@@ -32,7 +32,8 @@ class Location:
     @property
     def camp_names(self):
         from .models import PlayerProfile
-        names = dict(PlayerProfile.CAMP_LIST)
+        from .factions import FACTIONS
+        names = dict((*PlayerProfile.CAMP_LIST, *FACTIONS))
         return ", ".join(names[key] for key in self.camps)
 
 
@@ -82,6 +83,12 @@ LOCATIONS = (
 from .khorinis import DESTINATIONS
 LOCATIONS += tuple(Location(key,name,description,level,route=route,monsters=monsters,wiki=wiki,universe="GOTHIC_II") for key,name,description,level,route,monsters,wiki in DESTINATIONS)
 LOCATIONS += (Location('k2_dragon_fire','Szczyt smoka ognia','Wyprawa mieszkańców po upadku Bariery; przygotuj ochronę przed ogniem.',35,route='boss_page',universe='GOTHIC_I',wiki='Wulkan',post_barrier=True),)
+LOCATIONS += (
+    Location('dexter_tower', 'Wieża Dextera', 'Siedziba bandytów Khorinis na wzgórzu przy farmie Onara.',
+             camps=('BANDITS',), route='train_page', universe='GOTHIC_II', post_barrier=True, wiki='Obóz Dextera'),
+    Location('veil_refuge', 'Krypta Czarnej Zasłony', 'Schronienie dawnych członków Bractwa. Z popiołów kultu Śniącego powstał zakon Poszukiwaczy oddany Beliarowi.',
+             camps=('VEIL_ORDER',), route='train_page', universe='GOTHIC_II', post_barrier=True, wiki='Poszukiwacze'),
+)
 from .jarkendar import DESTINATIONS as JARKENDAR_DESTINATIONS
 LOCATIONS += tuple(Location(key,name,description,level,route=route,monsters=monsters,universe="GOTHIC_II",wiki="Jarkendar",post_barrier=True,requires_portal=key!="jark_portal") for key,name,description,level,route,monsters,art in JARKENDAR_DESTINATIONS)
 from .gothic2_world import DATA as NK_FAUNA,GROUPS as NK_GROUPS,BOSS_ROWS as NK_BOSSES

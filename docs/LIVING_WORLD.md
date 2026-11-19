@@ -52,4 +52,4 @@ Opcjonalny adapter lokalnego modelu ma protokół ollama-1 i trwały budżet. Do
 
 Domyślne 125+125 botów korzysta z jednej kolejki i odrębnych sesji. Przed Barierą aktywności społeczne są odizolowane między serwerami; po niej działa jeden świat, wspólny rynek i rankingi. Wyprawy botów mogą zasilać wspólnotę i globalny wyścig na tych samych zasadach co ludzie. Połączenie nie czeka na login konkretnego gracza.
 
-Bieżąca polityka obsługuje sukcesję, jednorazowy wybór Bractwa, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. [Pełna droga](COMPLETE_JOURNEY.md), [aktualizacje](WORLD_UPDATES.md).
+Bieżąca polityka obsługuje sukcesję sześciu frakcji, w tym przejście Bractwa do Zakonu Czarnej Zasłony, wyższe rangi, publiczny portal, kontrakty NK i regionalne warty. Nazwane odsłony oraz regionalne okna wynikają z rzeczywistych odkryć, nie fikcyjnych transakcji. [Pełna droga](COMPLETE_JOURNEY.md), [aktualizacje](WORLD_UPDATES.md).

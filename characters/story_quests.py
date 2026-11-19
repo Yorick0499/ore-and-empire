@@ -87,6 +87,9 @@ def available(profile, quest, *, completed=None):
         return False
     if any(key not in completed for key in quest.prerequisites):
         return False
+    from .world_releases import milestone_wait
+    if milestone_wait(profile.world_id, quest.key) != 0:
+        return False
     return all(all(completed[key].choices.get(goal) == option for goal, option in decisions.items()) for key, decisions in quest.required_choices.items() if key in completed)
 
 

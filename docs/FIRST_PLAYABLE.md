@@ -22,7 +22,7 @@ W Khorinis przejdź 17 zadań własnej ścieżki, rozwijaj cztery podstawowe ran
 
 Wspólnota Kolonii poziomu 10 walczy osobno ze Śniącym; potrzebne są kwalifikujące się postacie z trzech różnych kont. Boty mogą pomóc. Po zwycięstwie worker wykonuje kopię, próbę odtworzenia i trwałe połączenie bez kasowania dorobku. [Warunki Bariery](CHARACTERS_AND_WORLDS.md).
 
-Następnie zdobywaj rangi 5–8 w jednej z pięciu frakcji, otwórz portal od poziomu 10 i wykonuj kontrakty Jarkendaru/NK do Irdorath. Po finale NK dochodzą cztery ścieżki po 100 stopni oraz cel tygodniowy. [Pełna droga](COMPLETE_JOURNEY.md), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [endgame](REGIONAL_ENDGAME.md).
+Następnie zdobywaj rangi 5–8 w jednej z sześciu frakcji, otwórz portal od poziomu 10 i wykonuj kontrakty Jarkendaru/NK do Irdorath. Po finale NK dochodzą cztery ścieżki po 100 stopni oraz cel tygodniowy. [Pełna droga](COMPLETE_JOURNEY.md), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [endgame](REGIONAL_ENDGAME.md).
 
 ## Boty i trwałość świata
 

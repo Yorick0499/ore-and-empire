@@ -63,7 +63,7 @@
 {% for release in releases %}
   <article class="colony-panel"><span class="eyebrow">Aktualizacja {{ release.version }} · {% if release.available %}Odkryta{% else %}Przed nami{% endif %}</span>
     <h3>Ore &amp; Empire: {{ release.title }}</h3>{% gothic_art release.art %}<p>{{ release.notes }}</p>
-    {% if release.available %}<p>Odkrycie: {{ release.released_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}.</p>{% if release.bot_arrivals %}<p>Nowe konta botów: {{ release.bot_arrivals }}.</p>{% endif %}{% else %}<p>Warunek: {{ release.requirement }}. Termin zależy od postępu wspólnoty.</p>{% endif %}
+    {% if release.available %}<p>Odkrycie: {{ release.released_at|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}.</p>{% if release.bot_arrivals %}<p>Nowe konta botów: {{ release.bot_arrivals }}.</p>{% endif %}{% else %}<p>Warunek: {{ release.requirement }}. Termin zależy od postępu wspólnoty.</p>{% if release.earliest %}<p>Najwcześniejsza odprawa: {{ release.earliest|timezone:"Europe/Warsaw"|date:"d.m.Y H:i T" }}.</p>{% endif %}{% endif %}
   </article>
 {% endfor %}
 </div>

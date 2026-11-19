@@ -3,7 +3,7 @@
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-14",
   "code_revision": "widoczny start Śniącego / #156 (po #155)",
-  "migration": "0058_worldrelease_bot_arrivals",
+  "migration": "0060_paced_bot_arrivals",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {
@@ -105,7 +105,7 @@
       "chapters": [
         [
           "docs/CAMPS.md",
-          "Rangi, próby i przywileje pięciu frakcji"
+          "Rangi, próby i przywileje sześciu frakcji"
         ],
         [
           "docs/CAMP_GUILDS.md",
