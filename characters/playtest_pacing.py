@@ -239,7 +239,7 @@ class CampaignPacingTests(TestCase):
                 prepare('sleeper_sanctum');result=do('personal_finale',lambda:game.execute_boss(hero,'sleeper_sanctum'));self.assertTrue(result.won,(hero.level,hero.max_health,hero.mana,hero.equipment_stats,result.combat_log))
             hero.refresh_from_db()
             opening = timing_snapshot() if record_timing else None
-            if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start,'operator_support':bool(operator)})
+            if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start,'operator_support':bool(operator),'timing_snapshot':timing_snapshot})
             if build_strategy and build_strategy.kind == 'archer':
                 # Deterministic smoke limits for the worst individual gap,
                 # not promises about the total duration of human sessions.

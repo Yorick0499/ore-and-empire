@@ -61,6 +61,20 @@ class ManualRaidTests(TestCase):
         guild.refresh_from_db();self.assertEqual((guild.experience,guild.treasury),(60,100))
         self.assertEqual(CampRaid.objects.filter(cycle='manual').count(),2)
 
+    def test_camp_hit_uses_the_same_clock_as_its_cooldown(self):
+        self.p.strength = 50
+        self.p.save(update_fields=["strength"])
+        start = datetime(2026, 11, 11, 12, tzinfo=POLISH_TIME)
+        with patch("django.utils.timezone.now", return_value=start):
+            raid = rally_camp_raid(self.p)
+            hit = strike_camp_raid(self.p, raid.pk, uuid4())
+        self.assertTrue(hit)
+        self.assertEqual(hit.created_at, start)
+        with patch("django.utils.timezone.now", return_value=start + timedelta(seconds=59)):
+            self.assertFalse(strike_camp_raid(self.p, raid.pk, uuid4()))
+        with patch("django.utils.timezone.now", return_value=start + timedelta(seconds=60)):
+            self.assertTrue(strike_camp_raid(self.p, raid.pk, uuid4()))
+
     def test_invalid_requests_other_camps_and_unauthorized_http_cannot_create_orders(self):
         for key in (None,'', 'not-a-uuid'):self.assertFalse(rally_manual_raid(self.p,key))
         other=captain('other','NEW_CAMP','ARCH_WATER')

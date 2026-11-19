@@ -133,7 +133,8 @@ def strike_camp_raid(profile,raid_id,request_key):
     if profile.camp not in CAMPS:return False
     guild=guild_for(profile,lock=True)
     from .regional_endgame import week_start,unlocked
-    active=Q(cycle='daily',day=timezone.now().astimezone(POLISH_TIME).date())|Q(cycle='weekly',day=week_start())
+    now = timezone.now()
+    active=Q(cycle='daily',day=now.astimezone(POLISH_TIME).date())|Q(cycle='weekly',day=week_start(now))
     if manual_region(profile):active|=Q(cycle='manual',rule_version=1)
     raid=CampRaid.objects.select_for_update().filter(active,pk=raid_id,guild_id__in=raid_guild_ids(profile)).first()
     if raid and raid.cycle=='manual':
@@ -143,7 +144,7 @@ def strike_camp_raid(profile,raid_id,request_key):
     if raid and raid.cycle=='weekly' and (raid.rule_version!=1 or not unlocked(profile)):return False
     if not raid or raid.completed_at or profile.level<raid.minimum_level or profile.is_busy or profile.current_energy<20 or profile.current_health<10:return False
     last=CampRaidStrike.objects.filter(raid=raid,profile=profile).first()
-    if last and timezone.now()<last.created_at+timedelta(seconds=60):return False
+    if last and now<last.created_at+timedelta(seconds=60):return False
     from .magic import combat_plan,apply_combat_magic
     from .equipment import consume_ammo
     plan=combat_plan(profile)
@@ -152,11 +153,11 @@ def strike_camp_raid(profile,raid_id,request_key):
     before_health=profile.current_health;before_mana=profile.current_mana
     result,damage=exchange(profile,raid,plan)
     apply_combat_magic(profile,plan,result)
-    profile.current_health=result.remaining_health;profile.health_updated_at=timezone.now();profile.current_energy-=20;profile.save()
+    profile.current_health=result.remaining_health;profile.health_updated_at=now;profile.current_energy-=20;profile.save()
     if raid.health==0:
-        raid.completed_at=timezone.now();credit_guild(guild,60,100)
+        raid.completed_at=now;credit_guild(guild,60,100)
     raid.save(update_fields=['health','completed_at'])
-    return CampRaidStrike.objects.create(raid=raid,profile=profile,request_key=key,damage=damage,health_cost=before_health-profile.current_health,mana_cost=before_mana-profile.current_mana,casts=result.spell_casts,log=result.log)
+    return CampRaidStrike.objects.create(raid=raid,profile=profile,request_key=key,damage=damage,health_cost=before_health-profile.current_health,mana_cost=before_mana-profile.current_mana,casts=result.spell_casts,log=result.log,created_at=now)
 
 
 @player_action

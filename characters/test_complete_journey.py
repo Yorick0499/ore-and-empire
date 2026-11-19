@@ -18,6 +18,14 @@ class FullJourneyCommandTests(SimpleTestCase):
             self.assertEqual(env['DATABASE_URL'],'');self.assertEqual(env['ORE_DATABASE_ENGINE'],'sqlite')
             self.assertEqual(env['ORE_DATABASE_PATH'],env['ORE_JOURNEY_DATABASE']);self.assertTrue(Path(env['ORE_JOURNEY_DATABASE']).parent.name.startswith('ore-complete-journey-'))
             self.assertFalse(Path(env['ORE_JOURNEY_DATABASE']).parent.exists());self.assertTrue(json.loads(report.read_text())['success'])
+    def test_operator_option_reaches_only_the_disposable_journey(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            report = Path(tmp) / "journey.json"
+            with patch("characters.management.commands.simulate_journey.subprocess.run", return_value=SimpleNamespace(returncode=0)) as child:
+                call_command("simulate_journey", report=report, operator="energy-ore", stdout=StringIO())
+            self.assertEqual(child.call_args.kwargs["env"]["ORE_JOURNEY_OPERATOR"], "energy-ore")
+            self.assertEqual(json.loads(report.read_text())["operator_mode"], "energy-ore")
+
     def test_failed_child_writes_report_and_existing_report_is_preserved(self):
         with tempfile.TemporaryDirectory() as tmp:
             report=Path(tmp)/'journey.json'

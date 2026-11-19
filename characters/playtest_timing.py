@@ -18,17 +18,23 @@ class OperatorSupport:
         self.test, self.hero, self.mode = test, hero, mode
         self.advance, self.clock = advance, clock
         self.client = Client(enforce_csrf_checks=True)
-        self.client.force_login(User.objects.create_superuser("timing-operator"))
+        self.actor = User.objects.create_superuser("timing-operator")
         self.url = reverse("game_master") + f"?server={hero.world_id}&profile={hero.pk}"
-        response = self.client.get(self.url)
-        self.test.assertEqual(response.status_code, 200)
-        self.test.assertEqual(response.context["target"].pk, hero.pk)
         self.grant_dates = set()
         self.energy_refills = self.energy_given = self.ore_given = 0
+        self.open_panel()
+
+    def open_panel(self):
+        self.client.force_login(self.actor)
+        response = self.client.get(self.url)
+        self.test.assertEqual(response.status_code, 200)
+        self.test.assertEqual(response.context["target"].pk, self.hero.pk)
         self.advance(10)
 
     def update(self, **changes):
         self.advance(10)
+        if self.client.session.get("_auth_user_id") != str(self.actor.pk):
+            self.open_panel()
         self.hero.refresh_from_db()
         refresh_player(self.hero)
         payload = {field: getattr(self.hero, field) for field in ProfileStatsForm.Meta.fields}
@@ -39,7 +45,7 @@ class OperatorSupport:
         response = self.client.post(self.url, payload, HTTP_X_CSRFTOKEN=token)
         self.test.assertEqual(response.status_code, 302)
         entry = AdminAction.objects.filter(profile=self.hero, action="stats").latest("pk")
-        self.test.assertEqual(entry.actor_id, int(self.client.session["_auth_user_id"]))
+        self.test.assertEqual(entry.actor_id, self.actor.pk)
         altered = {key for key in entry.details["before"]
                    if entry.details["before"][key] != entry.details["after"][key]}
         self.test.assertEqual(altered, set(changes), entry.details)

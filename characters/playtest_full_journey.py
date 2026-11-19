@@ -13,6 +13,7 @@ from .playtest_gothic2 import EarnedNkCampaign
 from .models import World,CampGuild,PlayerProfile,SleeperRace,SleeperStrike,BarrierEvent
 from . import game_logic as game
 from .locations import LOCATIONS
+from .world_clock import POLISH_TIME
 from .release_probe import record_scenario
 
 
@@ -20,6 +21,7 @@ class CompleteJourney(unittest.TestCase):
     play=CampaignPacingTests.play
     expedition=EarnedNkCampaign.expedition
     global_join_fixture=False
+    operator_mode = None
 
     def setUp(self):self.client=Client(HTTP_HOST='localhost');self.people=[];self.clock=None
 
@@ -69,7 +71,14 @@ class CompleteJourney(unittest.TestCase):
             for __ in range(30):
                 raid.refresh_from_db()
                 if raid.completed_at:break
-                prepare();advance(61,'timer');self.assertTrue(do('community_raid',lambda:strike_camp_raid(p,raid.pk,uuid4())))
+                prepare()
+                advance(61, 'timer')
+                if raid.day != steps['now']().astimezone(POLISH_TIME).date():
+                    raid = rally_camp_raid(p)
+                    self.assertTrue(raid)
+                    if raid.completed_at:
+                        break
+                self.assertTrue(do('community_raid', lambda: strike_camp_raid(p, raid.pk, uuid4())))
             self.assertTrue(claim_camp_raid(p,raid.pk));guild.refresh_from_db()
             print('Earned community level:',guild.level,file=sys.stderr)
             if guild.level<10:advance(24*3600,'timer')
@@ -101,12 +110,14 @@ class CompleteJourney(unittest.TestCase):
         self.assertEqual(before,after)
         self.assertEqual(items,list(OwnedItem.objects.order_by('pk').values('pk','owner_id','blueprint_id','quantity','upgrade_level','is_equipped','equipped_slot','is_market_listed','market_price')))
         for actor in self.people:self.assertTrue(sleeper.claim_reward(actor))
-        record_scenario('earned-community-barrier',{'accounts':3,'synthetic_progression_grants':False,'real_siege':True,'real_backup_restore_activation':True,'strikes':siege.strikes.count(),'guild_level':10,'world_days':round((steps['now']()-self.start).total_seconds()/86400,2),'preserved_progression':before==after,'preserved_inventory':True,'one_server_two_regions':True,'joined_events':1})
+        record_scenario('earned-community-barrier',{'accounts':3,'synthetic_progression_grants':bool(self.operator_mode),'timing_since_leader_start':steps['timing_snapshot'](),'real_siege':True,'real_backup_restore_activation':True,'strikes':siege.strikes.count(),'guild_level':10,'world_days':round((steps['now']()-self.start).total_seconds()/86400,2),'preserved_progression':before==after,'preserved_inventory':True,'one_server_two_regions':True,'joined_events':1})
         return colony,island
 
     def finish_leader(self,p,steps):
         from .frontier import patrol,board
         self.finish_member(p,steps);self.expedition(p,steps)
+        irdorath_days = round((steps['now']() - self.start).total_seconds() / 86400, 2)
+        irdorath_timing_since_leader_start = steps['timing_snapshot']()
         for depth in range(1,4):
             steps['prepare']();steps['advance'](301,'timer');key=uuid4();row=steps['do']('post_nk_patrol',lambda:patrol(p,depth,key))
             self.assertTrue(row.won,(depth,row.snapshot));before=(p.experience,p.ore_balance)
@@ -131,14 +142,19 @@ class CompleteJourney(unittest.TestCase):
         releases=list(WorldRelease.objects.filter(world=colony).values_list('key',flat=True))
         self.assertEqual(len(releases),7)
         self.assertTrue(board(p.world));self.clock=steps['now']()
-        record_scenario('complete-earned-journey',{'accounts':3,'initial_level_each':0,'all_joined_steps_real':True,'nk_contracts':23,'post_nk_patrols':3,'regional_patrols':4,'weekly_strikes':weekly.strikes.count(),'regional_backup_restore_verified':True,'world_updates':releases,'level':p.level,'world_days':round((self.clock-self.start).total_seconds()/86400,2),'limits':['Three sequential knowledgeable warrior strategies, not human elapsed time.','No competing player market/PvP or live 250-bot population in this scenario.','Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank.']})
+        record_scenario('complete-earned-journey',{'accounts':3,'initial_level_each':0,'all_joined_steps_real':True,'operator_mode':self.operator_mode or 'ordinary','irdorath_world_days':irdorath_days,'irdorath_timing_since_leader_start':irdorath_timing_since_leader_start,'final_timing_since_leader_start':steps['timing_snapshot'](),'nk_contracts':23,'post_nk_patrols':3,'regional_patrols':4,'weekly_strikes':weekly.strikes.count(),'regional_backup_restore_verified':True,'world_updates':releases,'level':p.level,'world_days':round((self.clock-self.start).total_seconds()/86400,2),'limits':['Three sequential knowledgeable warrior strategies, not human elapsed time.','No competing player market/PvP or live 250-bot population in this scenario.','Three legacy patrols, four first regional wins and one weekly objective; not all400 regional depths or every faction rank.']})
 
     def test_colony_to_real_barrier_nk_and_repeatable_endgame(self):
         from datetime import datetime
-        from .world_clock import POLISH_TIME
         self.start=datetime(2026,11,11,9,tzinfo=POLISH_TIME)
         for n in range(3):
-            self.play('GOTHIC_I',None,support=True,income_first=True,actor_name='journey-'+str(n),start_at=self.clock or self.start,after_campaign=self.finish_leader if n==2 else self.finish_member)
+            leader = n == 2
+            self.play(
+                'GOTHIC_I', None, support=True, income_first=True,
+                actor_name=f'journey-{n}', start_at=self.clock or self.start,
+                after_campaign=self.finish_leader if leader else self.finish_member,
+                operator_mode=self.operator_mode if leader else None,
+            )
 
 
 def main():
@@ -150,6 +166,11 @@ def main():
     if connection.vendor!='sqlite' or Path(settings.DATABASES['default']['NAME']).resolve()!=path or not path.parent.name.startswith('ore-complete-journey-'):
         raise SystemExit('Complete journey requires its own disposable file database.')
     call_command('migrate',interactive=False,verbosity=0)
+    CompleteJourney.operator_mode = os.environ.get('ORE_JOURNEY_OPERATOR') or None
+    if CompleteJourney.operator_mode:
+        from django.test.utils import setup_test_environment
+
+        setup_test_environment()
     result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(CompleteJourney))
     raise SystemExit(0 if result.wasSuccessful() else 1)
 
