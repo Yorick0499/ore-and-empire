@@ -2,7 +2,7 @@
 
 Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-Stan dokumentacji: **14 listopada 2026, wyprawy na rozkaz #152, migracja 0055_manual_camp_raids**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
+Stan dokumentacji: **19 listopada 2026, migracja 0058_worldrelease_bot_arrivals**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
 ## Uruchomienie
 
@@ -22,7 +22,7 @@ python manage.py open_khorinis --bots 125
 python play.py --port 8001
 ```
 
-Daje to domyślnie **125 + 125 = 250 botów**. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a `--bots` nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online.
+Daje to domyślnie **125 + 125 = 250 botów**. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a `--bots` nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Po Barierze każda odkryta odsłona może dodać do **5 nowych kont od poziomu 0**, do **280 botów automatycznie** w połączonym świecie. Ręczne limity operatora pozostają dostępne. Krótkie kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.
 
 SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. [Windows, restart, aktualizacja i zarządca](docs/public/OPERATOR_GUIDE.md) · [PostgreSQL](docs/POSTGRESQL.md) · [Profil HTTPS](docs/PRODUCTION.md). Restart zachowuje dane; pełny reset jest odrębną operacją.
 

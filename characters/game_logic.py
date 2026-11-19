@@ -2,7 +2,7 @@ from characters.models import OwnedItem, ItemBluePrint, PlayerProfile, MarketTra
 from .bosses import BOSSES
 from django.db import transaction,OperationalError,connection
 from django.core.exceptions import ObjectDoesNotExist
-from functools import wraps
+from functools import partial, wraps
 from django.utils import timezone
 from datetime import timedelta
 import random
@@ -15,12 +15,16 @@ MAX_MARKET_PRICE = 1_000_000
 WEAPON_SKILLS = {"onehand_skill":"Broń jednoręczna", "twohand_skill":"Broń dwuręczna", "bow_skill":"Łuki", "crossbow_skill":"Kusze"}
 
 
-def recover_energy(profile):
+def recover_energy(profile, *, touch_full=True):
+    fields = ('current_energy', 'energy_updated_at', 'current_health', 'health_updated_at',
+              'current_mana', 'mana_updated_at')
+    previous = {field: getattr(profile, field) for field in fields}
     now = timezone.now()
     elapsed = max(0, int((now - profile.energy_updated_at).total_seconds()))
     points = elapsed // ENERGY_INTERVAL_SECONDS
     if profile.current_energy >= profile.max_energy:
-        profile.energy_updated_at = now
+        if touch_full:
+            profile.energy_updated_at = now
     elif points:
         profile.current_energy = min(
             profile.max_energy, profile.current_energy + points
@@ -32,7 +36,8 @@ def recover_energy(profile):
     health_points = elapsed_health // ENERGY_INTERVAL_SECONDS
     if profile.current_health >= profile.max_health:
         profile.current_health = profile.max_health
-        profile.health_updated_at = now
+        if touch_full:
+            profile.health_updated_at = now
     elif health_points:
         profile.current_health = min(profile.max_health, profile.current_health + health_points)
         profile.health_updated_at += timedelta(seconds=health_points * ENERGY_INTERVAL_SECONDS)
@@ -41,20 +46,26 @@ def recover_energy(profile):
     mana_elapsed=max(0,int((now-profile.mana_updated_at).total_seconds()))
     mana_points=mana_elapsed//30
     if profile.current_mana>=profile.max_mana:
-        profile.current_mana=profile.max_mana;profile.mana_updated_at=now
+        profile.current_mana = profile.max_mana
+        if touch_full:
+            profile.mana_updated_at = now
     elif mana_points:
         profile.current_mana=min(profile.max_mana,profile.current_mana+mana_points)
         profile.mana_updated_at+=timedelta(seconds=mana_points*30)
         if profile.current_mana==profile.max_mana:profile.mana_updated_at=now
-    profile.save(update_fields=["current_energy", "energy_updated_at", "current_health", "health_updated_at", "current_mana", "mana_updated_at"])
+    changed = [field for field in fields if getattr(profile, field) != previous[field]]
+    if changed:
+        profile.save(update_fields=changed)
 
 
-def player_action(fn):
+def player_action(fn=None, *, touch_full=True):
     """Refresh stale objects and serialize actions on the same player/item.
 
     PostgreSQL honors row locks; SQLite is for local development only.
     """
 
+    if fn is None:
+        return partial(player_action, touch_full=touch_full)
     from .realms import profile_scope
     @profile_scope
     @wraps(fn)
@@ -93,7 +104,7 @@ def player_action(fn):
             profile.refresh_from_db()
             if hasattr(profile, '_gear_stats_cache'): del profile._gear_stats_cache
             if hasattr(profile, '_camp_perks'):del profile._camp_perks
-            recover_energy(profile)
+            recover_energy(profile, touch_full=touch_full)
             for arg in action_arguments:
                 if isinstance(arg, (OwnedItem, ItemBluePrint)):
                     try:
@@ -112,7 +123,7 @@ def player_action(fn):
     return wrapped
 
 
-@player_action
+@player_action(touch_full=False)
 def refresh_player(profile):
     return profile
 

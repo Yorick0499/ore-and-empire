@@ -1249,6 +1249,7 @@ class WorldRelease(models.Model):
     key=models.SlugField(max_length=32)
     released_at=models.DateTimeField(default=timezone.now)
     snapshot=models.JSONField(default=dict)
+    bot_arrivals = models.PositiveSmallIntegerField(blank=True, null=True)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['world','key'],name='one_world_release')]
         ordering=['released_at','pk']

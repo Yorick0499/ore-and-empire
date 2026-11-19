@@ -955,7 +955,10 @@ def world_control_view(request):
         from io import StringIO
         with transaction.atomic():
             world.name=config_form.cleaned_data['name'];world.bot_count=config_form.cleaned_data['bot_count'];world.bot_personality_cycles=config_form.cleaned_data['bot_personality_cycles'];world.bot_simulated_purchases=config_form.cleaned_data['bot_simulated_purchases'];world.configured=True;world.save()
-            if world.bot_count:call_command('run_bots',create=world.bot_count,create_only=True,limit=world.bot_count,stdout=StringIO())
+            from .bot_arrivals import base_bot_target
+            target = base_bot_target(world)
+            if target:
+                call_command('run_bots', create=target, create_only=True, limit=target, stdout=StringIO())
         messages.success(request,'Zapisano nazwę i liczbę aktywnych botów bez resetu.');return redirect('/zarzadca/swiat/reset/?server='+str(world.pk))
     form=WorldResetForm(request.POST if request.method=='POST' and not configuring else None,auto_id='reset_%s',initial={'name':world.name,'bot_count':world.bot_count,'expected_world':world.pk})
     if request.method=='POST' and not configuring and form.is_valid():

@@ -798,12 +798,13 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         else:
             record_decision(profile, obs, "rejected", None, False, policy_version,policy_snapshot)
             return "rejected", False
+        fields = ["bot_last_tick"]
         if success and action != "wait":
             profile.refresh_from_db()
             profile.bot_turn += 1
-            profile.save(update_fields=["bot_turn"])
-        profile.bot_last_tick=timezone.now()
-        profile.save(update_fields=["bot_last_tick"])
+            fields.append("bot_turn")
+        profile.bot_last_tick = timezone.now()
+        profile.save(update_fields=fields)
         record_decision(profile, obs, action, target, success, policy_version,policy_snapshot)
         from .community import bot_conversation
         bot_conversation(profile)

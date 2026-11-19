@@ -15,8 +15,8 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 @media screen{#doc-game-content td:first-child,#doc-game-content th:first-child{min-width:190px}}
 </style></head>
 <body><a class="skip" href="#main">Przejdź do treści dokumentacji</a><header class="topbar"><a class="brand" href="#top">Ore &amp; Empire<small>Publiczna księga projektu</small></a><div class="bar-actions"><span class="edition">KOLONIA · KHORINIS · NOC KRUKA</span><a href="https://github.com/Yorick0499/ore-and-empire" target="_blank" rel="noopener noreferrer">Repozytorium ↗</a><button type="button" id="menu-toggle" class="menu-button" aria-expanded="false" aria-controls="book-navigation">Spis treści</button><button type="button" id="print-book">Drukuj / PDF</button></div></header>
-<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 52.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li><li><a href="#doc-complete-journey">Uruchomienie, pełna droga i plan endgame</a></li><li><a href="#doc-first-playable">Pierwsze kroki i droga do końca kampanii</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, dwa początki i jeden wspólny świat</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-jarkendar">Publiczny Jarkendar — portal i dalsza wyprawa</a></li><li><a href="#doc-gothic-ii-content">Gothic II NK — źródła, mechaniki i wyprawa do Irdorath</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li><li><a href="#doc-regional-endgame">Regionalny endgame i tygodniowy cel wspólnoty</a></li><li><a href="#doc-build-playthroughs">Buildy i frakcje od nowej postaci</a></li></ol></details><details open><summary>Frakcje i żyjący świat</summary><ol><li><a href="#doc-camps">Rangi, próby i przywileje pięciu frakcji</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li><li><a href="#doc-world-updates">Aktualizacje żyjącego świata i regionalne cele</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 86 ekranów</a></li><li><a href="#reports">Publiczne raporty (52)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-14<br>Kod gry: widoczny start Śniącego / #156 (po #155)<br>Migracja: 0055<br>Odczyt offline · bez usług zewnętrznych</p></aside>
-<main id="main"><section class="hero" id="top"><span class="eyebrow">Przewodnik po żyjącym świecie</span><h1>Kronika projektu.<br>Od Kolonii do Irdorath.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa początki · jeden świat po Barierze</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-14 · kod widoczny start Śniącego / #156 (po #155) · migracja 0055 · fanowska adaptacja Gothic</p></section>
+<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 52.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li><li><a href="#doc-complete-journey">Uruchomienie, pełna droga i plan endgame</a></li><li><a href="#doc-first-playable">Pierwsze kroki i droga do końca kampanii</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, dwa początki i jeden wspólny świat</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-jarkendar">Publiczny Jarkendar — portal i dalsza wyprawa</a></li><li><a href="#doc-gothic-ii-content">Gothic II NK — źródła, mechaniki i wyprawa do Irdorath</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">44 zlecenia czasowe</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li><li><a href="#doc-regional-endgame">Regionalny endgame i tygodniowy cel wspólnoty</a></li><li><a href="#doc-build-playthroughs">Buildy i frakcje od nowej postaci</a></li></ol></details><details open><summary>Frakcje i żyjący świat</summary><ol><li><a href="#doc-camps">Rangi, próby i przywileje pięciu frakcji</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li><li><a href="#doc-world-updates">Aktualizacje żyjącego świata i regionalne cele</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 86 ekranów</a></li><li><a href="#reports">Publiczne raporty (52)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-14<br>Kod gry: widoczny start Śniącego / #156 (po #155)<br>Migracja: 0058<br>Odczyt offline · bez usług zewnętrznych</p></aside>
+<main id="main"><section class="hero" id="top"><span class="eyebrow">Przewodnik po żyjącym świecie</span><h1>Kronika projektu.<br>Od Kolonii do Irdorath.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa początki · jeden świat po Barierze</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-14 · kod widoczny start Śniącego / #156 (po #155) · migracja 0058 · fanowska adaptacja Gothic</p></section>
 <div class="quick-grid"><a href="#doc-operator-guide--wymagania-i-instalacja-lokalna"><b>Uruchom grę</b><span>Instalacja, pierwsze konto i zapis świata</span></a><a href="#doc-operator-guide--zatrzymanie-i-restart-bez-kasowania-swiata"><b>Wróć do Kolonii</b><span>Bezpieczny restart bez utraty postępu</span></a><a href="#doc-operator-guide--panel-zarzadcy-krok-po-kroku"><b>Zarządzaj światem</b><span>Przedmioty, rzadkości, boty i administrator</span></a></div>
 <p class="book-intro">Dokumenty źródłowe: 49. Dalej: pełne zależności i komendy, 86 zrzutów oraz 52 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
 <p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan funkcji: 14 listopada 2026, wyprawy na rozkaz #152, wspólny świat po Barierze, migracja 0055_manual_camp_raids. Pełne uruchomienie obu regionów opisuje <a href="#doc-complete-journey">aktualna instrukcja przejścia</a>. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
@@ -410,7 +410,7 @@ python manage.py simulate_journey --report /tmp/droga-nowa-proba.json
 <h4 id="doc-operator-guide--dodatkowe-wyprawy-gracza-migracja-0055">Dodatkowe wyprawy gracza — migracja 0055</h4>
 <p>Po zwykłym restarcie launcher stosuje migrację zachowującą stare wyprawy, wkład, nagrody i konta. Najwyższa rodzima ranga Kolonii może ogłaszać cele do poziomu10 przez sekcję „Wyprawy na rozkaz” na <code>/wspolnota/</code>. Po pokonaniu celu można ogłosić następny tego samego dnia. Boty uczestniczą zwykłymi turami. Nie potrzeba resetu świata ani ręcznej edycji PD. <a href="#doc-camp-raids">Reguły i ograniczenia</a>.</p></article><article id="doc-readme" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>README.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/README.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-readme--ore-empire-kroniki-kolonii">Ore &amp; Empire — Kroniki Kolonii</h2>
 <p>Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.</p>
-<p>Stan dokumentacji: <strong>14 listopada 2026, wyprawy na rozkaz #152, migracja 0055_manual_camp_raids</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
+<p>Stan dokumentacji: <strong>19 listopada 2026, migracja 0058_worldrelease_bot_arrivals</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
 <h3 id="doc-readme--uruchomienie">Uruchomienie</h3>
 <p>Python 3.12 lub 3.13, z katalogu repozytorium:</p>
 <pre><code class="language-bash">python3 -m venv .venv
@@ -422,7 +422,7 @@ python play.py --bots 125 --port 8001
 <pre><code class="language-bash">python manage.py open_khorinis --bots 125
 python play.py --port 8001
 </code></pre>
-<p>Daje to domyślnie <strong>125 + 125 = 250 botów</strong>. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a <code>--bots</code> nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online.</p>
+<p>Daje to domyślnie <strong>125 + 125 = 250 botów</strong>. Każdy region ma ustawienie 0–300; istniejąca konfiguracja zachowuje zapisaną liczbę, a <code>--bots</code> nie nadpisuje jej przy restarcie. Otwarcie Khorinis nie resetuje postaci. Boty mają sesje i przerwy, więc nie wszystkie konta są stale online. Po Barierze każda odkryta odsłona może dodać do <strong>5 nowych kont od poziomu 0</strong>, do <strong>280 botów automatycznie</strong> w połączonym świecie. Ręczne limity operatora pozostają dostępne. Krótkie kolejki i sesje ograniczają jednoczesne obciążenie, a ponowne uruchomienie nie powiela rozpoczętych fal.</p>
 <p>SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Nie uruchamiaj obok niego drugiego schedulera. <a href="#doc-operator-guide">Windows, restart, aktualizacja i zarządca</a> · <a href="#doc-postgresql">PostgreSQL</a> · <a href="#doc-production">Profil HTTPS</a>. Restart zachowuje dane; pełny reset jest odrębną operacją.</p>
 <h3 id="doc-readme--od-nowej-postaci-do-endgame">Od nowej postaci do endgame</h3>
 <ol>
@@ -1010,8 +1010,8 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <p>Warty zachowują snapshot wersji 1: dla głębokości d życie 600+60 d, atak 55+3 d, ochrona broni 25+2 d, magia/ogień 10+d. Bazowa ruda 50+10 d, PD 400+80 d, koszt 20 energii i 5 minut przerwy. Trudność wybiera się postępem wart (1–100), a nie siłą aktualnego sprzętu. Zlecenia zachowują własną wersję i snapshot przy przyjęciu. Dawne raporty nie są przepisywane. <a href="#doc-solo-playtest">Pomiary bez nadań</a>.</p>
 <h3 id="doc-loot-and-endgame--regionalne-warty-po-nk-136">Regionalne warty po NK — #136</h3>
 <p><a href="#doc-regional-endgame">Nowe cztery ścieżki i cel tygodniowy</a> rozszerzają powyższe historyczne warty. Mają osobne wpisowe i limit 8 pełnych nagród regionalnych na polski dzień; stare 100 stopni zachowuje zasady i dorobek.</p></article><article id="doc-magic" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/MAGIC.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/MAGIC.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-magic--magia-kregi-runy-zwoje-i-odpornosci">Magia — kręgi, runy, zwoje i odporności</h2>
-<p>Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Zmiana nie wymaga migracji.</p>
-<p>Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło Innosa z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dwa dodatkowe zaklęcia VI kręgu są dostępne po Barierze.</p>
+<p>Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Migracja 0057 dostosowuje trzy domyślne nazwy Wody i zachowuje egzemplarze, parametry oraz własne nazwy zarządcy.</p>
+<p>Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło Innosa z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dalsze runy tego samego VI kręgu dochodzą po Barierze i po otwarciu własnego portalu do Jarkendaru.</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -1082,7 +1082,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Woda</td>
-<td>Lodowa lanca</td>
+<td>Ostrze Adanosa</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">55 magii</td>
@@ -1098,7 +1098,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Woda</td>
-<td>Piorun kulisty</td>
+<td>Rozbłysk Adanosa</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">125 magii</td>
@@ -1114,7 +1114,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 </tr>
 <tr>
 <td>Woda</td>
-<td>Grom</td>
+<td>Wyrok Adanosa</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">16</td>
 <td style="text-align: right;">220 magii</td>
@@ -1184,8 +1184,41 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p
 <td style="text-align: right;">240 magii</td>
 <td>50% mniej obrażeń w turze rzutu</td>
 </tr>
+<tr>
+<td>Bractwo po Barierze</td>
+<td>Pieczęć Śniącego</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">255 magii</td>
+<td>co drugi rzut przerywa turę przeciwnika</td>
+</tr>
+<tr>
+<td>Ogień po otwarciu portalu</td>
+<td>Latarnia Innosa</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">370 ognia</td>
+<td>25% mniej obrażeń w turze rzutu</td>
+</tr>
+<tr>
+<td>Woda po otwarciu portalu</td>
+<td>Głębia Adanosa</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">350 magii</td>
+<td>50% mniej obrażeń w turze rzutu</td>
+</tr>
+<tr>
+<td>Bractwo po otwarciu portalu</td>
+<td>Szczelina Śniącego</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">340 magii</td>
+<td>co drugi rzut przerywa turę przeciwnika</td>
+</tr>
 </tbody>
 </table></div>
+<p>Runy wypraw po Barierze wymagają poziomu 35 i kosztują 2000 rudy. Runy portalu wymagają poziomu 38, odebranego osobistego zadania otwierającego Jarkendar i 3200 rudy. Dalej obowiązują szkoła, odpowiednia ranga i opłacony VI krąg. Finkregh, Feodaron, Archol i smok-ożywieniec osłabiają stare zaklęcia i zwoje o połowę po uwzględnieniu odporności. Archol i smok-ożywieniec zmniejszają też obrażenia wcześniejszych run wypraw o 25%. Pełną siłę przeciw ich osłonie mają runy portalu. Silnik, podgląd obrażeń i wybór bota stosują tę samą regułę.</p>
 <p>Tabela pokazuje obrażenia <strong>run</strong>. Ogólnodostępne zwoje zachowują dotychczasowe obrażenia, w tym 20/40/75 dla Sopla/Bryły/Fali oraz 100/70 dla Deszczu ognia/Pirokinezy. Nowe runy II/IV/VI nie mają ogólnodostępnej wersji zwoju. Ich jednorazowe ceny w Kolonii to 650/900/1500 rudy; w Khorinis 70/110/150, zgodnie z odrębną ekonomią wcześniejszej paczki wyspy. Nauka kręgów i trening many pozostają płatne. Posiadane stare runy otrzymują nowe parametry bez wymiany przedmiotu; nowe pojawiają się po zwykłym restarcie launchera. Przy osobnym uruchamianiu WSGI operator może dodać je poleceniem <code>python manage.py seed_equipment</code>. Seeder zachowuje własne ceny operatora, ekwipunek i postęp.</p>
 <p>Każdy zwój kosztuje 1 many/rzut i jedną sztukę na <strong>rzeczywiste rzucenie</strong>, bez wymogu szkoły/kręgu. Runa jest wielokrotnego użytku, wymaga kręgu i szkoły obozu. Dostępne oddzielnie kupione egzemplarze tego samego zwoju tworzą wspólny zapas walki. Najpierw zużywa się przygotowany, potem pozostałe według ID. Dodatkowe chronione i wystawione egzemplarze nie są pobierane; ostatni dostępny zapas/mana ogranicza liczbę rzutów. Pierwszy rzut musi być opłacalny przed rozpoczęciem walki; po wyczerpaniu zapasu postać broni się pięściami do końca starcia, bez darmowej amunicji. Przed kolejną walką można wrócić do broni na ekranie magii. Zużyty ostatni dostępny zwój czyści przygotowanie; jeśli pozostał dostępny egzemplarz tego samego typu, przygotowanie przechodzi na niego. Przedmiot przygotowany nie może być wystawiony/sprzedany bez wcześniejszego wyłączenia go. Cudzy, wystawiony albo niedozwolony przedmiot jest odrzucany także przez serwis walki.</p>
 <p>Nauka kolejnego kręgu N kosztuje 5×N PN i 50×N rudy, wymaga poziomu 2×N. Wtajemniczeni obozowi (ranga od tier 1) mogą nauczyć się dwóch kręgów, Mag Ognia/Wody lub Guru czterech, arcyrangi sześciu. Dostęp do run jest ograniczony także rangą i obozem; samo ustawienie <code>magic_skill</code> nie usuwa blokady szkoły/rangi. Maksymalną manę rozwija istniejący trening (1 PN i 10 rudy za punkt, pomniejszone o zniżkę szkoły obozowej). Zwiększenie maksimum ani założenie biżuterii nie leczy/nie odnawia many. Zdjęcie lub usunięcie sprzętu przycina aktualną manę do nowego maksimum.</p>
@@ -1241,7 +1274,7 @@ po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bo
 <h3 id="doc-magic--ponowne-przejscie-wody-bez-zwojow-150">Ponowne przejście Wody bez zwojów — #150</h3>
 <p><a href="#report-mag-wody-runy-2026-11-13">Raport</a>: nowa postać Kolonii, Nowy Obóz, sześć opłaconych run przed Barierą, awanse, dalsza runa NK, finał Irdorath, ósma ranga i pierwsze regionalne warty. Próba zabrania zakupów zwojów, nie przyznaje PN/many/rudy ani run. Regeneracja jest zwykła; opcjonalny itemshop zdrowia/energii korzysta z zarobionych odłamków. Doświadczenie przed uzyskaniem szkoły obejmuje podstawową broń.</p>
 <p>Ukończono na poziomie 61, 90 walk z magią, w 4,82 wirtualnego dnia bez oczekiwania na wspólnotowe zwycięstwo Bariery (zewnętrzny stan tej macierzy). To strategia znająca cele, nie czas rzeczywistej gry człowieka ani dowód przejścia wszystkich 400 stopni.</p>
-<p>Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Piorun kulisty IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.</p></article><article id="doc-crafting" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/CRAFTING.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CRAFTING.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-crafting--kowalstwo-i-alchemia">Kowalstwo i alchemia</h2>
+<p>Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Rozbłysk Adanosa IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.</p></article><article id="doc-crafting" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/CRAFTING.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CRAFTING.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-crafting--kowalstwo-i-alchemia">Kowalstwo i alchemia</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
 <p>Cztery receptury adaptacji: miecz czeladnika, kirys z płyt pełzacza, wywar ziołowy i wyciąg z jaj pełzacza. <code>seed_crafting</code> tworzy tylko brakujące definicje i nie nadpisuje ręcznych cen. Nauka poziomu kowalstwa/alchemii: 1 PN i 20 rudy, maksymalnie trzy poziomy. Receptura określa wymagany poziom postaci, umiejętność, opłatę, ilości składników i produkt. Nie są to udawane statystyki oryginalnego G1.</p>
 <p>Skóry, mięso, płyty i jaja pochodzą z istniejących wersjonowanych łupów. Stal i zioła są płatnymi materiałami warsztatowymi. Brakujące składniki można kupić u NPC lub z rzeczywistych ofert mieszkańców. Zlecenie zużywa wyłącznie własne, niewystawione i nienoszone stosy. Nie oddaje nagrody przy błędzie składnika ani nie pobiera niczego, jeśli nie ma całego kompletu. Składniki, opłata, produkt i CraftRecord tworzą jedną transakcję. UUID żądania zwraca dawny wynik zamiast produkować drugi przedmiot; zmiana receptury pod tym samym UUID jest odrzucana.</p>
@@ -2058,7 +2091,9 @@ zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.</p>
 <p>Zakup potwierdza cenę całej oferty widoczną w formularzu. Jeśli sprzedawca ją zmienił, transakcja nie pobiera rudy ani przedmiotu; odśwież targ i potwierdź nową cenę. Stare formularze bez potwierdzenia ceny są odrzucane.</p>
 <h3 id="doc-market-policy--wspolny-rynek-po-barierze">Wspólny rynek po Barierze</h3>
 <p>Przed połączeniem oferty i potencjalny popyt są odizolowane między serwerami. Po nim oba regiony mają jeden rynek, z zachowaniem ID ofert, cen, dat, właścicieli i ledgerów; nie ma kopiowania majątku. Oferta NK nadal wymaga połączenia, portalu i odpowiedniej frakcji, jeśli określa to wzór. Dostęp do portalu kupujących jest odczytywany zbiorczo, bez osobnego zapytania na każdego nabywcę.</p>
-<p>Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalszą aktywność sprzedającego bez utraty jego własnej broni. <a href="#report-grywalnosc-wydania-2026-11-13">Bieżące dowody</a>. Krótka próba nie dowodzi wielotygodniowego bilansu ani popytu każdego człowieka.</p></article><article id="doc-world-clock" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/WORLD_CLOCK.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD_CLOCK.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world-clock--rzeczywisty-czas-polski-i-rytm-swiata">Rzeczywisty czas polski i rytm świata</h2>
+<p>Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalszą aktywność sprzedającego bez utraty jego własnej broni. <a href="#report-grywalnosc-wydania-2026-11-13">Bieżące dowody</a>. Krótka próba nie dowodzi wielotygodniowego bilansu ani popytu każdego człowieka.</p>
+<h3 id="doc-market-policy--mae-partie-skadnikow">Małe partie składników</h3>
+<p>Bot może wystawić jedną lub dwie sztuki z większego stosu, jeżeli kupiec ma taki faktyczny brak według receptury, budżetu i ceny zastępczej. Reszta zostaje w plecaku. Osobna partia powstaje w jednej transakcji z wpisem targowym i mieści się w limicie ofert oraz miejsc. Rezerwacje, ochrona towaru i izolacja regionów nadal obowiązują. Przejściowy brak popytu może zostawić nową ofertę dostępną przez pierwsze sześć godzin. Stare, nieopłacalne zapasy wracają do zwykłej wyprzedaży.</p></article><article id="doc-world-clock" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Frakcje i żyjący świat</span><span>docs/WORLD_CLOCK.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/WORLD_CLOCK.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-world-clock--rzeczywisty-czas-polski-i-rytm-swiata">Rzeczywisty czas polski i rytm świata</h2>
 <p>Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).</p>
 <p>Świat działa <strong>1:1 z prawdziwym czasem</strong> w <code>Europe/Warsaw</code>. Nie ma przyspieszonej doby. Python <code>zoneinfo</code> korzysta z bazy reguł strefy: automatycznie CET zimą i CEST latem, bez ręcznego dodawania godziny. Baza nadal przechowuje świadome daty UTC; interfejs i granice kalendarza używają Polski. Serwer/OS musi mieć aktualne dane stref czasowych.</p>
 <h3 id="doc-world-clock--szesc-por-dnia">Sześć pór dnia</h3>
@@ -2703,7 +2738,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>Zaklęcia działające (nie liczba modeli run/zwojów)</td>
-<td>20</td>
+<td>24</td>
 </tr>
 <tr>
 <td>Zlecenia czasowe</td>
@@ -6459,7 +6494,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>2</td>
 </tr>
 <tr>
-<td>waterlance — Lodowa lanca</td>
+<td>waterlance — Ostrze Adanosa</td>
 <td>Magowie Wody</td>
 <td>2</td>
 <td>6</td>
@@ -6468,7 +6503,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>—</td>
 </tr>
 <tr>
-<td>thunderball — Piorun kulisty</td>
+<td>thunderball — Rozbłysk Adanosa</td>
 <td>Magowie Wody</td>
 <td>4</td>
 <td>10</td>
@@ -6477,7 +6512,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>—</td>
 </tr>
 <tr>
-<td>chainlightning — Grom</td>
+<td>chainlightning — Wyrok Adanosa</td>
 <td>Magowie Wody</td>
 <td>6</td>
 <td>16</td>
@@ -6556,6 +6591,42 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>240 / magia</td>
 <td>50</td>
 <td>—</td>
+</tr>
+<tr>
+<td>barrier_echo — Pieczęć Śniącego</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>18</td>
+<td>255 / magia</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>adanos_depths — Głębia Adanosa</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>20</td>
+<td>350 / magia</td>
+<td>50</td>
+<td>—</td>
+</tr>
+<tr>
+<td>innos_beacon — Latarnia Innosa</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>20</td>
+<td>370 / ogień</td>
+<td>25</td>
+<td>—</td>
+</tr>
+<tr>
+<td>sleeper_rift — Szczelina Śniącego</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>20</td>
+<td>340 / magia</td>
+<td>0</td>
+<td>2</td>
 </tr>
 </tbody>
 </table></div>

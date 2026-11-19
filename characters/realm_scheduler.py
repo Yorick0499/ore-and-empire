@@ -1,11 +1,14 @@
 """One adaptive queue for all realms, with a separate fenced owner per realm."""
+from time import monotonic
 from .models import World
 from .realms import open_worlds,world_scope
 from .scheduler_lease import SchedulerGuard
 from .bot_personalities import due_population
 
 class ParallelRealms:
-    def __init__(self):self.guards={}
+    def __init__(self):
+        self.guards = {}
+        self.next_arrival_check = None
     def sync(self,primary,cleanup):
         opened=list(open_worlds().filter(configured=True).exclude(pk=primary.world_id))
         wanted={w.pk for w in opened}|{primary.world_id}
@@ -16,6 +19,11 @@ class ParallelRealms:
                 guard=SchedulerGuard(world).acquire();self.guards[world.pk]=guard;cleanup.callback(guard.release)
             with self.guards[world.pk].work():pass
         self.guards[primary.world_id]=primary
+        now = monotonic()
+        if self.next_arrival_check is None or now >= self.next_arrival_check:
+            from .bot_arrivals import admit_next_cohort
+            admit_next_cohort(primary)
+            self.next_arrival_check = now + 30
         ids=[]
         from django.db.models import Q
         for world in open_worlds().filter(Q(configured=True)|Q(pk=primary.world_id)):ids.extend(due_population(world))
