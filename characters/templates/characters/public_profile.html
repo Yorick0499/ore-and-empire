@@ -1,0 +1,54 @@
+{% extends 'characters/base.html' %}
+{% load static gothic_media %}
+{% block title %}{{ character_name }} · Profil postaci{% endblock %}
+{% block content %}
+<header class="colony-panel resident-profile-heading">
+  <div>
+    <p class="eyebrow">{% if character.is_bot %}Bot{% else %}Gracz{% endif %} · {{ character_region.name }}</p>
+    <h1>{{ character_name }}</h1>
+    <p>{{ character.faction_name }} · {{ character.guild_name }}</p>
+  </div>
+  <div class="resident-profile-level"><span>Poziom</span> <strong>{{ character.level }}</strong></div>
+</header>
+
+<div class="resident-profile-layout">
+  <section class="colony-panel" aria-labelledby="resident-gear-title">
+    <h2 id="resident-gear-title">Założony ekwipunek</h2>
+    <div class="resident-paperdoll">
+      <div class="resident-paperdoll-figure" aria-hidden="true">
+        <img src="{% static 'characters/art/profile-adventurer.webp' %}" alt="" width="420" height="630">
+      </div>
+      {% for slot in slots %}
+      <article class="resident-gear-slot gear-{{ slot.key }}{% if slot.item %} has-item{% endif %}">
+        <h3>{{ slot.label }}</h3>
+        {% if slot.item %}
+          {% gothic_item_art slot.item.blueprint compact=True %}
+          <details>
+            <summary>{{ slot.item.blueprint.name }}{% if slot.item.upgrade_level %} +{{ slot.item.upgrade_level }}{% endif %}</summary>
+            <p>{{ slot.item.quality_name }}</p>
+            {% if slot.stats %}<dl>{% for label, value in slot.stats %}<div><dt>{{ label }}</dt><dd>{{ value|stringformat:'+d' }}</dd></div>{% endfor %}</dl>{% endif %}
+          </details>
+        {% else %}
+          <span class="resident-empty-symbol" aria-hidden="true">{{ slot.symbol }}</span>
+          <p>Puste miejsce</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <aside class="colony-panel resident-profile-facts" aria-labelledby="resident-facts-title">
+    <h2 id="resident-facts-title">O postaci</h2>
+    <dl>
+      <div><dt>Pochodzenie</dt><dd>{{ character_origin.name }}</dd></div>
+      <div><dt>Region</dt><dd>{{ character_region.name }}</dd></div>
+      <div><dt>Doświadczenie</dt><dd>{{ character.experience }} PD</dd></div>
+      <div><dt>Siła</dt><dd>{{ character.strength }}</dd></div>
+      <div><dt>Zręczność</dt><dd>{{ character.dexterity }}</dd></div>
+      <div><dt>Mana</dt><dd>{{ character.mana }}</dd></div>
+      <div><dt>Krąg magii</dt><dd>{{ character.magic_skill }}</dd></div>
+    </dl>
+    {% if user.is_authenticated %}<p><a href="{% url 'rankings_page' %}">Rankingi mieszkańców</a></p>{% endif %}
+  </aside>
+</div>
+{% endblock %}

@@ -45,6 +45,7 @@ from characters.views import journal_view, battle_detail_view, hall_view
 
 from characters.health import live,ready
 from characters.public_chronicle import ChronicleLoginView
+from characters.public_profiles import character_profile
 
 urlpatterns = [
     path('zarzadca/bariera/', barrier_admin_view, name='barrier_admin'),
@@ -60,6 +61,7 @@ urlpatterns = [
     path("inicjalizacja/",world_setup_view,name="world_setup"),
     path("zarzadca/swiat/reset/",world_control_view,name="world_control"),
     path("postacie/",characters_view,name="characters_page"),
+    path("postacie/<int:character_id>/", character_profile, name="character_profile"),
     path("wspolnota/", camp_guild_view, name="camp_guild"),
     path("magia/", magic_view, name="magic_page"),
     path("zarzadca/swiat/", world_monitor_view, name="world_monitor"),
