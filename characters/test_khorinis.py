@@ -4,7 +4,7 @@ from io import StringIO
 from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.test import TestCase
+from django.test import TestCase, TransactionTestCase
 from django.utils import timezone
 from .models import PlayerProfile,StoryQuest,CampGuild,World,ItemBluePrint,OwnedItem,AdventureTemplate,WorldEvent
 from .worlds import current_world
@@ -63,6 +63,44 @@ class TwoRealmTests(TestCase):
         self.assertFalse(any(l.accessible(self.p) for l in LOCATIONS if l.key.startswith('jark_')))
         self.assertFalse(game.choose_camp(self.p,'CITY_WATCH'))
         self.assertFalse(game.choose_camp(self.p,'OLD_CAMP'))
+    def test_native_hunting_yields_tradeable_crafting_ingredients(self):
+        from .models import MarketTrade
+
+        self.p.level = 3
+        self.p.strength = 100
+        self.p.save(update_fields=["level", "strength"])
+        buyer = PlayerProfile.objects.filter(world=self.island, is_bot=True).first()
+        for creature, location, material in (
+            ("k2_scavenger", "k2_fields", "raw-meat"),
+            ("k2_wolf", "k2_road", "wolf-skin"),
+        ):
+            with self.subTest(creature=creature), patch("characters.loot.random.randrange", return_value=5000):
+                self.assertTrue(game.execute_hunt(self.p, creature, location))
+                battle = self.p.battles.get(monster_key=creature)
+                self.assertTrue(battle.won)
+                item = self.p.inventory.get(blueprint__catalog_key=material)
+                self.assertEqual(battle.loot[0]["blueprint"], item.blueprint_id)
+                self.assertEqual(item.quantity, 1)
+                self.assertTrue(game.list_item_on_market(self.p, item, 3))
+                self.assertFalse(game.buy_item_on_market(self.original, item, 3))
+                self.assertTrue(game.buy_item_on_market(buyer, item, 3))
+                item.refresh_from_db()
+                self.assertEqual(item.owner_id, buyer.pk)
+        self.assertEqual(MarketTrade.objects.filter(seller=self.p, buyer=buyer).count(), 2)
+
+    def test_seeding_island_materials_preserves_operator_loot_tables(self):
+        from .models import LootTable
+
+        table = LootTable.objects.get(key="k2_scavenger")
+        table.entries = []
+        table.version = 7
+        table.enabled = False
+        table.save(update_fields=["entries", "version", "enabled"])
+        call_command("seed_khorinis", stdout=StringIO())
+        table.refresh_from_db()
+        self.assertEqual((table.entries, table.version, table.enabled), ([], 7, False))
+        self.assertEqual(LootTable.objects.filter(key="k2_wolf").count(), 1)
+
     def test_open_is_idempotent_and_does_not_touch_colony(self):
         before=list(CampGuild.objects.filter(world=self.colony).values())
         call_command('open_khorinis',bots=100,name='Nie nadpisuj',stdout=StringIO())
@@ -219,3 +257,31 @@ class TwoRealmTests(TestCase):
             response=self.client.post('/zarzadca/swiat/reset/?server='+bad,{'action':'configure','name':'Nie zmieniaj','bot_count':99})
             self.assertEqual(response.status_code,404)
         self.assertEqual(before,list(World.objects.order_by('pk').values_list('name','bot_count')))
+
+
+class HuntingMaterialsMigrationTests(TransactionTestCase):
+    def test_existing_island_only_receives_missing_defaults(self):
+        from django.db import connection
+        from django.db.migrations.executor import MigrationExecutor
+
+        previous = ("characters", "0055_manual_camp_raids")
+        current = ("characters", "0056_khorinis_hunting_materials")
+        targets = MigrationExecutor(connection).loader.graph.leaf_nodes("characters")
+        self.addCleanup(lambda: MigrationExecutor(connection).migrate(targets))
+        executor = MigrationExecutor(connection)
+        executor.migrate([previous])
+        apps = executor.loader.project_state([previous]).apps
+        world = apps.get_model("characters", "World")
+        blueprint = apps.get_model("characters", "ItemBluePrint")
+        loot = apps.get_model("characters", "LootTable")
+        world.objects.create(name="Latarnia", universe="GOTHIC_II", is_open=True)
+        for key in ("raw-meat", "wolf-skin"):
+            blueprint.objects.create(catalog_key=key, name=key, kind="material", stackable=True)
+        loot.objects.create(key="k2_scavenger", version=7, enabled=False, entries=[])
+
+        MigrationExecutor(connection).migrate([current])
+
+        custom = loot.objects.get(key="k2_scavenger")
+        self.assertEqual((custom.entries, custom.version, custom.enabled), ([], 7, False))
+        wolf = loot.objects.get(key="k2_wolf")
+        self.assertEqual(wolf.entries, [{"blueprint": blueprint.objects.get(catalog_key="wolf-skin").pk, "weight": 6000}])

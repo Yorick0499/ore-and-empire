@@ -30,6 +30,8 @@ class Command(BaseCommand):
         for ammo,kind in [('arrow','Strzała'),('bolt','Bełt')]:
             ItemBluePrint.objects.get_or_create(catalog_key='k2-ammo-'+ammo,defaults={'name':kind+' warty Khorinis','kind':'ammo','stackable':True,'base_value':1 if ammo=='arrow' else 2,'source_game':'GOTHIC_II','original_stats':{'ammo_type':ammo},'art_key':'k2_item_arrow' if ammo=='arrow' else 'k2_item_bolt'})
         from characters.models import LootTable
+        from characters.khorinis_loot_v1 import seed_hunting_materials
+        seed_hunting_materials(ItemBluePrint.objects, LootTable.objects)
         for enemy in ['k2_bandit_boss','k2_harbor_boss']:
             trophy,_=ItemBluePrint.objects.get_or_create(catalog_key=enemy+'-trophy',defaults={'name':'Znak warty traktu' if enemy=='k2_bandit_boss' else 'Znak warty morskiej','kind':'quest','source_game':'GOTHIC_II','merchant':False,'tradeable':False,'stackable':True,'art_key':'k2_harbor'})
             LootTable.objects.get_or_create(key=enemy,defaults={'entries':[{'blueprint':trophy.pk,'weight':10000}]})

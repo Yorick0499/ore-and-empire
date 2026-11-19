@@ -272,7 +272,8 @@ class ManualRaidMigrationTests(TransactionTestCase):
         def migrate(target):
             executor=MigrationExecutor(connection);executor.migrate([target])
             return executor.loader.project_state([target]).apps
-        self.addCleanup(migrate,latest)
+        targets=MigrationExecutor(connection).loader.graph.leaf_nodes("characters")
+        self.addCleanup(lambda: MigrationExecutor(connection).migrate(targets))
         apps=migrate(previous)
         UserOld=apps.get_model('auth','User');WorldOld=apps.get_model('characters','World')
         Profile=apps.get_model('characters','PlayerProfile');Guild=apps.get_model('characters','CampGuild')

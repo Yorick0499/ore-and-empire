@@ -16,4 +16,4 @@ Cztery receptury nadal tworzą nowe egzemplarze zwykłej rzadkości i +0. Osobna
 
 ## Regiony i zakres NK
 
-Przed Barierą transakcje i fizyczne zapasy są odizolowane między serwerami. Po niej wspólny rynek pomaga zdobywać składniki, bez kopiowania przedmiotów. Pełny źródłowy katalog mikstur/ziół NK nie oznacza nowych receptur dla każdej pozycji; aktywne pozostają cztery z [bieżącej tabeli](GAME_CONTENT.md#receptury). Chroniony materiał nie jest zużywany jako składnik.
+Przed Barierą obydwa serwery mają oddzielny handel i zapasy. Na Khorinis ścierwojady z pól upuszczają surowe mięso, a wilki z traktu skórę wilka. Domyślna szansa to 60% po zwycięstwie. Aktualizacja 0056 uzupełnia brakujące tabele w istniejącym Khorinis i zachowuje ręczne ustawienia zarządcy. Po niej wspólny rynek pomaga zdobywać składniki, bez kopiowania przedmiotów. Pełny źródłowy katalog mikstur/ziół NK nie oznacza nowych receptur dla każdej pozycji; aktywne pozostają cztery z [bieżącej tabeli](GAME_CONTENT.md#receptury). Chroniony materiał nie jest zużywany jako składnik.
