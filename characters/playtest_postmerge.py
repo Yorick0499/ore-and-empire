@@ -77,7 +77,7 @@ class JoinedBotCampaignTests(TransactionTestCase):
                 World.objects.filter(status='active').update(union_key=uuid4())
                 from .post_barrier import seed
                 from .models import SleeperRace,CampGuild
-                from .faction_succession_v1 import apply
+                from .faction_succession_v2 import apply
                 from django.apps import apps
                 race=SleeperRace.objects.create(colony=world,khorinis=World.objects.get(is_open=True,universe='GOTHIC_II'),winner=CampGuild.objects.get(world=world,camp='OLD_CAMP'),state='joined')
                 apply(apps,race)
@@ -87,9 +87,5 @@ class JoinedBotCampaignTests(TransactionTestCase):
             campaign_tests.CampaignBotTests.test_every_camp_bot_can_finish_from_new_character_without_runtime_grants(self)
         from .models import FactionMembership
         self.assertTrue(started);self.assertEqual(FactionMembership.objects.filter(profile__is_bot=True).count(),3)
-        from .models import FactionChoice,BotDecision
-        from .bot_telemetry import replay_decision
-        self.assertEqual(FactionChoice.objects.filter(membership__profile__is_bot=True).count(),1)
-        decision=BotDecision.objects.get(action='choose_faction',success=True)
-        self.assertTrue(replay_decision(decision)['matches'])
+        self.assertTrue(FactionMembership.objects.filter(profile__is_bot=True, faction='VEIL_ORDER').exists())
         record_scenario('boty-po-polaczeniu',{'global_join_fixture':True,'join_after_ordinary_recruitment':True,'faction_succession':True,'admin_grants':False,'characters':list(PlayerProfile.objects.filter(is_bot=True).values('camp','guild','faction_membership__faction','level','strength','dexterity','mana')),'limits':['Krok testowy 30 minut nie jest pomiarem czasu człowieka.','Kontynuacja istniejącego scenariusza trzech zdobytych kampanii, bez nadawania postępu.']})

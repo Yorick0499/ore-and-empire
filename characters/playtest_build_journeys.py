@@ -14,7 +14,7 @@ from .models import ItemBluePrint,World,StoryQuest
 from .barrier import region,source_games,travel
 from .equipment import allowed
 from .camp_progression import BY_RANK,available_rank,accept_camp_quest,promote_in_camp
-from .faction_advancement import RANKS,current_tier
+from .faction_advancement import RANKS,current_tier,rank_for
 from .locations import LOCATIONS,BY_KEY
 from .playtest_pacing import CampaignPacingTests
 from .playtest_gothic2 import EarnedNkCampaign
@@ -28,8 +28,8 @@ CASES={
  'city-warrior':('GOTHIC_II','CITY_WATCH','warrior',('K2_CITIZEN','K2_MILITIA','K2_PALADIN','K2_COMMANDER'),'CITY_WATCH'),
  'monastery-fire':('GOTHIC_II','FIRE_ORDER','fire',('K2_NOVICE','K2_ADEPT','K2_MAGE','K2_ARCHMAGE'),'FIRE_ORDER'),
  'onar-archer':('GOTHIC_II','ONAR_MERCS','archer',('K2_LABORER','K2_RECRUIT','K2_MERC','K2_CAPTAIN'),'MERCENARIES'),
- 'swamp-guru':('GOTHIC_I','SWAMP_CAMP','brotherhood',('PICKER','NOVICE','GURU','ARCH_GURU'),'WATER_CIRCLE'),
- 'swamp-templar':('GOTHIC_I','SWAMP_CAMP','warrior',('PICKER','NOVICE','SWAMP_GUARD','TEMPLAR'),'CITY_WATCH'),
+ 'swamp-guru':('GOTHIC_I','SWAMP_CAMP','brotherhood',('PICKER','NOVICE','GURU','ARCH_GURU'),'VEIL_ORDER'),
+ 'swamp-templar':('GOTHIC_I','SWAMP_CAMP','warrior',('PICKER','NOVICE','SWAMP_GUARD','TEMPLAR'),'VEIL_ORDER'),
 }
 
 class EarnedBuild:
@@ -204,9 +204,7 @@ class EarnedBuildJourneys(TestCase):
             if not p.camp_quests.filter(rank_key=key,promoted_at__isnull=False).exists():self.earn_rank(p,BY_RANK[key],steps)
         c,i=EarnedNkCampaign.join_worlds(self,p,steps)
         p.refresh_from_db()
-        from .faction_choice import choose
         from .factions import membership
-        if membership(p).faction=='PENDING':self.assertTrue(choose(p,self.destination))
         self.assertEqual(membership(p).faction,self.destination)
         return c,i
     def finish(self,p,steps):
@@ -215,7 +213,7 @@ class EarnedBuildJourneys(TestCase):
         for rank in RANKS:
             if rank.camp!=self.destination:continue
             self.assertTrue(travel(p,World.objects.get(is_current=True).pk))
-            self.earn_rank(p,rank,steps)
+            self.earn_rank(p,rank_for(p, rank),steps)
         self.assertEqual(current_tier(p),7)
         from .frontier import patrol
         from .regional_endgame import TRACKS

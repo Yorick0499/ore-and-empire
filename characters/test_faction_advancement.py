@@ -15,7 +15,7 @@ class CatalogTests(SimpleTestCase):
     def test_twenty_advanced_ranks_use_real_targets_and_fit_persisted_keys(self):
         from .bestiary import BESTIARY
         from .bosses import BOSSES
-        self.assertEqual(len(RANKS),20)
+        self.assertEqual(len(RANKS),24)
         for faction,_ in FACTIONS:
             branch=[r for r in RANKS if r.camp==faction]
             self.assertEqual([r.tier for r in branch],[4,5,6,7]);self.assertEqual([r.level for r in branch],[30,35,40,45])

@@ -19,7 +19,7 @@ DESTINATIONS = [
  ('jark_pirates','Obóz piratów','Marynarze potrzebują bezpiecznych plaż. Piraci to sąsiedzi i zleceniodawcy, nie szósta frakcja postaci.',10,'tavern_page',(),'k2_harbor'),
  ('jark_beach','Plaże Jarkendaru','Topielce podchodzą pod obozowisko marynarzy.',10,'hunt_page',('jark_lurker',),'k2_landscape'),
  ('jark_canyon','Kanion Jarkendaru','Brzytwiaki i krwawe ogary odcinają drogę zwiadowcom.',15,'hunt_page',('jark_razor','jark_bloodhound'),'k2_landscape'),
- ('jark_bandits','Obóz bandytów','Praca i zaopatrzenie ludzi pochodzących ze Starego Obozu. Ruda pozostaje wspólną walutą rozliczeniową.',12,'market_page',(),'old_camp'),
+ ('jark_bandits','Obóz zaopatrzeniowy bandytów','Placówka ludzi z Wieży Dextera uruchomiona po otwarciu portalu. Ruda pozostaje wspólną walutą rozliczeniową.',12,'market_page',(),'old_camp'),
  ('jark_mine','Kopalnia złota','Wydobycie rozliczane rudą według wspólnych zasad gospodarki; bez nowej waluty.',12,'mine_page',(),'old_mine'),
  ('jark_swamp','Bagna Budowniczych','Modliszki i błotne węże zagrażają badaczom.',12,'hunt_page',('jark_mantis','jark_swampshark'),'swamp'),
  ('jark_ruins','Ruiny Budowniczych','Kamienni strażnicy wciąż strzegą opuszczonych sal.',22,'hunt_page',('jark_guardian',),'stone_circle'),

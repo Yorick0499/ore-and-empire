@@ -25,7 +25,9 @@ def validate_runtime_locations(assets):
         if location.universe!='GOTHIC_II' and not location.post_barrier:continue
         keys=[location.key]+([location.key+'_boss'] if location.key in BOSSES else [])
         for key in keys:
-            if assets.get(key,{}).get('game')!='GOTHIC_II_NK':raise ValueError('Missing G2 runtime location/boss art: '+key)
+            from .gothic_assets import ASSET_ALIASES
+            art = assets.get(key) or assets.get(ASSET_ALIASES.get(key), {})
+            if art.get('game')!='GOTHIC_II_NK':raise ValueError('Missing G2 runtime location/boss art: '+key)
         count+=1
     return count
 

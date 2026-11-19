@@ -20,7 +20,7 @@ class ChoiceTests(TestCase):
     def join(self):succeed(self.race)
     def test_all_six_ranks_and_unranked_member_have_exact_allowed_destinations(self):
         for rank in ('NONE','PICKER','NOVICE','SWAMP_GUARD','TEMPLAR','GURU','ARCH_GURU'):
-            for key,_ in FACTIONS:
+            for key,_ in (row for row in FACTIONS if row[0] != 'VEIL_ORDER'):
                 with self.subTest(rank=rank,destination=key):
                     p=self.pending(rank)
                     # Fresh actor added after the external join, enroll through the

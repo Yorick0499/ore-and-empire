@@ -15,7 +15,7 @@ def choice_for(profile):
 
 def allowed_factions(profile):
     if profile.guild in {'GURU','ARCH_GURU'}:return tuple(key for key,_ in FACTIONS if key in MAGICAL)
-    return tuple(key for key,_ in FACTIONS)
+    return tuple(key for key,_ in FACTIONS if key != 'VEIL_ORDER')
 
 
 def card(profile):
@@ -32,7 +32,7 @@ def card(profile):
 @player_action
 def choose(profile,destination):
     from .barrier import joined
-    if type(destination) is not str or destination not in dict(FACTIONS) or not joined(profile.world_id):return False
+    if type(destination) is not str or destination not in dict(FACTIONS) or destination == 'VEIL_ORDER' or not joined(profile.world_id):return False
     member=FactionMembership.objects.select_for_update().filter(profile=profile).select_related('succession__race').first()
     if not member or profile.camp!='SWAMP_CAMP':return False
     prior=FactionChoice.objects.filter(membership=member).first()
@@ -66,19 +66,19 @@ def choose(profile,destination):
 
 def promotion_allowed(profile,rank):
     choice=choice_for(profile)
-    if not choice:return True
+    if not choice or membership(profile).faction == 'VEIL_ORDER':return True
     return rank.key not in ({'SWAMP_GUARD','TEMPLAR'} if choice.destination in MAGICAL else {'GURU','ARCH_GURU'})
 
 
 def promotion_parents(profile,rank):
     choice=choice_for(profile)
-    if choice and choice.destination in MAGICAL and rank.key=='ARCH_GURU' and profile.guild=='SWAMP_GUARD':return ('SWAMP_GUARD',)
+    if choice and membership(profile).faction != 'VEIL_ORDER' and choice.destination in MAGICAL and rank.key=='ARCH_GURU' and profile.guild=='SWAMP_GUARD':return ('SWAMP_GUARD',)
     return None
 
 
 def equipment_camps(profile):
     member=membership(profile)
-    return {'',profile.camp}|({'CITY_WATCH':{'CITY_WATCH'},'FIRE_ORDER':{'OLD_CAMP','FIRE_ORDER'},'WATER_CIRCLE':{'NEW_CAMP'},'BANDITS':{'OLD_CAMP'},'MERCENARIES':{'NEW_CAMP','ONAR_MERCS'}}.get(member.faction,set()) if member else set())
+    return {'',profile.camp}|({member.faction}|{'CITY_WATCH':{'CITY_WATCH'},'FIRE_ORDER':{'OLD_CAMP','FIRE_ORDER'},'WATER_CIRCLE':{'NEW_CAMP'},'BANDITS':{'OLD_CAMP'},'MERCENARIES':{'NEW_CAMP','ONAR_MERCS'},'VEIL_ORDER':{'SWAMP_CAMP'}}.get(member.faction,set()) if member else set())
 
 
 def equipment_camp_allowed(profile,camp):return not camp or camp in equipment_camps(profile)

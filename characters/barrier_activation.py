@@ -69,7 +69,7 @@ def activate(race_id,root=None):
             path,digest,proof=fresh_snapshot(root)
             if race.lease_owner!=owner or not SleeperRace.objects.filter(pk=race.pk,lease_expires_at__gt=Now()).exists():raise ValueError('Dzierżawa wygasła podczas weryfikacji.')
             from django.apps import apps
-            from .faction_succession_v1 import apply
+            from .faction_succession_v2 import apply
             apply(apps,race)
             from .post_barrier import seed
             seed()
@@ -122,7 +122,7 @@ def succeed_joined(race_id,root=None):
             if race.paused or race.lease_owner!=owner or race.state!='joined' or len(regions)!=2 or not regions[0].union_key or regions[0].union_key!=regions[1].union_key:raise ValueError('Nieprawidłowy stan sukcesji.')
             path,digest,proof=fresh_snapshot(root)
             from django.apps import apps
-            from .faction_succession_v1 import apply
+            from .faction_succession_v2 import apply
             if not SleeperRace.objects.filter(pk=race_id,lease_owner=owner,lease_expires_at__gt=Now()).exists():raise ValueError('Dzierżawa wygasła podczas weryfikacji.')
             result=apply(apps,race)
             result.details['backup']={'path':path,'digest':digest,'proof':proof};result.save(update_fields=['details'])

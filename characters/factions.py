@@ -5,14 +5,16 @@ FACTIONS = (
     ('CITY_WATCH', 'Miasto Khorinis — Zakon Paladynów'),
     ('FIRE_ORDER', 'Klasztor Magów Ognia'),
     ('WATER_CIRCLE', 'Krąg Magów Wody'),
-    ('BANDITS', 'Bandyci — Jarkendar'),
+    ('BANDITS', 'Bandyci Khorinis'),
     ('MERCENARIES', 'Najemnicy — Łowcy Smoków'),
+    ('VEIL_ORDER', 'Zakon Czarnej Zasłony'),
 )
 RANK_NAMES = {
     'CITY_WATCH': ('Rekrut straży', 'Strażnik miejski', 'Sierżant straży', 'Dowódca straży', 'Kandydat Zakonu', 'Rycerz', 'Paladyn', 'Mistrz Zakonu'),
     'FIRE_ORDER': ('Nowicjusz Ognia', 'Adept Ognia', 'Mag Ognia Khorinis', 'Arcymag klasztoru', 'Mistrz Ognia', 'Strażnik Świętego Ognia', 'Mistrz Kręgu Ognia', 'Awatar Innosa'),
     'WATER_CIRCLE': ('Uczeń Wody', 'Adept Wody', 'Mag Wody', 'Arcymag Wody', 'Mistrz Wody', 'Strażnik Równowagi', 'Mistrz Kręgu Wody', 'Awatar Adanosa'),
     'BANDITS': ('Kopacz', 'Rzezimieszek', 'Bandyta', 'Watażka', 'Przywódca szajki', 'Dowódca bandytów', 'Herszt bandytów', 'Baron bandytów'),
+    'VEIL_ORDER': ('Słuchacz Cienia', 'Nowicjusz Popiołu', 'Wysłannik Zasłony', 'Poszukiwacz', 'Powiernik Popiołu', 'Strażnik Czarnego Płomienia', 'Herold Mroku', 'Hierofant Beliara'),
     'MERCENARIES': ('Pomocnik', 'Rekrut', 'Najemnik', 'Kapitan Najemników', 'Łowca Smoków', 'Weteran Łowców Smoków', 'Dowódca Łowców Smoków', 'Mistrz Łowców Smoków'),
 }
 
@@ -42,15 +44,24 @@ def rank_name(profile):
 
 def enroll(profile):
     """Called inside the existing player transaction after choosing a native path."""
-    from .faction_succession_v1 import destination
+    from .faction_succession_v2 import destination
     from .barrier import region_ids
     succession=FactionSuccession.objects.filter(race__colony_id__in=region_ids(profile.world_id)).select_related('race').first()
     if not succession:return
     from .faction_choice import choice_for
-    if choice_for(profile):return
+    if choice_for(profile) and membership(profile).faction != 'VEIL_ORDER':return
     faction=destination(profile.camp,profile.guild)
-    guild=CampGuild.objects.get(world_id=succession.race.khorinis_id if faction in {'CITY_WATCH','FIRE_ORDER'} else succession.race.colony_id,camp='SWAMP_CAMP' if faction=='PENDING' else faction) if faction else None
-    if not faction:return
+    if not faction:
+        return
+    world_id = succession.race.khorinis_id if faction in {'CITY_WATCH', 'FIRE_ORDER'} else succession.race.colony_id
+    guilds = CampGuild.objects.filter(world_id=world_id)
+    guild = guilds.filter(camp=faction).first()
+    if guild is None and faction == 'VEIL_ORDER':
+        # Old joined snapshots awaiting the data migration still have escrow.
+        faction = 'PENDING'
+        guild = guilds.get(camp='SWAMP_CAMP')
+    if guild is None:
+        guild = guilds.get(camp=faction)
     member,created=FactionMembership.objects.get_or_create(profile=profile,defaults={'succession':succession,'faction':faction,'guild':guild,'historical_camp':profile.camp,'historical_rank':profile.guild})
     if not created and (member.faction!=faction or member.guild_id!=guild.pk):
         member.faction=faction;member.guild=guild;member.save(update_fields=['faction','guild'])
@@ -60,14 +71,12 @@ def enroll(profile):
 
 def recruitment_camps(profile):
     from .realms import camps
-    from .barrier import joined
-    choices=camps(profile.world)
-    return tuple(c for c in choices if c!='SWAMP_CAMP') if joined(profile.world_id) else choices
+    return camps(profile.world)
 
 
 def recruitment_choices(profile):
     from .barrier import joined
     native=dict(PlayerProfile.CAMP_LIST)
     if joined(profile.world_id):
-        native.update({'OLD_CAMP':'Bandyci — dawna droga Starego Obozu','NEW_CAMP':'Najemnicy — dawna droga Nowego Obozu','ONAR_MERCS':'Najemnicy — droga Onara','CITY_WATCH':dict(FACTIONS)['CITY_WATCH'],'FIRE_ORDER':dict(FACTIONS)['FIRE_ORDER']})
+        native.update({'OLD_CAMP':'Bandyci Khorinis — droga Starego Obozu','SWAMP_CAMP':dict(FACTIONS)['VEIL_ORDER'],'NEW_CAMP':'Najemnicy — dawna droga Nowego Obozu','ONAR_MERCS':'Najemnicy — droga Onara','CITY_WATCH':dict(FACTIONS)['CITY_WATCH'],'FIRE_ORDER':dict(FACTIONS)['FIRE_ORDER']})
     return [(key,native[key]) for key in recruitment_camps(profile)]

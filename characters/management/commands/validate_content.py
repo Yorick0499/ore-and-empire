@@ -134,7 +134,7 @@ class Command(BaseCommand):
         self.stdout.write(f'Validated {len(data["items"])} item identities and {len(assets)} local images.')
         self.stdout.write(f'Khorinis: {quests} quest definitions, {locations} locations, {creatures} creatures. Partial pre-convergence adaptation; NOT a complete G2 NK catalogue.')
 
-        self.stdout.write(f'Joined factions: {advanced} earned promotion quests, ranks5–8 in each of five factions.')
+        self.stdout.write(f'Joined factions: {advanced} earned promotion quests, ranks5–8 in each of six factions.')
 
         self.stdout.write(f'Public Jarkendar starter: {jquests} quests, {jlocations} locations, {jcreatures} creatures; shared server, no premium entitlement. NOT the complete NK campaign.')
 
