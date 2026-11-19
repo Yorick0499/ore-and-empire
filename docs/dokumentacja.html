@@ -439,6 +439,7 @@ python play.py --port 8001
 <ul>
 <li>Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 20 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.</li>
 <li>Wydobycie, <strong>44 zlecenia Kolonii i 10 Khorinis</strong>, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.</li>
+<li>Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci i sześcioma miejscami na założony ekwipunek. Otworzysz je z rankingu lub z „Życia kolonii”.</li>
 <li>Rzeczywisty targ ludzi i botów, 17 definicji ofert sklepu odłamków z bramkami i limitami, ochrona cennego sprzętu i porównywarka.</li>
 <li>Czas Polski <code>Europe/Warsaw</code> 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych odsłon ogłasza odkrycia świata. Najnowsza pojawia się w kronice na ekranie logowania i rejestracji. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.</li>
 <li>Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.</li>
@@ -617,6 +618,7 @@ python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
 </tr>
 </tbody>
 </table></div>
+<p>Nowe próby każdej rangi mają własne cele. Straż zaopatruje koszary, patroluje trakt, a później rozbija bandy przy bramie i wybrzeżu. Magowie Ognia ćwiczą manę i osłaniają pielgrzymów. Ludzie Onara chronią pola i wozy, a na koniec mierzą się z wargami oraz czarnym trollem. Onar akceptuje siłę lub zręczność, więc łucznik może rozwijać swój główny atrybut. Ostatnia próba każdej gildii wymaga poziomu 22. Rozpoczęte próby zachowują dotychczasowe cele i opłaty. <a href="#doc-game-content--podstawowe-rangi">Dokładne progi i cele</a>.</p>
 <p>Paladyni należą do wyższej drogi po połączeniu. Każda wspólnota ma skarbiec, dzienne projekty, ulepszenia i wyprawy; szkoła klasztoru otwiera odpowiednią magię. <a href="#doc-camps">Wymagania rang</a>.</p>
 <h3 id="doc-khorinis--kampania-szlaki-zaopatrzenia">Kampania „Szlaki zaopatrzenia”</h3>
 <p>29 definicji, 17 zadań jednej postaci: 3 prologu, 6 własnej frakcji i 8 wspólnych. Cztery rozdziały: Miejsce na wyspie, Zaufanie trzech wspólnot, Szlaki zaopatrzenia, Warty przed zmianą. Nie odgrywasz Bezimiennego. Pozostałe dwie gałęzie są niedostępne dla tej postaci.</p>
@@ -4961,7 +4963,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>0</td>
 <td>Siła 10</td>
 <td>0</td>
-<td>Odbierz urobek ×1</td>
+<td>Odbierz urobek na potrzeby straży ×1</td>
 </tr>
 <tr>
 <td>CITY_WATCH</td>
@@ -4970,97 +4972,97 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>3</td>
 <td>Siła 15</td>
 <td>30</td>
-<td>Zabezpiecz trakt przed goblinami ×3</td>
+<td>Rozprosz gobliny spod mostu ×2; Przepędź wilki z traktu ×2</td>
 </tr>
 <tr>
 <td>CITY_WATCH</td>
 <td>Sierżant straży</td>
 <td>Strażnik miejski</td>
-<td>8</td>
-<td>Siła 25</td>
+<td>10</td>
+<td>Siła 28</td>
 <td>100</td>
-<td>Ukończ trening ×2; Ocal zbiory ×3</td>
+<td>Zabezpiecz podejście do bramy ×3; Pokonaj poborców haraczu ×1</td>
 </tr>
 <tr>
 <td>CITY_WATCH</td>
 <td>Dowódca straży</td>
 <td>Sierżant straży</td>
-<td>18</td>
-<td>Siła 40</td>
-<td>250</td>
-<td>Zabezpiecz las ×3; Przygotuj zapasy ×3</td>
+<td>22</td>
+<td>Siła 45</td>
+<td>400</td>
+<td>Oczyść wybrzeże z topielców ×3; Osłoń drogę karawan przez las ×3; Pokonaj wodza rozbójników z wybrzeża ×1</td>
 </tr>
 <tr>
 <td>FIRE_ORDER</td>
 <td>Nowicjusz Ognia</td>
 <td>brak rangi</td>
 <td>0</td>
-<td>Mana 10</td>
+<td>Mana 11</td>
 <td>0</td>
-<td>Odbierz urobek ×1</td>
+<td>Przećwicz koncentrację ×1</td>
 </tr>
 <tr>
 <td>FIRE_ORDER</td>
 <td>Adept Ognia</td>
 <td>Nowicjusz Ognia</td>
 <td>3</td>
-<td>Mana 15</td>
+<td>Mana 14</td>
 <td>30</td>
-<td>Zabezpiecz trakt przed goblinami ×3</td>
+<td>Odpędź wilki od pielgrzymów ×3</td>
 </tr>
 <tr>
 <td>FIRE_ORDER</td>
 <td>Mag Ognia Khorinis</td>
 <td>Adept Ognia</td>
-<td>8</td>
-<td>Mana 25</td>
+<td>9</td>
+<td>Mana 23</td>
 <td>100</td>
-<td>Ukończ trening ×2; Ocal zbiory ×3</td>
+<td>Ukończ dwie lekcje koncentracji ×2; Przepędź krwiopijce znad jeziora ×4</td>
 </tr>
 <tr>
 <td>FIRE_ORDER</td>
 <td>Arcymag klasztoru</td>
 <td>Mag Ognia Khorinis</td>
-<td>18</td>
+<td>22</td>
 <td>Mana 40</td>
-<td>250</td>
-<td>Zabezpiecz las ×3; Przygotuj zapasy ×3</td>
+<td>300</td>
+<td>Bezpiecznie przeprowadź posłańców przez las ×4; Pokonaj topielce na trasie pielgrzymów ×3; Rozbij bandę napadającą na pielgrzymów ×1</td>
 </tr>
 <tr>
 <td>ONAR_MERCS</td>
 <td>Pracownik farmy</td>
 <td>brak rangi</td>
 <td>0</td>
-<td>Siła 10</td>
+<td>Siła lub zręczność 10</td>
 <td>0</td>
-<td>Odbierz urobek ×1</td>
+<td>Przepędź ścierwojady z pól ×2</td>
 </tr>
 <tr>
 <td>ONAR_MERCS</td>
 <td>Zbrojny Onara</td>
 <td>Pracownik farmy</td>
 <td>3</td>
-<td>Siła 15</td>
+<td>Siła lub zręczność 15</td>
 <td>30</td>
-<td>Zabezpiecz trakt przed goblinami ×3</td>
+<td>Odbierz zapasy na wyprawę ×1; Wypędź gobliny spod mostu ×3</td>
 </tr>
 <tr>
 <td>ONAR_MERCS</td>
 <td>Najemnik Onara</td>
 <td>Zbrojny Onara</td>
 <td>8</td>
-<td>Siła 25</td>
+<td>Siła lub zręczność 25</td>
 <td>100</td>
-<td>Ukończ trening ×2; Ocal zbiory ×3</td>
+<td>Oczyść pola z bestii ×4; Odeprzyj krwiopijce przy szlaku ×2</td>
 </tr>
 <tr>
 <td>ONAR_MERCS</td>
 <td>Dowódca najemników</td>
 <td>Najemnik Onara</td>
-<td>18</td>
-<td>Siła 40</td>
-<td>250</td>
-<td>Zabezpiecz las ×3; Przygotuj zapasy ×3</td>
+<td>22</td>
+<td>Siła lub zręczność 44</td>
+<td>275</td>
+<td>Udrożnij szlak najemników w lesie ×3; Osłoń pola przed bestiami ×3; Pokonaj czarnego trolla ×1</td>
 </tr>
 </tbody>
 </table></div>
@@ -8224,6 +8226,7 @@ wyłącznie z lokalnych plików, a nie połączeń do wiki.</p>
 <p>G1 ma 522 tożsamości przedmiotów z lokalną ilustracją, w tym jawne modele kategorii dla wpisów technicznych. Dane NK mają 877 tożsamości: 866 dopasowań źródłowych i 11 archiwalnych wariantów z oznaczoną ilustracją kategorii. Wszystkie 167 aktywnychwzorów kupcaNK i 85 kodówistotma lokalną grafikę; referencyjne przyzwania nie stają się przez to działającym czarem. Aktualne liczby całego manifestu ustala <code>validate_content</code>, nie dawne 632/670 wpisów z etapówG1/Khorinis.</p>
 <p>Lokacje i bossowie są objęte walidacją użytych kluczy, nie tylko listą kodów źródłowych. <code>gothic2-location-art.json</code> wskazuje zdjęcia terenów, m.in. portalu, kopalni, bagna, Esmeraldy i krypty Inubisa. Gdy brak osobnego modelu odmiany/gatunek jest wspólny, podpis ujawnia zastępstwo. <a href="#doc-gothic-ii-content">Szczegóły NK i wyjątki</a>.</p>
 <h3 id="doc-assets--font-i-motyw">Font i motyw</h3>
+<p>Sylwetka w profilu mieszkańca to wygenerowana ilustracja postaci w <code>art/profile-adventurer.webp</code>. Karty założonych przedmiotów korzystają z istniejących ilustracji z manifestu.</p>
 <p><code>characters/static/characters/fonts/GothicII.ttf</code> pochodzi z wydania 1.0 projektu <a href="https://github.com/Patrix9999/Gothic-2-Font/releases/tag/1.0" target="_blank" rel="noopener noreferrer">Patrix 9999/Gothic-2-Font</a>. To wektorowa rekonstrukcja fontu GothicII, z polskimi znakami, podawana lokalnie przez <code>font-display:swap</code> i fallbackGeorgia. <code>art/valley.svg</code> jest autorską ilustracją projektu. Karty rzadkości i ornamenty interfejsu korzystają także z własnego CSS. <a href="#doc-design">Motyw</a>.</p>
 <h3 id="doc-assets--aktualizowanie-biblioteki">Aktualizowanie biblioteki</h3>
 <p>Istniejący importer G1 i jawnych wyborów Khorinis działa poza normalną rozgrywką:</p>
