@@ -26,7 +26,7 @@ class EarnedNkCampaign(TestCase):
         c=World.objects.get(is_current=True);i=World.objects.get(universe='GOTHIC_II',is_open=True)
         World.objects.filter(pk__in=[c.pk,i.pk]).update(union_key=uuid4())
         race=SleeperRace.objects.create(colony=c,khorinis=i,winner=CampGuild.objects.get(world=c,camp='OLD_CAMP'),state='joined')
-        from .faction_succession_v1 import apply
+        from .faction_succession_v2 import apply
         with transaction.atomic():apply(apps,race)
         return c,i
     def expedition(self,p,steps):
@@ -37,6 +37,11 @@ class EarnedNkCampaign(TestCase):
                 target=c if location.universe=='GOTHIC_I' else i
                 self.assertTrue(do('nk_region',lambda:travel(p,target.pk)))
         for definition in jark_campaign()+campaign():
+            from .world_releases import milestone_wait
+            waiting = milestone_wait(p.world_id, definition['key'], steps['now']())
+            self.assertIsNotNone(waiting, definition['key'])
+            if waiting:
+                advance(int(waiting) + 1, 'timer')
             for _ in range(1000):
                 p.refresh_from_db()
                 if p.level>=definition['level']:break
