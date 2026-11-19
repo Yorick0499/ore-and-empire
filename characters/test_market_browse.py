@@ -169,3 +169,12 @@ class MarketBrowseTests(TestCase):
         response = self.client.get('/plac_targowy/')
         self.assertContains(response, '<h2>Targ Khorinis</h2>', html=True)
         self.assertNotContains(response, 'Plac Targowy Starego Obozu')
+
+    def test_market_shows_bow_dexterity_before_buying_or_listing(self):
+        bow = ItemBluePrint.objects.create(
+            name='Łuk strażnika', kind='weapon', weapon_type='bow',
+            required_strength=0, required_dexterity=24,
+        )
+        self.offer(bow, price=10)
+        OwnedItem.objects.create(blueprint=bow, owner=self.profile)
+        self.assertContains(self.client.get('/plac_targowy/'), 'Wymagana zręczność: 24', count=2)
