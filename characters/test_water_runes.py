@@ -130,7 +130,7 @@ class WaterRuneTests(TestCase):
         rune=purchase_magic(self.p,self.blueprint(2).pk);prepare_magic(self.p,rune.pk)
         self.client.force_login(self.p.user)
         response=self.client.get('/magia/')
-        self.assertContains(response,'Lodowa lanca')
+        self.assertContains(response,'Ostrze Adanosa')
         self.assertContains(response,'obrażenia 55')
         self.assertContains(response,'każdy z sześciu kręgów')
 

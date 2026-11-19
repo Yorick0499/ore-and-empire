@@ -1,7 +1,7 @@
 """Read-only conservative hunt forecasts. No random rolls, grants or equipment changes."""
 from django.urls import reverse
 from .equipment import combat_values,physical_survival_health
-from .magic import combat_plan,survival_health
+from .magic import combat_plan, spell_damage, survival_health
 
 
 def hunt_preparation(profile,monsters,*,energy_cost=15):
@@ -32,8 +32,7 @@ def hunt_preparation(profile,monsters,*,energy_cost=15):
         else:state='danger';label='Duże ryzyko — przygotuj mocniejszy build'
         magic={}
         if plan:
-            per_cast=max(1,plan.spell.damage-monster.get(plan.spell.damage_type+'_prot',0))
-            if monster.get('boss_key')=='crawler_nest' and plan.spell.damage_type=='fire':per_cast=per_cast*120//100
+            per_cast = spell_damage(plan.spell, monster, scroll=plan.scroll)
             casts=(monster['life']+per_cast-1)//per_cast
             available=profile.current_mana//plan.cost
             if plan.scroll:available=min(available,plan.quantity)

@@ -15,7 +15,7 @@ Tabele obejmują także definicje instalowane przy aktywacji Bariery. Pochodzą 
 | Bossowie solo | 15 |
 | Rodzime tożsamości rang (gałęzie) | 30 |
 | Wyższe awanse pięciu frakcji | 20 |
-| Zaklęcia działające (nie liczba modeli run/zwojów) | 20 |
+| Zaklęcia działające (nie liczba modeli run/zwojów) | 24 |
 | Zlecenia czasowe | 54 |
 | Definicje zadań jednorazowych | 95 |
 | Receptury | 4 |
@@ -529,9 +529,9 @@ Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwo
 | windfist — Uderzenie wiatru | Bractwo Śniącego | 1 | 3 | 18 / magia | 0 | 3 |
 | stormfist — Uderzenie burzy | Bractwo Śniącego | 3 | 7 | 42 / magia | 0 | 2 |
 | pyrokinesis — Pirokineza | Bractwo Śniącego | 5 | 13 | 150 / magia | 0 | 2 |
-| waterlance — Lodowa lanca | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
-| thunderball — Piorun kulisty | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
-| chainlightning — Grom | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
+| waterlance — Ostrze Adanosa | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
+| thunderball — Rozbłysk Adanosa | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
+| chainlightning — Wyrok Adanosa | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
 | emberburst — Żar Innosa | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — |
 | hearthlight — Światło Innosa | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — |
 | flamecrest — Gniew Innosa | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — |
@@ -540,6 +540,10 @@ Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwo
 | marshsilence — Wola Śniącego | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 |
 | nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — |
 | nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — |
+| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego | 6 | 18 | 255 / magia | 0 | 2 |
+| adanos_depths — Głębia Adanosa | Magowie Wody | 6 | 20 | 350 / magia | 50 | — |
+| innos_beacon — Latarnia Innosa | Magowie Ognia | 6 | 20 | 370 / ogień | 25 | — |
+| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego | 6 | 20 | 340 / magia | 0 | 2 |
 
 ## Sklep odłamków
 

@@ -30,10 +30,19 @@ class Boss:
             "strength": self.strength,
             "weapon_prot": self.protection,
             "boss_key": self.key,
+            "expedition_ward": EXPEDITION_WARDS.get(self.key, 0),
             "balance_version":self.balance_version,
             "forecast_strength": self.strength + 13 + extra,
             "forecast_protection": self.protection + 6 + armor,
         }
+
+
+EXPEDITION_WARDS = {
+    'g2nk_dragon_ice': 1,
+    'g2nk_dragon_island': 1,
+    'g2nk_archol': 2,
+    'g2nk_dragon_undead': 2,
+}
 
 
 BOSSES = {
@@ -107,3 +116,7 @@ for key,name,level,life,strength,protection,xp,ore,region,portal,gate in NK_BOSS
     BOSSES[key]=Boss(key,name,level,life,strength,protection,xp,ore)
     from .gothic2_world import COMBAT_PROFILES
     MECHANICS[key]=COMBAT_PROFILES[key][3]+' Silny atak co trzecią rundę; pancerz lub osłona zmieniają się w późniejszych fazach. Stały balans przeglądarkowy.'
+
+for key, tier in EXPEDITION_WARDS.items():
+    requirement = 'z wypraw po Barierze' if tier == 1 else 'z Jarkendaru'
+    MECHANICS[key] += f' Osłona osłabia starsze zaklęcia i zwoje. Runy {requirement} przełamują osłonę.'

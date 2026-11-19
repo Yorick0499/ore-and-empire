@@ -172,6 +172,7 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
 
     combat_log = []
     from .equipment import combat_values
+    from .magic import spell_damage
     base_damage, critical_skill, damage_type = combat_values(profile)
 
     mana=profile.current_mana
@@ -194,8 +195,7 @@ def simulate_combat(profile, monster_key, *, monster=None, magic_plan=None):
         casting=bool(magic_plan and mana>=magic_plan.cost and (not magic_plan.scroll or casts<magic_plan.quantity))
         if casting:
             spell=magic_plan.spell;mana-=magic_plan.cost;casts+=1
-            hero_damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
-            if monster.get("boss_key")=="crawler_nest" and spell.damage_type=="fire":hero_damage=hero_damage*120//100
+            hero_damage = spell_damage(spell, monster, scroll=magic_plan.scroll)
             combat_log.append(f"{spell.name}: koszt {magic_plan.cost} many.")
         else:
             # Magical focus falls back to fists; no free ranged attacks/ammunition.

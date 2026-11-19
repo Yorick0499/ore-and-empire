@@ -4,6 +4,7 @@ from dataclasses import dataclass, replace
 from django.utils import timezone
 from .game_logic import player_action
 from .models import ItemBluePrint,OwnedItem
+from .rune_catalog_v1 import EXPEDITIONS, WATER_NAMES, rename_water_runes
 
 @dataclass(frozen=True)
 class Spell:
@@ -16,6 +17,7 @@ class Spell:
     damage_type:str
     mitigation:int=0
     stagger_every:int=0
+    expedition_tier:int=0
     @property
     def school_name(self):return {'fire':'Magowie Ognia','water':'Magowie Wody','brotherhood':'Bractwo Śniącego'}[self.school]
     @property
@@ -32,15 +34,19 @@ SPELLS=(
     Spell('stormfist','Uderzenie burzy','brotherhood',3,7,42,'magic',0,2),
     Spell('pyrokinesis','Pirokineza','brotherhood',5,11,70,'magic',0,2),
 )
-NK_SPELLS=(Spell('nk_firerain','Deszcz ognia VI','fire',6,18,260,'fire',25),Spell('nk_thunderstorm','Grom VI','water',6,18,240,'magic',50))
+NK_SPELLS=(Spell('nk_firerain','Deszcz ognia VI','fire',6,18,260,'fire',25,expedition_tier=1),Spell('nk_thunderstorm','Grom VI','water',6,18,240,'magic',50,expedition_tier=1))
+EXPEDITION_RUNES = tuple(
+    Spell(key, name, school, 6, cost, damage, kind, mitigation, stagger, tier)
+    for key, name, school, tier, cost, damage, kind, mitigation, stagger, _art in EXPEDITIONS
+)
 # Rune-only progression: freely usable scrolls retain the original adaptation.
 WATER_RUNES=(
     Spell('thunderbolt','Sopel lodu','water',1,4,30,'magic',25),
-    Spell('waterlance','Lodowa lanca','water',2,6,55,'magic',25),
+    Spell('waterlance',WATER_NAMES['waterlance'][1],'water',2,6,55,'magic',25),
     Spell('icecube','Bryła lodu','water',3,8,85,'magic',40),
-    Spell('thunderball','Piorun kulisty','water',4,10,125,'magic',30),
+    Spell('thunderball',WATER_NAMES['thunderball'][1],'water',4,10,125,'magic',30),
     Spell('icewave','Lodowa fala','water',5,13,175,'magic',50),
-    Spell('chainlightning','Grom','water',6,16,220,'magic',35),
+    Spell('chainlightning',WATER_NAMES['chainlightning'][1],'water',6,16,220,'magic',35),
 )
 FIRE_ADDITIONS = (
     Spell('emberburst', 'Żar Innosa', 'fire', 2, 6, 42, 'fire'),
@@ -61,7 +67,7 @@ _rune_stats.update({
 })
 WATER_ADDITIONS = tuple(spell for spell in WATER_RUNES if spell.key not in {s.key for s in SPELLS})
 TRAINING_RUNES = WATER_ADDITIONS + FIRE_ADDITIONS + BROTHERHOOD_ADDITIONS
-ALL_SPELLS = tuple(_rune_stats.get(spell.key, spell) for spell in SPELLS) + TRAINING_RUNES + NK_SPELLS
+ALL_SPELLS = tuple(_rune_stats.get(spell.key, spell) for spell in SPELLS) + TRAINING_RUNES + NK_SPELLS + EXPEDITION_RUNES
 BY_KEY = {spell.key: spell for spell in ALL_SPELLS}
 BY_CODE = {}
 for prefix in ('g1', 'g2'):
@@ -71,6 +77,7 @@ for prefix in ('g1', 'g2'):
     for spell in TRAINING_RUNES:
         BY_CODE[f'oe-{spell.school}-{prefix}-{spell.key}-rune'] = (spell, False)
 BY_CODE.update({f'oe-nk-{spell.key}-{kind}':(spell,kind=='scroll') for spell in NK_SPELLS for kind in ('rune','scroll')})
+BY_CODE.update({f'oe-nk-{spell.key}-rune': (spell, False) for spell in EXPEDITION_RUNES})
 SCHOOLS={'FIRE_ORDER':('fire','Krąg Ognia Khorinis'),'OLD_CAMP':('fire','Krąg Ognia'),'NEW_CAMP':('water','Krąg Wody'),'SWAMP_CAMP':('brotherhood','Bractwo Śniącego')}
 MAGE_RANKS={'K2_MAGE','K2_ARCHMAGE','FIRE_MAGE','ARCH_FIRE','WATER_MAGE','ARCH_WATER','GURU','ARCH_GURU'}
 ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
@@ -78,6 +85,7 @@ ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
 
 def seed_training_runes():
     """Add training runes and refresh earlier default names in place."""
+    rename_water_runes(ItemBluePrint.objects)
     art = {
         'water': {2: 'thunderbolt', 4: 'thunderball', 6: 'chainlightning'},
         'fire': {2: 'firebolt', 4: 'fireball', 6: 'firerain'},
@@ -139,9 +147,13 @@ def circle_cap(profile):
 def rune_allowed(profile,spell):
     # Retain the native school and invested runes; the new membership opens its
     # destination school, but grants no circles, mana, items or learning points.
-    if spell.key.startswith('nk_'):
+    if spell.expedition_tier:
         from .barrier import joined
         if not joined(profile.world_id) or profile.level<35 or profile.camp_tier<3:return False
+        if spell.expedition_tier == 2:
+            from .jarkendar import unlocked
+            if profile.level < 38 or not unlocked(profile):
+                return False
     schools={school[0] for school in (SCHOOLS.get(profile.camp),school_for(profile)) if school}
     return spell.school in schools and profile.magic_skill>=spell.circle and spell.circle<=circle_cap(profile)
 
@@ -236,6 +248,17 @@ def offers(profile):
     return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in ItemBluePrint.objects.filter(source_game__in=source_games(profile),catalog_key__in=BY_CODE).order_by('base_value','pk') if allowed(profile,item)]
 
 
+def spell_damage(spell, monster, *, scroll=False):
+    damage = max(1, spell.damage - monster.get(spell.damage_type + '_prot', 0))
+    if monster.get('boss_key') == 'crawler_nest' and spell.damage_type == 'fire':
+        damage = damage * 120 // 100
+    ward = monster.get('expedition_ward', 0)
+    tier = 0 if scroll else spell.expedition_tier
+    if ward > tier:
+        damage = max(1, damage * (50 if tier == 0 else 75) // 100)
+    return damage
+
+
 def survival_health(profile,monster,plan,mana=None):
     """No-critical forecast with the same boss phases, mana and spell rules as combat."""
     health=monster['life'];mana=profile.current_mana if mana is None else mana;casts=0;incoming=0;turn=0
@@ -249,8 +272,7 @@ def survival_health(profile,monster,plan,mana=None):
         casting=mana>=plan.cost and (not plan.scroll or casts<plan.quantity)
         if casting:
             spell=plan.spell;mana-=plan.cost;casts+=1
-            damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
-            if monster.get('boss_key')=='crawler_nest' and spell.damage_type=='fire':damage=damage*120//100
+            damage = spell_damage(spell, monster, scroll=plan.scroll)
         else:damage=max(1,profile.strength+profile.equipment_stats['strength_bonus']-protection)
         health-=damage
         if health<=0:break
@@ -268,15 +290,20 @@ def bot_magic_plan(profile,inventory,target=None):
     usable=[item for item in inventory if not item.is_market_listed and item.blueprint.catalog_key in BY_CODE and not BY_CODE[item.blueprint.catalog_key][1] and rune_allowed(profile,BY_CODE[item.blueprint.catalog_key][0])]
     priority=lambda spell:(spell.circle,spell.damage,spell.mitigation)
     best=max(usable,key=lambda item:priority(BY_CODE[item.blueprint.catalog_key][0]),default=None)
-    strongest_owned=best
+    strongest_owned = best
+    ward_upgrade = bool(target and best and target.get('expedition_ward', 0) > BY_CODE[best.blueprint.catalog_key][0].expedition_tier)
+    combat_choice = None
     if target and best:
         from .equipment import physical_survival_health
-        physical=physical_survival_health(profile,target)
-        best=min(usable,key=lambda item:survival_health(profile,target,MagicPlan(BY_CODE[item.blueprint.catalog_key][0],item.pk,False,item.quantity)))
-        forecast=survival_health(profile,target,MagicPlan(BY_CODE[best.blueprint.catalog_key][0],best.pk,False,best.quantity))
-        if profile.current_mana<BY_CODE[best.blueprint.catalog_key][0].cost or forecast>=physical:
-            return ('clear_magic',None) if profile.prepared_magic_id else ('',None)
-    if best and profile.prepared_magic_id!=best.pk:return 'prepare_magic',best.pk
+        physical = physical_survival_health(profile, target)
+        best = min(usable, key=lambda item: survival_health(profile, target, MagicPlan(BY_CODE[item.blueprint.catalog_key][0], item.pk, False, item.quantity)))
+        forecast = survival_health(profile, target, MagicPlan(BY_CODE[best.blueprint.catalog_key][0], best.pk, False, best.quantity))
+        if profile.current_mana < BY_CODE[best.blueprint.catalog_key][0].cost or forecast >= physical:
+            combat_choice = ('clear_magic', None) if profile.prepared_magic_id else ('', None)
+    if combat_choice is None and best and profile.prepared_magic_id != best.pk:
+        combat_choice = ('prepare_magic', best.pk)
+    if combat_choice is not None and not ward_upgrade:
+        return combat_choice
     owned_priority = priority(BY_CODE[strongest_owned.blueprint.catalog_key][0]) if strongest_owned else ()
     eligible = {
         spell.key: priority(spell)
@@ -302,4 +329,4 @@ def bot_magic_plan(profile,inventory,target=None):
         )
         if blueprint:
             return 'buy_magic', blueprint.pk
-    return '', None
+    return combat_choice or ('', None)
