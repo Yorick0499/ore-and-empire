@@ -8,7 +8,7 @@
 <div class="main-content">
         <div class="guide-frame">
 <details class="colony-panel" id="my-offers"><summary>Twoje oferty i zmiana ceny ({{ my_offers.paginator.count }})</summary><p>Twoje ogłoszenia są widoczne tutaj niezależnie od filtrów targu.</p>{% for offer in my_offers %}<article class="colony-panel{% if offer.blueprint.equippable %} rarity-card rarity-{{ offer.quality.key }}{% endif %}">{% include "characters/rarity_badge.html" with owned=offer %}<form method="post">{% csrf_token %}<p>{{ offer.display_name }} ×{{ offer.quantity }} · wystawiono {% if offer.listed_at %}{{ offer.listed_at|date:'d.m.Y H:i' }} (Polska){% else %}przed wprowadzeniem dat ofert{% endif %}</p><input type="hidden" name="item" value="{{ offer.pk }}"><input type="hidden" name="expected" value="{{ offer.market_price }}"><label>Nowa cena całej oferty <input type="number" min="1" max="1000000" name="price" value="{{ offer.market_price }}"></label><button name="action" value="reprice">Zmień cenę</button></form><form method="post">{% csrf_token %}<input type="hidden" name="action" value="delist"><input type="hidden" name="delist_item_id" value="{{ offer.pk }}"><button>Wycofaj: {{ offer.display_name }}</button></form></article>{% empty %}<p>Nie masz wystawionych ofert.</p>{% endfor %}{% include "characters/market_pager.html" with pager=own_pager %}</details>
-            <h2>Plac Targowy Starego Obozu</h2>
+            <h2>{% if location.key == "old_camp" %}Plac Targowy Starego Obozu{% else %}{{ location.name }}{% endif %}</h2>
             <p class="desc">Miejsce wymiany handlowej. Możesz tu nabyć uzbrojenie od innych skazańców lub wystawić własne przedmioty za bryłki rudy.</p>
 
             <form method="get" class="colony-panel market-filters">
@@ -35,6 +35,7 @@
                                         <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
                                         <span>Obrażenia: {{ item.effective_stats.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
+                                        {% if item.blueprint.required_dexterity %}<span>Wymagana zręczność: {{ item.blueprint.required_dexterity }}</span>{% endif %}
                                         <span style="color: var(--gothic-gold);">Sprzedawca: {{ item.owner.display_name }}{% if item.owner.is_bot %} [bot · {{ item.owner.get_bot_role_display }}]{% endif %}</span>
                                     </div>
                                 </div>
@@ -74,6 +75,7 @@
                                         <span>Ochrona przed bronią: {{ item.effective_stats.weapon_prot }}</span>
                                         <span>Obrażenia: {{ item.effective_stats.damage }}</span>
                                         <span>Wymagana siła: {{ item.blueprint.required_strength }}</span>
+                                        {% if item.blueprint.required_dexterity %}<span>Wymagana zręczność: {{ item.blueprint.required_dexterity }}</span>{% endif %}
                                     </div>
                                 </div>
                                 <form method="POST" class="market-form">

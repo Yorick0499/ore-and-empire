@@ -128,5 +128,77 @@ class MarketBrowseTests(TestCase):
         self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':item.pk,'expected_price':40})
         item.refresh_from_db();self.assertEqual(item.owner_id,self.profile.pk)
         self.assertEqual(MarketTrade.objects.count(),1)
-        self.assertEqual(self.client.post('/plac_targowy/',{'action':'buy','buy_item_id':item.pk,'expected_price':40}).status_code,404)
+        repeat = self.client.post('/plac_targowy/', {
+            'action': 'buy', 'buy_item_id': item.pk, 'expected_price': 40,
+        }, follow=True)
+        self.assertRedirects(repeat, '/plac_targowy/')
+        self.assertContains(repeat, 'Oferta już nie jest dostępna')
         self.assertEqual(MarketTrade.objects.count(),1)
+
+    def test_sold_bot_offer_from_another_open_session_returns_to_the_market(self):
+        from django.test import Client
+        from .models import MarketTrade
+
+        self.seller.is_bot = True
+        self.seller.save(update_fields=['is_bot'])
+        other = User.objects.create_user('second-buyer').playerprofile
+        second_session = Client()
+        second_session.force_login(other.user)
+        item = self.offer(price=20)
+        market = '/plac_targowy/?q=kopacza'
+        for session in (self.client, second_session):
+            self.assertContains(session.get(market), 'name="expected_price" value="20"')
+        data = {'action': 'buy', 'buy_item_id': item.pk, 'expected_price': 20}
+        self.assertRedirects(self.client.post(market, data), market)
+        before = other.ore_balance
+        stale = second_session.post(market, data, follow=True)
+        self.assertRedirects(stale, market)
+        self.assertContains(stale, 'Oferta już nie jest dostępna')
+        other.refresh_from_db()
+        item.refresh_from_db()
+        self.assertEqual(other.ore_balance, before)
+        self.assertEqual(item.owner_id, self.profile.pk)
+        self.assertEqual(MarketTrade.objects.count(), 1)
+
+    def test_khorinis_market_identifies_the_region(self):
+        from .character_selection import create_character
+
+        island = World.objects.create(name='Latarnia', universe='GOTHIC_II', is_open=True)
+        character = create_character(self.profile.user, 'Mieszkaniec portu', island.pk)
+        self.client.post('/postacie/', {'profile': character.pk})
+        response = self.client.get('/plac_targowy/')
+        self.assertContains(response, '<h2>Targ Khorinis</h2>', html=True)
+        self.assertNotContains(response, 'Plac Targowy Starego Obozu')
+
+    def test_market_shows_bow_dexterity_before_buying_or_listing(self):
+        bow = ItemBluePrint.objects.create(
+            name='Łuk strażnika', kind='weapon', weapon_type='bow',
+            required_strength=0, required_dexterity=24,
+        )
+        self.offer(bow, price=10)
+        OwnedItem.objects.create(blueprint=bow, owner=self.profile)
+        self.assertContains(self.client.get('/plac_targowy/'), 'Wymagana zręczność: 24', count=2)
+
+    def test_seller_can_return_to_market_after_another_account_buys_offer(self):
+        from django.test import Client
+
+        seller_session = Client()
+        seller_session.force_login(self.seller.user)
+        item = self.offer(price=20)
+        market = '/plac_targowy/?seller=mine'
+        self.assertContains(seller_session.get(market), 'name="expected" value="20"')
+        purchase = self.client.post('/plac_targowy/', {
+            'action': 'buy', 'buy_item_id': item.pk, 'expected_price': 20,
+        })
+        self.assertRedirects(purchase, '/plac_targowy/')
+        for data in (
+            {'action': 'reprice', 'item': item.pk, 'price': 35, 'expected': 20},
+            {'action': 'delist', 'delist_item_id': item.pk},
+        ):
+            with self.subTest(action=data['action']):
+                response = seller_session.post(market, data, follow=True)
+                self.assertRedirects(response, market)
+                self.assertContains(response, 'Oferta już nie jest dostępna')
+        item.refresh_from_db()
+        self.assertEqual(item.owner_id, self.profile.pk)
+        self.assertFalse(item.is_market_listed)
