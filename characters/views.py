@@ -97,7 +97,7 @@ def hunt_view(request):
 def market_view(request):
     profile = request.user.playerprofile
     refresh_player(profile)
-    current_location(request, profile, "old_camp", "market_page")
+    location = current_location(request, profile, "old_camp", "market_page")
     if request.method == "POST":
         action = request.POST.get("action")
         if action == "list":
@@ -119,16 +119,23 @@ def market_view(request):
             return redirect(request.get_full_path())
         if action == "buy":
             buy_item_id = request.POST.get("buy_item_id")
-            owned_item = get_object_or_404(
-                OwnedItem, pk=positive_id(buy_item_id), is_market_listed=True
-            )
+            owned_item = OwnedItem.objects.filter(
+                pk=positive_id(buy_item_id), is_market_listed=True,
+                owner__world_id__in=region_ids(profile.world_id),
+            ).first()
+            unavailable = "Oferta już nie jest dostępna. Sprawdź aktualne oferty na targu."
+            if owned_item is None:
+                messages.error(request, unavailable)
+                return redirect(request.get_full_path())
             try:expected_price=int(request.POST.get('expected_price',''))
             except (TypeError,ValueError):expected_price=0
             if expected_price <= 0:
                 messages.error(request,'Odśwież ofertę i potwierdź jej aktualną cenę.')
             else:
                 success = buy_item_on_market(profile, owned_item, expected_price)
-                if not success and owned_item.market_price != expected_price:
+                if not success and not owned_item.is_market_listed:
+                    messages.error(request, unavailable)
+                elif not success and owned_item.market_price != expected_price:
                     messages.error(request,'Oferta lub jej cena zmieniła się. Odśwież targ i potwierdź aktualną ofertę.')
                 else:
                     report_action(request, success)
@@ -150,7 +157,7 @@ def market_view(request):
             report_action(request, delist_item_from_market(profile, sell_item))
             return redirect(request.get_full_path())
     from .market_browse import browse_market
-    return render(request, "characters/market.html", {"profile":profile, **browse_market(profile, request.GET)})
+    return render(request, "characters/market.html", {"profile": profile, "location": location, **browse_market(profile, request.GET)})
 
 
 @login_required
