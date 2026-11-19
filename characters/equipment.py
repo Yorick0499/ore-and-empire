@@ -116,6 +116,12 @@ def combat_values(profile):
     return damage, min(100, skill), weapon.damage_type if weapon else 'weapon'
 
 
+def bot_inventory(profile):
+    """Non-tradeable quest trophies do not use the bot's working slots."""
+    return list(profile.inventory.exclude(blueprint__kind='quest', blueprint__tradeable=False)
+                .select_related('blueprint').order_by('pk'))
+
+
 def add_item(profile, blueprint, quantity=1, *, origin="legacy", rarity=0):
     if type(rarity) is not int or not 0 <= rarity <= 4 or (rarity and (not blueprint.equippable or quantity != 1)):
         raise ValueError("Nieprawidłowa rzadkość egzemplarza")

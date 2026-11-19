@@ -7,6 +7,7 @@ from django.db.models import Sum,Count
 from django.utils import timezone
 from .models import MarketEvent,MarketTrade,OwnedItem
 from .game_logic import player_action,MAX_MARKET_PRICE
+from .equipment import bot_inventory
 
 
 def record_market_event(profile,item,action,price=0,quantity=None,reason=''):
@@ -42,7 +43,7 @@ def observe_legacy_listing(profile,item):
 
 def bot_market_plan(profile,reserved=(),inventory=None,market=None):
     from .market_intelligence import state,retention
-    now=timezone.now();inventory=inventory if inventory is not None else list(profile.inventory.select_related('blueprint'))
+    now=timezone.now();inventory=inventory if inventory is not None else bot_inventory(profile)
     market=market or state(profile.world_id);keep=retention(profile,inventory,reserved)
     for item in inventory:
         if not item.is_market_listed:continue
@@ -76,7 +77,8 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
 @player_action
 def list_bot_surplus(profile,item,reserved=()):
     from .market_intelligence import state,sale_candidate,sale_lot
-    inventory=list(profile.inventory.select_related('blueprint'));market=state(profile.world_id,fresh=True)
+    inventory = bot_inventory(profile)
+    market = state(profile.world_id, fresh=True)
     candidate=sale_candidate(profile,inventory,reserved,market)
     if not candidate or candidate.pk!=item.pk:return False
     from .game_logic import list_item_on_market

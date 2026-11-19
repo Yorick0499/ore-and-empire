@@ -147,6 +147,8 @@ class IntelligentMarketTests(TestCase):
         self.b.alchemy_skill = 1
         self.b.current_health = 5
         self.b.save(update_fields=['alchemy_skill', 'current_health'])
+        trophy = ItemBluePrint.objects.create(name='Znak warty', kind='quest', tradeable=False)
+        OwnedItem.objects.bulk_create([OwnedItem(owner=self.s, blueprint=trophy) for _ in range(12)])
         stack = add_item(self.s, material, 7, origin='loot')
         market = MarketState(self.s.world_id)
         self.assertEqual(market.quote(self.s, stack).price, 0)
