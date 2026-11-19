@@ -16,6 +16,26 @@ Scenariusz `characters.playtest_sleeper_team` zaczyna od trzech przygotowanych k
 
 Uruchomienie w odizolowanej bazie testowej: `python manage.py test characters.playtest_sleeper_team --noinput`. Dwie godziny między rundami są wirtualne, boty grają w wymuszonych aktywnych turach, a poziom 10 wspólnoty stanowi warunek wstępny. Zwycięstwo zleca upadek Bariery. Kopię, odtworzenie i aktywację sprawdza osobno `simulate_journey`.
 
+## 19 XI — porównanie tempa gracza i panelu zarządcy
+
+| Start i punkt końcowy | Zwykła gra | Odnowienia energii | Odnowienia i ruda |
+|---|---:|---:|---:|
+| Kolonia do osobistego finału | 10,75 h / 99 min | 5,25 h / 52 min | 5,64 h / 51 min |
+| Kolonia przez NK do Irdorath | 30,38 h / 241 min | 13,18 h / 100 min | 13,57 h / 98 min |
+| Khorinis do końca Szlaków zaopatrzenia | 8,09 h / 79 min | 3,57 h / 34 min | 3,33 h / 34 min |
+
+Pierwsza liczba to godziny zegara świata, łącznie z regeneracją i timerami. Druga to minuty wykonywania akcji w modelu przy 10 s na operację, z uwzględnieniem prób ponawianych i formularzy zarządcy. Każdy wariant gra wojownikiem od zera, kupuje sprzęt i korzysta z NPC oraz sklepu za zarobione odłamki. Model zna cele i gra bez przerw na wylogowanie. Sam przebieg nie mierzy tempa człowieka ani handlu z botami.
+
+Zarządca odnawiał energię poniżej 25 oraz w trzecim wariancie dodawał do 100 rudy przy rzeczywistym braku środków, najwyżej raz w dniu gry i maksymalnie w sześciu dniach próby. Do Irdorath użył 15 odnowień albo 14 odnowień i 66 rudy. Na Khorinis użył pięciu odnowień i opcjonalnie 26 rudy. Zmieniony moment odpoczynku i zakupu może przesunąć kolejne walki, więc wariant z rudą w Kolonii miał odrobinę mniej aktywnych operacji, lecz dłuższy czas regeneracji.
+
+W pomiarze jednej postaci Bariera otwiera się jako zewnętrzne zdarzenie po finale Kolonii. Osobna pełna próba przygotowała trzy konta od zera, dwa pozostałe wspierały właściwą postać, i zrealizowała wyścig wspólnoty, 124 uderzenia w Śniącego oraz kopię i odtworzenie. Do aktywacji upłynęło 16,18 wirtualnego dnia, a do końca 23 kontraktów NK, pierwszych regionalnych wart i celu tygodniowego 17,23 dnia. Konta rozwijano po kolei, więc wynik zależy od tej organizacji i nie wyznacza czasu oczekiwania na żywym serwerze.
+
+```bash
+mkdir -p work
+echo '[]' > work/comparative-timing.json
+ORE_PROBE_REPORT="$PWD/work/comparative-timing.json" python manage.py test characters.playtest_timing --noinput
+```
+
 ## Co sprawdzono w bieżącej wersji
 
 | Próba | Zakres | Wynik |

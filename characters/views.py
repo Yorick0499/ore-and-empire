@@ -694,6 +694,8 @@ def game_master_view(request):
     selected = request.POST.get("profile") if request.method == "POST" else request.GET.get("profile")
     target = get_object_or_404(PlayerProfile, world=current_world(),pk=positive_id(selected)) if selected else profiles.first()
     if request.method == "POST":
+        if target is None:
+            raise Http404("Brak postaci do zarządzania.")
         success, message = administer_player(request.user, target.pk, request.POST.get("action"), request.POST)
         (messages.success if success else messages.error)(request, message)
         return redirect(reverse_url("game_master") + "?profile=" + str(target.pk)+"&server="+str(target.world_id))

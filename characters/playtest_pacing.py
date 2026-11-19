@@ -35,7 +35,7 @@ class CampaignPacingTests(TestCase):
     def test_colony_contract_income(self):self.play('GOTHIC_I',None,support=True,income_first=True)
     def test_island_contract_income(self):self.play('GOTHIC_II',None,support=True,income_first=True)
 
-    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None,build_strategy=None,camp=None,on_checkpoint=None):
+    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None,build_strategy=None,camp=None,on_checkpoint=None,operator_mode=None,record_timing=False):
         initial=start_at or datetime(2026,11,11,9,tzinfo=POLISH_TIME)
         with patch('django.utils.timezone.now',return_value=initial):
             seed_clean_world();world=current_world();world.configured=True;world.bot_count=0;world.save()
@@ -79,6 +79,21 @@ class CampaignPacingTests(TestCase):
             calendar()
             user=User.objects.create_user(actor_name);hero=create_character(user,'Nowy mieszkaniec' if actor_name=='pacing-player' else 'Mieszkaniec '+actor_name,current_world().pk if joined_start else world.pk,start_region=world.pk if joined_start else None)
             self.client.force_login(user);self.client.post('/postacie/',{'profile':hero.pk})
+            operator = None
+            if operator_mode:
+                from .playtest_timing import OperatorSupport
+
+                operator = OperatorSupport(self, hero, operator_mode, advance, lambda: now)
+
+            def timing_snapshot():
+                return {
+                    'world_hours': round((now-start).total_seconds()/3600, 2),
+                    'active_minutes': round(active_seconds/60, 1),
+                    'recovery_minutes': round(recovery_seconds/60, 1),
+                    'timers_minutes': round(timed_seconds/60, 1),
+                    **(operator.report() if operator else {}),
+                }
+
             def resupply():
                 if not support:return
                 from .models import StoreProduct
@@ -98,6 +113,7 @@ class CampaignPacingTests(TestCase):
                 nonlocal level_grind_streak, longest_level_grind
                 for _ in range(300):
                     advance(10);hero.refresh_from_db();game.refresh_player(hero)
+                    if operator:operator.energy()
                     resupply()
                     result=fn();actions[label]+=1
                     if result is not False:
@@ -126,6 +142,9 @@ class CampaignPacingTests(TestCase):
                 for _ in range(2000):
                     hero.refresh_from_db()
                     if hero.ore_balance>=amount:return
+                    if operator:
+                        operator.fund_shortfall(amount)
+                        if hero.ore_balance>=amount:return
                     if build_strategy and build_strategy.kind == 'archer':
                         # Use ordinary vendor sales for surplus hunting materials.
                         loot = hero.inventory.filter(
@@ -219,10 +238,18 @@ class CampaignPacingTests(TestCase):
             if universe=='GOTHIC_I':
                 prepare('sleeper_sanctum');result=do('personal_finale',lambda:game.execute_boss(hero,'sleeper_sanctum'));self.assertTrue(result.won,(hero.level,hero.max_health,hero.mana,hero.equipment_stats,result.combat_log))
             hero.refresh_from_db()
-            if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start})
+            opening = timing_snapshot() if record_timing else None
+            if after_campaign:after_campaign(hero,{'prepare':prepare,'funds':funds,'grind_level':grind_level,'advance':advance,'do':do,'now':lambda:now,'start':start,'operator_support':bool(operator)})
             if build_strategy and build_strategy.kind == 'archer':
                 # Deterministic smoke limits for the worst individual gap,
                 # not promises about the total duration of human sessions.
                 self.assertLessEqual(longest_level_grind, 3, universe)
                 self.assertLessEqual(longest_income_grind, 12, universe)
-            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'build':build_strategy.kind if build_strategy else 'warrior','universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'longest_level_grind':longest_level_grind,'longest_income_grind':longest_income_grind,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':False,'limits':['Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.' if build_strategy else 'Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Łucznik może sprzedać zbędne materiały u NPC; pozostali nie handlują łupami. Model podstawowy nie awansuje rang.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})
+            if record_timing:
+                record_scenario('comparative-player-timing', {
+                    'universe': universe, 'mode': operator_mode or 'ordinary',
+                    'opening': opening, 'final': timing_snapshot(),
+                    'final_checkpoint': 'irdorath' if after_campaign else 'khorinis-supply-8',
+                    'action_seconds': 10, 'external_barrier_fixture': bool(after_campaign),
+                })
+            record_scenario('tempo-kampanii-i-kontynuacji' if after_campaign else 'tempo-kampanii',{'build':build_strategy.kind if build_strategy else 'warrior','universe':universe,'session_minutes':session_minutes,'armor_and_earned_shop':support,'income_first':income_first,'action_seconds':10,'seed':111126,'elapsed_hours':round((now-start).total_seconds()/3600,2),'active_minutes':round(active_seconds/60,1),'recovery_minutes':round(recovery_seconds/60,1),'timers_minutes':round(timed_seconds/60,1),'offline_hours':round(offline_seconds/3600,2),'calendar_days':(now.date()-start.date()).days+1,'level':hero.level,'strength':hero.strength,'quests':hero.story_runs.filter(status='claimed').count(),'ore':hero.ore_balance,'shards':hero.premium_balance,'longest_level_grind':longest_level_grind,'longest_income_grind':longest_income_grind,'actions':dict(actions),'defeats':hero.battles.filter(won=False).count(),'admin_grants':bool(operator),'limits':['Znająca cele strategia wybranego buildu; nie pomiar zachowania człowieka.' if build_strategy else 'Znająca cele strategia wojownika; nie pomiar zachowania człowieka.','Brak konkurencji rynku i botów; sprzęt od NPC, opcjonalnie itemshop wyłącznie za zarobione odłamki.','Odpoczynek do pełnego zdrowia jest celowo zachowawczy; pozostałe akcje co 10 sekund, także nieudane próby.','Budżet pojedynczego sprzętu: max(100, poziom × 80) rudy. Łucznik może sprzedać zbędne materiały u NPC; pozostali nie handlują łupami. Model podstawowy nie awansuje rang.','Koniec aktualnej kampanii, nie pełnego G2 NK, kolekcji łupów ani rozwoju wspólnoty.']})

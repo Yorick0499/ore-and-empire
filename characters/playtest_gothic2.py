@@ -75,7 +75,7 @@ class EarnedNkCampaign(TestCase):
             checkpoints.append({'quest':definition['key'],'level':p.level,'world_hours':round((steps['now']()-begin).total_seconds()/3600,2),'ore':p.ore_balance})
         self.assertEqual(p.story_runs.filter(status='claimed',quest__key__in=[q['key'] for q in jark_campaign()+campaign()]).count(),23)
         self.assertEqual(p.battles.filter(won=False).count(),0)
-        record_scenario('earned-nk-resident-campaign',{'build':getattr(self,'build','warrior'),'admin_grants':False,'global_join_fixture':getattr(self,'global_join_fixture',True),'new_contracts':23,'checkpoints':checkpoints,'level':p.level,'expedition_world_hours':round((steps['now']()-begin).total_seconds()/3600,2),'total_world_hours':round((steps['now']()-steps['start']).total_seconds()/3600,2),'limits':['Known-goal build strategy, no PvP/player-market competition.','Global community victory is an external event fixture.' if getattr(self,'global_join_fixture',True) else 'Three earned accounts, actual siege and verified backup activation.','Does not mean all original hero quests, every item effect or guild rank8 completed.','Virtual timers use seconds; active operations are modelled, not human playtime.']})
+        record_scenario('earned-nk-resident-campaign',{'build':getattr(self,'build','warrior'),'admin_grants':steps.get('operator_support',False),'global_join_fixture':getattr(self,'global_join_fixture',True),'new_contracts':23,'checkpoints':checkpoints,'level':p.level,'expedition_world_hours':round((steps['now']()-begin).total_seconds()/3600,2),'total_world_hours':round((steps['now']()-steps['start']).total_seconds()/3600,2),'limits':['Known-goal build strategy, no PvP/player-market competition.','Global community victory is an external event fixture.' if getattr(self,'global_join_fixture',True) else 'Three earned accounts, actual siege and verified backup activation.','Does not mean all original hero quests, every item effect or guild rank8 completed.','Virtual timers use seconds; active operations are modelled, not human playtime.']})
 
 
 from django.test import TransactionTestCase
@@ -104,7 +104,7 @@ class PreparedNkFactionBots(TransactionTestCase):
                 weapon=next(b for b in ItemBluePrint.objects.filter(merchant=True,kind='weapon',weapon_type=kind,required_strength__lte=p.strength,required_dexterity__lte=p.dexterity).order_by('-damage','base_value') if allowed(p,b) and b.base_value<p.ore_balance-1000)
                 self.assertTrue(game.buy_item_from_npc(p,weapon));self.assertTrue(game.equip_item(p,p.inventory.get(blueprint=weapon)))
                 if role=='archer':self.assertTrue(game.buy_item_from_npc(p,ItemBluePrint.objects.get(catalog_key='g2nk-itrw_arrow'),100))
-        now=timezone.now();done=set();actions={}
+        now=timezone.now();done={};actions={}
         with patch('django.utils.timezone.now',side_effect=lambda:now):
             for turn in range(1400):
                 now+=timedelta(hours=2)
@@ -112,9 +112,9 @@ class PreparedNkFactionBots(TransactionTestCase):
                     if p.pk in done:continue
                     with transaction.atomic():action,ok=tick_bot(p,force_active=True)
                     actions[action]=actions.get(action,0)+1
-                    if p.story_runs.filter(status='claimed',quest__key='nk-undead').exists():done.add(p.pk)
+                    if p.story_runs.filter(status='claimed',quest__key='nk-undead').exists():done[p.pk]=2*(turn+1)
                 if len(done)==5:break
-        state=[{'role':role,'id':p.pk,'run':list(p.story_runs.exclude(status='claimed').values('quest__key','progress')),'level':PlayerProfile.objects.get(pk=p.pk).level} for p,role in actors]
+        state=[{'role':role,'id':p.pk,'simulated_hours':done.get(p.pk),'run':list(p.story_runs.exclude(status='claimed').values('quest__key','progress')),'level':PlayerProfile.objects.get(pk=p.pk).level} for p,role in actors]
         self.assertEqual(len(done),5,{'turn':turn,'actions':actions,'state':state})
         for p,role in actors:
             if role=='mage':self.assertTrue(p.battles.filter(combat_log__icontains='koszt 18 many').exists())
