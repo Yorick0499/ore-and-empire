@@ -14,7 +14,7 @@ QUICK_CASES=['characters.test_manual_camp_raids','characters.test_water_runes','
 SUITES={
     'quick':QUICK_CASES,
     'campaign':['characters.playtest_manual_raids.ManualGuildRush','characters.playtest_gothic2.PreparedNkFactionBots','characters.playtest_jarkendar','characters.playtest_faction_ranks.PreparedRankBotTests','characters.test_campaign.CampaignTests.test_human_can_play_whole_campaign_via_forms_and_ordinary_game_services','characters.test_campaign.CampaignBotTests','characters.test_khorinis.TwoRealmTests.test_three_factions_finish_story_by_ordinary_bot_actions','characters.playtest_postmerge.JoinedBotCampaignTests','characters.playtest_postmerge.JoinedEarlyBuildTests'],
-    'pacing':['characters.playtest_gothic2.EarnedNkCampaign','characters.playtest_faction_ranks.EarnedFactionRankTests','characters.playtest_pacing','characters.playtest_postmerge.PostMergePacingTests'],
+    'pacing':['characters.playtest_gothic2.EarnedNkCampaign','characters.playtest_faction_ranks.EarnedFactionRankTests','characters.playtest_pacing','characters.playtest_postmerge.PostMergePacingTests','characters.playtest_timing.PlaythroughTiming'],
     'world':['characters.test_bot_personalities','characters.test_market_intelligence','characters.test_bot_cycle_simulation'],
     'full':list(dict.fromkeys(FULL_CASES+QUICK_CASES)),
 }

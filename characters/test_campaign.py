@@ -192,7 +192,7 @@ class CampaignBotTests(TransactionTestCase):
         for bot,personality in zip(bots,('casual','grinder','grinder')):
             bot.bot_personality=personality;bot.save(update_fields=['bot_personality'])
         now = timezone.now()
-        completed = set()
+        completed = {}
         actions = Counter()
         for step in range(700):
             with patch('django.utils.timezone.now', return_value=now + timedelta(minutes=30*step)):
@@ -203,7 +203,7 @@ class CampaignBotTests(TransactionTestCase):
                     self.assertTrue(success, (step, bot.pk, action))
                     actions[action] += 1
                     if bot.story_runs.filter(quest__key='ritual-ready', status='claimed').exists() and CampaignCompletion.objects.filter(profile=bot).exists():
-                        completed.add(bot.pk)
+                        completed[bot.pk] = step
             if len(completed) == 3: break
         status = {b.pk: list(b.story_runs.exclude(status='claimed').values('quest__key', 'progress', 'status')) for b in bots}
         self.assertEqual(len(completed), 3, (status, actions, list(PlayerProfile.objects.filter(is_bot=True).values('id','guild','level','strength','mana','current_mana','current_health','life','prepared_magic_id','skill_points')), list(BotDecision.objects.values('profile_id','reason','observation')[:1])))
@@ -216,7 +216,7 @@ class CampaignBotTests(TransactionTestCase):
             self.assertIn(bot.story_runs.filter(status='claimed',quest__universe='GOTHIC_I').count(), (27,28))
             self.assertTrue(hasattr(bot,'campaign_completion'))
         from .release_probe import record_scenario
-        record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})
+        record_scenario('trzy-obozy-botow',{'ticks':step+1,'simulated_hours':step/2,'actions':dict(actions),'characters':list(PlayerProfile.objects.filter(pk__in=[b.pk for b in bots]).values('camp','level','experience','ore_balance','premium_balance')),'cadence_minutes':30,'forces_sessions':True,'finish_hours':{b.camp:completed[b.pk]/2 for b in bots},'finishers':sum(hasattr(b,'campaign_completion') for b in bots)})
         # Continue the same earned characters after the finale: no stat/material grants.
         after=Counter()
         for extra in range(60):

@@ -244,6 +244,37 @@ class GameMasterTests(TestCase):
         self.user.refresh_from_db()
         self.assertFalse(self.user.is_superuser)
 
+    def test_khorinis_panel_can_restore_an_island_character(self):
+        from .character_selection import create_character
+        from .models import World
+
+        island = World.objects.create(name="Khorinis", universe="GOTHIC_II", is_open=True)
+        hero = create_character(self.user, "Mieszkaniec wyspy", island.pk)
+        hero.current_energy = 5
+        hero.save(update_fields=["current_energy"])
+        self.client.force_login(self.admin)
+        url = reverse("game_master") + f"?server={island.pk}&profile={hero.pk}"
+        self.assertEqual(self.client.get(url).context["target"], hero)
+        self.assertEqual(self.client.post(url, {"profile": hero.pk, "action": "restore"}).status_code, 302)
+        hero.refresh_from_db()
+        self.assertEqual(hero.current_energy, hero.max_energy)
+        self.assertTrue(AdminAction.objects.filter(profile=hero, action="restore").exists())
+
+        island.status = "archived"
+        island.save(update_fields=["status"])
+        self.assertFalse(administer_player(self.admin, hero.pk, "restore", {})[0])
+        self.assertEqual(AdminAction.objects.filter(profile=hero).count(), 1)
+
+    def test_empty_island_panel_has_no_default_action_target(self):
+        from .models import World
+
+        island = World.objects.create(name="Khorinis", universe="GOTHIC_II", is_open=True)
+        self.client.force_login(self.admin)
+        url = reverse("game_master") + f"?server={island.pk}"
+        self.assertEqual(self.client.get(url).status_code, 200)
+        self.assertEqual(self.client.post(url, {"action": "restore"}).status_code, 404)
+        self.assertFalse(AdminAction.objects.exists())
+
     def test_game_master_page_and_django_admin_render(self):
         self.client.force_login(self.admin)
         for url in (reverse("game_master"), reverse("admin:index"), reverse("admin:characters_playerprofile_change", args=[self.profile.pk])):

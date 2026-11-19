@@ -8071,6 +8071,44 @@ python scripts/benchmark_bots.py --seconds 60 --report /tmp/audyt-stu-botow.json
 <h3 id="doc-solo-playtest--wspopraca-ze-sniacym-z-botami">Współpraca ze Śniącym z botami</h3>
 <p>Scenariusz <code>characters.playtest_sleeper_team</code> zaczyna od trzech przygotowanych kont w Starym Obozie. Gracz używa Gniewu Innosa, dwa boty zaczynają jako łucznik i wojownik. Poprzednia polityka pozostawiała 25 016 z 120 000 HP po 420 rundach, przy 13 uderzeniach botów. Po nadaniu pierwszeństwa gotowym turom Śniącego drużyna zwycięża, a wszystkie trzy konta wnoszą wkład. Zmiana nie narusza pieczęci, kosztu, wymagań ani limitu czasu między uderzeniami.</p>
 <p>Uruchomienie w odizolowanej bazie testowej: <code>python manage.py test characters.playtest_sleeper_team --noinput</code>. Dwie godziny między rundami są wirtualne, boty grają w wymuszonych aktywnych turach, a poziom 10 wspólnoty stanowi warunek wstępny. Zwycięstwo zleca upadek Bariery. Kopię, odtworzenie i aktywację sprawdza osobno <code>simulate_journey</code>.</p>
+<h3 id="doc-solo-playtest--19-xi-porownanie-tempa-gracza-i-panelu-zarzadcy">19 XI — porównanie tempa gracza i panelu zarządcy</h3>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Start i punkt końcowy</th>
+<th style="text-align: right;">Zwykła gra</th>
+<th style="text-align: right;">Odnowienia energii</th>
+<th style="text-align: right;">Odnowienia i ruda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kolonia do osobistego finału</td>
+<td style="text-align: right;">10,75 h / 99 min</td>
+<td style="text-align: right;">5,25 h / 52 min</td>
+<td style="text-align: right;">5,64 h / 51 min</td>
+</tr>
+<tr>
+<td>Kolonia przez NK do Irdorath</td>
+<td style="text-align: right;">30,38 h / 241 min</td>
+<td style="text-align: right;">13,18 h / 100 min</td>
+<td style="text-align: right;">13,57 h / 98 min</td>
+</tr>
+<tr>
+<td>Khorinis do końca Szlaków zaopatrzenia</td>
+<td style="text-align: right;">8,09 h / 79 min</td>
+<td style="text-align: right;">3,57 h / 34 min</td>
+<td style="text-align: right;">3,33 h / 34 min</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pierwsza liczba to godziny zegara świata, łącznie z regeneracją i timerami. Druga to minuty wykonywania akcji w modelu przy 10 s na operację, z uwzględnieniem prób ponawianych i formularzy zarządcy. Każdy wariant gra wojownikiem od zera, kupuje sprzęt i korzysta z NPC oraz sklepu za zarobione odłamki. Model zna cele i gra bez przerw na wylogowanie. Sam przebieg nie mierzy tempa człowieka ani handlu z botami.</p>
+<p>Zarządca odnawiał energię poniżej 25 oraz w trzecim wariancie dodawał do 100 rudy przy rzeczywistym braku środków, najwyżej raz w dniu gry i maksymalnie w sześciu dniach próby. Do Irdorath użył 15 odnowień albo 14 odnowień i 66 rudy. Na Khorinis użył pięciu odnowień i opcjonalnie 26 rudy. Zmieniony moment odpoczynku i zakupu może przesunąć kolejne walki, więc wariant z rudą w Kolonii miał odrobinę mniej aktywnych operacji, lecz dłuższy czas regeneracji.</p>
+<p>W pomiarze jednej postaci Bariera otwiera się jako zewnętrzne zdarzenie po finale Kolonii. Osobna pełna próba przygotowała trzy konta od zera, dwa pozostałe wspierały właściwą postać, i zrealizowała wyścig wspólnoty, 124 uderzenia w Śniącego oraz kopię i odtworzenie. Do aktywacji upłynęło 16,18 wirtualnego dnia, a do końca 23 kontraktów NK, pierwszych regionalnych wart i celu tygodniowego 17,23 dnia. Konta rozwijano po kolei, więc wynik zależy od tej organizacji i nie wyznacza czasu oczekiwania na żywym serwerze.</p>
+<pre><code class="language-bash">mkdir -p work
+echo '[]' &gt; work/comparative-timing.json
+ORE_PROBE_REPORT=&quot;$PWD/work/comparative-timing.json&quot; python manage.py test characters.playtest_timing --noinput
+</code></pre>
 <h3 id="doc-solo-playtest--co-sprawdzono-w-biezacej-wersji">Co sprawdzono w bieżącej wersji</h3>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>

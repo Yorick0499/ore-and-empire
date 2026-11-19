@@ -84,13 +84,13 @@ class TwoRealmTests(TestCase):
                 bot.save(update_fields=['bot_role','bot_personality'])
         from datetime import datetime
         from .world_clock import POLISH_TIME
-        now=datetime(2026,11,11,9,tzinfo=POLISH_TIME);done=set();actions=Counter()
+        now=datetime(2026,11,11,9,tzinfo=POLISH_TIME);done={};actions=Counter()
         for step in range(700):
             with patch('django.utils.timezone.now',return_value=now+timedelta(minutes=30*step)):
                 for bot in bots:
                     if bot.pk in done:continue
                     action,ok=tick_bot(bot,force_active=True);self.assertTrue(ok,(step,bot.pk,action));actions[action]+=1
-                    if bot.story_runs.filter(status='claimed',snapshot__key='k2-supply-8').exists():done.add(bot.pk)
+                    if bot.story_runs.filter(status='claimed',snapshot__key='k2-supply-8').exists():done[bot.pk]=step
             if len(done)==3:break
         # The same earned characters keep playing after their pre-merge story.
         for extra in range(80):
@@ -108,7 +108,7 @@ class TwoRealmTests(TestCase):
             self.assertFalse(bot.story_runs.exclude(snapshot__universe='GOTHIC_II').exists())
         self.assertEqual(current_world().pk,self.colony.pk)
         from .release_probe import record_scenario
-        record_scenario('khorinis-trzy-frakcje',{'ticks':step+1,'quests_each':17,'actions':dict(actions),'characters':status,'ordinary_services_without_grants':True})
+        record_scenario('khorinis-trzy-frakcje',{'ticks':step+1,'cadence_minutes':30,'forces_sessions':True,'finish_hours':{b.camp:done[b.pk]/2 for b in bots},'quests_each':17,'actions':dict(actions),'characters':status,'ordinary_services_without_grants':True})
 
     def test_human_completes_island_campaign_using_forms_without_grants(self):
         from .story_quests import available

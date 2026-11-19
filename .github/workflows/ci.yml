@@ -76,11 +76,18 @@ jobs:
         run: python manage.py simulate_journey --report work/complete-journey.json
       - name: Fire mage and two bots complete the Sleeper siege
         run: python manage.py test characters.playtest_sleeper_team --noinput
+      - name: Compare player pacing with organic income and real operator forms
+        run: |
+          mkdir -p work
+          echo '[]' > work/comparative-timing.json
+          ORE_PROBE_REPORT="$PWD/work/comparative-timing.json" python manage.py test characters.playtest_timing --noinput
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: complete-journey-report
-          path: work/complete-journey.json
+          path: |
+            work/complete-journey.json
+            work/comparative-timing.json
           retention-days: 7
 
   build-journeys:
