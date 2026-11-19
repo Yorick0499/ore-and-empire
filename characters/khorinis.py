@@ -36,22 +36,88 @@ DESTINATIONS=[
 CHAPTERS=((1,'Miejsce na wyspie','k2_harbor'),(2,'Zaufanie trzech wspólnot','k2_onar'),(3,'Szlaki zaopatrzenia','k2_tavern'),(4,'Warty przed zmianą','k2_dark_forest'))
 
 
-def ranks(Rank,obj):
-    result=[]
-    branches={
-      'CITY_WATCH':(('K2_CITIZEN','Rekrut straży'),('K2_MILITIA','Strażnik miejski'),('K2_PALADIN','Sierżant straży'),('K2_COMMANDER','Dowódca straży')),
-      'FIRE_ORDER':(('K2_NOVICE','Nowicjusz Ognia'),('K2_ADEPT','Adept Ognia'),('K2_MAGE','Mag Ognia Khorinis'),('K2_ARCHMAGE','Arcymag klasztoru')),
-      'ONAR_MERCS':(('K2_LABORER','Pracownik farmy'),('K2_RECRUIT','Zbrojny Onara'),('K2_MERC','Najemnik Onara'),('K2_CAPTAIN','Dowódca najemników')),
-    }
-    for camp,path in branches.items():
-        for tier,(key,name) in enumerate(path):
-            magic=camp=='FIRE_ORDER';attribute='mana' if magic else 'strength'
-            goals=((obj('mine',1,'Odbierz urobek'),) if tier==0 else
-                   (obj('hunt:k2_goblin',3,'Zabezpiecz trakt przed goblinami'),) if tier==1 else
-                   (obj('train:'+attribute,2,'Ukończ trening'),obj('hunt:k2_field_raider',3,'Ocal zbiory')) if tier==2 else
-                   (obj('hunt:k2_warg',3,'Zabezpiecz las'),obj('mine',3,'Przygotuj zapasy')))
-            result.append(Rank(key,name,camp,('NONE' if tier==0 else path[tier-1][0],),tier,(0,3,8,18)[tier],attribute,(10,15,25,40)[tier],(0,30,100,250)[tier],('Miejsce przy ognisku','Próba odpowiedzialności','W służbie wspólnoty','Dowództwo warty')[tier],'Obowiązki zwykłego mieszkańca wyspy; awans wymaga też odebranych przydziałów fabularnych.',goals))
-    return tuple(result),{camp:(tuple(name for _,name in path),) for camp,path in branches.items()}
+RANK_NAMES = {
+    'CITY_WATCH': (('K2_CITIZEN', 'Rekrut straży'), ('K2_MILITIA', 'Strażnik miejski'),
+                   ('K2_PALADIN', 'Sierżant straży'), ('K2_COMMANDER', 'Dowódca straży')),
+    'FIRE_ORDER': (('K2_NOVICE', 'Nowicjusz Ognia'), ('K2_ADEPT', 'Adept Ognia'),
+                   ('K2_MAGE', 'Mag Ognia Khorinis'), ('K2_ARCHMAGE', 'Arcymag klasztoru')),
+    'ONAR_MERCS': (('K2_LABORER', 'Pracownik farmy'), ('K2_RECRUIT', 'Zbrojny Onara'),
+                   ('K2_MERC', 'Najemnik Onara'), ('K2_CAPTAIN', 'Dowódca najemników')),
+}
+
+RANK_TRIALS = {
+    'CITY_WATCH': (
+        (0, 'strength', 10, 0, 'Zapasy do koszar',
+         ('mine', 1, 'Odbierz urobek na potrzeby straży')),
+        (3, 'strength', 15, 30, 'Pierwszy patrol traktu',
+         ('hunt:k2_goblin', 2, 'Rozprosz gobliny spod mostu'),
+         ('hunt:k2_wolf', 2, 'Przepędź wilki z traktu')),
+        (10, 'strength', 28, 100, 'Zasadzka przy bramie',
+         ('hunt:k2_field_raider', 3, 'Zabezpiecz podejście do bramy'),
+         ('boss:k2_bandit_boss', 1, 'Pokonaj poborców haraczu')),
+        (22, 'strength', 45, 400, 'Warta nad morskim traktem',
+         ('hunt:k2_lurker', 3, 'Oczyść wybrzeże z topielców'),
+         ('hunt:k2_warg', 3, 'Osłoń drogę karawan przez las'),
+         ('boss:k2_harbor_boss', 1, 'Pokonaj wodza rozbójników z wybrzeża')),
+    ),
+    'FIRE_ORDER': (
+        (0, 'mana', 11, 0, 'Pierwsza lekcja Parlana',
+         ('train:mana', 1, 'Przećwicz koncentrację')),
+        (3, 'mana', 14, 30, 'Droga pielgrzymów',
+         ('hunt:k2_wolf', 3, 'Odpędź wilki od pielgrzymów')),
+        (9, 'mana', 23, 100, 'Warta nad jeziorem',
+         ('train:mana', 2, 'Ukończ dwie lekcje koncentracji'),
+         ('hunt:k2_bloodfly', 4, 'Przepędź krwiopijce znad jeziora')),
+        (22, 'mana', 40, 300, 'W obronie posłańców Innosa',
+         ('hunt:k2_warg', 4, 'Bezpiecznie przeprowadź posłańców przez las'),
+         ('hunt:k2_lurker', 3, 'Pokonaj topielce na trasie pielgrzymów'),
+         ('boss:k2_bandit_boss', 1, 'Rozbij bandę napadającą na pielgrzymów')),
+    ),
+    'ONAR_MERCS': (
+        (0, 'martial', 10, 0, 'Pierwsza robota na farmie',
+         ('hunt:k2_scavenger', 2, 'Przepędź ścierwojady z pól')),
+        (3, 'martial', 15, 30, 'Żołd za bezpieczne wozy',
+         ('mine', 1, 'Odbierz zapasy na wyprawę'),
+         ('hunt:k2_goblin', 3, 'Wypędź gobliny spod mostu')),
+        (8, 'martial', 25, 100, 'Kontrakt na ochronę żniw',
+         ('hunt:k2_field_raider', 4, 'Oczyść pola z bestii'),
+         ('hunt:k2_bloodfly', 2, 'Odeprzyj krwiopijce przy szlaku')),
+        (22, 'martial', 44, 275, 'Polowanie dla Torlofa',
+         ('hunt:k2_warg', 3, 'Udrożnij szlak najemników w lesie'),
+         ('hunt:k2_field_raider', 3, 'Osłoń pola przed bestiami'),
+         ('hunt:k2_black_troll', 1, 'Pokonaj czarnego trolla')),
+    ),
+}
+
+
+def ranks(Rank, obj, *, legacy=False):
+    result = []
+    for camp, path in RANK_NAMES.items():
+        for tier, (key, name) in enumerate(path):
+            if legacy:
+                spec = legacy_rank_trial(camp, tier)
+            else:
+                spec = RANK_TRIALS[camp][tier]
+            level, attribute, threshold, cost, title, *goals = spec
+            parent = 'NONE' if tier == 0 else path[tier - 1][0]
+            result.append(Rank(key, name, camp, (parent,), tier, level, attribute, threshold, cost,
+                               title, 'Zalicz próbę awansu oraz wymagane przydziały wspólnoty.',
+                               tuple(obj(*goal) for goal in goals)))
+    paths = {camp: (tuple(name for _, name in path),) for camp, path in RANK_NAMES.items()}
+    return tuple(result), paths
+
+
+def legacy_rank_trial(camp, tier):
+    attribute = 'mana' if camp == 'FIRE_ORDER' else 'strength'
+    goals = (
+        (('mine', 1, 'Odbierz urobek'),),
+        (('hunt:k2_goblin', 3, 'Zabezpiecz trakt przed goblinami'),),
+        (('train:' + attribute, 2, 'Ukończ trening'), ('hunt:k2_field_raider', 3, 'Ocal zbiory')),
+        (('hunt:k2_warg', 3, 'Zabezpiecz las'), ('mine', 3, 'Przygotuj zapasy')),
+    )
+    titles = ('Miejsce przy ognisku', 'Próba odpowiedzialności', 'W służbie wspólnoty', 'Dowództwo warty')
+    return ((0, 3, 8, 18)[tier], attribute, (10, 15, 25, 40)[tier],
+            (0, 30, 100, 250)[tier], titles[tier], *goals[tier])
 
 
 def campaign():

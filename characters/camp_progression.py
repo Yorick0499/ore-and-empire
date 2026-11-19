@@ -73,7 +73,10 @@ RANKS = (
          "Cisza pośród cieni", "Staw czoła nieumarłym opiekunom świątyni.", (obj("hunt:temple_guardian", 3, "Pokonaj opiekunów świątyni"), obj("hunt:demon", 3, "Pokonaj pomniejsze demony"))),
 )
 from .khorinis import ranks as khorinis_ranks
-KHORINIS_RANKS,KHORINIS_PATHS=khorinis_ranks(Rank,obj)
+KHORINIS_RANKS, KHORINIS_PATHS = khorinis_ranks(Rank, obj)
+OLD_KHORINIS_RANKS = {rank.key: rank for rank in khorinis_ranks(Rank, obj, legacy=True)[0]}
+KHORINIS_TRIAL_VERSION = 2
+TRIAL_VERSION_KEY = '_trial_version'
 RANKS += KHORINIS_RANKS
 BY_RANK = {rank.key: rank for rank in RANKS}
 # Stable identities keep equipment, completed quests and ledger references intact.
@@ -98,7 +101,16 @@ CAMP_PATHS = {
     "SWAMP_CAMP": (("Zbieracz", "Nowicjusz", "Strażnik świątynny", "Templariusz bagien"), ("Zbieracz", "Nowicjusz", "Guru", "Arcyguru")),
 }
 CAMP_PATHS.update(KHORINIS_PATHS)
-ATTRIBUTE_NAMES = {"strength": "Siła", "dexterity": "Zręczność", "mana": "Mana"}
+ATTRIBUTE_NAMES = {"strength": "Siła", "dexterity": "Zręczność", "mana": "Mana", "martial": "Siła lub zręczność"}
+
+
+def rank_for_quest(profile, rank, quest):
+    if rank.key in OLD_KHORINIS_RANKS and quest.progress.get(TRIAL_VERSION_KEY, 1) == 1:
+        return OLD_KHORINIS_RANKS[rank.key]
+    if rank.key.startswith('ADV_'):
+        from .faction_advancement import rank_for
+        return rank_for(profile, rank, quest)
+    return rank
 
 
 def promotion_tier(profile, rank):
@@ -138,7 +150,8 @@ def accept_camp_quest(profile, rank_key):
     # One active branch at a time; abandoning never grants rewards or promotion.
     if CampQuest.objects.filter(profile=profile, promoted_at__isnull=True).exists():
         return False
-    CampQuest.objects.create(profile=profile, rank_key=rank.key)
+    progress = {TRIAL_VERSION_KEY: KHORINIS_TRIAL_VERSION} if rank.key in OLD_KHORINIS_RANKS else {}
+    CampQuest.objects.create(profile=profile, rank_key=rank.key, progress=progress)
     return True
 
 
@@ -157,7 +170,10 @@ def promote_in_camp(profile, rank_key):
     if not rank or not available_rank(profile, rank) or profile.is_busy:
         return False
     quest = CampQuest.objects.select_for_update().filter(profile=profile, rank_key=rank.key, promoted_at__isnull=True).first()
-    if not quest or not quest_complete(quest, rank):
+    if not quest:
+        return False
+    rank = rank_for_quest(profile, rank, quest)
+    if not quest_complete(quest, rank):
         return False
     if profile.level < rank.level or getattr(profile, rank.attribute) < rank.attribute_value or profile.ore_balance < rank.cost:
         return False
@@ -182,12 +198,11 @@ def record_camp_event(profile, event):
     from .challenges import record_personal_event
     record_personal_event(profile,kind)
     for quest in CampQuest.objects.select_for_update().filter(profile=profile, promoted_at__isnull=True):
-        from .faction_advancement import BY_KEY, rank_for
+        from .faction_advancement import BY_KEY
         rank = BY_RANK.get(quest.rank_key) or BY_KEY.get(quest.rank_key)
-        if quest.rank_key in BY_KEY:
-            rank = rank_for(profile, rank, quest)
         if not rank or not available_rank(profile, rank):
             continue
+        rank = rank_for_quest(profile, rank, quest)
         goal = next((goal for goal in rank.objectives if goal.event == event), None)
         if goal:
             quest.progress[event] = min(goal.count, quest.progress.get(event, 0) + 1)
@@ -203,6 +218,8 @@ def rank_cards(profile, camp=None):
         if rank.camp != (camp or profile.camp):
             continue
         quest = quests.get(rank.key)
+        if quest:
+            rank = rank_for_quest(profile, rank, quest)
         eligible = available_rank(profile, rank)
         complete = bool(quest and quest_complete(quest, rank))
         cards.append({

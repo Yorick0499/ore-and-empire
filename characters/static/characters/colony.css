@@ -434,3 +434,136 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
     grid-template-columns: 1fr;
   }
 }
+
+.resident-profile-heading,
+.resident-profile-level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.resident-profile-heading h1 {
+  margin: .35rem 0;
+  overflow-wrap: anywhere;
+}
+
+.resident-profile-level {
+  flex-direction: column;
+  gap: .2rem;
+  min-width: 5rem;
+  padding: .6rem;
+  border: 1px solid #766349;
+  background: #1e1915;
+}
+
+.resident-profile-level strong {
+  color: #f4da9f;
+  font-size: 1.8rem;
+}
+
+.resident-profile-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(12rem, 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.resident-paperdoll {
+  display: grid;
+  grid-template:
+    "amulet figure armor" 1fr
+    "ring1 figure weapon" 1fr
+    "ring2 figure belt" 1fr
+    / minmax(0, 1fr) minmax(6rem, 1.12fr) minmax(0, 1fr);
+  position: relative;
+  gap: .65rem;
+  padding: clamp(.45rem, 1.6vw, 1rem);
+  border: 1px solid #564a35;
+  background: radial-gradient(ellipse at center, #332e25, #1d1b17 54%, #111315);
+}
+
+.resident-paperdoll-figure {
+  grid-area: figure;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  min-width: 0;
+}
+
+.resident-paperdoll-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.gear-amulet { grid-area: amulet; }
+.gear-armor { grid-area: armor; }
+.gear-ring1 { grid-area: ring1; }
+.gear-weapon { grid-area: weapon; }
+.gear-ring2 { grid-area: ring2; }
+.gear-belt { grid-area: belt; }
+
+.resident-gear-slot {
+  min-width: 0;
+  padding: .6rem;
+  border: 1px dashed #6c604a;
+  background: #171714;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.resident-gear-slot.has-item { border-style: solid; border-color: #8a724b; }
+.resident-gear-slot h3 { margin: 0 0 .25rem; font-size: .96rem; color: #e6ca92; }
+.resident-gear-slot p { margin: .3rem 0; }
+.resident-gear-slot .gothic-art { width: min(100%, 7rem); margin: .35rem auto; }
+.resident-gear-slot .gothic-art img { width: 100%; height: clamp(3.2rem, 8vw, 5.5rem); object-fit: contain; }
+.resident-gear-slot figcaption { line-height: 1.25; }
+.resident-gear-slot figcaption a { font-size: .72rem; }
+.resident-empty-symbol { display: block; margin-top: 1rem; color: #b5a588; font-size: 1.6rem; }
+.resident-gear-slot details[open] { text-align: left; }
+.resident-gear-slot summary { color: #f0d499; cursor: pointer; }
+.resident-profile-facts dl, .resident-gear-slot dl { margin: 0; }
+.resident-profile-facts dl div, .resident-gear-slot dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: .55rem;
+  border-bottom: 1px solid #524633;
+  padding: .35rem 0;
+}
+.resident-profile-facts dd, .resident-gear-slot dd { margin: 0; text-align: right; }
+
+@media (max-width: 850px) {
+  .resident-profile-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 540px) {
+  .resident-paperdoll {
+    grid-template:
+      "figure figure"
+      "amulet armor"
+      "ring1 weapon"
+      "ring2 belt"
+      / repeat(2, minmax(0, 1fr));
+  }
+  .resident-paperdoll-figure img { width: auto; height: 12rem; }
+}
+
+.resident-paperdoll-figure img {
+  mix-blend-mode: screen;
+  filter: sepia(.28) brightness(1.45);
+}
+
+@media (min-width: 541px) {
+  .resident-gear-slot { position: relative; }
+  .resident-gear-slot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: .66rem;
+    border-top: 1px solid #8a724b;
+  }
+  .gear-amulet::before, .gear-ring1::before, .gear-ring2::before { left: 100%; }
+  .gear-armor::before, .gear-weapon::before, .gear-belt::before { right: 100%; }
+}

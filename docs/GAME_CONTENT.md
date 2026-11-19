@@ -305,18 +305,18 @@ Cztery szczeble w każdej gałęzi. Brak rangi nie jest piątym szczeblem. Tabel
 | SWAMP_CAMP | Templariusz bagien | Strażnik świątynny | 18 | Siła 40 | 250 | Pokonaj błotne węże ×3; Wygraj wyprawę na bagnie ×1 |
 | SWAMP_CAMP | Guru | Nowicjusz | 15 | Mana 25 | 150 | Ukończ trening many ×3; Pokonaj szkielety magów ×2 |
 | SWAMP_CAMP | Arcyguru | Guru | 25 | Mana 45 | 350 | Pokonaj opiekunów świątyni ×3; Pokonaj pomniejsze demony ×3 |
-| CITY_WATCH | Rekrut straży | brak rangi | 0 | Siła 10 | 0 | Odbierz urobek ×1 |
-| CITY_WATCH | Strażnik miejski | Rekrut straży | 3 | Siła 15 | 30 | Zabezpiecz trakt przed goblinami ×3 |
-| CITY_WATCH | Sierżant straży | Strażnik miejski | 8 | Siła 25 | 100 | Ukończ trening ×2; Ocal zbiory ×3 |
-| CITY_WATCH | Dowódca straży | Sierżant straży | 18 | Siła 40 | 250 | Zabezpiecz las ×3; Przygotuj zapasy ×3 |
-| FIRE_ORDER | Nowicjusz Ognia | brak rangi | 0 | Mana 10 | 0 | Odbierz urobek ×1 |
-| FIRE_ORDER | Adept Ognia | Nowicjusz Ognia | 3 | Mana 15 | 30 | Zabezpiecz trakt przed goblinami ×3 |
-| FIRE_ORDER | Mag Ognia Khorinis | Adept Ognia | 8 | Mana 25 | 100 | Ukończ trening ×2; Ocal zbiory ×3 |
-| FIRE_ORDER | Arcymag klasztoru | Mag Ognia Khorinis | 18 | Mana 40 | 250 | Zabezpiecz las ×3; Przygotuj zapasy ×3 |
-| ONAR_MERCS | Pracownik farmy | brak rangi | 0 | Siła 10 | 0 | Odbierz urobek ×1 |
-| ONAR_MERCS | Zbrojny Onara | Pracownik farmy | 3 | Siła 15 | 30 | Zabezpiecz trakt przed goblinami ×3 |
-| ONAR_MERCS | Najemnik Onara | Zbrojny Onara | 8 | Siła 25 | 100 | Ukończ trening ×2; Ocal zbiory ×3 |
-| ONAR_MERCS | Dowódca najemników | Najemnik Onara | 18 | Siła 40 | 250 | Zabezpiecz las ×3; Przygotuj zapasy ×3 |
+| CITY_WATCH | Rekrut straży | brak rangi | 0 | Siła 10 | 0 | Odbierz urobek na potrzeby straży ×1 |
+| CITY_WATCH | Strażnik miejski | Rekrut straży | 3 | Siła 15 | 30 | Rozprosz gobliny spod mostu ×2; Przepędź wilki z traktu ×2 |
+| CITY_WATCH | Sierżant straży | Strażnik miejski | 10 | Siła 28 | 100 | Zabezpiecz podejście do bramy ×3; Pokonaj poborców haraczu ×1 |
+| CITY_WATCH | Dowódca straży | Sierżant straży | 22 | Siła 45 | 400 | Oczyść wybrzeże z topielców ×3; Osłoń drogę karawan przez las ×3; Pokonaj wodza rozbójników z wybrzeża ×1 |
+| FIRE_ORDER | Nowicjusz Ognia | brak rangi | 0 | Mana 11 | 0 | Przećwicz koncentrację ×1 |
+| FIRE_ORDER | Adept Ognia | Nowicjusz Ognia | 3 | Mana 14 | 30 | Odpędź wilki od pielgrzymów ×3 |
+| FIRE_ORDER | Mag Ognia Khorinis | Adept Ognia | 9 | Mana 23 | 100 | Ukończ dwie lekcje koncentracji ×2; Przepędź krwiopijce znad jeziora ×4 |
+| FIRE_ORDER | Arcymag klasztoru | Mag Ognia Khorinis | 22 | Mana 40 | 300 | Bezpiecznie przeprowadź posłańców przez las ×4; Pokonaj topielce na trasie pielgrzymów ×3; Rozbij bandę napadającą na pielgrzymów ×1 |
+| ONAR_MERCS | Pracownik farmy | brak rangi | 0 | Siła lub zręczność 10 | 0 | Przepędź ścierwojady z pól ×2 |
+| ONAR_MERCS | Zbrojny Onara | Pracownik farmy | 3 | Siła lub zręczność 15 | 30 | Odbierz zapasy na wyprawę ×1; Wypędź gobliny spod mostu ×3 |
+| ONAR_MERCS | Najemnik Onara | Zbrojny Onara | 8 | Siła lub zręczność 25 | 100 | Oczyść pola z bestii ×4; Odeprzyj krwiopijce przy szlaku ×2 |
+| ONAR_MERCS | Dowódca najemników | Najemnik Onara | 22 | Siła lub zręczność 44 | 275 | Udrożnij szlak najemników w lesie ×3; Osłoń pola przed bestiami ×3; Pokonaj czarnego trolla ×1 |
 
 ## Frakcje i osiem rang po Barierze
 

@@ -10,6 +10,8 @@ Stan: 13 XI 2026. Przed Barierą **Latarnia — Khorinis** działa równolegle z
 | Klasztor Magów Ognia | Nowicjusz Ognia → Adept Ognia → Mag Ognia Khorinis → Arcymag klasztoru |
 | Najemnicy Onara | Pracownik farmy → Zbrojny Onara → Najemnik Onara → Dowódca najemników |
 
+Nowe próby każdej rangi mają własne cele. Straż zaopatruje koszary, patroluje trakt, a później rozbija bandy przy bramie i wybrzeżu. Magowie Ognia ćwiczą manę i osłaniają pielgrzymów. Ludzie Onara chronią pola i wozy, a na koniec mierzą się z wargami oraz czarnym trollem. Onar akceptuje siłę lub zręczność, więc łucznik może rozwijać swój główny atrybut. Ostatnia próba każdej gildii wymaga poziomu 22. Rozpoczęte próby zachowują dotychczasowe cele i opłaty. [Dokładne progi i cele](GAME_CONTENT.md#podstawowe-rangi).
+
 Paladyni należą do wyższej drogi po połączeniu. Każda wspólnota ma skarbiec, dzienne projekty, ulepszenia i wyprawy; szkoła klasztoru otwiera odpowiednią magię. [Wymagania rang](CAMPS.md).
 
 ## Kampania „Szlaki zaopatrzenia”

@@ -385,8 +385,8 @@ from .realms import profile_scope,camps as realm_camps
 
 @profile_scope
 def tick_bot(profile, policy=None, *, lease=None, force_active=False):
-    from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp
-    from .faction_advancement import RANKS as ADVANCED_RANKS, published_trials, rank_for
+    from .camp_progression import RANKS, available_rank, quest_complete, accept_camp_quest, promote_in_camp, rank_for_quest
+    from .faction_advancement import RANKS as ADVANCED_RANKS, published_trials
     from .faction_trials import RELEASE_BY_TIER
     RANKS=RANKS+ADVANCED_RANKS
     from .locations import LOCATIONS,BY_KEY
@@ -498,7 +498,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if quest:
         rank = next((r for r in RANKS if r.key == quest.rank_key and available_rank(profile, r)), None)
         if rank:
-            rank = rank_for(profile, rank, quest)
+            rank = rank_for_quest(profile, rank, quest)
             if quest_complete(quest, rank):
                 needs_ore = needs_ore or profile.ore_balance < rank.cost
                 if getattr(profile, rank.attribute) < rank.attribute_value:
