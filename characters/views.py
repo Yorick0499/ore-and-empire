@@ -318,14 +318,15 @@ def current_location(request, profile, default, route):
 def register_view(request):
     if request.user.is_authenticated:
         return redirect("locations_page")
-    form = UserCreationForm(request.POST or None)
+    form = UserCreationForm(request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
         with transaction.atomic():
             user = form.save()
             user.characters.filter(world=current_world()).update(is_draft=True)
         login(request, user)
         return redirect("characters_page")
-    return render(request, "registration/register.html", {"form": form})
+    from .public_chronicle import public_chronicle
+    return render(request, "registration/register.html", {"form": form, "chronicle": public_chronicle()})
 
 
 @login_required

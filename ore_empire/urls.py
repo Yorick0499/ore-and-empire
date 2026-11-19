@@ -44,6 +44,7 @@ from characters.views import (
 from characters.views import journal_view, battle_detail_view, hall_view
 
 from characters.health import live,ready
+from characters.public_chronicle import ChronicleLoginView
 
 urlpatterns = [
     path('zarzadca/bariera/', barrier_admin_view, name='barrier_admin'),
@@ -77,7 +78,7 @@ urlpatterns = [
     path("zrodla/", credits_view, name="credits_page"),
     path("", locations_view, name="locations_page"),
     path("konto/rejestracja/", register_view, name="register"),
-    path("konto/logowanie/", auth_views.LoginView.as_view(), name="login"),
+    path("konto/logowanie/", ChronicleLoginView.as_view(), name="login"),
     path("konto/wylogowanie/", auth_views.LogoutView.as_view(), name="logout"),
     path("rynek/monitor/", market_monitor_view, name="market_monitor"),
     path("wyprawa/", boss_view, name="boss_page"),

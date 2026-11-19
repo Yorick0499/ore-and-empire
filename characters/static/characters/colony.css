@@ -403,3 +403,34 @@ form .helptext { display:block; font-size:14px; margin-top:6px; }
 .faction-options span { min-width:0; overflow-wrap:anywhere; }
 .faction-options strong { display:block; margin-top:.3rem; }
 .faction-options label:focus-within,.faction-options label:has(input:checked) { outline:2px solid #d6b66c; outline-offset:1px; }
+
+.entry-chronicle {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+}
+
+.entry-chronicle-copy h1 {
+  margin: .25rem 0 1rem;
+}
+
+.entry-chronicle-copy p:last-child {
+  max-width: 55ch;
+}
+
+.entry-chronicle figure {
+  margin: 0;
+}
+
+.entry-chronicle figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 680px) {
+  .entry-chronicle {
+    grid-template-columns: 1fr;
+  }
+}

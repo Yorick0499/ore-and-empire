@@ -1,2 +1,11 @@
-{% extends 'characters/base.html' %}{% block title %}Ore &amp; Empire — Nowa postać{% endblock %}
-{% block content %}<section class="colony-panel"><h1>Witaj w Ore &amp; Empire</h1><p>Najpierw załóż konto, potem wybierz imię postaci i świat: Kolonię lub Khorinis. Każda nowa postać zaczyna z 50 bryłkami rudy i pełną energią. Na koncie możesz mieć do pięciu postaci.</p><form method="post">{% csrf_token %}{{ form.as_p }}<button>Załóż konto i wybierz postać</button></form></section>{% endblock %}
+{% extends 'characters/base.html' %}
+{% block title %}Ore &amp; Empire — Rejestracja{% endblock %}
+{% block content %}
+  {% include 'registration/chronicle.html' %}
+  <section class="colony-panel">
+    <h2>Załóż konto</h2>
+    <p>Po rejestracji wybierzesz początek w Kolonii lub w Khorinis. Każda postać zaczyna z 50 bryłkami rudy i pełną energią. Na jednym koncie możesz mieć pięć postaci.</p>
+    <form method="post">{% csrf_token %}{{ form.as_p }}<button>Załóż konto i wybierz postać</button></form>
+    <p>Masz już konto? <a href="{% url 'login' %}">Zaloguj się</a>.</p>
+  </section>
+{% endblock %}
