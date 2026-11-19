@@ -26,6 +26,7 @@ def main():
                 )
         except FileExistsError:
             pass
+    os.environ.setdefault("ORE_SQLITE_WAL", "1")
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ore_empire.settings")
     execute_from_command_line([sys.argv[0], "run_colony", *sys.argv[1:]])
 
