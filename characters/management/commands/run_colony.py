@@ -65,7 +65,8 @@ class Command(BaseCommand):
             cleanup.callback(guard.release)
             try:guard.acquire()
             except LeaseLost as exc:raise CommandError(str(exc)) from exc
-            active_bots=world.bot_count
+            from characters.bot_arrivals import base_bot_target
+            active_bots = base_bot_target(world)
             if options["setup_admin"]:
                 call_command("create_game_admin", stdout=self.stdout)
             if active_bots:

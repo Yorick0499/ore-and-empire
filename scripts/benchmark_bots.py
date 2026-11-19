@@ -141,7 +141,11 @@ def main():
                     return (int(fields[13])+int(fields[14]))/os.sysconf('SC_CLK_TCK')
                 live_started=timezone.now();rss=[];latencies=[];route_times={};errors=[]
                 routes=['/','/zadania/','/sklep-odlamkow/','/zycie-kolonii/']+(['/wydarzenia/'] if args.regional_events else [])+(['/warty/?track=khorinis','/wspolnota/'] if args.endgame else [])
-                started=time.monotonic();cpu_start=cpu();n=0
+                def io_counters():
+                    fields = dict(line.split(': ', 1) for line in Path(f'/proc/{process.pid}/io').read_text().splitlines())
+                    return {key: int(fields[key]) for key in ('wchar', 'syscw', 'write_bytes')}
+
+                started=time.monotonic();cpu_start=cpu();io_start=io_counters();n=0
                 while time.monotonic()-started<args.seconds:
                     route=routes[n%len(routes)];cookie=cookies[(n//len(routes))%len(cookies)]
                     req=Request(base+route,headers={'Cookie':cookie});start=time.perf_counter()
@@ -155,6 +159,7 @@ def main():
                         if line.startswith('VmRSS:'):rss.append(int(line.split()[1])/1024)
                     n+=1;time.sleep(.1)
                 elapsed=time.monotonic()-started;cpu_used=cpu()-cpu_start
+                io_delta = {key: end - io_start[key] for key, end in io_counters().items()}
             finally:
                 process.terminate()
                 try:process.wait(timeout=10)
@@ -176,6 +181,9 @@ def main():
             'http_p95_ms':round(percentile(latencies,.95)*1000,2),
             'routes_p95_ms':{k:round(percentile(v,.95)*1000,2) for k,v in route_times.items()},
             'rss_peak_mib':round(max(rss),2),'rss_start_mib':round(rss[0],2),'rss_end_mib':round(rss[-1],2),
+            'process_write_calls':io_delta['syscw'],
+            'process_logical_write_kib_per_second':round(io_delta['wchar']/elapsed/1024,2),
+            'process_os_write_bytes':io_delta['write_bytes'],
             'cpu_percent_one_core':round(cpu_used/elapsed*100,2),
             'initial_tick_p50_ms':round(statistics.median(times)*1000,2),
             'initial_tick_p95_ms':round(percentile(times,.95)*1000,2),
@@ -186,7 +194,7 @@ def main():
             'last_tick_age_p95_seconds':round(percentile(ages,.95),2) if ages else None,
             'oldest_last_tick_seconds':round(max(ages),2) if ages else None,
             'limits':['Krótki lokalny pomiar SQLite, nie SLA ani wielodniowa stabilność gospodarki.',
-                      'RSS i CPU obejmują serwer z kolejką i HTTP, bez procesu przygotowania fixture i przeglądarki.',
+                      'RSS, CPU i zapisy procesu obejmują serwer z kolejką, HTTP i logami. Licznik systemu nie mierzy zużycia komórek SSD.',
                       'HTTP jest uwierzytelnione i obejmuje oba światy; brak równoległych klientów.',
                       'Stress wyłącza okna sesji i zeruje początkowy termin tur; zachowuje zwykłą kadencję oraz reguły akcji.',
                       'Mature, jeśli wybrane, nadaje statystyki wyłącznie do pomiaru i nie dowodzi przejścia kampanii.'],

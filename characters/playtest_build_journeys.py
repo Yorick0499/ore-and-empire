@@ -96,7 +96,7 @@ class EarnedBuild:
             if ammo and sum(p.inventory.filter(blueprint=ammo,is_market_listed=False).values_list('quantity',flat=True))<10:
                 steps['funds'](ammo.base_value*30);test.assertTrue(steps['do']('build_ammo',lambda:game.buy_item_from_npc(p,ammo,30)))
         if magic and p.magic_skill:
-            from .magic import rune_allowed
+            from .magic import rune_allowed, spell_damage
             from .bestiary import BESTIARY
             monster=game.BOSSES[target].monster if target in game.BOSSES else BESTIARY.get(target,{})
             candidates=[]
@@ -104,12 +104,13 @@ class EarnedBuild:
                 spell,scroll=BY_CODE[b.catalog_key]
                 if scroll or spell.school != self.rune_school:continue
                 if allowed(p,b) and (scroll or rune_allowed(p,spell)):
-                    damage=max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))
+                    damage = spell_damage(spell, monster)
                     candidates.append((damage, -spell.cost, -b.base_value, b))
             if candidates:
                 b=max(candidates,key=lambda x:x[:3])[3];spell,_=BY_CODE[b.catalog_key]
                 if target:
-                    needed=((monster.get('life',0)+max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))-1)//max(1,spell.damage-monster.get(spell.damage_type+'_prot',0))+2)*spell.cost
+                    damage = spell_damage(spell, monster)
+                    needed = ((monster.get('life', 0) + damage - 1) // damage + 2) * spell.cost
                     for _ in range(100):
                         if p.max_mana>=needed:break
                         if p.skill_points<=reserve:

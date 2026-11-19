@@ -133,3 +133,38 @@ class IntelligentMarketTests(TestCase):
         self.assertEqual(MarketState(self.s.world_id).quote(self.s,self.item).sales,1)
         self.b.is_draft=True;self.b.save();alt.is_draft=True;alt.save()
         self.assertEqual(MarketState(self.s.world_id).quote(self.s,self.item).price,0)
+
+    def test_bot_can_list_a_real_recipe_shortfall_from_a_surplus_stack(self):
+        from .models import CraftRecipe
+        from .market_intelligence import sale_lot
+
+        material = ItemBluePrint.objects.create(name='Mięso z pól', kind='material', stackable=True, base_value=4)
+        tonic = ItemBluePrint.objects.create(name='Wywar', kind='consumable', heal_amount=40)
+        CraftRecipe.objects.create(
+            key='tonic-small-lot', name='Wywar', discipline='alchemy', level=0, skill=1,
+            fee=5, ingredients=[{'blueprint': material.pk, 'count': 2}], output=tonic,
+        )
+        self.b.alchemy_skill = 1
+        self.b.current_health = 5
+        self.b.save(update_fields=['alchemy_skill', 'current_health'])
+        trophy = ItemBluePrint.objects.create(name='Znak warty', kind='quest', tradeable=False)
+        OwnedItem.objects.bulk_create([OwnedItem(owner=self.s, blueprint=trophy) for _ in range(12)])
+        stack = add_item(self.s, material, 7, origin='loot')
+        market = MarketState(self.s.world_id)
+        self.assertEqual(market.quote(self.s, stack).price, 0)
+        self.assertEqual(sale_lot(market, self.s, stack)[0], 2)
+        self.item.delete()
+        with patch('characters.game_logic.list_item_on_market', return_value=False):
+            self.assertFalse(list_bot_surplus(self.s, stack))
+        stack.refresh_from_db()
+        self.assertEqual(stack.quantity, 7)
+        self.assertFalse(self.s.inventory.filter(blueprint=material, is_market_listed=True).exists())
+        self.assertTrue(list_bot_surplus(self.s, stack))
+        stack.refresh_from_db()
+        self.assertEqual(stack.quantity, 5)
+        lot = self.s.inventory.get(blueprint=material, is_market_listed=True)
+        self.assertEqual((lot.quantity, lot.origin), (2, 'loot'))
+        self.assertEqual(bot_market_plan(self.b)[:2], ('market_buy', lot.pk))
+        self.assertTrue(game.buy_item_on_market(self.b, lot, lot.market_price))
+        self.assertEqual(MarketTrade.objects.get().quantity, 2)
+        self.assertEqual(self.b.inventory.get(blueprint=material).quantity, 2)

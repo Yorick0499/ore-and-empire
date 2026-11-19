@@ -13,14 +13,15 @@ class BotScheduler:
         self.cost_ema=0.0
 
     def population(self, ids):
-        ids=set(ids)
-        retained=[pk for pk in self.queue if pk in ids]
-        self.queue=deque(retained+sorted(ids-set(retained)))
+        ordered = dict.fromkeys(ids)
+        retained = [pk for pk in self.queue if pk in ordered]
+        already_waiting = set(retained)
+        self.queue = deque(retained + [pk for pk in ordered if pk not in already_waiting])
         now=self.clock()
         # A not-yet-due resident disappears briefly from the eligible population.
         # Keep its unexpired rest deadline across these refreshes, without retaining
         # expired entries for removed accounts indefinitely.
-        self.rest_until={pk:deadline for pk,deadline in self.rest_until.items() if pk in ids or deadline>now}
+        self.rest_until={pk:deadline for pk,deadline in self.rest_until.items() if pk in ordered or deadline>now}
 
     @property
     def gap(self):

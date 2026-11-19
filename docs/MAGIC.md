@@ -1,8 +1,8 @@
 # Magia — kręgi, runy, zwoje i odporności
 
-Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Zmiana nie wymaga migracji.
+Ścieżka Wody z #150 jest wzorem dla run Ognia i Bractwa. Migracja 0057 dostosowuje trzy domyślne nazwy Wody i zachowuje egzemplarze, parametry oraz własne nazwy zarządcy.
 
-Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło Innosa z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dwa dodatkowe zaklęcia VI kręgu są dostępne po Barierze.
+Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Światło Innosa z IV kręgu Ognia zadaje obrażenia magiczne i pozwala podejść do próby ognistego golema z własną runą przed awansem na arcymaga. Runy Bractwa przerywają tury przeciwnika. Dalsze runy tego samego VI kręgu dochodzą po Barierze i po otwarciu własnego portalu do Jarkendaru.
 
 | Szkoła | Zaklęcie | Krąg | Mana/rzut runy | Obrażenia | Efekt |
 |---|---|---:|---:|---:|---|
@@ -13,11 +13,11 @@ Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Świat
 | Ogień | Deszcz ognia | 5 | 13 | 175 ognia | — |
 | Ogień | Gniew Innosa | 6 | 16 | 225 ognia | — |
 | Woda | Sopel lodu | 1 | 4 | 30 magii | 25% mniej obrażeń w turze rzutu |
-| Woda | Lodowa lanca | 2 | 6 | 55 magii | 25% mniej obrażeń w turze rzutu |
+| Woda | Ostrze Adanosa | 2 | 6 | 55 magii | 25% mniej obrażeń w turze rzutu |
 | Woda | Bryła lodu | 3 | 8 | 85 magii | 40% mniej obrażeń w turze rzutu |
-| Woda | Piorun kulisty | 4 | 10 | 125 magii | 30% mniej obrażeń w turze rzutu |
+| Woda | Rozbłysk Adanosa | 4 | 10 | 125 magii | 30% mniej obrażeń w turze rzutu |
 | Woda | Lodowa fala | 5 | 13 | 175 magii | 50% mniej obrażeń w turze rzutu |
-| Woda | Grom | 6 | 16 | 220 magii | 35% mniej obrażeń w turze rzutu |
+| Woda | Wyrok Adanosa | 6 | 16 | 220 magii | 35% mniej obrażeń w turze rzutu |
 | Bractwo | Uderzenie wiatru | 1 | 3 | 18 magii | co trzeci rzut przerywa turę przeciwnika |
 | Bractwo | Podmuch Śniącego | 2 | 5 | 33 magii | co trzeci rzut przerywa turę przeciwnika |
 | Bractwo | Uderzenie burzy | 3 | 7 | 42 magii | co drugi rzut przerywa turę przeciwnika |
@@ -26,6 +26,13 @@ Każda szkoła oferuje wielokrotną runę bojową na każdy krąg I–VI. Świat
 | Bractwo | Wola Śniącego | 6 | 16 | 210 magii | co drugi rzut przerywa turę przeciwnika |
 | Ogień po Barierze | Deszcz ognia VI | 6 | 18 | 260 ognia | 25% mniej obrażeń w turze rzutu |
 | Woda po Barierze | Grom VI | 6 | 18 | 240 magii | 50% mniej obrażeń w turze rzutu |
+| Bractwo po Barierze | Pieczęć Śniącego | 6 | 18 | 255 magii | co drugi rzut przerywa turę przeciwnika |
+| Ogień po otwarciu portalu | Latarnia Innosa | 6 | 20 | 370 ognia | 25% mniej obrażeń w turze rzutu |
+| Woda po otwarciu portalu | Głębia Adanosa | 6 | 20 | 350 magii | 50% mniej obrażeń w turze rzutu |
+| Bractwo po otwarciu portalu | Szczelina Śniącego | 6 | 20 | 340 magii | co drugi rzut przerywa turę przeciwnika |
+
+Runy wypraw po Barierze wymagają poziomu 35 i kosztują 2000 rudy. Runy portalu wymagają poziomu 38, odebranego osobistego zadania otwierającego Jarkendar i 3200 rudy. Dalej obowiązują szkoła, odpowiednia ranga i opłacony VI krąg. Finkregh, Feodaron, Archol i smok-ożywieniec osłabiają stare zaklęcia i zwoje o połowę po uwzględnieniu odporności. Archol i smok-ożywieniec zmniejszają też obrażenia wcześniejszych run wypraw o 25%. Pełną siłę przeciw ich osłonie mają runy portalu. Silnik, podgląd obrażeń i wybór bota stosują tę samą regułę.
+
 
 Tabela pokazuje obrażenia **run**. Ogólnodostępne zwoje zachowują dotychczasowe obrażenia, w tym 20/40/75 dla Sopla/Bryły/Fali oraz 100/70 dla Deszczu ognia/Pirokinezy. Nowe runy II/IV/VI nie mają ogólnodostępnej wersji zwoju. Ich jednorazowe ceny w Kolonii to 650/900/1500 rudy; w Khorinis 70/110/150, zgodnie z odrębną ekonomią wcześniejszej paczki wyspy. Nauka kręgów i trening many pozostają płatne. Posiadane stare runy otrzymują nowe parametry bez wymiany przedmiotu; nowe pojawiają się po zwykłym restarcie launchera. Przy osobnym uruchamianiu WSGI operator może dodać je poleceniem `python manage.py seed_equipment`. Seeder zachowuje własne ceny operatora, ekwipunek i postęp.
 
@@ -76,4 +83,4 @@ Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów
 
 Ukończono na poziomie 61, 90 walk z magią, w 4,82 wirtualnego dnia bez oczekiwania na wspólnotowe zwycięstwo Bariery (zewnętrzny stan tej macierzy). To strategia znająca cele, nie czas rzeczywistej gry człowieka ani dowód przejścia wszystkich 400 stopni.
 
-Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Piorun kulisty IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.
+Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Rozbłysk Adanosa IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.

@@ -394,7 +394,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     combat_equipment = True
     from .magic import combat_plan
     profile._bot_magic_plan=combat_plan(profile)
-    inventory = list(profile.inventory.exclude(blueprint__kind="quest",blueprint__tradeable=False).select_related("blueprint").order_by("pk"))
+    from .equipment import bot_inventory
+    inventory = bot_inventory(profile)
     equipped = next((item for item in inventory if item.is_equipped and item.equipped_slot == "weapon"), None)
     damage = equipped.effective_stats['damage'] if equipped else 0
     from .equipment import combat_values,allowed
@@ -798,12 +799,13 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         else:
             record_decision(profile, obs, "rejected", None, False, policy_version,policy_snapshot)
             return "rejected", False
+        fields = ["bot_last_tick"]
         if success and action != "wait":
             profile.refresh_from_db()
             profile.bot_turn += 1
-            profile.save(update_fields=["bot_turn"])
-        profile.bot_last_tick=timezone.now()
-        profile.save(update_fields=["bot_last_tick"])
+            fields.append("bot_turn")
+        profile.bot_last_tick = timezone.now()
+        profile.save(update_fields=fields)
         record_decision(profile, obs, action, target, success, policy_version,policy_snapshot)
         from .community import bot_conversation
         bot_conversation(profile)

@@ -49,7 +49,7 @@ class NkWorldServices(TestCase):
         self.assertFalse(BY_KEY['g2nk_forest'].accessible(p))
         self.assertFalse(__import__('characters.story_quests',fromlist=['accept_story']).accept_story(p,StoryQuest.objects.get(key='nk-scouts').pk))
     def test_two_mage_schools_and_archer_can_pay_for_gear_and_defeat_late_boss(self):
-        from .magic import learn_circle,purchase_magic,prepare_magic,NK_SPELLS,offers
+        from .magic import EXPEDITION_RUNES, learn_circle, purchase_magic, prepare_magic
         from .equipment import allowed
         for camp,rank,school in [('OLD_CAMP','ARCH_FIRE','fire'),('NEW_CAMP','ARCH_WATER','water'),('OLD_CAMP','BARON','archer')]:
             p=person(self.c,camp,rank);p.level=45;p.life=580;p.current_health=580;p.mana=300;p.current_mana=300;p.strength=10;p.dexterity=200 if school=='archer' else 10;p.bow_skill=60 if school=='archer' else 0;p.skill_points=150;p.ore_balance=30000;p.save()
@@ -70,11 +70,12 @@ class NkWorldServices(TestCase):
                 self.assertTrue(game.buy_item_from_npc(p,bow));self.assertTrue(game.equip_item(p,p.inventory.get(blueprint=bow)))
                 ammo=ItemBluePrint.objects.get(catalog_key='g2nk-itrw_arrow');self.assertTrue(game.buy_item_from_npc(p,ammo,100))
             else:
+                claimed_milestone(p, 'jark-portal')
                 for _ in range(6):self.assertTrue(learn_circle(p))
-                spell=next(s for s in NK_SPELLS if s.school==school);bp=ItemBluePrint.objects.get(catalog_key=f'oe-nk-{spell.key}-rune')
+                spell=next(s for s in EXPEDITION_RUNES if s.school==school and s.expedition_tier==2);bp=ItemBluePrint.objects.get(catalog_key=f'oe-nk-{spell.key}-rune')
                 item=purchase_magic(p,bp.pk);self.assertTrue(item);self.assertTrue(prepare_magic(p,item.pk))
             result=game.execute_boss(p,'g2nk_dragon_undead');self.assertTrue(result);self.assertTrue(result.won,(school,result.combat_log))
-            if school!='archer':self.assertTrue(any('koszt 18 many' in line for line in p.battles.first().combat_log))
+            if school!='archer':self.assertTrue(any('koszt 20 many' in line for line in p.battles.first().combat_log))
     def test_mastered_archery_forecast_matches_guaranteed_combat_damage(self):
         from .equipment import physical_survival_health
         p=person(self.c,'OLD_CAMP','BARON');p.level=45;p.dexterity=200;p.life=600;p.current_health=600;p.bow_skill=100;p.save()

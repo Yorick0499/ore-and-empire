@@ -2,10 +2,12 @@ from .barrier import region_ids
 """Observed prices, bounded budgets and disposal of unsold stock; no balance setters."""
 from datetime import timedelta
 from statistics import median
+from django.db import transaction
 from django.db.models import Sum,Count
 from django.utils import timezone
 from .models import MarketEvent,MarketTrade,OwnedItem
 from .game_logic import player_action,MAX_MARKET_PRICE
+from .equipment import bot_inventory
 
 
 def record_market_event(profile,item,action,price=0,quantity=None,reason=''):
@@ -41,7 +43,7 @@ def observe_legacy_listing(profile,item):
 
 def bot_market_plan(profile,reserved=(),inventory=None,market=None):
     from .market_intelligence import state,retention
-    now=timezone.now();inventory=inventory if inventory is not None else list(profile.inventory.select_related('blueprint'))
+    now=timezone.now();inventory=inventory if inventory is not None else bot_inventory(profile)
     market=market or state(profile.world_id);keep=retention(profile,inventory,reserved)
     for item in inventory:
         if not item.is_market_listed:continue
@@ -52,7 +54,10 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
             if not observed:return 'market_observe',item.pk,0
             start=observed.created_at
         quote=market.quote(profile,item)
-        if start<=now-timedelta(days=3) or not quote.price:return 'market_cancel',item.pk,0
+        if start<=now-timedelta(days=3) or (not quote.price and start<=now-timedelta(hours=6)):
+            return 'market_cancel',item.pk,0
+        if not quote.price:
+            continue
         price=quote.price
         if start<=now-timedelta(days=1):price=max(item.blueprint.base_value*item.quantity//2+1,min(price,item.market_price*85//100))
         if abs(price-item.market_price)>=max(2,item.market_price//10) and not MarketEvent.objects.filter(item=item,action='repricing',created_at__gte=now-timedelta(hours=6)).exists():return 'market_reprice',item.pk,price
@@ -71,12 +76,25 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
 
 @player_action
 def list_bot_surplus(profile,item,reserved=()):
-    from .market_intelligence import state,sale_candidate
-    inventory=list(profile.inventory.select_related('blueprint'));market=state(profile.world_id,fresh=True)
+    from .market_intelligence import state,sale_candidate,sale_lot
+    inventory = bot_inventory(profile)
+    market = state(profile.world_id, fresh=True)
     candidate=sale_candidate(profile,inventory,reserved,market)
     if not candidate or candidate.pk!=item.pk:return False
     from .game_logic import list_item_on_market
-    return list_item_on_market(profile,candidate,market.quote(profile,candidate).price)
+    quantity, quote = sale_lot(market, profile, candidate, allow_split=len(inventory) < 12)
+    if quantity == candidate.quantity:
+        return list_item_on_market(profile, candidate, quote.price)
+    with transaction.atomic():
+        lot = OwnedItem.objects.create(
+            owner=profile, blueprint=candidate.blueprint, quantity=quantity, origin=candidate.origin,
+        )
+        if not list_item_on_market(profile, lot, quote.price):
+            transaction.set_rollback(True)
+            return False
+        candidate.quantity -= quantity
+        candidate.save(update_fields=['quantity'])
+    return True
 
 
 def market_effectiveness(world):

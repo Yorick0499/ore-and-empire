@@ -189,6 +189,15 @@ class ColonyTests(TestCase):
         self.assertEqual(self.a.current_energy, 12)
         self.assertEqual(self.a.energy_updated_at, now - timedelta(seconds=30))
 
+    def test_reading_fully_recovered_profile_skips_redundant_writes(self):
+        from django.db import connection
+        from django.test.utils import CaptureQueriesContext
+
+        game.refresh_player(self.a)  # Warm up any cached values.
+        with CaptureQueriesContext(connection) as queries:
+            game.refresh_player(self.a)
+        self.assertFalse(any('UPDATE "characters_playerprofile"' in query['sql'] for query in queries))
+
     def test_full_energy_does_not_bank_offline_time(self):
         self.a.energy_updated_at = timezone.now() - timedelta(days=1)
         self.a.save()
