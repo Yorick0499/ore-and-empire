@@ -84,3 +84,7 @@ Prognoza pokazuje obrażenia czaru po odporności, orientacyjną liczbę rzutów
 Ukończono na poziomie 61, 90 walk z magią, w 4,82 wirtualnego dnia bez oczekiwania na wspólnotowe zwycięstwo Bariery (zewnętrzny stan tej macierzy). To strategia znająca cele, nie czas rzeczywistej gry człowieka ani dowód przejścia wszystkich 400 stopni.
 
 Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Rozbłysk Adanosa IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.
+
+## Runy kolejnych odsłon
+
+Począwszy od Pęknięcia Bariery, każdy etap daje każdej szkole nowe zaklęcia II, IV i VI kręgu. Światło wolnych dróg to runa Ognia VI kręgu z obrażeniami magicznymi na walkę z celami odpornymi na ogień. W kolejnych etapach rosną obrażenia i koszt many mistrzowskich run. Woda zachowuje osłonę podczas rzutu, a Mrok przerywa część tur przeciwnika. Krąg VI pozostaje najwyższy. Do mistrzowskich run od Zaginionej Doliny potrzebna jest własna odprawa portalu. [Pełna tabela zaklęć](GAME_CONTENT.md#katalog-zaklec) · [Rynsztunek odsłon](WORLD_UPDATES.md#rynsztunek-odslon).

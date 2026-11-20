@@ -102,7 +102,8 @@ class BarrierTests(TestCase):
         from .game_logic import buy_item_on_market
         from .market_browse import browse_market
         foreign=User.objects.create_user('islander').playerprofile;foreign.world=self.island;foreign.save()
-        item=OwnedItem.objects.create(owner=foreign,blueprint=ItemBluePrint.objects.filter(tradeable=True).first(),is_market_listed=True,market_price=1)
+        starter = ItemBluePrint.objects.get(catalog_key='starter-leather')
+        item=OwnedItem.objects.create(owner=foreign,blueprint=starter,is_market_listed=True,market_price=1)
         self.assertFalse(buy_item_on_market(self.p,item,1))
         self.join();self.assertEqual(set(region_ids(self.colony)),{self.colony.pk,self.island.pk})
         self.assertEqual(CharacterForm().fields['world'].queryset.count(),1)
@@ -231,7 +232,7 @@ s.health=1;s.save();assert sleeper.strike(p,s.pk,uuid4())
 assert start_mining(people[1],60)
 t=AdventureTemplate.objects.filter(universe=i.universe,enabled=True).first()
 islander=User.objects.create_user('busy-islander').playerprofile;islander.world=i;islander.save();assert start_adventure(islander,t.pk)
-bp=ItemBluePrint.objects.filter(tradeable=True).first();item=OwnedItem.objects.create(owner=p,blueprint=bp,is_market_listed=True,market_price=17)
+bp=ItemBluePrint.objects.get(catalog_key='starter-leather');item=OwnedItem.objects.create(owner=p,blueprint=bp,is_market_listed=True,market_price=17)
 before={m.__name__:list(m.objects.order_by('pk').values()) for m in (PlayerProfile,OwnedItem,AdventureRun,PremiumEntry,EconomicEntry,StoryRun,User)}
 assert activate(s.race_id,Path(__import__('os').environ['BARRIER_TEST_ROOT']))
 assert before=={m.__name__:list(m.objects.order_by('pk').values()) for m in (PlayerProfile,OwnedItem,AdventureRun,PremiumEntry,EconomicEntry,StoryRun,User)}

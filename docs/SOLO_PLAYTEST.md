@@ -111,3 +111,30 @@ Starsze raporty tempa, rang i pierwszych paczek pozostają w `docs/reports/` z d
 [Raport targu](reports/targ-khorinis-2026-11-20.json) obejmuje dziesięć niezależnych prób na nowej SQLite, 8–10 botów na region, 12–36 godzin świata i krok 1–6 minut. W trzech porównaniach tych samych ustawień dostępność ofert w Khorinis wzrosła z 20 do 43 próbek godzinowych. Cztery próby w Kolonii i jedno w Khorinis zawierały odmowy wystawienia. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185).
 
 [CI #184](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785) wykonuje jedenaście dróg z wariantami broni dwuręcznej i kuszy, odgrywa pełną aktywację Bariery i sprawdza współbieżne działania na PostgreSQL. Targ mierzono osobno we wczesnym świecie.
+
+<a id="proby-rynsztunku-odslon"></a>
+
+## Próby rynsztunku odsłon
+
+Powtórzenie na odizolowanej testowej bazie Django:
+
+```bash
+ore_equipment_report="$(mktemp)"
+echo '[]' > "$ore_equipment_report"
+ORE_PROBE_REPORT="$ore_equipment_report" python manage.py test characters.test_release_equipment --noinput
+```
+
+Test zestawia sześć odsłon, trzy progi sprzętu, cztery style broni i trzy szkoły magii w sześciu frakcjach. Każda kombinacja walczy przy pełnych lub częściowych zasobach, z trzema osobnymi ziarnami walki. Postacie mają przygotowane rangi, atrybuty i budżety. Broń, pancerze i runy kupują oraz zakładają przez zwykłe usługi. Oddzielne pełne przejścia od poziomu zero sprawdza `simulate_builds`. [Macierz organiczna](BUILD_PLAYTHROUGHS.md).
+
+Wariant kontrolny obejmował również 24 starcia z bronią Pradawną +3 i wymuszonymi trafieniami krytycznymi. Tak przygotowana postać wygrywała z bossami w 3–5 rund.
+
+| Próba | Wygrane | Rundy |
+|---|---:|---:|
+| Podróżnik, pełne zasoby | 126/126 | 2–7 |
+| Wyprawowy, pełne zasoby | 126/126 | 3–7 |
+| Mistrzowski, pełne zasoby | 126/126 | 3–10 |
+| Podróżnik, 75% zdrowia i dwie trzecie many | 117/126 | 2–9 |
+| Wyprawowy, 75% zdrowia i dwie trzecie many | 126/126 | 3–7 |
+| Mistrzowski, 75% zdrowia i dwie trzecie many | 106/126 | 3–12 |
+
+Czas w rundach dotyczy wskazanych przeciwników dla danego progu. Próby pełnego przejścia dodatkowo sprawdzają, czy można zdobyć poziomy, środki i dostęp do krain zwykłą rozgrywką.

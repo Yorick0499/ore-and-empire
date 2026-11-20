@@ -44,6 +44,9 @@ def compare_equipment(profile, item, requested=None):
     from .gothic2_content import gear_allowed as nk_allowed
     if not nk_allowed(profile,bp):requirements.append("Pozycja źródłowa bez obsługiwanej mechaniki." if bp.original_stats.get("runtime_supported") is False else "Wymagane połączenie światów oraz wskazana frakcja lub przeprawa do Jarkendaru.")
     if not gear_allowed(profile,bp):requirements.append("Najpierw odbierz zadanie Droga za portal po upadku Bariery.")
+    from .release_equipment import requirement as release_requirement
+    if message := release_requirement(profile, bp):
+        requirements.append(message)
     if profile.level < bp.min_level:
         requirements.append(f'Poziom {bp.min_level} (masz {profile.level}).')
     if not equipment_camp_allowed(profile,bp.required_camp):
@@ -86,9 +89,10 @@ def stats_for(profile):
 def allowed(profile, blueprint):
     from .jarkendar import gear_allowed
     from .gothic2_content import gear_allowed as nk_allowed
+    from .release_equipment import requirement as release_requirement
     return (nk_allowed(profile,blueprint) and gear_allowed(profile,blueprint) and blueprint.source_game in source_games(profile) and profile.level >= blueprint.min_level and
             equipment_camp_allowed(profile,blueprint.required_camp) and
-            profile.camp_tier >= blueprint.min_camp_tier)
+            profile.camp_tier >= blueprint.min_camp_tier and not release_requirement(profile, blueprint))
 
 
 def sync_health(profile):

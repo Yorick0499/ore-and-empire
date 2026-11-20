@@ -1,5 +1,6 @@
 {% load gothic_media %}{% if not stats_only %}<strong>{{ item.name }}</strong>{% include 'characters/rarity_badge.html' %}{% gothic_item_art item compact=True %}{% endif %}
 <p>{% if item.source_game == "GOTHIC_II" %}Gothic II: Noc Kruka{% elif item.source_game == "GOTHIC_I" %}Gothic I{% else %}Wzór przeglądarkowy{% endif %}</p>
+{% if item.release_name %}<p>Odsłona: {{ item.release_name }}</p>{% endif %}
 {% if item.faction_requirement %}<p>Frakcja: {{ item.faction_requirement }} · wymagany szczebel {{ item.min_camp_tier|add:"1" }}/8</p>{% endif %}{% if item.original_stats.browser_gate == "jarkendar" %}<p>Po przeprawie do Jarkendaru.</p>{% elif item.original_stats.browser_gate == "joined" %}<p>Po upadku Bariery.</p>{% endif %}
 {% with magic=item.magic_card %}{% if magic %}<p>{{ magic.spell.school_name }} · {% if magic.scroll %}zwój, 1 many na rzut{% else %}krąg {{ magic.spell.circle }}, {{ magic.spell.cost }} many na rzut{% endif %}</p>{% endif %}{% endwith %}
 <p>{{ item.kind_name }}{% if item.kind == 'weapon' %} · {{ item.weapon_name }} · Obrażenia {{ item.damage }} ({{ item.damage_name }}) · Siła {{ item.required_strength }} · Zręczność {{ item.required_dexterity }}{% endif %}</p>

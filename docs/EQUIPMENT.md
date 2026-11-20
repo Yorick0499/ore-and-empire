@@ -89,3 +89,7 @@ Tożsamości oryginalnego NK wymagają połączenia; wybrane także portalu, fra
 Wspólny rynek po Barierze zachowuje egzemplarz, jego pochodzenie, rzadkość i przekucie. Nie duplikuje plecaków ani nie dzieli konta na dwa portfele. [Konto i światy](CHARACTERS_AND_WORLDS.md).
 
 Publiczny profil pokazuje wyłącznie założone wyposażenie w sześciu slotach. Cudzy plecak pozostaje prywatny. Profil można otworzyć z rankingu albo „Życia kolonii”. [Historia i odznaki](CHARACTERS_AND_WORLDS.md#kronika-postaci-i-odznaki).
+
+## Wyposażenie kolejnych odsłon
+
+Filtr „Odsłona” u kupca pokazuje odkrytą kolekcję na poziomie danej postaci. Mistrzowska broń i pancerze od Zaginionej Doliny pojawiają się po własnej odprawie portalu. Zakup zwykłej broni składanej na później może wyprzedzić wymaganie bazowego atrybutu, ale przy zakładaniu gra sprawdza także siłę lub zręczność. [Poziomy i dostępność](WORLD_UPDATES.md#rynsztunek-odslon).

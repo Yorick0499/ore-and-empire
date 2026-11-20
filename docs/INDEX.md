@@ -1,6 +1,6 @@
 # Dokumentacja — indeks
 
-**Stan na 20 listopada 2026. Migracja `0063_patrol_rank_permits`, próby i przywileje rang oraz targ Khorinis po #184.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
+**Stan na 20 listopada 2026. Migracja `0063_patrol_rank_permits`, próby rang, targ Khorinis i nowe dostawy rynsztunku w sześciu odsłonach.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
 
 ## Gra od początku do dalszych wart
 

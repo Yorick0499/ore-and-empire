@@ -137,6 +137,10 @@ class Command(BaseCommand):
             from characters.regional_events import validate_catalog
             validate_catalog(assets)
             advanced=validate_advancements()
+            from characters.release_equipment_v1 import definitions
+            for _, _, key, blueprint, _ in definitions():
+                if blueprint['art_key'] not in assets:
+                    raise ValueError('Missing release equipment artwork: ' + key)
             jquests,jlocations,jcreatures=validate_jarkendar(assets)
         except Exception as exc:raise CommandError(str(exc)) from exc
         self.stdout.write(f'Validated {len(data["items"])} item identities and {len(assets)} local images.')

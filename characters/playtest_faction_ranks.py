@@ -107,6 +107,7 @@ class PreparedRankBotTests(TransactionTestCase):
         from .world_management import seed_clean_world
         from .magic import BY_CODE, purchase_magic, school_for
         from .equipment import allowed
+        from .release_equipment import RUNES as RELEASE_RUNES
 
         seed_clean_world()
         colony, island, race = fixture()
@@ -150,7 +151,12 @@ class PreparedRankBotTests(TransactionTestCase):
             p.refresh_from_db()
             if build == 'mage':
                 school = school_for(p)[0]
-                runes = [bp for bp in ItemBluePrint.objects.filter(catalog_key__in=BY_CODE, kind='rune')
+                # The preparation budget covers the old expedition loadout.
+                # The bot can buy new releases during its normal turns.
+                starting_runes = ItemBluePrint.objects.filter(catalog_key__in=BY_CODE, kind='rune').exclude(
+                    catalog_key__in=RELEASE_RUNES,
+                )
+                runes = [bp for bp in starting_runes
                          if BY_CODE[bp.catalog_key][0].school == school and allowed(p, bp)]
                 for bp in sorted(runes, key=lambda bp: bp.base_value):
                     self.assertTrue(purchase_magic(p, bp.pk))

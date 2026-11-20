@@ -18,6 +18,25 @@ Globalne odkrycie nie daje postaci poziomu, ekwipunku, prawa podróży ani ukoń
 
 Aktualizacje są widoczne w **Wydarzeniach i aktualizacjach świata**. Zapowiedziane etapy pokazują warunek rozwoju wspólnoty. Nie są obietnicą konkretnego dnia kalendarzowego. Otwarcie zakładki niczego nie uruchamia ani nie przyznaje.
 
+<a id="rynsztunek-odslon"></a>
+
+## Rynsztunek odsłon
+
+Po każdym publicznym ogłoszeniu od Pęknięcia Bariery kupcy oferują nowe miecze, topory dwuręczne, łuki, kusze i pancerze. Handlarze wiedzą dostają osobne runy Ognia, Wody i dawnego Bractwa, po jednej dla każdego z kręgów II, IV i VI. Dotychczasowi kupcy zachowują wcześniej odkryte przedmioty. W zakładce Wydarzenia link przy odsłonie filtruje towary kupca.
+
+| Odsłona | Szlak podróżnika | Sprzęt wyprawowy | Sprzęt mistrzowski |
+|---|---:|---:|---:|
+| Pęknięcie Bariery | 8 | 19 | 35 |
+| Zaginiona Dolina | 8 | 20 | 38 |
+| Cienie nad Khorinis | 9 | 21 | 40 |
+| Przebudzenie smoków | 10 | 22 | 43 |
+| Żagle ku Irdorath | 11 | 23 | 47 |
+| Orkowie u bram | 12 | 24 | 51 |
+
+Tabela podaje minimalne poziomy. Broń nadal sprawdza bazową siłę lub zręczność przy zakładaniu, runy szkołę i krąg, a mistrzowskie modele od Zaginionej Doliny wymagają także własnej odprawy portalu. Od poziomu 8 pozostałe progi są dostępne w obu regionach wspólnego świata po publicznym odkryciu. Kupno i wystawianie nowego sprzętu nie przechodzi przed jego odsłoną. Odsłona nie zmienia statystyk posiadanych egzemplarzy ani osobistych przydziałów na rejs.
+
+Lokalny launcher oraz `seed_khorinis` uzupełniają brakujące modele rynsztunku podczas aktualizacji, zachowując edycje zarządcy. Broń i pancerze kupuje się za rudę, z zachowaniem zwykłego handlu i przekuwania. Runy dołączają do zwykłych zakupów w Magii. Koszty amunicji, many i leczenia wpływają na dalsze wyprawy. Stare przedmioty mogą pozostawać przydatne przez niższy koszt, odporność lub wartość po ulepszeniu. [Katalog rynsztunku i zaklęć](GAME_CONTENT.md#katalog-rynsztunku) · [Próby walk](SOLO_PLAYTEST.md#proby-rynsztunku-odslon).
+
 ## Większa pula wydarzeń
 
 Cztery regionalne pule obejmują 20 podstawowych tematów, warianty pór roku oraz orkowe patrole/cel wspólnoty. Przykłady: sztormowe dostawy portu, nocne napady na trakty, zimowe zabezpieczenie przełęczy, sezonowe obchody badaczy, wzmożona aktywność bagiennych stworzeń, straż ruin i czuwanie na Irdorath. Cele prowadzą do istniejących polowań, zleceń, wydobycia i bossów. Nie dodano portretów NPC ani scen questowych; używamy lokalnych ilustracji terenów i stworzeń.

@@ -40,7 +40,8 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Launc
 
 ## Systemy i zawartość
 
-- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 24 działające zaklęcia. Sześć slotów wyposażenia obejmuje pas.
+- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 78 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
+- Każda z sześciu odsłon po starcie dodaje broń, pancerze i runy na trzy przedziały poziomów. [Rynsztunek odsłon](docs/WORLD_UPDATES.md#rynsztunek-odslon).
 - Wydobycie, **44 zlecenia Kolonii i 19 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
 - Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci, założonym ekwipunkiem, kroniką awansów i odznakami. Otworzysz je z rankingu lub z „Życia kolonii”.
 - Wspólny handel ludzi i botów w obrębie aktywnego rynku. Boty sprzedają nadwyżki składników oraz porównują oferty z ceną warsztatu. Sklep odłamków ma 17 definicji ofert z bramkami i limitami. [Zasady targu](docs/MARKET_POLICY.md).

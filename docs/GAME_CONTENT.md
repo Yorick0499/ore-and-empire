@@ -15,7 +15,7 @@ Tabele obejmują także definicje instalowane przy aktywacji Bariery. Pochodzą 
 | Bossowie solo | 29 |
 | Rodzime tożsamości rang (gałęzie) | 30 |
 | Wyższe awanse sześciu frakcji | 24 |
-| Zaklęcia działające (nie liczba modeli run/zwojów) | 24 |
+| Zaklęcia działające (nie liczba modeli run/zwojów) | 78 |
 | Zlecenia czasowe | 63 |
 | Definicje zadań jednorazowych | 95 |
 | Receptury | 4 |
@@ -601,36 +601,191 @@ Przyjęcie → rozpoczęcie → wykonanie → odbiór. Część gałęzi wymaga 
 | Wyciąg z jaj pełzacza | alchemy 2 | 5 | 10 | Zioła alchemiczne ×2, Jajo pełzacza ×1 |
 | Wywar ziołowy | alchemy 1 | 0 | 5 | Zioła alchemiczne ×2, Surowe mięso ×1 |
 
+<a id="katalog-rynsztunku"></a>
+
+## Rynsztunek odsłon świata
+
+Każda publiczna odsłona po Barierze uzupełnia ofertę o trzy progi. Mistrzowski sprzęt od Zaginionej Doliny wymaga osobistego portalu. [Warunki i pomiary](WORLD_UPDATES.md#rynsztunek-odslon).
+
+| Odsłona | Przedmiot | Poziom | Siła lub Zręczność | Obrażenia lub ochrona broni | Ruda |
+|---|---|---|---|---|---|
+| Pęknięcie Bariery | Miecz wolnych szlaków | 8 | 24 | 43 | 105 |
+| Pęknięcie Bariery | Topór wolnych szlaków | 8 | 24 | 47 | 113 |
+| Pęknięcie Bariery | Łuk wolnych szlaków | 8 | 24 | 42 | 105 |
+| Pęknięcie Bariery | Kusza wolnych szlaków | 8 | 24 | 46 | 113 |
+| Pęknięcie Bariery | Pancerz wolnych szlaków | 8 | — | 15 | 140 |
+| Pęknięcie Bariery | Miecz przełęczy | 19 | 50 | 76 | 340 |
+| Pęknięcie Bariery | Topór przełęczy | 19 | 50 | 89 | 368 |
+| Pęknięcie Bariery | Łuk przełęczy | 19 | 50 | 80 | 340 |
+| Pęknięcie Bariery | Kusza przełęczy | 19 | 50 | 92 | 368 |
+| Pęknięcie Bariery | Pancerz przełęczy | 19 | — | 44 | 453 |
+| Pęknięcie Bariery | Miecz Pękniętej Pieczęci | 35 | 86 | 128 | 773 |
+| Pęknięcie Bariery | Topór Pękniętej Pieczęci | 35 | 86 | 148 | 869 |
+| Pęknięcie Bariery | Łuk Pękniętej Pieczęci | 35 | 86 | 118 | 773 |
+| Pęknięcie Bariery | Kusza Pękniętej Pieczęci | 35 | 86 | 135 | 869 |
+| Pęknięcie Bariery | Pancerz Pękniętej Pieczęci | 35 | — | 65 | 1546 |
+| Zaginiona Dolina | Miecz przemytników z zatoki | 8 | 25 | 46 | 115 |
+| Zaginiona Dolina | Topór przemytników z zatoki | 8 | 25 | 50 | 124 |
+| Zaginiona Dolina | Łuk przemytników z zatoki | 8 | 25 | 45 | 115 |
+| Zaginiona Dolina | Kusza przemytników z zatoki | 8 | 25 | 49 | 124 |
+| Zaginiona Dolina | Pancerz przemytników z zatoki | 8 | — | 17 | 153 |
+| Zaginiona Dolina | Miecz zalanych ruin | 20 | 54 | 82 | 395 |
+| Zaginiona Dolina | Topór zalanych ruin | 20 | 54 | 96 | 427 |
+| Zaginiona Dolina | Łuk zalanych ruin | 20 | 54 | 86 | 395 |
+| Zaginiona Dolina | Kusza zalanych ruin | 20 | 54 | 98 | 427 |
+| Zaginiona Dolina | Pancerz zalanych ruin | 20 | — | 48 | 526 |
+| Zaginiona Dolina | Miecz Serca Doliny | 38 | 98 | 144 | 1013 |
+| Zaginiona Dolina | Topór Serca Doliny | 38 | 98 | 163 | 1139 |
+| Zaginiona Dolina | Łuk Serca Doliny | 38 | 98 | 134 | 1013 |
+| Zaginiona Dolina | Kusza Serca Doliny | 38 | 98 | 150 | 1139 |
+| Zaginiona Dolina | Pancerz Serca Doliny | 38 | — | 71 | 2026 |
+| Cienie nad Khorinis | Miecz nocnego zwiadu | 9 | 26 | 49 | 125 |
+| Cienie nad Khorinis | Topór nocnego zwiadu | 9 | 26 | 53 | 135 |
+| Cienie nad Khorinis | Łuk nocnego zwiadu | 9 | 26 | 48 | 125 |
+| Cienie nad Khorinis | Kusza nocnego zwiadu | 9 | 26 | 52 | 135 |
+| Cienie nad Khorinis | Pancerz nocnego zwiadu | 9 | — | 19 | 166 |
+| Cienie nad Khorinis | Miecz latarni przy trakcie | 21 | 57 | 88 | 465 |
+| Cienie nad Khorinis | Topór latarni przy trakcie | 21 | 57 | 101 | 503 |
+| Cienie nad Khorinis | Łuk latarni przy trakcie | 21 | 57 | 92 | 465 |
+| Cienie nad Khorinis | Kusza latarni przy trakcie | 21 | 57 | 104 | 503 |
+| Cienie nad Khorinis | Pancerz latarni przy trakcie | 21 | — | 52 | 620 |
+| Cienie nad Khorinis | Miecz Ostatniej Straży | 40 | 107 | 160 | 1233 |
+| Cienie nad Khorinis | Topór Ostatniej Straży | 40 | 107 | 181 | 1387 |
+| Cienie nad Khorinis | Łuk Ostatniej Straży | 40 | 107 | 150 | 1233 |
+| Cienie nad Khorinis | Kusza Ostatniej Straży | 40 | 107 | 166 | 1387 |
+| Cienie nad Khorinis | Pancerz Ostatniej Straży | 40 | — | 77 | 2466 |
+| Przebudzenie smoków | Miecz straży pogorzelisk | 10 | 28 | 52 | 135 |
+| Przebudzenie smoków | Topór straży pogorzelisk | 10 | 28 | 56 | 146 |
+| Przebudzenie smoków | Łuk straży pogorzelisk | 10 | 28 | 51 | 135 |
+| Przebudzenie smoków | Kusza straży pogorzelisk | 10 | 28 | 55 | 146 |
+| Przebudzenie smoków | Pancerz straży pogorzelisk | 10 | — | 21 | 180 |
+| Przebudzenie smoków | Miecz popielnego traktu | 22 | 60 | 93 | 525 |
+| Przebudzenie smoków | Topór popielnego traktu | 22 | 60 | 107 | 568 |
+| Przebudzenie smoków | Łuk popielnego traktu | 22 | 60 | 98 | 525 |
+| Przebudzenie smoków | Kusza popielnego traktu | 22 | 60 | 110 | 568 |
+| Przebudzenie smoków | Pancerz popielnego traktu | 22 | — | 56 | 700 |
+| Przebudzenie smoków | Miecz Smoczego Przesmyku | 43 | 117 | 181 | 1500 |
+| Przebudzenie smoków | Topór Smoczego Przesmyku | 43 | 117 | 204 | 1687 |
+| Przebudzenie smoków | Łuk Smoczego Przesmyku | 43 | 117 | 169 | 1500 |
+| Przebudzenie smoków | Kusza Smoczego Przesmyku | 43 | 117 | 187 | 1687 |
+| Przebudzenie smoków | Pancerz Smoczego Przesmyku | 43 | — | 83 | 3000 |
+| Żagle ku Irdorath | Miecz nocnej wachty | 11 | 30 | 54 | 145 |
+| Żagle ku Irdorath | Topór nocnej wachty | 11 | 30 | 58 | 157 |
+| Żagle ku Irdorath | Łuk nocnej wachty | 11 | 30 | 53 | 145 |
+| Żagle ku Irdorath | Kusza nocnej wachty | 11 | 30 | 57 | 157 |
+| Żagle ku Irdorath | Pancerz nocnej wachty | 11 | — | 23 | 193 |
+| Żagle ku Irdorath | Miecz czarnych raf | 23 | 63 | 98 | 585 |
+| Żagle ku Irdorath | Topór czarnych raf | 23 | 63 | 112 | 633 |
+| Żagle ku Irdorath | Łuk czarnych raf | 23 | 63 | 103 | 585 |
+| Żagle ku Irdorath | Kusza czarnych raf | 23 | 63 | 115 | 633 |
+| Żagle ku Irdorath | Pancerz czarnych raf | 23 | — | 59 | 780 |
+| Żagle ku Irdorath | Miecz Północnego Szkwału | 47 | 129 | 201 | 1840 |
+| Żagle ku Irdorath | Topór Północnego Szkwału | 47 | 129 | 229 | 2070 |
+| Żagle ku Irdorath | Łuk Północnego Szkwału | 47 | 129 | 187 | 1840 |
+| Żagle ku Irdorath | Kusza Północnego Szkwału | 47 | 129 | 207 | 2070 |
+| Żagle ku Irdorath | Pancerz Północnego Szkwału | 47 | — | 89 | 3680 |
+| Orkowie u bram | Miecz obrońców traktu | 12 | 32 | 56 | 155 |
+| Orkowie u bram | Topór obrońców traktu | 12 | 32 | 60 | 167 |
+| Orkowie u bram | Łuk obrońców traktu | 12 | 32 | 55 | 155 |
+| Orkowie u bram | Kusza obrońców traktu | 12 | 32 | 59 | 167 |
+| Orkowie u bram | Pancerz obrońców traktu | 12 | — | 25 | 206 |
+| Orkowie u bram | Miecz kamiennych szańców | 24 | 66 | 103 | 640 |
+| Orkowie u bram | Topór kamiennych szańców | 24 | 66 | 118 | 693 |
+| Orkowie u bram | Łuk kamiennych szańców | 24 | 66 | 109 | 640 |
+| Orkowie u bram | Kusza kamiennych szańców | 24 | 66 | 121 | 693 |
+| Orkowie u bram | Pancerz kamiennych szańców | 24 | — | 63 | 853 |
+| Orkowie u bram | Miecz Ostatniego Muru | 51 | 141 | 224 | 2240 |
+| Orkowie u bram | Topór Ostatniego Muru | 51 | 141 | 258 | 2520 |
+| Orkowie u bram | Łuk Ostatniego Muru | 51 | 141 | 209 | 2240 |
+| Orkowie u bram | Kusza Ostatniego Muru | 51 | 141 | 230 | 2520 |
+| Orkowie u bram | Pancerz Ostatniego Muru | 51 | — | 96 | 4480 |
+
+<a id="katalog-zaklec"></a>
+
 ## Zaklęcia
 
-Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwoje zachowują dotychczasowe obrażenia. Runy szkolne II, IV i VI nie mają wersji zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. [Nauka, zapasy i odporności](MAGIC.md).
+Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwoje zachowują dotychczasowe obrażenia. Runy szkolne i runy odsłon II, IV i VI nie mają wersji zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. [Nauka, zapasy i odporności](MAGIC.md).
 
-| Klucz / zaklęcie | Szkoła | Krąg | Mana runy | Obrażenia / typ | Redukcja % | Przerwanie co N rzutów |
-|---|---|---|---|---|---|---|
-| firebolt — Ognisty pocisk | Magowie Ognia | 1 | 4 | 24 / ogień | 0 | — |
-| fireball — Kula ognia | Magowie Ognia | 3 | 8 | 55 / ogień | 0 | — |
-| firerain — Deszcz ognia | Magowie Ognia | 5 | 13 | 175 / ogień | 0 | — |
-| thunderbolt — Sopel lodu | Magowie Wody | 1 | 4 | 30 / magia | 25 | — |
-| icecube — Bryła lodu | Magowie Wody | 3 | 8 | 85 / magia | 40 | — |
-| icewave — Lodowa fala | Magowie Wody | 5 | 13 | 175 / magia | 50 | — |
-| windfist — Uderzenie wiatru | Bractwo Śniącego | 1 | 3 | 18 / magia | 0 | 3 |
-| stormfist — Uderzenie burzy | Bractwo Śniącego | 3 | 7 | 42 / magia | 0 | 2 |
-| pyrokinesis — Pirokineza | Bractwo Śniącego | 5 | 13 | 150 / magia | 0 | 2 |
-| waterlance — Ostrze Adanosa | Magowie Wody | 2 | 6 | 55 / magia | 25 | — |
-| thunderball — Rozbłysk Adanosa | Magowie Wody | 4 | 10 | 125 / magia | 30 | — |
-| chainlightning — Wyrok Adanosa | Magowie Wody | 6 | 16 | 220 / magia | 35 | — |
-| emberburst — Żar Innosa | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — |
-| hearthlight — Światło Innosa | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — |
-| flamecrest — Gniew Innosa | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — |
-| marshpulse — Podmuch Śniącego | Bractwo Śniącego | 2 | 5 | 33 / magia | 0 | 3 |
-| marshresonance — Uścisk Śniącego | Bractwo Śniącego | 4 | 9 | 105 / magia | 0 | 2 |
-| marshsilence — Wola Śniącego | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 |
-| nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — |
-| nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — |
-| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego | 6 | 18 | 255 / magia | 0 | 2 |
-| adanos_depths — Głębia Adanosa | Magowie Wody | 6 | 20 | 350 / magia | 50 | — |
-| innos_beacon — Latarnia Innosa | Magowie Ognia | 6 | 20 | 370 / ogień | 25 | — |
-| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego | 6 | 20 | 340 / magia | 0 | 2 |
+| Klucz / zaklęcie | Szkoła | Krąg | Mana runy | Obrażenia / typ | Redukcja % | Przerwanie co N rzutów | Odsłona |
+|---|---|---|---|---|---|---|---|
+| firebolt — Ognisty pocisk | Magowie Ognia | 1 | 4 | 24 / ogień | 0 | — | — |
+| fireball — Kula ognia | Magowie Ognia | 3 | 8 | 55 / ogień | 0 | — | — |
+| firerain — Deszcz ognia | Magowie Ognia | 5 | 13 | 175 / ogień | 0 | — | — |
+| thunderbolt — Sopel lodu | Magowie Wody | 1 | 4 | 30 / magia | 25 | — | — |
+| icecube — Bryła lodu | Magowie Wody | 3 | 8 | 85 / magia | 40 | — | — |
+| icewave — Lodowa fala | Magowie Wody | 5 | 13 | 175 / magia | 50 | — | — |
+| windfist — Uderzenie wiatru | Bractwo Śniącego | 1 | 3 | 18 / magia | 0 | 3 | — |
+| stormfist — Uderzenie burzy | Bractwo Śniącego | 3 | 7 | 42 / magia | 0 | 2 | — |
+| pyrokinesis — Pirokineza | Bractwo Śniącego | 5 | 13 | 150 / magia | 0 | 2 | — |
+| waterlance — Ostrze Adanosa | Magowie Wody | 2 | 6 | 55 / magia | 25 | — | — |
+| thunderball — Rozbłysk Adanosa | Magowie Wody | 4 | 10 | 125 / magia | 30 | — | — |
+| chainlightning — Wyrok Adanosa | Magowie Wody | 6 | 16 | 220 / magia | 35 | — | — |
+| emberburst — Żar Innosa | Magowie Ognia | 2 | 6 | 42 / ogień | 0 | — | — |
+| hearthlight — Światło Innosa | Magowie Ognia | 4 | 10 | 125 / magia | 0 | — | — |
+| flamecrest — Gniew Innosa | Magowie Ognia | 6 | 16 | 225 / ogień | 0 | — | — |
+| marshpulse — Podmuch Śniącego | Bractwo Śniącego | 2 | 5 | 33 / magia | 0 | 3 | — |
+| marshresonance — Uścisk Śniącego | Bractwo Śniącego | 4 | 9 | 105 / magia | 0 | 2 | — |
+| marshsilence — Wola Śniącego | Bractwo Śniącego | 6 | 16 | 210 / magia | 0 | 2 | — |
+| nk_firerain — Deszcz ognia VI | Magowie Ognia | 6 | 18 | 260 / ogień | 25 | — | — |
+| nk_thunderstorm — Grom VI | Magowie Wody | 6 | 18 | 240 / magia | 50 | — | — |
+| barrier_echo — Pieczęć Śniącego | Bractwo Śniącego | 6 | 18 | 255 / magia | 0 | 2 | — |
+| adanos_depths — Głębia Adanosa | Magowie Wody | 6 | 20 | 350 / magia | 50 | — | — |
+| innos_beacon — Latarnia Innosa | Magowie Ognia | 6 | 20 | 370 / ogień | 25 | — | — |
+| sleeper_rift — Szczelina Śniącego | Bractwo Śniącego | 6 | 20 | 340 / magia | 0 | 2 | — |
+| release-barrier-trail-fire — Znak Ognia wolnych szlaków | Magowie Ognia | 2 | 6 | 44 / ogień | 25 | — | Pęknięcie Bariery |
+| release-barrier-trail-water — Znak Wody wolnych szlaków | Magowie Wody | 2 | 6 | 56 / magia | 45 | — | Pęknięcie Bariery |
+| release-barrier-trail-brotherhood — Znak Mroku wolnych szlaków | Bractwo Śniącego | 2 | 5 | 38 / magia | 0 | 2 | Pęknięcie Bariery |
+| release-barrier-journey-fire — Próba Ognia przełęczy | Magowie Ognia | 4 | 11 | 127 / ogień | 25 | — | Pęknięcie Bariery |
+| release-barrier-journey-water — Próba Wody przełęczy | Magowie Wody | 4 | 10 | 128 / magia | 45 | — | Pęknięcie Bariery |
+| release-barrier-journey-brotherhood — Próba Mroku przełęczy | Bractwo Śniącego | 4 | 10 | 108 / magia | 0 | 2 | Pęknięcie Bariery |
+| release-barrier-master-fire — Światło wolnych dróg | Magowie Ognia | 6 | 18 | 277 / magia | 25 | — | Pęknięcie Bariery |
+| release-barrier-master-water — Znak pękniętej skały | Magowie Wody | 6 | 18 | 270 / magia | 45 | — | Pęknięcie Bariery |
+| release-barrier-master-brotherhood — Cień po Śniącym | Bractwo Śniącego | 6 | 18 | 263 / magia | 0 | 2 | Pęknięcie Bariery |
+| release-jarkendar-trail-fire — Znak Ognia przemytników z zatoki | Magowie Ognia | 2 | 6 | 46 / ogień | 25 | — | Zaginiona Dolina |
+| release-jarkendar-trail-water — Znak Wody przemytników z zatoki | Magowie Wody | 2 | 6 | 58 / magia | 45 | — | Zaginiona Dolina |
+| release-jarkendar-trail-brotherhood — Znak Mroku przemytników z zatoki | Bractwo Śniącego | 2 | 5 | 40 / magia | 0 | 2 | Zaginiona Dolina |
+| release-jarkendar-journey-fire — Próba Ognia zalanych ruin | Magowie Ognia | 4 | 11 | 131 / ogień | 25 | — | Zaginiona Dolina |
+| release-jarkendar-journey-water — Próba Wody zalanych ruin | Magowie Wody | 4 | 10 | 132 / magia | 45 | — | Zaginiona Dolina |
+| release-jarkendar-journey-brotherhood — Próba Mroku zalanych ruin | Bractwo Śniącego | 4 | 10 | 112 / magia | 0 | 2 | Zaginiona Dolina |
+| release-jarkendar-master-fire — Żar zalanej świątyni | Magowie Ognia | 6 | 20 | 379 / ogień | 25 | — | Zaginiona Dolina |
+| release-jarkendar-master-water — Pieśń Budowniczych | Magowie Wody | 6 | 20 | 359 / magia | 45 | — | Zaginiona Dolina |
+| release-jarkendar-master-brotherhood — Szept pod ruinami | Bractwo Śniącego | 6 | 20 | 349 / magia | 0 | 2 | Zaginiona Dolina |
+| release-night-trail-fire — Znak Ognia nocnego zwiadu | Magowie Ognia | 2 | 6 | 48 / ogień | 25 | — | Cienie nad Khorinis |
+| release-night-trail-water — Znak Wody nocnego zwiadu | Magowie Wody | 2 | 6 | 60 / magia | 45 | — | Cienie nad Khorinis |
+| release-night-trail-brotherhood — Znak Mroku nocnego zwiadu | Bractwo Śniącego | 2 | 5 | 42 / magia | 0 | 2 | Cienie nad Khorinis |
+| release-night-journey-fire — Próba Ognia latarni przy trakcie | Magowie Ognia | 4 | 11 | 135 / ogień | 25 | — | Cienie nad Khorinis |
+| release-night-journey-water — Próba Wody latarni przy trakcie | Magowie Wody | 4 | 10 | 136 / magia | 45 | — | Cienie nad Khorinis |
+| release-night-journey-brotherhood — Próba Mroku latarni przy trakcie | Bractwo Śniącego | 4 | 10 | 116 / magia | 0 | 2 | Cienie nad Khorinis |
+| release-night-master-fire — Czuwanie płomienia | Magowie Ognia | 6 | 21 | 398 / ogień | 25 | — | Cienie nad Khorinis |
+| release-night-master-water — Osąd nocy | Magowie Wody | 6 | 21 | 378 / magia | 45 | — | Cienie nad Khorinis |
+| release-night-master-brotherhood — Zgaszone Imię | Bractwo Śniącego | 6 | 21 | 367 / magia | 0 | 2 | Cienie nad Khorinis |
+| release-dragons-trail-fire — Znak Ognia straży pogorzelisk | Magowie Ognia | 2 | 6 | 50 / ogień | 25 | — | Przebudzenie smoków |
+| release-dragons-trail-water — Znak Wody straży pogorzelisk | Magowie Wody | 2 | 6 | 62 / magia | 45 | — | Przebudzenie smoków |
+| release-dragons-trail-brotherhood — Znak Mroku straży pogorzelisk | Bractwo Śniącego | 2 | 5 | 44 / magia | 0 | 2 | Przebudzenie smoków |
+| release-dragons-journey-fire — Próba Ognia popielnego traktu | Magowie Ognia | 4 | 11 | 139 / ogień | 25 | — | Przebudzenie smoków |
+| release-dragons-journey-water — Próba Wody popielnego traktu | Magowie Wody | 4 | 10 | 140 / magia | 45 | — | Przebudzenie smoków |
+| release-dragons-journey-brotherhood — Próba Mroku popielnego traktu | Bractwo Śniącego | 4 | 10 | 120 / magia | 0 | 2 | Przebudzenie smoków |
+| release-dragons-master-fire — Płomień pod łuską | Magowie Ognia | 6 | 22 | 421 / ogień | 25 | — | Przebudzenie smoków |
+| release-dragons-master-water — Gniew kamienia | Magowie Wody | 6 | 22 | 400 / magia | 45 | — | Przebudzenie smoków |
+| release-dragons-master-brotherhood — Milczenie smoczych gniazd | Bractwo Śniącego | 6 | 22 | 389 / magia | 0 | 2 | Przebudzenie smoków |
+| release-irdorath-trail-fire — Znak Ognia nocnej wachty | Magowie Ognia | 2 | 6 | 52 / ogień | 25 | — | Żagle ku Irdorath |
+| release-irdorath-trail-water — Znak Wody nocnej wachty | Magowie Wody | 2 | 6 | 64 / magia | 45 | — | Żagle ku Irdorath |
+| release-irdorath-trail-brotherhood — Znak Mroku nocnej wachty | Bractwo Śniącego | 2 | 5 | 46 / magia | 0 | 2 | Żagle ku Irdorath |
+| release-irdorath-journey-fire — Próba Ognia czarnych raf | Magowie Ognia | 4 | 11 | 143 / ogień | 25 | — | Żagle ku Irdorath |
+| release-irdorath-journey-water — Próba Wody czarnych raf | Magowie Wody | 4 | 10 | 144 / magia | 45 | — | Żagle ku Irdorath |
+| release-irdorath-journey-brotherhood — Próba Mroku czarnych raf | Bractwo Śniącego | 4 | 10 | 124 / magia | 0 | 2 | Żagle ku Irdorath |
+| release-irdorath-master-fire — Latarnia sztormu | Magowie Ognia | 6 | 23 | 446 / ogień | 25 | — | Żagle ku Irdorath |
+| release-irdorath-master-water — Odpływ głębin | Magowie Wody | 6 | 23 | 424 / magia | 45 | — | Żagle ku Irdorath |
+| release-irdorath-master-brotherhood — Cisza czarnych raf | Bractwo Śniącego | 6 | 23 | 412 / magia | 0 | 2 | Żagle ku Irdorath |
+| release-orc-war-trail-fire — Znak Ognia obrońców traktu | Magowie Ognia | 2 | 6 | 54 / ogień | 25 | — | Orkowie u bram |
+| release-orc-war-trail-water — Znak Wody obrońców traktu | Magowie Wody | 2 | 6 | 66 / magia | 45 | — | Orkowie u bram |
+| release-orc-war-trail-brotherhood — Znak Mroku obrońców traktu | Bractwo Śniącego | 2 | 5 | 48 / magia | 0 | 2 | Orkowie u bram |
+| release-orc-war-journey-fire — Próba Ognia kamiennych szańców | Magowie Ognia | 4 | 11 | 147 / ogień | 25 | — | Orkowie u bram |
+| release-orc-war-journey-water — Próba Wody kamiennych szańców | Magowie Wody | 4 | 10 | 148 / magia | 45 | — | Orkowie u bram |
+| release-orc-war-journey-brotherhood — Próba Mroku kamiennych szańców | Bractwo Śniącego | 4 | 10 | 128 / magia | 0 | 2 | Orkowie u bram |
+| release-orc-war-master-fire — Ogień nad szańcem | Magowie Ognia | 6 | 24 | 473 / ogień | 25 | — | Orkowie u bram |
+| release-orc-war-master-water — Wyrok kamiennej rzeki | Magowie Wody | 6 | 24 | 449 / magia | 45 | — | Orkowie u bram |
+| release-orc-war-master-brotherhood — Cień nad sztandarami | Bractwo Śniącego | 6 | 24 | 435 / magia | 0 | 2 | Orkowie u bram |
 
 ## Sklep odłamków
 

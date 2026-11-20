@@ -389,6 +389,11 @@ class ItemBluePrint(models.Model):
         return dict(FACTIONS).get(self.original_stats.get('browser_faction'),'')
 
     @property
+    def release_name(self):
+        from .release_equipment import release_title
+        return release_title(self)
+
+    @property
     def restoration_rows(self):
         from .consumables import effect
         data=effect(self)
