@@ -60,7 +60,7 @@ EXPEDITIONS = (
                boss=('Strażnik klasztornych ksiąg', 1050, 63, 38, 1550, 220)),
     Expedition('rank_valley_cordon', 'Wysunięta strażnica Doliny',
                'Po upadku Bariery gildie powierzają ten posterunek oficerom, którzy zaliczyli pierwszą wyższą próbę.',
-               4, 30, 'orc_lands', COLONY, release='barrier',
+               4, 30, 'g2nk_valley', COLONY, release='barrier',
                boss=('Orkowy strażnik przełęczy', 1250, 78, 42, 1850, 270)),
     Expedition('rank_jarkendar_guardian', 'Zamknięty dziedziniec Budowniczych',
                'Badacze przekazują klucz do dziedzińca mieszkańcom, którzy zdobyli nową rangę w Zaginionej Dolinie.',
@@ -68,7 +68,7 @@ EXPEDITIONS = (
                boss=('Strażnik zamkniętego dziedzińca', 1450, 88, 48, 2350, 320)),
     Expedition('rank_night_watch', 'Krypta pod drogą pielgrzymów',
                'Gdy pojawiają się Poszukiwacze, zaufani członkowie gildii schodzą sprawdzić źródło nocnych meldunków.',
-               5, 35, 'old_monastery', ISLAND, release='night',
+               5, 35, 'g2nk_crypts', ISLAND, release='night',
                boss=('Dozorca nocnej krypty', 1550, 89, 49, 2550, 335)),
     Expedition('rank_dragon_ward', 'Kamienna reduta pod wulkanem',
                'Ci, którzy zdali próbę w czasach smoków, mogą podjąć wyprawę przeciw dowódcy ich straży.',
@@ -80,7 +80,7 @@ EXPEDITIONS = (
                boss=('Strażnik ostatniej komnaty', 2350, 110, 56, 4250, 520)),
     Expedition('rank_orc_standard', 'Obóz Czarnego Sztandaru',
                'Po finale orkowie wystawiają nowego dowódcę. Szturm na jego obóz powierzono najwyższym rangom gildii.',
-               7, 50, 'orc_city', COLONY, release='orc-war', story='nk-undead',
+               7, 50, 'nk_region_valley', COLONY, release='orc-war', story='nk-undead',
                boss=('Dowódca Czarnego Sztandaru', 2500, 115, 60, 4700, 560)),
 )
 BY_LOCATION = {expedition.key: expedition for expedition in EXPEDITIONS}
