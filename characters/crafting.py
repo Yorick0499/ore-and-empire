@@ -93,6 +93,20 @@ def interested(profile,recipe,inventory=None):
             and (profile.bot_role=='trader' or not profile.inventory.filter(is_equipped=True,blueprint__kind='weapon',blueprint__damage__gte=recipe.output.damage).exists()))
 
 
+def ingredient_reserves(profile, inventory):
+    reserves = {}
+    if not (profile.smithing_skill or profile.alchemy_skill):
+        return reserves
+    for recipe in CraftRecipe.objects.filter(enabled=True).select_related('output'):
+        if (not valid_recipe(recipe) or getattr(profile, recipe.discipline + '_skill') < recipe.skill
+                or not interested(profile, recipe, inventory)):
+            continue
+        for ingredient in recipe.ingredients:
+            blueprint = ingredient['blueprint']
+            reserves[blueprint] = max(reserves.get(blueprint, 0), ingredient['count'])
+    return reserves
+
+
 def bot_craft_plan(profile):
     if not profile.bot_turn or profile.bot_turn%23:return '',None
     for card in recipe_cards(profile):

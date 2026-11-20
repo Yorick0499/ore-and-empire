@@ -41,19 +41,26 @@ def observe_legacy_listing(profile,item):
     return True
 
 
-def bot_market_plan(profile,reserved=(),inventory=None,market=None,*,craft_material_id=None):
+def bot_market_plan(profile,reserved=(),inventory=None,market=None,*,craft_material_id=None,craft_reserves=None):
     from .market_intelligence import state,retention
     now=timezone.now();inventory=inventory if inventory is not None else bot_inventory(profile)
     market=market or state(profile.world_id);keep=retention(profile,inventory,reserved)
+    missing = dict(craft_reserves or {})
+    for item in inventory:
+        if (item.blueprint_id in missing and not item.is_market_listed
+                and not item.is_equipped and not item.is_protected):
+            missing[item.blueprint_id] -= item.quantity
+    own_offers = [item for item in inventory if item.is_market_listed]
+    for item in own_offers:
+        if item.pk in keep or missing.get(item.blueprint_id, 0) > 0:
+            return 'market_cancel', item.pk, 0
     if craft_material_id and len(inventory) < 12:
         offers = [item for item in market.listings
                   if item.blueprint_id == craft_material_id and market.can_buy(profile, item)]
         if offers:
             best = min(offers, key=lambda item: (item.market_price / item.quantity, item.pk))
             return 'market_buy', best.pk, best.market_price
-    for item in inventory:
-        if not item.is_market_listed:continue
-        if item.pk in keep:return 'market_cancel',item.pk,0
+    for item in own_offers:
         start=item.listed_at
         if start is None:
             observed=MarketEvent.objects.filter(profile=profile,item=item,action='legacy_observation').order_by('pk').first()
@@ -67,7 +74,8 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None,*,craft_mater
         price=quote.price
         if start<=now-timedelta(days=1):price=max(item.blueprint.base_value*item.quantity//2+1,min(price,item.market_price*85//100))
         if abs(price-item.market_price)>=max(1,item.market_price//10) and not MarketEvent.objects.filter(item=item,action='repricing',created_at__gte=now-timedelta(hours=6)).exists():return 'market_reprice',item.pk,price
-    cancelled=MarketEvent.objects.filter(profile=profile,action='cancellation',reason='stale',item__isnull=False,item__is_market_listed=False,item__is_equipped=False,item__is_protected=False).exclude(blueprint_id__in=reserved).select_related('item__blueprint').first()
+    reserved_blueprints = set(reserved) | missing.keys()
+    cancelled=MarketEvent.objects.filter(profile=profile,action='cancellation',reason='stale',item__isnull=False,item__is_market_listed=False,item__is_equipped=False,item__is_protected=False).exclude(blueprint_id__in=reserved_blueprints).select_related('item__blueprint').first()
     if cancelled and cancelled.item.owner_id==profile.pk and cancelled.item_id not in keep and cancelled.item.blueprint.tradeable:return 'market_sell',cancelled.item_id,0
     if len(inventory)>=12:return '',None,0
     candidates=[]
@@ -80,10 +88,12 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None,*,craft_mater
 
 @player_action
 def list_bot_surplus(profile,item,reserved=()):
+    from .crafting import ingredient_reserves
     from .market_intelligence import state, sale_offer
     inventory = bot_inventory(profile)
     market = state(profile.world_id, fresh=True)
-    offer = sale_offer(profile, inventory, reserved, market)
+    offer = sale_offer(profile, inventory, reserved, market,
+                       craft_reserves=ingredient_reserves(profile, inventory))
     if not offer or offer[0].pk != item.pk:
         return False
     candidate, quantity, quote = offer

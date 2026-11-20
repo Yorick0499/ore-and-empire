@@ -281,6 +281,37 @@ class IntelligentMarketTests(TestCase):
                          (self.s.pk, self.b.pk, 2, 14))
         self.assertEqual(self.b.inventory.get(blueprint=material).quantity, 2)
 
+    def test_alchemist_sells_only_materials_above_their_recipe_reserve(self):
+        from .crafting import craft_item, ingredient_reserves
+        from .models import CraftRecipe
+        from uuid import uuid4
+
+        material = ItemBluePrint.objects.create(name='Zioła dwóch alchemików', kind='material',
+                                                stackable=True, base_value=8)
+        potion = ItemBluePrint.objects.create(name='Mikstura alchemików', kind='consumable', heal_amount=30)
+        recipe = CraftRecipe.objects.create(
+            key='shared-alchemy-workshop', name=potion.name, discipline='alchemy', level=0, skill=1,
+            fee=5, ingredients=[{'blueprint': material.pk, 'count': 2}], output=potion,
+        )
+        for profile in (self.s, self.b):
+            profile.alchemy_skill = 1
+            profile.save(update_fields=['alchemy_skill'])
+        self.item.delete()
+        reserve = add_item(self.s, material, 1, origin='merchant')
+        stack = add_item(self.s, material, 3, origin='loot')
+        self.assertFalse(list_bot_surplus(self.s, reserve))
+        self.assertTrue(list_bot_surplus(self.s, stack))
+        offer = self.s.inventory.get(blueprint=material, is_market_listed=True)
+        stack.refresh_from_db()
+        self.assertEqual((reserve.quantity, stack.quantity, offer.quantity), (1, 1, 2))
+        inventory = list(self.s.inventory.select_related('blueprint'))
+        craft_reserves = ingredient_reserves(self.s, inventory)
+        self.assertEqual(craft_reserves, {material.pk: 2})
+        self.assertNotEqual(bot_market_plan(self.s, craft_reserves=craft_reserves)[0], 'market_cancel')
+        self.assertTrue(game.buy_item_on_market(self.b, offer, offer.market_price))
+        self.assertTrue(craft_item(self.s, recipe.pk, uuid4()))
+        self.assertTrue(craft_item(self.b, recipe.pk, uuid4()))
+
     def test_bot_can_list_a_real_recipe_shortfall_from_a_surplus_stack(self):
         from .models import CraftRecipe
         from .market_intelligence import sale_lot
