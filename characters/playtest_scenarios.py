@@ -33,7 +33,6 @@ class OrdinaryBuildSession(TestCase):
             from .models import World
             world=current_world();world.configured=True;world.bot_count=0;world.save()
             call_command('open_khorinis',bots=0,stdout=StringIO())
-            from uuid import uuid4
             World.objects.filter(status='active').update(union_key=uuid4())
             from .models import SleeperRace,CampGuild
             from django.apps import apps
