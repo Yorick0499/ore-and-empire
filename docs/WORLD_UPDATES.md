@@ -35,7 +35,7 @@ Po każdym publicznym ogłoszeniu od Pęknięcia Bariery kupcy oferują nowe mie
 
 Tabela podaje minimalne poziomy. Broń nadal sprawdza bazową siłę lub zręczność przy zakładaniu, runy szkołę i krąg, a mistrzowskie modele od Zaginionej Doliny wymagają także własnej odprawy portalu. Od poziomu 8 pozostałe progi są dostępne w obu regionach wspólnego świata po publicznym odkryciu. Kupno i wystawianie nowego sprzętu nie przechodzi przed jego odsłoną. Odsłona nie zmienia statystyk posiadanych egzemplarzy ani osobistych przydziałów na rejs.
 
-Broń i pancerze kupuje się za rudę, z zachowaniem zwykłego handlu i przekuwania. Runy dołączają do zwykłych zakupów w Magii. Koszty amunicji, many i leczenia wpływają na dalsze wyprawy. Stare przedmioty mogą pozostawać przydatne przez niższy koszt, odporność lub wartość po ulepszeniu. [Katalog rynsztunku i zaklęć](GAME_CONTENT.md#katalog-rynsztunku) · [Próby walk](SOLO_PLAYTEST.md#proby-rynsztunku-odslon).
+Lokalny launcher oraz `seed_khorinis` uzupełniają brakujące modele rynsztunku podczas aktualizacji, zachowując edycje zarządcy. Broń i pancerze kupuje się za rudę, z zachowaniem zwykłego handlu i przekuwania. Runy dołączają do zwykłych zakupów w Magii. Koszty amunicji, many i leczenia wpływają na dalsze wyprawy. Stare przedmioty mogą pozostawać przydatne przez niższy koszt, odporność lub wartość po ulepszeniu. [Katalog rynsztunku i zaklęć](GAME_CONTENT.md#katalog-rynsztunku) · [Próby walk](SOLO_PLAYTEST.md#proby-rynsztunku-odslon).
 
 ## Większa pula wydarzeń
 

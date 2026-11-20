@@ -48,4 +48,6 @@ class Command(BaseCommand):
         from characters.gothic2_content import PACK_PATH as nk_pack
         call_command('seed_catalog',pack=nk_pack,stdout=self.stdout)
         call_command('seed_gothic2_world',stdout=self.stdout)
+        from characters.release_equipment_v1 import seed as seed_release_equipment
+        seed_release_equipment(ItemBluePrint.objects)
         self.stdout.write('Khorinis: 29 zadań fabularnych, 19 zleceń, 35 wzorów rynsztunku i 18 run/zwojów; istniejące definicje zachowano.')

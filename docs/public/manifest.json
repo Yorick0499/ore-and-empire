@@ -3,7 +3,7 @@
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-20",
   "code_revision": "Rynsztunek kolejnych odsłon świata",
-  "migration": "0064_release_equipment",
+  "migration": "0063_patrol_rank_permits",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {

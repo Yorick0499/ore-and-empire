@@ -73,6 +73,6 @@ Po bootstrapie, przed uruchomieniem ruchu i workera, dodaj drugi początek:
 docker compose --env-file .env.production -f deploy/compose.production.yml run --rm web python manage.py open_khorinis --bots 125
 ```
 
-Standard 125+125 daje 250 kont; istniejące liczby nie zmieniają się po ponowieniu. Jeden worker obejmuje oba regiony. W etapach aktualizacji pamiętaj o seedach Khorinis/Jarkendar/NK: lokalny launcher robi je przy starcie, a produkcyjny proces wdrożenia powinien uruchomić `python manage.py seed_khorinis` po migracjach przy otwartej wyspie. Same procesy Gunicorna nie instalują treści.
+Standard 125+125 daje 250 kont. Jeden worker obejmuje oba regiony. Lokalny launcher przy starcie instaluje katalogi treści i rynsztunek odsłon. Na produkcji z otwartą wyspą uruchom `python manage.py seed_khorinis` po migracjach. Polecenie uzupełnia także wyposażenie kolejnych odsłon i zachowuje istniejące definicje zarządcy. Same procesy Gunicorna nie instalują treści.
 
 Globalna aktywacja potrzebuje świeżej kopii i rzeczywistej próby odtworzenia. Worker musi mieć dostęp do prywatnego katalogu, właściwego klienta pg_dump/pg_restore oraz prawo utworzenia/usunięcia bazy próbnej; sam runtime HTTP nie potrzebuje CREATE DATABASE. Na czas przejścia spodziewane jest 503. [Panel i wznowienie](BACKUPS.md). Siedem odsłon jest w zainstalowanym kodzie i odsłaniane przez postęp; serwer nie pobiera paczek w runtime.
