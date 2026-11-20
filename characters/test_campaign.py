@@ -82,7 +82,9 @@ class CampaignTests(TestCase):
             for _ in range(hero.skill_points):
                 if hero.ore_balance < 30: mining_shift()
                 with advance(): self.assertTrue(game.train_attribute(hero, 'strength'))
-            best = ItemBluePrint.objects.filter(merchant=True,kind='weapon',weapon_type__in=['onehand','twohand'],required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity,min_level__lte=hero.level,min_camp_tier__lte=hero.camp_tier,required_camp__in=['',hero.camp],base_value__gt=0).order_by('-damage').first()
+            from .gothic2_content import visible_stock
+            stock = ItemBluePrint.objects.filter(merchant=True,kind='weapon',weapon_type__in=['onehand','twohand'],required_strength__lte=hero.strength,required_dexterity__lte=hero.dexterity,min_level__lte=hero.level,min_camp_tier__lte=hero.camp_tier,required_camp__in=['',hero.camp],base_value__gt=0)
+            best = visible_stock(hero, stock).order_by('-damage').first()
             equipped = hero.inventory.filter(is_equipped=True).select_related('blueprint').first()
             if not equipped or equipped.blueprint.damage < best.damage:
                 while hero.ore_balance < best.base_value: mining_shift()

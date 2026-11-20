@@ -119,7 +119,9 @@ class OrdinaryBuildSession(TestCase):
                     weapon_type='bow' if name=='archer' else 'onehand'
                     equipped=p.inventory.filter(is_equipped=True,equipped_slot='weapon').select_related('blueprint').first()
                     # Buy only improvements, leaving the mage's rune savings intact.
-                    best=ItemBluePrint.objects.filter(merchant=True,kind='weapon',weapon_type=weapon_type,required_strength__lte=p.strength,required_dexterity__lte=p.dexterity,min_level__lte=p.level,min_camp_tier__lte=p.camp_tier,required_camp__in=['',p.camp],base_value__lte=p.ore_balance).order_by('-damage','base_value').first()
+                    from .gothic2_content import visible_stock
+                    stock = ItemBluePrint.objects.filter(merchant=True,kind='weapon',weapon_type=weapon_type,required_strength__lte=p.strength,required_dexterity__lte=p.dexterity,min_level__lte=p.level,min_camp_tier__lte=p.camp_tier,required_camp__in=['',p.camp],base_value__lte=p.ore_balance)
+                    best = visible_stock(p, stock).order_by('-damage','base_value').first()
                     if best and (not equipped or best.damage>equipped.effective_stats['damage']) and (name!='mage' or not equipped):
                         owned=p.inventory.filter(blueprint=best,is_equipped=False,is_market_listed=False).first()
                         if owned:self.assertTrue(game.equip_item(p,owned));actions['equip']+=1
