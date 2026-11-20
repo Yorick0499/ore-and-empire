@@ -17,7 +17,7 @@ from .camp_progression import BY_RANK, rank_cards, accept_camp_quest, promote_in
 from .faction_advancement import BY_KEY, cards
 from .frontier import patrol
 from .models import (
-    CampQuest, FrontierProgress, FrontierRecord, RegionalFrontierProgress, WorldRelease,
+    CampQuest, FrontierProgress, FrontierRecord, RegionalFrontierProgress, StoryQuest, WorldRelease,
 )
 from .rank_benefits import PATROL_LIMITS, patrol_permit, playable_patrol_depth, rank_benefits
 from .regional_endgame import fee
@@ -33,7 +33,7 @@ class RankPatrolTests(TestCase):
         seed_clean_world()
         cls.colony, cls.island, cls.race = fixture()
         call_command('seed_khorinis', stdout=StringIO())
-        for key in ('jarkendar', 'dragons', 'irdorath'):
+        for key in ('barrier', 'jarkendar', 'dragons', 'irdorath'):
             WorldRelease.objects.get_or_create(world=cls.colony, key=key)
 
     def resident(self, world, camp, guild):
@@ -54,7 +54,7 @@ class RankPatrolTests(TestCase):
                 p = person(world, rank.camp, rank.key)
                 self.assertEqual(patrol_permit(p), PATROL_LIMITS[rank.tier])
                 card = next(card for card in rank_cards(p) if card['rank'].key == rank.key)
-                self.assertEqual(card['benefits'], rank_benefits(rank.tier))
+                self.assertEqual(card['benefits'], rank_benefits(rank.tier, camp=rank.camp, guild=rank.key))
 
     def test_promotion_applies_an_existing_victory_without_spending_on_a_denial(self):
         p = self.resident(self.colony, 'OLD_CAMP', 'DIGGER')
@@ -136,6 +136,82 @@ class RankPatrolTests(TestCase):
         self.assertEqual(tick_bot(p, policy=PatrolPolicy(), force_active=True), ('patrol', True))
         self.assertEqual(p.patrols.get().depth, PATROL_LIMITS[0])
 
+    def test_native_expedition_needs_rank_and_the_correct_region(self):
+        from .game_logic import execute_boss
+        from .locations import BY_KEY
+
+        p = self.resident(self.colony, 'OLD_CAMP', 'DIGGER')
+        site = BY_KEY['rank_gorge_raider']
+        url = reverse('boss_page') + '?location=' + site.key
+        self.client.force_login(p.user)
+        self.assertEqual(self.client.get(url).status_code, 403)
+        self.assertEqual(self.client.post(url, {'request_key': uuid4()}).status_code, 403)
+        self.assertFalse(execute_boss(p, site.key))
+        self.assertFalse(p.boss_attempts.exists())
+        p.guild = 'SHADOW'
+        p.save(update_fields=['guild'])
+        self.assertEqual(self.client.get(url).status_code, 200)
+        key = uuid4()
+        won = execute_boss(p, site.key, key)
+        self.assertTrue(won.won)
+        self.assertEqual(execute_boss(p, site.key, key).pk, won.pk)
+        self.assertEqual(p.boss_attempts.count(), 1)
+        self.assertTrue(travel(p, self.island.pk))
+        self.assertFalse(site.accessible(p))
+
+    def test_archives_are_exclusive_to_earned_archmage_paths(self):
+        from .game_logic import execute_boss
+        from .locations import BY_KEY
+
+        for world, camp, regular, martial, arch, key in (
+            (self.colony, 'OLD_CAMP', 'FIRE_MAGE', 'BARON', 'ARCH_FIRE', 'rank_valley_archive'),
+            (self.island, 'FIRE_ORDER', 'K2_MAGE', None, 'K2_ARCHMAGE', 'rank_monastery_archive'),
+        ):
+            p = self.resident(world, camp, regular)
+            self.assertFalse(BY_KEY[key].accessible(p))
+            self.assertFalse(execute_boss(p, key))
+            if martial:
+                p.guild = martial
+                p.save(update_fields=['guild'])
+                self.assertFalse(BY_KEY[key].accessible(p))
+            p.guild = arch
+            p.save(update_fields=['guild'])
+            self.assertTrue(BY_KEY[key].accessible(p))
+            self.assertTrue(execute_boss(p, key).won)
+
+    def test_late_boss_needs_both_the_release_and_the_highest_rank(self):
+        from .game_logic import execute_boss
+        from .locations import BY_KEY as locations
+
+        p = self.resident(self.colony, 'OLD_CAMP', 'BARON')
+        apply(apps, self.race)
+        p.refresh_from_db()
+        claimed_milestone(p, 'nk-undead')
+        site = locations['rank_orc_standard']
+        self.assertFalse(site.accessible(p))
+        for tier in range(4, 8):
+            key = f'ADV_BANDITS_{tier}'
+            self.assertTrue(accept_camp_quest(p, key))
+            quest = p.camp_quests.get(rank_key=key)
+            quest.progress.update({goal.event: goal.count for goal in BY_KEY[key].objectives})
+            quest.save(update_fields=['progress'])
+            self.assertTrue(promote_in_camp(p, key))
+        self.assertFalse(site.accessible(p))
+        self.client.force_login(p.user)
+        self.assertContains(self.client.get(reverse('locations_page')), 'Dostęp od odsłony „Orkowie u bram”')
+        WorldRelease.objects.get_or_create(world=self.colony, key='orc-war')
+        self.assertTrue(site.accessible(p))
+        self.assertTrue(execute_boss(p, site.key).won)
+
+    def test_idle_bot_uses_rank_expedition_through_normal_boss_action(self):
+        StoryQuest.objects.update(enabled=False)
+        p = self.resident(self.colony, 'OLD_CAMP', 'SHADOW')
+        p.is_bot = True
+        p.bot_turn = 4
+        p.save(update_fields=['is_bot', 'bot_turn'])
+        self.assertEqual(tick_bot(p, force_active=True), ('boss', True))
+        self.assertTrue(p.boss_attempts.filter(boss_key='rank_gorge_raider', won=True).exists())
+
 
 class PatrolPermitMigrationTests(TransactionTestCase):
     def test_preserves_preexisting_unlocked_depth_per_track(self):
@@ -162,8 +238,8 @@ class PatrolPermitMigrationTests(TransactionTestCase):
             valley = RegionalFrontierProgress.objects.get(profile_id=profile.pk, track='valley')
             self.assertEqual((legacy.unlocked, legacy.rank_access_floor, legacy.wins), (32, 32, 40))
             self.assertEqual((valley.unlocked, valley.rank_access_floor, valley.wins), (64, 64, 80))
-            fresh_track = RegionalFrontierProgress(profile_id=profile.pk, track='khorinis', unlocked=25)
-            self.assertEqual(playable_patrol_depth(legacy.profile, fresh_track), 24)
+            fresh_track = RegionalFrontierProgress(profile_id=profile.pk, track='khorinis', unlocked=PATROL_LIMITS[3] + 1)
+            self.assertEqual(playable_patrol_depth(legacy.profile, fresh_track), PATROL_LIMITS[3])
             self.assertEqual(playable_patrol_depth(legacy.profile, valley), 64)
             valley.unlocked += 1
             self.assertEqual(playable_patrol_depth(legacy.profile, valley), 64)

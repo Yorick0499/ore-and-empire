@@ -23,10 +23,20 @@ class Location:
     def rank_requirement(self, profile):
         from .expedition_ranks import DESTINATION_QUESTS, rank_allowed, requirement_label
 
+        from .rank_content import BY_LOCATION, rank_requirement as content_rank_requirement
+
+        if self.key in BY_LOCATION:
+            return content_rank_requirement(profile, BY_LOCATION[self.key])
         quest = DESTINATION_QUESTS.get(self.key)
         if quest and not rank_allowed(profile, quest, continuing=True):
             return requirement_label(profile, quest)
         return None
+
+    def missing_release(self, profile):
+        from .rank_content import BY_LOCATION, release_ready
+
+        site = BY_LOCATION.get(self.key)
+        return site.release if site and not release_ready(profile, site) else None
 
     def accessible(self, profile, *, universe=None):
         from .barrier import region,joined
@@ -42,6 +52,7 @@ class Location:
             and (not self.camps or any(equipment_camp_allowed(profile, camp) for camp in self.camps))
             and profile.camp_tier >= self.min_tier
             and not self.rank_requirement(profile)
+            and not self.missing_release(profile)
         )
 
     @property
@@ -110,5 +121,13 @@ from .gothic2_world import DATA as NK_FAUNA,GROUPS as NK_GROUPS,BOSS_ROWS as NK_
 LOCATIONS += tuple(Location('g2nk_'+group,name,'Warta mieszkańców po upadku Bariery. Parametry przeciwników są balansem przeglądarkowym.',level,monsters=tuple(r['key'] for r in NK_FAUNA if r['role']=='hunt' and r['group']==group),universe=universe,post_barrier=True,requires_portal=portal,wiki='Krypta Inubisa' if group=='crypts' else 'Jarkendar' if portal else 'Górnicza Dolina' if universe=='GOTHIC_I' else 'Dwór Irdorath' if group=='irdorath' else 'Tereny Khorinis',required_story='nk-sailing' if group=='irdorath' else '',story_label='Kurs na Irdorath' if group=='irdorath' else '') for group,name,level,universe,portal in NK_GROUPS)
 LOCATIONS += tuple(Location(key,name,'Osobista próba warty mieszkańców; świat trwa niezależnie od ukończenia twojej wyprawy.',level,route='boss_page',universe=universe,post_barrier=True,requires_portal=portal,required_story=gate,story_label='Kurs na Irdorath' if gate=='nk-sailing' else 'Zapiski Budowniczych' if gate else '',wiki='Krypta Inubisa' if key=='g2nk_inubis' else 'Jarkendar' if portal else 'Górnicza Dolina' if universe=='GOTHIC_I' else 'Dwór Irdorath') for key,name,level,life,strength,protection,xp,ore,universe,portal,gate in NK_BOSSES)
 LOCATIONS += (Location('g2nk_ship','Statek wyprawy do Irdorath','Zamelduj się w porcie po przygotowaniu wspólnej wyprawy.',40,route='train_page',universe='GOTHIC_II',post_barrier=True,wiki='Esmeralda'),)
+from .rank_content import EXPEDITIONS as RANK_SITES
+STORY_LABELS = {'nk-sailing': 'Kurs na Irdorath', 'nk-undead': 'Finał wyprawy mieszkańców'}
+LOCATIONS += tuple(Location(site.key, site.name, site.description, site.level,
+                            route="boss_page" if site.boss else "hunt_page", monsters=site.monsters,
+                            universe=site.region, post_barrier=bool(site.release),
+                            requires_portal=site.portal, required_story=site.story,
+                            story_label=STORY_LABELS.get(site.story, ""))
+                   for site in RANK_SITES)
 LOCATIONS = tuple(sorted(LOCATIONS, key=lambda location: location.level))
 BY_KEY = {location.key: location for location in LOCATIONS}

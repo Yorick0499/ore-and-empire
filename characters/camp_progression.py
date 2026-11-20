@@ -235,7 +235,7 @@ def rank_cards(profile, camp=None):
         cards.append({
             "rank": rank, "quest": quest, "current": profile.guild == rank.key,
             "ordinal":rank.tier+1,
-            "benefits": rank_benefits(rank.tier),
+            "benefits": rank_benefits(rank.tier, camp=rank.camp, guild=rank.key),
             "story_missing":missing(profile,promotion_tier(profile,rank),rank.camp),
             "parents": ", ".join(BY_RANK[parent].name if parent in BY_RANK else "Nowy członek obozu" for parent in promotion_parents(profile,rank)),
             "attribute_name": ATTRIBUTE_NAMES[rank.attribute],

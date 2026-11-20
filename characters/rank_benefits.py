@@ -1,6 +1,6 @@
 """Rewards tied to the ordinal of an earned guild rank."""
 
-PATROL_LIMITS = (4, 8, 14, 24, 40, 55, 75, 100)
+PATROL_LIMITS = (4, 8, 14, 20, 25, 30, 35, 100)
 INTRO_PATROL_LIMIT = 2
 
 
@@ -38,11 +38,17 @@ def rank_label(profile, tier):
     return " lub ".join(ranks) or f"ranga {tier + 1} we własnej gildii"
 
 
-def rank_benefits(tier):
+def rank_benefits(tier, *, camp=None, guild=None):
     from .camp_privileges import rank_privileges
+    from .rank_content import COLONY, ISLAND, titles_for_rank
+    from .realms import G1, G2
 
     perks = rank_privileges(tier)
     benefits = [f"Warty do stopnia {patrol_limit(tier)} po pokonaniu wcześniejszych przeciwników."]
+    region = COLONY if camp in G1 else ISLAND if camp in G2 else None
+    sites = titles_for_rank(tier, region=region, guild=guild)
+    if sites:
+        benefits.append("Dostęp po spełnieniu wymagań lokacji: " + ", ".join(sites) + ".")
     if tier == 1:
         benefits.append("Możesz zwołać rajd gildii i uzyskać odprawę do Jarkendaru po otwarciu szlaku.")
     if tier == 2:

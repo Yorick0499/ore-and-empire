@@ -647,6 +647,16 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if (final_goal and boss_key == 'sleeper_sanctum' and profile.current_energy >= 25
             and not trial_action and (profile.bot_turn % 3 == 1 or not story.action)):
         trial_action = 'boss'
+    if (not (quest or rank_action or story.action or story.events or boss_goals or ammo_blocked)
+            and profile.current_energy >= 25 and profile.bot_turn % 13 == 4):
+        from .rank_content import EXPEDITIONS as rank_expeditions
+
+        candidates = [site.key for site in rank_expeditions if site.boss and BY_KEY[site.key].accessible(profile)]
+        attempted = set(profile.boss_attempts.filter(boss_key__in=candidates).values_list('boss_key', flat=True))
+        for key in candidates:
+            if key not in attempted and safe_to_hunt(profile, game.BOSSES[key].monster, combat_damage):
+                boss_key, trial_action = key, 'boss'
+                break
     # Rest toward a reachable story fight instead of spending each recovered point
     # on lower-value fallback hunts forever. Impossible-at-full-health fights still
     # permit training/leveling/gear upgrades rather than causing permanent rest.

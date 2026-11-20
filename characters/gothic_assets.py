@@ -7,7 +7,7 @@ from .locations import LOCATIONS
 ASSET_ROOT = Path(__file__).resolve().parent / "static" / "characters"
 MANIFEST_PATH = ASSET_ROOT / "gothicpedia.json"
 ASSET_PAGES = {key: monster["source"] for key, monster in BESTIARY.items()}
-ASSET_PAGES.update({location.key: location.wiki for location in LOCATIONS})
+ASSET_PAGES.update({location.key: location.wiki for location in LOCATIONS if location.wiki})
 ASSET_PAGES.update({"rice_spirit": "Ryżówka", "healing_essence": "Esencja lecznicza", "battle_staff": "Pałka z kolcami", "rune_sword": "Miecz runiczny"})
 ASSET_PAGES.update({"crawler_queen": "Królowa pełzaczy", "sleeper": "Śniący"})
 ASSET_ALIASES = {
@@ -28,3 +28,9 @@ for _item in json.loads((Path(__file__).resolve().parent/'data/gothic1-items.jso
 from .jarkendar import DESTINATIONS as JARKENDAR_DESTINATIONS
 ASSET_ALIASES.update({row[0]:row[6] for row in JARKENDAR_DESTINATIONS})
 ASSET_ALIASES.update(dict(jark_lurker='lurker',jark_mantis='minecrawler',jark_razor='razor',jark_bloodhound='orc_dog',jark_swampshark='swampshark',jark_guardian='stone_golem',jark_crypt_boss='stone_golem'))
+
+from .rank_content import EXPEDITIONS as RANK_SITES
+for site in RANK_SITES:
+    ASSET_ALIASES[site.key] = site.art
+    if site.boss:
+        ASSET_ALIASES[f"{site.key}_boss"] = site.art

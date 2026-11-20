@@ -343,9 +343,17 @@ def locations_view(request):
         return redirect("locations_page")
     from .jarkendar import unlocked as jarkendar_unlocked
     portal_open=jarkendar_unlocked(profile)
-    cards = [
-        {"location": loc, "unlocked": loc.accessible(profile), "rank_requirement": loc.rank_requirement(profile)} for loc in LOCATIONS if loc.universe==region(profile).universe and (not loc.post_barrier or joined(profile.world_id))
-    ]
+    from .world_releases import RELEASES
+    release_titles = {key: title for key, _, title, *_ in RELEASES}
+    visited = region(profile)
+    worlds_joined = joined(profile.world_id)
+    cards = []
+    for loc in LOCATIONS:
+        if loc.universe != visited.universe or loc.post_barrier and not worlds_joined:
+            continue
+        cards.append({"location": loc, "unlocked": loc.accessible(profile),
+                      "rank_requirement": loc.rank_requirement(profile),
+                      "release_needed": release_titles.get(loc.missing_release(profile))})
     area=request.GET.get("area","all")
     if area=="jarkendar":cards=[c for c in cards if c["location"].requires_portal or c["location"].key=="jark_portal"]
     elif area=="khorinis":cards=[c for c in cards if not c["location"].requires_portal and c["location"].key!="jark_portal" and c["location"].required_story!="nk-sailing"]
