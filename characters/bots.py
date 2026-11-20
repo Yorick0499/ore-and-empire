@@ -339,7 +339,7 @@ class BaselinePolicyV26(BaselinePolicyV25):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV26):
+class BaselinePolicyV27(BaselinePolicyV26):
     def choose(self, o):
         safe = not (o.busy or o.adventure_ready or o.reward_ready or o.consume_id or o.product_urgent)
         if safe and o.health >= 10:
@@ -350,6 +350,10 @@ class BaselinePolicy(BaselinePolicyV26):
             if o.armor_id:
                 return 'armor', o.armor_id
         return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV27):
+    pass
 
 
 # Armed residents keep two training payments and reject marginal/expensive swaps.
@@ -493,7 +497,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if len(inventory) >= 5:
         disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc','ammo'} and i.blueprint.tradeable and not i.is_protected), disposal)
     armor = None
-    if (equipped and profile.level >= 3 and profile.ore_balance >= 75
+    if (equipped and len(inventory) < 12 and profile.level >= 3 and profile.ore_balance >= 75
             and not any(i.blueprint.kind == 'armor' and (i.is_equipped or usable(profile, i.blueprint))
                         for i in inventory)):
         candidates = market.merchants
@@ -587,7 +591,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         training, training_needed = story_training, True
     if final_goal and health_at_rest(profile,game.BOSSES["sleeper_sanctum"].monster,combat_damage) > profile.max_health:
         if not (trial_turn and trial_training):
-            training = "dexterity" if ranged_build else "mana" if mage else "strength"
+            training = "mana" if profile._bot_magic_plan else "dexterity" if ranged_build else "strength"
             training_needed = True
         needs_ore = needs_ore or bool(profile.skill_points and profile.ore_balance < 10)
     hunt_options = []
@@ -704,6 +708,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             route_hunts = {key for kind, key in route_events if kind == 'hunt'}
         else:
             route_events = [('boss', key) for key in boss_goals]
+            if duty:
+                route_events.append(('travel', 'k2_barracks'))
             route_hunts = set(hunt_goals)
 
         destinations = [BY_KEY[key] for kind, key in route_events if kind in {'boss', 'travel'} and key in BY_KEY]
