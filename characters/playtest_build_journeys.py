@@ -22,12 +22,14 @@ from .release_probe import record_scenario
 
 CASES={
  'old-warrior':('GOTHIC_I','OLD_CAMP','warrior',('DIGGER','SHADOW','GUARD','BARON'),'BANDITS'),
+ 'old-twohand':('GOTHIC_I','OLD_CAMP','twohand',('DIGGER','SHADOW','GUARD','BARON'),'BANDITS'),
  'new-archer':('GOTHIC_I','NEW_CAMP','archer',('MOLE','ROGUE','MERC','ELITE_MERC'),'MERCENARIES'),
  'old-fire':('GOTHIC_I','OLD_CAMP','fire',('DIGGER','SHADOW','FIRE_MAGE','ARCH_FIRE'),'FIRE_ORDER'),
  'new-water':('GOTHIC_I','NEW_CAMP','water',('MOLE','ROGUE','WATER_MAGE','ARCH_WATER'),'WATER_CIRCLE'),
  'city-warrior':('GOTHIC_II','CITY_WATCH','warrior',('K2_CITIZEN','K2_MILITIA','K2_PALADIN','K2_COMMANDER'),'CITY_WATCH'),
  'monastery-fire':('GOTHIC_II','FIRE_ORDER','fire',('K2_NOVICE','K2_ADEPT','K2_MAGE','K2_ARCHMAGE'),'FIRE_ORDER'),
  'onar-archer':('GOTHIC_II','ONAR_MERCS','archer',('K2_LABORER','K2_RECRUIT','K2_MERC','K2_CAPTAIN'),'MERCENARIES'),
+ 'onar-crossbow':('GOTHIC_II','ONAR_MERCS','crossbow',('K2_LABORER','K2_RECRUIT','K2_MERC','K2_CAPTAIN'),'MERCENARIES'),
  'swamp-guru':('GOTHIC_I','SWAMP_CAMP','brotherhood',('PICKER','NOVICE','GURU','ARCH_GURU'),'VEIL_ORDER'),
  'swamp-templar':('GOTHIC_I','SWAMP_CAMP','warrior',('PICKER','NOVICE','SWAMP_GUARD','TEMPLAR'),'VEIL_ORDER'),
 }
@@ -36,7 +38,9 @@ class EarnedBuild:
     def __init__(self, kind):
         self.kind = kind
         self.rune_school = kind if kind in {'fire', 'water', 'brotherhood'} else None
-        self.bow_upgrades = []
+        self.weapon_type = {'archer': 'bow', 'crossbow': 'crossbow', 'twohand': 'twohand'}.get(kind, 'onehand')
+        self.ammo_type = {'bow': 'arrow', 'crossbow': 'bolt'}.get(self.weapon_type)
+        self.weapon_upgrades = []
     def train(self,test,p,steps,attribute,amount):
         while amount>0:
             n=min(10,amount,p.skill_points)
@@ -53,21 +57,20 @@ class EarnedBuild:
             while p.magic_skill<circle_cap(p) and p.level>=2*(p.magic_skill+1) and p.skill_points>=5*(p.magic_skill+1)+10:
                 steps['funds'](50*(p.magic_skill+1));test.assertTrue(steps['do']('build_circle',lambda:learn_circle(p)))
         reserve=10+5*(p.magic_skill+1) if magic and p.magic_skill<circle_cap(p) else 10
-        minimum=50 if self.kind=='archer' else 25 if magic else 10
+        minimum=50 if self.ammo_type else 25 if magic else 10
         if p.strength<minimum and p.skill_points>reserve:self.train(test,p,steps,'strength',min(minimum-p.strength,p.skill_points-reserve))
-        attr='mana' if magic else 'dexterity' if self.kind=='archer' else 'strength'
+        attr='mana' if magic else 'dexterity' if self.ammo_type else 'strength'
         if not magic:
-            skill='bow_skill' if self.kind=='archer' else 'onehand_skill'
+            skill=self.weapon_type+'_skill'
             if getattr(p,skill)<min(60,p.level*2) and p.skill_points>10:self.train(test,p,steps,skill,min(min(60,p.level*2)-getattr(p,skill),p.skill_points-10))
         points = max(0, p.skill_points - reserve)
-        if self.kind == 'archer':
+        if self.ammo_type:
             # Keep a useful dexterity target for this level without treating
             # every unspent point as a mandatory purchase before the next fight.
             points = min(points, max(0, 10 + 6 * p.level - p.dexterity))
         if points:
             self.train(test, p, steps, attr, points)
-        kind='bow' if self.kind=='archer' else 'onehand'
-        choices=ItemBluePrint.objects.filter(source_game__in=source_games(p),merchant=True,kind='weapon',weapon_type=kind,required_strength__lte=p.strength,required_dexterity__lte=p.dexterity,base_value__lte=max(100,p.level*80)).order_by('-damage','base_value','pk')
+        choices=ItemBluePrint.objects.filter(source_game__in=source_games(p),merchant=True,kind='weapon',weapon_type=self.weapon_type,required_strength__lte=p.strength,required_dexterity__lte=p.dexterity,base_value__lte=max(100,p.level*80)).order_by('-damage','base_value','pk')
         bp=next((b for b in choices if allowed(p,b)),None)
         if bp:
             equipped=p.inventory.filter(is_equipped=True,equipped_slot='weapon').first()
@@ -75,9 +78,8 @@ class EarnedBuild:
                 owned=p.inventory.filter(blueprint=bp,is_market_listed=False).first()
                 if not owned:steps['funds'](bp.base_value);test.assertTrue(steps['do']('build_buy_weapon',lambda:game.buy_item_from_npc(p,bp)));owned=p.inventory.get(blueprint=bp)
                 test.assertTrue(steps['do']('build_equip_weapon',lambda:game.equip_item(p,owned)))
-                if self.kind == 'archer':
-                    self.bow_upgrades.append({'name': bp.name, 'damage': bp.damage,
-                                              'level': p.level, 'dexterity': p.dexterity})
+                self.weapon_upgrades.append({'name': bp.name, 'damage': bp.damage,
+                                             'level': p.level, 'dexterity': p.dexterity})
         # Buy ordinary protective jewelry; no free fixture armor/health.
         def value(item):
             return item.weapon_prot*3+item.fire_prot+item.magic_prot+item.life_bonus/5+item.mana_bonus/5
@@ -91,8 +93,9 @@ class EarnedBuild:
                     steps['funds'](bp.base_value);test.assertTrue(steps['do']('build_buy_protection',lambda:game.buy_item_from_npc(p,bp)))
                     owned=p.inventory.filter(blueprint=bp,is_equipped=False).first()
                 test.assertTrue(steps['do']('build_equip_protection',lambda:game.equip_item(p,owned,slot)))
-        if self.kind=='archer':
-            ammo=ItemBluePrint.objects.filter(source_game__in=source_games(p),merchant=True,kind='ammo',original_stats__ammo_type='arrow').order_by('base_value','pk').first()
+        if self.ammo_type:
+            stock=ItemBluePrint.objects.filter(source_game__in=source_games(p),merchant=True,kind='ammo',original_stats__ammo_type=self.ammo_type).order_by('base_value','pk')
+            ammo=next((bp for bp in stock if allowed(p, bp)), None)
             if ammo and sum(p.inventory.filter(blueprint=ammo,is_market_listed=False).values_list('quantity',flat=True))<10:
                 steps['funds'](ammo.base_value*30);test.assertTrue(steps['do']('build_ammo',lambda:game.buy_item_from_npc(p,ammo,30)))
         if magic and p.magic_skill:
@@ -138,13 +141,13 @@ class EarnedBuildJourneys(TestCase):
         self.magic_purchases=[]
         self.strategy = EarnedBuild(self.build)
         from .equipment import consume_ammo, weapon_for
-        self.arrow_battles = 0
+        self.ammo_battles = 0
 
         def tracked_ammo(profile):
             weapon = weapon_for(profile)
             success = consume_ammo(profile)
-            if success and weapon and weapon.weapon_type == 'bow':
-                self.arrow_battles += 1
+            if self.strategy.ammo_type and success and weapon and weapon.weapon_type == self.strategy.weapon_type:
+                self.ammo_battles += 1
             return success
 
         def checked_purchase(profile,blueprint_id):
@@ -207,7 +210,7 @@ class EarnedBuildJourneys(TestCase):
         while getattr(p,attribute)<rank.attribute_value:
             if not p.skill_points:steps['grind_level']();p.refresh_from_db()
             steps['funds'](p.training_cost)
-            train='dexterity' if attribute=='martial' and self.build=='archer' else 'strength' if attribute=='martial' else attribute
+            train='dexterity' if attribute=='martial' and self.strategy.ammo_type else 'strength' if attribute=='martial' else attribute
             self.assertTrue(do('matrix_rank_attribute',lambda:game.train_attribute(p,train)))
         steps['funds'](rank.cost);self.assertTrue(do('matrix_rank_promote',lambda:promote_in_camp(p,rank.key)))
         print(self.case,rank.key,p.level,file=sys.stderr,flush=True)
@@ -248,11 +251,13 @@ class EarnedBuildJourneys(TestCase):
             self.assertTrue(all(BY_KEY[key].school==self.strategy.rune_school for key in spell_usage),spell_usage)
             self.assertTrue(self.magic_purchases)
             self.assertGreater(casts,20)
-        if self.build == 'archer':
-            self.assertEqual(p.inventory.get(is_equipped=True,equipped_slot='weapon').blueprint.weapon_type,'bow')
-            self.assertGreaterEqual(len(self.strategy.bow_upgrades), 3)
-            self.assertGreater(self.arrow_battles, 20)
-        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.bow_upgrades,'arrow_battles':self.arrow_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'trial_bosses':self.trial_bosses,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
+        if self.strategy.ammo_type or self.build == 'twohand':
+            self.assertEqual(p.inventory.get(is_equipped=True,equipped_slot='weapon').blueprint.weapon_type,
+                             self.strategy.weapon_type)
+            self.assertGreaterEqual(len(self.strategy.weapon_upgrades), 3)
+        if self.strategy.ammo_type:
+            self.assertGreater(self.ammo_battles, 20)
+        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.weapon_upgrades if self.strategy.ammo_type == 'arrow' else [],'arrow_battles':self.ammo_battles if self.strategy.ammo_type == 'arrow' else 0,'weapon_upgrades':self.strategy.weapon_upgrades,'ammo_type':self.strategy.ammo_type,'ammo_battles':self.ammo_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'trial_bosses':self.trial_bosses,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
 
 for _key in CASES:
     def _test(self,key=_key):self.run_case(key)
