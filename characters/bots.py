@@ -347,7 +347,7 @@ class BaselinePolicyV27(BaselinePolicyV26):
                 return o.rank_action, o.rank_target
             if o.trial_action:
                 return o.trial_action, o.trial_target
-            if o.armor_id:
+            if o.armor_id and not o.forge_action and (not o.patrol_depth or o.turn % 3 == 2):
                 return 'armor', o.armor_id
         return super().choose(o)
 

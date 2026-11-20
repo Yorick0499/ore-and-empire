@@ -70,6 +70,7 @@ START = timezone.now().astimezone(POLISH_TIME).replace(hour=9, minute=0, second=
 BASE = int(os.environ.get("RANKED_BASE_PER_REALM", "125"))
 SWEEP_MINUTES = int(os.environ.get("RANKED_SWEEP_MINUTES", "480"))
 METER = time.monotonic()
+SOURCE_REVISION = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 ORDER = ("-level", "-experience", "pk")
 FIELDS = (
     "level experience skill_points strength dexterity mana life current_health max_health "
@@ -402,7 +403,7 @@ class RankedJourney(CompleteJourney):
             self.assertTrue(all(self.actions.get(pk) for pk in self.initial_bot_ids))
             self.assertTrue(all(self.actions.get(pk) for pk in self.arrival_key))
             metadata = {
-                "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+                "commit": SOURCE_REVISION,
                 "started_at": START, "journey_finished_at": self.journey_finished, "finished_at": self.clock,
                 "game_days": round((self.clock - START).total_seconds() / 86400, 3),
                 "runtime_seconds": round(time.monotonic() - METER, 2),
@@ -418,8 +419,11 @@ class RankedJourney(CompleteJourney):
             pre_save.disconnect(self.before_release, sender=WorldRelease)
 
 
-assert Path(connection.settings_dict["NAME"]).resolve() == Path(os.environ["RANKED_SIM_CHILD"]).resolve()
-assert connection.vendor == "sqlite"
+sandbox = Path(os.environ["RANKED_SIM_CHILD"]).resolve()
+if (connection.vendor != "sqlite" or Path(connection.settings_dict["NAME"]).resolve() != sandbox
+        or sandbox.parent.parent != Path(tempfile.gettempdir()).resolve()
+        or not sandbox.parent.name.startswith("ore-complete-journey-ranked-")):
+    raise SystemExit("The ranked simulation requires its own temporary SQLite database.")
 call_command("migrate", interactive=False, verbosity=0)
 
 import unittest
