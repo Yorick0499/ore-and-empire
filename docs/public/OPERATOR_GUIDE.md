@@ -1,6 +1,6 @@
 # Podręcznik instalacji i zarządcy
 
-Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan funkcji: 14 listopada 2026, wyprawy na rozkaz #152, wspólny świat po Barierze, migracja 0055_manual_camp_raids. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
+Publiczna instrukcja aktualnej pełnej wersji **Ore & Empire — Kroniki Kolonii**. Stan instalacji na 20 listopada 2026, migracja 0063_patrol_rank_permits. Pełne uruchomienie obu regionów opisuje [aktualna instrukcja przejścia](../COMPLETE_JOURNEY.md). Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.
 
 ## Co zawiera to wydanie
 
@@ -20,7 +20,7 @@ Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwyci�
 | Opcjonalny serwer | PostgreSQL, psycopg 3.3.8; szablon Compose używa PostgreSQL 17 |
 | Procesy produkcyjne | Gunicorn 26.2.0, osobny `run_worker`, WhiteNoise 6.12.0, Caddy 2, Docker Compose / szablony systemd |
 | Reguły gry | Wspólne usługi domenowe i transakcje Django dla ludzi oraz botów |
-| Boty | Reguły `baseline-26`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
+| Boty | Reguły `baseline-27`, odtwarzanie dawnych wersji zachowane, scheduler z dzierżawą i limitem pracy |
 | Opcjonalny eksperyment AI | Lokalny adapter Ollama, jawny opt-in; model i GPU nie są wymagane do normalnej gry |
 | Zegar | `zoneinfo`, `Europe/Warsaw`, Astral 3.2; automatyczne CET/CEST |
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |
@@ -323,9 +323,9 @@ Wyszukiwarka przeszukuje tekst rozdziałów i raportów. Spis treści działa ta
 
 Od migracji 0042: [pięć postaci, fabuła i przywileje rang](../CHARACTERS_AND_WORLDS.md). Kreator pojawia się po rejestracji; w zarządcy wybierz imię postaci wraz z kontem i slotem. Konta administratorów i hasła pozostają.
 
-Regionalny endgame po NK i zgodność migracji 0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat 23; stare odtworzenia pozostają zgodne.
+Regionalny endgame po NK i zgodność migracji 0053 opisuje [instrukcja wart](../REGIONAL_ENDGAME.md). Bieżąca telemetria ma schemat 24; stare odtworzenia pozostają zgodne.
 
-[Dziewięć organicznych dróg buildów i frakcji](../BUILD_PLAYTHROUGHS.md) można sprawdzić przez `simulate_builds --report /tmp/ore-builds.json`; `--case` wybiera pojedyncze drogi. Komenda używa własnej bazy, a pełne CI dzieli macierz na trzy grupy. Poprawka zapasu zwojów nie wymaga migracji ani łączenia historycznych przedmiotów.
+[Jedenaście organicznych dróg buildów i frakcji](../BUILD_PLAYTHROUGHS.md) można sprawdzić przez `simulate_builds --report /tmp/ore-builds.json`; `--case` wybiera pojedyncze drogi. Komenda używa własnej bazy, a pełne CI dzieli macierz na trzy grupy. Poprawka zapasu zwojów nie wymaga migracji ani łączenia historycznych przedmiotów.
 
 [Wydarzenia i odsłony świata](../WORLD_UPDATES.md): migracja 0054, wspólny harmonogram i historia odkryć. Odczyty są bez nagród; stary dorobek nie jest ponownie blokowany.
 
@@ -335,7 +335,7 @@ Po konfiguracji Kolonii otwórz Khorinis przyciskiem w ustawieniach albo przy za
 
 Po zwycięstwie worker tworzy świeżą kopię i sprawdza odtworzenie. PostgreSQL potrzebuje klienta zgodnego z serwerem oraz prawa utworzenia/usunięcia bazy próbnej dla procesu wykonującego aktywację. Brak narzędzi/miejsca/uprawnień zatrzymuje przejście, bez utraty zwycięstwa. Stan i wznowienie są w panelu Bariery; nie ustawiaj `joined` ręcznie.
 
-Sukces daje jeden serwer, wspólny rynek/ranking/podróże i pięć następczych frakcji, z zachowaniem danych. Portal Jarkendaru, rejs i osobiste kontrakty nadal trzeba zdobyć. Cztery wyższe rangi, regionalny endgame i siedem odsłon są wdrożone. [Przewodnik gracza](../GAME_GUIDE.md), [pełna droga](../COMPLETE_JOURNEY.md), [rangi](../CAMPS.md), [kalendarz](../WORLD_UPDATES.md).
+Sukces daje jeden serwer, wspólny rynek/ranking/podróże i sześć następczych frakcji, z zachowaniem danych. Portal Jarkendaru, rejs i osobiste kontrakty nadal trzeba zdobyć. Cztery wyższe rangi, regionalny endgame i siedem odsłon są wdrożone. [Przewodnik gracza](../GAME_GUIDE.md), [pełna droga](../COMPLETE_JOURNEY.md), [rangi](../CAMPS.md), [kalendarz](../WORLD_UPDATES.md).
 
 Przy aktualizacji produkcyjnej po `migrate` uruchom `seed_khorinis`, jeśli wyspa jest otwarta; zawiera Jarkendar/NK i zachowuje edycje operatora. Launcher lokalny wykonuje to przy starcie. Szczegóły [wdrożenia](../PRODUCTION.md) i [kopii i migracji](../BACKUPS.md). Bieżący raport opisuje dziewięć organicznych dróg i rzeczywistą aktywację, nie wszystkie mechaniki oryginału ani wielotygodniowy balans.
 
@@ -344,3 +344,7 @@ Kalendarz #144 dobiera osiem pul nazw/opisów do aktualnej odsłony całej społ
 ### Dodatkowe wyprawy gracza — migracja 0055
 
 Po zwykłym restarcie launcher stosuje migrację zachowującą stare wyprawy, wkład, nagrody i konta. Najwyższa rodzima ranga Kolonii może ogłaszać cele do poziomu10 przez sekcję „Wyprawy na rozkaz” na `/wspolnota/`. Po pokonaniu celu można ogłosić następny tego samego dnia. Boty uczestniczą zwykłymi turami. Nie potrzeba resetu świata ani ręcznej edycji PD. [Reguły i ograniczenia](../CAMP_RAIDS.md).
+
+### Co sprawdzić po aktualizacji
+
+Na odtworzonej kopii sprawdź logowanie, wybór postaci, listę ofert targowych i rozliczenie jednej transakcji. Przy połączonym świecie sprawdź również publiczny profil, dostęp do opłaconych rang oraz próg następnej warty. Jeżeli boty mają działać, odczytaj `/health/ready/` i monitor decyzji. Zaliczona kontrola grywalności oraz współbieżności dla targu jest dostępna w [CI #184](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785).

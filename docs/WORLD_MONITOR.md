@@ -1,6 +1,6 @@
 # Monitoring i retencja świata
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Panel `/zarzadca/swiat/` jest tylko dla superusera. Okno 1–90 dni zaczyna się o północy UTC; domyślnie 7. Eksport JSON ma `schema: 1`. Pokazuje aktywne/odpoczywające/odrzucone/offline boty, PD/h całej populacji, poziomy/rangi, wyniki walk, wykonane/odrzucone akcje, salda przepływów z rozdzieleniem ludzi/botów/admina oraz rzeczywiste ceny i wolumen rynku. Obrót nie jest emisją. Listę ostatnich decyzji ograniczono do 40, ceny do 40 grup, agregaty dzienne do 100 widocznych wpisów. Sumy okna nie mają limitu wierszy. Brak świeżego sygnału to 90 s od ostatniej tury; „blocked” oznacza wyłącznie odrzucenie ostatniej akcji, nie dowód trwałego zakleszczenia.
 
@@ -21,3 +21,5 @@ Techniczny monitor zachowuje próg 90 sekund dla świeżego sygnału. To nie jes
 ## Wspólny serwer i odkrycia
 
 Przed połączeniem wybór regionu ogranicza kontekst raportu; po Barierze wspólna grupa obejmuje oba regiony z zachowaniem pochodzenia. Sukcesja pokazuje bieżące frakcje, nie kasuje rodzimych rang i dawnych faktów. Panel `/zarzadca/bariera/` odrębnie pokazuje wyścig, stan kopii/przejścia i audyt; kalendarz przechowuje trwałe odsłony oraz wykorzystanie regionalnych premii. [Kopie i panel Bariery](BACKUPS.md), [wydarzenia](WORLD_UPDATES.md).
+
+Raport prób targu rozróżnia transakcje, próbki dostępności ofert i odmowy akcji bota. Tura odrzucona przez świeżą walidację jest widoczna w telemetrii i nie tworzy transakcji. [Pomiary Khorinis](reports/targ-khorinis-2026-11-20.json).

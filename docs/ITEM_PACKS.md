@@ -1,6 +1,6 @@
 # Paczki danych i grafik (#26)
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 ## Zakres G1
 

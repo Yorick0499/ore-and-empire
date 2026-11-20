@@ -1,8 +1,8 @@
 # Żyjący świat — gracze i boty
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
-Aktualna wersja używa polityki **baseline-26** i obserwacji schemat 24. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
+Aktualna wersja używa polityki **baseline-27** i obserwacji schemat 24. Boty regułowe nie wymagają API AI. Ich role łowcy, kupca i kopacza są preferencjami, a nie ograniczeniem dostępnych działań.
 
 `python play.py --bots 125 --port 8001` uruchamia lokalny serwer i jeden serializujący scheduler. Bot wykonuje najwyżej jedną akcję na rundę. Nie łącz launchera z drugim `run_bots --loop`. Zatrzymanie programu zatrzymuje tury; po powrocie zasoby regenerują się ze zwykłego upływu czasu, ale serwer nie odgrywa wszystkich opuszczonych akcji.
 

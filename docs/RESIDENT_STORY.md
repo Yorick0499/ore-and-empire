@@ -1,6 +1,6 @@
 # Fabuła mieszkańców kolonii — narracja 2
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Kampania opisuje osobiste obowiązki mieszkańca w zbiorowym życiu kolonii. Sześć rozdziałów prowadzi od pracy przy ognisku przez obozowe przysługi, patrole i ochronę transportów do zgłoszenia gotowości załogi. Przed Barierą obóz jest trwałą gildią; osobista ranga, osobisty dziennik i wspólny rozwój obozu są trzema oddzielnymi osiami. Żaden osobisty rozdział nie wyrzuca postaci ze Starego Obozu i nie wymaga naśladowania Bezimiennego. Globalna Bariera ma oddzielną sukcesję frakcji z zachowaniem tej historii.
 

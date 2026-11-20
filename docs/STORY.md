@@ -1,6 +1,6 @@
 # Dziennik fabuły
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 `/fabula/` przedstawia jednorazowe zadania, aktywny cel i trwałą historię decyzji.
 `python manage.py seed_story` dodaje brakujące definicje; lokalny launcher robi to
@@ -94,8 +94,8 @@ a osobny test przechodzi całość graczem przez formularze i wspólne serwisy g
 z prawdziwymi walkami, nauką i wydobyciem. Przyspieszony zegar testowy symuluje
 wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i postępu.
 
-Aktualna polityka to baseline-26, schemat obserwacji 24; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
+Aktualna polityka to baseline-27, schemat obserwacji 24; dawne wersje pozostają odtwarzalne. Pełna lista domyślnych zadań: [GAME_CONTENT.md](GAME_CONTENT.md). Finał oraz sala chwały: [GAME_GUIDE.md](GAME_GUIDE.md).
 
 ## Kampania po połączeniu
 
-Jarkendar wymaga własnego odebranego portalu od 10. Następne kontrakty NK prowadzą do Kruka, smoków, rejsu i finału Irdorath. Status „joined” nie kończy ich za postać. Odbiór kamieni milowych może ujawnić trwałą odsłonę całej społeczności, nie podwaja jednak prywatnej wypłaty. [NK](GOTHIC_II_CONTENT.md), [odsłony](WORLD_UPDATES.md), [pełna generowana lista](GAME_CONTENT.md#fabula-jednorazowa).
+Odprawa portalu zaczyna się od poziomu 10. Nowe kontrakty na przeprawę do Jarkendaru i rejs do Irdorath sprawdzają odpowiednio drugą i trzecią rangę własnej gildii. Przyjęte przed wprowadzeniem wymogu zachowują dostęp do wykonania. Kolejne cele prowadzą przez Kruka i smoki aż do finału Irdorath. Odbiór kamieni milowych może ujawnić trwałą odsłonę całej społeczności. [Przywileje awansu](CAMPS.md#uprawnienia-awansow) · [NK](GOTHIC_II_CONTENT.md) · [Odsłony](WORLD_UPDATES.md) · [Katalog zadań](GAME_CONTENT.md#fabula-jednorazowa).

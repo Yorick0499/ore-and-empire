@@ -1,17 +1,17 @@
 # Publiczny Jarkendar — portal i dalsza wyprawa
 
-Stan zasad: migracja 0060.
+Odprawa portalu i zawartość regionu po połączeniu.
 
 Publiczny portal i początkową paczkę po globalnym upadku Bariery wprowadzono w #33; późniejsza paczka NK rozbudowuje region. To część wspólnego serwera Kolonii i Khorinis: ten sam rynek, ranking, portfel, postać oraz sześć frakcji. Jarkendar nie jest trzecim światem ani regionem premium. [Dalszą kampanię NK i granice implementacji](GOTHIC_II_CONTENT.md) opisuje osobny katalog.
 
 ## Jak wejść
 
 1. Po globalnym połączeniu odczekaj co najmniej 48 godzin czasu serwera.
-2. Od poziomu 10 przyjmij w dzienniku „Drogę za portal”.
+2. Od poziomu 10 i drugiej rangi własnej gildii przyjmij w dzienniku „Drogę za portal”.
 3. Podróżuj do Khorinis przez panel Bariery, odwiedź portal, porozmawiaj z badaczami i odczekaj minutę od rozpoczęcia zadania.
 4. Odbierz zadanie. Lokacje Jarkendaru odblokują się na mapie Khorinis, z własnymi progami poziomu.
 
-Przeprawa nie ma opłaty ani warunku salda odłamków. Zwykły cel podróży kosztuje 2 energii. Można ją ukończyć bez frakcji; nikt nie otrzymuje darmowej rangi. Powrót do Kolonii i Khorinis używa dotychczasowych bezpłatnych podróży. Gra wybiera teren przy każdej wyprawie, tak jak w pozostałych regionach; nie przechowuje dodatkowej pozycji mapowej.
+Przeprawa nie ma opłaty ani warunku salda odłamków. Zwykły cel podróży kosztuje 2 energii. Wymóg rangi obowiązuje nowe przyjęcia. Przydziały przyjęte przed zmianą można dokończyć na dotychczasowych zasadach. Powrót do Kolonii i Khorinis używa dotychczasowych bezpłatnych podróży. Gra wybiera teren przy każdej wyprawie, tak jak w pozostałych regionach; nie przechowuje dodatkowej pozycji mapowej.
 
 ## Zawartość i frakcje
 
@@ -42,3 +42,5 @@ Pięć przygotowanych botów reprezentujących docelowe frakcje ukończyło po 8
 Trzy dalsze obszary polowań i ścieżka Kruka są częścią [wyprawy NK](GOTHIC_II_CONTENT.md). Powyższe liczby i raport dotyczą pierwszej paczki #33; nowa paczka wykorzystuje także lokalne ilustracje Jarkendaru z Gothicpedii.
 
 Po odebraniu `nk-undead`, od poziomu 45, członkowie rozstrzygniętej frakcji mogą kontynuować Straż Jarkendaru w regionalnym endgame. Odsłona „Zaginiona Dolina” ogłasza pierwsze odkrycie, ale każdy gracz nadal zdobywa własny portal. [Warty](REGIONAL_ENDGAME.md), [wydarzenia](WORLD_UPDATES.md).
+
+Wyższe rangi otwierają dodatkowe lokacje i starcia, takie jak dziedziniec Jarkendaru po osiągnięciu rangi 6. Do podstawowego portalu wystarczają osobiste wymagania odprawy. [Bramki lokacji](GAME_CONTENT.md#lokacje) · [Awans frakcyjny](CAMPS.md).

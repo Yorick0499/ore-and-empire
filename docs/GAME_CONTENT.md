@@ -391,6 +391,21 @@ Cztery szczeble w każdej gałęzi. Brak rangi nie jest piątym szczeblem. Tabel
 | Zakon Mroku | 7. Herold Mroku — Warta Czarnego Płomienia | Przebudzenie smoków | 40 | Mana 93 / siła lub zręczność 113 (templariusze) | 1500 | Odeprzyj opiekunów świątyni ×4, Pokonaj smoka bagien ×1 |
 | Zakon Mroku | 8. Awatar Beliara — Próba Awatara Beliara | Żagle ku Irdorath | 47 | Mana 118 / siła lub zręczność 138 (templariusze) | 2550 | Pokonaj Nadzorców w głębi krypty ×3, Pokonaj książęta demonów ×4, Pokonaj smoka ognia ×1 |
 
+## Uprawnienia do wart
+
+Ranga określa górną granicę stopnia. Do wejścia nadal potrzebujesz odblokowanego stopnia i dostępu do szlaku. Wprowadzający pułap bez rangi wynosi 2; każda warta sprawdza też wymogi członkostwa. Starszy zapis zachowuje już odblokowane stopnie. [Reguły wart regionalnych](REGIONAL_ENDGAME.md).
+
+| Ranga | Najwyższy stopień warty | Zniżka wpisowego warty regionalnej |
+|---|---|---|
+| 1 | 4 | 0 rudy |
+| 2 | 8 | 0 rudy |
+| 3 | 14 | 0 rudy |
+| 4 | 20 | 0 rudy |
+| 5 | 25 | 2 rudy |
+| 6 | 30 | 4 rudy |
+| 7 | 35 | 6 rudy |
+| 8 | 100 | 8 rudy |
+
 ## Zlecenia czasowe
 
 Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 19 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).

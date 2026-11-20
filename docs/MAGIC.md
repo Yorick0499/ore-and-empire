@@ -46,7 +46,7 @@ Walka odejmuje ochronę `fire_prot`/`magic_prot`; minimum obrażeń to 1. Golemy
 
 ## Boty i odtwarzanie
 
-Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-26 i schemat 24) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
+Magiczny mechanizm wprowadzony w `baseline-8` (obecnie baseline-27 i schemat 24) wybiera naukę/zakup/przygotowanie wyłącznie z allowlisty. Część botów wybiera magiczną gałąź awansu; istniejący magowie także korzystają z run. Prognoza bezpiecznej walki uwzględnia rzeczywistą manę, liczbę zwojów, odporność, lód/przerwania i pięści po wyczerpaniu zasobu. Nie otrzymują darmowych run ani many. Starszy `baseline-7` pozostaje odtwarzalny w monitoringu. Replay dotyczy decyzji, nie losowego wyniku walki.
 
 ## Kontrola grywalności
 

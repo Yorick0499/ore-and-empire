@@ -1,6 +1,6 @@
 # Prywatna kronika mieszkańca
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 `/dziennik/` zawiera raporty walk, rozliczenia walut i powiadomienia bieżącej postaci, po 20 wpisów na stronie. Szczegół walki ponownie sprawdza właściciela; ID obcej postaci ani innego świata nie daje dostępu. Historia wykorzystuje istniejące trwałe fakty, nie chwilową sesję. Rozliczenia pokazują również wydatki i transfery, aby saldo miało pełny kontekst.
 
@@ -13,3 +13,5 @@ Daty w kronice i wyprawach mają znacznik `time` i prezentację czasu polskiego;
 ## Trwała historia po Barierze
 
 Zmiana aktywnej postaci nie udostępnia jej cudzych raportów. Połączenie, sukcesja, dalsze rangi i regionalny endgame zachowują historyczne identyfikatory; rachunki nie są przepisywane według nowych premii. Odsłony świata mają oddzielną trwałą historię w kalendarzu, a odczyt nie nadaje postępu. [Aktualizacje świata](WORLD_UPDATES.md).
+
+Publiczny profil pokazuje odrębną kronikę awansów i wspólnych osiągnięć. Rozliczenia walut, powiadomienia oraz prywatne szczegóły walk pozostają w dzienniku właściciela. [Profil i odznaki](CHARACTERS_AND_WORLDS.md#kronika-postaci-i-odznaki).

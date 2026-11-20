@@ -1,6 +1,6 @@
 # Wydarzenia, sezony i pule etapów świata
 
-Stan: 13 listopada 2026, pule narracyjne #144; bez zmiany schematu 0054 i nagród. [Pełny wykaz nazw każdej puli](GAME_CONTENT.md#event-stage-pools) · [Odsłony świata](WORLD_UPDATES.md).
+Bieżące pule nazw i zasad wydarzeń obejmują oba niezależne początki i etapy po Barierze. [Pełny wykaz nazw każdej puli](GAME_CONTENT.md#event-stage-pools) · [Odsłony świata](WORLD_UPDATES.md).
 
 ## Osiem pul, wybieranych przez rozwój społeczności
 

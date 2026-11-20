@@ -1,6 +1,6 @@
 # Łupy, ulepszenia i życie po finale
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Bieżąca gra obejmuje Kolonię, Khorinis i wspólny etap NK. Osobiste zakończenie kampanii nie wyłącza świata ani nie zeruje postaci. Połączenie następuje po osobnym zwycięstwie wspólnoty nad Śniącym, a nie przez ręczny transfer do II edycji. Codzienne i tygodniowe wyzwania, wspólne zadania obozu, dzienni bossowie obozowi, rynek, zlecenia oraz wydarzenia nadal działają. Dochodzą Warty za Przełęczą i rozwój konkretnych egzemplarzy sprzętu.
 
@@ -109,7 +109,7 @@ Pula sprzętu pomija definicje bez żadnej aktywnej statystyki, aby rzadki drop 
 - 0–9: prolog i lokalne polowania/zlecenia Kolonii albo Khorinis; obie historie mają świeży start.
 - 10–29: kolejne rozdziały i frakcje regionu pochodzenia; wspólny rynek nie omija wymagań sprzętu.
 - 30+: Warty za Przełęczą (wymagają obozu) i przygotowanie do obozowego Śniącego; sama trzydziestka nie zastępuje kwalifikacji wspólnoty, rangi ani rytuału.
-- Po Barierze od 10: własny portal Jarkendaru; kontrakty NK od 25, Feomathar od 35. Wyższe rangi mają progi 30–48 zależnie od frakcji oraz osobne cele i wymagane odsłony.
+- Po Barierze od 10: własny portal Jarkendaru po odprawie i drugiej randze; kontrakty NK od 25, Feomathar od 35. Wyższe rangi mają progi 30–48 zależnie od frakcji oraz osobne cele i wymagane odsłony.
 - Po finale NK od 45: cztery regionalne ścieżki i tygodniowy cel wspólnoty. Szczegóły poniżej.
 
 Bossowie mają jawny `balance_version=1`, stałe bazowe statystyki oraz zapis kosztu energii, cooldownu i statystyk przeciwnika przy walce. Nagrody rzeczywiście wypłacone są zapisane w historii; wydarzenia mogą je modyfikować według zwykłych zasad kalendarza. Feomathar: 2400 życia, 120 ataku, 75 ochrony, 30 energii, 60 minut przerwy, bazowo 5000 PD i 750 rudy. Wyposażenie gracza nie podnosi jego bazowych statystyk.

@@ -1,6 +1,6 @@
 # Bilans gospodarki (#12)
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 ## Fakty i źródła
 
@@ -91,10 +91,12 @@ Budżetowa symulacja v 1 powyżej opisuje dawne założenia, nie dzisiejsze sesj
 
 ## Bieżący wspólny świat i ograniczone dodatki
 
-Przed Barierą rynki i przepływy dwóch serwerów są oddzielone. Po niej wspólny rynek/ranking nie kopiuje sald ani przedmiotów. Sukcesja dzieli skarbce według członków i zachowuje sumę majątku; depozyt Bractwa przechodzi do wybranych wspólnot. Wpłata nie jest zniszczeniem rudy. [Reguły podziału](CAMP_GUILDS.md).
+Przed Barierą rynki i przepływy dwóch serwerów są oddzielone. Po niej wspólny rynek/ranking nie kopiuje sald ani przedmiotów. Sukcesja dzieli skarbce według członków i zachowuje sumę majątku; skarbiec Bractwa przechodzi do Zakonu Mroku. Wpłata nie jest zniszczeniem rudy. [Reguły podziału](CAMP_GUILDS.md).
 
 Nowe ujścia obejmują opłacone awanse 5–8 (łącznie 5300–5705 rudy zależnie od gildii), kręgi/runy, sprzęt, kuźnię i wpisowe regionalnej warty 12–90 rudy. Cztery regionalne ścieżki mają wspólny limit 8 pełnych nagród na polski dzień; po nim nadal płaci się za postęp/punkty. Limit dotyczy nowego systemu, nie wszystkich źródeł świata. Cel tygodniowy daje 100 rudy/1000 PD/5 pyłu uczestnikowi raz, bez nowych odłamków.
 
 Regionalne okna wydarzeń dają do 3 faktycznie podwyższonych nagród, 300 dodatkowej rudy i 3000 PD dziennie, wspólnie dla krain, z regułą maksimum. Nie zwiększają odłamków. Zwykłe święta, stare warty i skup NPC zachowują własną emisję. [Wydarzenia](WORLD_UPDATES.md), [endgame](REGIONAL_ENDGAME.md).
 
 [Audyt 13 XI](reports/grywalnosc-wydania-2026-11-13.json) i [próba regionalnych bonusów](reports/wydarzenia-aktualizacje-2026-11-13.json) są krótkimi testami funkcji/obciążenia. Dziewięć wygrywających buildów i rosnący obrót nie dowodzą wielotygodniowego bilansu 250 botów. Bieżące mechaniki nie powinny być oceniane jako w pełni odwzorowane przez historyczny budżet v 1.
+
+Handel składnikami pomiędzy mieszkańcami przenosi rudę. Zakup u warsztatowego NPC usuwa ją z portfela, podobnie jak opłata wytworzenia. Pomiar świeżego Khorinis porównuje dostępność ofert i transakcje przed i po zmianie rezerw. [Raport rynku](reports/targ-khorinis-2026-11-20.json).

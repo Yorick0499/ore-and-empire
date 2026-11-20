@@ -1,6 +1,6 @@
 # Instrukcja Ore & Empire
 
-Stan: 13 XI 2026, po PR #141. [Indeks](INDEX.md) · [Katalog bieżących tabel](GAME_CONTENT.md) · [Instalacja](public/OPERATOR_GUIDE.md).
+Aktualny poradnik do gry. [Indeks](INDEX.md) · [Katalog bieżących tabel](GAME_CONTENT.md) · [Instalacja](public/OPERATOR_GUIDE.md).
 
 ## Konto i pierwszy wybór
 
@@ -30,7 +30,7 @@ Walka i zadania dają PD; awans przyznaje PN i zwiększa maksimum życia. U nauc
 - Łucznik/kusznik: zręczność, umiejętność łuku/kuszy i właściwa amunicja. Niektóre rodzime rangi wymagają również bazowej siły; wyższe rangi wojskowe dopuszczają siłę lub zręczność.
 - Mag: maksymalna mana, kupione kręgi, runa odpowiedniej szkoły albo zapas zwojów. Nie wydawaj wszystkich PN, gdy aktywny awans wymaga nauki.
 
-[Praktyczny poradnik buildów i dziewięć sprawdzonych dróg](BUILD_PLAYTHROUGHS.md). Siła, zręczność i mana wymagane przez przedmiot/rangę są bazowe: pierścień nie zastępuje treningu.
+[Praktyczny poradnik buildów i jedenaście sprawdzonych dróg](BUILD_PLAYTHROUGHS.md). Siła, zręczność i mana wymagane przez przedmiot/rangę są bazowe: pierścień nie zastępuje treningu.
 
 ## Wyposażenie i walka
 
@@ -38,13 +38,13 @@ Sześć slotów: broń, pancerz, amulet, dwa pierścienie i pas. Po zakupie zał
 
 Walki rozstrzygają się automatycznie. Umiejętność broni do 100% daje szansę krytyka, a typ obrażeń trafia we właściwą ochronę. Łuk/kusza zużywa jedną strzałę/bełt na całe starcie — to reguła adaptacji. Przeczytaj prognozę zdrowia i mechaniki bossa. Rany, energia, amunicja, mana i nagrody są rzeczywiste; ryzykowna walka nie jest obietnicą zwycięstwa.
 
-Runa jest wielokrotna, wymaga szkoły, kręgu i pełnej many rzutu. Zwój wymaga 1 many i jednej sztuki za rzut. Oddzielne dostępne egzemplarze tego samego typu tworzą zapas walki; dodatkowe wystawione/chronione rzeczy są pomijane. Po wyczerpaniu czaru postać walczy pięściami; przed kolejną walką możesz wyłączyć przygotowanie. [Magia, 14 czarów i sześć run Wody](MAGIC.md).
+Runa jest wielokrotna, wymaga szkoły, kręgu i pełnej many rzutu. Zwój wymaga 1 many i jednej sztuki za rzut. Oddzielne dostępne egzemplarze tego samego typu tworzą zapas walki; dodatkowe wystawione/chronione rzeczy są pomijane. Po wyczerpaniu czaru postać walczy pięściami; przed kolejną walką możesz wyłączyć przygotowanie. [Magia, kręgi i runy wypraw](MAGIC.md).
 
 Łup ma stałą rzadkość: Niewykończony → Mistrzowski → Nasycony magią → Runiczny → Pradawny. Kuźnia osobno podnosi przekucie do +3 za rudę i pył, z pewnym powodzeniem. Nie podnosi rzadkości. Zabezpiecz cenny sprzęt przed sprzedażą, rozbiórką i dostawą. [Wyposażenie](EQUIPMENT.md) · [Łupy i koszty kuźni](LOOT_AND_ENDGAME.md).
 
 ## Zarobek, targ i rzemiosło
 
-Zlecenia czasowe dają bezpieczny wybór proporcji rudy/PD/energii/czasu: 44 w Kolonii, 10 w Khorinis, według odwiedzanego regionu. Filtry nie ukrywają aktywnej pracy. Nagroda z premiami i treść zapisują się przy starcie; po terminie odbierz ją ręcznie. Sam odczyt nie wypłaca nagród ani nie rezerwuje premii regionalnej. [Zlecenia](ADVENTURES.md).
+Zlecenia czasowe dają bezpieczny wybór proporcji rudy/PD/energii/czasu: 44 w Kolonii, 19 w Khorinis, według odwiedzanego regionu. Filtry nie ukrywają aktywnej pracy. Nagroda z premiami i treść zapisują się przy starcie; po terminie odbierz ją ręcznie. Sam odczyt nie wypłaca nagród ani nie rezerwuje premii regionalnej. [Zlecenia](ADVENTURES.md).
 
 Kupiec ma wyszukiwanie, filtry dostępności i osobne strony. Broń kupujesz pojedynczo, zapasy/amunicję po 1–100 sztuk. NPC odkupuje dozwolone zapasy za połowę bazowej wartości. Targ handluje rzeczywistymi egzemplarzami ludzi i botów: cena obejmuje cały stos. Potwierdzasz widoczną cenę; jej zmiana odrzuca zakup. Po Barierze targ i ranking obejmują oba regiony. [Zasady rynku](MARKET_POLICY.md).
 
@@ -66,9 +66,9 @@ Zwycięstwo zleca bezpieczne połączenie: świeża kopia i próba odtworzenia, 
 
 ## Po Barierze: frakcje, Jarkendar i NK
 
-Jest jeden serwer, wspólny rynek/ranking i podróże między dwoma regionami. Dorobek, historia i pochodzenie pozostają. Bandyci przejmują wojskową drogę Starego Obozu; Ogień łączy się z klasztorem; Magowie Wody mają osobną wspólnotę; najemnicy Lee i Onara łączą się. Bractwo wybiera nową wspólnotę; Guru/Arcyguru tylko Ogień albo Wodę. Dalsze cztery rangi trzeba opłacić i zdobyć. [Sukcesja i skarbce](CAMP_GUILDS.md).
+Jest jeden serwer, wspólny rynek/ranking i podróże między dwoma regionami. Dorobek, historia i pochodzenie pozostają. Bandyci przejmują wojskową drogę Starego Obozu; Ogień łączy się z klasztorem; Magowie Wody mają osobną wspólnotę; najemnicy Lee i Onara łączą się. Dawne Bractwo przechodzi w Zakon Mroku. Guru i Arcyguru zachowują swoją szkołę run, a templariusze rozwijają drogę wojskową. Dalsze cztery rangi zdobywa się w próbach własnej frakcji. Odblokowują też dodatkowe lokacje, starcia i warty. [Sukcesja i skarbce](CAMP_GUILDS.md).
 
-Od poziomu 10 i po połączeniu odbierz „Drogę za portal”, by wejść do publicznego Jarkendaru. Nie potrzeba odłamków ani uprawnienia konta. Osiem przydziałów Jarkendaru i piętnaście NK prowadzi przez Kruka, cztery smoki, statek i rejs do Irdorath. Każda lokacja sprawdza własny poziom i wcześniejsze odebrane zadania. [Jarkendar](JARKENDAR.md) · [Cała wyprawa NK](GOTHIC_II_CONTENT.md).
+Najwcześniej 48 godzin po połączeniu, od poziomu 10 i drugiej rangi własnej gildii, przyjmij i odbierz „Drogę za portal”, by wejść do publicznego Jarkendaru. Nie potrzeba odłamków ani uprawnienia konta. Osiem przydziałów Jarkendaru i piętnaście NK prowadzi przez Kruka, cztery smoki, statek i rejs do Irdorath. Przy przyjmowaniu kontraktu na rejs do Irdorath potrzebujesz trzeciej rangi własnej gildii. Każda lokacja ma własny próg poziomu i odebranych zadań. [Jarkendar](JARKENDAR.md) · [Cała wyprawa NK](GOTHIC_II_CONTENT.md).
 
 ## Dalsza gra i wydarzenia
 

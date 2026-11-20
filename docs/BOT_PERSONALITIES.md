@@ -1,8 +1,8 @@
 # Osobowości, sesje i itemshop
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
-Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-26, schemat obserwacji 24. Dawne polityki 7–25 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
+Każdy bot ma osobowość niezależną od roli zawodowej. Przypisanie i przesunięcie godzin są stabilne, zapisane w bazie; restart ich nie losuje. Domyślna polityka to baseline-27, schemat obserwacji 24. Dawne polityki 7–26 oraz adapter ollama-1 zachowują odtwarzanie historycznych decyzji.
 
 | Osobowość | Sesje na dobę | Minimalny odstęp tur | Preferencja | Szansa zasilenia / blok | Kwota | Limit odłamków / dobę |
 |---|---:|---:|---|---:|---:|---:|

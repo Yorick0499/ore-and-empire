@@ -1,6 +1,6 @@
 # Rangi, próby awansów i przywileje
 
-Stan: 13 XI 2026. Podstawowy katalog rang ma wersję 2, dalsze awanse działają od 0051. To własna progresja MMORPG inspirowana Gothic, nie kopia oryginalnych skryptów rekrutacji. [Pełne tabele podstawowych rang z kodu](GAME_CONTENT.md#podstawowe-rangi).
+Stan po dodaniu przywilejów wart w migracji 0063. Podstawowy katalog rang ma wersję 2, dalsze awanse działają od 0051. To własna progresja MMORPG inspirowana Gothic, nie kopia oryginalnych skryptów rekrutacji. [Pełne tabele podstawowych rang z kodu](GAME_CONTENT.md#podstawowe-rangi).
 
 ## Przed połączeniem: cztery szczeble
 
@@ -20,11 +20,15 @@ Każda gałąź ma 4 zdobywane rangi (technicznie 0–3). Brak rangi nie jest sz
 
 Przyjmij próbę przed działaniami. Jedna próba naraz; porzucenie kasuje jej postęp. Odbiory wydobycia, wygrane walki i płatny trening zaliczają wyłącznie fakty po przyjęciu. Promocja ponownie sprawdza poprzednią rangę, gałąź, odebraną fabułę, poziom, bazowy atrybut, ukończenie celów i rudę. Zapłata i awans mają jedną transakcję. [Progi fabuły](CHARACTERS_AND_WORLDS.md).
 
+<a id="uprawnienia-awansow"></a>
+
 ## Co odblokowują awanse
 
 Każda ranga daje dostęp do opcjonalnych miejsc lub walk. Kolonia i Khorinis mają własne wyprawy dla rang 1–4. Archiwa Kolonii otwierają rodzimi arcymagowie i arcyguru, a podziemia klasztoru wymagają Arcymaga klasztoru. Weterani każdej gałęzi mają też wspólną wyprawę właściwą dla swojej krainy.
 
 Rangi 5–8 otwierają kolejno strażnicę Doliny, dziedziniec Jarkendaru i nocną kryptę, redutę pod wulkanem oraz zamkniętą salę Irdorath i obóz Czarnego Sztandaru. Wejście wymaga także wskazanej odsłony świata, a niektóre miejsca wymagają osobistego portalu, rejsu lub finału. Dziennik rang i mapa wskazują te warunki. [Katalog lokacji](GAME_CONTENT.md#lokacje).
+
+Druga ranga pozwala przyjąć nową odprawę do Jarkendaru, a trzecia przydział na rejs do Irdorath po spełnieniu warunków fabuły i czasu. Wcześniej przyjęte kontrakty zachowują dostęp. [Progi wszystkich wart](GAME_CONTENT.md#uprawnienia-do-wart).
 
 ## Po Barierze: sześć frakcji i osiem rang
 
@@ -60,4 +64,4 @@ Dla rang 5/6/7/8: urobek+4/5/6/7, ochrona+2/2/3/3. Osobista zniżka maksymalnie 
 
 `legacy_water_path` zachowuje dawną drogę Najemnik → Mag Wody i historyczne przywileje istniejących postaci, bez tworzenia piątej podstawowej rangi nowych graczy. Techniczne klucze są trwałe: `K2_PALADIN` oznacza dziś Sierżanta straży, nie rangę 7 Paladyna. Stare opłacone `alliance_rank=3/4` zachowują odpowiednio podstawową rangę 4/nową rangę 5 bez ponownego zakupu. Nowe postacie zdobywają awanse zwykłą drogą; stary formularz Związku jej nie omija.
 
-[Zgodność kopii](BACKUPS.md), [historyczny raport normalizacji](reports/rowne-rangi-2026-11-11.json), [osiem rang](reports/osiem-rang-2026-11-12.json), [dziewięć organicznych przejść](BUILD_PLAYTHROUGHS.md). Sam poprawny test SQLite nie potwierdza blokad — CI ma także PostgreSQL.
+[Zgodność kopii](BACKUPS.md), [historyczny raport normalizacji](reports/rowne-rangi-2026-11-11.json), [osiem rang](reports/osiem-rang-2026-11-12.json), [jedenaście organicznych przejść](BUILD_PLAYTHROUGHS.md). Sam poprawny test SQLite nie potwierdza blokad — CI ma także PostgreSQL.

@@ -1,6 +1,6 @@
 # Rejestr poprawek i scenariuszy regresji
 
-Stan bieżących testów: [audyt 13 XI](SOLO_PLAYTEST.md). Poniższe sekcje 6–9 XI są historią wykrytych błędów i nie opisują dzisiejszych limitów/wersji.
+Zgłoszenia i wyniki w porządku historycznym. [Scenariusze i aktualne polecenia](SOLO_PLAYTEST.md).
 
 ## 14 XI — rozpoczęcie globalnego Śniącego (#156)
 
@@ -98,3 +98,7 @@ CI ujawniło niestabilność krótkiej wspólnej sesji: dostępność oferty zal
 - Połączenie unieważnia cache regionów także przy rollbacku; tygodniowy temat orkowy używa polskiego poniedziałku, bez przeskoku w niedzielę.
 
 [Raport wydania](reports/grywalnosc-wydania-2026-11-13.json): wszystkie dziewięć dróg, rzeczywista Bariera, rangi, NK i endgame oraz pełny zielony CI. Źródła testów: `test_world_updates`, `test_adventure_variety`, `test_market_intelligence`, `test_build_readiness` i opt-in przejścia. Nie oznacza to braku wszystkich możliwych błędów ani stabilnej wielotygodniowej ekonomii.
+
+## 20 XI — handel w Khorinis
+
+Regresje sprawdzają wycenę po cenie jednostkowej, kupno tańszego składnika od gracza, zachowanie rezerwy przez sprzedawcę oraz podział partii bez zmiany właściciela reszty. W 10 symulacjach nie odnotowano ujemnych sald, wyjątków ani handlu przez Barierę. Dwa problemy zapisano osobno. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185) dotyczy zmarnowanej tury po zmianie realnego popytu. [#183](https://github.com/Yorick0499/ore-and-empire/issues/183) dotyczy ofert dezaktywowanych sprzedawców. [Pomiary](reports/targ-khorinis-2026-11-20.json).

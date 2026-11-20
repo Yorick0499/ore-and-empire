@@ -1,9 +1,8 @@
 from .barrier import region_ids
 """Observed prices, bounded budgets and disposal of unsold stock; no balance setters."""
 from datetime import timedelta
-from statistics import median
 from django.db import transaction
-from django.db.models import Sum,Count
+from django.db.models import Sum
 from django.utils import timezone
 from .models import MarketEvent,MarketTrade,OwnedItem
 from .game_logic import player_action,MAX_MARKET_PRICE
@@ -14,17 +13,6 @@ def record_market_event(profile,item,action,price=0,quantity=None,reason=''):
     from .market_intelligence import invalidate
     invalidate(profile.world_id)
     return MarketEvent.objects.create(created_at=timezone.now(),profile=profile,item=item,blueprint_id=item.blueprint_id,action=action,price=max(0,price or 0),quantity=quantity or item.quantity,reason=reason)
-
-
-def reference_price(blueprint,world_id):
-    rows=MarketTrade.objects.filter(blueprint=blueprint,seller__world_id__in=region_ids(world_id),quantity__gt=0).order_by('-created_at','-pk').values_list('price','quantity')[:20]
-    observed=median([price/quantity for price,quantity in rows]) if rows else blueprint.base_value
-    return max(1,round(max(blueprint.base_value*.6,min(blueprint.base_value*1.4,observed))))
-
-
-def listing_price(profile,item):
-    from .market_intelligence import state
-    return state(profile.world_id).quote(profile,item).price
 
 
 @player_action

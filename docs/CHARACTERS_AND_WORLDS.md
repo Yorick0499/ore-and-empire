@@ -1,6 +1,6 @@
 # Konto, postacie i połączenie światów
 
-Stan: 13 XI 2026, po #141. [Poradnik](GAME_GUIDE.md) · [Sukcesja](CAMP_GUILDS.md) · [Rangi](CAMPS.md).
+Bieżące zasady konta i postaci. [Poradnik](GAME_GUIDE.md) · [Sukcesja](CAMP_GUILDS.md) · [Rangi](CAMPS.md).
 
 ## Konto i pięć slotów
 
@@ -49,17 +49,17 @@ Uczestnik zwycięskiego obozu z faktycznym wkładem odbiera po połączeniu 500 
 
 ## Portal i dalszy świat
 
-Po połączeniu publiczny Jarkendar wymaga odebranego własnego zadania portalu od 10. Dalsza adaptowana kampania prowadzi do Kruka, smoków i Irdorath. Nie ma premium. Nazwane odsłony zapisują odkrycia społeczności bez rozdawania osobistego postępu i bez ponownego blokowania starych postaci. [Jarkendar](JARKENDAR.md), [NK](GOTHIC_II_CONTENT.md), [odsłony](WORLD_UPDATES.md).
+Po połączeniu publiczny Jarkendar wymaga odebrania własnego zadania portalu od poziomu 10 i drugiej rangi własnej gildii. Przyjęcie zadania jest możliwe po 48 godzinach od połączenia. Dalsza kampania prowadzi do Kruka, smoków i Irdorath. Nowy kontrakt na rejs wymaga trzeciej rangi. Wcześniej przyjęte kontrakty zachowują dostęp. Nie ma premium. Nazwane odsłony zapisują odkrycia społeczności bez rozdawania osobistego postępu i bez ponownego blokowania starych postaci. [Jarkendar](JARKENDAR.md), [NK](GOTHIC_II_CONTENT.md), [odsłony](WORLD_UPDATES.md).
 
 ## Narzędzia operatora i zgodność
 
 `/zarzadca/bariera/` pokazuje kwalifikację, HP/wkład, plan i 40 ostatnich zdarzeń, umożliwia pauzę/wznowienie. Nie nadaje zwycięstwa ani nie robi długiej kopii w HTTP. CLI i wymagania narzędzi bazy: [BACKUPS.md](BACKUPS.md).
 
-Starsze `prepare_convergence` służy do odczytowego planu/przygotowania historycznej kopii. Jego `ready` nie oznacza połączenia ani świeżej kopii aktywacji. Bieżące przejście używa `barrier_transition ID_WYSCIGU`; UUID przygotowania nie jest ID wyścigu. Migracje 0044–0054 zachowują zgodność starych zapisów; nie wymagają resetu. Istniejące połączone zapisy otrzymują sukcesję pod kontrolą workera/kopii, a nie przez ręczne przepisywanie kont.
+Starsze `prepare_convergence` służy do odczytowego planu/przygotowania historycznej kopii. Jego `ready` nie oznacza połączenia ani świeżej kopii aktywacji. Bieżące przejście używa `barrier_transition ID_WYSCIGU`; UUID przygotowania nie jest ID wyścigu. Migracje i procedura odtwarzania obsługują starsze zapisy; nie wymagają resetu. Istniejące połączone zapisy otrzymują sukcesję pod kontrolą workera/kopii, a nie przez ręczne przepisywanie kont.
 
 ## Weryfikacja
 
-[Audyt wydania](reports/grywalnosc-wydania-2026-11-13.json): prawdziwy Śniący 3 zdobytych od 0 kont, kopia/odtworzenie, pojedyncza aktywacja, NK i endgame. [Dziewięć dróg](BUILD_PLAYTHROUGHS.md) oddzielnie sprawdza rangi/buildy. PostgreSQL CI testuje rzeczywiste blokady; SQLite ich nie zastępuje.
+[Audyt wydania](reports/grywalnosc-wydania-2026-11-13.json): prawdziwy Śniący 3 zdobytych od 0 kont, kopia/odtworzenie, pojedyncza aktywacja, NK i endgame. [Jedenaście dróg](BUILD_PLAYTHROUGHS.md) oddzielnie sprawdza rangi/buildy. PostgreSQL CI testuje rzeczywiste blokady; SQLite ich nie zastępuje.
 
 
 ## Kronika postaci i odznaki

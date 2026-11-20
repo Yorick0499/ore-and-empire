@@ -1,14 +1,14 @@
 # Rynek z rzeczywistym popytem
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
-Polityka **baseline-26 / schemat 24** porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.
+Polityka **baseline-27 / schemat 24** porównuje potrzeby mieszkańców, podaż i substytuty NPC. Bot chroni założone i zabezpieczone rzeczy, najlepszy używalny sprzęt na slot (dwa pierścienie), jeden osiągalny przyszły egzemplarz danej kategorii, rezerwy mikstur oraz materiały fabuły, receptur i kuźni. Dotyczy to także kupców. Broń porównywana jest razem z siłą/zręcznością i mistrzostwem, pancerz i ozdoby według użytecznych statystyk.
 
-Popyt oznacza **potencjalną potrzebę**, nie złożone zamówienie człowieka. Uwzględnia poziom, obóz, wymagania, aktualne wyposażenie, brak zasobów, receptury i budżet z rezerwą 20 rudy. Śmieci bez realnej wartości użytkowej nie trafiają na targ tylko dlatego, że jest pusty. Równie dobry dostępny zamiennik NPC ogranicza cenę do 95% swojej ceny. Konkurencją są również podobne oferty, nie wyłącznie identyczne nazwy.
+Popyt oznacza **potencjalną potrzebę**, nie złożone zamówienie człowieka. Uwzględnia poziom, obóz, wymagania, aktualne wyposażenie, brak zasobów, receptury i budżet z rezerwą 20 rudy. Śmieci bez realnej wartości użytkowej nie trafiają na targ tylko dlatego, że jest pusty. Równie dobry dostępny zamiennik NPC ogranicza budżet do około 95% swojej ceny. W miksturach porównuje się łącznie zdrowie, energię i manę. Dla składnika dostępnego w warsztacie cena jest dodatkowo ograniczona do co najmniej jednej bryłki poniżej ceny warsztatowej za sztukę. Konkurencją są również podobne oferty, nie wyłącznie identyczne nazwy.
 
 Kotwica ceny to wartość bazowa × (1 + 0,18 × rzadkość + 0,08 × przekucie). Mediana transakcji tego wariantu z siedmiu dni jest ograniczona do 65–145% kotwicy; próba obejmuje do 2000 ostatnich transakcji i najwyżej 20 różnych kupujących. Wielokrotny obrót jednego kupującego daje jeden sygnał. Podaż obniża, potencjalne potrzeby i potwierdzone zakupy podnoszą cenę w ograniczonym zakresie. Brak nabywcy oznacza brak oferty. Wszystkie ceny dotyczą całego stosu.
 
-Najwyżej trzy ogłoszenia bota, bez powielania własnego wariantu i dokładania do nasyconego rynku. Przecena lub podwyżka następuje najwyżej raz na sześć godzin przy zmianie co najmniej 10% i dwóch sztuk rudy. Po dobie dochodzi presja przeceny, po trzech dobach lub zaniku popytu — wycofanie. Potrzebny sprzęt wraca do użytku, zbędny można sprzedać NPC. Stare oferty bez daty zachowują nieznaną datę i osobną pierwszą obserwację.
+Najwyżej trzy ogłoszenia bota, bez powielania własnego wariantu i dokładania do nasyconego rynku. Przecena lub podwyżka następuje najwyżej raz na sześć godzin gdy różnica wynosi co najmniej jedną bryłkę albo 10% bieżącej ceny, jeśli ten drugi próg jest wyższy. Po dobie dochodzi presja przeceny. Bot wycofuje ofertę po trzech dobach lub po sześciu godzinach od wystawienia, jeśli wycena nie znajduje nabywcy. Potrzebny sprzęt wraca do użytku, zbędny można sprzedać NPC. Stare oferty bez daty zachowują nieznaną datę i osobną pierwszą obserwację.
 
 Bot może sfinansować konkretną dostępną lepszą broń sprzedażą własnej zwykłej, nieprzekutej broni. Sprzedaż, zakup i założenie są jedną transakcją: niepowodzenie cofa całość. Rzadki i zabezpieczony sprzęt jest wykluczony z takiej likwidacji u NPC.
 
@@ -49,9 +49,15 @@ Zakup potwierdza cenę całej oferty widoczną w formularzu. Jeśli sprzedawca j
 
 Przed połączeniem oferty i potencjalny popyt są odizolowane między serwerami. Po nim oba regiony mają jeden rynek, z zachowaniem ID ofert, cen, dat, właścicieli i ledgerów; nie ma kopiowania majątku. Oferta NK nadal wymaga połączenia, portalu i odpowiedniej frakcji, jeśli określa to wzór. Dostęp do portalu kupujących jest odczytywany zbiorczo, bez osobnego zapytania na każdego nabywcę.
 
-Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalszą aktywność sprzedającego bez utraty jego własnej broni. [Bieżące dowody](reports/grywalnosc-wydania-2026-11-13.json). Krótka próba nie dowodzi wielotygodniowego bilansu ani popytu każdego człowieka.
+Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalszą aktywność sprzedającego bez utraty jego własnej broni. [Próby Khorinis](reports/targ-khorinis-2026-11-20.json). Krótka próba nie dowodzi wielotygodniowego bilansu ani popytu każdego człowieka.
 
 
-## Małe partie składników
+## Nadwyżki składników i mikstur
 
-Bot może wystawić jedną lub dwie sztuki z większego stosu, jeżeli kupiec ma taki faktyczny brak według receptury, budżetu i ceny zastępczej. Reszta zostaje w plecaku. Osobna partia powstaje w jednej transakcji z wpisem targowym i mieści się w limicie ofert oraz miejsc. Rezerwacje, ochrona towaru i izolacja regionów nadal obowiązują. Przejściowy brak popytu może zostawić nową ofertę dostępną przez pierwsze sześć godzin. Stare, nieopłacalne zapasy wracają do zwykłej wyprzedaży.
+Bot odkłada ilość składnika potrzebną do wybranej receptury, także jeśli zapas jest rozłożony na kilka stosów. Nadwyżkę może wystawić w całości lub jako partię jednej albo dwóch sztuk, zależnie od zakupu, na który jest popyt. Podział i wystawienie tworzą jedną transakcję. W swojej turze rzemieślniczej bot preferuje użyteczną ofertę tańszą od warsztatu i może wycofać własną brakującą partię. Sprzedawca zachowuje co najmniej jedną sztukę najlepszego zapasu danego typu mikstury. Boty kupują również pojedyncze mikstury na kolejną wyprawę.
+
+## Wyniki i obserwowane problemy
+
+W trzech porównaniach przy tych samych ziarnach liczba transakcji w Khorinis wzrosła z 10 do 14, a próbki godzinowe z ofertą z 20 do 43. Dziesięć niezależnych prób objęło pierwsze 12–36 godzin w świecie. Odrzucone wystawienia pojawiły się w pięciu próbach, w tym jednej w Khorinis. [Raport dziesięciu prób](reports/targ-khorinis-2026-11-20.json).
+
+Starsza migawka może zasugerować botu wystawienie, które zostanie odrzucone przez świeżą walidację. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185). Po dezaktywacji konta oferty mogą pozostać widoczne dla graczy, podczas gdy boty je pomijają. [#183](https://github.com/Yorick0499/ore-and-empire/issues/183).

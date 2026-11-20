@@ -1,6 +1,6 @@
 # Profil serwera, staging i operacje (#24)
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Domyślna gra lokalna pozostaje przy SQLite i `play.py`. Ten profil dotyczy **osobnej instalacji PostgreSQL**. Gotowy kod i staging nie oznaczają, że prywatny świat został opublikowany. Potrzebne są własna domena, prywatne sekrety i konfiguracja hosta. Nie ma realnych płatności. Kod tego samego wdrożenia obsługuje oba początki i etap NK po Barierze; dostęp wynika z postępu świata, nie z innego obrazu/serwera.
 

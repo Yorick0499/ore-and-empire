@@ -1,6 +1,6 @@
 # Buildy i drogi frakcyjne od nowej postaci
 
-Stan 13 XI 2026, po #141. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
+Macierz aktualnego CI obejmuje jedenaście startów. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
 
 Poprawka Wody #150: `new-water` przechodzi teraz całą drogę **bez kupowania zwojów**, z runą każdego kręgu i dalszą runą NK. Wynik: poziom 61, ranga 8, 90 walk magicznych; 4,82 wirtualnego dnia bez oczekiwania na globalną Barierę. Dawna macierz dopuszczała zwoje przeciw odpornościom — jej sukces nie oznaczał wygodnej gry samymi runami. [Parametry i ograniczenia](MAGIC.md), [nowy raport](reports/mag-wody-runy-2026-11-13.json).
 
@@ -9,16 +9,18 @@ Poprawka Wody #150: `new-water` przechodzi teraz całą drogę **bez kupowania z
 | Początek | Build i podstawowa droga | Wspólnota po Barierze |
 |---|---|---|
 | Stary Obóz | Wojownik: Kopacz → Cień → Strażnik → Magnat | Bandyci |
+| Stary Obóz | Wojownik dwuręczny: Kopacz → Cień → Strażnik → Magnat | Bandyci |
 | Stary Obóz | Ogień: Kopacz → Cień → Mag Ognia → Arcymag Ognia | Klasztor Magów Ognia |
 | Nowy Obóz | Łucznik: Kret → Szkodnik → Najemnik → Gwardzista Lee | Najemnicy |
 | Nowy Obóz | Woda: Kret → Szkodnik → Mag Wody → Arcymag Wody | Magowie Wody |
 | Khorinis | Wojownik: Rekrut → Strażnik → Sierżant → Dowódca | Miasto i dalszy Zakon |
 | Klasztor Khorinis | Ogień: Nowicjusz → Adept → Mag → Arcymag | Wspólny Klasztor |
 | Farma Onara | Łucznik: Pracownik → Zbrojny → Najemnik → Dowódca | Wspólni Najemnicy |
+| Farma Onara | Kusznik: Pracownik → Zbrojny → Najemnik → Dowódca | Wspólni Najemnicy |
 | Bractwo | Guru: Zbieracz → Nowicjusz → Guru → Arcyguru | Zakon Mroku, droga magiczna |
 | Bractwo | Wojownik: Zbieracz → Nowicjusz → Strażnik → Templariusz | Zakon Mroku, droga wojskowa |
 
-To dziewięć scenariuszy, a nie wszystkie kombinacje broni i wyborów. Ograniczenia Guru i pozostałe dozwolone wybory mają oddzielne testy macierzy. Przed Barierą są cztery szczeble; dalsze cztery wymagają połączenia i własnych opłaconych awansów. Historyczne pochodzenie pozostaje zapisane.
+Macierz obejmuje jedenaście wybranych konfiguracji. Guru i templariusz sprawdzają oddzielne ścieżki Zakonu Mroku. Przed Barierą są cztery szczeble; dalsze cztery wymagają połączenia i własnych opłaconych awansów. Historyczne pochodzenie pozostaje zapisane.
 
 ## Przygotowanie, które ma znaczenie
 
@@ -61,6 +63,6 @@ Próby łucznika od 0 do rangi 8, Irdorath i pierwszych regionalnych wart:
 
 Obie próby mieszczą punkty treningu w budżecie i w razie potrzeby sprzedają u NPC zbędne materiały z polowań. W Nowym Obozie ulepszenia pojawiły się m.in. na poziomach 4, 7 i 8, na Farmie Onara na 10, 24 i 27. Obaj kupili Smoczy łuk na poziomie 34. Większy łączny koszt startu w Kolonii pozostaje widoczny. Próby sprawdzają dostęp do dalszego etapu bez zmieniania progów łuków, czasu odnowy ani nagród świata.
 
-CI dzieli dziewięć organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. [Wyniki i ograniczenia](reports/buildy-frakcje-2026-11-12.json).
+CI dzieli jedenaście organicznych dróg na trzy niezależne grupy: broń, magia i Bractwo. Szybkie testy prognoz/izolacji oraz PostgreSQL pozostają osobno. [Historyczny raport dziewięciu dróg](reports/buildy-frakcje-2026-11-12.json) oraz [wyniki CI rozszerzonej macierzy](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785).
 
-Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich 400 regionalnych stopni. Regionalne wydarzenia #137 są wdrożone. Dłuższa gospodarka 250 botów i obserwacje ludzi pozostają dalszym rozwojem w #9. [Świeża powtórka wszystkich dziewięciu dróg i ograniczenia](reports/grywalnosc-wydania-2026-11-13.json).
+Automatyczne zwycięstwa dowodzą możliwości progresji, nie subiektywnej satysfakcji człowieka. Strategie znają cele, używają NPC i nie konkurują na rynku/PvP. Nie przechodzą wszystkich 400 regionalnych stopni. Regionalne wydarzenia #137 są wdrożone. Dłuższa gospodarka 250 botów i obserwacje ludzi pozostają dalszym rozwojem w #9. [Raport dziewięciu dróg z 13 XI i ograniczenia](reports/grywalnosc-wydania-2026-11-13.json).

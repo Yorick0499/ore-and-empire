@@ -1,6 +1,6 @@
 # Pierwsze kroki i droga do końca kampanii
 
-Stan: 13 XI 2026. [Pełna instrukcja](GAME_GUIDE.md) · [Instalacja obu regionów](COMPLETE_JOURNEY.md).
+Aktualna ścieżka startowa. [Pełna instrukcja](GAME_GUIDE.md) · [Instalacja obu regionów](COMPLETE_JOURNEY.md).
 
 ## Pierwsza sesja
 
@@ -32,4 +32,4 @@ Restart nie jest resetem. Nie kasuj bazy, by zacząć ponownie; utwórz kolejną
 
 ## Jak sprawdzamy przejście
 
-`simulate_builds` sprawdza dziewięć organicznych dróg do NK/rangi 8; `simulate_journey` osobno odgrywa prawdziwą walkę wspólnoty i aktywację. Testy formularzy, rynku i botów uzupełniają PostgreSQL oraz próby współbieżności. [Aktualne dowody i ograniczenia](SOLO_PLAYTEST.md). Wirtualnego oczekiwania nie traktujemy jako czasu człowieka ani gwarancji satysfakcji.
+`simulate_builds` sprawdza jedenaście organicznych dróg do NK/rangi 8; `simulate_journey` osobno odgrywa prawdziwą walkę wspólnoty i aktywację. Testy formularzy, rynku i botów uzupełniają PostgreSQL oraz próby współbieżności. [Aktualne dowody i ograniczenia](SOLO_PLAYTEST.md). Wirtualnego oczekiwania nie traktujemy jako czasu człowieka ani gwarancji satysfakcji.

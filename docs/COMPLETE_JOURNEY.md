@@ -1,6 +1,6 @@
 # Uruchomienie i pełna droga mieszkańca
 
-Stan: 14 XI 2026, po #151 z wyprawami na rozkaz #152, migracja 0055. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
+Aktualna ścieżka i polecenia testowe. Podstawowa droga od Kolonii przez faktyczny upadek Bariery do Irdorath i dalszych wart ma osobną próbę integracyjną. To grywalna adaptacja mieszkańca, nie odtworzenie wszystkich zadań i mechanik oryginalnego G2 NK.
 
 ## Uruchomienie lokalne
 
@@ -39,7 +39,7 @@ W porównaniu z panelem użyj tego samego polecenia z opcją `--operator energy`
 
 ## Stan pełnej drogi
 
-Grafiki aktywnych przedmiotów, lokacji, mobów i bossów są lokalne i walidowane. Pełna droga, dziewięć organicznych kombinacji buildów/frakcji, cztery dalsze awanse, regionalny endgame i wydarzenia #137 są wdrożone. [Roadmapa](ROADMAP.md) wskazuje pozostałe efekty NK, długą gospodarkę i ocenę przez ludzi.
+Grafiki aktywnych przedmiotów, lokacji, mobów i bossów są lokalne i walidowane. Pełna droga, jedenaście organicznych kombinacji buildów i frakcji, cztery dalsze awanse, regionalny endgame i wydarzenia #137 są wdrożone. [Roadmapa](ROADMAP.md) wskazuje pozostałe efekty NK, długą gospodarkę i ocenę przez ludzi.
 
 [Audyt 13 XI](reports/grywalnosc-wydania-2026-11-13.json): rzeczywista aktywacja trzech kont, NK i wejście w endgame w 17,00 wirtualnych dniach, poziom 58; osobno dziewięć dróg do rangi 8 i poziomów 59–63. Czas macierzy nie obejmuje oczekiwania społeczności na Barierę. Nie jest to pomiar czasu człowieka ani przejście wszystkich 400 stopni regionalnych. Portrety NPC i sceny questowe pozostają odłożone.
 
