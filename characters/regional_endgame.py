@@ -48,7 +48,14 @@ def enemy(depth,track):
     t=TRACKS[track];key=t.species[(depth-1)%len(t.species)]
     return {'nazwa':BESTIARY[key]['nazwa']+f' — warta {depth}','life':t.life+90*depth,'strength':t.attack+3*depth,'weapon_prot':t.armor+2*depth,'fire_prot':t.fire+depth,'magic_prot':t.magic+depth,'art_key':key,'regional_version':1}
 
-def fee(depth):return 10+2*min(depth,40)
+def fee(depth, profile=None):
+    base = 10 + 2 * min(depth, 40)
+    if profile is None:
+        return base
+    from .faction_advancement import current_tier
+    from .rank_benefits import regional_fee_discount
+
+    return base - regional_fee_discount(current_tier(profile))
 
 def rewarded_today(p,now=None):
     start=datetime.combine(polish_day(now),time.min,tzinfo=POLISH_TIME)

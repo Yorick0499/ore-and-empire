@@ -114,9 +114,16 @@ MECHANICS['jark_crypt']='Strażnik zapowiada silny atak co trzecią rundę. Przy
 from .gothic2_world import BOSS_ROWS as NK_BOSSES
 for key,name,level,life,strength,protection,xp,ore,region,portal,gate in NK_BOSSES:
     BOSSES[key]=Boss(key,name,level,life,strength,protection,xp,ore)
+
     from .gothic2_world import COMBAT_PROFILES
     MECHANICS[key]=COMBAT_PROFILES[key][3]+' Silny atak co trzecią rundę; pancerz lub osłona zmieniają się w późniejszych fazach. Stały balans przeglądarkowy.'
 
 for key, tier in EXPEDITION_WARDS.items():
     requirement = 'z wypraw po Barierze' if tier == 1 else 'z Jarkendaru'
     MECHANICS[key] += f' Osłona osłabia starsze zaklęcia i zwoje. Runy {requirement} przełamują osłonę.'
+
+from .rank_content import EXPEDITIONS as RANK_SITES
+BOSSES.update({site.key: Boss(site.key, site.boss[0], site.level, *site.boss[1:], cooldown_minutes=60)
+               for site in RANK_SITES if site.boss})
+MECHANICS.update({site.key: 'Co trzecią rundę przeciwnik wyprowadza silniejszy atak. Kolejna próba po godzinie.'
+                  for site in RANK_SITES if site.boss})

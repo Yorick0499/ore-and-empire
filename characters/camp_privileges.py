@@ -5,7 +5,10 @@ from .world_clock import polish_day
 from .game_logic import player_action
 
 def privileges(profile):
-    tier=profile.camp_tier
+    return rank_privileges(profile.camp_tier)
+
+
+def rank_privileges(tier):
     return {'tier':tier,'training':min(2,(tier+1)//2),'supply':tier,'defense':tier//2,
             'upgrade_limit':min(3,tier),'can_rally':tier>=1,'can_resupply':tier>=2,
             'energy':10+5*tier,'health':20+5*tier}

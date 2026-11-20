@@ -21,7 +21,7 @@ class WorldCatalogTests(SimpleTestCase):
         self.assertEqual(len(LOCATIONS), len(BY_KEY))
         self.assertTrue(set(BESTIARY) <= ASSET_PAGES.keys())
         for loc in LOCATIONS:
-            self.assertTrue(loc.wiki, loc.key)
+            self.assertTrue(loc.wiki or loc.key in ASSET_ALIASES, loc.key)
             if loc.route == "boss_page":
                 self.assertIn(loc.key, BOSSES)
                 self.assertEqual(loc.level, BOSSES[loc.key].level)
@@ -44,8 +44,10 @@ class WorldAccessTests(TestCase):
         self.client.force_login(self.user)
 
     def test_each_level_gate_blocks_get_post_and_allows_boundary(self):
+        from .rank_content import BY_LOCATION as rank_sites
+
         for loc in LOCATIONS:
-            if not loc.level or loc.min_tier or loc.post_barrier or loc.universe!="GOTHIC_I":
+            if not loc.level or loc.min_tier or loc.post_barrier or loc.universe!="GOTHIC_I" or loc.key in rank_sites:
                 continue
             with self.subTest(location=loc.key):
                 self.profile.camp = loc.camps[0] if loc.camps else "NONE"

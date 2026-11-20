@@ -20,6 +20,12 @@ Każda gałąź ma 4 zdobywane rangi (technicznie 0–3). Brak rangi nie jest sz
 
 Przyjmij próbę przed działaniami. Jedna próba naraz; porzucenie kasuje jej postęp. Odbiory wydobycia, wygrane walki i płatny trening zaliczają wyłącznie fakty po przyjęciu. Promocja ponownie sprawdza poprzednią rangę, gałąź, odebraną fabułę, poziom, bazowy atrybut, ukończenie celów i rudę. Zapłata i awans mają jedną transakcję. [Progi fabuły](CHARACTERS_AND_WORLDS.md).
 
+## Co odblokowują awanse
+
+Każda ranga daje dostęp do opcjonalnych miejsc lub walk. Kolonia i Khorinis mają własne wyprawy dla rang 1–4. Archiwa Kolonii otwierają rodzimi arcymagowie i arcyguru, a podziemia klasztoru wymagają Arcymaga klasztoru. Weterani każdej gałęzi mają też wspólną wyprawę właściwą dla swojej krainy.
+
+Rangi 5–8 otwierają kolejno strażnicę Doliny, dziedziniec Jarkendaru i nocną kryptę, redutę pod wulkanem oraz zamkniętą salę Irdorath i obóz Czarnego Sztandaru. Wejście wymaga także wskazanej odsłony świata, a niektóre miejsca wymagają osobistego portalu, rejsu lub finału. Dziennik rang i mapa wskazują te warunki. [Katalog lokacji](GAME_CONTENT.md#lokacje).
+
 ## Po Barierze: sześć frakcji i osiem rang
 
 | Frakcja | Odpowiedniki podstawowe 1–4 | Nowe 5–8 |

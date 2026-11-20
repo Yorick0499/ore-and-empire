@@ -46,7 +46,8 @@ class PublicJarkendarTests(TestCase):
         self.client.force_login(self.p.user)
         response=self.client.get(reverse("locations_page")+"?area=jarkendar")
         self.assertEqual(response.status_code,200)
-        self.assertEqual(len(response.context["cards"]),14)
+        self.assertEqual(len(response.context["cards"]), 15)
+        self.assertContains(response, "Zamknięty dziedziniec Budowniczych")
         self.assertTrue(all(c["location"].requires_portal or c["location"].key=="jark_portal" for c in response.context["cards"]))
     def test_barrier_level_and_region_are_enforced_on_services_and_urls(self):
         World.objects.filter(pk__in=[self.c.pk,self.i.pk]).update(union_key=None)

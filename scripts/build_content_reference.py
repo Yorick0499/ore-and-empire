@@ -28,6 +28,9 @@ def build():
     from characters.post_barrier import seed as seed_post_barrier
     seed_post_barrier()
     from characters.locations import LOCATIONS
+    from characters.expedition_ranks import DESTINATION_QUESTS, EXPEDITIONS as STORY_PERMITS
+    from characters.rank_content import BY_LOCATION as RANK_LOCATIONS
+    from characters.world_releases import RELEASES
     from characters.bestiary import BESTIARY
     from characters.bosses import BOSSES
     from characters.camp_progression import RANKS, BY_RANK, ATTRIBUTE_NAMES
@@ -59,10 +62,31 @@ def build():
               'Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i region; '
               'w przypadku walki serwer sprawdza także rzeczywistą populację terenu. '
               'Jarkendar i Irdorath korzystają z regionu podróży Khorinis, a nie osobnych serwerów.', '']
+    releases = {key: title for key, _, title, *_ in RELEASES}
+
+    def location_gates(location):
+        gates = [', '.join(location.camps)]
+        if location.min_tier:
+            gates.append(f'szczebel {location.min_tier}')
+        if location.post_barrier:
+            gates.append('po Barierze')
+        if location.requires_portal:
+            gates.append('portal')
+        gates.append(location.required_story)
+        expedition = RANK_LOCATIONS.get(location.key)
+        if expedition:
+            gates.append(' lub '.join(BY_RANK[key].name for key in expedition.guilds)
+                         if expedition.guilds else f'ranga {expedition.tier + 1} we własnej gildii')
+            if expedition.release:
+                gates.append(releases[expedition.release])
+        if location.key in DESTINATION_QUESTS:
+            _, tier = STORY_PERMITS[DESTINATION_QUESTS[location.key]]
+            gates.append(f'ranga {tier + 1} we własnej gildii lub wcześniej przyjęty kontrakt')
+        return ' · '.join(filter(None, gates)) or '—'
+
     table(lines, ['Klucz / miejsce', 'Region', 'Poziom', 'Bramki', 'Aktywność', 'Przeciwnicy'], (
         (f'{l.key} — {l.name}', l.universe, l.level,
-         '; '.join(filter(None, [', '.join(l.camps), f'szczebel {l.min_tier}' if l.min_tier else '',
-                                'po Barierze' if l.post_barrier else '', 'portal' if l.requires_portal else '', l.required_story])) or '—',
+         location_gates(l),
          l.route, ', '.join(BESTIARY[k]['nazwa'] for k in l.monsters)) for l in LOCATIONS))
     lines += ['## Przeciwnicy polowań', '', 'Poziom przeciwnika jest zaleceniem. Warianty populacji mogą współdzielić gatunek lub ilustrację. Ochrony i nagrody są balansem przeglądarkowym.', '']
     table(lines, ['Klucz / przeciwnik', 'Poziom', 'HP', 'Siła', 'Ochrona broni', 'Bazowe PD'], (
@@ -77,9 +101,7 @@ def build():
     lines += ['## Frakcje i osiem rang po Barierze', '']
     table(lines, ['Frakcja', 'Rangi 1–4', 'Nowe rangi 5–8'], ((label,' → '.join(RANK_NAMES[key][:4]),' → '.join(RANK_NAMES[key][4:])) for key,label in FACTIONS))
     from characters.faction_trials import RELEASE_BY_TIER
-    from characters.world_releases import RELEASES
     faction_names = dict(FACTIONS)
-    releases = {key: title for key, _, title, *_ in RELEASES}
     lines += ['[Sukcesja i skarbce](CAMP_GUILDS.md) · [zasady awansu](CAMPS.md).', '',
               '<a id="proby-frakcji"></a>', '### Zadania rang 5–8', '']
     table(lines, ['Frakcja', 'Ranga i próba', 'Odsłona', 'Poziom', 'Atrybut', 'Ruda', 'Cele'], (

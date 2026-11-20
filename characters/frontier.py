@@ -7,8 +7,9 @@ from django.utils import timezone
 from .models import FrontierProgress,FrontierRecord
 from .game_logic import player_action,simulate_combat,check_level_up
 from .world_clock import polish_day
+from .rank_benefits import PATROL_LIMITS, playable_patrol_depth
 
-MAX_DEPTH=100
+MAX_DEPTH = PATROL_LIMITS[-1]
 COOLDOWN=timedelta(minutes=5)
 
 
@@ -57,15 +58,17 @@ def patrol(profile,depth,key,track="legacy"):
     if track!="legacy" and (track not in TRACKS or not accessible(profile,track)):return False
     if type(depth)is not int or not 1<=depth<=MAX_DEPTH or not frontier_unlocked(profile):return False
     if profile.is_busy or profile.current_energy<20 or profile.current_health<10:return False
-    progress,_=FrontierProgress.objects.select_for_update().get_or_create(profile=profile)
-    now=timezone.now()
-    route_progress=progress
-    if track!="legacy":
+    progress = FrontierProgress.objects.select_for_update().filter(profile=profile).first()
+    now = timezone.now()
+    route_progress = progress
+    if track != "legacy":
         from .models import RegionalFrontierProgress
-        route_progress,_=RegionalFrontierProgress.objects.select_for_update().get_or_create(profile=profile,track=track)
-    charge=0 if track=="legacy" else fee(depth)
-    if profile.ore_balance<charge:return False
-    if depth>route_progress.unlocked or (progress.last_attempt_at and now<progress.last_attempt_at+COOLDOWN):return False
+        route_progress = RegionalFrontierProgress.objects.select_for_update().filter(profile=profile, track=track).first()
+    charge = 0 if track == "legacy" else fee(depth, profile)
+    if profile.ore_balance < charge or depth > playable_patrol_depth(profile, route_progress):
+        return False
+    if progress and progress.last_attempt_at and now < progress.last_attempt_at + COOLDOWN:
+        return False
     from .magic import combat_plan,apply_combat_magic
     from .equipment import consume_ammo
     plan=combat_plan(profile)
@@ -73,6 +76,10 @@ def patrol(profile,depth,key,track="legacy"):
     if not plan and not consume_ammo(profile):return False
     result=simulate_combat(profile,'frontier',monster=enemy(depth,track),magic_plan=plan)
     apply_combat_magic(profile,plan,result)
+    if progress is None:
+        progress = FrontierProgress.objects.create(profile=profile)
+    if route_progress is None:
+        route_progress = progress if track == "legacy" else RegionalFrontierProgress.objects.create(profile=profile, track=track)
     profile.current_health=result.remaining_health;profile.health_updated_at=now;profile.current_energy-=20
     loot=[];ore=experience=0
     rewarded=track=="legacy" or rewarded_today(profile,now)<DAILY_REWARDS

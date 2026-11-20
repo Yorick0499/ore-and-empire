@@ -45,8 +45,10 @@ class RuntimeLocationArtTests(SimpleTestCase):
         manifest=json.loads(MANIFEST_PATH.read_text())
         for loc in LOCATIONS:
             if loc.universe!='GOTHIC_II' and not loc.post_barrier:continue
-            self.assertEqual((manifest.get(loc.key) or manifest[ASSET_ALIASES[loc.key]])['game'],'GOTHIC_II_NK',loc.key)
-            if loc.key in BOSSES:self.assertEqual(manifest[loc.key+'_boss']['game'],'GOTHIC_II_NK',loc.key)
+            keys = [loc.key, loc.key + '_boss'] if loc.key in BOSSES else [loc.key]
+            for key in keys:
+                asset = manifest.get(key) or manifest[ASSET_ALIASES[key]]
+                self.assertEqual(asset['game'], 'GOTHIC_II_NK', key)
         from .locations import BY_KEY
         self.assertEqual(BY_KEY['g2nk_inubis'].wiki,'Krypta Inubisa')
     def test_exact_jarkendar_photo_is_not_marked_as_a_generic_placeholder(self):

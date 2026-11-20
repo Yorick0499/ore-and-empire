@@ -241,14 +241,23 @@ class EarnedBuildJourneys(TestCase):
         for track in TRACKS:
             self.assertTrue(travel(p,(World.objects.get(is_current=True) if track=='valley' else World.objects.get(universe='GOTHIC_II',is_open=True)).pk))
             steps['prepare']();steps['advance'](301,'timer');row=steps['do']('matrix_regional',lambda:patrol(p,1,uuid4(),track));self.assertTrue(row.won,(self.case,track,row.snapshot))
+        rank_bosses = []
+        for key in ('rank_irdorath_guard', 'rank_orc_standard'):
+            location = BY_KEY[key]
+            self.route(p, location)
+            self.assertTrue(location.accessible(p), key)
+            steps['prepare'](key)
+            result = steps['do']('matrix_rank_boss', lambda: game.execute_boss(p, key, uuid4()))
+            self.assertTrue(result and result.won, (self.case, key))
+            rank_bosses.append(key)
         self.assertEqual(p.battles.filter(won=False).count(),0)
         casts=p.battles.filter(combat_details__casts__gt=0).count()
-        from .magic import BY_KEY
+        from .magic import BY_KEY as SPELLS_BY_KEY
         from collections import Counter
         spell_usage=dict(Counter(p.battles.filter(combat_details__casts__gt=0).values_list('combat_details__magic',flat=True)))
         if self.strategy.rune_school:
             self.assertFalse(p.inventory.filter(blueprint__kind='scroll').exists())
-            self.assertTrue(all(BY_KEY[key].school==self.strategy.rune_school for key in spell_usage),spell_usage)
+            self.assertTrue(all(SPELLS_BY_KEY[key].school==self.strategy.rune_school for key in spell_usage),spell_usage)
             self.assertTrue(self.magic_purchases)
             self.assertGreater(casts,20)
         if self.strategy.ammo_type or self.build == 'twohand':
@@ -257,7 +266,7 @@ class EarnedBuildJourneys(TestCase):
             self.assertGreaterEqual(len(self.strategy.weapon_upgrades), 3)
         if self.strategy.ammo_type:
             self.assertGreater(self.ammo_battles, 20)
-        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.weapon_upgrades if self.strategy.ammo_type == 'arrow' else [],'arrow_battles':self.ammo_battles if self.strategy.ammo_type == 'arrow' else 0,'weapon_upgrades':self.strategy.weapon_upgrades,'ammo_type':self.strategy.ammo_type,'ammo_battles':self.ammo_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'trial_bosses':self.trial_bosses,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
+        record_scenario('earned-build-faction-journey',{'case':self.case,'build':self.build,'start_universe':self.universe,'native_camp':self.camp,'faction':self.destination,'rank_ordinal':8,'level':p.level,'strength':p.strength,'dexterity':p.dexterity,'mana':p.mana,'magic_circle':p.magic_skill,'magical_battles':casts,'spell_usage':spell_usage,'water_runes_only':self.case=='new-water','rune_school':self.strategy.rune_school,'bow_upgrades':self.strategy.weapon_upgrades if self.strategy.ammo_type == 'arrow' else [],'arrow_battles':self.ammo_battles if self.strategy.ammo_type == 'arrow' else 0,'weapon_upgrades':self.strategy.weapon_upgrades,'ammo_type':self.strategy.ammo_type,'ammo_battles':self.ammo_battles,'magic_purchases':self.magic_purchases,'ore':p.ore_balance,'world_days':round((steps['now']()-steps['start']).total_seconds()/86400,2),'checkpoints':self.checkpoints,'trial_bosses':self.trial_bosses,'rank_bosses':rank_bosses,'earned_personal_progression':True,'external_global_barrier_event':True,'limits':['Ordinary earned character; global community victory is an external fixture.','Knowledgeable strategy and virtual recovery, no competing player market or PvP.','First regional depths, not all400 or a long-lived economy.']})
 
 for _key in CASES:
     def _test(self,key=_key):self.run_case(key)

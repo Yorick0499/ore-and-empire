@@ -84,7 +84,7 @@ Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.
 
 ## Warty za Przełęczą
 
-Adres `/warty/`, także w menu Droga postaci. Warunek: **poziom 30 i przynależność do obozu**. Ukończenie fabuły nie jest wymagane. Początkowo otwarta jest warta 1. Zwycięstwo odblokowuje następną, do **100**, a poprzednie można powtarzać. Nie ma zamknięcia serwera po wygraniu najwyższej trudności.
+Adres `/warty/`, także w menu Droga postaci. Warunek: **poziom 30 i przynależność do obozu**. Ukończenie fabuły nie jest wymagane. Początkowo otwarta jest warta 1. Zwycięstwo odblokowuje następną wartę w granicach uprawnień. Bez rangi dostępne są stopnie 1–2, a rangi 1–8 zwiększają limit do **4, 8, 14, 20, 25, 30, 35 i 100**. Poprzednie warty można powtarzać. Starsze postacie zachowują już otwarte stopnie osobno na każdym szlaku. Nie ma zamknięcia serwera po wygraniu najwyższej trudności.
 
 Dla stopnia `d` strażnik ma `600 + 60d` życia, `55 + 3d` siły, `25 + 2d` ochrony przed bronią i `10 + d` ochrony przed ogniem/magią. Nie skaluje się automatycznie do siły postaci: nowy oręż, ulepszenia, nauka i ochrona faktycznie ułatwiają walkę. Działa ten sam silnik, obrażenia, magia, amunicja i regeneracja co w polowaniu.
 
