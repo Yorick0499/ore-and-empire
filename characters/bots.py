@@ -42,7 +42,6 @@ class Observation:
     needs_ore: bool = False
     training: str = "strength"
     training_needed: bool = False
-    training_count: int = 1
     quest_mine: bool = False
     quest_hunt: bool = False
     boss_key: str | None = None
@@ -100,6 +99,7 @@ class Observation:
     trial_action: str = ""
     trial_target: int | None = None
     armor_id: int | None = None
+    crowded_inventory: bool = False
 
 
 class Policy(Protocol):
@@ -342,9 +342,17 @@ class BaselinePolicyV26(BaselinePolicyV25):
 class BaselinePolicyV27(BaselinePolicyV26):
     def choose(self, o):
         safe = not (o.busy or o.adventure_ready or o.reward_ready or o.consume_id or o.product_urgent)
+        if (safe and o.raid_action in {'sleeper_rally', 'sleeper_strike', 'sleeper_claim'}
+                and (o.raid_action != 'sleeper_strike' or not o.ammo_blocked)):
+            return o.raid_action, o.raid_target
         if safe and o.health >= 10:
             if o.rank_action and o.rank_target:
                 return o.rank_action, o.rank_target
+            if o.crowded_inventory:
+                if o.disposal_id:
+                    return 'sell', o.disposal_id
+                if o.market_action in {'market_cancel', 'market_sell'}:
+                    return o.market_action, o.market_target
             if o.trial_action:
                 return o.trial_action, o.trial_target
             if o.advanced_trial and o.magic_action:
@@ -498,6 +506,14 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                    key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped and combat_equipment else None
     if len(inventory) >= 5:
         disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc','ammo'} and i.blueprint.tradeable and not i.is_protected), disposal)
+    crowded_inventory = len(inventory) >= 11
+    if crowded_inventory:
+        from .magic import spare_rune
+        obsolete_rune = spare_rune(inventory, spare, retained)
+        obsolete_gear = next((candidate for candidate in spare
+                              if candidate.pk not in retained and candidate.blueprint.equippable
+                              and candidate.blueprint.tradeable and not candidate.is_protected), None)
+        disposal = obsolete_rune or obsolete_gear or disposal
     armor = None
     if (equipped and len(inventory) < 12 and profile.level >= 3 and profile.ore_balance >= 75
             and not any(i.blueprint.kind == 'armor' and (i.is_equipped or usable(profile, i.blueprint))
@@ -764,11 +780,6 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     financed=finance_plan(profile,inventory,[bp for bp in market.merchants if bp.weapon_type in weapon_types]) if not upgrade and not equipment else None
     from .camp_privileges import resupply_available
     from .story_gates import missing as story_missing
-    training_count = 1
-    if training_needed and not (story_training or trial_training):
-        cost = 10 - profile.camp_perks['training_level']
-        headroom = 100 - getattr(profile, training) if training in game.WEAPON_SKILLS else 3
-        training_count = max(1, min(3, profile.skill_points, headroom, profile.ore_balance // max(1, cost)))
     obs = Observation(
         resupply_ready=profile.ore_balance>=30 and (profile.current_energy<30 or profile.current_health<profile.max_health//2) and resupply_available(profile),
         membership_ready=not story_missing(profile),
@@ -786,8 +797,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_target=camp_target, rank_target=next(i for i, candidate in enumerate(RANKS, 1) if candidate.key == rank.key) if rank else None,
         rank_action=rank_action, needs_ore=needs_ore, training=training,
         trial_action=trial_action, trial_target=trial_target, armor_id=armor.pk if armor else None,
+        crowded_inventory=crowded_inventory,
         advanced_trial=bool(quest and rank and rank.key.startswith('ADV_')),
-        training_needed=training_needed, training_count=training_count, quest_mine=quest_mine,
+        training_needed=training_needed, quest_mine=quest_mine,
         quest_hunt=bool(hunt and hunt[0]), boss_key=boss_key, hunt_key=hunt[2] if hunt else None, hunt_location=hunt[3] if hunt else None,
         adventure_id=run.pk if run else None, adventure_ready=bool(run and timezone.now() >= run.ends_at),
         template_id=template.pk if template else None, product_id=product.pk if product else None,
@@ -888,7 +900,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         elif action == "sell" and disposal and target == disposal.pk:
             success = game.sell_item_from_npc(profile, disposal)
         elif action == "train" and obs.training_needed:
-            success = game.train_attribute(profile, training, obs.training_count)
+            success = game.train_attribute(profile, training)
         elif action == "hunt" and hunt and target is None:
             success = game.execute_hunt(profile, hunt[2], hunt[3]) is not False
         elif action == "boss" and boss_key and target is None:

@@ -93,7 +93,18 @@ class RankedBotProgressTests(TestCase):
         self.assertEqual(tick_bot(p, policy=TrainPolicy(), force_active=True), ('train', True))
         p.refresh_from_db()
         self.assertEqual(seen, ['onehand_skill'])
-        self.assertEqual(p.onehand_skill, 3)
+        self.assertEqual(p.onehand_skill, 1)
+
+    def test_spare_runes_preserve_the_cheap_strong_and_prepared_options(self):
+        from .magic import spare_rune
+
+        p = self.resident(self.colony, 'rune-owner')
+        codes = ('g1-itarrunewindfist', 'oe-brotherhood-g1-marshpulse-rune',
+                 'oe-brotherhood-g1-marshsilence-rune')
+        runes = [OwnedItem.objects.create(owner=p, blueprint=ItemBluePrint.objects.get(catalog_key=key))
+                 for key in codes]
+        self.assertEqual(spare_rune(runes, runes, set()), runes[1])
+        self.assertIsNone(spare_rune(runes, runes, {runes[1].pk}))
 
     def test_unarmed_island_adventurer_buys_ranged_weapon_and_ammo(self):
         p = self.resident(self.island, 'ranged-starter', ore_balance=100, bot_turn=2,
