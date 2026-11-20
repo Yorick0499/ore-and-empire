@@ -762,7 +762,15 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .crafting import bot_craft_plan
     craft_action,craft_target=bot_craft_plan(profile)
     from .market_policy import bot_market_plan
-    market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'},inventory=inventory,market=market)
+    market_action,market_target,market_price=bot_market_plan(
+        profile, set(story.item_ids)|reserved_materials|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'},
+        inventory=inventory, market=market,
+        craft_material_id=craft_target if craft_action == 'craft_material' else None,
+    )
+    if craft_action == 'craft_material' and market_action == 'market_buy':
+        craft_offer = next(item for item in market.listings if item.pk == market_target)
+        if craft_offer.blueprint_id == craft_target:
+            craft_action, craft_target = market_action, market_target
     forge_action='';forge_target=None;forge_level=0;patrol_depth=None;patrol_track='legacy'
     if not profile.is_busy:
         from .enhancements import upgrade_cost

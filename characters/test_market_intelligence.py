@@ -147,6 +147,74 @@ class IntelligentMarketTests(TestCase):
         add_item(self.b, ring)
         self.assertEqual(MarketState(self.s.world_id).need(self.b, offered), 0)
 
+    def test_khorinis_bot_sells_one_spare_restorative_to_player_through_market(self):
+        from django.urls import reverse
+        from .models import World
+
+        world = World.objects.create(name='Targ w Khorinis', universe='GOTHIC_II',
+                                     edition=2, is_open=True, configured=True)
+        self.item.delete()
+        colony = self.b.world
+        for profile in (self.s, self.b):
+            profile.world = world
+            profile.save(update_fields=['world'])
+        potion = ItemBluePrint.objects.create(name='Wywar z Khorinis', kind='consumable',
+                                               source_game='GOTHIC_II', stackable=True,
+                                               heal_amount=20, merchant=False, base_value=8)
+        stack = add_item(self.s, potion, 4, origin='loot')
+        self.assertEqual(MarketState(world.pk).need(self.b, stack), 1)
+        self.assertFalse(list_bot_surplus(self.s, stack, reserved={potion.pk}))
+        self.assertTrue(list_bot_surplus(self.s, stack))
+        offer = self.s.inventory.get(blueprint=potion, is_market_listed=True)
+        self.assertEqual(offer.quantity, 1)
+        price = offer.market_price
+        stack.refresh_from_db()
+        self.assertEqual(stack.quantity, 3)
+        self.client.force_login(self.b.user)
+        market = reverse('market_page')
+        self.assertContains(self.client.get(market), potion.name)
+        payload = {'action': 'buy', 'buy_item_id': offer.pk, 'expected_price': price}
+        outsider = User.objects.create_user('outsider-market').playerprofile
+        outsider.world = colony
+        outsider.ore_balance = 500
+        outsider.save(update_fields=['world', 'ore_balance'])
+        self.assertFalse(game.buy_item_on_market(outsider, offer, price))
+        self.assertEqual(self.client.post(market, payload).status_code, 302)
+        self.assertEqual(self.client.post(market, payload).status_code, 302)
+        offer.refresh_from_db()
+        self.s.refresh_from_db()
+        self.b.refresh_from_db()
+        self.assertEqual((offer.owner_id, self.s.ore_balance, self.b.ore_balance),
+                         (self.b.pk, 500 + price, 500 - price))
+        self.assertEqual(MarketTrade.objects.filter(blueprint=potion).count(), 1)
+        self.assertEqual(MarketState(world.pk).need(self.b, stack), 0)
+
+    def test_player_restorative_offer_respects_mana_and_health_when_matching_npc(self):
+        tonic = ItemBluePrint.objects.create(name='Wywar na zdrowie i manę', kind='consumable',
+                                             merchant=False, base_value=30, heal_amount=10,
+                                             original_stats={'browser_restore': {'mana': 15}})
+        ItemBluePrint.objects.create(name='Prosty wywar', kind='consumable',
+                                     merchant=True, base_value=4, heal_amount=10)
+        complete = ItemBluePrint.objects.create(name='Wywar mistrza', kind='consumable',
+                                                merchant=True, base_value=24, heal_amount=10,
+                                                original_stats={'browser_restore': {'mana': 20}})
+        self.b.magic_skill = 5
+        self.b.is_bot = True
+        self.b.save(update_fields=['magic_skill', 'is_bot'])
+        self.s.is_bot = False
+        self.s.save(update_fields=['is_bot'])
+        self.client.force_login(self.s.user)
+        from django.urls import reverse
+        offered = add_item(self.s, tonic, origin='loot')
+        self.assertEqual(self.client.post(reverse('market_page'), {
+            'action': 'list', 'sell_item_id': offered.pk, 'item_price': 18,
+        }).status_code, 302)
+        offered.refresh_from_db()
+        self.assertEqual(MarketState(self.s.world_id).ceiling(self.b, offered), complete.base_value)
+        self.assertEqual(bot_market_plan(self.b), ('market_buy', offered.pk, 18))
+        self.assertTrue(game.buy_item_on_market(self.b, offered, 18))
+        self.assertEqual(bot_market_plan(self.b), ('', None, 0))
+
     def test_player_bargain_is_judged_against_buyers_npc_alternative(self):
         costly = ItemBluePrint.objects.create(name='Pierścień z łupu', kind='ring',
                                               strength_bonus=3, merchant=False, base_value=100)
@@ -184,6 +252,34 @@ class IntelligentMarketTests(TestCase):
         self.assertTrue(craft_item(self.b, recipe.pk, uuid4()))
         fresh = add_item(self.s, material, origin='loot')
         self.assertFalse(MarketState(self.s.world_id).need(self.b, fresh))
+
+    def test_bot_buys_cheaper_ingredient_from_player_on_a_crafting_turn(self):
+        from .bots import tick_bot
+        from .models import CraftRecipe
+
+        material = ItemBluePrint.objects.create(name='Zioła z targu', kind='material', stackable=True,
+                                                merchant=False, base_value=8)
+        potion = ItemBluePrint.objects.create(name='Mikstura z ziół', kind='consumable', heal_amount=30)
+        CraftRecipe.objects.create(
+            key='workshop-market', name=potion.name, discipline='alchemy', level=0, skill=1,
+            fee=5, ingredients=[{'blueprint': material.pk, 'count': 2}], output=potion,
+        )
+        self.s.is_bot = False
+        self.s.save(update_fields=['is_bot'])
+        self.b.is_bot = True
+        self.b.bot_turn = 23
+        self.b.alchemy_skill = 1
+        self.b.save(update_fields=['is_bot', 'bot_turn', 'alchemy_skill'])
+        offered = add_item(self.s, material, 2)
+        self.assertTrue(game.list_item_on_market(self.s, offered, 16))
+        self.assertFalse(MarketState(self.s.world_id).can_buy(self.b, offered))
+        from .market_policy import reprice_listing
+        self.assertTrue(reprice_listing(self.s, offered, 14, 16))
+        self.assertEqual(tick_bot(self.b, force_active=True), ('market_buy', True))
+        trade = MarketTrade.objects.get(blueprint=material)
+        self.assertEqual((trade.seller_id, trade.buyer_id, trade.quantity, trade.price),
+                         (self.s.pk, self.b.pk, 2, 14))
+        self.assertEqual(self.b.inventory.get(blueprint=material).quantity, 2)
 
     def test_bot_can_list_a_real_recipe_shortfall_from_a_surplus_stack(self):
         from .models import CraftRecipe

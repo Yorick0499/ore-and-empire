@@ -41,10 +41,16 @@ def observe_legacy_listing(profile,item):
     return True
 
 
-def bot_market_plan(profile,reserved=(),inventory=None,market=None):
+def bot_market_plan(profile,reserved=(),inventory=None,market=None,*,craft_material_id=None):
     from .market_intelligence import state,retention
     now=timezone.now();inventory=inventory if inventory is not None else bot_inventory(profile)
     market=market or state(profile.world_id);keep=retention(profile,inventory,reserved)
+    if craft_material_id and len(inventory) < 12:
+        offers = [item for item in market.listings
+                  if item.blueprint_id == craft_material_id and market.can_buy(profile, item)]
+        if offers:
+            best = min(offers, key=lambda item: (item.market_price / item.quantity, item.pk))
+            return 'market_buy', best.pk, best.market_price
     for item in inventory:
         if not item.is_market_listed:continue
         if item.pk in keep:return 'market_cancel',item.pk,0
@@ -60,7 +66,7 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
             continue
         price=quote.price
         if start<=now-timedelta(days=1):price=max(item.blueprint.base_value*item.quantity//2+1,min(price,item.market_price*85//100))
-        if abs(price-item.market_price)>=max(2,item.market_price//10) and not MarketEvent.objects.filter(item=item,action='repricing',created_at__gte=now-timedelta(hours=6)).exists():return 'market_reprice',item.pk,price
+        if abs(price-item.market_price)>=max(1,item.market_price//10) and not MarketEvent.objects.filter(item=item,action='repricing',created_at__gte=now-timedelta(hours=6)).exists():return 'market_reprice',item.pk,price
     cancelled=MarketEvent.objects.filter(profile=profile,action='cancellation',reason='stale',item__isnull=False,item__is_market_listed=False,item__is_equipped=False,item__is_protected=False).exclude(blueprint_id__in=reserved).select_related('item__blueprint').first()
     if cancelled and cancelled.item.owner_id==profile.pk and cancelled.item_id not in keep and cancelled.item.blueprint.tradeable:return 'market_sell',cancelled.item_id,0
     if len(inventory)>=12:return '',None,0
@@ -74,13 +80,14 @@ def bot_market_plan(profile,reserved=(),inventory=None,market=None):
 
 @player_action
 def list_bot_surplus(profile,item,reserved=()):
-    from .market_intelligence import state,sale_candidate,sale_lot
+    from .market_intelligence import state, sale_offer
     inventory = bot_inventory(profile)
     market = state(profile.world_id, fresh=True)
-    candidate=sale_candidate(profile,inventory,reserved,market)
-    if not candidate or candidate.pk!=item.pk:return False
+    offer = sale_offer(profile, inventory, reserved, market)
+    if not offer or offer[0].pk != item.pk:
+        return False
+    candidate, quantity, quote = offer
     from .game_logic import list_item_on_market
-    quantity, quote = sale_lot(market, profile, candidate, allow_split=len(inventory) < 12)
     if quantity == candidate.quantity:
         return list_item_on_market(profile, candidate, quote.price)
     with transaction.atomic():

@@ -24,6 +24,18 @@ def score(p,item):
     return s['weapon_prot']*3+s['arrow_prot']+s['fire_prot']+2*s['magic_prot']+s['life_bonus']//2+s['mana_bonus']*(2 if magic else 0)+s['strength_bonus']*(1 if magic else 3)+s['dexterity_bonus']*(3 if p.dexterity>p.strength else 0)
 def fists(p):return p.strength*(100+p.onehand_skill)//100
 
+def restorative_reserves(profile, items):
+    from .consumables import potential
+    choices = [(item, potential(profile, item.blueprint)) for item in items
+               if item.blueprint.kind == 'consumable' and not item.is_market_listed]
+    reserves = set()
+    for resource in range(3):
+        best = max(choices, key=lambda choice: (choice[1][resource], -choice[0].pk), default=None)
+        if best and best[1][resource] > 0:
+            reserves.add(best[0].pk)
+    return reserves
+
+
 def retention(p,items,reserved=()):
     keep={i.pk for i in items if i.is_equipped or i.is_protected or i.pk==p.prepared_magic_id or i.blueprint_id in reserved or not i.blueprint.tradeable or i.blueprint.catalog_key=='rune-dust'}
     for kind,slots in [('weapon',1),('armor',1),('amulet',1),('belt',1),('ring',2)]:
@@ -32,10 +44,7 @@ def retention(p,items,reserved=()):
         best=score(p,choices[0]) if choices else 0
         future=[i for i in items if i.blueprint.kind==kind and not usable(p,i.blueprint) and i.blueprint.min_level<=p.level+2 and equipment_camp_allowed(p,i.blueprint.required_camp) and i.blueprint.min_camp_tier<=p.camp_tier+1 and i.blueprint.required_strength<=p.strength+10 and i.blueprint.required_dexterity<=p.dexterity+10 and score(p,i)>best]
         if future:keep.add(max(future,key=lambda i:(score(p,i),-i.pk)).pk)
-    from .consumables import potential
-    for resource in range(3):
-        choices=[i for i in items if i.blueprint.kind=='consumable' and not i.is_market_listed and potential(p,i.blueprint)[resource]>0]
-        if choices:keep.add(max(choices,key=lambda i:(potential(p,i.blueprint)[resource],-i.pk)).pk)
+    keep.update(restorative_reserves(p, items))
     return keep
 
 @dataclass(frozen=True)
@@ -92,8 +101,19 @@ class MarketState:
             return int(self.value(p,i)-current>=max(5,current//20))
         if b.kind=='consumable':
             from .consumables import potential
-            amounts=potential(p,b);low=(p.current_health<p.max_health*3//4,p.current_energy<30,bool(p.magic_skill or p.prepared_magic_id) and p.current_mana<p.max_mana*3//4)
-            return max((max(0,2-sum(x.quantity for x in held if x.blueprint.kind=='consumable' and potential(p,x.blueprint)[resource]>0)) for resource in range(3) if amounts[resource] and low[resource]),default=0)
+            amounts = potential(p, b)
+            magic = bool(p.magic_skill or p.prepared_magic_id)
+            targets = (1 + (p.current_health < p.max_health * 3 // 4),
+                       1 + (p.current_energy < 30),
+                       int(magic) + (magic and p.current_mana < p.max_mana * 3 // 4))
+            stocked = [0, 0, 0]
+            for owned in held:
+                if owned.blueprint.kind == 'consumable':
+                    for resource, amount in enumerate(potential(p, owned.blueprint)):
+                        if amount > 0:
+                            stocked[resource] += owned.quantity
+            return max((max(0, targets[r] - stocked[r]) for r, amount in enumerate(amounts) if amount > 0),
+                       default=0)
         if b.kind=='ammo':
             weapon=next((x for x in held if x.is_equipped and x.equipped_slot=='weapon'),None)
             kind='arrow' if weapon and weapon.blueprint.weapon_type=='bow' else 'bolt' if weapon and weapon.blueprint.weapon_type=='crossbow' else None
@@ -110,11 +130,19 @@ class MarketState:
     def ceiling(self,p,i):
         b=i.blueprint;key=(p.pk,b.pk,i.rarity,i.upgrade_level)
         if key not in self._ceil:
-            prices=[]
+            from .consumables import potential
+            offered = potential(p, b) if b.kind == 'consumable' else ()
+            # Recipe ingredients can be bought from the workshop even when the
+            # item is absent from the ordinary merchant's catalogue.
+            prices = [b.base_value] if b.tradeable and b.base_value > 0 and b.pk in self.recipe_inputs else []
             for other in self.merchants:
                 if other.kind!=b.kind or not usable(p,other):continue
                 equivalent=(b.equippable and self.value(p,other)>=self.value(p,i)) or other.pk==b.pk
-                equivalent=equivalent or (b.kind=='consumable' and ((b.heal_amount and other.heal_amount>=b.heal_amount) or (b.energy_amount and other.energy_amount>=b.energy_amount)))
+                if b.kind == 'weapon' and b.weapon_type != other.weapon_type:
+                    equivalent = equivalent and {b.weapon_type, other.weapon_type} <= {'onehand', 'twohand'}
+                if b.kind == 'consumable':
+                    equivalent = all(available >= needed for available, needed in
+                                     zip(potential(p, other), offered))
                 if equivalent:prices.append(other.base_value)
             self._ceil[key]=min(prices) if prices else None
         return self._ceil[key]
@@ -122,7 +150,7 @@ class MarketState:
     def unit_budget(self, buyer, item, quantity):
         budget = max(0, buyer.ore_balance - 20) // quantity
         ceiling = self.ceiling(buyer, item)
-        return min(budget, round(ceiling * .95)) if ceiling is not None else budget
+        return min(budget, ceiling * 95 // 100) if ceiling is not None else budget
 
     @staticmethod
     def anchor(item):
@@ -167,27 +195,38 @@ def state(world_id,fresh=False):
         _cache[key]=result
     return result
 
-def sale_lot(market, seller, item, *, allow_split=True):
-    quote = market.quote(seller, item)
-    if quote.price or not allow_split or item.blueprint.kind != 'material' or not item.blueprint.stackable:
+def sale_lot(market, seller, item, *, allow_split=True, reserve=0):
+    quote = Quote(0, 0, 0, 0) if reserve else market.quote(seller, item)
+    if (quote.price or not allow_split or not item.blueprint.stackable
+            or item.blueprint.kind not in {'material', 'consumable'}):
         return item.quantity, quote
-    # Standard recipes require one or two units at a time. Keep the rest available
-    # in inventory while a buyer with an actual shortfall can take a small lot.
-    for quantity in range(min(2, item.quantity - 1), 0, -1):
+    # Small lots meet a buyer's shortfall without clearing out the seller's reserve.
+    for quantity in range(min(2, item.quantity - max(1, reserve)), 0, -1):
         quote = market.quote(seller, item, quantity=quantity)
         if quote.price:
             return quantity, quote
     return item.quantity, quote
 
 
-def sale_candidate(p,items,reserved=(),market=None):
+def sale_offer(p,items,reserved=(),market=None):
     market=market or state(p.world_id);keep=retention(p,items,reserved)
+    reserves = restorative_reserves(p, items)
     own=[i for i in items if i.is_market_listed]
     if len(own)>=3:return None
     choices=[]
     for i in items:
-        if i.pk in keep or i.is_market_listed or i.blueprint.base_value<=0:continue
+        if (i.is_market_listed or i.is_equipped or i.is_protected or i.pk == p.prepared_magic_id
+                or i.blueprint_id in reserved or not i.blueprint.tradeable or i.blueprint.base_value <= 0):
+            continue
+        if i.pk in keep and i.pk not in reserves:
+            continue
         if any(x.blueprint_id==i.blueprint_id and x.rarity==i.rarity and x.upgrade_level==i.upgrade_level for x in own):continue
-        quantity, quote = sale_lot(market, p, i, allow_split=len(items) < 12)
-        if quote.price and quote.supply<max(2,quote.buyers):choices.append((quote.price-i.blueprint.base_value*quantity//2,-i.pk,i))
-    return max(choices,key=lambda x:x[:2])[-1] if choices else None
+        quantity, quote = sale_lot(market, p, i, allow_split=len(items) < 12, reserve=int(i.pk in reserves))
+        if quote.price and quote.supply < max(2, quote.buyers):
+            choices.append((quote.price - i.blueprint.base_value * quantity // 2, -i.pk, (i, quantity, quote)))
+    return max(choices, key=lambda choice: choice[:2])[-1] if choices else None
+
+
+def sale_candidate(p,items,reserved=(),market=None):
+    offer = sale_offer(p, items, reserved, market)
+    return offer[0] if offer else None
