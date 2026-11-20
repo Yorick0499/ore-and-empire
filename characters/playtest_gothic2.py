@@ -44,7 +44,7 @@ class EarnedNkCampaign(TestCase):
         from .expedition_ranks import rank_allowed
 
         if not rank_allowed(p, 'nk-sailing'):
-            self.earn_guard(p, steps)
+            EarnedNkCampaign.earn_guard(self, p, steps)
 
         call_command('open_khorinis',bots=0,stdout=StringIO())
         c=World.objects.get(is_current=True);i=World.objects.get(universe='GOTHIC_II',is_open=True)
