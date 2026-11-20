@@ -96,7 +96,7 @@ class PublicJarkendarTests(TestCase):
         call_command('seed_jarkendar',stdout=StringIO());call_command('seed_jarkendar',stdout=StringIO())
         q.refresh_from_db();run.refresh_from_db();self.assertEqual(q.title,'Własny tytuł operatora');self.assertEqual(run.snapshot,snapshot)
         self.assertEqual(before,(StoryQuest.objects.count(),ItemBluePrint.objects.count()))
-    def test_all_factions_and_unaffiliated_accounts_have_same_free_access(self):
+    def test_all_factions_can_earn_free_access_with_their_own_rank(self):
         from django.apps import apps
         from .barrier import travel
         from .faction_succession_v2 import apply
@@ -105,9 +105,8 @@ class PublicJarkendarTests(TestCase):
         apply(apps, self.race)
         paths = (
             ('OLD_CAMP', 'BARON', self.c), ('OLD_CAMP', 'FIRE_MAGE', self.c),
-            ('NEW_CAMP', 'WATER_MAGE', self.c), ('NEW_CAMP', 'MERCENARY', self.c),
+            ('NEW_CAMP', 'WATER_MAGE', self.c), ('NEW_CAMP', 'MERC', self.c),
             ('CITY_WATCH', 'K2_COMMANDER', self.i), ('SWAMP_CAMP', 'ARCH_GURU', self.c),
-            ('NONE', 'NONE', self.i),
         )
         checked = set()
         for camp, rank, world in paths:
@@ -122,7 +121,31 @@ class PublicJarkendarTests(TestCase):
                 self.assertTrue(travel(p, self.i.pk))
                 self.finish_portal(p)
                 self.assertTrue(unlocked(p))
-        self.assertEqual(checked, set(dict(FACTIONS)) | {None})
+        self.assertEqual(checked, set(dict(FACTIONS)))
+    def test_portal_requires_promotion_and_preserves_existing_contracts(self):
+        from .barrier import travel
+
+        p = person(self.c, 'OLD_CAMP', 'DIGGER')
+        p.level = 50
+        p.premium_balance = 10000
+        p.save()
+        self.assertTrue(travel(p, self.i.pk))
+        portal = BY_KEY['jark_portal']
+        quest = StoryQuest.objects.get(key=PORTAL_QUEST)
+        self.assertFalse(portal.accessible(p))
+        self.assertEqual(portal.rank_requirement(p), 'Cień')
+        self.assertFalse(accept_story(p, quest.pk))
+        self.client.force_login(p.user)
+        self.assertContains(self.client.get('/fabula/'), 'Wymagana ranga: Cień')
+        p.guild = 'SHADOW'
+        p.save(update_fields=['guild'])
+        self.assertTrue(portal.accessible(p))
+        run = self.quest(p, PORTAL_QUEST)
+        p.guild = 'DIGGER'
+        p.save(update_fields=['guild'])
+        self.assertTrue(travel_story(p, run.pk, 'journey-jark_portal'))
+        self.assertFalse(BY_KEY['g2nk_ship'].accessible(p))
+
     def test_normal_actions_finish_eight_contracts_and_award_trophy(self):
         now=timezone.now();counts={}
         def advance(minutes):

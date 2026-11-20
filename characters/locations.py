@@ -20,6 +20,14 @@ class Location:
     required_story: str = ""
     story_label: str = ""
 
+    def rank_requirement(self, profile):
+        from .expedition_ranks import DESTINATION_QUESTS, rank_allowed, requirement_label
+
+        quest = DESTINATION_QUESTS.get(self.key)
+        if quest and not rank_allowed(profile, quest, continuing=True):
+            return requirement_label(profile, quest)
+        return None
+
     def accessible(self, profile, *, universe=None):
         from .barrier import region,joined
         from .faction_choice import equipment_camp_allowed
@@ -33,6 +41,7 @@ class Location:
             and (not self.post_barrier or joined(profile.world_id))
             and (not self.camps or any(equipment_camp_allowed(profile, camp) for camp in self.camps))
             and profile.camp_tier >= self.min_tier
+            and not self.rank_requirement(profile)
         )
 
     @property

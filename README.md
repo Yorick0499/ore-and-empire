@@ -58,9 +58,10 @@ python manage.py validate_content
 python manage.py test --noinput
 python manage.py simulate_builds --report /tmp/ore-builds-nowa-proba.json
 python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
+python scripts/simulate_ranked.py --output /tmp/ore-rankingi-nowa-proba
 ```
 
-Symulacje tworzą własne tymczasowe bazy; raport wymaga nowej ścieżki. `simulate_builds` sprawdza dziewięć organicznych dróg do rangi 8, NK i pierwszych wart. `simulate_journey` osobno wykonuje rzeczywistą walkę wspólnoty, kopię/odtworzenie i aktywację. CI obejmuje Python 3.12/3.13, PostgreSQL, współbieżność, przejścia oraz obraz produkcyjny. [Dowody i granice oceny](docs/SOLO_PLAYTEST.md).
+Symulacje tworzą własne tymczasowe bazy; raport wymaga nowej ścieżki. `simulate_builds` sprawdza jedenaście organicznych dróg do rangi 8, NK i pierwszych wart. `simulate_journey` osobno wykonuje rzeczywistą walkę wspólnoty, kopię, odtworzenie i aktywację. Symulacja rankingowa zapisuje top 10 oraz postęp rang całej populacji przy każdym kamieniu milowym. CI obejmuje Python 3.12/3.13, PostgreSQL, współbieżność, przejścia oraz obraz produkcyjny. [Dowody i granice oceny](docs/SOLO_PLAYTEST.md).
 
 Automatyczna wygrana potwierdza możliwość rozwoju, nie satysfakcję człowieka ani wielotygodniową stabilność gospodarki 250 botów. [Roadmapa](docs/ROADMAP.md) rozdziela ukończoną adaptację i dalsze prace.
 

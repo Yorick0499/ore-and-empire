@@ -44,7 +44,7 @@ def campaign():
     rows=[]
     def q(key,title,description,goals,level,previous=(),xp=1500):
         rows.append(dict(key=key,title=title,description=description,objectives=goals,level=level,prerequisites=list(previous),rewards={'experience':xp,'ore':xp//20,'premium':1},universe='JOINED',chapter=7))
-    q(PORTAL_QUEST,'Droga za portal','Po upadku Bariery badacze potrzebują pomocników. Ustal drogę powrotną i przejdź odprawę. Dostęp dla każdego, bez konta premium i opłat.',[visit('jark_portal','Dotrzyj do portalu'),talk('Ustal z badaczami zasady przeprawy'),wait(60,'Poczekaj na ustabilizowanie przejścia')],10,xp=500)
+    q(PORTAL_QUEST,'Droga za portal','Po upadku Bariery badacze potrzebują pomocników. Ustal drogę powrotną i przejdź odprawę. Badacze przyjmują polecenie od każdej gildii. Przeprawa jest bezpłatna.',[visit('jark_portal','Dotrzyj do portalu'),talk('Ustal z badaczami zasady przeprawy'),wait(60,'Poczekaj na ustabilizowanie przejścia')],10,xp=500)
     q('jark-supplies','Zapasy dla badaczy','Magowie Wody przyjmują pomoc każdej wspólnoty. Dostarcz materiały i poznaj obóz.',[visit('jark_water','Zamelduj się u badaczy'),mine(2)],10,[PORTAL_QUEST],2500)
     q('jark-pirates','Plaża bez kłów','Piraci wymieniają żywność na ochronę wybrzeża. Nie musisz zmieniać frakcji.',[visit('jark_pirates','Ustal z marynarzami trasę'),hunt('jark_lurker',3)],10,['jark-supplies'],4000)
     q('jark-canyon','Zwiad w kanionie','Udrożnij drogę między obozami. Każda wspólnota potrzebuje tych samych szlaków.',[hunt('jark_razor',3),hunt('jark_bloodhound',2)],18,['jark-pirates'],6500)

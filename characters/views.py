@@ -344,7 +344,7 @@ def locations_view(request):
     from .jarkendar import unlocked as jarkendar_unlocked
     portal_open=jarkendar_unlocked(profile)
     cards = [
-        {"location": loc, "unlocked": loc.accessible(profile)} for loc in LOCATIONS if loc.universe==region(profile).universe and (not loc.post_barrier or joined(profile.world_id))
+        {"location": loc, "unlocked": loc.accessible(profile), "rank_requirement": loc.rank_requirement(profile)} for loc in LOCATIONS if loc.universe==region(profile).universe and (not loc.post_barrier or joined(profile.world_id))
     ]
     area=request.GET.get("area","all")
     if area=="jarkendar":cards=[c for c in cards if c["location"].requires_portal or c["location"].key=="jark_portal"]
@@ -795,7 +795,17 @@ def story_view(request):
             goals.append({'goal': goal, 'done': done, 'total': total, 'complete': done >= total,
                           'choice': goal.get('options', {}).get(run.choices.get(goal['id'])), 'ends_at': ends_at})
     accepted_ids = profile.story_runs.values_list('quest_id', flat=True)
-    quests = [q for q in StoryQuest.objects.filter(enabled=True).exclude(pk__in=accepted_ids) if available(profile, q)] if not run else []
+    from .expedition_ranks import EXPEDITIONS, rank_allowed, requirement_label
+    quests = []
+    locked_quests = []
+    if not run:
+        for quest in StoryQuest.objects.filter(enabled=True).exclude(pk__in=accepted_ids):
+            if not available(profile, quest, check_rank=False):
+                continue
+            if quest.key in EXPEDITIONS and not rank_allowed(profile, quest.key):
+                locked_quests.append((quest.title, requirement_label(profile, quest.key)))
+            else:
+                quests.append(quest)
     history = list(profile.story_runs.filter(status='claimed')[:50])
     for entry in history:
         entry.decision_labels = [g.get('options', {}).get(entry.choices[g['id']], entry.choices[g['id']]) for g in entry.snapshot['objectives'] if g['id'] in entry.choices]
@@ -806,7 +816,7 @@ def story_view(request):
         from .gothic2_world import JOINED_CHAPTERS
         CHAPTERS=(*CHAPTERS,*JOINED_CHAPTERS)
     chapter_rows = [{'number': number, 'name': name, 'art': art, 'current': number == chapter} for number, name, art in CHAPTERS]
-    return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})
+    return render(request, 'characters/story.html', {'profile': profile, 'run': run, 'goals': goals, 'ready': bool(run and ready(profile, run)), 'quests': quests, 'locked_quests': locked_quests, 'history': history, 'chapters': chapter_rows, 'chapter_art': next((c['art'] for c in chapter_rows if c['current']), 'exchange'), 'finale_ready': any(r.snapshot['key'] == 'ritual-ready' for r in history)})
 
 
 @login_required

@@ -78,7 +78,7 @@ def story_universes(profile):
     return [profile.world.universe,'JOINED'] if joined(profile.world_id) else [profile.world.universe]
 
 
-def available(profile, quest, *, completed=None):
+def available(profile, quest, *, completed=None, check_rank=True):
     if not quest.enabled or quest.universe not in story_universes(profile) or profile.level < quest.level or (quest.camp and profile.camp != quest.camp):
         return False
     if completed is None:
@@ -90,6 +90,10 @@ def available(profile, quest, *, completed=None):
     from .world_releases import milestone_wait
     if milestone_wait(profile.world_id, quest.key) != 0:
         return False
+    if check_rank:
+        from .expedition_ranks import EXPEDITIONS, rank_allowed
+        if quest.key in EXPEDITIONS and not rank_allowed(profile, quest.key):
+            return False
     return all(all(completed[key].choices.get(goal) == option for goal, option in decisions.items()) for key, decisions in quest.required_choices.items() if key in completed)
 
 

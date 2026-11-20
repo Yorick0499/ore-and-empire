@@ -18,7 +18,7 @@ class PreparedJarkendarBots(TransactionTestCase):
         # Only the new campaign is selected in this isolated veteran scenario.
         StoryQuest.objects.exclude(key__startswith='jark-').update(enabled=False)
         bots=[]
-        for camp,rank,world in [('OLD_CAMP','BARON',c),('OLD_CAMP','ARCH_FIRE',c),('NEW_CAMP','ARCH_WATER',c),('NEW_CAMP','HIGH_MERC',c),('CITY_WATCH','K2_COMMANDER',i)]:
+        for camp,rank,world in [('OLD_CAMP','BARON',c),('OLD_CAMP','ARCH_FIRE',c),('NEW_CAMP','ARCH_WATER',c),('NEW_CAMP','ELITE_MERC',c),('CITY_WATCH','K2_COMMANDER',i)]:
             p=person(world,camp,rank,bot=True);p.level=25;p.strength=180;p.life=1200;p.current_health=1200;p.weapon_prot=40;p.ore_balance=5000;p.premium_balance=0;p.bot_role='hunter';p.bot_personality='casual';p.save();bots.append(p)
         succeed(race);now=timezone.now();actions={};done=set()
         with patch('django.utils.timezone.now',side_effect=lambda:now):
@@ -52,6 +52,9 @@ class EarnedJarkendarWarrior(TestCase):
         from .jarkendar import campaign,DESTINATIONS
         from .story_quests import accept_story,activate_story,travel_story,choose_story,claim_story
         from . import game_logic as game
+        from .playtest_gothic2 import EarnedNkCampaign
+
+        EarnedNkCampaign.earn_guard(self, p, steps)
         call_command('open_khorinis',bots=0,stdout=StringIO())
         c=World.objects.get(is_current=True);i=World.objects.get(universe='GOTHIC_II',is_open=True)
         World.objects.filter(pk__in=[c.pk,i.pk]).update(union_key=uuid4())

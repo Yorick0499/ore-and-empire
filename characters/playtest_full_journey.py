@@ -25,24 +25,7 @@ class CompleteJourney(unittest.TestCase):
 
     def setUp(self):self.client=Client(HTTP_HOST='localhost');self.people=[];self.clock=None
 
-    def earn_guard(self,p,steps):
-        from .camp_progression import accept_camp_quest,promote_in_camp,BY_RANK
-        do,advance,prepare=steps['do'],steps['advance'],steps['prepare']
-        for key in ('DIGGER','SHADOW','GUARD'):
-            rank=BY_RANK[key];prepare();self.assertTrue(do('guard_accept',lambda:accept_camp_quest(p,key)))
-            for goal in rank.objectives:
-                kind,_,target=goal.event.partition(':')
-                for _ in range(goal.count):
-                    prepare()
-                    if kind=='mine':
-                        self.assertTrue(do('guard_mine',lambda:game.start_mining(p,15)));advance(max(0,int((p.action_end_time-steps['now']()).total_seconds())),'timer');self.assertTrue(do('guard_mine_claim',lambda:game.claim_ore_reward(p)))
-                    elif kind=='hunt':
-                        loc=next(l for l in LOCATIONS if target in l.monsters and l.accessible(p));self.assertTrue(do('guard_hunt',lambda:game.execute_hunt(p,target,loc.key)));self.assertTrue(p.battles.first().won)
-                    elif kind=='boss':
-                        advance(game.BOSSES[target].cooldown_minutes*60,'timer');self.assertTrue(do('guard_boss',lambda:game.execute_boss(p,target)).won)
-                    else:self.fail(kind)
-            steps['funds'](rank.cost);self.assertTrue(do('guard_promote',lambda:promote_in_camp(p,key)))
-        self.assertEqual(p.camp_tier,2)
+    earn_guard = EarnedNkCampaign.earn_guard
 
     def finish_member(self,p,steps):
         self.earn_guard(p,steps);self.people.append(p);self.clock=steps['now']();print('Earned campaign and guard:',p.user.username,file=sys.stderr)
@@ -95,7 +78,9 @@ class CompleteJourney(unittest.TestCase):
             siege.refresh_from_db()
             if siege.health==0:break
         self.assertEqual(siege.health,0);race=SleeperRace.objects.get(colony=colony)
-        self.assertEqual(race.state,'pending');self.assertEqual(SleeperStrike.objects.filter(siege=siege,damage__gt=0).values('account_id').distinct().count(),3)
+        self.assertEqual(race.state, 'pending')
+        contributors = set(SleeperStrike.objects.filter(siege=siege, damage__gt=0).values_list('account_id', flat=True))
+        self.assertTrue({actor.user_id for actor in self.people} <= contributors)
         from .resident_chronicle import profile_history
         titles_before_join = {card['definition'].title for card in profile_history(p)[0]}
         self.assertIn('Sztandar Pogromców Śniącego', titles_before_join)
@@ -166,7 +151,7 @@ class CompleteJourney(unittest.TestCase):
 
     def test_colony_to_real_barrier_nk_and_repeatable_endgame(self):
         from datetime import datetime
-        self.start=datetime(2026,11,11,9,tzinfo=POLISH_TIME)
+        self.start = getattr(self, "simulation_start", datetime(2026, 11, 11, 9, tzinfo=POLISH_TIME))
         for n in range(3):
             leader = n == 2
             self.play(
