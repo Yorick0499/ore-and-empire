@@ -219,6 +219,7 @@ def record_camp_event(profile, event):
 
 
 def rank_cards(profile, camp=None):
+    from .rank_benefits import rank_benefits
     from .models import CampQuest
     quests = {quest.rank_key: quest for quest in CampQuest.objects.filter(profile=profile)}
     active = any(quest.promoted_at is None for quest in quests.values())
@@ -234,6 +235,7 @@ def rank_cards(profile, camp=None):
         cards.append({
             "rank": rank, "quest": quest, "current": profile.guild == rank.key,
             "ordinal":rank.tier+1,
+            "benefits": rank_benefits(rank.tier),
             "story_missing":missing(profile,promotion_tier(profile,rank),rank.camp),
             "parents": ", ".join(BY_RANK[parent].name if parent in BY_RANK else "Nowy członek obozu" for parent in promotion_parents(profile,rank)),
             "attribute_name": ATTRIBUTE_NAMES[rank.attribute],

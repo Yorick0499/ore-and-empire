@@ -1091,6 +1091,7 @@ def hall_view(request):
 @login_required
 def frontier_view(request):
     from .frontier import patrol,board,season_key,enemy,COOLDOWN,frontier_unlocked,presentation
+    from .rank_benefits import patrol_permit, playable_patrol_depth, rank_label, required_patrol_tier
     from .models import FrontierProgress,RegionalFrontierProgress
     from .regional_endgame import TRACKS,accessible,unlocked,fee,rewarded_today,DAILY_REWARDS
     from urllib.parse import urlencode
@@ -1104,8 +1105,13 @@ def frontier_view(request):
         return redirect(reverse('frontier_page')+'?'+urlencode({'track':track}))
     common=FrontierProgress.objects.filter(profile=profile).first()
     regional={p.track:p for p in RegionalFrontierProgress.objects.filter(profile=profile)}
-    progress=common if track=='legacy' else regional.get(track);depth=progress.unlocked if progress else 1
-    can_enter=unlocked(profile);cards=[{'key':t.key,'name':t.name,'art':t.art,'unlocked':can_enter,'accessible':accessible(profile,t.key) if can_enter else False,'depth':regional[t.key].unlocked if t.key in regional else 1,'universe':t.universe} for t in TRACKS.values()]
+    progress = common if track == 'legacy' else regional.get(track)
+    depth = playable_patrol_depth(profile, progress)
+    permit = patrol_permit(profile, progress)
+    next_tier = required_patrol_tier(permit + 1)
+    next_rank = rank_label(profile, next_tier) if next_tier is not None else None
+    rank_after_barrier = next_tier is not None and next_tier >= 4 and not joined(profile.world_id)
+    can_enter=unlocked(profile);cards=[{'key':t.key,'name':t.name,'art':t.art,'unlocked':can_enter,'accessible':accessible(profile,t.key) if can_enter else False,'depth':playable_patrol_depth(profile, regional.get(t.key)),'universe':t.universe} for t in TRACKS.values()]
     ranking=request.GET.get('ranking','all')
     if ranking not in {'all','legacy',*TRACKS}:ranking='all'
     rows=list(board(profile.world,None if ranking=='all' else ranking))
@@ -1115,8 +1121,15 @@ def frontier_view(request):
     if track!='legacy':theme={'title':TRACKS[track].name,'label':'Regionalny endgame NK','art':TRACKS[track].art,'description':'Osiągnij poziom 45, odbierz finał NK i udaj się do właściwego regionu. Postęp tego szlaku jest niezależny od dawnych wart.'}
     ready=frontier_unlocked(profile) if track=='legacy' else accessible(profile,track)
     cooldown_ready=not common or not common.last_attempt_at or timezone.now()>=common.last_attempt_at+COOLDOWN
-    can_attempt=ready and cooldown_ready and not profile.is_busy and profile.current_energy>=20 and profile.current_health>=10 and profile.ore_balance>=(fee(depth) if track!='legacy' else 0)
-    return render(request,'characters/frontier.html',{'profile':profile,'ready':ready,'can_attempt':can_attempt,'progress':progress,'depth':depth,'enemy':enemy(depth,track),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':common.last_attempt_at+COOLDOWN if common and common.last_attempt_at else None,'frontier_theme':theme,'track':track,'tracks':cards,'regional':track!='legacy','regional_unlocked':can_enter,'entry_fee':fee(depth) if track!='legacy' else 0,'rewards_left':max(0,DAILY_REWARDS-rewarded_today(profile)) if can_enter else 0,'ranking':ranking,'ranking_name':'Wszystkie szlaki' if ranking=='all' else 'Dawne warty' if ranking=='legacy' else TRACKS[ranking].name})
+    entry_fee = fee(depth, profile) if track != 'legacy' else 0
+    minimum_fee = fee(1, profile) if track != 'legacy' else 0
+    default_depth = depth if profile.ore_balance >= entry_fee else 1
+    can_attempt = (ready and cooldown_ready and not profile.is_busy and profile.current_energy >= 20
+                   and profile.current_health >= 10 and profile.ore_balance >= minimum_fee)
+    return render(request,'characters/frontier.html',{'profile':profile,'ready':ready,'can_attempt':can_attempt,'progress':progress,'depth':depth,'enemy':enemy(depth,track),'season':season_key(),'rows':rows,'history':profile.patrols.all()[:10],'request_key':uuid4(),'next_attempt':common.last_attempt_at+COOLDOWN if common and common.last_attempt_at else None,'frontier_theme':theme,'track':track,'tracks':cards,'regional':track!='legacy','regional_unlocked':can_enter,'entry_fee':entry_fee,
+        'minimum_fee':minimum_fee,'default_depth':default_depth,
+        'permit':permit,'next_rank':next_rank,'rank_after_barrier':rank_after_barrier,
+        'rank_blocked':bool(progress and progress.unlocked > depth),'rewards_left':max(0,DAILY_REWARDS-rewarded_today(profile)) if can_enter else 0,'ranking':ranking,'ranking_name':'Wszystkie szlaki' if ranking=='all' else 'Dawne warty' if ranking=='legacy' else TRACKS[ranking].name})
 
 
 @login_required

@@ -114,6 +114,8 @@ def promote_locked(profile,key):
 
 
 def cards(profile):
+    from .rank_benefits import rank_benefits
+
     member=membership(profile)
     if not member or member.faction not in dict(FACTIONS):return []
     quests={q.rank_key:q for q in profile.camp_quests.all()}
@@ -128,7 +130,7 @@ def cards(profile):
         rank = rank_for(profile, rank, quest)
         release = RELEASE_BY_TIER[rank.tier]
         ready=bool(quest and quest_complete(quest,rank));allowed=eligible(profile,rank)
-        result.append({'rank':rank,'ordinal':rank.tier+1,'quest':quest,'current':current_tier(profile)==rank.tier,
+        result.append({'rank':rank,'ordinal':rank.tier+1,'benefits':rank_benefits(rank.tier),'quest':quest,'current':current_tier(profile)==rank.tier,
             'legacy':bool(rank.tier==4 and profile.alliance_rank>=4 and not quest),
             'release_needed': names[release] if release not in released and not quest else None,
             'can_accept':allowed and release in released and not active and not profile.is_busy,'can_promote':allowed and ready and not profile.is_busy and profile.level>=rank.level and profile.ore_balance>=rank.cost and getattr(profile,rank.attribute)>=rank.attribute_value,

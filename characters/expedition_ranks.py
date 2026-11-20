@@ -23,12 +23,7 @@ def rank_allowed(profile, quest_key, *, continuing=False):
 
 
 def requirement_label(profile, quest_key):
-    from .camp_progression import RANKS
-    from .factions import RANK_NAMES, membership
+    from .rank_benefits import rank_label
 
     _, tier = EXPEDITIONS[quest_key]
-    resident = membership(profile)
-    if resident and resident.faction in RANK_NAMES:
-        return RANK_NAMES[resident.faction][tier]
-    ranks = [rank.name for rank in RANKS if rank.camp == profile.camp and rank.tier == tier]
-    return " lub ".join(ranks) or f"szczebel {tier + 1} we własnej gildii"
+    return rank_label(profile, tier)

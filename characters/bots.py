@@ -764,6 +764,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         obsolete=next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.can_salvage and (i.blueprint.kind!='weapon' or i.effective_stats['damage']<=damage)),None)
         if not forge_action and obsolete:forge_action='salvage';forge_target=obsolete.pk
         from .frontier import enemy,COOLDOWN,frontier_unlocked
+        from .rank_benefits import playable_patrol_depth
         from .models import FrontierProgress,RegionalFrontierProgress
         from .regional_endgame import TRACKS,accessible,unlocked,fee,rewarded_today,DAILY_REWARDS
         progress=FrontierProgress.objects.filter(profile=profile).first() if frontier_unlocked(profile) else None
@@ -771,10 +772,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             choices=[k for k in TRACKS if accessible(profile,k)] if unlocked(profile) and rewarded_today(profile)<DAILY_REWARDS else []
             if choices:
                 selected=choices[profile.bot_turn%len(choices)];rp=RegionalFrontierProgress.objects.filter(profile=profile,track=selected).first()
-                for depth in range(rp.unlocked if rp else 1,0,-1):
-                    if profile.ore_balance>=fee(depth) and safe_to_hunt(profile,enemy(depth,selected),combat_damage):patrol_depth=depth;patrol_track=selected;break
+                for depth in range(playable_patrol_depth(profile, rp), 0, -1):
+                    if profile.ore_balance>=fee(depth, profile) and safe_to_hunt(profile,enemy(depth,selected),combat_damage):patrol_depth=depth;patrol_track=selected;break
             if patrol_depth is None:
-                for depth in range(progress.unlocked if progress else 1,0,-1):
+                for depth in range(playable_patrol_depth(profile, progress), 0, -1):
                     if safe_to_hunt(profile,enemy(depth),combat_damage):patrol_depth=depth;break
     if not forge_action and len(inventory)>=8 and not profile.is_busy:
         excess=next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.can_salvage and (not equipment or i.pk!=equipment.pk)),None)

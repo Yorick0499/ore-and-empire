@@ -1105,6 +1105,7 @@ class EquipmentWork(models.Model):
 class FrontierProgress(models.Model):
     profile = models.OneToOneField(PlayerProfile, on_delete=models.CASCADE, related_name='frontier')
     unlocked = models.PositiveIntegerField(default=1)
+    rank_access_floor = models.PositiveIntegerField(default=1)
     wins = models.PositiveIntegerField(default=0)
     last_attempt_at = models.DateTimeField(null=True, blank=True)
 
@@ -1113,6 +1114,7 @@ class RegionalFrontierProgress(models.Model):
     profile=models.ForeignKey(PlayerProfile,on_delete=models.CASCADE,related_name='regional_frontiers')
     track=models.CharField(max_length=12)
     unlocked=models.PositiveIntegerField(default=1)
+    rank_access_floor = models.PositiveIntegerField(default=1)
     wins=models.PositiveIntegerField(default=0)
     class Meta:
         constraints=[models.UniqueConstraint(fields=['profile','track'],name='one_regional_frontier'),models.CheckConstraint(condition=models.Q(track__in=['khorinis','valley','jarkendar','irdorath'],unlocked__gte=1,unlocked__lte=100),name='regional_frontier_bounds')]
