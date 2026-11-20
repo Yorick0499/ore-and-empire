@@ -359,6 +359,9 @@ class BaselinePolicyV27(BaselinePolicyV26):
                 return o.magic_action, o.magic_target
             if o.armor_id and not o.forge_action and (not o.patrol_depth or o.turn % 3 == 2):
                 return 'armor', o.armor_id
+            if (o.armed and o.template_id and not (o.adventure_id or o.story_recover)
+                    and o.personality in {'casual', 'adventurer', 'social'} and o.turn % 19 == 8):
+                return 'adventure', o.template_id
         return super().choose(o)
 
 
