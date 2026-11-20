@@ -452,8 +452,9 @@ python manage.py validate_content
 python manage.py test --noinput
 python manage.py simulate_builds --report /tmp/ore-builds-nowa-proba.json
 python manage.py simulate_journey --report /tmp/ore-journey-nowa-proba.json
+python scripts/simulate_ranked.py --output /tmp/ore-rankingi-nowa-proba
 </code></pre>
-<p>Symulacje tworzą własne tymczasowe bazy; raport wymaga nowej ścieżki. <code>simulate_builds</code> sprawdza dziewięć organicznych dróg do rangi 8, NK i pierwszych wart. <code>simulate_journey</code> osobno wykonuje rzeczywistą walkę wspólnoty, kopię/odtworzenie i aktywację. CI obejmuje Python 3.12/3.13, PostgreSQL, współbieżność, przejścia oraz obraz produkcyjny. <a href="#doc-solo-playtest">Dowody i granice oceny</a>.</p>
+<p>Symulacje tworzą własne tymczasowe bazy; raport wymaga nowej ścieżki. <code>simulate_builds</code> sprawdza jedenaście organicznych dróg do rangi 8, NK i pierwszych wart. <code>simulate_journey</code> osobno wykonuje rzeczywistą walkę wspólnoty, kopię, odtworzenie i aktywację. Symulacja rankingowa zapisuje top 10 oraz postęp rang całej populacji przy każdym kamieniu milowym. CI obejmuje Python 3.12/3.13, PostgreSQL, współbieżność, przejścia oraz obraz produkcyjny. <a href="#doc-solo-playtest">Dowody i granice oceny</a>.</p>
 <p>Automatyczna wygrana potwierdza możliwość rozwoju, nie satysfakcję człowieka ani wielotygodniową stabilność gospodarki 250 botów. <a href="#doc-roadmap">Roadmapa</a> rozdziela ukończoną adaptację i dalsze prace.</p>
 <h3 id="doc-readme--administrator-i-dokumentacja">Administrator i dokumentacja</h3>
 <p>Na istniejącej instalacji utwórz własne konto przez <code>python manage.py createsuperuser</code>. Hasło zmienisz interaktywnie przez <code>python manage.py changepassword TWOJ_LOGIN</code>. Logowanie: <code>/konto/logowanie/</code>; panele: <code>/zarzadca/</code> i <code>/admin/</code>. Alternatywne <code>create_game_admin --username TWOJ_LOGIN</code> zapisuje wygenerowany dostęp w prywatnym <code>.admin-access.json</code>.</p>

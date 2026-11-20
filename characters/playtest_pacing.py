@@ -35,7 +35,7 @@ class CampaignPacingTests(TestCase):
     def test_colony_contract_income(self):self.play('GOTHIC_I',None,support=True,income_first=True)
     def test_island_contract_income(self):self.play('GOTHIC_II',None,support=True,income_first=True)
 
-    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None,build_strategy=None,camp=None,on_checkpoint=None,operator_mode=None,record_timing=False):
+    def play(self,universe,session_minutes,*,support=False,income_first=False,joined_start=False,after_campaign=None,actor_name="pacing-player",start_at=None,build_strategy=None,camp=None,on_checkpoint=None,operator_mode=None,record_timing=False,on_time_advanced=None):
         initial=start_at or datetime(2026,11,11,9,tzinfo=POLISH_TIME)
         with patch('django.utils.timezone.now',return_value=initial):
             seed_clean_world();world=current_world();world.configured=True;world.bot_count=0;world.save()
@@ -68,9 +68,11 @@ class CampaignPacingTests(TestCase):
                     if kind=='recovery':recovery_seconds+=remaining
                     else:timed_seconds+=remaining
                     offline_seconds+=(next_start-now).total_seconds()-remaining;now=next_start;session_start=now
+                    if on_time_advanced:on_time_advanced(now)
                     calendar();return
                 offline_seconds+=(next_start-now).total_seconds();now=next_start;session_start=now
             now+=timedelta(seconds=seconds)
+            if on_time_advanced:on_time_advanced(now)
             calendar()
             if kind=='action':active_seconds+=seconds
             elif kind=='recovery':recovery_seconds+=seconds

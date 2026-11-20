@@ -28,6 +28,17 @@ CHOICES=tuple((key,p.name) for key,p in PERSONAS.items())
 DISTRIBUTION=('grinder','grinder','grinder','casual','casual','casual','prospector','merchant','merchant','adventurer','social','patron')
 def number(*parts):return int(sha256(':'.join(map(str,parts)).encode()).hexdigest()[:16],16)
 def assignment(pk,world_id):return DISTRIBUTION[number('persona',world_id,pk)%len(DISTRIBUTION)],number('session',world_id,pk)%96*15
+def starting_ranged_weapon(profile):
+    if profile.bot_role == 'hunter' and profile.bot_personality == 'adventurer':
+        return ('bow', 'crossbow')[number('ranged-build', profile.world_id, profile.pk) % 2]
+    return None
+
+
+def prefers_magic(profile):
+    return (profile.bot_role != 'trader' and not starting_ranged_weapon(profile)
+            and number('mage-build', profile.world_id, profile.pk) % 2 == 0)
+
+
 def persona(p):return PERSONAS.get(p.bot_personality,PERSONAS[assignment(p.pk,p.world_id)[0]])
 def in_session(p,now=None):
     local=(now or timezone.now()).astimezone(POLISH_TIME)

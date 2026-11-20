@@ -46,6 +46,13 @@ class CatalogTests(SimpleTestCase):
 
 
 class PromotionPolicyTests(SimpleTestCase):
+    def test_advanced_trial_can_prepare_a_rune_before_optional_patrols(self):
+        from .bots import BaselinePolicy, Observation
+
+        obs = Observation(100, 500, False, False, None, None, None, None, True,
+                          advanced_trial=True, patrol_depth=2, magic_action='prepare_magic', magic_target=9)
+        self.assertEqual(BaselinePolicy().choose(obs), ('prepare_magic', 9))
+
     def test_current_policy_prioritizes_trial_travel_and_still_takes_optional_turns(self):
         from dataclasses import asdict, replace
         from types import SimpleNamespace

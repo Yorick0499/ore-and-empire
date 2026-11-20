@@ -284,6 +284,26 @@ def survival_health(profile,monster,plan,mana=None):
     return incoming+10
 
 
+def spare_rune(inventory, spare, retained):
+    """Preserve a strong and inexpensive option for each school and damage type."""
+    groups = {}
+    for item in inventory:
+        entry = BY_CODE.get(item.blueprint.catalog_key)
+        if item.blueprint.kind != 'rune' or not entry or entry[1] or item.is_market_listed:
+            continue
+        spell = entry[0]
+        groups.setdefault((spell.school, spell.damage_type), []).append((item, spell))
+
+    keep = set(retained)
+    for runes in groups.values():
+        strongest = max(runes, key=lambda pair: (pair[1].expedition_tier, pair[1].damage,
+                                                  pair[1].mitigation, -pair[1].cost, -pair[0].pk))
+        cheapest = min(runes, key=lambda pair: (pair[1].cost, -pair[1].damage, pair[0].pk))
+        keep.update((strongest[0].pk, cheapest[0].pk))
+    return next((item for item in spare if item.blueprint.kind == 'rune' and item.pk not in keep
+                 and item.blueprint.catalog_key in BY_CODE and item.blueprint.tradeable and not item.is_protected), None)
+
+
 def bot_magic_plan(profile,inventory,target=None):
     if profile.guild not in MAGE_RANKS and profile.guild not in {'NOVICE','K2_NOVICE','K2_ADEPT'} and circle_cap(profile)<4:return ('clear_magic',None) if profile.prepared_magic_id else ('',None)
     school=school_for(profile)

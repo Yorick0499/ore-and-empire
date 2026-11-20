@@ -96,6 +96,10 @@ class Observation:
     finance_old_id: int | None = None
     finance_price: int = 0
     advanced_trial: bool = False
+    trial_action: str = ""
+    trial_target: int | None = None
+    armor_id: int | None = None
+    crowded_inventory: bool = False
 
 
 class Policy(Protocol):
@@ -335,7 +339,33 @@ class BaselinePolicyV26(BaselinePolicyV25):
         return super().choose(o)
 
 
-class BaselinePolicy(BaselinePolicyV26):
+class BaselinePolicyV27(BaselinePolicyV26):
+    def choose(self, o):
+        safe = not (o.busy or o.adventure_ready or o.reward_ready or o.consume_id or o.product_urgent)
+        if (safe and o.raid_action in {'sleeper_rally', 'sleeper_strike', 'sleeper_claim'}
+                and (o.raid_action != 'sleeper_strike' or not o.ammo_blocked)):
+            return o.raid_action, o.raid_target
+        if safe and o.health >= 10:
+            if o.rank_action and o.rank_target:
+                return o.rank_action, o.rank_target
+            if o.crowded_inventory:
+                if o.disposal_id:
+                    return 'sell', o.disposal_id
+                if o.market_action in {'market_cancel', 'market_sell'}:
+                    return o.market_action, o.market_target
+            if o.trial_action:
+                return o.trial_action, o.trial_target
+            if o.advanced_trial and o.magic_action:
+                return o.magic_action, o.magic_target
+            if o.armor_id and not o.forge_action and (not o.patrol_depth or o.turn % 3 == 2):
+                return 'armor', o.armor_id
+            if (o.armed and o.template_id and not (o.adventure_id or o.story_recover)
+                    and o.personality in {'casual', 'adventurer', 'social'} and o.turn % 19 == 8):
+                return 'adventure', o.template_id
+        return super().choose(o)
+
+
+class BaselinePolicy(BaselinePolicyV27):
     pass
 
 
@@ -448,14 +478,20 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     consumable = next((i for i in spare if i.blueprint.kind == 'consumable' and any((restoration(profile,i.blueprint)[0] if profile.current_health<profile.max_health//2 else 0,restoration(profile,i.blueprint)[1] if profile.current_energy<15 and energy_refills_left else 0,restoration(profile,i.blueprint)[2] if profile.current_mana<profile.max_mana//2 else 0))), None)
     from .faction_choice import equipment_camps
     equipment_factions=equipment_camps(profile)
-    stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), min_level__lte=profile.level, required_camp__in=equipment_factions, min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
+    weapon_type = equipped.blueprint.weapon_type if equipped else None
+    from .bot_personalities import prefers_magic, starting_ranged_weapon
+    ranged_build = weapon_type if weapon_type in {'bow', 'crossbow'} else None
+    if not equipped:
+        ranged_build = starting_ranged_weapon(profile)
+    weapon_types = [ranged_build] if ranged_build else ['onehand', 'twohand']
+    stock = ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True, kind='weapon', weapon_type__in=weapon_types, min_level__lte=profile.level, required_camp__in=equipment_factions, min_camp_tier__lte=profile.camp_tier, required_dexterity__lte=profile.dexterity, base_value__gt=0, base_value__lte=profile.ore_balance, required_strength__lte=profile.strength)
     from .jarkendar import unlocked
     if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
     from .gothic2_content import visible_stock
     stock=visible_stock(profile,stock)
     if combat_equipment:
         stock = stock.filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=([equipped.blueprint.weapon_type] if equipped and equipped.blueprint.weapon_type in {'bow','crossbow'} else ['onehand','twohand']), blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
+    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=weapon_types, blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
     offers=[o for o in offers if market.can_buy(profile,o)]
     upgrade = None
     if equipped and combat_equipment:
@@ -473,6 +509,22 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                    key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped and combat_equipment else None
     if len(inventory) >= 5:
         disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc','ammo'} and i.blueprint.tradeable and not i.is_protected), disposal)
+    crowded_inventory = len(inventory) >= 11
+    if crowded_inventory:
+        from .magic import spare_rune
+        obsolete_rune = spare_rune(inventory, spare, retained)
+        obsolete_gear = next((candidate for candidate in spare
+                              if candidate.pk not in retained and candidate.blueprint.equippable
+                              and candidate.blueprint.tradeable and not candidate.is_protected), None)
+        disposal = obsolete_rune or obsolete_gear or disposal
+    armor = None
+    if (equipped and len(inventory) < 12 and profile.level >= 3 and profile.ore_balance >= 75
+            and not any(i.blueprint.kind == 'armor' and (i.is_equipped or usable(profile, i.blueprint))
+                        for i in inventory)):
+        candidates = market.merchants
+        armor = max((bp for bp in candidates if bp.kind == 'armor' and usable(profile, bp)
+                     and 0 < bp.base_value <= profile.ore_balance - 50 and score(profile, bp) > 0),
+                    key=lambda bp: (Fraction(score(profile, bp), bp.base_value), -bp.pk), default=None)
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     from .adventures import choose_adventure
     template = choose_adventure(profile)
@@ -488,32 +540,55 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     rank = None
     rank_action = ""
     duty = None
+    trial_hunts = set()
+    trial_bosses = set()
+    trial_mine = False
+    trial_training = False
+    trial_funding = False
+    trial_action, trial_target = "", None
     quest_mine = any(kind == 'mine' for kind, _ in story.events)
     needs_ore = delivery_needed and profile.ore_balance<delivery_cost and not story.action
     hunt_goals = [key for kind, key in story.events if kind == 'hunt']
     boss_goals = [key for kind, key in story.events if kind == 'boss']
     if final_goal:boss_goals.append('sleeper_sanctum')
-    training = "mana" if profile.camp=="FIRE_ORDER" and profile.camp_tier>=1 else "strength"
-    training_needed = profile.skill_points > 0 and getattr(profile,training) < 15 + profile.level * 4
+    from .magic import MAGE_RANKS
+    mage = profile.guild in MAGE_RANKS
+    training = 'mana' if mage else 'dexterity' if ranged_build else 'strength'
+    if not mage and weapon_type and profile.level >= 3:
+        skill = weapon_type + '_skill'
+        if getattr(profile, skill) < min(60, profile.level * 2, max(6, (getattr(profile, training) - 10) // 2)):
+            training = skill
+    training_needed = profile.skill_points > 0 and getattr(profile, training) < (
+        min(60, profile.level * 2) if training in game.WEAPON_SKILLS else 15 + profile.level * 3
+    )
     quest = profile.camp_quests.filter(promoted_at__isnull=True).first()
     if quest:
         rank = next((r for r in RANKS if r.key == quest.rank_key and available_rank(profile, r)), None)
         if rank:
             rank = rank_for_quest(profile, rank, quest)
             if quest_complete(quest, rank):
-                needs_ore = needs_ore or profile.ore_balance < rank.cost
+                trial_funding = profile.ore_balance < rank.cost
+                needs_ore = needs_ore or trial_funding
                 if getattr(profile, rank.attribute) < rank.attribute_value:
                     training, training_needed = ("dexterity" if profile.dexterity>profile.strength else "strength") if rank.attribute=="martial" else rank.attribute, True
+                    trial_training = True
                 elif profile.level >= rank.level and not needs_ore:
                     rank_action = "promote"
             for goal in rank.objectives:
                 if quest.progress.get(goal.event, 0) >= goal.count:
                     continue
                 kind, _, key = goal.event.partition(":")
-                if kind == "mine": quest_mine = True
-                elif kind == "hunt": hunt_goals.append(key)
-                elif kind == "boss": boss_goals.append(key)
-                elif kind == "train": training, training_needed = key, True
+                if kind == "mine":
+                    quest_mine = trial_mine = True
+                elif kind == "hunt":
+                    hunt_goals.append(key)
+                    trial_hunts.add(key)
+                elif kind == "boss":
+                    boss_goals.append(key)
+                    trial_bosses.add(key)
+                elif kind == "train":
+                    training, training_needed = key, True
+                    trial_training = True
                 elif kind == "duty": duty = key
     elif profile.camp != "NONE" and profile.bot_turn >= 2:
         candidates=[r for r in RANKS if available_rank(profile,r)]
@@ -521,27 +596,24 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if advanced_candidates:
             released = published_trials(profile)
             candidates = [r for r in advanced_candidates if RELEASE_BY_TIER[r.tier] in released]
-        from .magic import MAGE_RANKS
-        wants_magic=profile.bot_role!='trader' and profile.pk%2==0
+        wants_magic = not ranged_build and prefers_magic(profile)
         rank=next((r for r in candidates if r.key in MAGE_RANKS),None) if wants_magic else None
         rank=rank or next(iter(candidates),None)
         if rank:
             rank_action = "accept"
-    if duty and not (run or story.action or story.events or profile.is_busy):
+    trial_turn = bool(quest and rank and (profile.bot_turn % 3 == 0 or not (story.action or story.events)))
+    if trial_turn and duty and not (run or profile.is_busy):
         assignment = choose_adventure(profile, duty)
         if assignment:
             template = assignment
-            story = replace(story, action='adventure', target=assignment.pk)
-    # Optional veteran lessons use earned points without delaying the campaign.
-    if hasattr(profile,'campaign_completion') and not training_needed and profile.skill_points and equipped and profile.bot_turn % 7 == 0:
-        skill=equipped.blueprint.weapon_type+'_skill'
-        if getattr(profile,skill) < min(60,profile.level*2):
-            training=skill;training_needed=True
+            trial_action, trial_target = 'adventure', assignment.pk
     story_training = next((key for kind, key in story.events if kind == 'train'), None)
-    if story_training:
+    if story_training and not (trial_turn and trial_training):
         training, training_needed = story_training, True
     if final_goal and health_at_rest(profile,game.BOSSES["sleeper_sanctum"].monster,combat_damage) > profile.max_health:
-        training, training_needed = "strength", True
+        if not (trial_turn and trial_training):
+            training = "mana" if profile._bot_magic_plan else "dexterity" if ranged_build else "strength"
+            training_needed = True
         needs_ore = needs_ore or bool(profile.skill_points and profile.ore_balance < 10)
     hunt_options = []
     for location in LOCATIONS:
@@ -552,8 +624,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             if safe_to_hunt(profile, monster, combat_damage):
                 hunt_options.append((key in hunt_goals, monster["exp_reward"], key, location.key))
     hunt = max(hunt_options, default=None)
+    if trial_turn:
+        hunt = max((option for option in hunt_options if option[2] in trial_hunts), default=hunt)
     boss_key = None
-    for key in boss_goals:
+    for key in sorted(boss_goals, key=lambda key: not trial_turn or key not in trial_bosses):
         boss = game.BOSSES[key]
         last = BossAttempt.objects.filter(profile=profile, boss_key=key).first()
         if BY_KEY[key].accessible(profile) and profile.level >= boss.level and (not last or timezone.now() >= last.created_at + timezone.timedelta(minutes=boss.cooldown_minutes)) and safe_to_hunt(profile, boss.monster, combat_damage):
@@ -561,6 +635,18 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             break
     if ammo_blocked:
         hunt=None;boss_key=None
+    if trial_turn:
+        if boss_key in trial_bosses and profile.current_energy >= 25:
+            trial_action, trial_target = 'boss', None
+        elif hunt and hunt[2] in trial_hunts and profile.current_energy >= 15:
+            trial_action, trial_target = 'hunt', None
+        elif trial_training and profile.skill_points and profile.ore_balance >= 10:
+            trial_action, trial_target = 'train', None
+        elif (trial_mine or trial_funding) and profile.current_energy >= 10:
+            trial_action, trial_target = 'mine', None
+    if (final_goal and boss_key == 'sleeper_sanctum' and profile.current_energy >= 25
+            and not trial_action and (profile.bot_turn % 3 == 1 or not story.action)):
+        trial_action = 'boss'
     # Rest toward a reachable story fight instead of spending each recovered point
     # on lower-value fallback hunts forever. Impossible-at-full-health fights still
     # permit training/leveling/gear upgrades rather than causing permanent rest.
@@ -643,6 +729,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             route_hunts = {key for kind, key in route_events if kind == 'hunt'}
         else:
             route_events = [('boss', key) for key in boss_goals]
+            if duty:
+                route_events.append(('travel', 'k2_barracks'))
             route_hunts = set(hunt_goals)
 
         destinations = [BY_KEY[key] for kind, key in route_events if kind in {'boss', 'travel'} and key in BY_KEY]
@@ -692,7 +780,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         excess=next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.can_salvage and (not equipment or i.pk!=equipment.pk)),None)
         if excess:forge_action='salvage';forge_target=excess.pk
     from .weapon_finance import plan as finance_plan
-    financed=finance_plan(profile,inventory,market.merchants) if not upgrade and not equipment else None
+    financed=finance_plan(profile,inventory,[bp for bp in market.merchants if bp.weapon_type in weapon_types]) if not upgrade and not equipment else None
     from .camp_privileges import resupply_available
     from .story_gates import missing as story_missing
     obs = Observation(
@@ -711,6 +799,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         premium=profile.premium_balance, turn=profile.bot_turn, camp=profile.camp,
         camp_target=camp_target, rank_target=next(i for i, candidate in enumerate(RANKS, 1) if candidate.key == rank.key) if rank else None,
         rank_action=rank_action, needs_ore=needs_ore, training=training,
+        trial_action=trial_action, trial_target=trial_target, armor_id=armor.pk if armor else None,
+        crowded_inventory=crowded_inventory,
         advanced_trial=bool(quest and rank and rank.key.startswith('ADV_')),
         training_needed=training_needed, quest_mine=quest_mine,
         quest_hunt=bool(hunt and hunt[0]), boss_key=boss_key, hunt_key=hunt[2] if hunt else None, hunt_location=hunt[3] if hunt else None,
@@ -732,10 +822,10 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         camp_action=camp_action,camp_target_id=camp_target_id,camp_upgrade_level=camp_upgrade_level,
         magic_action=magic_action,magic_target=magic_target,mana=profile.current_mana,magic_ready=bool(active_magic and profile.current_mana>=active_magic.cost),magic_focused=bool(profile.prepared_magic_id),
     )
-    policy_version = "baseline-26" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
+    policy_version = "baseline-27" if policy is None or type(policy) is BaselinePolicy else "external-unknown"
     from .bot_policies import OllamaPolicy
     if isinstance(policy,OllamaPolicy) and obs.camp=="NONE" and not obs.membership_ready:
-        policy=None;policy_version="baseline-26"
+        policy=None;policy_version="baseline-27"
     action, target = (policy or BaselinePolicy()).choose(obs)
     policy_snapshot=policy.last_details if isinstance(policy,OllamaPolicy) else {}
     if isinstance(policy,OllamaPolicy):policy_version=policy.version
@@ -751,7 +841,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
         from .crafting import learn_craft,buy_craft_material,craft_item
         from .market_policy import reprice_listing,observe_legacy_listing
-        if action=='ammo' and ammo_stock and target==obs.ammo_id:
+        if action == 'armor' and armor and target == obs.armor_id:
+            success = game.buy_item_from_npc(profile, armor)
+        elif action=='ammo' and ammo_stock and target==obs.ammo_id:
             success=game.buy_item_from_npc(profile,ammo_stock)
         elif action in {'improve','salvage'} and action==obs.forge_action and target==obs.forge_target:
             from .enhancements import improve_item,salvage_item

@@ -21,7 +21,31 @@ class EarnedNkCampaign(TestCase):
     play=pacing.CampaignPacingTests.play
     def test_fresh_warrior_can_finish_colony_jarkendar_dragons_and_irdorath(self):
         self.play('GOTHIC_I',None,support=True,income_first=True,after_campaign=self.expedition)
+    def earn_guard(self,p,steps):
+        from .camp_progression import accept_camp_quest,promote_in_camp,BY_RANK
+        do,advance,prepare=steps['do'],steps['advance'],steps['prepare']
+        for key in ('DIGGER','SHADOW','GUARD'):
+            rank=BY_RANK[key];prepare();self.assertTrue(do('guard_accept',lambda:accept_camp_quest(p,key)))
+            for goal in rank.objectives:
+                kind,_,target=goal.event.partition(':')
+                for _ in range(goal.count):
+                    prepare()
+                    if kind=='mine':
+                        self.assertTrue(do('guard_mine',lambda:game.start_mining(p,15)));advance(max(0,int((p.action_end_time-steps['now']()).total_seconds())),'timer');self.assertTrue(do('guard_mine_claim',lambda:game.claim_ore_reward(p)))
+                    elif kind=='hunt':
+                        loc=next(l for l in LOCATIONS if target in l.monsters and l.accessible(p));self.assertTrue(do('guard_hunt',lambda:game.execute_hunt(p,target,loc.key)));self.assertTrue(p.battles.first().won)
+                    elif kind=='boss':
+                        advance(game.BOSSES[target].cooldown_minutes*60,'timer');self.assertTrue(do('guard_boss',lambda:game.execute_boss(p,target)).won)
+                    else:self.fail(kind)
+            steps['funds'](rank.cost);self.assertTrue(do('guard_promote',lambda:promote_in_camp(p,key)))
+        self.assertEqual(p.camp_tier,2)
+
     def join_worlds(self,p,steps):
+        from .expedition_ranks import rank_allowed
+
+        if not rank_allowed(p, 'nk-sailing'):
+            EarnedNkCampaign.earn_guard(self, p, steps)
+
         call_command('open_khorinis',bots=0,stdout=StringIO())
         c=World.objects.get(is_current=True);i=World.objects.get(universe='GOTHIC_II',is_open=True)
         World.objects.filter(pk__in=[c.pk,i.pk]).update(union_key=uuid4())
