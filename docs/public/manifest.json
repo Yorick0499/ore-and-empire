@@ -2,8 +2,8 @@
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
   "date": "2026-11-20",
-  "code_revision": "Przywileje rang i targ Khorinis po #184",
-  "migration": "0063_patrol_rank_permits",
+  "code_revision": "Rynsztunek kolejnych odsłon świata",
+  "migration": "0064_release_equipment",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
     {

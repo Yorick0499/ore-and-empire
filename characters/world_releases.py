@@ -66,8 +66,14 @@ def sync_releases(world,now=None):
         stamp=(milestones.get(milestone) if milestone else race if key=='barrier' else canonical.created_at) or now
         if milestone and paced:
             stamp = now
-        row, _ = WorldRelease.objects.get_or_create(world=canonical,key=key,defaults={'released_at':stamp,'snapshot':{'version':version,'title':title,'notes':notes,'art':art,'milestone':milestone,'source':'community' if milestone else 'barrier' if key=='barrier' else 'foundation'}})
+        row, created = WorldRelease.objects.get_or_create(world=canonical,key=key,defaults={'released_at':stamp,'snapshot':{'version':version,'title':title,'notes':notes,'art':art,'milestone':milestone,'source':'community' if milestone else 'barrier' if key=='barrier' else 'foundation'}})
         existing[key] = row.released_at
+        if created and key != 'foundations':
+            from .barrier import clear_region_cache
+            from .market_intelligence import invalidate
+
+            clear_region_cache()
+            invalidate(canonical.pk)
     return set(existing)
 
 def release_cards(world):

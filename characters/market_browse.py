@@ -8,6 +8,7 @@ from django.db.models.functions import Cast
 from .enhancements import QUALITY_RANKS
 from .game_logic import MAX_MARKET_PRICE
 from .models import ItemBluePrint, OwnedItem
+from .realms import profile_scope
 
 PAGE_SIZE = 24
 ORDERINGS = {
@@ -31,6 +32,7 @@ def pager(page, key, params, label):
             'next_url':link(page.next_page_number()) if page.has_next() else ''}
 
 
+@profile_scope
 def browse_market(profile, params):
     kinds = [(key, ItemBluePrint(kind=key).kind_name) for key, _ in ItemBluePrint._meta.get_field('kind').choices]
     filters = {
@@ -50,6 +52,8 @@ def browse_market(profile, params):
             error = 'Maksymalna cena musi wynosić od 1 do 1000000 rudy. Pominięto ten filtr.'
     # Joining the owner's user prevents one query per displayed seller's name.
     all_offers = OwnedItem.objects.filter(owner__world_id__in=region_ids(profile.world_id), is_market_listed=True).select_related('blueprint', 'owner__user')
+    from .release_equipment import filter_stock
+    all_offers = filter_stock(profile.world_id, all_offers, field='blueprint__catalog_key')
     offers = all_offers
     if filters['q']:
         offers = offers.filter(blueprint__name__iregex=literal_pattern(filters['q']))

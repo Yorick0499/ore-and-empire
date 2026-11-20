@@ -2,7 +2,7 @@
 
 Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-Stan dokumentacji: **20 listopada 2026, migracja 0063_patrol_rank_permits**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
+Stan dokumentacji: **20 listopada 2026, migracja 0064_release_equipment**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
 ## Uruchomienie
 
@@ -40,7 +40,8 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Launc
 
 ## Systemy i zawartość
 
-- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 24 działające zaklęcia. Sześć slotów wyposażenia obejmuje pas.
+- Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 78 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.
+- Każda z sześciu odsłon po starcie dodaje broń, pancerze i runy na trzy przedziały poziomów. [Rynsztunek odsłon](docs/WORLD_UPDATES.md#rynsztunek-odslon).
 - Wydobycie, **44 zlecenia Kolonii i 19 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
 - Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci, założonym ekwipunkiem, kroniką awansów i odznakami. Otworzysz je z rankingu lub z „Życia kolonii”.
 - Wspólny handel ludzi i botów w obrębie aktywnego rynku. Boty sprzedają nadwyżki składników oraz porównują oferty z ceną warsztatu. Sklep odłamków ma 17 definicji ofert z bramkami i limitami. [Zasady targu](docs/MARKET_POLICY.md).

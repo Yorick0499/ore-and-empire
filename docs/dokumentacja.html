@@ -15,11 +15,11 @@ main{min-width:0}.hero{position:relative;overflow:hidden;min-height:400px;border
 @media screen{#doc-game-content td:first-child,#doc-game-content th:first-child{min-width:190px}}
 </style></head>
 <body><a class="skip" href="#main">Przejdź do treści dokumentacji</a><header class="topbar"><a class="brand" href="#top">Ore &amp; Empire<small>Publiczna księga projektu</small></a><div class="bar-actions"><span class="edition">KOLONIA · KHORINIS · NOC KRUKA</span><a href="https://github.com/Yorick0499/ore-and-empire" target="_blank" rel="noopener noreferrer">Repozytorium ↗</a><button type="button" id="menu-toggle" class="menu-button" aria-expanded="false" aria-controls="book-navigation">Spis treści</button><button type="button" id="print-book">Drukuj / PDF</button></div></header>
-<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 52.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li><li><a href="#doc-complete-journey">Uruchomienie, pełna droga i plan endgame</a></li><li><a href="#doc-first-playable">Pierwsze kroki i droga do końca kampanii</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, dwa początki i jeden wspólny świat</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-jarkendar">Publiczny Jarkendar — portal i dalsza wyprawa</a></li><li><a href="#doc-gothic-ii-content">Gothic II NK — źródła, mechaniki i wyprawa do Irdorath</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">Zlecenia czasowe Kolonii i Khorinis</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li><li><a href="#doc-regional-endgame">Regionalny endgame i tygodniowy cel wspólnoty</a></li><li><a href="#doc-build-playthroughs">Buildy i frakcje od nowej postaci</a></li></ol></details><details open><summary>Frakcje i żyjący świat</summary><ol><li><a href="#doc-camps">Rangi, próby i przywileje sześciu frakcji</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li><li><a href="#doc-world-updates">Aktualizacje żyjącego świata i regionalne cele</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 86 ekranów</a></li><li><a href="#reports">Publiczne raporty (53)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-20<br>Kod gry: Przywileje rang i targ Khorinis po #184<br>Migracja: 0063<br>Odczyt offline · bez usług zewnętrznych</p></aside>
-<main id="main"><section class="hero" id="top"><span class="eyebrow">Przewodnik po żyjącym świecie</span><h1>Kronika projektu.<br>Od Kolonii do Irdorath.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa początki · jeden świat po Barierze</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-20 · kod Przywileje rang i targ Khorinis po #184 · migracja 0063 · fanowska adaptacja Gothic</p></section>
+<div class="layout"><aside class="rail" id="book-navigation" aria-label="Nawigacja dokumentacji"><p class="rail-title">Przewodnik po księdze</p><label for="book-search" class="search-label">Szukaj w dokumentacji</label><input id="book-search" class="search" type="search" placeholder="restart, boty, rzadkość…" autocomplete="off" aria-describedby="search-status"><output id="search-status" class="search-status" aria-live="polite">Liczba rozdziałów i dodatków: 52.</output><nav aria-label="Spis treści"><details open><summary>Pierwsze kroki</summary><ol><li><a href="#doc-operator-guide">Instalacja i instrukcja zarządcy</a></li><li><a href="#doc-readme">O projekcie i szybki start</a></li><li><a href="#doc-game-guide">Jak grać — pełny przewodnik</a></li><li><a href="#doc-complete-journey">Uruchomienie, pełna droga i plan endgame</a></li><li><a href="#doc-first-playable">Pierwsze kroki i droga do końca kampanii</a></li></ol></details><details open><summary>Postać i przygoda</summary><ol><li><a href="#doc-characters-and-worlds">Pięć postaci, dwa początki i jeden wspólny świat</a></li><li><a href="#doc-khorinis">Khorinis przed połączeniem — frakcje i kampania</a></li><li><a href="#doc-jarkendar">Publiczny Jarkendar — portal i dalsza wyprawa</a></li><li><a href="#doc-gothic-ii-content">Gothic II NK — źródła, mechaniki i wyprawa do Irdorath</a></li><li><a href="#doc-world">Świat i lokacje</a></li><li><a href="#doc-equipment">Ekwipunek i porównywarka</a></li><li><a href="#doc-loot-and-endgame">Łupy, rzadkość, kuźnia i endgame</a></li><li><a href="#doc-magic">Magia i szkoły</a></li><li><a href="#doc-crafting">Kowalstwo i alchemia</a></li><li><a href="#doc-adventures">Zlecenia czasowe Kolonii i Khorinis</a></li><li><a href="#doc-story">Fabuła i rozdziały</a></li><li><a href="#doc-resident-story">Historia mieszkańca kolonii</a></li><li><a href="#doc-challenges">Wyzwania i osiągnięcia</a></li><li><a href="#doc-journal">Dziennik i powiadomienia</a></li><li><a href="#doc-regional-endgame">Regionalny endgame i tygodniowy cel wspólnoty</a></li><li><a href="#doc-build-playthroughs">Buildy i frakcje od nowej postaci</a></li></ol></details><details open><summary>Frakcje i żyjący świat</summary><ol><li><a href="#doc-camps">Rangi, próby i przywileje sześciu frakcji</a></li><li><a href="#doc-camp-guilds">Obóz jako wspólnota</a></li><li><a href="#doc-camp-raids">Wspólne wyprawy i boss</a></li><li><a href="#doc-living-world">Karczma i żyjący świat</a></li><li><a href="#doc-bot-personalities">Osobowości i itemshop</a></li><li><a href="#doc-market-policy">AI rynku i handel</a></li><li><a href="#doc-world-clock">Czas polski, dzień i noc</a></li><li><a href="#doc-events">Wszystkie święta i eventy</a></li><li><a href="#doc-world-updates">Aktualizacje żyjącego świata i regionalne cele</a></li></ol></details><details open><summary>Zarządzanie serwerem</summary><ol><li><a href="#doc-world-management">Świat, administrator i reset</a></li><li><a href="#doc-backups">Backup i odtwarzanie</a></li><li><a href="#doc-production">Docker, HTTPS i produkcja</a></li><li><a href="#doc-postgresql">PostgreSQL i migracja zapisu</a></li><li><a href="#doc-world-monitor">Monitoring i telemetria</a></li><li><a href="#doc-bot-performance">250 botów i wydajność</a></li><li><a href="#doc-local-ai-policies">Opcjonalny lokalny model AI</a></li><li><a href="#doc-economy">Księga i bilans gospodarki</a></li></ol></details><details open><summary>Dane, grafiki i rozwój</summary><ol><li><a href="#doc-game-content">Pełny katalog zawartości</a></li><li><a href="#doc-item-packs">Paczki i 522 rekordy G1</a></li><li><a href="#doc-design">Motyw interfejsu</a></li><li><a href="#doc-assets">Źródła i prawa do grafik</a></li><li><a href="#doc-screenshots">Manifest zrzutów ekranów</a></li><li><a href="#doc-bug-audit">Audyt błędów i regresje</a></li><li><a href="#doc-solo-playtest">Próba gry solo i buildy</a></li><li><a href="#doc-roadmap">Roadmapa i granice wersji</a></li><li><a href="#doc-index">Indeks źródłowych dokumentów</a></li></ol></details><details open><summary>Archiwum projektu</summary><ol><li><a href="#doc-legacy-saves">Naprawy dawnych zapisów</a></li><li><a href="#doc-project-review">Przegląd architektury z 3 listopada</a></li></ol></details><details open><summary>Dodatki offline</summary><ol><li><a href="#dependencies">Zależności i wszystkie komendy</a></li><li><a href="#gallery">Galeria 86 ekranów</a></li><li><a href="#reports">Publiczne raporty (53)</a></li></ol></details></nav><p class="rail-note">Wersja dokumentacji: 2026-11-20<br>Kod gry: Rynsztunek kolejnych odsłon świata<br>Migracja: 0064<br>Odczyt offline · bez usług zewnętrznych</p></aside>
+<main id="main"><section class="hero" id="top"><span class="eyebrow">Przewodnik po żyjącym świecie</span><h1>Kronika projektu.<br>Od Kolonii do Irdorath.</h1><p class="lead">Od pierwszego uruchomienia do zarządzania żyjącym światem. Kompletna dokumentacja gry, jej reguł, technologii i narzędzi — w jednej publicznej księdze.</p><div class="meta"><span class="tag">Python + Django</span><span class="tag">250 botów · dwa początki · jeden świat po Barierze</span><span class="tag">7 osobowości</span><span class="tag">SQLite / PostgreSQL</span><span class="tag">Europe/Warsaw</span></div><p class="hero-foot">Stan: 2026-11-20 · kod Rynsztunek kolejnych odsłon świata · migracja 0064 · fanowska adaptacja Gothic</p></section>
 <div class="quick-grid"><a href="#doc-operator-guide--wymagania-i-instalacja-lokalna"><b>Uruchom grę</b><span>Instalacja, pierwsze konto i zapis świata</span></a><a href="#doc-operator-guide--zatrzymanie-i-restart-bez-kasowania-swiata"><b>Wróć do Kolonii</b><span>Bezpieczny restart bez utraty postępu</span></a><a href="#doc-operator-guide--panel-zarzadcy-krok-po-kroku"><b>Zarządzaj światem</b><span>Przedmioty, rzadkości, boty i administrator</span></a></div>
 <p class="book-intro">Dokumenty źródłowe: 49. Dalej: pełne zależności i komendy, 86 zrzutów oraz 53 raportów. Wszystko osadzone w HTML. Zewnętrzne źródła i GitHub otwierają się osobno. Publiczne instrukcje nie zawierają haseł ani prywatnego zapisu świata.</p><noscript><p class="history-note">Czytasz wersję bez JavaScriptu: treść i spis działają. Wyszukiwanie, kopiowanie, powiększanie i pobieranie raportów wymagają JavaScriptu. Drukowanie otworzysz skrótem Ctrl+P.</p></noscript><div id="no-results" class="no-results" hidden>Brak pasujących rozdziałów. Zmień słowa lub wyczyść wyszukiwarkę klawiszem Escape.</div><article id="doc-operator-guide" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>docs/public/OPERATOR_GUIDE.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/public/OPERATOR_GUIDE.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-operator-guide--podrecznik-instalacji-i-zarzadcy">Podręcznik instalacji i zarządcy</h2>
-<p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan instalacji na 20 listopada 2026, migracja 0063_patrol_rank_permits. Pełne uruchomienie obu regionów opisuje <a href="#doc-complete-journey">aktualna instrukcja przejścia</a>. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
+<p>Publiczna instrukcja aktualnej pełnej wersji <strong>Ore &amp; Empire — Kroniki Kolonii</strong>. Stan instalacji na 20 listopada 2026, migracja 0064_release_equipment. Pełne uruchomienie obu regionów opisuje <a href="#doc-complete-journey">aktualna instrukcja przejścia</a>. Dokument opisuje domyślną konfigurację; ceny, postacie i wydarzenia konkretnego świata mogą zostać zmienione przez jego zarządcę.</p>
 <h3 id="doc-operator-guide--co-zawiera-to-wydanie">Co zawiera to wydanie</h3>
 <p>Przeglądarkowe RPG w realiach Gothic I i Gothic II: Noc Kruka, przeznaczone także do gry solo z mieszkańcami imitującymi graczy MMORPG. Lokalna instalacja obsługuje główną Kolonię oraz otwierane Khorinis, po 0–300 botów na region we wspólnej kolejce. Domyślne 125+125 daje 250; po Barierze jest jeden serwer z zachowanymi konfiguracjami regionów. Siedem osobowości ma różne sesje, tempo i preferencje. Konto administratora pozwala kontrolować świat, a zwykłym kontem można przejść jego pętlę bez narzędzi zarządcy.</p>
 <p>Podstawowa paczka Kolonii ma 41 lokacji, 53 zwykłych przeciwników, trzech bossów solo, 522 rekordy katalogu G1, 44 powtarzalne zlecenia, sześć rozdziałów, trzy obozy jako wspólnoty, rzemiosło, magia, rynek, łupy o stałej rzadkości, przekucie do +3, itemshop i dalsza gra na 100 stopniach wart. Paczka NK dodaje publiczny Jarkendar i dalsze wyprawy do Irdorath, z bramkami po globalnym połączeniu. Bieżący zakres opisuje <a href="#doc-gothic-ii-content">katalog NK</a>. Szczegółowe tabele Kolonii są w <a href="#doc-game-content">katalogu zawartości</a>, a pełna instrukcja w <a href="#doc-game-guide">przewodniku gracza</a>.</p>
@@ -412,7 +412,7 @@ python manage.py simulate_journey --report /tmp/droga-nowa-proba.json
 <h4 id="doc-operator-guide--co-sprawdzic-po-aktualizacji">Co sprawdzić po aktualizacji</h4>
 <p>Na odtworzonej kopii sprawdź logowanie, wybór postaci, listę ofert targowych i rozliczenie jednej transakcji. Przy połączonym świecie sprawdź również publiczny profil, dostęp do opłaconych rang oraz próg następnej warty. Jeżeli boty mają działać, odczytaj <code>/health/ready/</code> i monitor decyzji. Zaliczona kontrola grywalności oraz współbieżności dla targu jest dostępna w <a href="https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785" target="_blank" rel="noopener noreferrer">CI #184</a>.</p></article><article id="doc-readme" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Pierwsze kroki</span><span>README.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/README.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-readme--ore-empire-kroniki-kolonii">Ore &amp; Empire — Kroniki Kolonii</h2>
 <p>Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.</p>
-<p>Stan dokumentacji: <strong>20 listopada 2026, migracja 0063_patrol_rank_permits</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
+<p>Stan dokumentacji: <strong>20 listopada 2026, migracja 0064_release_equipment</strong>. <a href="#top">Cała księga HTML offline</a> · <a href="#doc-index">Indeks</a> · <a href="#doc-game-guide">Pełna instrukcja gry</a>.</p>
 <h3 id="doc-readme--uruchomienie">Uruchomienie</h3>
 <p>Python 3.12 lub 3.13, z katalogu repozytorium:</p>
 <pre><code class="language-bash">python3 -m venv .venv
@@ -439,7 +439,8 @@ python play.py --port 8001
 <p><a href="#doc-complete-journey">Pełna droga i bramki</a> · <a href="#doc-build-playthroughs">Jedenaście buildów i dróg frakcyjnych</a> · <a href="#doc-camp-guilds">Sukcesja</a> · <a href="#doc-camps">Rangi</a>.</p>
 <h3 id="doc-readme--systemy-i-zawartosc">Systemy i zawartość</h3>
 <ul>
-<li>Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 24 działające zaklęcia. Sześć slotów wyposażenia obejmuje pas.</li>
+<li>Walka automatyczna: siła lub zręczność, cztery umiejętności broni, amunicja, ochrona, runy/zwoje i 78 działających zaklęć. Sześć slotów wyposażenia obejmuje pas.</li>
+<li>Każda z sześciu odsłon po starcie dodaje broń, pancerze i runy na trzy przedziały poziomów. <a href="#doc-world-updates--rynsztunek-odslon">Rynsztunek odsłon</a>.</li>
 <li>Wydobycie, <strong>44 zlecenia Kolonii i 19 Khorinis</strong>, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.</li>
 <li>Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci, założonym ekwipunkiem, kroniką awansów i odznakami. Otworzysz je z rankingu lub z „Życia kolonii”.</li>
 <li>Wspólny handel ludzi i botów w obrębie aktywnego rynku. Boty sprzedają nadwyżki składników oraz porównują oferty z ceną warsztatu. Sklep odłamków ma 17 definicji ofert z bramkami i limitami. <a href="#doc-market-policy">Zasady targu</a>.</li>
@@ -894,7 +895,9 @@ handlowanie nie zeruje obu cech. Migracja historycznych stopni zachowuje ich moc
 <h3 id="doc-equipment--dostep-po-barierze-i-pasy">Dostęp po Barierze i pasy</h3>
 <p>Tożsamości oryginalnego NK wymagają połączenia; wybrane także portalu, frakcji i rangi. Pozycja referencyjna bez obsługi efektu nie trafia automatycznie do normalnego handlu. Pas ma własny slot; sześć potwierdzonych par pasa/pancerza daje dodatkowy efekt bez przepisywania bazowych atrybutów. <a href="#doc-gothic-ii-content">Zakres NK</a>.</p>
 <p>Wspólny rynek po Barierze zachowuje egzemplarz, jego pochodzenie, rzadkość i przekucie. Nie duplikuje plecaków ani nie dzieli konta na dwa portfele. <a href="#doc-characters-and-worlds">Konto i światy</a>.</p>
-<p>Publiczny profil pokazuje wyłącznie założone wyposażenie w sześciu slotach. Cudzy plecak pozostaje prywatny. Profil można otworzyć z rankingu albo „Życia kolonii”. <a href="#doc-characters-and-worlds--kronika-postaci-i-odznaki">Historia i odznaki</a>.</p></article><article id="doc-loot-and-endgame" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/LOOT_AND_ENDGAME.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOOT_AND_ENDGAME.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-loot-and-endgame--upy-ulepszenia-i-zycie-po-finale">Łupy, ulepszenia i życie po finale</h2>
+<p>Publiczny profil pokazuje wyłącznie założone wyposażenie w sześciu slotach. Cudzy plecak pozostaje prywatny. Profil można otworzyć z rankingu albo „Życia kolonii”. <a href="#doc-characters-and-worlds--kronika-postaci-i-odznaki">Historia i odznaki</a>.</p>
+<h3 id="doc-equipment--wyposazenie-kolejnych-odson">Wyposażenie kolejnych odsłon</h3>
+<p>Filtr „Odsłona” u kupca pokazuje odkrytą kolekcję na poziomie danej postaci. Mistrzowska broń i pancerze od Zaginionej Doliny pojawiają się po własnej odprawie portalu. Zakup zwykłej broni składanej na później może wyprzedzić wymaganie bazowego atrybutu, ale przy zakładaniu gra sprawdza także siłę lub zręczność. <a href="#doc-world-updates--rynsztunek-odslon">Poziomy i dostępność</a>.</p></article><article id="doc-loot-and-endgame" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/LOOT_AND_ENDGAME.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/LOOT_AND_ENDGAME.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-loot-and-endgame--upy-ulepszenia-i-zycie-po-finale">Łupy, ulepszenia i życie po finale</h2>
 <p>Aktualny opis zasad domyślnej gry. <a href="#doc-index">Wersja i zakres dokumentacji</a>.</p>
 <p>Bieżąca gra obejmuje Kolonię, Khorinis i wspólny etap NK. Osobiste zakończenie kampanii nie wyłącza świata ani nie zeruje postaci. Połączenie następuje po osobnym zwycięstwie wspólnoty nad Śniącym, a nie przez ręczny transfer do II edycji. Codzienne i tygodniowe wyzwania, wspólne zadania obozu, dzienni bossowie obozowi, rynek, zlecenia oraz wydarzenia nadal działają. Dochodzą Warty za Przełęczą i rozwój konkretnych egzemplarzy sprzętu.</p>
 <h3 id="doc-loot-and-endgame--skad-brac-wyposazenie">Skąd brać wyposażenie</h3>
@@ -1354,7 +1357,9 @@ po zwykłej regeneracji. Nie zmienia to statystyk ani obrażeń rzeczywistych bo
 <h3 id="doc-magic--ponowne-przejscie-wody-bez-zwojow-150">Ponowne przejście Wody bez zwojów — #150</h3>
 <p><a href="#report-mag-wody-runy-2026-11-13">Raport</a>: nowa postać Kolonii, Nowy Obóz, sześć opłaconych run przed Barierą, awanse, dalsza runa NK, finał Irdorath, ósma ranga i pierwsze regionalne warty. Próba zabrania zakupów zwojów, nie przyznaje PN/many/rudy ani run. Regeneracja jest zwykła; opcjonalny itemshop zdrowia/energii korzysta z zarobionych odłamków. Doświadczenie przed uzyskaniem szkoły obejmuje podstawową broń.</p>
 <p>Ukończono na poziomie 61, 90 walk z magią, w 4,82 wirtualnego dnia bez oczekiwania na wspólnotowe zwycięstwo Bariery (zewnętrzny stan tej macierzy). To strategia znająca cele, nie czas rzeczywistej gry człowieka ani dowód przejścia wszystkich 400 stopni.</p>
-<p>Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Rozbłysk Adanosa IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.</p></article><article id="doc-crafting" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/CRAFTING.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CRAFTING.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-crafting--kowalstwo-i-alchemia">Kowalstwo i alchemia</h2>
+<p>Próba awansu z przygotowaną maną 100 i 500 HP odtwarza lodowego golema: dawna Bryła zadaje po odporności tylko 1 i przegrywa; nowy Rozbłysk Adanosa IV zadaje 75, wygrywa w 6 rzutach za 60 many, bez zwojów i przejścia na pięści. Nie usuwa odporności golema. Boty kupują nowe runy przez ten sam serwis, wybierają bezpieczny czar i nie dokupują już posiadanej wyższej runy, gdy do celu lepsza jest niższa.</p>
+<h3 id="doc-magic--runy-kolejnych-odson">Runy kolejnych odsłon</h3>
+<p>Począwszy od Pęknięcia Bariery, każdy etap daje każdej szkole nowe zaklęcia II, IV i VI kręgu. Światło wolnych dróg to runa Ognia VI kręgu z obrażeniami magicznymi na walkę z celami odpornymi na ogień. W kolejnych etapach rosną obrażenia i koszt many mistrzowskich run. Woda zachowuje osłonę podczas rzutu, a Mrok przerywa część tur przeciwnika. Krąg VI pozostaje najwyższy. Do mistrzowskich run od Zaginionej Doliny potrzebna jest własna odprawa portalu. <a href="#doc-game-content--katalog-zaklec">Pełna tabela zaklęć</a> · <a href="#doc-world-updates--rynsztunek-odslon">Rynsztunek odsłon</a>.</p></article><article id="doc-crafting" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Postać i przygoda</span><span>docs/CRAFTING.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/CRAFTING.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-crafting--kowalstwo-i-alchemia">Kowalstwo i alchemia</h2>
 <p>Aktualny opis zasad domyślnej gry. <a href="#doc-index">Wersja i zakres dokumentacji</a>.</p>
 <p>Cztery receptury adaptacji: miecz czeladnika, kirys z płyt pełzacza, wywar ziołowy i wyciąg z jaj pełzacza. <code>seed_crafting</code> tworzy tylko brakujące definicje i nie nadpisuje ręcznych cen. Nauka poziomu kowalstwa/alchemii: 1 PN i 20 rudy, maksymalnie trzy poziomy. Receptura określa wymagany poziom postaci, umiejętność, opłatę, ilości składników i produkt. Nie są to udawane statystyki oryginalnego G1.</p>
 <p>Skóry, mięso, płyty i jaja pochodzą z istniejących wersjonowanych łupów. Stal i zioła są płatnymi materiałami warsztatowymi. Brakujące składniki można kupić u NPC lub z rzeczywistych ofert mieszkańców. Zlecenie zużywa wyłącznie własne, niewystawione, nienoszone i niezabezpieczone stosy. Nie oddaje nagrody przy błędzie składnika ani nie pobiera niczego, jeśli nie ma całego kompletu. Składniki, opłata, produkt i CraftRecord tworzą jedną transakcję. UUID żądania zwraca dawny wynik zamiast produkować drugi przedmiot; zmiana receptury pod tym samym UUID jest odrzucana.</p>
@@ -2490,6 +2495,59 @@ zakupu i nie rezerwuje towaru — ktoś może kupić go wcześniej.</p>
 </table></div>
 <p>Globalne odkrycie nie daje postaci poziomu, ekwipunku, prawa podróży ani ukończonych zadań. Każdy nadal zdobywa własny portal, rejs i przydziały. Nie ma premium. Stare zapisy zachowują dostęp: worker odtwarza historię odsłon z rzeczywistych odebranych kamieni milowych. Przy zapisanej dacie używa najwcześniejszego odbioru; brak dawnej daty oznacza datę rozpoznania stanu. Notatki raz ogłoszonej odsłony są utrwalone, nie przepisuje ich późniejsza zmiana katalogu.</p>
 <p>Aktualizacje są widoczne w <strong>Wydarzeniach i aktualizacjach świata</strong>. Zapowiedziane etapy pokazują warunek rozwoju wspólnoty. Nie są obietnicą konkretnego dnia kalendarzowego. Otwarcie zakładki niczego nie uruchamia ani nie przyznaje.</p>
+<p><a id="doc-world-updates--rynsztunek-odslon"></a></p>
+<h3 id="doc-world-updates--rynsztunek-odson">Rynsztunek odsłon</h3>
+<p>Po każdym publicznym ogłoszeniu od Pęknięcia Bariery kupcy oferują nowe miecze, topory dwuręczne, łuki, kusze i pancerze. Handlarze wiedzą dostają osobne runy Ognia, Wody i dawnego Bractwa, po jednej dla każdego z kręgów II, IV i VI. Dotychczasowi kupcy zachowują wcześniej odkryte przedmioty. W zakładce Wydarzenia link przy odsłonie filtruje towary kupca.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Odsłona</th>
+<th style="text-align: right;">Szlak podróżnika</th>
+<th style="text-align: right;">Sprzęt wyprawowy</th>
+<th style="text-align: right;">Sprzęt mistrzowski</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">51</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tabela podaje minimalne poziomy. Broń nadal sprawdza bazową siłę lub zręczność przy zakładaniu, runy szkołę i krąg, a mistrzowskie modele od Zaginionej Doliny wymagają także własnej odprawy portalu. Od poziomu 8 pozostałe progi są dostępne w obu regionach wspólnego świata po publicznym odkryciu. Kupno i wystawianie nowego sprzętu nie przechodzi przed jego odsłoną. Odsłona nie zmienia statystyk posiadanych egzemplarzy ani osobistych przydziałów na rejs.</p>
+<p>Broń i pancerze kupuje się za rudę, z zachowaniem zwykłego handlu i przekuwania. Runy dołączają do zwykłych zakupów w Magii. Koszty amunicji, many i leczenia wpływają na dalsze wyprawy. Stare przedmioty mogą pozostawać przydatne przez niższy koszt, odporność lub wartość po ulepszeniu. <a href="#doc-game-content--katalog-rynsztunku">Katalog rynsztunku i zaklęć</a> · <a href="#doc-solo-playtest--proby-rynsztunku-odslon">Próby walk</a>.</p>
 <h3 id="doc-world-updates--wieksza-pula-wydarzen">Większa pula wydarzeń</h3>
 <p>Cztery regionalne pule obejmują 20 podstawowych tematów, warianty pór roku oraz orkowe patrole/cel wspólnoty. Przykłady: sztormowe dostawy portu, nocne napady na trakty, zimowe zabezpieczenie przełęczy, sezonowe obchody badaczy, wzmożona aktywność bagiennych stworzeń, straż ruin i czuwanie na Irdorath. Cele prowadzą do istniejących polowań, zleceń, wydobycia i bossów. Nie dodano portretów NPC ani scen questowych; używamy lokalnych ilustracji terenów i stworzeń.</p>
 <p>Każda otwarta kraina ma dwie czterogodzinne odsłony na dobę: od wschodu słońca i od końca zmierzchu cywilnego dla Warszawy. Wykorzystują istniejący zegar Europe/Warsaw i meteorologiczne pory roku. Cztery godziny to rzeczywisty czas, również przy CET/CEST. Generujemy wczoraj/dziś/jutro, aby nocne okno działało po północy i restarcie.</p>
@@ -2882,7 +2940,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>Zaklęcia działające (nie liczba modeli run/zwojów)</td>
-<td>24</td>
+<td>78</td>
 </tr>
 <tr>
 <td>Zlecenia czasowe</td>
@@ -7197,8 +7255,746 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 </tbody>
 </table></div>
+<p><a id="doc-game-content--katalog-rynsztunku"></a></p>
+<h3 id="doc-game-content--rynsztunek-odson-swiata">Rynsztunek odsłon świata</h3>
+<p>Każda publiczna odsłona po Barierze uzupełnia ofertę o trzy progi. Mistrzowski sprzęt od Zaginionej Doliny wymaga osobistego portalu. <a href="#doc-world-updates--rynsztunek-odslon">Warunki i pomiary</a>.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Odsłona</th>
+<th>Przedmiot</th>
+<th>Poziom</th>
+<th>Siła lub Zręczność</th>
+<th>Obrażenia lub ochrona broni</th>
+<th>Ruda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Miecz wolnych szlaków</td>
+<td>8</td>
+<td>24</td>
+<td>43</td>
+<td>105</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Topór wolnych szlaków</td>
+<td>8</td>
+<td>24</td>
+<td>47</td>
+<td>113</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Łuk wolnych szlaków</td>
+<td>8</td>
+<td>24</td>
+<td>42</td>
+<td>105</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Kusza wolnych szlaków</td>
+<td>8</td>
+<td>24</td>
+<td>46</td>
+<td>113</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Pancerz wolnych szlaków</td>
+<td>8</td>
+<td>—</td>
+<td>15</td>
+<td>140</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Miecz przełęczy</td>
+<td>19</td>
+<td>50</td>
+<td>76</td>
+<td>340</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Topór przełęczy</td>
+<td>19</td>
+<td>50</td>
+<td>89</td>
+<td>368</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Łuk przełęczy</td>
+<td>19</td>
+<td>50</td>
+<td>80</td>
+<td>340</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Kusza przełęczy</td>
+<td>19</td>
+<td>50</td>
+<td>92</td>
+<td>368</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Pancerz przełęczy</td>
+<td>19</td>
+<td>—</td>
+<td>44</td>
+<td>453</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Miecz Pękniętej Pieczęci</td>
+<td>35</td>
+<td>86</td>
+<td>128</td>
+<td>773</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Topór Pękniętej Pieczęci</td>
+<td>35</td>
+<td>86</td>
+<td>148</td>
+<td>869</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Łuk Pękniętej Pieczęci</td>
+<td>35</td>
+<td>86</td>
+<td>118</td>
+<td>773</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Kusza Pękniętej Pieczęci</td>
+<td>35</td>
+<td>86</td>
+<td>135</td>
+<td>869</td>
+</tr>
+<tr>
+<td>Pęknięcie Bariery</td>
+<td>Pancerz Pękniętej Pieczęci</td>
+<td>35</td>
+<td>—</td>
+<td>65</td>
+<td>1546</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Miecz przemytników z zatoki</td>
+<td>8</td>
+<td>25</td>
+<td>46</td>
+<td>115</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Topór przemytników z zatoki</td>
+<td>8</td>
+<td>25</td>
+<td>50</td>
+<td>124</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Łuk przemytników z zatoki</td>
+<td>8</td>
+<td>25</td>
+<td>45</td>
+<td>115</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Kusza przemytników z zatoki</td>
+<td>8</td>
+<td>25</td>
+<td>49</td>
+<td>124</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Pancerz przemytników z zatoki</td>
+<td>8</td>
+<td>—</td>
+<td>17</td>
+<td>153</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Miecz zalanych ruin</td>
+<td>20</td>
+<td>54</td>
+<td>82</td>
+<td>395</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Topór zalanych ruin</td>
+<td>20</td>
+<td>54</td>
+<td>96</td>
+<td>427</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Łuk zalanych ruin</td>
+<td>20</td>
+<td>54</td>
+<td>86</td>
+<td>395</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Kusza zalanych ruin</td>
+<td>20</td>
+<td>54</td>
+<td>98</td>
+<td>427</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Pancerz zalanych ruin</td>
+<td>20</td>
+<td>—</td>
+<td>48</td>
+<td>526</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Miecz Serca Doliny</td>
+<td>38</td>
+<td>98</td>
+<td>144</td>
+<td>1013</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Topór Serca Doliny</td>
+<td>38</td>
+<td>98</td>
+<td>163</td>
+<td>1139</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Łuk Serca Doliny</td>
+<td>38</td>
+<td>98</td>
+<td>134</td>
+<td>1013</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Kusza Serca Doliny</td>
+<td>38</td>
+<td>98</td>
+<td>150</td>
+<td>1139</td>
+</tr>
+<tr>
+<td>Zaginiona Dolina</td>
+<td>Pancerz Serca Doliny</td>
+<td>38</td>
+<td>—</td>
+<td>71</td>
+<td>2026</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Miecz nocnego zwiadu</td>
+<td>9</td>
+<td>26</td>
+<td>49</td>
+<td>125</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Topór nocnego zwiadu</td>
+<td>9</td>
+<td>26</td>
+<td>53</td>
+<td>135</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Łuk nocnego zwiadu</td>
+<td>9</td>
+<td>26</td>
+<td>48</td>
+<td>125</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Kusza nocnego zwiadu</td>
+<td>9</td>
+<td>26</td>
+<td>52</td>
+<td>135</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Pancerz nocnego zwiadu</td>
+<td>9</td>
+<td>—</td>
+<td>19</td>
+<td>166</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Miecz latarni przy trakcie</td>
+<td>21</td>
+<td>57</td>
+<td>88</td>
+<td>465</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Topór latarni przy trakcie</td>
+<td>21</td>
+<td>57</td>
+<td>101</td>
+<td>503</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Łuk latarni przy trakcie</td>
+<td>21</td>
+<td>57</td>
+<td>92</td>
+<td>465</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Kusza latarni przy trakcie</td>
+<td>21</td>
+<td>57</td>
+<td>104</td>
+<td>503</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Pancerz latarni przy trakcie</td>
+<td>21</td>
+<td>—</td>
+<td>52</td>
+<td>620</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Miecz Ostatniej Straży</td>
+<td>40</td>
+<td>107</td>
+<td>160</td>
+<td>1233</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Topór Ostatniej Straży</td>
+<td>40</td>
+<td>107</td>
+<td>181</td>
+<td>1387</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Łuk Ostatniej Straży</td>
+<td>40</td>
+<td>107</td>
+<td>150</td>
+<td>1233</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Kusza Ostatniej Straży</td>
+<td>40</td>
+<td>107</td>
+<td>166</td>
+<td>1387</td>
+</tr>
+<tr>
+<td>Cienie nad Khorinis</td>
+<td>Pancerz Ostatniej Straży</td>
+<td>40</td>
+<td>—</td>
+<td>77</td>
+<td>2466</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Miecz straży pogorzelisk</td>
+<td>10</td>
+<td>28</td>
+<td>52</td>
+<td>135</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Topór straży pogorzelisk</td>
+<td>10</td>
+<td>28</td>
+<td>56</td>
+<td>146</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Łuk straży pogorzelisk</td>
+<td>10</td>
+<td>28</td>
+<td>51</td>
+<td>135</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Kusza straży pogorzelisk</td>
+<td>10</td>
+<td>28</td>
+<td>55</td>
+<td>146</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Pancerz straży pogorzelisk</td>
+<td>10</td>
+<td>—</td>
+<td>21</td>
+<td>180</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Miecz popielnego traktu</td>
+<td>22</td>
+<td>60</td>
+<td>93</td>
+<td>525</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Topór popielnego traktu</td>
+<td>22</td>
+<td>60</td>
+<td>107</td>
+<td>568</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Łuk popielnego traktu</td>
+<td>22</td>
+<td>60</td>
+<td>98</td>
+<td>525</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Kusza popielnego traktu</td>
+<td>22</td>
+<td>60</td>
+<td>110</td>
+<td>568</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Pancerz popielnego traktu</td>
+<td>22</td>
+<td>—</td>
+<td>56</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Miecz Smoczego Przesmyku</td>
+<td>43</td>
+<td>117</td>
+<td>181</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Topór Smoczego Przesmyku</td>
+<td>43</td>
+<td>117</td>
+<td>204</td>
+<td>1687</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Łuk Smoczego Przesmyku</td>
+<td>43</td>
+<td>117</td>
+<td>169</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Kusza Smoczego Przesmyku</td>
+<td>43</td>
+<td>117</td>
+<td>187</td>
+<td>1687</td>
+</tr>
+<tr>
+<td>Przebudzenie smoków</td>
+<td>Pancerz Smoczego Przesmyku</td>
+<td>43</td>
+<td>—</td>
+<td>83</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Miecz nocnej wachty</td>
+<td>11</td>
+<td>30</td>
+<td>54</td>
+<td>145</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Topór nocnej wachty</td>
+<td>11</td>
+<td>30</td>
+<td>58</td>
+<td>157</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Łuk nocnej wachty</td>
+<td>11</td>
+<td>30</td>
+<td>53</td>
+<td>145</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Kusza nocnej wachty</td>
+<td>11</td>
+<td>30</td>
+<td>57</td>
+<td>157</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Pancerz nocnej wachty</td>
+<td>11</td>
+<td>—</td>
+<td>23</td>
+<td>193</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Miecz czarnych raf</td>
+<td>23</td>
+<td>63</td>
+<td>98</td>
+<td>585</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Topór czarnych raf</td>
+<td>23</td>
+<td>63</td>
+<td>112</td>
+<td>633</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Łuk czarnych raf</td>
+<td>23</td>
+<td>63</td>
+<td>103</td>
+<td>585</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Kusza czarnych raf</td>
+<td>23</td>
+<td>63</td>
+<td>115</td>
+<td>633</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Pancerz czarnych raf</td>
+<td>23</td>
+<td>—</td>
+<td>59</td>
+<td>780</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Miecz Północnego Szkwału</td>
+<td>47</td>
+<td>129</td>
+<td>201</td>
+<td>1840</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Topór Północnego Szkwału</td>
+<td>47</td>
+<td>129</td>
+<td>229</td>
+<td>2070</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Łuk Północnego Szkwału</td>
+<td>47</td>
+<td>129</td>
+<td>187</td>
+<td>1840</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Kusza Północnego Szkwału</td>
+<td>47</td>
+<td>129</td>
+<td>207</td>
+<td>2070</td>
+</tr>
+<tr>
+<td>Żagle ku Irdorath</td>
+<td>Pancerz Północnego Szkwału</td>
+<td>47</td>
+<td>—</td>
+<td>89</td>
+<td>3680</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Miecz obrońców traktu</td>
+<td>12</td>
+<td>32</td>
+<td>56</td>
+<td>155</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Topór obrońców traktu</td>
+<td>12</td>
+<td>32</td>
+<td>60</td>
+<td>167</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Łuk obrońców traktu</td>
+<td>12</td>
+<td>32</td>
+<td>55</td>
+<td>155</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Kusza obrońców traktu</td>
+<td>12</td>
+<td>32</td>
+<td>59</td>
+<td>167</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Pancerz obrońców traktu</td>
+<td>12</td>
+<td>—</td>
+<td>25</td>
+<td>206</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Miecz kamiennych szańców</td>
+<td>24</td>
+<td>66</td>
+<td>103</td>
+<td>640</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Topór kamiennych szańców</td>
+<td>24</td>
+<td>66</td>
+<td>118</td>
+<td>693</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Łuk kamiennych szańców</td>
+<td>24</td>
+<td>66</td>
+<td>109</td>
+<td>640</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Kusza kamiennych szańców</td>
+<td>24</td>
+<td>66</td>
+<td>121</td>
+<td>693</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Pancerz kamiennych szańców</td>
+<td>24</td>
+<td>—</td>
+<td>63</td>
+<td>853</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Miecz Ostatniego Muru</td>
+<td>51</td>
+<td>141</td>
+<td>224</td>
+<td>2240</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Topór Ostatniego Muru</td>
+<td>51</td>
+<td>141</td>
+<td>258</td>
+<td>2520</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Łuk Ostatniego Muru</td>
+<td>51</td>
+<td>141</td>
+<td>209</td>
+<td>2240</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Kusza Ostatniego Muru</td>
+<td>51</td>
+<td>141</td>
+<td>230</td>
+<td>2520</td>
+</tr>
+<tr>
+<td>Orkowie u bram</td>
+<td>Pancerz Ostatniego Muru</td>
+<td>51</td>
+<td>—</td>
+<td>96</td>
+<td>4480</td>
+</tr>
+</tbody>
+</table></div>
+<p><a id="doc-game-content--katalog-zaklec"></a></p>
 <h3 id="doc-game-content--zaklecia">Zaklęcia</h3>
-<p>Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwoje zachowują dotychczasowe obrażenia. Runy szkolne II, IV i VI nie mają wersji zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. Dwa czary VI kręgu należą do etapu po Barierze. <a href="#doc-magic">Nauka, zapasy i odporności</a>.</p>
+<p>Tabela pokazuje parametry run. Każda szkoła ma własną ścieżkę I–VI. Zwoje zachowują dotychczasowe obrażenia. Runy szkolne i runy odsłon II, IV i VI nie mają wersji zwojów. Runa wymaga szkoły i kręgu, zwój zużywa jedną sztukę i 1 many za rzut. <a href="#doc-magic">Nauka, zapasy i odporności</a>.</p>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
 <tr>
@@ -7209,6 +8005,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <th>Obrażenia / typ</th>
 <th>Redukcja %</th>
 <th>Przerwanie co N rzutów</th>
+<th>Odsłona</th>
 </tr>
 </thead>
 <tbody>
@@ -7220,6 +8017,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>24 / ogień</td>
 <td>0</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>fireball — Kula ognia</td>
@@ -7228,6 +8026,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>8</td>
 <td>55 / ogień</td>
 <td>0</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7238,6 +8037,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>175 / ogień</td>
 <td>0</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>thunderbolt — Sopel lodu</td>
@@ -7246,6 +8046,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>4</td>
 <td>30 / magia</td>
 <td>25</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7256,6 +8057,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>85 / magia</td>
 <td>40</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>icewave — Lodowa fala</td>
@@ -7264,6 +8066,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>13</td>
 <td>175 / magia</td>
 <td>50</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7274,6 +8077,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>18 / magia</td>
 <td>0</td>
 <td>3</td>
+<td>—</td>
 </tr>
 <tr>
 <td>stormfist — Uderzenie burzy</td>
@@ -7283,6 +8087,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>42 / magia</td>
 <td>0</td>
 <td>2</td>
+<td>—</td>
 </tr>
 <tr>
 <td>pyrokinesis — Pirokineza</td>
@@ -7292,6 +8097,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>150 / magia</td>
 <td>0</td>
 <td>2</td>
+<td>—</td>
 </tr>
 <tr>
 <td>waterlance — Ostrze Adanosa</td>
@@ -7300,6 +8106,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>6</td>
 <td>55 / magia</td>
 <td>25</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7310,6 +8117,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>125 / magia</td>
 <td>30</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>chainlightning — Wyrok Adanosa</td>
@@ -7318,6 +8126,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>16</td>
 <td>220 / magia</td>
 <td>35</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7328,6 +8137,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>42 / ogień</td>
 <td>0</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>hearthlight — Światło Innosa</td>
@@ -7336,6 +8146,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>10</td>
 <td>125 / magia</td>
 <td>0</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7346,6 +8157,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>225 / ogień</td>
 <td>0</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>marshpulse — Podmuch Śniącego</td>
@@ -7355,6 +8167,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>33 / magia</td>
 <td>0</td>
 <td>3</td>
+<td>—</td>
 </tr>
 <tr>
 <td>marshresonance — Uścisk Śniącego</td>
@@ -7364,6 +8177,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>105 / magia</td>
 <td>0</td>
 <td>2</td>
+<td>—</td>
 </tr>
 <tr>
 <td>marshsilence — Wola Śniącego</td>
@@ -7373,6 +8187,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>210 / magia</td>
 <td>0</td>
 <td>2</td>
+<td>—</td>
 </tr>
 <tr>
 <td>nk_firerain — Deszcz ognia VI</td>
@@ -7381,6 +8196,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>18</td>
 <td>260 / ogień</td>
 <td>25</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7391,6 +8207,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>240 / magia</td>
 <td>50</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>barrier_echo — Pieczęć Śniącego</td>
@@ -7400,6 +8217,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>255 / magia</td>
 <td>0</td>
 <td>2</td>
+<td>—</td>
 </tr>
 <tr>
 <td>adanos_depths — Głębia Adanosa</td>
@@ -7408,6 +8226,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>20</td>
 <td>350 / magia</td>
 <td>50</td>
+<td>—</td>
 <td>—</td>
 </tr>
 <tr>
@@ -7418,6 +8237,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>370 / ogień</td>
 <td>25</td>
 <td>—</td>
+<td>—</td>
 </tr>
 <tr>
 <td>sleeper_rift — Szczelina Śniącego</td>
@@ -7427,6 +8247,547 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>340 / magia</td>
 <td>0</td>
 <td>2</td>
+<td>—</td>
+</tr>
+<tr>
+<td>release-barrier-trail-fire — Znak Ognia wolnych szlaków</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>44 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-trail-water — Znak Wody wolnych szlaków</td>
+<td>Magowie Wody</td>
+<td>2</td>
+<td>6</td>
+<td>56 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-trail-brotherhood — Znak Mroku wolnych szlaków</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>38 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-journey-fire — Próba Ognia przełęczy</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>11</td>
+<td>127 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-journey-water — Próba Wody przełęczy</td>
+<td>Magowie Wody</td>
+<td>4</td>
+<td>10</td>
+<td>128 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-journey-brotherhood — Próba Mroku przełęczy</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>10</td>
+<td>108 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-master-fire — Światło wolnych dróg</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>18</td>
+<td>277 / magia</td>
+<td>25</td>
+<td>—</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-master-water — Znak pękniętej skały</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>18</td>
+<td>270 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-barrier-master-brotherhood — Cień po Śniącym</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>18</td>
+<td>263 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Pęknięcie Bariery</td>
+</tr>
+<tr>
+<td>release-jarkendar-trail-fire — Znak Ognia przemytników z zatoki</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>46 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-trail-water — Znak Wody przemytników z zatoki</td>
+<td>Magowie Wody</td>
+<td>2</td>
+<td>6</td>
+<td>58 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-trail-brotherhood — Znak Mroku przemytników z zatoki</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>40 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-journey-fire — Próba Ognia zalanych ruin</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>11</td>
+<td>131 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-journey-water — Próba Wody zalanych ruin</td>
+<td>Magowie Wody</td>
+<td>4</td>
+<td>10</td>
+<td>132 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-journey-brotherhood — Próba Mroku zalanych ruin</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>10</td>
+<td>112 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-master-fire — Żar zalanej świątyni</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>20</td>
+<td>379 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-master-water — Pieśń Budowniczych</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>20</td>
+<td>359 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-jarkendar-master-brotherhood — Szept pod ruinami</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>20</td>
+<td>349 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Zaginiona Dolina</td>
+</tr>
+<tr>
+<td>release-night-trail-fire — Znak Ognia nocnego zwiadu</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>48 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-trail-water — Znak Wody nocnego zwiadu</td>
+<td>Magowie Wody</td>
+<td>2</td>
+<td>6</td>
+<td>60 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-trail-brotherhood — Znak Mroku nocnego zwiadu</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>42 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-journey-fire — Próba Ognia latarni przy trakcie</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>11</td>
+<td>135 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-journey-water — Próba Wody latarni przy trakcie</td>
+<td>Magowie Wody</td>
+<td>4</td>
+<td>10</td>
+<td>136 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-journey-brotherhood — Próba Mroku latarni przy trakcie</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>10</td>
+<td>116 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-master-fire — Czuwanie płomienia</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>21</td>
+<td>398 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-master-water — Osąd nocy</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>21</td>
+<td>378 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-night-master-brotherhood — Zgaszone Imię</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>21</td>
+<td>367 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Cienie nad Khorinis</td>
+</tr>
+<tr>
+<td>release-dragons-trail-fire — Znak Ognia straży pogorzelisk</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>50 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-trail-water — Znak Wody straży pogorzelisk</td>
+<td>Magowie Wody</td>
+<td>2</td>
+<td>6</td>
+<td>62 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-trail-brotherhood — Znak Mroku straży pogorzelisk</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>44 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-journey-fire — Próba Ognia popielnego traktu</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>11</td>
+<td>139 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-journey-water — Próba Wody popielnego traktu</td>
+<td>Magowie Wody</td>
+<td>4</td>
+<td>10</td>
+<td>140 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-journey-brotherhood — Próba Mroku popielnego traktu</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>10</td>
+<td>120 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-master-fire — Płomień pod łuską</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>22</td>
+<td>421 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-master-water — Gniew kamienia</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>22</td>
+<td>400 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-dragons-master-brotherhood — Milczenie smoczych gniazd</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>22</td>
+<td>389 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Przebudzenie smoków</td>
+</tr>
+<tr>
+<td>release-irdorath-trail-fire — Znak Ognia nocnej wachty</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>52 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-trail-water — Znak Wody nocnej wachty</td>
+<td>Magowie Wody</td>
+<td>2</td>
+<td>6</td>
+<td>64 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-trail-brotherhood — Znak Mroku nocnej wachty</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>46 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-journey-fire — Próba Ognia czarnych raf</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>11</td>
+<td>143 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-journey-water — Próba Wody czarnych raf</td>
+<td>Magowie Wody</td>
+<td>4</td>
+<td>10</td>
+<td>144 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-journey-brotherhood — Próba Mroku czarnych raf</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>10</td>
+<td>124 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-master-fire — Latarnia sztormu</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>23</td>
+<td>446 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-master-water — Odpływ głębin</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>23</td>
+<td>424 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-irdorath-master-brotherhood — Cisza czarnych raf</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>23</td>
+<td>412 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Żagle ku Irdorath</td>
+</tr>
+<tr>
+<td>release-orc-war-trail-fire — Znak Ognia obrońców traktu</td>
+<td>Magowie Ognia</td>
+<td>2</td>
+<td>6</td>
+<td>54 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-trail-water — Znak Wody obrońców traktu</td>
+<td>Magowie Wody</td>
+<td>2</td>
+<td>6</td>
+<td>66 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-trail-brotherhood — Znak Mroku obrońców traktu</td>
+<td>Bractwo Śniącego</td>
+<td>2</td>
+<td>5</td>
+<td>48 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-journey-fire — Próba Ognia kamiennych szańców</td>
+<td>Magowie Ognia</td>
+<td>4</td>
+<td>11</td>
+<td>147 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-journey-water — Próba Wody kamiennych szańców</td>
+<td>Magowie Wody</td>
+<td>4</td>
+<td>10</td>
+<td>148 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-journey-brotherhood — Próba Mroku kamiennych szańców</td>
+<td>Bractwo Śniącego</td>
+<td>4</td>
+<td>10</td>
+<td>128 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-master-fire — Ogień nad szańcem</td>
+<td>Magowie Ognia</td>
+<td>6</td>
+<td>24</td>
+<td>473 / ogień</td>
+<td>25</td>
+<td>—</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-master-water — Wyrok kamiennej rzeki</td>
+<td>Magowie Wody</td>
+<td>6</td>
+<td>24</td>
+<td>449 / magia</td>
+<td>45</td>
+<td>—</td>
+<td>Orkowie u bram</td>
+</tr>
+<tr>
+<td>release-orc-war-master-brotherhood — Cień nad sztandarami</td>
+<td>Bractwo Śniącego</td>
+<td>6</td>
+<td>24</td>
+<td>435 / magia</td>
+<td>0</td>
+<td>2</td>
+<td>Orkowie u bram</td>
 </tr>
 </tbody>
 </table></div>
@@ -9116,7 +10477,58 @@ python manage.py simulate_release --suite quick --report /tmp/ore-quick-01.json
 <p>Starsze raporty tempa, rang i pierwszych paczek pozostają w <code>docs/reports/</code> z datami. Ich ograniczenia opisują tamtą próbę, a nie brak mechaniki wdrożonej później.</p>
 <h3 id="doc-solo-playtest--targ-khorinis-i-biezaca-macierz-20-xi">Targ Khorinis i bieżąca macierz — 20 XI</h3>
 <p><a href="#report-targ-khorinis-2026-11-20">Raport targu</a> obejmuje dziesięć niezależnych prób na nowej SQLite, 8–10 botów na region, 12–36 godzin świata i krok 1–6 minut. W trzech porównaniach tych samych ustawień dostępność ofert w Khorinis wzrosła z 20 do 43 próbek godzinowych. Cztery próby w Kolonii i jedno w Khorinis zawierały odmowy wystawienia. <a href="https://github.com/Yorick0499/ore-and-empire/issues/185" target="_blank" rel="noopener noreferrer">#185</a>.</p>
-<p><a href="https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785" target="_blank" rel="noopener noreferrer">CI #184</a> wykonuje jedenaście dróg z wariantami broni dwuręcznej i kuszy, odgrywa pełną aktywację Bariery i sprawdza współbieżne działania na PostgreSQL. Targ mierzono osobno we wczesnym świecie.</p></article><article id="doc-roadmap" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/ROADMAP.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-roadmap--biezaca-roadmapa">Bieżąca roadmapa</h2>
+<p><a href="https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785" target="_blank" rel="noopener noreferrer">CI #184</a> wykonuje jedenaście dróg z wariantami broni dwuręcznej i kuszy, odgrywa pełną aktywację Bariery i sprawdza współbieżne działania na PostgreSQL. Targ mierzono osobno we wczesnym świecie.</p>
+<p><a id="doc-solo-playtest--proby-rynsztunku-odslon"></a></p>
+<h3 id="doc-solo-playtest--proby-rynsztunku-odson">Próby rynsztunku odsłon</h3>
+<p>Powtórzenie na odizolowanej testowej bazie Django:</p>
+<pre><code class="language-bash">ore_equipment_report=&quot;$(mktemp)&quot;
+echo '[]' &gt; &quot;$ore_equipment_report&quot;
+ORE_PROBE_REPORT=&quot;$ore_equipment_report&quot; python manage.py test characters.test_release_equipment --noinput
+</code></pre>
+<p>Test zestawia sześć odsłon, trzy progi sprzętu, cztery style broni i trzy szkoły magii w sześciu frakcjach. Każda kombinacja walczy przy pełnych lub częściowych zasobach, z trzema osobnymi ziarnami walki. Postacie mają przygotowane rangi, atrybuty i budżety. Broń, pancerze i runy kupują oraz zakładają przez zwykłe usługi. Oddzielne pełne przejścia od poziomu zero sprawdza <code>simulate_builds</code>. <a href="#doc-build-playthroughs">Macierz organiczna</a>.</p>
+<p>Wariant kontrolny obejmował również 24 starcia z bronią Pradawną +3 i wymuszonymi trafieniami krytycznymi. Tak przygotowana postać wygrywała z bossami w 3–5 rund.</p>
+<div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
+<thead>
+<tr>
+<th>Próba</th>
+<th style="text-align: right;">Wygrane</th>
+<th style="text-align: right;">Rundy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Podróżnik, pełne zasoby</td>
+<td style="text-align: right;">126/126</td>
+<td style="text-align: right;">2–7</td>
+</tr>
+<tr>
+<td>Wyprawowy, pełne zasoby</td>
+<td style="text-align: right;">126/126</td>
+<td style="text-align: right;">3–7</td>
+</tr>
+<tr>
+<td>Mistrzowski, pełne zasoby</td>
+<td style="text-align: right;">126/126</td>
+<td style="text-align: right;">3–10</td>
+</tr>
+<tr>
+<td>Podróżnik, 75% zdrowia i dwie trzecie many</td>
+<td style="text-align: right;">117/126</td>
+<td style="text-align: right;">2–9</td>
+</tr>
+<tr>
+<td>Wyprawowy, 75% zdrowia i dwie trzecie many</td>
+<td style="text-align: right;">126/126</td>
+<td style="text-align: right;">3–7</td>
+</tr>
+<tr>
+<td>Mistrzowski, 75% zdrowia i dwie trzecie many</td>
+<td style="text-align: right;">106/126</td>
+<td style="text-align: right;">3–12</td>
+</tr>
+</tbody>
+</table></div>
+<p>Czas w rundach dotyczy wskazanych przeciwników dla danego progu. Próby pełnego przejścia dodatkowo sprawdzają, czy można zdobyć poziomy, środki i dostęp do krain zwykłą rozgrywką.</p></article><article id="doc-roadmap" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/ROADMAP.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-roadmap--biezaca-roadmapa">Bieżąca roadmapa</h2>
 <p>Stan na <strong>20 listopada 2026</strong>. Migracja 0063, polityka baseline-27, schemat obserwacji 24. Starsze wpisy pozostają historią zmian.</p>
 <h3 id="doc-roadmap--gotowa-droga-gry">Gotowa droga gry</h3>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
@@ -9186,7 +10598,7 @@ python manage.py simulate_release --suite quick --report /tmp/ore-quick-01.json
 <p>Zmiany wykonujemy na osobnej gałęzi <code>codex/...</code>, z issue, testami właściwego zakresu i PR. Migracje zachowują dorobek; prywatne zapisy/hasła/kopie nie trafiają do repo.</p>
 <h3 id="doc-roadmap--biezace-rozwiniecie-kalendarza-144">Bieżące rozwinięcie kalendarza — #144</h3>
 <p>Osiem pul dopasowuje święta, prace miesięczne, sezonowe okna i losowe odkrycia do kolejnych odsłon świata. Przed Barierą nazwy Kolonii i Khorinis są osobne; po niej działa jeden kanoniczny harmonogram. Aktualizacja tekstów nie losuje ponownie aktywnych celów i nie zmienia premii/snapshotów. Ręczne edycje operatora pozostają. <a href="#doc-events">Reguły</a>.</p></article><article id="doc-index" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Dane, grafiki i rozwój</span><span>docs/INDEX.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/INDEX.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-index--dokumentacja-indeks">Dokumentacja — indeks</h2>
-<p><strong>Stan na 20 listopada 2026. Migracja <code>0063_patrol_rank_permits</code>, próby i przywileje rang oraz targ Khorinis po #184.</strong> Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. <a href="#doc-readme">README</a> · <a href="#top">Cała publiczna księga offline</a>.</p>
+<p><strong>Stan na 20 listopada 2026. Migracja <code>0064_release_equipment</code>, próby rang, targ Khorinis i nowe dostawy rynsztunku w sześciu odsłonach.</strong> Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. <a href="#doc-readme">README</a> · <a href="#top">Cała publiczna księga offline</a>.</p>
 <h3 id="doc-index--gra-od-poczatku-do-dalszych-wart">Gra od początku do dalszych wart</h3>
 <ul>
 <li><a href="#doc-game-guide">Pełny przewodnik gracza</a>, <a href="#doc-first-playable">pierwsze kroki</a>, <a href="#doc-complete-journey">uruchomienie obu regionów i cała droga</a>.</li>

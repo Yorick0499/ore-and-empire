@@ -375,6 +375,8 @@ MAX_ORE_PER_DAMAGE = 40
 
 
 def choose_upgrade(stock, offers, damage, ore, profile=None):
+    from .release_equipment import GEAR as RELEASE_GEAR
+
     candidates = []
     minimum_gain = max(3, math.ceil(damage / (30 if profile else 10)))
     for action, entries in (("stock", stock), ("buy", offers)):
@@ -383,8 +385,13 @@ def choose_upgrade(stock, offers, damage, ore, profile=None):
             price = entry.base_value if action == "stock" else entry.market_price
             from .market_intelligence import score
             gain = (score(profile,entry) if profile else entry.effective_stats["damage"] if action == "buy" else weapon.damage) - damage
-            if (gain >= minimum_gain and 0 < price <= ore - UPGRADE_ORE_RESERVE
-                    and price <= gain * MAX_ORE_PER_DAMAGE):
+            # Replacement tiers are an optional investment for established
+            # characters. Keep budget for other training and purchases.
+            staged = profile is not None and weapon.catalog_key in RELEASE_GEAR
+            reserve = max(UPGRADE_ORE_RESERVE, ore // 10) if staged else UPGRADE_ORE_RESERVE
+            price_per_damage = MAX_ORE_PER_DAMAGE * (2 if staged else 1)
+            if (gain >= minimum_gain and 0 < price <= ore - reserve
+                    and price <= gain * price_per_damage):
                 candidates.append((Fraction(price, gain), -gain, price, action, entry.pk, entry))
     if not candidates:
         return None
@@ -516,13 +523,22 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
                               and candidate.blueprint.tradeable and not candidate.is_protected), None)
         disposal = obsolete_rune or obsolete_gear or disposal
     armor = None
-    if (equipped and len(inventory) < 12 and profile.level >= 3 and profile.ore_balance >= 75
-            and not any(i.blueprint.kind == 'armor' and (i.is_equipped or usable(profile, i.blueprint))
-                        for i in inventory)):
-        candidates = market.merchants
-        armor = max((bp for bp in candidates if bp.kind == 'armor' and usable(profile, bp)
-                     and 0 < bp.base_value <= profile.ore_balance - 50 and score(profile, bp) > 0),
-                    key=lambda bp: (Fraction(score(profile, bp), bp.base_value), -bp.pk), default=None)
+    if equipped and len(inventory) < 12 and profile.level >= 3 and profile.ore_balance >= 75:
+        owned_armor = [i for i in inventory if i.blueprint.kind == 'armor'
+                       and (i.is_equipped or usable(profile, i.blueprint))]
+        protection = max((score(profile, i) for i in owned_armor), default=0)
+        reserve = 150 if owned_armor else 50
+        minimum_gain = max(8, protection // 10) if owned_armor else 1
+        candidates = []
+        for bp in (market.release_armors if owned_armor else market.merchants):
+            if (bp.kind != 'armor' or not 0 < bp.base_value <= profile.ore_balance - reserve
+                    or not usable(profile, bp)):
+                continue
+            gain = score(profile, bp) - protection
+            if gain >= minimum_gain:
+                candidates.append((Fraction(gain, bp.base_value), -bp.pk, bp))
+        if candidates:
+            armor = max(candidates)[-1]
     run = profile.adventures.filter(claimed_at__isnull=True).first()
     from .adventures import choose_adventure
     template = choose_adventure(profile)

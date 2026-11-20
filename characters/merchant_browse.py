@@ -4,14 +4,21 @@ from .faction_choice import equipment_camps
 from .text_search import literal_pattern
 from .models import ItemBluePrint
 from .market_browse import bounded_page,pager
+from .realms import profile_scope
 
 
+@profile_scope
 def merchant_context(profile,params):
+    from .release_equipment import RELEASE_TITLES, published
+
+    announced = published(profile.world_id)
+    releases = {key: title for key, title in RELEASE_TITLES.items() if key in announced}
     kinds=[(key,ItemBluePrint(kind=key).kind_name) for key,_ in ItemBluePrint._meta.get_field('kind').choices]
     weapons={'onehand':'Jednoręczna','twohand':'Dwuręczna','bow':'Łuk','crossbow':'Kusza'}
     filters={'q':params.get('q','').strip()[:100],
              'kind':params.get('kind','') if params.get('kind') in dict(kinds) else '',
              'weapon':params.get('weapon','') if params.get('weapon') in weapons else '',
+             'release':params.get('release','') if params.get('release') in releases else '',
              'affordable':'1' if params.get('affordable')=='1' else '',
              'usable':'1' if params.get('usable')=='1' else ''}
     stock=ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True,base_value__gte=0,min_level__lte=profile.level,
@@ -23,6 +30,7 @@ def merchant_context(profile,params):
     if filters['q']:stock=stock.filter(name__iregex=literal_pattern(filters['q']))
     if filters['kind']:stock=stock.filter(kind=filters['kind'])
     if filters['weapon']:stock=stock.filter(kind='weapon',weapon_type=filters['weapon'])
+    if filters['release']:stock=stock.filter(catalog_key__startswith=f"oe-release-{filters['release']}-")
     if filters['affordable']:stock=stock.filter(base_value__lte=profile.ore_balance)
     if filters['usable']:stock=stock.exclude(kind__in=['weapon','armor','ring','amulet','belt'],required_strength__gt=profile.strength).exclude(kind__in=['weapon','armor','ring','amulet','belt'],required_dexterity__gt=profile.dexterity)
     stock=bounded_page(stock.order_by('base_value','name','pk'),params,'page')
@@ -33,4 +41,5 @@ def merchant_context(profile,params):
         item.equipment_ready=not item.equippable or (profile.strength>=item.required_strength and profile.dexterity>=item.required_dexterity)
     canonical={**filters,'page':stock.number,'bag_page':bag.number}
     return {'shop_items':stock,'player_inventory':bag,'merchant_filters':filters,'item_kinds':kinds,'weapon_types':weapons.items(),
+            'release_options':releases.items(),
             'stock_pager':pager(stock,'page',canonical,'Strony kupca'),'bag_pager':pager(bag,'bag_page',canonical,'Strony sprzedaży kupcowi')}

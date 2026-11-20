@@ -308,6 +308,9 @@ def list_item_on_market(seller_profile, owned_item, price):
         return False
     if owned_item.is_market_listed:
         return False
+    from .release_equipment import trade_allowed
+    if not trade_allowed(seller_profile.world_id, owned_item.blueprint):
+        return False
     if type(price) is not int or not 1 <= price <= MAX_MARKET_PRICE:
         return False
     owned_item.listed_at = timezone.now()
@@ -327,6 +330,9 @@ def buy_item_on_market(buyer_profile, owned_item, expected_price=None):
     from .barrier import same_world
     if not same_world(buyer_profile.world_id,current_owner.world_id):return False
     if not owned_item.is_market_listed:
+        return False
+    from .release_equipment import trade_allowed
+    if not trade_allowed(buyer_profile.world_id, owned_item.blueprint):
         return False
     if owned_item.owner == buyer_profile:
         return False

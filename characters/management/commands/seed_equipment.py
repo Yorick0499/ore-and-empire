@@ -14,6 +14,8 @@ class Command(BaseCommand):
         seed_gear()
         from characters.magic import seed_training_runes
         seed_training_runes()
+        from characters.release_equipment_v1 import seed as seed_release_equipment
+        seed_release_equipment(ItemBluePrint.objects)
         definitions = [
             ('queen-trophy','Odłamek pancerza królowej','quest',0,{'tradeable':False,'merchant':False,'stackable':True}),
             ('swamp-trophy','Kieł prastarego węża','quest',0,{'tradeable':False,'merchant':False,'stackable':True}),

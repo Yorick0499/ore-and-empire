@@ -43,10 +43,11 @@ def visible_stock(profile,stock):
     from .barrier import joined
     from .jarkendar import unlocked
     from .factions import membership
+    from .release_equipment import filter_stock
 
     nk = Q(catalog_key__startswith='g2nk-') | Q(catalog_key__startswith='oe-nk-')
     if not joined(profile.world_id):
-        return stock.exclude(nk)
+        return filter_stock(profile.world_id, stock.exclude(nk))
 
     member = membership(profile)
     faction = member.faction if member else ''
@@ -56,7 +57,8 @@ def visible_stock(profile,stock):
         | Q(original_stats__browser_faction=None)
         | Q(original_stats__browser_faction__in=['', faction])
     )
-    if not unlocked(profile):
+    portal = unlocked(profile)
+    if not portal:
         eligible &= Q(original_stats__browser_gate__isnull=True) | ~Q(original_stats__browser_gate='jarkendar')
     # JSON gates belong to NK stock. SQL negation alone also drops missing keys.
-    return stock.filter(~nk | eligible)
+    return filter_stock(profile.world_id, stock.filter(~nk | eligible), portal=portal)

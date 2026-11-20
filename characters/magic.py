@@ -5,6 +5,7 @@ from django.utils import timezone
 from .game_logic import player_action
 from .models import ItemBluePrint,OwnedItem
 from .rune_catalog_v1 import EXPEDITIONS, WATER_NAMES, rename_water_runes
+from .release_equipment import GEAR as RELEASE_GEAR, RUNES as RELEASE_RUNE_CATALOG, published
 
 @dataclass(frozen=True)
 class Spell:
@@ -18,6 +19,7 @@ class Spell:
     mitigation:int=0
     stagger_every:int=0
     expedition_tier:int=0
+    release:str=''
     @property
     def school_name(self):return {'fire':'Magowie Ognia','water':'Magowie Wody','brotherhood':'Bractwo Śniącego'}[self.school]
     @property
@@ -67,7 +69,13 @@ _rune_stats.update({
 })
 WATER_ADDITIONS = tuple(spell for spell in WATER_RUNES if spell.key not in {s.key for s in SPELLS})
 TRAINING_RUNES = WATER_ADDITIONS + FIRE_ADDITIONS + BROTHERHOOD_ADDITIONS
-ALL_SPELLS = tuple(_rune_stats.get(spell.key, spell) for spell in SPELLS) + TRAINING_RUNES + NK_SPELLS + EXPEDITION_RUNES
+RELEASE_RUNES = {
+    item: Spell(rune.key, rune.title, rune.school, rune.circle, rune.mana, rune.damage,
+                rune.kind, rune.mitigation, rune.stagger, rune.ward_tier, RELEASE_GEAR[item][0])
+    for item, rune in RELEASE_RUNE_CATALOG.items()
+}
+ALL_SPELLS = (tuple(_rune_stats.get(spell.key, spell) for spell in SPELLS) + TRAINING_RUNES
+              + NK_SPELLS + EXPEDITION_RUNES + tuple(RELEASE_RUNES.values()))
 BY_KEY = {spell.key: spell for spell in ALL_SPELLS}
 BY_CODE = {}
 for prefix in ('g1', 'g2'):
@@ -78,6 +86,7 @@ for prefix in ('g1', 'g2'):
         BY_CODE[f'oe-{spell.school}-{prefix}-{spell.key}-rune'] = (spell, False)
 BY_CODE.update({f'oe-nk-{spell.key}-{kind}':(spell,kind=='scroll') for spell in NK_SPELLS for kind in ('rune','scroll')})
 BY_CODE.update({f'oe-nk-{spell.key}-rune': (spell, False) for spell in EXPEDITION_RUNES})
+BY_CODE.update({key: (spell, False) for key, spell in RELEASE_RUNES.items()})
 SCHOOLS={'FIRE_ORDER':('fire','Krąg Ognia Khorinis'),'OLD_CAMP':('fire','Krąg Ognia'),'NEW_CAMP':('water','Krąg Wody'),'SWAMP_CAMP':('brotherhood','Bractwo Śniącego')}
 MAGE_RANKS={'K2_MAGE','K2_ARCHMAGE','FIRE_MAGE','ARCH_FIRE','WATER_MAGE','ARCH_WATER','GURU','ARCH_GURU'}
 ARCH_RANKS={'K2_ARCHMAGE','ARCH_FIRE','ARCH_WATER','ARCH_GURU'}
@@ -149,7 +158,9 @@ def circle_cap(profile):
 def rune_allowed(profile,spell):
     # Retain the native school and invested runes; the new membership opens its
     # destination school, but grants no circles, mana, items or learning points.
-    if spell.expedition_tier:
+    if spell.release and spell.release not in published(profile.world_id):
+        return False
+    if spell.expedition_tier and not spell.release:
         from .barrier import joined
         if not joined(profile.world_id) or profile.level<35 or profile.camp_tier<3:return False
         if spell.expedition_tier == 2:
@@ -247,7 +258,11 @@ def apply_combat_magic(profile,plan,result):
 
 def offers(profile):
     from .equipment import allowed
-    return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in ItemBluePrint.objects.filter(source_game__in=source_games(profile),catalog_key__in=BY_CODE).order_by('base_value','pk') if allowed(profile,item)]
+    from .release_equipment import filter_stock
+    stock = filter_stock(profile.world_id, ItemBluePrint.objects.filter(
+        source_game__in=source_games(profile), catalog_key__in=BY_CODE, min_level__lte=profile.level,
+    ))
+    return [{'blueprint':item,'spell':BY_CODE[item.catalog_key][0],'scroll':BY_CODE[item.catalog_key][1],'can_buy':not profile.is_busy and profile.ore_balance>=item.base_value and (BY_CODE[item.catalog_key][1] or rune_allowed(profile,BY_CODE[item.catalog_key][0]))} for item in stock.order_by('base_value','pk') if allowed(profile,item)]
 
 
 def spell_damage(spell, monster, *, scroll=False):
@@ -309,7 +324,8 @@ def bot_magic_plan(profile,inventory,target=None):
     school=school_for(profile)
     if not school:return '',None
     if profile.magic_skill<circle_cap(profile) and profile.level>=(profile.magic_skill+1)*2 and profile.skill_points>=5*(profile.magic_skill+1) and profile.ore_balance>=50*(profile.magic_skill+1):return 'learn_circle',None
-    usable=[item for item in inventory if not item.is_market_listed and item.blueprint.catalog_key in BY_CODE and not BY_CODE[item.blueprint.catalog_key][1] and rune_allowed(profile,BY_CODE[item.blueprint.catalog_key][0])]
+    from .release_equipment import requirement as release_requirement
+    usable=[item for item in inventory if not item.is_market_listed and item.blueprint.catalog_key in BY_CODE and not BY_CODE[item.blueprint.catalog_key][1] and rune_allowed(profile,BY_CODE[item.blueprint.catalog_key][0]) and not release_requirement(profile, item.blueprint)]
     priority=lambda spell:(spell.circle,spell.damage,spell.mitigation)
     best=max(usable,key=lambda item:priority(BY_CODE[item.blueprint.catalog_key][0]),default=None)
     strongest_owned = best
