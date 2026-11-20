@@ -96,6 +96,31 @@ class MerchantUsabilityTests(TestCase):
         one=add_item(self.p,self.blade);one.is_protected=True;one.save()
         two=add_item(self.p,self.bow);self.p.prepared_magic=two;self.p.save()
         self.assertEqual(merchant_context(self.p,{})['player_inventory'].paginator.count,0)
+    def test_khorinis_mage_can_find_and_purchase_his_colony_school_robe_after_union(self):
+        from django.apps import apps
+        from .faction_succession_v2 import apply
+        from .test_faction_succession import fixture, person
+
+        _, island, race = fixture()
+        mage = person(island, 'FIRE_ORDER', 'K2_ARCHMAGE')
+        guard = person(island, 'CITY_WATCH', 'K2_COMMANDER')
+        mage.level = guard.level = 25
+        mage.ore_balance = guard.ore_balance = 5000
+        mage.save(update_fields=['level', 'ore_balance'])
+        guard.save(update_fields=['level', 'ore_balance'])
+        call_command('seed_catalog', stdout=StringIO())
+        apply(apps, race)
+
+        robe = ItemBluePrint.objects.get(catalog_key='g1-kdf-armor-l')
+        shop = '/sklep/?q=Szata%20ognia'
+        self.client.force_login(mage.user)
+        self.assertIn(robe, self.client.get(shop).context['shop_items'])
+        self.assertRedirects(self.client.post(shop, {'action': 'buy', 'buy_item_id': robe.pk}), shop)
+        self.assertTrue(mage.inventory.filter(blueprint=robe).exists())
+        self.client.force_login(guard.user)
+        self.assertNotIn(robe, self.client.get(shop).context['shop_items'])
+        self.client.post(shop, {'action': 'buy', 'buy_item_id': robe.pk})
+        self.assertFalse(guard.inventory.filter(blueprint=robe).exists())
     def test_purchase_preserves_filters_and_service_still_checks_money(self):
         response=self.client.post('/sklep/?kind=weapon&q=Miecz',{'action':'buy','buy_item_id':self.blade.pk})
         self.assertEqual(response.url,'/sklep/?kind=weapon&q=Miecz')

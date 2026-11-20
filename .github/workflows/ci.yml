@@ -82,6 +82,8 @@ jobs:
         run: |
           echo '[]' > work/bot-faction-trials.json
           ORE_PROBE_REPORT="$PWD/work/bot-faction-trials.json" python manage.py test characters.playtest_faction_ranks.PreparedRankBotTests --noinput
+      - name: Combat-first and income-first starts alongside bots
+        run: python manage.py test characters.playtest_scenarios.OrdinaryBuildSession --noinput
       - name: Compare player pacing with organic income and real operator forms
         run: |
           mkdir -p work
@@ -105,7 +107,7 @@ jobs:
       matrix:
         include:
           - group: martial
-            cases: --case old-warrior --case new-archer --case city-warrior --case onar-archer
+            cases: --case old-warrior --case old-twohand --case new-archer --case city-warrior --case onar-archer --case onar-crossbow
           - group: arcane
             cases: --case old-fire --case new-water --case monastery-fire
           - group: brotherhood
