@@ -13,7 +13,7 @@ Potrzebne są: wspólny serwer po Barierze, poziom 45, odebrany finał `nk-undea
 | Straż Jarkendaru | Ogniste ogary, bagienne golemy, kamienni strażnicy |
 | Warty Irdorath | Szkielety, demony, elitarni orkowie |
 
-Każdy szlak ma własny postęp. Przeciwnik ma stałe parametry zależne od szlaku i stopnia, bez dopasowywania siły do postaci. Wygrana odblokowuje kolejny stopień do 100. Wszystkie szlaki oraz stare warty współdzielą pięciominutowy cooldown postaci. Próba kosztuje 20 energii; regionalna także `10 + 2 × min(stopień,40)` rudy, czyli 12–90. Porażka również zużywa wpisowe i energię.
+Każdy szlak ma własny postęp. Przeciwnik ma stałe parametry zależne od szlaku i stopnia, bez dopasowywania siły do postaci. Wygrana odblokowuje kolejny stopień w granicach [uprawnień rangi](LOOT_AND_ENDGAME.md). Ósma ranga daje dostęp do całej skali. Wszystkie szlaki oraz stare warty współdzielą pięciominutowy cooldown postaci. Próba kosztuje 20 energii; regionalna także `10 + 2 × min(stopień,40)` rudy, czyli bazowo 12–90. Rangi 5–8 obniżają wpisowe odpowiednio o 2, 4, 6 i 8 rudy. Porażka również zużywa wpisowe i energię.
 
 Pierwsze osiem regionalnych zwycięstw w polskim dniu daje pełne nagrody, łącznie dla czterech ścieżek: bazowo `80 + 5 × min(stopień,40)` rudy i `800 + 50 × min(stopień,40)` PD. Obowiązują istniejące mnożniki wydarzeń. Pierwsza nagradzana wygrana danego stopnia daje sprzęt, kolejne mają 60% szans; każda nagradzana wygrana daje 7 pyłu runicznego. Dalsze zwycięstwa tego dnia nadal kosztują wpisowe/energię i dają postęp/punkty, lecz nie walutę, PD ani łupy. Ekran pokazuje pozostały budżet i koszty.
 

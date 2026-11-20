@@ -8,11 +8,11 @@ Tabele obejmują także definicje instalowane przy aktywacji Bariery. Pochodzą 
 
 | Zakres | Liczba |
 |---|---|
-| Lokacje łącznie | 88 |
-| Lokacje GOTHIC_I | 47 |
-| Lokacje GOTHIC_II | 41 |
+| Lokacje łącznie | 104 |
+| Lokacje GOTHIC_I | 55 |
+| Lokacje GOTHIC_II | 49 |
 | Populacje przeciwników do polowań | 134 |
-| Bossowie solo | 15 |
+| Bossowie solo | 29 |
 | Rodzime tożsamości rang (gałęzie) | 30 |
 | Wyższe awanse sześciu frakcji | 24 |
 | Zaklęcia działające (nie liczba modeli run/zwojów) | 24 |
@@ -44,14 +44,16 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | k2_onar — Farma Onara | GOTHIC_II | 0 | — | train_page |  |
 | k2_barracks — Koszary Khorinis | GOTHIC_II | 0 | — | train_page |  |
 | k2_monastery — Klasztor Innosa | GOTHIC_II | 0 | — | train_page |  |
-| dexter_tower — Wieża Dextera | GOTHIC_II | 0 | BANDITS; po Barierze | train_page |  |
-| veil_refuge — Krypta Zakonu Mroku | GOTHIC_II | 0 | VEIL_ORDER; po Barierze | train_page |  |
+| dexter_tower — Wieża Dextera | GOTHIC_II | 0 | BANDITS · po Barierze | train_page |  |
+| veil_refuge — Krypta Zakonu Mroku | GOTHIC_II | 0 | VEIL_ORDER · po Barierze | train_page |  |
 | g2nk_fields — Łąki i rozstaje Khorinis | GOTHIC_II | 0 | po Barierze | hunt_page | Krwiopijca, Olbrzymi szczur, Goblin, Dzik, Chrząszcz, Kretoszczur, Ścierwojad, Owca, Młoda polna bestia, Młody olbrzymi szczur, Goblin, Młody wilk |
 | abandoned_mine — Opuszczona kopalnia | GOTHIC_I | 1 | — | hunt_page | Chrząszcz, Kretoszczur, Goblin |
 | cavalorn — Chata Cavalorna | GOTHIC_I | 2 | — | hunt_page | Goblin, Wilk |
 | rice_fields — Pola ryżowe | GOTHIC_I | 2 | — | hunt_page | Kretoszczur, Krwiopijca |
 | k2_road — Trakt do Martwej Harpii | GOTHIC_II | 2 | — | hunt_page | Goblin spod mostu, Wilk z traktu |
-| old_castle — Zamek Starego Obozu | GOTHIC_I | 3 | OLD_CAMP; szczebel 1 | train_page |  |
+| rank_valley_outpost — Posterunek przy starym moście | GOTHIC_I | 2 | ranga 1 we własnej gildii | hunt_page | Ścierwojad, Kretoszczur, Goblin |
+| rank_harbor_outpost — Opuszczone szopy portowe | GOTHIC_II | 2 | ranga 1 we własnej gildii | hunt_page | Ścierwojad z pól, Goblin spod mostu |
+| old_castle — Zamek Starego Obozu | GOTHIC_I | 3 | OLD_CAMP · szczebel 1 | train_page |  |
 | free_mine — Wolna Kopalnia | GOTHIC_I | 3 | NEW_CAMP | mine_page |  |
 | aidan — Obóz Aidana | GOTHIC_I | 3 | — | hunt_page | Wilk, Ścierwojad, Czarny goblin |
 | swamp — Bagno koło Obozu Bractwa | GOTHIC_I | 4 | — | hunt_page | Krwiopijca, Agresywny krwiopijca, Topielec, Jaszczur |
@@ -62,9 +64,11 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | k2_farms — Pola wokół farm | GOTHIC_II | 5 | — | hunt_page | Polna bestia, Ścierwojad z pól |
 | dam — Tama w Nowym Obozie | GOTHIC_I | 6 | — | hunt_page | Topielec, Topielec spod tamy |
 | k2_lake — Jezioro klasztorne | GOTHIC_II | 6 | — | hunt_page | Krwiopijca znad jeziora |
+| rank_gorge_raider — Czata rabusiów w wąwozie | GOTHIC_I | 6 | ranga 2 we własnej gildii | boss_page |  |
+| rank_toll_leader — Stara rogatka kupiecka | GOTHIC_II | 6 | ranga 2 we własnej gildii | boss_page |  |
 | eastern_forest — Wschodni las | GOTHIC_I | 7 | — | hunt_page | Kąsacz, Zębacz, Wilk |
-| water_mages — Siedziba Magów Wody | GOTHIC_I | 8 | NEW_CAMP; szczebel 2 | train_page |  |
-| brotherhood_temple — Świątynia Bractwa | GOTHIC_I | 8 | SWAMP_CAMP; szczebel 2 | train_page |  |
+| water_mages — Siedziba Magów Wody | GOTHIC_I | 8 | NEW_CAMP · szczebel 2 | train_page |  |
+| brotherhood_temple — Świątynia Bractwa | GOTHIC_I | 8 | SWAMP_CAMP · szczebel 2 | train_page |  |
 | swamp_den — Legowisko błotnego węża | GOTHIC_I | 8 | — | boss_page |  |
 | swamp_depths — Głębokie bagno | GOTHIC_I | 8 | — | hunt_page | Ranny wąż błotny, Wąż błotny, Topielec |
 | stone_circle — Kamienne kręgi | GOTHIC_I | 9 | — | hunt_page | Szkielet zwiadowca, Szkielet, Zombie |
@@ -72,25 +76,27 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | fog_tower — Wieża Mgieł | GOTHIC_I | 10 | — | hunt_page | Szkielet, Szkielet wojownik, Szkielet mag, Szkielet maga z Wieży Mgieł |
 | fog_beach — Plaża przy Wieży Mgieł | GOTHIC_I | 10 | — | hunt_page | Jaszczur, Topielec, Ognisty jaszczur |
 | k2_bandit_boss — Zasadzka na trakcie | GOTHIC_II | 10 | — | boss_page |  |
-| jark_portal — Portal Magów Wody | GOTHIC_II | 10 | po Barierze | train_page |  |
-| jark_water — Obóz Magów Wody | GOTHIC_II | 10 | po Barierze; portal | train_page |  |
-| jark_pirates — Obóz piratów | GOTHIC_II | 10 | po Barierze; portal | tavern_page |  |
-| jark_beach — Plaże Jarkendaru | GOTHIC_II | 10 | po Barierze; portal | hunt_page | Topielec z plaży |
+| jark_portal — Portal Magów Wody | GOTHIC_II | 10 | po Barierze · ranga 2 we własnej gildii lub wcześniej przyjęty kontrakt | train_page |  |
+| jark_water — Obóz Magów Wody | GOTHIC_II | 10 | po Barierze · portal | train_page |  |
+| jark_pirates — Obóz piratów | GOTHIC_II | 10 | po Barierze · portal | tavern_page |  |
+| jark_beach — Plaże Jarkendaru | GOTHIC_II | 10 | po Barierze · portal | hunt_page | Topielec z plaży |
 | g2nk_forest — Dzikie ostępy Khorinis | GOTHIC_II | 10 | po Barierze | hunt_page | Ognisty golem, Ognisty jaszczur, Prychający smoczy zębacz, Polna bestia, Czarny goblin, Gobliński wojownik z zardzewiałym krótkim mieczem, Gobliński wojownik z zardzewiałym toporem, Harpia, Topielec, Pełzacz, Pełzacz wojownik, Kąsacz, Brzytwiak, Cieniostwór, Zębacz, Troll, Czarny troll, Jaszczur, Warg |
 | quentin_camp — Obóz Quentina | GOTHIC_I | 11 | — | hunt_page | Brzytwiak, Zębacz, Orkowy pies |
 | free_mine_depths — Głębie Wolnej Kopalni | GOTHIC_I | 12 | — | hunt_page | Pełzacz wojownik, Pełzacz |
 | old_monastery — Stary klasztor | GOTHIC_I | 12 | — | hunt_page | Szkielet wojownik, Zombie, Młody troll |
-| jark_bandits — Obóz zaopatrzeniowy bandytów | GOTHIC_II | 12 | po Barierze; portal | market_page |  |
-| jark_mine — Kopalnia złota | GOTHIC_II | 12 | po Barierze; portal | mine_page |  |
-| jark_swamp — Bagna Budowniczych | GOTHIC_II | 12 | po Barierze; portal | hunt_page | Modliszka, Wąż błotny z ruin |
+| jark_bandits — Obóz zaopatrzeniowy bandytów | GOTHIC_II | 12 | po Barierze · portal | market_page |  |
+| jark_mine — Kopalnia złota | GOTHIC_II | 12 | po Barierze · portal | mine_page |  |
+| jark_swamp — Bagna Budowniczych | GOTHIC_II | 12 | po Barierze · portal | hunt_page | Modliszka, Wąż błotny z ruin |
+| rank_mine_deserter — Zawalone wyrobisko pod przełęczą | GOTHIC_I | 12 | ranga 3 we własnej gildii | boss_page |  |
+| rank_coast_smuggler — Przystań pod urwiskiem | GOTHIC_II | 12 | ranga 3 we własnej gildii | boss_page |  |
 | northern_forest — Północny las | GOTHIC_I | 14 | — | hunt_page | Brzytwiak, Cieniostwór, Zębacz |
 | mountain_fortress — Górska forteca | GOTHIC_I | 15 | — | hunt_page | Harpia, Golem mostowy |
 | orc_lands — Ziemie Orków | GOTHIC_I | 15 | — | hunt_page | Ork, Orkowy pies, Ork myśliwy, Ork żołnierz, Ork wojownik |
 | k2_dark_forest — Mroczny las Khorinis | GOTHIC_II | 15 | — | hunt_page | Warg z mrocznego lasu, Wilk z traktu |
-| jark_canyon — Kanion Jarkendaru | GOTHIC_II | 15 | po Barierze; portal | hunt_page | Brzytwiak z kanionu, Krwawy ogar |
+| jark_canyon — Kanion Jarkendaru | GOTHIC_II | 15 | po Barierze · portal | hunt_page | Brzytwiak z kanionu, Krwawy ogar |
 | g2nk_crypts — Krypty i opuszczone strażnice | GOTHIC_II | 15 | po Barierze | hunt_page | Demon, Książę demonów, Poszukiwacz, Szkielet goblin, Pomniejszy szkielet, Szkielet, Wojownik cienia, Szkielet mag, Zombie, Zombie, Zombie, Zombie |
-| g2nk_jark_canyon — Dzikie kaniony Jarkendaru | GOTHIC_II | 15 | po Barierze; portal | hunt_page | Aligator, Polny pełzacz, Krwawy ogar, Pustynny szczur, Preriowy ścierwojad, Ognisty demon, Pantera |
-| g2nk_jark_swamp — Zalane ostępy Jarkendaru | GOTHIC_II | 15 | po Barierze; portal | hunt_page | Bagienny golem, Bagienny szczur, Wąż błotny, Bagienny zombie, Latający rój |
+| g2nk_jark_canyon — Dzikie kaniony Jarkendaru | GOTHIC_II | 15 | po Barierze · portal | hunt_page | Aligator, Polny pełzacz, Krwawy ogar, Pustynny szczur, Preriowy ścierwojad, Ognisty demon, Pantera |
+| g2nk_jark_swamp — Zalane ostępy Jarkendaru | GOTHIC_II | 15 | po Barierze · portal | hunt_page | Bagienny golem, Bagienny szczur, Wąż błotny, Bagienny zombie, Latający rój |
 | old_citadel — Stara cytadela | GOTHIC_I | 17 | — | hunt_page | Szkielet wojownik, Kamienny golem, Harpia |
 | xardas_tower — Wieża Xardasa | GOTHIC_I | 18 | — | hunt_page | Kamienny golem, Ognisty golem, Lodowy golem |
 | k2_harbor_boss — Warta przy morskim trakcie | GOTHIC_II | 18 | — | boss_page |  |
@@ -100,23 +106,33 @@ Poziom lokacji jest warunkiem wejścia. Kolumna bramek uzupełnia poziom i regio
 | g2nk_ice — Lodowe pustkowia Górniczej Doliny | GOTHIC_I | 20 | po Barierze | hunt_page | Lodowy golem, Lodowy wilk |
 | troll_canyon — Kanion trolli | GOTHIC_I | 22 | — | hunt_page | Młody troll, Troll, Goblin wojownik |
 | k2_troll_grove — Gaj czarnego trolla | GOTHIC_II | 22 | — | hunt_page | Czarny troll |
-| jark_ruins — Ruiny Budowniczych | GOTHIC_II | 22 | po Barierze; portal | hunt_page | Kamienny strażnik |
-| g2nk_jark_ruins — Dziedzińce Budowniczych | GOTHIC_II | 22 | po Barierze; portal | hunt_page | Kamienny strażnik |
+| jark_ruins — Ruiny Budowniczych | GOTHIC_II | 22 | po Barierze · portal | hunt_page | Kamienny strażnik |
+| g2nk_jark_ruins — Dziedzińce Budowniczych | GOTHIC_II | 22 | po Barierze · portal | hunt_page | Kamienny strażnik |
+| rank_drowned_keeper — Przejście pod zatopionym murem | GOTHIC_I | 23 | ranga 4 we własnej gildii | boss_page |  |
+| rank_broken_bastion — Pęknięta baszta nad traktem | GOTHIC_II | 23 | ranga 4 we własnej gildii | boss_page |  |
 | sleeper_temple — Świątynia Śniącego | GOTHIC_I | 25 | — | hunt_page | Ork niewolnik, Świątynny pełzacz, Opiekun świątyni, Starszy opiekun świątyni, Pomniejszy demon, Demon ognia, Książę demonów |
-| jark_crypt — Krypta Budowniczych | GOTHIC_II | 25 | po Barierze; portal | boss_page |  |
+| jark_crypt — Krypta Budowniczych | GOTHIC_II | 25 | po Barierze · portal | boss_page |  |
+| rank_valley_archive — Zapieczętowane archiwum Kolonii | GOTHIC_I | 25 | Arcymag Ognia lub Arcymag Wody lub Arcyguru | boss_page |  |
+| rank_monastery_archive — Podziemia archiwum Innosa | GOTHIC_II | 25 | Arcymag klasztoru | boss_page |  |
 | overseer_crypt — Krypta Nadzorcy | GOTHIC_I | 28 | — | hunt_page | Nadzorca, Szkielet mag, Książę demonów |
 | g2nk_inubis — Inubis | GOTHIC_II | 28 | po Barierze | boss_page |  |
 | sleeper_sanctum — Sanktuarium Śniącego | GOTHIC_I | 30 | — | boss_page |  |
-| g2nk_raven — Kruk — wyprawa do świątyni | GOTHIC_II | 30 | po Barierze; portal; nk-tablets | boss_page |  |
+| g2nk_raven — Kruk — wyprawa do świątyni | GOTHIC_II | 30 | po Barierze · portal · nk-tablets | boss_page |  |
+| rank_valley_cordon — Wysunięta strażnica Doliny | GOTHIC_I | 30 | po Barierze · ranga 5 we własnej gildii · Pęknięcie Bariery | boss_page |  |
 | g2nk_dragon_swamp — Pandrodor — smok bagienny | GOTHIC_I | 32 | po Barierze | boss_page |  |
 | g2nk_dragon_rock — Pedrakhan — smok skalny | GOTHIC_I | 34 | po Barierze | boss_page |  |
 | k2_dragon_fire — Szczyt smoka ognia | GOTHIC_I | 35 | po Barierze | boss_page |  |
+| rank_jarkendar_guardian — Zamknięty dziedziniec Budowniczych | GOTHIC_II | 35 | po Barierze · portal · ranga 6 we własnej gildii · Zaginiona Dolina | boss_page |  |
+| rank_night_watch — Krypta pod drogą pielgrzymów | GOTHIC_II | 35 | po Barierze · ranga 6 we własnej gildii · Cienie nad Khorinis | boss_page |  |
 | g2nk_dragon_ice — Finkregh — smok lodowy | GOTHIC_I | 38 | po Barierze | boss_page |  |
-| g2nk_irdorath — Korytarze Irdorath | GOTHIC_II | 40 | po Barierze; nk-sailing | hunt_page | Ork pułkownik z wyspy Irdorath, Troll jaskiniowy |
-| g2nk_ship — Statek wyprawy do Irdorath | GOTHIC_II | 40 | po Barierze | train_page |  |
-| g2nk_dragon_island — Feodaron — smok z Irdorath | GOTHIC_II | 42 | po Barierze; nk-sailing | boss_page |  |
-| g2nk_archol — Archol — warta czarnego rycerza | GOTHIC_II | 44 | po Barierze; nk-sailing | boss_page |  |
-| g2nk_dragon_undead — Smok-ożywieniec — finał wyprawy | GOTHIC_II | 45 | po Barierze; nk-sailing | boss_page |  |
+| g2nk_irdorath — Korytarze Irdorath | GOTHIC_II | 40 | po Barierze · nk-sailing | hunt_page | Ork pułkownik z wyspy Irdorath, Troll jaskiniowy |
+| g2nk_ship — Statek wyprawy do Irdorath | GOTHIC_II | 40 | po Barierze · ranga 3 we własnej gildii lub wcześniej przyjęty kontrakt | train_page |  |
+| rank_dragon_ward — Kamienna reduta pod wulkanem | GOTHIC_I | 41 | po Barierze · ranga 7 we własnej gildii · Przebudzenie smoków | boss_page |  |
+| g2nk_dragon_island — Feodaron — smok z Irdorath | GOTHIC_II | 42 | po Barierze · nk-sailing | boss_page |  |
+| g2nk_archol — Archol — warta czarnego rycerza | GOTHIC_II | 44 | po Barierze · nk-sailing | boss_page |  |
+| g2nk_dragon_undead — Smok-ożywieniec — finał wyprawy | GOTHIC_II | 45 | po Barierze · nk-sailing | boss_page |  |
+| rank_irdorath_guard — Zamknięta sala Irdorath | GOTHIC_II | 48 | po Barierze · nk-sailing · ranga 8 we własnej gildii · Żagle ku Irdorath | boss_page |  |
+| rank_orc_standard — Obóz Czarnego Sztandaru | GOTHIC_I | 50 | po Barierze · nk-undead · ranga 8 we własnej gildii · Orkowie u bram | boss_page |  |
 
 ## Przeciwnicy polowań
 
@@ -280,6 +296,20 @@ Dodatkowe bramki połączenia, portalu i odebranej fabuły wynikają z lokacji p
 | g2nk_dragon_island — Feodaron — smok z Irdorath | 42 | 2800 | 125 | 70 | 25 | 30 | 900 / 13000 |
 | g2nk_archol — Archol — warta czarnego rycerza | 44 | 2900 | 130 | 75 | 25 | 30 | 950 / 14000 |
 | g2nk_dragon_undead — Smok-ożywieniec — finał wyprawy | 45 | 3000 | 135 | 75 | 25 | 30 | 1200 / 18000 |
+| rank_gorge_raider — Poborca z wąwozu | 6 | 225 | 22 | 10 | 25 | 60 | 65 / 320 |
+| rank_toll_leader — Herszt poborców | 6 | 240 | 24 | 12 | 25 | 60 | 70 / 350 |
+| rank_mine_deserter — Dezerter z wyrobiska | 12 | 400 | 35 | 22 | 25 | 60 | 100 / 550 |
+| rank_coast_smuggler — Bosman przemytników | 12 | 430 | 38 | 22 | 25 | 60 | 110 / 600 |
+| rank_drowned_keeper — Strażnik zatopionego muru | 23 | 780 | 58 | 34 | 25 | 60 | 170 / 1200 |
+| rank_broken_bastion — Zbrojny z baszty | 23 | 820 | 60 | 35 | 25 | 60 | 185 / 1250 |
+| rank_valley_archive — Strażnik trzech pieczęci | 25 | 1000 | 62 | 36 | 25 | 60 | 200 / 1450 |
+| rank_monastery_archive — Strażnik klasztornych ksiąg | 25 | 1050 | 63 | 38 | 25 | 60 | 220 / 1550 |
+| rank_valley_cordon — Orkowy strażnik przełęczy | 30 | 1250 | 78 | 42 | 25 | 60 | 270 / 1850 |
+| rank_jarkendar_guardian — Strażnik zamkniętego dziedzińca | 35 | 1450 | 88 | 48 | 25 | 60 | 320 / 2350 |
+| rank_night_watch — Dozorca nocnej krypty | 35 | 1550 | 89 | 49 | 25 | 60 | 335 / 2550 |
+| rank_dragon_ward — Dowódca smoczej straży | 41 | 1950 | 103 | 54 | 25 | 60 | 425 / 3400 |
+| rank_irdorath_guard — Strażnik ostatniej komnaty | 48 | 2350 | 110 | 56 | 25 | 60 | 520 / 4250 |
+| rank_orc_standard — Dowódca Czarnego Sztandaru | 50 | 2500 | 115 | 60 | 25 | 60 | 560 / 4700 |
 
 ## Podstawowe rangi
 

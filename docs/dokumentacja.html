@@ -1028,7 +1028,7 @@ Sprzęt noszony, wystawiony i zabezpieczony jest chroniony przed rozbiórką.
 Sprzętu NPC i zwykłego rzemiosła nie da się zamieniać w nieskończony pył.
 Ponowienie UUID nie wypłaca drugiej porcji, a błędy cofają koszt i wynik.</p>
 <h3 id="doc-loot-and-endgame--warty-za-przeecza">Warty za Przełęczą</h3>
-<p>Adres <code>/warty/</code>, także w menu Droga postaci. Warunek: <strong>poziom 30 i przynależność do obozu</strong>. Ukończenie fabuły nie jest wymagane. Początkowo otwarta jest warta 1. Zwycięstwo odblokowuje następną, do <strong>100</strong>, a poprzednie można powtarzać. Nie ma zamknięcia serwera po wygraniu najwyższej trudności.</p>
+<p>Adres <code>/warty/</code>, także w menu Droga postaci. Warunek: <strong>poziom 30 i przynależność do obozu</strong>. Ukończenie fabuły nie jest wymagane. Początkowo otwarta jest warta 1. Zwycięstwo odblokowuje następną wartę w granicach uprawnień. Bez rangi dostępne są stopnie 1–2, a rangi 1–8 zwiększają limit do <strong>4, 8, 14, 20, 25, 30, 35 i 100</strong>. Poprzednie warty można powtarzać. Starsze postacie zachowują już otwarte stopnie osobno na każdym szlaku. Nie ma zamknięcia serwera po wygraniu najwyższej trudności.</p>
 <p>Dla stopnia <code>d</code> strażnik ma <code>600 + 60d</code> życia, <code>55 + 3d</code> siły, <code>25 + 2d</code> ochrony przed bronią i <code>10 + d</code> ochrony przed ogniem/magią. Nie skaluje się automatycznie do siły postaci: nowy oręż, ulepszenia, nauka i ochrona faktycznie ułatwiają walkę. Działa ten sam silnik, obrażenia, magia, amunicja i regeneracja co w polowaniu.</p>
 <p>Próba kosztuje <strong>20 energii</strong>, ma <strong>5 minut</strong> odstępu także po porażce i pozostawia rzeczywiste rany. Zwycięstwo daje bazowo <code>50 + 10d</code> rudy i <code>400 + 80d</code> PD z normalnymi premiami pory/eventów, zawsze pył najwyższego kręgu i 60% szansy na sprzęt tego kręgu. <strong>Pierwsze zwycięstwo na każdym stopniu gwarantuje sprzęt</strong>. Porażka nie daje nagród. Klient wybiera wyłącznie odblokowany stopień; nie przesyła statystyk, punktów ani nagród. Raport zachowuje wynik, łupy i koszty.</p>
 <p>Miesięczny ranking obejmuje ludzi i boty danego świata, a po Barierze oba połączone regiony. Wygrana daje <code>10 × d</code> punktów; sortowanie: suma punktów, najwyższa wygrana trudność, stały identyfikator przy remisie. Nowy miesiąc zaczyna ranking od zera według <strong>Europe/Warsaw</strong>, bez zerowania sprzętu, odblokowanych wart ani historii. Nie ma automatycznej wypłaty waluty za samą zmianę miesiąca. Daje to odnawialny cel także po zdobyciu Pradawnego +3 i warty 100: walka o wynik miesiąca i wsparcie własnego obozu.</p>
@@ -1504,7 +1504,7 @@ wyłącznie upływ czasu i zwykłą regenerację; nie zmienia sald, statystyk i 
 </tr>
 </tbody>
 </table></div>
-<p>Każdy szlak ma własny postęp. Przeciwnik ma stałe parametry zależne od szlaku i stopnia, bez dopasowywania siły do postaci. Wygrana odblokowuje kolejny stopień do 100. Wszystkie szlaki oraz stare warty współdzielą pięciominutowy cooldown postaci. Próba kosztuje 20 energii; regionalna także <code>10 + 2 × min(stopień,40)</code> rudy, czyli 12–90. Porażka również zużywa wpisowe i energię.</p>
+<p>Każdy szlak ma własny postęp. Przeciwnik ma stałe parametry zależne od szlaku i stopnia, bez dopasowywania siły do postaci. Wygrana odblokowuje kolejny stopień w granicach <a href="#doc-loot-and-endgame">uprawnień rangi</a>. Ósma ranga daje dostęp do całej skali. Wszystkie szlaki oraz stare warty współdzielą pięciominutowy cooldown postaci. Próba kosztuje 20 energii; regionalna także <code>10 + 2 × min(stopień,40)</code> rudy, czyli bazowo 12–90. Rangi 5–8 obniżają wpisowe odpowiednio o 2, 4, 6 i 8 rudy. Porażka również zużywa wpisowe i energię.</p>
 <p>Pierwsze osiem regionalnych zwycięstw w polskim dniu daje pełne nagrody, łącznie dla czterech ścieżek: bazowo <code>80 + 5 × min(stopień,40)</code> rudy i <code>800 + 50 × min(stopień,40)</code> PD. Obowiązują istniejące mnożniki wydarzeń. Pierwsza nagradzana wygrana danego stopnia daje sprzęt, kolejne mają 60% szans; każda nagradzana wygrana daje 7 pyłu runicznego. Dalsze zwycięstwa tego dnia nadal kosztują wpisowe/energię i dają postęp/punkty, lecz nie walutę, PD ani łupy. Ekran pokazuje pozostały budżet i koszty.</p>
 <p>To najwyżej 2240 bazowej rudy, 22400 bazowych PD i 56 pyłu dziennie z nowych wart, przed wpisowym, mnożnikami i ewentualną sprzedażą łupu. Nie dodano odłamków. Dawne warty zachowują wcześniejsze zasady; ten limit nie dowodzi zbilansowania całej gospodarki. Kuźnia, trening i zakupy pozostają istniejącymi ujściami zasobów.</p>
 <p>Ranking miesiąca jest wspólny, z filtrem ścieżki i etykietą historycznych wart. Nowy miesiąc nie resetuje wyposażenia ani stopni. Historia rozróżnia wpisowe i otrzymaną rudę. Podróż oraz restart nie odnawiają cooldownu ani budżetu dnia.</p>
@@ -1679,6 +1679,9 @@ python manage.py simulate_builds --case new-archer --report /tmp/ore-archer.json
 </tbody>
 </table></div>
 <p>Przyjmij próbę przed działaniami. Jedna próba naraz; porzucenie kasuje jej postęp. Odbiory wydobycia, wygrane walki i płatny trening zaliczają wyłącznie fakty po przyjęciu. Promocja ponownie sprawdza poprzednią rangę, gałąź, odebraną fabułę, poziom, bazowy atrybut, ukończenie celów i rudę. Zapłata i awans mają jedną transakcję. <a href="#doc-characters-and-worlds">Progi fabuły</a>.</p>
+<h3 id="doc-camps--co-odblokowuja-awanse">Co odblokowują awanse</h3>
+<p>Każda ranga daje dostęp do opcjonalnych miejsc lub walk. Kolonia i Khorinis mają własne wyprawy dla rang 1–4. Archiwa Kolonii otwierają rodzimi arcymagowie i arcyguru, a podziemia klasztoru wymagają Arcymaga klasztoru. Weterani każdej gałęzi mają też wspólną wyprawę właściwą dla swojej krainy.</p>
+<p>Rangi 5–8 otwierają kolejno strażnicę Doliny, dziedziniec Jarkendaru i nocną kryptę, redutę pod wulkanem oraz zamkniętą salę Irdorath i obóz Czarnego Sztandaru. Wejście wymaga także wskazanej odsłony świata, a niektóre miejsca wymagają osobistego portalu, rejsu lub finału. Dziennik rang i mapa wskazują te warunki. <a href="#doc-game-content--lokacje">Katalog lokacji</a>.</p>
 <h3 id="doc-camps--po-barierze-szesc-frakcji-i-osiem-rang">Po Barierze: sześć frakcji i osiem rang</h3>
 <div class="table-wrap" role="region" aria-label="Tabela dokumentacji — przewijaj w poziomie" tabindex="0"><table>
 <thead>
@@ -2792,15 +2795,15 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <tbody>
 <tr>
 <td>Lokacje łącznie</td>
-<td>88</td>
+<td>104</td>
 </tr>
 <tr>
 <td>Lokacje GOTHIC_I</td>
-<td>47</td>
+<td>55</td>
 </tr>
 <tr>
 <td>Lokacje GOTHIC_II</td>
-<td>41</td>
+<td>49</td>
 </tr>
 <tr>
 <td>Populacje przeciwników do polowań</td>
@@ -2808,7 +2811,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 </tr>
 <tr>
 <td>Bossowie solo</td>
-<td>15</td>
+<td>29</td>
 </tr>
 <tr>
 <td>Rodzime tożsamości rang (gałęzie)</td>
@@ -2979,7 +2982,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>dexter_tower — Wieża Dextera</td>
 <td>GOTHIC_II</td>
 <td>0</td>
-<td>BANDITS; po Barierze</td>
+<td>BANDITS · po Barierze</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -2987,7 +2990,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>veil_refuge — Krypta Zakonu Mroku</td>
 <td>GOTHIC_II</td>
 <td>0</td>
-<td>VEIL_ORDER; po Barierze</td>
+<td>VEIL_ORDER · po Barierze</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3032,10 +3035,26 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>Goblin spod mostu, Wilk z traktu</td>
 </tr>
 <tr>
+<td>rank_valley_outpost — Posterunek przy starym moście</td>
+<td>GOTHIC_I</td>
+<td>2</td>
+<td>ranga 1 we własnej gildii</td>
+<td>hunt_page</td>
+<td>Ścierwojad, Kretoszczur, Goblin</td>
+</tr>
+<tr>
+<td>rank_harbor_outpost — Opuszczone szopy portowe</td>
+<td>GOTHIC_II</td>
+<td>2</td>
+<td>ranga 1 we własnej gildii</td>
+<td>hunt_page</td>
+<td>Ścierwojad z pól, Goblin spod mostu</td>
+</tr>
+<tr>
 <td>old_castle — Zamek Starego Obozu</td>
 <td>GOTHIC_I</td>
 <td>3</td>
-<td>OLD_CAMP; szczebel 1</td>
+<td>OLD_CAMP · szczebel 1</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3120,6 +3139,22 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>Krwiopijca znad jeziora</td>
 </tr>
 <tr>
+<td>rank_gorge_raider — Czata rabusiów w wąwozie</td>
+<td>GOTHIC_I</td>
+<td>6</td>
+<td>ranga 2 we własnej gildii</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_toll_leader — Stara rogatka kupiecka</td>
+<td>GOTHIC_II</td>
+<td>6</td>
+<td>ranga 2 we własnej gildii</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
 <td>eastern_forest — Wschodni las</td>
 <td>GOTHIC_I</td>
 <td>7</td>
@@ -3131,7 +3166,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>water_mages — Siedziba Magów Wody</td>
 <td>GOTHIC_I</td>
 <td>8</td>
-<td>NEW_CAMP; szczebel 2</td>
+<td>NEW_CAMP · szczebel 2</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3139,7 +3174,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>brotherhood_temple — Świątynia Bractwa</td>
 <td>GOTHIC_I</td>
 <td>8</td>
-<td>SWAMP_CAMP; szczebel 2</td>
+<td>SWAMP_CAMP · szczebel 2</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3203,7 +3238,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_portal — Portal Magów Wody</td>
 <td>GOTHIC_II</td>
 <td>10</td>
-<td>po Barierze</td>
+<td>po Barierze · ranga 2 we własnej gildii lub wcześniej przyjęty kontrakt</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3211,7 +3246,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_water — Obóz Magów Wody</td>
 <td>GOTHIC_II</td>
 <td>10</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>train_page</td>
 <td></td>
 </tr>
@@ -3219,7 +3254,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_pirates — Obóz piratów</td>
 <td>GOTHIC_II</td>
 <td>10</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>tavern_page</td>
 <td></td>
 </tr>
@@ -3227,7 +3262,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_beach — Plaże Jarkendaru</td>
 <td>GOTHIC_II</td>
 <td>10</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Topielec z plaży</td>
 </tr>
@@ -3267,7 +3302,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_bandits — Obóz zaopatrzeniowy bandytów</td>
 <td>GOTHIC_II</td>
 <td>12</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>market_page</td>
 <td></td>
 </tr>
@@ -3275,7 +3310,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_mine — Kopalnia złota</td>
 <td>GOTHIC_II</td>
 <td>12</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>mine_page</td>
 <td></td>
 </tr>
@@ -3283,9 +3318,25 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_swamp — Bagna Budowniczych</td>
 <td>GOTHIC_II</td>
 <td>12</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Modliszka, Wąż błotny z ruin</td>
+</tr>
+<tr>
+<td>rank_mine_deserter — Zawalone wyrobisko pod przełęczą</td>
+<td>GOTHIC_I</td>
+<td>12</td>
+<td>ranga 3 we własnej gildii</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_coast_smuggler — Przystań pod urwiskiem</td>
+<td>GOTHIC_II</td>
+<td>12</td>
+<td>ranga 3 we własnej gildii</td>
+<td>boss_page</td>
+<td></td>
 </tr>
 <tr>
 <td>northern_forest — Północny las</td>
@@ -3323,7 +3374,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_canyon — Kanion Jarkendaru</td>
 <td>GOTHIC_II</td>
 <td>15</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Brzytwiak z kanionu, Krwawy ogar</td>
 </tr>
@@ -3339,7 +3390,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_jark_canyon — Dzikie kaniony Jarkendaru</td>
 <td>GOTHIC_II</td>
 <td>15</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Aligator, Polny pełzacz, Krwawy ogar, Pustynny szczur, Preriowy ścierwojad, Ognisty demon, Pantera</td>
 </tr>
@@ -3347,7 +3398,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_jark_swamp — Zalane ostępy Jarkendaru</td>
 <td>GOTHIC_II</td>
 <td>15</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Bagienny golem, Bagienny szczur, Wąż błotny, Bagienny zombie, Latający rój</td>
 </tr>
@@ -3427,7 +3478,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_ruins — Ruiny Budowniczych</td>
 <td>GOTHIC_II</td>
 <td>22</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Kamienny strażnik</td>
 </tr>
@@ -3435,9 +3486,25 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_jark_ruins — Dziedzińce Budowniczych</td>
 <td>GOTHIC_II</td>
 <td>22</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
 <td>hunt_page</td>
 <td>Kamienny strażnik</td>
+</tr>
+<tr>
+<td>rank_drowned_keeper — Przejście pod zatopionym murem</td>
+<td>GOTHIC_I</td>
+<td>23</td>
+<td>ranga 4 we własnej gildii</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_broken_bastion — Pęknięta baszta nad traktem</td>
+<td>GOTHIC_II</td>
+<td>23</td>
+<td>ranga 4 we własnej gildii</td>
+<td>boss_page</td>
+<td></td>
 </tr>
 <tr>
 <td>sleeper_temple — Świątynia Śniącego</td>
@@ -3451,7 +3518,23 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>jark_crypt — Krypta Budowniczych</td>
 <td>GOTHIC_II</td>
 <td>25</td>
-<td>po Barierze; portal</td>
+<td>po Barierze · portal</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_valley_archive — Zapieczętowane archiwum Kolonii</td>
+<td>GOTHIC_I</td>
+<td>25</td>
+<td>Arcymag Ognia lub Arcymag Wody lub Arcyguru</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_monastery_archive — Podziemia archiwum Innosa</td>
+<td>GOTHIC_II</td>
+<td>25</td>
+<td>Arcymag klasztoru</td>
 <td>boss_page</td>
 <td></td>
 </tr>
@@ -3483,7 +3566,15 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_raven — Kruk — wyprawa do świątyni</td>
 <td>GOTHIC_II</td>
 <td>30</td>
-<td>po Barierze; portal; nk-tablets</td>
+<td>po Barierze · portal · nk-tablets</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_valley_cordon — Wysunięta strażnica Doliny</td>
+<td>GOTHIC_I</td>
+<td>30</td>
+<td>po Barierze · ranga 5 we własnej gildii · Pęknięcie Bariery</td>
 <td>boss_page</td>
 <td></td>
 </tr>
@@ -3512,6 +3603,22 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td></td>
 </tr>
 <tr>
+<td>rank_jarkendar_guardian — Zamknięty dziedziniec Budowniczych</td>
+<td>GOTHIC_II</td>
+<td>35</td>
+<td>po Barierze · portal · ranga 6 we własnej gildii · Zaginiona Dolina</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_night_watch — Krypta pod drogą pielgrzymów</td>
+<td>GOTHIC_II</td>
+<td>35</td>
+<td>po Barierze · ranga 6 we własnej gildii · Cienie nad Khorinis</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
 <td>g2nk_dragon_ice — Finkregh — smok lodowy</td>
 <td>GOTHIC_I</td>
 <td>38</td>
@@ -3523,7 +3630,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_irdorath — Korytarze Irdorath</td>
 <td>GOTHIC_II</td>
 <td>40</td>
-<td>po Barierze; nk-sailing</td>
+<td>po Barierze · nk-sailing</td>
 <td>hunt_page</td>
 <td>Ork pułkownik z wyspy Irdorath, Troll jaskiniowy</td>
 </tr>
@@ -3531,15 +3638,23 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_ship — Statek wyprawy do Irdorath</td>
 <td>GOTHIC_II</td>
 <td>40</td>
-<td>po Barierze</td>
+<td>po Barierze · ranga 3 we własnej gildii lub wcześniej przyjęty kontrakt</td>
 <td>train_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_dragon_ward — Kamienna reduta pod wulkanem</td>
+<td>GOTHIC_I</td>
+<td>41</td>
+<td>po Barierze · ranga 7 we własnej gildii · Przebudzenie smoków</td>
+<td>boss_page</td>
 <td></td>
 </tr>
 <tr>
 <td>g2nk_dragon_island — Feodaron — smok z Irdorath</td>
 <td>GOTHIC_II</td>
 <td>42</td>
-<td>po Barierze; nk-sailing</td>
+<td>po Barierze · nk-sailing</td>
 <td>boss_page</td>
 <td></td>
 </tr>
@@ -3547,7 +3662,7 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_archol — Archol — warta czarnego rycerza</td>
 <td>GOTHIC_II</td>
 <td>44</td>
-<td>po Barierze; nk-sailing</td>
+<td>po Barierze · nk-sailing</td>
 <td>boss_page</td>
 <td></td>
 </tr>
@@ -3555,7 +3670,23 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>g2nk_dragon_undead — Smok-ożywieniec — finał wyprawy</td>
 <td>GOTHIC_II</td>
 <td>45</td>
-<td>po Barierze; nk-sailing</td>
+<td>po Barierze · nk-sailing</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_irdorath_guard — Zamknięta sala Irdorath</td>
+<td>GOTHIC_II</td>
+<td>48</td>
+<td>po Barierze · nk-sailing · ranga 8 we własnej gildii · Żagle ku Irdorath</td>
+<td>boss_page</td>
+<td></td>
+</tr>
+<tr>
+<td>rank_orc_standard — Obóz Czarnego Sztandaru</td>
+<td>GOTHIC_I</td>
+<td>50</td>
+<td>po Barierze · nk-undead · ranga 8 we własnej gildii · Orkowie u bram</td>
 <td>boss_page</td>
 <td></td>
 </tr>
@@ -4814,6 +4945,146 @@ wszystkich cen G1 do istniejących przedmiotów.</p>
 <td>25</td>
 <td>30</td>
 <td>1200 / 18000</td>
+</tr>
+<tr>
+<td>rank_gorge_raider — Poborca z wąwozu</td>
+<td>6</td>
+<td>225</td>
+<td>22</td>
+<td>10</td>
+<td>25</td>
+<td>60</td>
+<td>65 / 320</td>
+</tr>
+<tr>
+<td>rank_toll_leader — Herszt poborców</td>
+<td>6</td>
+<td>240</td>
+<td>24</td>
+<td>12</td>
+<td>25</td>
+<td>60</td>
+<td>70 / 350</td>
+</tr>
+<tr>
+<td>rank_mine_deserter — Dezerter z wyrobiska</td>
+<td>12</td>
+<td>400</td>
+<td>35</td>
+<td>22</td>
+<td>25</td>
+<td>60</td>
+<td>100 / 550</td>
+</tr>
+<tr>
+<td>rank_coast_smuggler — Bosman przemytników</td>
+<td>12</td>
+<td>430</td>
+<td>38</td>
+<td>22</td>
+<td>25</td>
+<td>60</td>
+<td>110 / 600</td>
+</tr>
+<tr>
+<td>rank_drowned_keeper — Strażnik zatopionego muru</td>
+<td>23</td>
+<td>780</td>
+<td>58</td>
+<td>34</td>
+<td>25</td>
+<td>60</td>
+<td>170 / 1200</td>
+</tr>
+<tr>
+<td>rank_broken_bastion — Zbrojny z baszty</td>
+<td>23</td>
+<td>820</td>
+<td>60</td>
+<td>35</td>
+<td>25</td>
+<td>60</td>
+<td>185 / 1250</td>
+</tr>
+<tr>
+<td>rank_valley_archive — Strażnik trzech pieczęci</td>
+<td>25</td>
+<td>1000</td>
+<td>62</td>
+<td>36</td>
+<td>25</td>
+<td>60</td>
+<td>200 / 1450</td>
+</tr>
+<tr>
+<td>rank_monastery_archive — Strażnik klasztornych ksiąg</td>
+<td>25</td>
+<td>1050</td>
+<td>63</td>
+<td>38</td>
+<td>25</td>
+<td>60</td>
+<td>220 / 1550</td>
+</tr>
+<tr>
+<td>rank_valley_cordon — Orkowy strażnik przełęczy</td>
+<td>30</td>
+<td>1250</td>
+<td>78</td>
+<td>42</td>
+<td>25</td>
+<td>60</td>
+<td>270 / 1850</td>
+</tr>
+<tr>
+<td>rank_jarkendar_guardian — Strażnik zamkniętego dziedzińca</td>
+<td>35</td>
+<td>1450</td>
+<td>88</td>
+<td>48</td>
+<td>25</td>
+<td>60</td>
+<td>320 / 2350</td>
+</tr>
+<tr>
+<td>rank_night_watch — Dozorca nocnej krypty</td>
+<td>35</td>
+<td>1550</td>
+<td>89</td>
+<td>49</td>
+<td>25</td>
+<td>60</td>
+<td>335 / 2550</td>
+</tr>
+<tr>
+<td>rank_dragon_ward — Dowódca smoczej straży</td>
+<td>41</td>
+<td>1950</td>
+<td>103</td>
+<td>54</td>
+<td>25</td>
+<td>60</td>
+<td>425 / 3400</td>
+</tr>
+<tr>
+<td>rank_irdorath_guard — Strażnik ostatniej komnaty</td>
+<td>48</td>
+<td>2350</td>
+<td>110</td>
+<td>56</td>
+<td>25</td>
+<td>60</td>
+<td>520 / 4250</td>
+</tr>
+<tr>
+<td>rank_orc_standard — Dowódca Czarnego Sztandaru</td>
+<td>50</td>
+<td>2500</td>
+<td>115</td>
+<td>60</td>
+<td>25</td>
+<td>60</td>
+<td>560 / 4700</td>
 </tr>
 </tbody>
 </table></div>
