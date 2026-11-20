@@ -36,6 +36,7 @@ def build():
     from characters.camp_progression import RANKS, BY_RANK, ATTRIBUTE_NAMES
     from characters.faction_advancement import RANKS as ADVANCED
     from characters.factions import FACTIONS, RANK_NAMES
+    from characters.rank_benefits import INTRO_PATROL_LIMIT, PATROL_LIMITS, regional_fee_discount
     from characters.magic import ALL_SPELLS
     from characters.models import AdventureTemplate, StoryQuest, CraftRecipe, StoreProduct, ItemBluePrint
     lines = ['# Katalog domyślnej zawartości bieżącej gry', '',
@@ -110,6 +111,14 @@ def build():
          f'Mana {rank.attribute_value}' + (f' / siła lub zręczność {rank.attribute_value+20} (templariusze)' if rank.camp == 'VEIL_ORDER' else '')
          if rank.attribute == 'mana' else f'Siła lub zręczność {rank.attribute_value}', rank.cost,
          ', '.join(f'{goal.label} ×{goal.count}' for goal in rank.objectives)) for rank in ADVANCED))
+    lines += ['## Uprawnienia do wart', '',
+              'Ranga określa górną granicę stopnia. Do wejścia nadal potrzebujesz '
+              'odblokowanego stopnia i dostępu do szlaku. Wprowadzający pułap bez rangi '
+              f'wynosi {INTRO_PATROL_LIMIT}; każda warta sprawdza też wymogi członkostwa. '
+              'Starszy zapis zachowuje już odblokowane stopnie. [Reguły wart regionalnych](REGIONAL_ENDGAME.md).', '']
+    table(lines, ['Ranga', 'Najwyższy stopień warty', 'Zniżka wpisowego warty regionalnej'], (
+        (tier + 1, depth, f'{regional_fee_discount(tier)} rudy')
+        for tier, depth in enumerate(PATROL_LIMITS)))
     lines += ['## Zlecenia czasowe', '', 'Widzisz pulę aktualnie odwiedzanego regionu: 44 G1 lub 19 Khorinis. Nagroda z premiami zapisuje się przy starcie; [zasady i wspólny odczyt podglądu](ADVENTURES.md).', '']
     table(lines, ['Klucz / zlecenie', 'Region', 'Kategoria / miejsce', 'Poziom', 'Sekundy', 'Energia', 'Ruda / PD / odłamki'], (
         (f'{q.key} — {q.name}',q.universe,f'{q.get_category_display()} / {q.place}',q.level,q.duration_seconds,q.energy_cost,f'{q.ore_reward} / {q.experience_reward} / {q.premium_reward}') for q in AdventureTemplate.objects.order_by('universe','level','key')))

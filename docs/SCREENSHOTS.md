@@ -1,6 +1,12 @@
 # Galeria ekranów i wersje ujęć
 
-Stan galerii: 13 XI 2026, **86 ujęć** w `screenshots/manifest.json`, zestawy z różnych dni/migracji. Najnowsze pokazują pule etapów świata oraz wydarzenia/odsłony 0054; starsze zachowują warunki wykonania i mogą zawierać dawne etykiety rang, liczbę botów lub wcześniejszy zakres. Zmiana tekstu dokumentacji nie jest ponownym wykonaniem screenshotu. [Bieżące zasady gry](GAME_GUIDE.md).
+Galeria obejmuje **86 ujęć** w `screenshots/manifest.json`. Manifest zapisuje datę i warunki zrzutu. Ujęcia mogą pokazywać nazwy i progi obowiązujące w opisanej wersji. [Bieżące zasady gry](GAME_GUIDE.md).
+
+## Panel zarządcy
+
+![Panel zarządcy z instalacji testowej](screenshots/admin.jpg)
+
+Ujęcie z 9 XI 2026 pokazuje panel na syntetycznym koncie i świecie ze 100 botami. Opis bieżących formularzy, zarządzania populacją i odtwarzania kopii znajduje się w [podręczniku operatora](public/OPERATOR_GUIDE.md).
 
 ## Pule zgodne z etapem świata — #144
 

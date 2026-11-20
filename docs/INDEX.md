@@ -1,12 +1,12 @@
 # Dokumentacja — indeks
 
-**Stan: 14 listopada 2026, wyprawy na rozkaz #152, migracja `0055_manual_camp_raids_world_updates_events`.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
+**Stan na 20 listopada 2026. Migracja `0063_patrol_rank_permits`, próby i przywileje rang oraz targ Khorinis po #184.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
 
 ## Gra od początku do dalszych wart
 
 - [Pełny przewodnik gracza](GAME_GUIDE.md), [pierwsze kroki](FIRST_PLAYABLE.md), [uruchomienie obu regionów i cała droga](COMPLETE_JOURNEY.md).
 - [Konto, postacie i połączenie](CHARACTERS_AND_WORLDS.md), [Khorinis](KHORINIS.md), [publiczny Jarkendar](JARKENDAR.md), [wyprawa NK i ograniczenia katalogu](GOTHIC_II_CONTENT.md).
-- [Dziewięć dróg buildów/frakcji](BUILD_PLAYTHROUGHS.md), [rangi i koszty](CAMPS.md), [sukcesja, Zakon Mroku i skarbce](CAMP_GUILDS.md), [wyprawy wspólnoty](CAMP_RAIDS.md).
+- [Jedenaście dróg buildów i frakcji](BUILD_PLAYTHROUGHS.md), [rangi i koszty](CAMPS.md), [sukcesja, Zakon Mroku i skarbce](CAMP_GUILDS.md), [wyprawy wspólnoty](CAMP_RAIDS.md).
 - [Ekwipunek i porównywarka](EQUIPMENT.md), [magia i zapasy zwojów](MAGIC.md), [rynek](MARKET_POLICY.md), [rzemiosło](CRAFTING.md).
 - [Łupy, kuźnia i 100 starych wart](LOOT_AND_ENDGAME.md), [400 stopni regionalnych i cel tygodniowy](REGIONAL_ENDGAME.md).
 - [Fabuła](STORY.md), [rola mieszkańca](RESIDENT_STORY.md), [zlecenia czasowe](ADVENTURES.md), [wyzwania i reputacja](CHALLENGES.md), [prywatna kronika](JOURNAL.md).
@@ -22,8 +22,9 @@
 - [Bieżąca roadmapa](ROADMAP.md), [testy grywalności i ich granice](SOLO_PLAYTEST.md), [rejestr poprawek](BUG_AUDIT.md).
 - Materiały historyczne: [przegląd 3 XI](PROJECT_REVIEW.md), [naprawa dawnych migracji](LEGACY_SAVES.md). Nie zastępują aktualnych procedur.
 
-## Dowody bieżącego wydania
+## Wyniki testów i pomiarów
 
+- [Dziesięć niezależnych symulacji targu i trzy pary porównawcze](reports/targ-khorinis-2026-11-20.json).
 - [Pule wszystkich etapów: nazwy, zgodność, GUI i 250 botów](reports/pule-etapow-2026-11-13.json).
 
 - [Ponowny audyt 13 XI: dziewięć buildów, prawdziwa Bariera i boty](reports/grywalnosc-wydania-2026-11-13.json).
@@ -33,7 +34,7 @@
 - [Dane NK](reports/gothic2-nk-content-2026-11-12.json), [assety NK](reports/gothic2-nk-assets-2026-11-12.json), [publiczny portal](reports/publiczny-jarkendar-2026-11-12.json).
 - [Skalowanie populacji](reports/populacja-250-2026-11-11.json), [PostgreSQL i rzeczywista współbieżność](reports/postgresql-wspolbieznosc-2026-11-07.json).
 
-Raporty JSON i screenshoty zachowują wyniki, daty, wersje i ograniczenia konkretnej próby. Starszych liczb nie przeliczamy na nową wersję ani nie nazywamy bieżącymi. Aktualny CI: [przebieg wydania #141](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831). Dane testowe są odizolowane od prywatnego świata.
+Raporty JSON i screenshoty zachowują wyniki, daty, wersje i ograniczenia konkretnej próby. Starszych liczb nie przeliczamy na nową wersję ani nie nazywamy bieżącymi. Pełny CI zmian targu przeszedł w [przebiegu #184](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785). Dane testowe są odizolowane od prywatnego świata.
 
 ## Utrzymanie dokumentacji
 

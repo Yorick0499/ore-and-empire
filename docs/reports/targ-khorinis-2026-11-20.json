@@ -1,0 +1,666 @@
+{
+  "date": "2026-11-20",
+  "baseline_revision": "b7aa8ad3c67980260f5f66c3a17b1d1319dbbd6b",
+  "tested_revision": "009602f9c46deb6162dd7f0663bf9bd6d2f1577c",
+  "pull_request": "https://github.com/Yorick0499/ore-and-empire/pull/184",
+  "method": "Oddzielna SQLite na przebieg, standardowe osobowości i zwykłe tick_bot dla due_population, aktualizacja wydarzeń co dobę i pomiar ofert co godzinę. Światy przed Barierą.",
+  "scope": "Małe populacje i pierwsze sesje przed połączeniem. Handel po Barierze pokrywa osobny test Django.",
+  "baseline": [
+    {
+      "seed": 191126,
+      "hours": 36,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 35,
+            "sum_hourly_listings": 334,
+            "max_hourly_listings": 13
+          },
+          "trades": 18,
+          "trade_breakdown": {
+            "material": 4,
+            "weapon": 14
+          },
+          "live_listings": 14,
+          "turns": 1317
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 10,
+            "sum_hourly_listings": 10,
+            "max_hourly_listings": 1
+          },
+          "trades": 4,
+          "trade_breakdown": {
+            "weapon": 1,
+            "material": 1,
+            "armor": 2
+          },
+          "live_listings": 1,
+          "turns": 741
+        }
+      },
+      "denials_by_realm": {
+        "GOTHIC_I": {
+          "list": 1
+        },
+        "GOTHIC_II": {}
+      }
+    },
+    {
+      "seed": 191127,
+      "hours": 36,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 35,
+            "sum_hourly_listings": 398,
+            "max_hourly_listings": 15
+          },
+          "trades": 15,
+          "trade_breakdown": {
+            "material": 3,
+            "armor": 1,
+            "weapon": 11
+          },
+          "live_listings": 14,
+          "turns": 1317
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 8,
+            "sum_hourly_listings": 8,
+            "max_hourly_listings": 1
+          },
+          "trades": 4,
+          "trade_breakdown": {
+            "material": 2,
+            "armor": 1,
+            "weapon": 1
+          },
+          "live_listings": 0,
+          "turns": 741
+        }
+      },
+      "denials_by_realm": {
+        "GOTHIC_I": {},
+        "GOTHIC_II": {}
+      }
+    },
+    {
+      "seed": 191129,
+      "hours": 36,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 35,
+            "sum_hourly_listings": 330,
+            "max_hourly_listings": 12
+          },
+          "trades": 18,
+          "trade_breakdown": {
+            "armor": 1,
+            "weapon": 14,
+            "material": 3
+          },
+          "live_listings": 11,
+          "turns": 1317
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 2,
+            "sum_hourly_listings": 2,
+            "max_hourly_listings": 1
+          },
+          "trades": 2,
+          "trade_breakdown": {
+            "material": 1,
+            "armor": 1
+          },
+          "live_listings": 1,
+          "turns": 741
+        }
+      },
+      "denials_by_realm": {
+        "GOTHIC_I": {
+          "list": 1
+        },
+        "GOTHIC_II": {}
+      }
+    }
+  ],
+  "runs": [
+    {
+      "seed": 191126,
+      "hours": 36,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 35,
+            "sum_hourly_listings": 334,
+            "max_hourly_listings": 13
+          },
+          "trades": 18,
+          "trade_breakdown": {
+            "material": 4,
+            "weapon": 14
+          },
+          "live_listings": 13,
+          "turns": 1317
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 16,
+            "sum_hourly_listings": 21,
+            "max_hourly_listings": 2
+          },
+          "trades": 5,
+          "trade_breakdown": {
+            "material": 3,
+            "armor": 2
+          },
+          "live_listings": 3,
+          "turns": 741
+        }
+      },
+      "failed_market_actions": [
+        {
+          "step": 69,
+          "world": "GOTHIC_I",
+          "synthetic_profile_id": 5,
+          "action": "list"
+        }
+      ]
+    },
+    {
+      "seed": 191127,
+      "hours": 36,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 35,
+            "sum_hourly_listings": 402,
+            "max_hourly_listings": 14
+          },
+          "trades": 20,
+          "trade_breakdown": {
+            "material": 7,
+            "armor": 1,
+            "weapon": 12
+          },
+          "live_listings": 14,
+          "turns": 1317
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 14,
+            "sum_hourly_listings": 18,
+            "max_hourly_listings": 2
+          },
+          "trades": 7,
+          "trade_breakdown": {
+            "armor": 1,
+            "material": 5,
+            "weapon": 1
+          },
+          "live_listings": 0,
+          "turns": 741
+        }
+      },
+      "failed_market_actions": []
+    },
+    {
+      "seed": 191129,
+      "hours": 36,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 35,
+            "sum_hourly_listings": 334,
+            "max_hourly_listings": 12
+          },
+          "trades": 18,
+          "trade_breakdown": {
+            "material": 4,
+            "weapon": 14
+          },
+          "live_listings": 12,
+          "turns": 1317
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 36,
+            "hours_with_offers": 13,
+            "sum_hourly_listings": 14,
+            "max_hourly_listings": 2
+          },
+          "trades": 2,
+          "trade_breakdown": {
+            "material": 2
+          },
+          "live_listings": 1,
+          "turns": 741
+        }
+      },
+      "failed_market_actions": [
+        {
+          "step": 69,
+          "world": "GOTHIC_I",
+          "synthetic_profile_id": 5,
+          "action": "list"
+        },
+        {
+          "step": 361,
+          "world": "GOTHIC_I",
+          "synthetic_profile_id": 4,
+          "action": "list"
+        },
+        {
+          "step": 361,
+          "world": "GOTHIC_I",
+          "synthetic_profile_id": 5,
+          "action": "list"
+        }
+      ]
+    },
+    {
+      "seed": 191130,
+      "hours": 24,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 23,
+            "sum_hourly_listings": 221,
+            "max_hourly_listings": 12
+          },
+          "trades": 13,
+          "trade_breakdown": {
+            "material": 2,
+            "weapon": 11
+          },
+          "live_listings": 11,
+          "turns": 840
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 2,
+            "sum_hourly_listings": 2,
+            "max_hourly_listings": 1
+          },
+          "trades": 1,
+          "trade_breakdown": {
+            "material": 1
+          },
+          "live_listings": 0,
+          "turns": 528
+        }
+      },
+      "failed_market_actions": [
+        {
+          "step": 167,
+          "world": "GOTHIC_II",
+          "synthetic_profile_id": 17,
+          "action": "list"
+        }
+      ]
+    },
+    {
+      "seed": 191131,
+      "hours": 24,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 23,
+            "sum_hourly_listings": 180,
+            "max_hourly_listings": 10
+          },
+          "trades": 14,
+          "trade_breakdown": {
+            "material": 3,
+            "weapon": 11
+          },
+          "live_listings": 9,
+          "turns": 840
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 5,
+            "sum_hourly_listings": 6,
+            "max_hourly_listings": 2
+          },
+          "trades": 2,
+          "trade_breakdown": {
+            "material": 2
+          },
+          "live_listings": 0,
+          "turns": 528
+        }
+      },
+      "failed_market_actions": [
+        {
+          "step": 69,
+          "world": "GOTHIC_I",
+          "synthetic_profile_id": 5,
+          "action": "list"
+        }
+      ]
+    },
+    {
+      "seed": 191132,
+      "hours": 24,
+      "sample_interval_minutes": 5,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 23,
+            "sum_hourly_listings": 182,
+            "max_hourly_listings": 10
+          },
+          "trades": 17,
+          "trade_breakdown": {
+            "material": 5,
+            "weapon": 12
+          },
+          "live_listings": 10,
+          "turns": 840
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 2,
+            "sum_hourly_listings": 2,
+            "max_hourly_listings": 1
+          },
+          "trades": 1,
+          "trade_breakdown": {
+            "material": 1
+          },
+          "live_listings": 0,
+          "turns": 528
+        }
+      },
+      "failed_market_actions": []
+    },
+    {
+      "seed": 191133,
+      "hours": 24,
+      "sample_interval_minutes": 6,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 10,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 23,
+            "sum_hourly_listings": 163,
+            "max_hourly_listings": 9
+          },
+          "trades": 16,
+          "trade_breakdown": {
+            "material": 5,
+            "weapon": 11
+          },
+          "live_listings": 9,
+          "turns": 850
+        },
+        "GOTHIC_II": {
+          "bots": 10,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 3,
+            "sum_hourly_listings": 3,
+            "max_hourly_listings": 1
+          },
+          "trades": 7,
+          "trade_breakdown": {
+            "weapon": 1,
+            "material": 6
+          },
+          "live_listings": 0,
+          "turns": 570
+        }
+      },
+      "failed_market_actions": []
+    },
+    {
+      "seed": 191134,
+      "hours": 24,
+      "sample_interval_minutes": 6,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 10,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 23,
+            "sum_hourly_listings": 173,
+            "max_hourly_listings": 11
+          },
+          "trades": 16,
+          "trade_breakdown": {
+            "material": 3,
+            "weapon": 13
+          },
+          "live_listings": 9,
+          "turns": 850
+        },
+        "GOTHIC_II": {
+          "bots": 10,
+          "market_diagnostics": {
+            "hourly_samples": 24,
+            "hours_with_offers": 5,
+            "sum_hourly_listings": 8,
+            "max_hourly_listings": 2
+          },
+          "trades": 2,
+          "trade_breakdown": {
+            "weapon": 1,
+            "material": 1
+          },
+          "live_listings": 1,
+          "turns": 570
+        }
+      },
+      "failed_market_actions": []
+    },
+    {
+      "seed": 191135,
+      "hours": 12,
+      "sample_interval_minutes": 1,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 12,
+            "hours_with_offers": 11,
+            "sum_hourly_listings": 126,
+            "max_hourly_listings": 13
+          },
+          "trades": 18,
+          "trade_breakdown": {
+            "material": 4,
+            "weapon": 14
+          },
+          "live_listings": 11,
+          "turns": 2326
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 12,
+            "hours_with_offers": 10,
+            "sum_hourly_listings": 22,
+            "max_hourly_listings": 3
+          },
+          "trades": 4,
+          "trade_breakdown": {
+            "material": 2,
+            "weapon": 1,
+            "armor": 1
+          },
+          "live_listings": 3,
+          "turns": 969
+        }
+      },
+      "failed_market_actions": [
+        {
+          "step": 243,
+          "world": "GOTHIC_I",
+          "synthetic_profile_id": 4,
+          "action": "list"
+        }
+      ]
+    },
+    {
+      "seed": 191136,
+      "hours": 18,
+      "sample_interval_minutes": 4,
+      "start_utc": "2026-11-20T15:00:00+00:00",
+      "errors": [],
+      "negative_balances": 0,
+      "cross_world_trades": 0,
+      "self_trades": 0,
+      "invalid_offers": 0,
+      "realms": {
+        "GOTHIC_I": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 18,
+            "hours_with_offers": 17,
+            "sum_hourly_listings": 142,
+            "max_hourly_listings": 11
+          },
+          "trades": 15,
+          "trade_breakdown": {
+            "weapon": 13,
+            "material": 2
+          },
+          "live_listings": 9,
+          "turns": 729
+        },
+        "GOTHIC_II": {
+          "bots": 8,
+          "market_diagnostics": {
+            "hourly_samples": 18,
+            "hours_with_offers": 3,
+            "sum_hourly_listings": 4,
+            "max_hourly_listings": 2
+          },
+          "trades": 2,
+          "trade_breakdown": {
+            "material": 2
+          },
+          "live_listings": 3,
+          "turns": 495
+        }
+      },
+      "failed_market_actions": []
+    }
+  ]
+}

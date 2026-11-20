@@ -1,6 +1,6 @@
 # Khorinis: własny początek i region wspólnego świata
 
-Stan: 13 XI 2026. Przed Barierą **Latarnia — Khorinis** działa równolegle z Kolonią: osobne postacie, rynki, rankingi, wspólnoty, wydarzenia i boty. Pięć slotów konta jest wspólne. Po zwycięstwie obozowej wspólnoty oba światy stają się jednym serwerem z dwoma regionami. [Reguły połączenia](CHARACTERS_AND_WORLDS.md).
+Aktualny opis regionu. Przed Barierą **Latarnia — Khorinis** działa równolegle z Kolonią: osobne postacie, rynki, rankingi, wspólnoty, wydarzenia i boty. Pięć slotów konta jest wspólne. Po zwycięstwie obozowej wspólnoty oba światy stają się jednym serwerem z dwoma regionami. [Reguły połączenia](CHARACTERS_AND_WORLDS.md).
 
 ## Frakcje przed Barierą
 
@@ -30,11 +30,15 @@ Ukończenie lokalnej kampanii nie kończy serwera i nie łączy światów. Pozos
 
 [Pełne bieżące tabele](GAME_CONTENT.md) zawierają również późniejsze tereny — powyższe liczby opisują tylko początkową paczkę Khorinis.
 
+## Targ i zaopatrzenie przed połączeniem
+
+Na lokalnym placu kupujesz oferty mieszkańców Khorinis. Ścierwojady i wilki dostarczają mięsa i skór, gobliny ziół, a polni rozbójnicy stali. Boty mogą sprzedać nadmiar po odłożeniu składników potrzebnych do własnego przepisu. [Zasady handlu](MARKET_POLICY.md) · [Raport z prób Khorinis](reports/targ-khorinis-2026-11-20.json).
+
 ## Po połączeniu
 
 Khorinis jest regionem jednego serwera ze wspólnym rynkiem/rankingiem i podróżami. Miasto zachowuje wspólnotę, Ogień łączy się z magami Kolonii, najemnicy Onara z ludźmi Lee. Dopełniają je Magowie Wody, Bandyci Khorinis z Wieży Dextera oraz Zakon Mroku powstały z Bractwa. Nowe rangi 5–8 wymagają własnych awansów. [Sukcesja i skarbce](CAMP_GUILDS.md).
 
-Jarkendar jest publiczny po zadaniu portalu od 10. Dalsze kontrakty NK otwierają Kruka, Poszukiwaczy, cztery smoki, statek i Irdorath. Jarkendar/Irdorath korzystają z mapy i regionu podróży Khorinis; nie tworzą dodatkowych serwerów. Bramek poziomu/fabuły nie omija duży portfel. [Jarkendar](JARKENDAR.md) · [Zakres NK i źródeł](GOTHIC_II_CONTENT.md).
+Jarkendar otwiera odebrane zadanie portalu od poziomu 10 i drugiej rangi własnej gildii, po upływie 48 godzin od połączenia. Dalsze kontrakty NK otwierają Kruka, Poszukiwaczy, cztery smoki, statek i Irdorath. Jarkendar/Irdorath korzystają z mapy i regionu podróży Khorinis; nie tworzą dodatkowych serwerów. Bramek poziomu/fabuły nie omija duży portfel. [Jarkendar](JARKENDAR.md) · [Zakres NK i źródeł](GOTHIC_II_CONTENT.md).
 
 ## Otwarcie i zarządzanie
 
@@ -54,4 +58,4 @@ Pełny reset z panelu głównej Kolonii obejmuje całą instalację, oba regiony
 
 Seeder instaluje brakujące definicje, Jarkendar i katalog NK, zachowując edycje operatora i przyjęte snapshoty. Grafiki działają lokalnie; źródła i jawne ilustracje kategorii są w manifeście. [Assety](ASSETS.md).
 
-[Raport początkowej paczki](reports/khorinis-przed-polaczeniem-2026-11-09.json) pozostaje historyczny. [Bieżąca próba wydania](reports/grywalnosc-wydania-2026-11-13.json) obejmuje organiczną drogę straży, klasztoru i Onara do NK/rangi 8 oraz oddzielną rzeczywistą aktywację świata. Nadal nie deklarujemy implementacji wszystkich skryptów/interakcji oryginalnego G2NK.
+[Raport początkowej paczki](reports/khorinis-przed-polaczeniem-2026-11-09.json) pozostaje historyczny. [Próba wydania z 13 XI](reports/grywalnosc-wydania-2026-11-13.json) obejmuje organiczną drogę straży, klasztoru i Onara do NK/rangi 8 oraz oddzielną rzeczywistą aktywację świata. Nadal nie deklarujemy implementacji wszystkich skryptów/interakcji oryginalnego G2NK.

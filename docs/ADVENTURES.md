@@ -1,8 +1,8 @@
 # Zlecenia czasowe Kolonii i Khorinis
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
-Kolonia ma **44 powtarzalne zlecenia**, Khorinis **10**. Widzisz pulę aktualnie odwiedzanego regionu; po Barierze możesz podróżować, ale przyjęta praca zachowuje swój zapis. To prace dla zwykłego mieszkańca, dostępne wszystkim buildom i obozom. Nie wymagają odgrywania Bezimiennego, konkretnej broni ani ukończenia fabuły. Jednorazowa fabuła jest osobnym systemem: 41 definicji G1, 29 Khorinis oraz kolejne kontrakty po Barierze.
+Kolonia ma **44 powtarzalne zlecenia**, Khorinis **19**. Widzisz pulę aktualnie odwiedzanego regionu; po Barierze możesz podróżować, ale przyjęta praca zachowuje swój zapis. To prace dla zwykłego mieszkańca, dostępne wszystkim buildom i obozom. Nie wymagają odgrywania Bezimiennego, konkretnej broni ani ukończenia fabuły. Jednorazowa fabuła jest osobnym systemem: 41 definicji G1, 29 Khorinis oraz kolejne kontrakty po Barierze.
 
 ## Wybór pracy
 

@@ -1,6 +1,6 @@
 # Wspólnoty, sukcesja frakcji i skarbce
 
-Stan: 14 XI 2026. Gildią jest wspólnota, bez osobnego systemu drużyn. Rodzime `camp`/`guild` oznaczają obóz i historyczną rangę; po Barierze `FactionMembership` wskazuje bieżącą frakcję i skarbiec. [Rangi](CAMPS.md) · [Połączenie](CHARACTERS_AND_WORLDS.md).
+Aktualne reguły wspólnot i sukcesji. Gildią jest wspólnota, bez osobnego systemu drużyn. Rodzime `camp`/`guild` oznaczają obóz i historyczną rangę; po Barierze `FactionMembership` wskazuje bieżącą frakcję i skarbiec. [Rangi](CAMPS.md) · [Połączenie](CHARACTERS_AND_WORLDS.md).
 
 ## Wspólne cele i pieniądze
 
@@ -56,4 +56,4 @@ Dalsze rangi 5–8 działają dla każdej frakcji, przez własne próby i opłat
 
 `FactionSuccession` jest unikalne dla wyścigu; blokady postaci/gildii i audyt tworzą jedną transakcję. Nowa aktywacja i aktualizacja starszego połączonego zapisu korzystają ze świeżej kopii/odtworzenia. Worker wznawia kontrolowane operacje; nie przepisuj członkostw ręcznym SQL. [Kopie i wznowienie](BACKUPS.md).
 
-[Raport sukcesji](reports/sukcesja-frakcji-2026-11-11.json), [wybór Bractwa](reports/wybor-bractwa-2026-11-12.json), [dziewięć organicznych dróg](BUILD_PLAYTHROUGHS.md). Piraci pozostają grupą fabularną; publiczny [Jarkendar](JARKENDAR.md) ma osobne zadanie portalu.
+[Raport sukcesji](reports/sukcesja-frakcji-2026-11-11.json), [historyczna próba dawnych wyborów Bractwa](reports/wybor-bractwa-2026-11-12.json), [jedenaście organicznych dróg](BUILD_PLAYTHROUGHS.md). Piraci pozostają grupą fabularną; publiczny [Jarkendar](JARKENDAR.md) ma osobne zadanie portalu.

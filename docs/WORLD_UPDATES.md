@@ -1,6 +1,6 @@
 # Aktualizacje żyjącego świata i wydarzenia regionalne
 
-Stan: 13 XI 2026, etap #137, migracja 0054. Kolejne odsłony mają nazwę, zakres, ilustrację i trwałą datę odkrycia. Są prezentowane jak aktualizacje MMORPG, a uruchamia je rzeczywisty rozwój wspólnoty tego serwera. Kod zawartości jest częścią instalacji gry; nie pobieramy nowych paczek z sieci w trakcie rozgrywki.
+Bieżące zasady odsłon świata. Kolejne odsłony mają nazwę, zakres, ilustrację i trwałą datę odkrycia. Są prezentowane jak aktualizacje MMORPG, a uruchamia je rzeczywisty rozwój wspólnoty tego serwera. Kod zawartości jest częścią instalacji gry; nie pobieramy nowych paczek z sieci w trakcie rozgrywki.
 
 ## Nazwane odsłony
 

@@ -1,6 +1,6 @@
 # Regionalny endgame po finale NK
 
-Stan: 13 XI 2026, po #141; system wprowadzony w #136. Cztery niezależne ścieżki po 100 stopni rozszerzają dotychczasowe 100 wart. Dawne rekordy, odblokowania i nagrody pozostają zachowane. To powtarzalna adaptacja MMORPG, nie dodatkowy rozdział oryginalnego Gothic.
+System wprowadzono w #136, a migracja 0063 dodaje kompatybilne przywileje rang. Cztery niezależne ścieżki po 100 stopni rozszerzają dotychczasowe 100 wart. Dawne rekordy, odblokowania i nagrody pozostają zachowane. To powtarzalna adaptacja MMORPG, nie dodatkowy rozdział oryginalnego Gothic.
 
 ## Dostęp i codzienna pętla
 
@@ -33,10 +33,10 @@ Powtórzenie UUID nie pobiera opłat ani nie ponawia walki. Blokady PostgreSQL o
 
 Migracja 0053 dodaje tabelę postępu regionalnego, etykietę `legacy` starym wartom oraz domyślne `daily`/wersję 1 starym wyprawom. Nie przelicza sald ani nie kasuje historii. Stosuj standardowe `migrate` albo launcher. Kopie obejmują nowe pola i tabelę; sprawdzono rzeczywiste odtworzenie z regionalnymi rekordami i wyprawą tygodniową.
 
-Boty baseline-26 używają tych samych płatnych usług i bramek. Schemat bieżącej telemetrii to 23; odtwarzanie baseline-23 i starszej polityki opcjonalnej zachowane. Budżet schedulera nie został zwiększony. Grafiki terenów i stworzeń pochodzą z istniejących, zweryfikowanych assetów NK; portrety NPC i sceny questowe pozostają odłożone.
+Boty baseline-27 używają tych samych płatnych usług i bramek. Schemat bieżącej telemetrii to 24; odtwarzanie baseline-23 i starszej polityki opcjonalnej zachowane. Budżet schedulera nie został zwiększony. Grafiki terenów i stworzeń pochodzą z istniejących, zweryfikowanych assetów NK; portrety NPC i sceny questowe pozostają odłożone.
 
 ## Dowody i dalszy zakres
 
 [Raport testów, GUI i wydajności](reports/regionalny-endgame-2026-11-12.json): SQLite, rzeczywisty PostgreSQL z wyścigami i zachowaniem migracji, cztery przygotowane buildy, formularze CSRF, 15 widoków 320/390/1440 i krótka próba 250 botów. `simulate_journey` obejmuje teraz także cztery szlaki, cel tygodniowy i ponowne odtworzenie kopii po endgame.
 
-Historyczny raport #136 sprawdza wojownika organicznie i cztery przygotowane buildy. Bieżąca próba prawdziwej aktywacji doszła do poziomu 58 i endgame w 17 wirtualnych dniach; osobna macierz obejmuje dziewięć organicznych dróg do rangi 8, NK i pierwszych wart regionalnych. [Aktualne dowody](reports/grywalnosc-wydania-2026-11-13.json). Nie sprawdzono wszystkich 400 stopni ani wielotygodniowej gospodarki 250 botów. Regionalne wydarzenia #137 są już wdrożone: [reguły](WORLD_UPDATES.md).
+Historyczny raport #136 sprawdza wojownika organicznie i cztery przygotowane buildy. Próba prawdziwej aktywacji z 13 XI doszła do poziomu 58 i endgame w 17 wirtualnych dniach; bieżąca macierz CI obejmuje jedenaście organicznych dróg do rangi 8, NK i pierwszych wart regionalnych. [Raport z 13 XI](reports/grywalnosc-wydania-2026-11-13.json) · [CI rozszerzonej macierzy](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785). Nie sprawdzono wszystkich 400 stopni ani wielotygodniowej gospodarki 250 botów. Regionalne wydarzenia #137 są już wdrożone: [reguły](WORLD_UPDATES.md).

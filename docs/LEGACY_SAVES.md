@@ -45,6 +45,6 @@ rekordy, migruje do bieżącej wersji i sprawdza zachowanie dorobku, ponowienie 
 aktywność ograniczeń. Osobny przypadek obejmuje częściową aktualizację do 0010.
 Dla przyszłego PostgreSQL nadal wymagane są jego testy i narzędzia backupu (#19).
 
-## Obecny punkt odniesienia — 13 XI 2026
+## Aktualne procedury i stan gry
 
-Powyższy opis zachowuje historię konkretnej zmiany; nie jest instrukcją bieżącego wdrożenia. Dziś działają dwa początki, jednorazowe połączenie, pięć frakcji, NK, regionalny endgame i wydarzenia, z PostgreSQL i kopiami do 0054. Aktualne procedury: [operator](public/OPERATOR_GUIDE.md), [kopie](BACKUPS.md), [roadmapa](ROADMAP.md).
+Powyższy opis zachowuje historię konkretnej zmiany; nie jest instrukcją bieżącego wdrożenia. Dziś działają dwa początki, jednorazowe połączenie, sześć frakcji, NK, regionalny endgame i wydarzenia. Aktualny zakres kopii opisuje [procedura odtwarzania](BACKUPS.md). Aktualne procedury: [operator](public/OPERATOR_GUIDE.md), [kopie](BACKUPS.md), [roadmapa](ROADMAP.md).

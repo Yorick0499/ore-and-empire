@@ -1,6 +1,6 @@
 # Grywalność, scenariusze i granice pomiarów
 
-Stan: 13 XI 2026, po #141. Wszystkie próby wykonujemy na odizolowanych bazach, bez danych prywatnego świata. [Raport bieżącego wydania](reports/grywalnosc-wydania-2026-11-13.json), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [pełna droga](COMPLETE_JOURNEY.md).
+Scenariusze i pomiary z oznaczeniem wersji. Wszystkie próby wykonujemy na odizolowanych bazach, bez danych prywatnego świata. [Raport wydania z 13 XI](reports/grywalnosc-wydania-2026-11-13.json), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [pełna droga](COMPLETE_JOURNEY.md).
 
 ## 14 XI — przyspieszenie wspólnoty przez gracza (#152)
 
@@ -50,7 +50,7 @@ echo '[]' > work/comparative-timing.json
 ORE_PROBE_REPORT="$PWD/work/comparative-timing.json" python manage.py test characters.playtest_timing --noinput
 ```
 
-## Co sprawdzono w bieżącej wersji
+## Wyniki audytu z 13 XI
 
 | Próba | Zakres | Wynik |
 |---|---|---|
@@ -105,3 +105,9 @@ Nowsze próby wykryły m.in. brak wspólnego zapasu oddzielnie kupionych zwojów
 Przejścia potwierdzają wykonalną progresję i trwały stan, nie subiektywną satysfakcję. Nie zweryfikowano wszystkich kombinacji broni/wyborów, 400 głębokości, wielotygodniowego rynku 250 botów ani pełnej retencji ludzi. Walka jest automatyczna, rozmowy botów regułowe, a część źródłowych efektów NK nieaktywna. Dalsze cele: [roadmapa](ROADMAP.md).
 
 Starsze raporty tempa, rang i pierwszych paczek pozostają w `docs/reports/` z datami. Ich ograniczenia opisują tamtą próbę, a nie brak mechaniki wdrożonej później.
+
+## Targ Khorinis i bieżąca macierz — 20 XI
+
+[Raport targu](reports/targ-khorinis-2026-11-20.json) obejmuje dziesięć niezależnych prób na nowej SQLite, 8–10 botów na region, 12–36 godzin świata i krok 1–6 minut. W trzech porównaniach tych samych ustawień dostępność ofert w Khorinis wzrosła z 20 do 43 próbek godzinowych. Cztery próby w Kolonii i jedno w Khorinis zawierały odmowy wystawienia. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185).
+
+[CI #184](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785) wykonuje jedenaście dróg z wariantami broni dwuręcznej i kuszy, odgrywa pełną aktywację Bariery i sprawdza współbieżne działania na PostgreSQL. Targ mierzono osobno we wczesnym świecie.

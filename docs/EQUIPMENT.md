@@ -1,6 +1,6 @@
 # Wyposażenie, pasy i porównanie rynsztunku
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Sześć slotów: broń, pancerz, amulet, dwa pierścienie i pas. Wymagania opierają się na bazowej
 sile/zręczności, poziomie oraz bramce obozowej. Bonusy nie nadpisują podstawowych
@@ -87,3 +87,5 @@ Oprawa jest statycznym CSS: nie pobiera dodatkowych grafik i nie uruchamia anima
 Tożsamości oryginalnego NK wymagają połączenia; wybrane także portalu, frakcji i rangi. Pozycja referencyjna bez obsługi efektu nie trafia automatycznie do normalnego handlu. Pas ma własny slot; sześć potwierdzonych par pasa/pancerza daje dodatkowy efekt bez przepisywania bazowych atrybutów. [Zakres NK](GOTHIC_II_CONTENT.md).
 
 Wspólny rynek po Barierze zachowuje egzemplarz, jego pochodzenie, rzadkość i przekucie. Nie duplikuje plecaków ani nie dzieli konta na dwa portfele. [Konto i światy](CHARACTERS_AND_WORLDS.md).
+
+Publiczny profil pokazuje wyłącznie założone wyposażenie w sześciu slotach. Cudzy plecak pozostaje prywatny. Profil można otworzyć z rankingu albo „Życia kolonii”. [Historia i odznaki](CHARACTERS_AND_WORLDS.md#kronika-postaci-i-odznaki).

@@ -1,6 +1,6 @@
 # PostgreSQL i wyłączny scheduler (#19)
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Gra lokalna nadal domyślnie używa SQLite i jednego `play.py`. PostgreSQL jest osobną, wybieraną konfiguracją. Nie przełączamy automatycznie prywatnego zapisu ani nie uruchamiamy drugiego schedulera.
 
@@ -41,6 +41,6 @@ Launcher SQLite rozpoznaje nowy świat po resecie i przejmuje jego osobną dzier
 
 ## Bieżące rozszerzenia zapisu
 
-Migracje do 0054 obejmują pochodzenie/sloty, wyścig i sukcesję, wybór Bractwa, dalsze rangi, pasy, regionalne warty i historię odsłon/limitów wydarzeń. Import/odtworzenie zachowują właściwy manifest starej wersji; nie usuwaj nowych tabel ręcznie przy aktualizacji. [Kopie i porównanie danych](BACKUPS.md).
+Wcześniejsze migracje do 0054 obejmują pochodzenie/sloty, wyścig i sukcesję, wybór Bractwa, dalsze rangi, pasy, regionalne warty i historię odsłon/limitów wydarzeń. Import/odtworzenie zachowują właściwy manifest starej wersji; nie usuwaj nowych tabel ręcznie przy aktualizacji. [Kopie i porównanie danych](BACKUPS.md).
 
-[CI #141](https://github.com/Yorick0499/ore-and-empire/actions/runs/43406285831) zaliczył regresję PostgreSQL i rzeczywiste współbieżne próby po dodaniu wydarzeń. Dotyczy m.in. ostatniego regionalnego slotu i wspólnego odkrycia dwóch regionów; nie jest prognozą wydajności publicznego hostingu.
+W [CI #184](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785) przeszła regresja PostgreSQL oraz współbieżny handel i mieszane obciążenie graczy i botów. Obraz produkcyjny z Compose używa PostgreSQL 17. Dobierz klienta kopii do głównej wersji serwera. [Profil produkcyjny](PRODUCTION.md).

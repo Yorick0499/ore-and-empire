@@ -1,6 +1,6 @@
 # Kopie i odtwarzanie lokalnego świata
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 SQLite: `python manage.py backup_world` zapisuje spójną kopię przez API backupu SQLite, bez zatrzymywania odczytów. Domyślnie prywatny katalog `backups/` (0700), pliki 0600, ostatnich 7 kompletnych kopii. Opcje: `--directory /prywatny/katalog --keep 14`. Katalog jest ignorowany przez Git; baza zawiera dane kont i hashe haseł, więc nie wolno publikować ani bazy, ani kopii. Nie kopiujemy `.env`, pliku dostępu admina ani sekretów do manifestu. Warto kopiować gotowe archiwa na osobny dysk, z własną retencją i ochroną dostępu. Komenda nie instaluje harmonogramu: uruchamiaj przed aktualizacją i regularnie z cron/systemd.
 
@@ -64,8 +64,10 @@ Podczas przejścia administrator może odczytać ten panel, choć pozostała gra
 
 Nowe kopie PostgreSQL mają `rank_path_schema=1`, a dowód obejmuje `legacy_water_path`. Dla wcześniejszych kopii PG weryfikator sprawdza poprawne wyliczenie nowego znacznika z dawnej frakcji, rangi i nieodebranego awansu; dopiero potem pomija tę jedną dodaną kolumnę przy porównaniu starego hasha. Pozostałe pola i liczby rekordów nadal muszą być identyczne. Błędny znacznik odrzuca odtworzenie; nie wystarcza zgodność samej rudy. Nowe dowody SQLite również obejmują znacznik. Test 0047→0048 porównuje pełny logiczny snapshot oraz wszystkie stare pola i zadania. [Zakres rang](CAMPS.md).
 
-## Bieżący zakres do migracji 0054
+## Zakres zapisu odtworzonego po aktualizacji
 
 Kopie i porównania obejmują członkostwa/sukcesję i audyt skarbców (0049), jednorazowy wybór Bractwa (0050), dalsze rangi (0051), slot pasa (0052), regionalne warty i cele tygodniowe (0053) oraz `WorldRelease`, `EventSchedule`, `RegionalEventUse` i pola regionalne `WorldEvent` (0054). Zachowane są koszty, daty, snapshoty i wykorzystane limity, aby odtworzenie/podróż nie naliczały nagród od nowa. Przy kopii sprzed sukcesji do Zakonu (0059) narzędzie potwierdza stary manifest przed reformą. Po migracji porównuje portfele, skarbce, opłacone rangi i postęp zadań mimo zmian kluczy gildii, rang i przygotowanych run. Nowe kopie zachowują także licznik, termin ostatniej partii i status zakończenia każdej fali botów (0060).
 
 Odtworzenie starszego połączonego świata może wymagać dokończenia sukcesji przez worker pod świeżą kopią. Samo `migrate` nie nadaje członkostw ani darmowych awansów. [Bieżąca procedura operatora](public/OPERATOR_GUIDE.md). Pełna próba `simulate_journey` wykonuje prawdziwą aktywację, a potem ponowną kopię/odtworzenie już z endgame i siedmioma odsłonami.
+
+Kopie zawierają też zapis rozkazów wypraw, postęp wspólnot, historię i odznaki mieszkańców, fale nowych botów oraz regionalne warty. Po odtworzeniu sprawdź członkostwo dawnego Bractwa, dostęp do opłaconych rang i następnej warty, przypisania odznak oraz pozycję kolejki napływu botów. Migracja 0063 utrzymuje dostęp do głębokości wart osiągniętych na starszych zasadach. [Warty i zgodność](REGIONAL_ENDGAME.md).

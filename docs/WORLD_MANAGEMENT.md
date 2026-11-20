@@ -1,6 +1,6 @@
 # Świat, konto i kontrolowany reset
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Instalacja ma główną Kolonię i opcjonalne równolegle grywalne Khorinis. Każdy serwer ma: nazwę serwera (1–80 znaków), numer edycji, uniwersum, wersję zasad, stan i 0–300 aktywnych botów. Konto i postać są osobnymi bytami: maksymalnie pięć postaci na konto, także kilka na tym samym świecie. `/postacie/` pokazuje postacie i pozwala wybrać własną w bieżącym świecie. Archiwalna postać pozostaje na liście i zajmuje slot; nie można wybrać jej do gry ani wykonać akcji. Serwisy otrzymują profil z `world_id`, przed Barierą rynek nie pozwala przekazywać dóbr między światami; po niej wspólny targ obejmuje połączone regiony, a widoki/karczma/rankingi/wspólnoty/monitoring/kalendarz filtrują bieżący kontekst. Izolacja serwerów #34 działa od migracji 0043; po zwycięstwie wspólnoty działa automatyczne połączenie ze wspólnym rynkiem/rankingiem i podróżami. Zachowane rekordy świata pełnią rolę regionów. [Khorinis i zarządzanie](KHORINIS.md).
 
@@ -28,4 +28,4 @@ Limit 0–300 na region obejmuje inicjalizację, reset, konfigurację bez resetu
 
 ## Połączenie i późniejsze migracje
 
-Wykonuj zwykłą aktualizację do 0054 bez resetu. Otwórz Khorinis przed próbą całej drogi, zachowując istniejącą konfigurację. Po globalnym zwycięstwie worker zapisuje jedną tożsamość serwera; `origin_world` i odwiedzany region pozostają odrębne. Sukcesja, wybór Bractwa i awanse nie są ręcznym przestawieniem pola obozu w god-mode. [Reguły](CHARACTERS_AND_WORLDS.md), [bezpieczne kopie/wznowienie](BACKUPS.md).
+Wykonuj zwykłą aktualizację przez `migrate` po wykonaniu kopii. Bieżącą migrację podaje [indeks](INDEX.md). Otwórz Khorinis przed próbą całej drogi, zachowując istniejącą konfigurację. Po globalnym zwycięstwie worker zapisuje jedną tożsamość serwera; `origin_world` i odwiedzany region pozostają odrębne. Sukcesja, wybór Bractwa i awanse nie są ręcznym przestawieniem pola obozu w god-mode. [Reguły](CHARACTERS_AND_WORLDS.md), [bezpieczne kopie/wznowienie](BACKUPS.md).

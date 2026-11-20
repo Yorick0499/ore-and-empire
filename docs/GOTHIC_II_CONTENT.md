@@ -1,6 +1,6 @@
 # Gothic II: Noc Kruka — katalog i wyprawa mieszkańca
 
-Stan 13 XI 2026, po #141. Zakres integracji #32 pozostaje częściowy w stosunku do wszystkich mechanik oryginału. [Indeks Gothicpedii](https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka?oldid=587356), rewizja 587356, jest punktem odniesienia tożsamości, nie dowodem kompletności całej oryginalnej gry. Postać pozostaje mieszkańcem, a kampania jest własną adaptacją MMORPG. Nie kopiujemy dialogów ani opisów zadań Bezimiennego.
+Zakres bieżącej paczki. Zakres integracji #32 pozostaje częściowy w stosunku do wszystkich mechanik oryginału. [Indeks Gothicpedii](https://gothic.fandom.com/pl/wiki/Lista_kod%C3%B3w_do_Gothic_II%3A_Noc_Kruka?oldid=587356), rewizja 587356, jest punktem odniesienia tożsamości, nie dowodem kompletności całej oryginalnej gry. Postać pozostaje mieszkańcem, a kampania jest własną adaptacją MMORPG. Nie kopiujemy dialogów ani opisów zadań Bezimiennego.
 
 ## Co działa
 
@@ -19,13 +19,13 @@ Modele testowe, przyzwane istoty i specjalne warianty mają jawne role. Nie twor
 
 ## Droga gracza
 
-Po globalnym połączeniu otwórz portal zadaniem „Droga za portal” od poziomu 10. Pierwsze zlecenia NK zaczynają się od 25: zwiad, dostawy, Poszukiwacze i tablice; ścieżka Jarkendaru prowadzi do Kruka. Odbudowa ochrony i cztery smoki otwierają przygotowanie statku. Po kontrakcie rejsu dostępne są Irdorath, Feodaron, Archol i Smok Ożywieniec. Lokacje sprawdzają poziom, region, portal i odpowiednie odebrane zadanie. Osobisty finał nie resetuje świata ani nie powtarza globalnego połączenia. Dostęp nie zależy od premium.
+Po upływie 48 godzin od globalnego połączenia możesz otworzyć portal. Zadanie „Droga za portal” wymaga poziomu 10 i drugiej rangi własnej gildii. Pierwsze zlecenia NK zaczynają się od 25: zwiad, dostawy, Poszukiwacze i tablice; ścieżka Jarkendaru prowadzi do Kruka. Odbudowa ochrony i cztery smoki otwierają przygotowanie statku. Nowy kontrakt rejsu wymaga trzeciej rangi własnej gildii. Po jego wykonaniu dostępne są Irdorath, Feodaron, Archol i Smok Ożywieniec. Lokacje sprawdzają poziom, region, portal i odpowiednie odebrane zadanie. Osobisty finał nie resetuje świata ani nie powtarza globalnego połączenia. Dostęp nie zależy od premium.
 
 Źródłowe ceny w złocie i liczby oryginału są oddzielone od cen w rudzie oraz balansu przeglądarkowego. Oryginalne tożsamości NK działają dopiero po Barierze; pancerze frakcyjne dodatkowo wymagają właściwego członkostwa/rangi. Nowe wzory nie przejmują istniejących egzemplarzy o tej samej nazwie. Przedmioty z nieobsługiwanymi efektami pozostają referencyjne, poza zwykłym handlem i pulą łupu.
 
 ## Instalacja i odtwarzanie danych
 
-`python manage.py migrate` stosuje 0052: dopisanie kategorii pasa i rozszerzenie ograniczenia slotów, bez usuwania dorobku. Następnie `python manage.py seed_khorinis`; zwykły launcher robi to dla otwartego Khorinis. Seeder dodaje brakujące definicje, nie nadpisuje zmian operatora ani przyjętych snapshotów zadań. Paczka NKv 1 jest niezależna od G1.
+Jedną ze zmian wprowadzanych przez `python manage.py migrate` jest 0052: dopisanie kategorii pasa i rozszerzenie ograniczenia slotów, bez usuwania dorobku. Następnie `python manage.py seed_khorinis`; zwykły launcher robi to dla otwartego Khorinis. Seeder dodaje brakujące definicje, nie nadpisuje zmian operatora ani przyjętych snapshotów zadań. Paczka NKv 1 jest niezależna od G1.
 
 Powtarzalna integracja używa publicznego API MediaWiki wyłącznie podczas prac nad danymi:
 
@@ -74,4 +74,4 @@ Po bazowym/suplementowym builderze publikuj te dopasowania poleceniem `python sc
 
 ## Bieżące wydanie i dalsza gra
 
-Migrate doprowadza schemat do 0054, a seedery instalują brakujące definicje bez resetowania aktorów. [Pełna rzeczywista droga trzech kont](COMPLETE_JOURNEY.md) sprawdza globalne zwycięstwo i odtworzenie kopii; [dziewięć dróg](BUILD_PLAYTHROUGHS.md) uzupełnia buildy/rangi. Po finale działają cztery regionalne ścieżki i tygodniowy cel, a kamienie milowe odsłaniają nazwane aktualizacje. [Endgame](REGIONAL_ENDGAME.md), [aktualizacje](WORLD_UPDATES.md).
+`migrate` stosuje bieżące migracje, a seedery instalują brakujące definicje bez resetowania aktorów. [Pełna rzeczywista droga trzech kont](COMPLETE_JOURNEY.md) sprawdza globalne zwycięstwo i odtworzenie kopii; [jedenaście organicznych dróg](BUILD_PLAYTHROUGHS.md) uzupełnia buildy/rangi. Po finale działają cztery regionalne ścieżki i tygodniowy cel, a kamienie milowe odsłaniają nazwane aktualizacje. [Endgame](REGIONAL_ENDGAME.md), [aktualizacje](WORLD_UPDATES.md).

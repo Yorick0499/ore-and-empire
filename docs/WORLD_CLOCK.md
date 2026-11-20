@@ -1,6 +1,6 @@
 # Rzeczywisty czas polski i rytm świata
 
-Stan zasad: 13 listopada 2026, po PR #141 (migracja 0054).
+Aktualny opis zasad domyślnej gry. [Wersja i zakres dokumentacji](INDEX.md).
 
 Świat działa **1:1 z prawdziwym czasem** w `Europe/Warsaw`. Nie ma przyspieszonej doby. Python `zoneinfo` korzysta z bazy reguł strefy: automatycznie CET zimą i CEST latem, bez ręcznego dodawania godziny. Baza nadal przechowuje świadome daty UTC; interfejs i granice kalendarza używają Polski. Serwer/OS musi mieć aktualne dane stref czasowych.
 

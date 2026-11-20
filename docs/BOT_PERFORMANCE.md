@@ -1,6 +1,6 @@
 # Populacja botów, harmonogram i wydajność
 
-Stan: 19 XI 2026, baseline-26 / schemat 24. Domyślnie Kolonia ma 125 botów, a otwarte Khorinis kolejne 125: **250 łącznie**. Każdy region można ustawić na 0–300. Po Barierze jest jeden serwer, ale zachowane konfiguracje dwóch regionów nadal sterują ich populacjami. Domyślne fale po Barierze prowadzą do 500 botów łącznie. Administrator może ustawić do 300 w każdym regionie, zatem tryb ręczny może przekroczyć populację mierzoną w tym teście.
+Domyślna polityka to baseline-27. Obserwacje są zapisywane w schemacie 24. Domyślnie Kolonia ma 125 botów, a otwarte Khorinis kolejne 125: **250 łącznie**. Każdy region można ustawić na 0–300. Po Barierze jest jeden serwer, ale zachowane konfiguracje dwóch regionów nadal sterują ich populacjami. Domyślne fale po Barierze prowadzą do 500 botów łącznie. Administrator może ustawić do 300 w każdym regionie, zatem tryb ręczny może przekroczyć populację mierzoną w tym teście.
 
 ## Ustawienia bez resetu
 
