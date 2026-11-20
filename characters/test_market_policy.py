@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils import timezone
 from .models import OwnedItem,ItemBluePrint,MarketTrade,MarketEvent
-from .market_policy import bot_market_plan,reprice_listing,reference_price,market_effectiveness
+from .market_intelligence import MarketState
+from .market_policy import bot_market_plan,reprice_listing
 from .game_logic import list_item_on_market,delist_item_from_market,buy_item_on_market
 from .management.commands.simulate_market import scenario
 
@@ -26,12 +27,22 @@ class MarketPolicyTests(TestCase):
         self.assertTrue(delist_item_from_market(self.seller,self.item,'stale'))
         self.assertEqual(bot_market_plan(self.seller)[0],'market_sell')
         self.assertEqual(set(MarketEvent.objects.values_list('action',flat=True)),{'listing','repricing','cancellation'})
-    def test_unit_price_uses_real_trades_and_is_bounded(self):
-        MarketTrade.objects.create(blueprint=self.bp,seller=self.seller,buyer=self.buyer,price=500,quantity=10)
-        self.assertEqual(reference_price(self.bp,self.seller.world_id),60)
-        MarketTrade.objects.all().delete()
-        MarketTrade.objects.create(blueprint=self.bp,seller=self.seller,buyer=self.buyer,price=9999,quantity=1)
-        self.assertEqual(reference_price(self.bp,self.seller.world_id),140)
+    def test_live_quote_uses_unit_price_and_bounds_historical_outliers(self):
+        baseline = MarketState(self.seller.world_id).quote(self.seller, self.item)
+        trade = MarketTrade.objects.create(
+            blueprint=self.bp, seller=self.seller, buyer=self.buyer, created_at=timezone.now(),
+            price=500, quantity=10, rarity=0, upgrade_level=0,
+        )
+        low = MarketState(self.seller.world_id).quote(self.seller, self.item)
+        self.assertEqual(low.sales, 1)
+        self.assertLess(low.price, baseline.price)
+        trade.price = 9999
+        trade.quantity = 1
+        trade.save(update_fields=['price', 'quantity'])
+        high = MarketState(self.seller.world_id).quote(self.seller, self.item)
+        self.assertEqual(high.sales, 1)
+        self.assertGreater(high.price, baseline.price)
+        self.assertLess(high.price, 160)
     def test_bot_buys_only_needed_healing_and_budget_is_real(self):
         self.bp.kind='consumable';self.bp.heal_amount=40;self.bp.base_value=25;self.bp.save()
         list_item_on_market(self.seller,self.item,25)

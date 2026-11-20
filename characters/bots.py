@@ -438,7 +438,6 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     story = bot_story_plan(profile)
     from .finale import finale_ready
     final_goal = finale_ready(profile) and not hasattr(profile, "campaign_completion")
-    combat_equipment = True
     from .magic import combat_plan
     profile._bot_magic_plan=combat_plan(profile)
     from .equipment import bot_inventory
@@ -489,13 +488,11 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .jarkendar import unlocked
     if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
     from .gothic2_content import visible_stock
-    stock=visible_stock(profile,stock)
-    if combat_equipment:
-        stock = stock.filter(damage__gt=damage)
+    stock = visible_stock(profile, stock).filter(damage__gt=damage)
     offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=weapon_types, blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
     offers=[o for o in offers if market.can_buy(profile,o)]
     upgrade = None
-    if equipped and combat_equipment:
+    if equipped:
         upgrade = choose_upgrade(stock, offers, score(profile,equipped), profile.ore_balance,profile)
         stock = upgrade[1] if upgrade and upgrade[0] == "stock" else None
         offer = upgrade[1] if upgrade and upgrade[0] == "buy" else None
@@ -507,7 +504,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     # Sell obsolete weapons through the same NPC service as a human player.
     # Keep stronger future gear, listed goods and the trader's merchandise.
     disposal = min((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.tradeable and i.blueprint.kind == "weapon" and not i.is_protected and i.effective_stats["damage"] < damage),
-                   key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped and combat_equipment else None
+                   key=lambda i: (i.effective_stats["damage"], i.pk), default=None) if equipped else None
     if len(inventory) >= 5:
         disposal = next((i for i in spare if i.pk not in retained and (not item or i.pk!=item.pk) and i.blueprint.kind in {'material','misc','ammo'} and i.blueprint.tradeable and not i.is_protected), disposal)
     crowded_inventory = len(inventory) >= 11
@@ -833,7 +830,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         upgrade_id=upgrade[1].pk if upgrade else None,
         upgrade_cost=upgrade[2] if upgrade else 0,
         upgrade_gain=upgrade[3] if upgrade else 0,
-        ore_reserve=UPGRADE_ORE_RESERVE if equipped and combat_equipment else 0,
+        ore_reserve=UPGRADE_ORE_RESERVE if equipped else 0,
         disposal_id=disposal.pk if disposal else None,
         story_action=story.action, story_target=story.target, story_recover=story_recover,delivery_id=delivery_id,delivery_cost=delivery_cost,
         consume_id=consumable.pk if consumable else None,
