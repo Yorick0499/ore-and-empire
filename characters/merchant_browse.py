@@ -1,5 +1,6 @@
-from .barrier import source_games
 """Player-facing catalog filters without changing the purchase rules."""
+from .barrier import source_games
+from .faction_choice import equipment_camps
 from .text_search import literal_pattern
 from .models import ItemBluePrint
 from .market_browse import bounded_page,pager
@@ -14,7 +15,7 @@ def merchant_context(profile,params):
              'affordable':'1' if params.get('affordable')=='1' else '',
              'usable':'1' if params.get('usable')=='1' else ''}
     stock=ItemBluePrint.objects.filter(source_game__in=source_games(profile),merchant=True,base_value__gte=0,min_level__lte=profile.level,
-        required_camp__in=['',profile.camp],min_camp_tier__lte=profile.camp_tier)
+        required_camp__in=equipment_camps(profile),min_camp_tier__lte=profile.camp_tier)
     from .jarkendar import unlocked
     if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
     from .gothic2_content import visible_stock

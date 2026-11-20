@@ -104,6 +104,29 @@ class NkInstallationTests(TestCase):
         self.assertFalse(game.buy_item_from_npc(p,jark))
         from .merchant_browse import merchant_context
         self.assertFalse(any(b.catalog_key==fire.catalog_key for b in merchant_context(p,{})['shop_items']))
+    def test_stock_query_matches_item_gates_with_missing_and_explicit_metadata(self):
+        from .gothic2_content import gear_allowed, visible_stock
+
+        mage = person(self.i, 'FIRE_ORDER', 'K2_ARCHMAGE')
+        succeed(self.race)
+        rows = [
+            ItemBluePrint.objects.create(catalog_key=key, name=key, original_stats=stats)
+            for key, stats in (
+                ('g1-audit-stock', {}),
+                ('g2nk-audit-unrestricted', {}),
+                ('oe-nk-audit-empty-faction', {'browser_faction': ''}),
+                ('oe-nk-audit-null-faction', {'browser_faction': None}),
+                ('g2nk-audit-portal', {'browser_gate': 'jarkendar'}),
+                ('g2nk-audit-fire', {'browser_faction': 'FIRE_ORDER'}),
+                ('g2nk-audit-water', {'browser_faction': 'WATER_CIRCLE'}),
+                ('g2nk-audit-archived', {'runtime_supported': False}),
+            )
+        ]
+        stock = ItemBluePrint.objects.filter(pk__in=[row.pk for row in rows])
+        for portal in (False, True):
+            with self.subTest(portal=portal), patch('characters.jarkendar.unlocked', return_value=portal):
+                self.assertCountEqual(visible_stock(mage, stock), [row for row in rows if gear_allowed(mage, row)])
+
     def test_catalogs_show_source_and_gameplay_limits_and_are_paginated(self):
         self.install();p=person(self.i,'CITY_WATCH','K2_COMMANDER');self.client.force_login(p.user)
         response=self.client.get('/przedmioty/');self.assertContains(response,'877');self.assertLessEqual(len(response.context['items']),24)

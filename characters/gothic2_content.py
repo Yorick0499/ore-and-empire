@@ -39,13 +39,24 @@ def gear_allowed(profile,blueprint):
 
 
 def visible_stock(profile,stock):
+    from django.db.models import Q
     from .barrier import joined
-    from django.db.models import Q
-    if not joined(profile.world_id):return stock.exclude(Q(catalog_key__startswith='g2nk-')|Q(catalog_key__startswith='oe-nk-'))
     from .jarkendar import unlocked
-    if not unlocked(profile):stock=stock.exclude(original_stats__browser_gate='jarkendar')
     from .factions import membership
-    member=membership(profile)
-    # JSON missing-key semantics differ from a simple negated equality on SQL.
-    from django.db.models import Q
-    return stock.filter(Q(original_stats__browser_faction__isnull=True)|Q(original_stats__browser_faction=member.faction if member else ''))
+
+    nk = Q(catalog_key__startswith='g2nk-') | Q(catalog_key__startswith='oe-nk-')
+    if not joined(profile.world_id):
+        return stock.exclude(nk)
+
+    member = membership(profile)
+    faction = member.faction if member else ''
+    eligible = Q(original_stats__runtime_supported__isnull=True) | ~Q(original_stats__runtime_supported=False)
+    eligible &= (
+        Q(original_stats__browser_faction__isnull=True)
+        | Q(original_stats__browser_faction=None)
+        | Q(original_stats__browser_faction__in=['', faction])
+    )
+    if not unlocked(profile):
+        eligible &= Q(original_stats__browser_gate__isnull=True) | ~Q(original_stats__browser_gate='jarkendar')
+    # JSON gates belong to NK stock. SQL negation alone also drops missing keys.
+    return stock.filter(~nk | eligible)
