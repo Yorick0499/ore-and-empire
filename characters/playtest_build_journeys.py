@@ -252,12 +252,12 @@ class EarnedBuildJourneys(TestCase):
             rank_bosses.append(key)
         self.assertEqual(p.battles.filter(won=False).count(),0)
         casts=p.battles.filter(combat_details__casts__gt=0).count()
-        from .magic import BY_KEY
+        from .magic import BY_KEY as SPELLS_BY_KEY
         from collections import Counter
         spell_usage=dict(Counter(p.battles.filter(combat_details__casts__gt=0).values_list('combat_details__magic',flat=True)))
         if self.strategy.rune_school:
             self.assertFalse(p.inventory.filter(blueprint__kind='scroll').exists())
-            self.assertTrue(all(BY_KEY[key].school==self.strategy.rune_school for key in spell_usage),spell_usage)
+            self.assertTrue(all(SPELLS_BY_KEY[key].school==self.strategy.rune_school for key in spell_usage),spell_usage)
             self.assertTrue(self.magic_purchases)
             self.assertGreater(casts,20)
         if self.strategy.ammo_type or self.build == 'twohand':
