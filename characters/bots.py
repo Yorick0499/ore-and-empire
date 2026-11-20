@@ -455,15 +455,16 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if ammo_blocked:
             choices=ItemBluePrint.objects.filter(kind='ammo',merchant=True,original_stats__ammo_type=ammo_kind,base_value__gte=0,base_value__lte=profile.ore_balance).order_by('base_value','pk')
             ammo_stock=next((bp for bp in choices if allowed(profile,bp)),None)
-    from .models import CraftRecipe
-    from .crafting import valid_recipe,interested
-    reserved_materials={i['blueprint'] for r in CraftRecipe.objects.filter(enabled=True).select_related('output') if valid_recipe(r) and getattr(profile,r.discipline+'_skill')>=r.skill and interested(profile,r,inventory) for i in r.ingredients} if profile.smithing_skill or profile.alchemy_skill else set()
-    reserved_materials.update(i.blueprint_id for i in inventory if ammo_kind and i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind)
+    from .crafting import ingredient_reserves
+    craft_reserves = ingredient_reserves(profile, inventory)
+    market_reserved = set(story.item_ids)
+    market_reserved.update(i.blueprint_id for i in inventory if ammo_kind and i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind)
+    reserved_materials = market_reserved | craft_reserves.keys()
     spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials and item.blueprint.catalog_key!='rune-dust']
     from .market_intelligence import state,sale_candidate,retention,score,usable,fists
     market=state(profile.world_id)
     retained=retention(profile,inventory,set(story.item_ids)|reserved_materials)
-    item=sale_candidate(profile,inventory,set(story.item_ids)|reserved_materials,market)
+    item = sale_candidate(profile, inventory, market_reserved, market, craft_reserves=craft_reserves)
     equipment=None
     for candidate in sorted(spare,key=lambda i:score(profile,i),reverse=True):
         if not candidate.blueprint.equippable or not usable(profile,candidate.blueprint):continue
@@ -762,7 +763,17 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     from .crafting import bot_craft_plan
     craft_action,craft_target=bot_craft_plan(profile)
     from .market_policy import bot_market_plan
-    market_action,market_target,market_price=bot_market_plan(profile,set(story.item_ids)|reserved_materials|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'},inventory=inventory,market=market)
+    market_action,market_target,market_price=bot_market_plan(
+        profile, market_reserved|{i.blueprint_id for i in inventory if i.blueprint.catalog_key=='rune-dust'},
+        inventory=inventory, market=market,
+        craft_material_id=craft_target if craft_action == 'craft_material' else None,
+        craft_reserves=craft_reserves,
+    )
+    if craft_action == 'craft_material' and market_action in {'market_buy', 'market_cancel'}:
+        offers = market.listings if market_action == 'market_buy' else inventory
+        craft_offer = next((item for item in offers if item.pk == market_target), None)
+        if craft_offer and craft_offer.blueprint_id == craft_target:
+            craft_action, craft_target = market_action, market_target
     forge_action='';forge_target=None;forge_level=0;patrol_depth=None;patrol_track='legacy'
     if not profile.is_busy:
         from .enhancements import upgrade_cost
@@ -933,7 +944,7 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             success = bool(purchase_product(profile, product.pk, uuid4()))
         elif action == "list" and item and target == item.pk:
             from .market_policy import list_bot_surplus
-            success = list_bot_surplus(profile,item,set(story.item_ids)|reserved_materials)
+            success = list_bot_surplus(profile,item,market_reserved)
         elif action == "buy" and offer and target == offer.pk:
             success = game.buy_item_on_market(profile, offer,offer.market_price)
         elif action == "stock" and stock and target == stock.pk:
