@@ -12,7 +12,7 @@ Najwyżej trzy ogłoszenia bota, bez powielania własnego wariantu i dokładania
 
 Bot może sfinansować konkretną dostępną lepszą broń sprzedażą własnej zwykłej, nieprzekutej broni. Sprzedaż, zakup i założenie są jedną transakcją: niepowodzenie cofa całość. Rzadki i zabezpieczony sprzęt jest wykluczony z takiej likwidacji u NPC.
 
-Migawka rynku jest współdzielona do 15 sekund i unieważniana przy zdarzeniu. Wystawienie ponownie sprawdza potrzeby i ochronę wyposażenia. Wszystkie rozliczenia przechodzą przez zwykłe usługi, bez emisji rudy przez handel. [Jawne symulowane zakupy odłamków](BOT_PERSONALITIES.md) są osobnym źródłem i mają własny audyt.
+Migawka rynku jest współdzielona do 15 sekund i unieważniana przy zdarzeniu. Wystawienie ponownie sprawdza potrzeby i ochronę wyposażenia. Jeśli bieżący stan wyklucza zaplanowaną ofertę, bot wybiera inne dozwolone działanie w tej samej turze. Rozliczenia przenoszą rudę między portfelami. [Jawne symulowane zakupy odłamków](BOT_PERSONALITIES.md) są osobnym źródłem i mają własny audyt.
 
 Testy obejmują szoki podaży, brak nabywcy, substytuty NPC, migawki wariantów, powtarzany obrót jednego kupującego, rezerwację sprzętu, ratowanie ofert i rollback wymiany. Dawny `simulate_market` pozostaje prostym modelem jednego towaru, a nie prognozą całej gospodarki nowej wersji.
 
@@ -45,6 +45,8 @@ Boty porównują efektywną moc kupowanej i zapasowej broni, uwzględniając rza
 
 Zakup potwierdza cenę całej oferty widoczną w formularzu. Jeśli sprzedawca ją zmienił, transakcja nie pobiera rudy ani przedmiotu; odśwież targ i potwierdź nową cenę. Stare formularze bez potwierdzenia ceny są odrzucane.
 
+Dezaktywacja konta ukrywa jego ogłoszenia graczom i botom oraz blokuje zakup ze stron otwartych wcześniej. Oferty i historia transakcji zostają zapisane. Po ponownej aktywacji właściciel może wznowić sprzedaż albo wycofać przedmiot.
+
 ## Wspólny rynek po Barierze
 
 Przed połączeniem oferty i potencjalny popyt są odizolowane między serwerami. Po nim oba regiony mają jeden rynek, z zachowaniem ID ofert, cen, dat, właścicieli i ledgerów; nie ma kopiowania majątku. Oferta NK nadal wymaga połączenia, portalu i odpowiedniej frakcji, jeśli określa to wzór. Dostęp do portalu kupujących jest odczytywany zbiorczo, bez osobnego zapytania na każdego nabywcę.
@@ -56,8 +58,10 @@ Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalsz�
 
 Bot odkłada ilość składnika potrzebną do wybranej receptury, także jeśli zapas jest rozłożony na kilka stosów. Nadwyżkę może wystawić w całości lub jako partię jednej albo dwóch sztuk, zależnie od zakupu, na który jest popyt. Podział i wystawienie tworzą jedną transakcję. W swojej turze rzemieślniczej bot preferuje użyteczną ofertę tańszą od warsztatu i może wycofać własną brakującą partię. Sprzedawca zachowuje co najmniej jedną sztukę najlepszego zapasu danego typu mikstury. Boty kupują również pojedyncze mikstury na kolejną wyprawę.
 
+Sprzedaż u NPC korzysta z tej samej rezerwy: bot może sprzedać osobny stos nadwyżki i zostawić najstarsze porcje potrzebne do receptury. Składniki zadań, używana amunicja i przedmioty chronione zachowują swoją ochronę. [#190](https://github.com/Yorick0499/ore-and-empire/issues/190).
+
 ## Wyniki i obserwowane problemy
 
 W trzech porównaniach przy tych samych ziarnach liczba transakcji w Khorinis wzrosła z 10 do 14, a próbki godzinowe z ofertą z 20 do 43. Dziesięć niezależnych prób objęło pierwsze 12–36 godzin w świecie. Odrzucone wystawienia pojawiły się w pięciu próbach, w tym jednej w Khorinis. [Raport dziesięciu prób](reports/targ-khorinis-2026-11-20.json).
 
-Starsza migawka może zasugerować botu wystawienie, które zostanie odrzucone przez świeżą walidację. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185). Po dezaktywacji konta oferty mogą pozostać widoczne dla graczy, podczas gdy boty je pomijają. [#183](https://github.com/Yorick0499/ore-and-empire/issues/183).
+Regresje obejmują zmianę popytu między turami dwóch botów w jednej rundzie oraz kupno po dezaktywacji sprzedawcy na wspólnym rynku. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185) · [#183](https://github.com/Yorick0499/ore-and-empire/issues/183).

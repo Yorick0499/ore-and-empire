@@ -27,3 +27,19 @@ class BotInventoryTests(TestCase):
             def choose(self,o):seen.append(o.disposal_id);return 'wait',None
         self.assertEqual(tick_bot(self.p,policy=ObservePolicy(),force_active=True),('wait',True))
         self.assertEqual(seen,[None]);self.arrows.refresh_from_db();self.assertEqual(self.arrows.quantity,10)
+
+    def test_crowded_alchemist_sells_extra_stack_without_losing_recipe_inputs(self):
+        from .crafting import ingredient_reserves
+        from .equipment import bot_inventory
+
+        self.arrows.delete()
+        self.p.alchemy_skill = 1
+        self.p.save(update_fields=['alchemy_skill'])
+        ingredient = ItemBluePrint.objects.get(catalog_key='raw-meat')
+        stacks = [OwnedItem.objects.create(owner=self.p, blueprint=ingredient, origin='loot')
+                  for _ in range(6)]
+        self.assertEqual(ingredient_reserves(self.p, bot_inventory(self.p))[ingredient.pk], 1)
+        self.assertEqual(tick_bot(self.p, force_active=True), ('sell', True))
+        self.assertTrue(self.p.inventory.filter(pk=stacks[0].pk, quantity=1).exists())
+        self.assertFalse(self.p.inventory.filter(pk=stacks[1].pk).exists())
+        self.assertEqual(len(bot_inventory(self.p)), 10)

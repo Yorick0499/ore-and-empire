@@ -17,6 +17,14 @@ PHASES = (
     ('dusk','Zmierzch',110,105,'Przy bramach płoną pochodnie, a późna zmiana rusza do kopalń.'),
     ('night','Noc',105,110,'Przy karczemnych ogniskach trwa handel. Nocne patrole pilnują szlaków.'),
 )
+KHORINIS_DESCRIPTIONS = {
+    'dawn': 'Straż otwiera bramy, a rybacy wypływają z portu.',
+    'morning': 'Port budzi się przy rozładunku łodzi. Wozy z farm ruszają do miasta.',
+    'noon': 'Na targu kupcy rozkładają towar, a podróżni szukają cienia przy nabrzeżu.',
+    'afternoon': 'Wozy wracają na farmy. Strażnicy sprawdzają ostatnie transporty.',
+    'dusk': 'Przy miejskich bramach zapalają się pochodnie. W porcie cumują ostatnie łodzie.',
+    'night': 'W karczmach gasną światła. Nocna straż obchodzi mury i nabrzeże.',
+}
 SEASONS = { 'spring':'Wiosna', 'summer':'Lato', 'autumn':'Jesień', 'winter':'Zima' }
 
 
@@ -31,7 +39,7 @@ def polish_day(now=None):
     return (now or timezone.now()).astimezone(POLISH_TIME).date()
 
 
-def clock_state(now=None):
+def clock_state(now=None, *, universe='GOTHIC_I'):
     now = (now or timezone.now()).astimezone(POLISH_TIME)
     bounds = phase_boundaries(now.date())
     index = next((i-1 for i,end in enumerate(bounds) if now < end), 5)
@@ -43,6 +51,8 @@ def clock_state(now=None):
     else:
         ends_at = bounds[index+1]
     key, name, ore, experience, description = PHASES[index]
+    if universe == 'GOTHIC_II':
+        description = KHORINIS_DESCRIPTIONS[key]
     season = ('winter' if now.month in (12,1,2) else 'spring' if now.month in (3,4,5) else 'summer' if now.month in (6,7,8) else 'autumn')
     return {'key':key, 'name':name,'ore':ore,'experience':experience,'description':description,
             'now':now, 'season':season,'season_name':SEASONS[season], 'zone':now.tzname(),

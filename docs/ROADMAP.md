@@ -21,15 +21,14 @@ Nie ma kont premium. Jarkendar jest regionem wspólnego serwera otwieranym przez
 
 ## Otwarte zadania i zależności
 
-Kanoniczne GitHub: [#9](https://github.com/Yorick0499/ore-and-empire/issues/9), [epic #10](https://github.com/Yorick0499/ore-and-empire/issues/10). Zbiorcze #30/#111 pozostają otwarte, mimo wdrożonego/testowanego połączenia; samo istnienie issue nie oznacza braku tej mechaniki. #32 pozostaje otwarte dla nieobsługiwanych efektów/interakcji oryginału. Nie zamykamy tych indeksów aktualizacją tekstów.
+Roadmapę i zakres dwóch początków śledzą [#9](https://github.com/Yorick0499/ore-and-empire/issues/9) oraz [#10](https://github.com/Yorick0499/ore-and-empire/issues/10). [#32](https://github.com/Yorick0499/ore-and-empire/issues/32) obejmuje przyszłe efekty i interakcje G2NK. Rynek obsługuje wycofanie widoczności ofert wyłączonego konta i pozwala botowi wykorzystać turę po zmianie popytu. [#183](https://github.com/Yorick0499/ore-and-empire/issues/183) · [#185](https://github.com/Yorick0499/ore-and-empire/issues/185).
 
 Kolejne prace:
 
-1. **Rynek:** poprawa płynności Khorinis [#161](https://github.com/Yorick0499/ore-and-empire/issues/161) jest scalona. Otwarte pozostają [oferty dezaktywowanych kont #183](https://github.com/Yorick0499/ore-and-empire/issues/183) i [odrzucone wystawienia botów #185](https://github.com/Yorick0499/ore-and-empire/issues/185).
-2. **Dłuższa próba wydania — backlog #9:** kilka dni aktywnej populacji 250, źródła/ujścia walut, konsumpcja, postęp i restarty. Kryterium: dane pozwalające stroić gospodarkę, a nie sam rosnący obrót.
-3. **Pozostałe mechaniki NK — #32:** małe wersjonowane paczki dla efektów specjalnych, przyzwań/przemian, teleportów i interakcji NPC. Kryterium: działające usługi, koszty, boty i testy każdej faktycznie wdrożonej funkcji. Nie odblokowywać całego katalogu bez obsługi.
-4. **Ocena przez ludzi — backlog #9:** dłuższe sesje różnymi buildami, czytelność informacji, odczucie awansów i powtarzalność celów. Kryterium: obserwacje i mierzalne poprawki; automatyczny skrypt nie zastępuje oceny satysfakcji.
-5. **Dalsze konsekwencje wojny — backlog #9:** rozwinąć istniejącą odsłonę „Orkowie u bram” dopiero po pomiarach emisji i obciążenia; zachować historię, dotychczasowe koszty i brak resetu.
+1. **Dłuższa próba wydania — backlog #9:** kilka dni aktywnej populacji 250, źródła/ujścia walut, konsumpcja, postęp i restarty. Kryterium: dane pozwalające stroić gospodarkę, a nie sam rosnący obrót.
+2. **Pozostałe mechaniki NK — #32:** małe wersjonowane paczki dla efektów specjalnych, przyzwań/przemian, teleportów i interakcji NPC. Kryterium: działające usługi, koszty, boty i testy każdej faktycznie wdrożonej funkcji. Nie odblokowywać całego katalogu bez obsługi.
+3. **Ocena przez ludzi — backlog #9:** dłuższe sesje różnymi buildami, czytelność informacji, odczucie awansów i powtarzalność celów. Kryterium: obserwacje i mierzalne poprawki; automatyczny skrypt nie zastępuje oceny satysfakcji.
+4. **Dalsze konsekwencje wojny — backlog #9:** rozwinąć istniejącą odsłonę „Orkowie u bram” dopiero po pomiarach emisji i obciążenia; zachować historię, dotychczasowe koszty i brak resetu.
 
 Portrety NPC i sceny questowe pozostają odłożone. Priorytet grafik obejmuje broń/przedmioty, lokacje, moby i bossów. Pełny katalog kodów źródłowych nie oznacza całej oryginalnej gry.
 
