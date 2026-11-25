@@ -48,4 +48,4 @@ def world_context(request):
     from .barrier import joined,region
     profile=getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None
     visited=region(profile) if profile and not request.path.startswith('/zarzadca/') else world
-    return {'world_joined':joined(world), 'visited_region':visited, 'is_khorinis':visited.universe=='GOTHIC_II','realm_title':'Khorinis' if visited.universe=='GOTHIC_II' else 'Kolonia','active_character':getattr(request.user,'_server_profile',None) if request.user.is_authenticated else None,'world_clock':clock_state(),'server_world':visited,'world_needs_setup':not world.configured}
+    return {'world_joined':joined(world), 'visited_region':visited, 'is_khorinis':visited.universe=='GOTHIC_II','realm_title':'Khorinis' if visited.universe=='GOTHIC_II' else 'Kolonia','active_character':profile,'world_clock':clock_state(universe=visited.universe),'server_world':visited,'world_needs_setup':not world.configured}

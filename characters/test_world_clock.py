@@ -18,6 +18,9 @@ class WorldClockTests(TestCase):
             state=clock_state(when)
             self.assertEqual((state['key'],state['ore'],state['experience']),(key,ore,xp))
             self.assertEqual(clock_state(when),state)
+            island = clock_state(when, universe='GOTHIC_II')
+            self.assertNotEqual(island.pop('description'), state['description'])
+            self.assertEqual(island, {key: value for key, value in state.items() if key != 'description'})
             self.assertEqual(clock_state(state['ends_at']-timedelta(microseconds=1))['key'],key)
             self.assertEqual(clock_state(state['ends_at'])['key'],PHASES[(i+1)%6][0])
         for month,season in [(1,'winter'),(3,'spring'),(6,'summer'),(9,'autumn'),(12,'winter')]:
@@ -50,3 +53,23 @@ class WorldClockTests(TestCase):
         response=self.client.get('/polowanie/?location=exchange')
         self.assertEqual(response.context['BESTIARY']['young_scavenger']['current_reward'],reward_snapshot(0,30)[1])
         self.assertContains(response,'Następny poziom przy')
+
+    def test_regional_text_follows_the_visited_region_after_the_barrier(self):
+        from .test_faction_succession import fixture, person
+
+        colony, island, _ = fixture()
+        profile = person(colony, 'NONE', 'NONE')
+        self.client.force_login(profile.user)
+        morning = phase_boundaries(datetime(2026, 11, 25).date())[1]
+        with patch('django.utils.timezone.now', return_value=morning):
+            response = self.client.get('/magia/')
+            self.assertContains(response, 'Kopacze zbierają się przed szybami')
+            self.assertContains(response, 'Wiedza spod bariery')
+            self.assertRedirects(self.client.post('/bariera/', {'destination': island.pk}), '/bariera/')
+            response = self.client.get('/magia/')
+            self.assertContains(response, 'Port budzi się przy rozładunku łodzi')
+            self.assertContains(response, 'Tradycje magiczne wyspy')
+            self.assertNotContains(response, 'Kopacze zbierają się przed szybami')
+            self.assertContains(self.client.get('/plac_targowy/'), 'Inni mieszkańcy')
+            self.assertRedirects(self.client.post('/bariera/', {'destination': colony.pk}), '/bariera/')
+            self.assertContains(self.client.get('/magia/'), 'Wiedza spod bariery')
