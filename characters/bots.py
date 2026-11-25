@@ -461,15 +461,17 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if ammo_blocked:
             choices=ItemBluePrint.objects.filter(kind='ammo',merchant=True,original_stats__ammo_type=ammo_kind,base_value__gte=0,base_value__lte=profile.ore_balance).order_by('base_value','pk')
             ammo_stock=next((bp for bp in choices if allowed(profile,bp)),None)
-    from .crafting import ingredient_reserves
+    from .crafting import ingredient_reserves, reserved_ingredient_stacks
     craft_reserves = ingredient_reserves(profile, inventory)
+    craft_stacks = reserved_ingredient_stacks(inventory, craft_reserves)
     market_reserved = set(story.item_ids)
     market_reserved.update(i.blueprint_id for i in inventory if ammo_kind and i.blueprint.kind=='ammo' and i.blueprint.original_stats.get('ammo_type')==ammo_kind)
-    reserved_materials = market_reserved | craft_reserves.keys()
-    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped and item.pk!=profile.prepared_magic_id and item.blueprint_id not in story.item_ids and item.blueprint_id not in reserved_materials and item.blueprint.catalog_key!='rune-dust']
+    spare = [item for item in inventory if not item.is_market_listed and not item.is_equipped
+             and item.pk != profile.prepared_magic_id and item.blueprint_id not in market_reserved
+             and item.pk not in craft_stacks and item.blueprint.catalog_key != 'rune-dust']
     from .market_intelligence import state,sale_candidate,retention,score,usable,fists
     market=state(profile.world_id)
-    retained=retention(profile,inventory,set(story.item_ids)|reserved_materials)
+    retained = retention(profile, inventory, market_reserved) | craft_stacks.keys()
     item = sale_candidate(profile, inventory, market_reserved, market, craft_reserves=craft_reserves)
     equipment=None
     for candidate in sorted(spare,key=lambda i:score(profile,i),reverse=True):

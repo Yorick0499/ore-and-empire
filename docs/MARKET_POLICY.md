@@ -58,6 +58,8 @@ Regresja człowiek–bot potwierdza pojedynczą zapłatę za nadwyżkę i dalsz�
 
 Bot odkłada ilość składnika potrzebną do wybranej receptury, także jeśli zapas jest rozłożony na kilka stosów. Nadwyżkę może wystawić w całości lub jako partię jednej albo dwóch sztuk, zależnie od zakupu, na który jest popyt. Podział i wystawienie tworzą jedną transakcję. W swojej turze rzemieślniczej bot preferuje użyteczną ofertę tańszą od warsztatu i może wycofać własną brakującą partię. Sprzedawca zachowuje co najmniej jedną sztukę najlepszego zapasu danego typu mikstury. Boty kupują również pojedyncze mikstury na kolejną wyprawę.
 
+Sprzedaż u NPC korzysta z tej samej rezerwy: bot może sprzedać osobny stos nadwyżki i zostawić najstarsze porcje potrzebne do receptury. Składniki zadań, używana amunicja i przedmioty chronione zachowują swoją ochronę. [#190](https://github.com/Yorick0499/ore-and-empire/issues/190).
+
 ## Wyniki i obserwowane problemy
 
 W trzech porównaniach przy tych samych ziarnach liczba transakcji w Khorinis wzrosła z 10 do 14, a próbki godzinowe z ofertą z 20 do 43. Dziesięć niezależnych prób objęło pierwsze 12–36 godzin w świecie. Odrzucone wystawienia pojawiły się w pięciu próbach, w tym jednej w Khorinis. [Raport dziesięciu prób](reports/targ-khorinis-2026-11-20.json).

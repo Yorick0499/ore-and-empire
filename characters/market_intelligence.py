@@ -220,9 +220,11 @@ def sale_lot(market, seller, item, *, allow_split=True, reserve=0):
 
 
 def sale_offer(p,items,reserved=(),market=None,*,craft_reserves=None):
+    from .crafting import reserved_ingredient_stacks
+
     market=market or state(p.world_id);keep=retention(p,items,reserved)
     reserves = restorative_reserves(p, items)
-    unallocated = dict(craft_reserves or {})
+    craft_stacks = reserved_ingredient_stacks(items, craft_reserves)
     own=[i for i in items if i.is_market_listed]
     if len(own)>=3:return None
     choices=[]
@@ -232,14 +234,9 @@ def sale_offer(p,items,reserved=(),market=None,*,craft_reserves=None):
             continue
         if i.pk in keep and i.pk not in reserves:
             continue
-        # Crafting consumes the oldest eligible stacks first. Allocate the
-        # recipe's reserve once across all stacks from loot, crafts and shops.
-        craft_reserve = min(i.quantity, unallocated.get(i.blueprint_id, 0))
-        if craft_reserve:
-            unallocated[i.blueprint_id] -= craft_reserve
         if any(x.blueprint_id==i.blueprint_id and x.rarity==i.rarity and x.upgrade_level==i.upgrade_level for x in own):continue
         quantity, quote = sale_lot(market, p, i, allow_split=len(items) < 12,
-                                   reserve=max(craft_reserve, int(i.pk in reserves)))
+                                   reserve=max(craft_stacks.get(i.pk, 0), int(i.pk in reserves)))
         if quote.price and quote.supply < max(2, quote.buyers):
             choices.append((quote.price - i.blueprint.base_value * quantity // 2, -i.pk, (i, quantity, quote)))
     return max(choices, key=lambda choice: choice[:2])[-1] if choices else None

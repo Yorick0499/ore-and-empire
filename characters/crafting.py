@@ -107,6 +107,22 @@ def ingredient_reserves(profile, inventory):
     return reserves
 
 
+def reserved_ingredient_stacks(inventory, reserves):
+    """Allocate each required quantity in the order used by crafting."""
+    if not reserves:
+        return {}
+    remaining = reserves.copy()
+    allocated = {}
+    for item in sorted(inventory, key=lambda item: item.pk):
+        if item.is_market_listed or item.is_equipped or item.is_protected:
+            continue
+        amount = min(item.quantity, remaining.get(item.blueprint_id, 0))
+        if amount:
+            allocated[item.pk] = amount
+            remaining[item.blueprint_id] -= amount
+    return allocated
+
+
 def bot_craft_plan(profile):
     if not profile.bot_turn or profile.bot_turn%23:return '',None
     for card in recipe_cards(profile):
