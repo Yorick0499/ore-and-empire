@@ -496,7 +496,8 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
     if not unlocked(profile):stock=stock.exclude(catalog_key__startswith='oe-jark-')
     from .gothic2_content import visible_stock
     stock = visible_stock(profile, stock).filter(damage__gt=damage)
-    offers = OwnedItem.objects.filter(blueprint__kind='weapon', blueprint__weapon_type__in=weapon_types, blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, is_market_listed=True, owner__user__is_active=True, owner__world_id__in=region_ids(profile.world_id), market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
+    from .market_availability import listings_in
+    offers = listings_in(region_ids(profile.world_id)).filter(blueprint__kind='weapon', blueprint__weapon_type__in=weapon_types, blueprint__min_level__lte=profile.level, blueprint__required_camp__in=equipment_factions, blueprint__min_camp_tier__lte=profile.camp_tier, market_price__gt=0, market_price__lte=profile.ore_balance, blueprint__required_strength__lte=profile.strength,blueprint__required_dexterity__lte=profile.dexterity).exclude(owner=profile).select_related("blueprint","owner")
     offers=[o for o in offers if market.can_buy(profile,o)]
     upgrade = None
     if equipped:
@@ -869,6 +870,18 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         if not isinstance(action, str) or (target is not None and (type(target) is not int or target <= 0)):
             record_decision(profile, obs, "rejected", None, False, policy_version,policy_snapshot)
             return "rejected", False
+        listed = False
+        if action == 'list' and item and target == item.pk:
+            from .market_policy import list_bot_surplus
+
+            listed = list_bot_surplus(profile, item, market_reserved)
+            if not listed:
+                # Demand may have changed since planning. Use the same turn
+                # for a different allowlisted action without another quote.
+                obs = replace(obs, inventory_id=None)
+                policy_version = 'baseline-27'
+                policy_snapshot = {'fallback': 'listing_unavailable', 'listing_item_id': target}
+                action, target = BaselinePolicy().choose(obs)
         story_services = {'story_accept': accept_story, 'story_start': activate_story, 'story_claim': claim_story}
         from .magic import learn_circle,prepare_magic,purchase_magic
         from .camp_guilds import donate_to_camp,upgrade_camp,UPGRADES
@@ -876,7 +889,9 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
         from .challenges import accept_challenge,claim_challenge,claim_achievement,ACHIEVEMENTS
         from .crafting import learn_craft,buy_craft_material,craft_item
         from .market_policy import reprice_listing,observe_legacy_listing
-        if action == 'armor' and armor and target == obs.armor_id:
+        if listed:
+            success = True
+        elif action == 'armor' and armor and target == obs.armor_id:
             success = game.buy_item_from_npc(profile, armor)
         elif action=='ammo' and ammo_stock and target==obs.ammo_id:
             success=game.buy_item_from_npc(profile,ammo_stock)
@@ -955,9 +970,6 @@ def tick_bot(profile, policy=None, *, lease=None, force_active=False):
             success = claim_adventure(profile, run.pk)
         elif action == "shop" and product and target == product.pk:
             success = bool(purchase_product(profile, product.pk, uuid4()))
-        elif action == "list" and item and target == item.pk:
-            from .market_policy import list_bot_surplus
-            success = list_bot_surplus(profile,item,market_reserved)
         elif action == "buy" and offer and target == offer.pk:
             success = game.buy_item_on_market(profile, offer,offer.market_price)
         elif action == "stock" and stock and target == stock.pk:

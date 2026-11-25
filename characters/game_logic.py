@@ -308,6 +308,9 @@ def list_item_on_market(seller_profile, owned_item, price):
         return False
     if owned_item.is_market_listed:
         return False
+    from .market_availability import available_seller
+    if not PlayerProfile.objects.filter(available_seller(), pk=seller_profile.pk).exists():
+        return False
     from .release_equipment import trade_allowed
     if not trade_allowed(seller_profile.world_id, owned_item.blueprint):
         return False
@@ -339,6 +342,9 @@ def buy_item_on_market(buyer_profile, owned_item, expected_price=None):
     if owned_item.market_price is None or owned_item.market_price <= 0:
         return False
     if owned_item.market_price > buyer_profile.ore_balance:
+        return False
+    from .market_availability import available_seller
+    if not PlayerProfile.objects.filter(available_seller(), pk=current_owner.pk).exists():
         return False
     MarketTrade.objects.create(rarity=owned_item.rarity,upgrade_level=owned_item.upgrade_level,created_at=timezone.now(),
         blueprint=owned_item.blueprint,

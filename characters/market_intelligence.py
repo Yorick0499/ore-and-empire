@@ -8,6 +8,7 @@ from django.db import connection
 from django.utils import timezone
 from .models import PlayerProfile,OwnedItem,ItemBluePrint,MarketTrade,CraftRecipe
 from .equipment import allowed
+from .market_availability import available_seller
 
 _cache={}
 def invalidate(world_id):
@@ -64,9 +65,9 @@ class MarketState:
         from .jarkendar import PORTAL_QUEST
         from .release_equipment import GEAR as RELEASE_GEAR, filter_stock
         portal=StoryRun.objects.filter(profile_id=OuterRef('pk'),status='claimed',snapshot__key=PORTAL_QUEST)
-        self.people=list(PlayerProfile.objects.filter(world_id__in=worlds,user__is_active=True,is_draft=False).select_related('world','faction_membership__rank_progress').annotate(_jarkendar_unlocked=Exists(portal)))
+        self.people=list(PlayerProfile.objects.filter(available_seller(),world_id__in=worlds).select_related('world','faction_membership__rank_progress').annotate(_jarkendar_unlocked=Exists(portal)))
         self.items=defaultdict(list);self.listings=[]
-        for i in OwnedItem.objects.filter(owner__world_id__in=worlds,owner__user__is_active=True).select_related('blueprint','owner'):
+        for i in OwnedItem.objects.filter(available_seller('owner__'),owner__world_id__in=worlds).select_related('blueprint','owner'):
             self.items[i.owner_id].append(i)
             if i.is_market_listed:self.listings.append(i)
         self.merchants=list(filter_stock(world_id, ItemBluePrint.objects.filter(merchant=True)))

@@ -1,12 +1,57 @@
 from unittest.mock import patch
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, TransactionTestCase
 from .models import OwnedItem,ItemBluePrint,MarketTrade
 from .equipment import add_item
 from . import game_logic as game
 from .market_intelligence import MarketState,retention,sale_candidate,score
 from .market_policy import list_bot_surplus,bot_market_plan
 from .weapon_finance import finance,plan
+
+
+class SameRoundMarketTests(TransactionTestCase):
+    def test_stale_demand_after_another_bot_shops_uses_a_different_action(self):
+        from .bot_telemetry import replay_decision
+        from .bots import tick_bot
+        from .market_intelligence import invalidate, state
+        from .models import BotDecision
+
+        buyer = User.objects.create_user('round-buyer').playerprofile
+        seller = User.objects.create_user('round-seller').playerprofile
+        for bot in (buyer, seller):
+            bot.is_bot = True
+            bot.ore_balance = 500
+            bot.bot_role = 'trader'
+            bot.bot_turn = 1
+            bot.save()
+        weapon = ItemBluePrint.objects.create(name='Nowy oręż', damage=50, base_value=160, merchant=True)
+        surplus = add_item(seller, ItemBluePrint.objects.create(name='Stary oręż', damage=20, base_value=100, merchant=False))
+        owned = add_item(seller, weapon)
+        self.assertTrue(game.equip_item(seller, owned))
+        invalidate(seller.world_id)
+        self.addCleanup(invalidate, seller.world_id)
+        snapshot = state(seller.world_id)
+        self.assertEqual(snapshot.quote(seller, surplus).buyers, 1)
+
+        class PurchaseStock:
+            def choose(self, observation):
+                return 'stock', observation.blueprint_id
+
+        self.assertEqual(tick_bot(buyer, PurchaseStock(), force_active=True), ('stock', True))
+        self.assertIs(state(seller.world_id), snapshot)
+        with patch('characters.market_intelligence.state', wraps=state) as reads:
+            action, success = tick_bot(seller, force_active=True)
+        self.assertTrue(success)
+        self.assertNotIn(action, {'list', 'wait'})
+        self.assertEqual(sum(call.kwargs.get('fresh', False) for call in reads.call_args_list), 1)
+        surplus.refresh_from_db()
+        seller.refresh_from_db()
+        self.assertFalse(surplus.is_market_listed)
+        self.assertEqual(seller.bot_turn, 2)
+        decision = BotDecision.objects.get(profile=seller)
+        self.assertEqual(decision.policy_snapshot['fallback'], 'listing_unavailable')
+        self.assertTrue(replay_decision(decision)['matches'])
+
 
 class IntelligentMarketTests(TestCase):
     def setUp(self):

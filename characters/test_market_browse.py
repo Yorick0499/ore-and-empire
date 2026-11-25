@@ -170,6 +170,58 @@ class MarketBrowseTests(TestCase):
         self.assertContains(response, '<h2>Targ Khorinis</h2>', html=True)
         self.assertNotContains(response, 'Plac Targowy Starego Obozu')
 
+    def test_inactive_khorinis_seller_is_hidden_and_cannot_be_paid_after_union(self):
+        from .game_logic import buy_item_on_market, delist_item_from_market
+        from .market_intelligence import MarketState
+        from .models import MarketTrade
+        from .test_faction_succession import fixture
+
+        colony, island, _ = fixture()
+        colony.refresh_from_db()
+        union = colony.union_key
+        World.objects.filter(pk__in=(colony.pk, island.pk)).update(union_key=None)
+        self.seller.world = island
+        self.seller.save(update_fields=['world'])
+        item = self.offer(price=20)
+        island_buyer = User.objects.create_user('island-buyer').playerprofile
+        island_buyer.world = island
+        island_buyer.save(update_fields=['world'])
+        history = self.offer(self.ring, price=15)
+        self.assertTrue(buy_item_on_market(island_buyer, history, 15))
+        path = '/plac_targowy/'
+        self.client.force_login(island_buyer.user)
+        self.assertContains(self.client.get(path), self.sword.name)
+        self.assertIn(item.pk, [offer.pk for offer in MarketState(island.pk).listings])
+        self.assertNotIn(item.pk, [offer.pk for offer in MarketState(colony.pk).listings])
+        User.objects.filter(pk=self.seller.user_id).update(is_active=False)
+        self.seller.refresh_from_db()
+        before = self.seller.ore_balance
+        for buyer in (island_buyer, self.profile):
+            if buyer == self.profile:
+                World.objects.filter(pk__in=(colony.pk, island.pk)).update(union_key=union)
+            with self.subTest(world=buyer.world_id):
+                self.client.force_login(buyer.user)
+                self.assertNotContains(self.client.get(path), self.sword.name)
+                self.assertNotIn(item.pk, [offer.pk for offer in MarketState(buyer.world_id).listings])
+                self.assertFalse(buy_item_on_market(buyer, item, 20))
+                response = self.client.post(path, {
+                    'action': 'buy', 'buy_item_id': item.pk, 'expected_price': 20,
+                }, follow=True)
+                self.assertContains(response, 'Oferta już nie jest dostępna')
+        item.refresh_from_db()
+        self.seller.refresh_from_db()
+        self.assertTrue(item.is_market_listed)
+        self.assertEqual(item.owner_id, self.seller.pk)
+        self.assertEqual(self.seller.ore_balance, before)
+        self.assertEqual(list(MarketTrade.objects.values_list('blueprint_id', flat=True)), [self.ring.pk])
+
+        User.objects.filter(pk=self.seller.user_id).update(is_active=True)
+        self.assertContains(self.client.get(path), self.sword.name)
+        self.assertTrue(delist_item_from_market(self.seller, item))
+        self.assertTrue(list_item_on_market(self.seller, item, 20))
+        self.assertTrue(buy_item_on_market(self.profile, item, 20))
+        self.assertEqual(MarketTrade.objects.count(), 2)
+
     def test_market_shows_bow_dexterity_before_buying_or_listing(self):
         bow = ItemBluePrint.objects.create(
             name='Łuk strażnika', kind='weapon', weapon_type='bow',

@@ -119,11 +119,10 @@ def market_view(request):
             report_action(request, list_item_on_market(profile, sell_item, item_price))
             return redirect(request.get_full_path())
         if action == "buy":
+            from .market_availability import listings_in
+
             buy_item_id = request.POST.get("buy_item_id")
-            owned_item = OwnedItem.objects.filter(
-                pk=positive_id(buy_item_id), is_market_listed=True,
-                owner__world_id__in=region_ids(profile.world_id),
-            ).first()
+            owned_item = listings_in(region_ids(profile.world_id)).filter(pk=positive_id(buy_item_id)).first()
             if owned_item is None:
                 messages.error(request, unavailable)
                 return redirect(request.get_full_path())
