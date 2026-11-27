@@ -26,7 +26,7 @@ Nie ma realnych płatności ani kont premium. Dwa równoległe światy po zwyci�
 | Grafiki i font | Lokalne zasoby Gothicpedii, manifest źródeł, GothicII.ttf; runtime nie pobiera grafik z wiki |
 | Testowanie | Testy Django, izolowane symulacje, PostgreSQL i testy współbieżności, GitHub Actions; przeglądarkowe kontrole GUI |
 
-Dokładny wykaz zadeklarowanych pakietów i wersji znajduje się w rozdziale **Zależności i komendy**. Obecność pakietu w `requirements.txt` nie oznacza, że jest on osobnym serwisem ani że gra korzysta z płatnej usługi.
+Wersje pakietów dla swojej rewizji sprawdzisz w pliku `requirements.txt` w katalogu gry. Księga zawiera też odnośnik do [deklaracji w gałęzi main](../../requirements.txt). Obecność pakietu w `requirements.txt` nie oznacza, że jest on osobnym serwisem ani że gra korzysta z płatnej usługi.
 
 Lokalnie `play.py` uruchamia jeden proces HTTP wraz z harmonogramem botów; akcje są serializowane. Produkcyjnie HTTP i worker są osobnymi procesami z PostgreSQL. Nie uruchamiaj dwóch schedulerów zapisujących ten sam świat. Żądanie strony nie generuje fikcyjnego handlu ani działań mieszkańców.
 
