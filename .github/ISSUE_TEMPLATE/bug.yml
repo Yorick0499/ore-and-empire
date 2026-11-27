@@ -1,0 +1,25 @@
+name: Błąd
+description: Zgłoś problem z grą, uruchomieniem, botami lub testami.
+body:
+  - type: markdown
+    attributes:
+      value: To zgłoszenie jest publiczne. Używaj tylko danych testowych i oczyszczonych logów. Podatności zgłaszaj zgodnie z [polityką bezpieczeństwa](https://github.com/Yorick0499/ore-and-empire/blob/main/SECURITY.md).
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Co się stało i czego oczekujesz?
+      description: Opisz krótko objaw oraz oczekiwany wynik.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Jak to odtworzyć?
+      description: Podaj kroki albo polecenie. Jeśli problem występuje nieregularnie, opisz w jakich warunkach.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Kontekst próby
+      description: Podaj tylko dane istotne dla błędu, np. rewizję, SQLite lub PostgreSQL, region i odsłonę, rangę, build, populację botów albo ziarno symulacji.

@@ -1,0 +1,17 @@
+name: Dokumentacja
+description: Wskaż nieaktualną instrukcję, lukę lub niedziałający odsyłacz.
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Gdzie jest problem?
+      description: Podaj link, nazwę pliku lub nagłówek.
+    validations:
+      required: true
+  - type: textarea
+    id: update
+    attributes:
+      label: Co wymaga poprawy?
+      description: Opisz brakującą lub nieaktualną informację. Jeśli znasz poprawną instrukcję lub źródło, dopisz je.
+    validations:
+      required: true

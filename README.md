@@ -92,4 +92,4 @@ Publiczna księga HTML zawiera poradniki, tabele, zrzuty z datami i raporty. Pob
 
 Autorska część projektu jest dostępna na [GNU AGPL v3](LICENSE), z zachowaniem autorstwa Kacpra Rzońcy (`Yorick0499`) i adresu oryginalnego repozytorium zgodnie z [NOTICE](NOTICE). Materiały Gothic, grafiki Gothicpedii i font mają odrębne prawa. Warunki korzystania z kodu oraz status materiałów opisuje [LICENSING.md](LICENSING.md).
 
-[Zasady współtworzenia](CONTRIBUTING.md) · [Instrukcje dla agentów AI](AGENTS.md).
+[Zasady współtworzenia](CONTRIBUTING.md) · [Instrukcje dla agentów AI](AGENTS.md) · [Kodeks postępowania](CODE_OF_CONDUCT.md) · [Polityka bezpieczeństwa](SECURITY.md).

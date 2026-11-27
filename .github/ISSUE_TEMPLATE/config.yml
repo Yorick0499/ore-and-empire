@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Podatność lub incydent bezpieczeństwa
+    url: https://github.com/Yorick0499/ore-and-empire/blob/main/SECURITY.md
+    about: Skorzystaj z instrukcji poufnego zgłoszenia przed podaniem szczegółów.
