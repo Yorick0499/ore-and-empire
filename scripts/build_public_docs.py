@@ -159,7 +159,6 @@ def build():
             articles.append(f'<article id="{chapter_id}" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>{escape(group["title"])}</span><span>{escape(path)}</span><a href="{manifest["repository"]}/blob/main/{path}" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div>{note}{"".join(rewrite.parts)}</article>')
             nav.append(f'<li><a href="#{chapter_id}">{escape(title)}</a></li>')
         navigation.append('<details open><summary>' + escape(group['title']) + '</summary><ol>' + ''.join(nav) + '</ol></details>')
-    dependencies = (ROOT / 'requirements.txt').read_text(encoding='utf-8').strip()
     commands = sorted(p.stem for p in (ROOT / 'characters/management/commands').glob('*.py') if not p.name.startswith('_'))
     command_groups = {
         'Uruchomienie i kontrola': ['run_colony', 'run_worker', 'run_bots', 'check_worker', 'bootstrap_world', 'create_game_admin', 'open_khorinis', 'prepare_convergence', 'barrier_transition'],
@@ -169,7 +168,25 @@ def build():
     }
     if set(commands) != {c for values in command_groups.values() for c in values}: raise ValueError('Uncategorized command')
     rows = ''.join(f'<tr><td>{escape(group)}</td><td>' + '<br>'.join('<code>python manage.py ' + escape(c) + ' --help</code>' for c in values) + '</td></tr>' for group, values in command_groups.items())
-    articles.append('<article id="dependencies" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta">Dodatek techniczny · requirements.txt i komendy projektu</div><h2>Zależności i komendy</h2><p>Dokładne deklaracje pakietów bieżącego kodu. Podstawowy interfejs jest renderowany przez Django; Node.js i płatne API nie są wymagane. Listę opcji każdej komendy odczytasz przez <code>--help</code>. Przed wykonaniem komendy sprawdź, czy dotyczy żywego świata czy izolowanego testu.</p><pre><code>' + escape(dependencies) + '</code></pre><div class="table-wrap" role="region" aria-label="Komendy projektu" tabindex="0"><table><thead><tr><th>Grupa</th><th>Dostępna pomoc</th></tr></thead><tbody>' + rows + '</tbody></table></div><h3>Odtworzenie tej księgi</h3><p>Narzędzie dokumentacji jest oddzielne od runtime gry. Z katalogu repozytorium:</p><pre><code>python -m pip install -r requirements-docs.txt\npython scripts/build_public_docs.py\npython scripts/build_public_docs.py --check</code></pre><p>Źródła: publiczne Markdown, manifest i motyw w <code>docs/public/</code>. Generator nie inicjalizuje Django, nie odczytuje prywatnego środowiska, kont, baz ani backupów. Sam gotowy plik HTML nie wymaga Pythona ani instalowania pakietów.</p></article>')
+    requirements_url = escape(manifest['repository'] + '/blob/main/requirements.txt', quote=True)
+    articles.append(
+        '<article id="dependencies" class="chapter" data-doc-section tabindex="-1">'
+        '<div class="chapter-meta">Dodatek techniczny · requirements.txt i komendy projektu</div>'
+        '<h2>Zależności i komendy</h2>'
+        '<p>Wersje pakietów dla swojej rewizji odczytasz w pliku <code>requirements.txt</code> w katalogu gry. '
+        f'<a href="{requirements_url}" target="_blank" rel="noopener noreferrer">Zobacz deklaracje w gałęzi main</a>.</p>'
+        '<p>Podstawowy interfejs jest renderowany przez Django. Listę opcji każdej komendy odczytasz przez '
+        '<code>--help</code>. Przed wykonaniem komendy sprawdź, czy dotyczy żywego świata czy izolowanego testu.</p>'
+        '<div class="table-wrap" role="region" aria-label="Komendy projektu" tabindex="0"><table>'
+        f'<thead><tr><th>Grupa</th><th>Dostępna pomoc</th></tr></thead><tbody>{rows}</tbody></table></div>'
+        '<h3>Odtworzenie tej księgi</h3><p>Narzędzie dokumentacji jest oddzielne od środowiska gry. '
+        'Uruchom poniższe polecenia z katalogu repozytorium.</p>'
+        '<pre><code>python -m pip install -r requirements-docs.txt\npython scripts/build_public_docs.py\n'
+        'python scripts/build_public_docs.py --check</code></pre>'
+        '<p>Źródła księgi obejmują publiczne pliki Markdown, manifest i motyw w <code>docs/public/</code>. '
+        'Generator nie inicjalizuje Django, nie odczytuje prywatnego środowiska, kont, baz ani backupów. '
+        'Sam gotowy plik HTML nie wymaga Pythona ani instalowania pakietów.</p></article>'
+    )
     figures = []
     for row in screen_manifest['files']:
         path = (ROOT / 'docs/screenshots' / row['file']).resolve()
