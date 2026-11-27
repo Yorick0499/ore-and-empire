@@ -46,7 +46,7 @@ Runa jest wielokrotna, wymaga szkoły, kręgu i pełnej many rzutu. Zwój wymaga
 
 Zlecenia czasowe dają bezpieczny wybór proporcji rudy/PD/energii/czasu: 44 w Kolonii, 19 w Khorinis, według odwiedzanego regionu. Filtry nie ukrywają aktywnej pracy. Nagroda z premiami i treść zapisują się przy starcie; po terminie odbierz ją ręcznie. Sam odczyt nie wypłaca nagród ani nie rezerwuje premii regionalnej. [Zlecenia](ADVENTURES.md).
 
-Kupiec ma wyszukiwanie, filtry dostępności i osobne strony. Broń kupujesz pojedynczo, zapasy/amunicję po 1–100 sztuk. NPC odkupuje dozwolone zapasy za połowę bazowej wartości. Targ handluje rzeczywistymi egzemplarzami ludzi i botów: cena obejmuje cały stos. Potwierdzasz widoczną cenę; jej zmiana odrzuca zakup. Po Barierze targ i ranking obejmują oba regiony. [Zasady rynku](MARKET_POLICY.md).
+Kupiec ma wyszukiwanie, filtry dostępności i osobne strony. Po ogłoszeniu aktualizacji możesz filtrować broń i pancerz po odsłonie, a nowe runy kupisz w Magii po spełnieniu ich wymagań. Broń kupujesz pojedynczo, zapasy i amunicję po 1–100 sztuk. NPC odkupuje dozwolone zapasy za połowę bazowej wartości. Targ pokazuje oferty aktywnych mieszkańców i botów. Potwierdzasz cenę całego stosu. Po Barierze targ i ranking obejmują oba regiony. [Zasady rynku](MARKET_POLICY.md) · [Rynsztunek odsłon](WORLD_UPDATES.md#rynsztunek-odslon).
 
 Kowalstwo i alchemia mają po trzy poziomy; nauka kosztuje 1 PN i 20 rudy. Cztery receptury wymagają całego kompletu materiałów i opłaty. Kuźnia egzemplarza jest osobną usługą. [Rzemiosło](CRAFTING.md).
 

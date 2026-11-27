@@ -25,6 +25,8 @@ Domyślna gra lokalna pozostaje przy SQLite i `play.py`. Ten profil dotyczy **os
 
 Pierwsza inicjalizacja przez stronę `/inicjalizacja/` jest wyłączona w produkcji. Konto z istniejącego zapisu zachowuje hasło przy [imporcie](POSTGRESQL.md). Hasło można zmienić prywatnie poleceniem Django `changepassword`; nie wklejaj go do issue, PR ani screenów.
 
+Publiczny ekran „Licencja i źródła” pokazuje atrybucję oryginału oraz adres kodu tej wersji. Ustaw `ORE_PUBLIC_SOURCE_URL` na publiczny tag, rewizję albo archiwum odpowiadające wdrażanemu kodowi. Sam adres może być publiczny. Dane użytkowników, prywatna konfiguracja i dane dostępu zostają w instalacji. Przed publicznym wdrożeniem sprawdź prawa do wszystkich dołączonych materiałów. [Licencja i pochodzenie](../LICENSING.md).
+
 ## Próby logowania i dostęp
 
 Limity są zapisane w bazie i wspólne dla procesów: 5 prób na parę IP+login, 30 prób uwierzytelniania na IP i 10 rejestracji na IP w pięć minut. Sukces logowania czyści licznik IP+login, ale nie wspólny budżet IP. Przekroczenie daje 429 i Retry-After. Limity obejmują także logowanie Django admina. Klucze są HMAC-em; baza nie przechowuje w nich haseł, jawnych loginów ani IP. CSRF pozostaje włączone.

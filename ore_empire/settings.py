@@ -18,6 +18,7 @@ if os.environ.get("ORE_ENV","local") != "production":load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ORE_PUBLIC_SOURCE_URL = os.getenv('ORE_PUBLIC_SOURCE_URL') or 'https://github.com/Yorick0499/ore-and-empire'
 
 
 # Quick-start development settings - unsuitable for production

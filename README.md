@@ -2,7 +2,7 @@
 
 Polskojęzyczne, trwałe MMORPG przeglądarkowe inspirowane Gothic I i Gothic II: Noc Kruka. Grasz zwykłym mieszkańcem obok ludzi i jawnie oznaczonych botów: rozwijasz postać, wspólnotę, rynsztunek i świat. Domyślna polityka botów jest regułowa i nie wymaga API AI.
 
-Stan dokumentacji: **20 listopada 2026, migracja 0063_patrol_rank_permits**. [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
+Przegląd dokumentacji z **27 listopada 2026**, względem `main` po PR #188 (`03cfca7`, migracja `0063_patrol_rank_permits`). [Cała księga HTML offline](docs/dokumentacja.html) · [Indeks](docs/INDEX.md) · [Pełna instrukcja gry](docs/GAME_GUIDE.md).
 
 ## Uruchomienie
 
@@ -44,7 +44,7 @@ SQLite i lokalny launcher obsługują HTTP oraz jedną wspólną kolejkę. Launc
 - Każda z sześciu odsłon po starcie dodaje broń, pancerze i runy na trzy przedziały poziomów. [Rynsztunek odsłon](docs/WORLD_UPDATES.md#rynsztunek-odslon).
 - Wydobycie, **44 zlecenia Kolonii i 19 Khorinis**, fabuła, wyzwania, osiągnięcia, rzemiosło, stałe rzadkości łupu i przekucie +0–+3.
 - Publiczne profile graczy i botów z sylwetką 2D, statystykami postaci, założonym ekwipunkiem, kroniką awansów i odznakami. Otworzysz je z rankingu lub z „Życia kolonii”.
-- Wspólny handel ludzi i botów w obrębie aktywnego rynku. Boty sprzedają nadwyżki składników oraz porównują oferty z ceną warsztatu. Sklep odłamków ma 17 definicji ofert z bramkami i limitami. [Zasady targu](docs/MARKET_POLICY.md).
+- Wspólny handel ludzi i botów w obrębie aktywnego rynku. Targ pokazuje oferty aktywnych sprzedawców. Boty sprzedają nadwyżki składników, porównują ceny z warsztatem i mogą podjąć inną akcję, gdy popyt zmieni się przed wystawieniem. Sklep odłamków ma 17 definicji ofert z bramkami i limitami. [Zasady targu](docs/MARKET_POLICY.md).
 - Czas Polski `Europe/Warsaw` 1:1, słoneczne pory Warszawy, cztery sezony, sześć świąt corocznych, 12 wydarzeń miesięcznych i regionalne okna. Siedem trwałych odsłon ogłasza odkrycia świata. Najnowsza pojawia się w kronice na ekranie logowania i rejestracji. Osiem pul nazw świąt, miesięcznych prac, losowych odkryć i regionalnych aktywności dopasowuje kalendarz do dwóch początków i późniejszych etapów.
 - Katalogi źródłowe: 522 tożsamości przedmiotów G1 i 877 NK. Broń, przedmioty, lokacje, moby i bossowie korzystają z lokalnych grafik z atrybucją; portrety NPC i sceny zadań są odłożone.
 
@@ -88,4 +88,8 @@ Nie publikuj `.env`, danych dostępu, baz i kopii. Aktualizacja nie wymaga reset
 
 Publiczna księga HTML zawiera poradniki, tabele, zrzuty z datami i raporty. Pobierz ją i otwórz w przeglądarce; podgląd GitHuba pokazuje kod. Zasady utrzymania: [indeks dokumentacji](docs/INDEX.md).
 
-Projekt fanowski, niezwiązany oficjalnie z właścicielami marki Gothic. Dane oryginału, własny balans oraz prawa do ilustracji są opisane oddzielnie.
+## Licencja i współtworzenie
+
+Autorska część projektu jest dostępna na [GNU AGPL v3](LICENSE), z zachowaniem autorstwa Kacpra Rzońcy (`Yorick0499`) i adresu oryginalnego repozytorium zgodnie z [NOTICE](NOTICE). Materiały Gothic, grafiki Gothicpedii i font mają odrębne prawa. Warunki korzystania z kodu oraz status materiałów opisuje [LICENSING.md](LICENSING.md).
+
+[Zasady współtworzenia](CONTRIBUTING.md) · [Instrukcje dla agentów AI](AGENTS.md).

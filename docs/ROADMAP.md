@@ -1,6 +1,6 @@
 # Bieżąca roadmapa
 
-Stan na **20 listopada 2026**. Migracja 0063, polityka baseline-27, schemat obserwacji 24. Starsze wpisy pozostają historią zmian.
+Przegląd **27 listopada 2026**. Baza `03cfca7`, migracja 0063, polityka baseline-27, schemat obserwacji 24. Starsze wpisy opisują historię zmian.
 
 ## Gotowa droga gry
 
@@ -21,7 +21,7 @@ Nie ma kont premium. Jarkendar jest regionem wspólnego serwera otwieranym przez
 
 ## Otwarte zadania i zależności
 
-Roadmapę i zakres dwóch początków śledzą [#9](https://github.com/Yorick0499/ore-and-empire/issues/9) oraz [#10](https://github.com/Yorick0499/ore-and-empire/issues/10). [#32](https://github.com/Yorick0499/ore-and-empire/issues/32) obejmuje przyszłe efekty i interakcje G2NK. Rynek obsługuje wycofanie widoczności ofert wyłączonego konta i pozwala botowi wykorzystać turę po zmianie popytu. [#183](https://github.com/Yorick0499/ore-and-empire/issues/183) · [#185](https://github.com/Yorick0499/ore-and-empire/issues/185).
+Otwarta roadmapa to #9 i #10. Uzupełnianie efektów, interakcji i zasobów G2NK (#32) jest odłożone. W #188 zakończono poprawki rynku (#183, #185), regionalnych opisów (#189) i rezerw plecaka botów (#190). [Roadmapa na GitHubie](https://github.com/Yorick0499/ore-and-empire/issues/9) · [Dwa początki](https://github.com/Yorick0499/ore-and-empire/issues/10) · [Zakres G2NK](https://github.com/Yorick0499/ore-and-empire/issues/32) · [PR #188](https://github.com/Yorick0499/ore-and-empire/pull/188).
 
 Kolejne prace:
 

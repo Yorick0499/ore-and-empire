@@ -530,10 +530,12 @@ def boss_view(request):
 
 def credits_view(request):
     import json
+    from django.conf import settings
     from .gothic_assets import MANIFEST_PATH
 
     return render(request, "characters/credits.html", {
         "assets": json.loads(MANIFEST_PATH.read_text(encoding="utf-8")).values(),
+        "source_url": settings.ORE_PUBLIC_SOURCE_URL,
     })
 
 

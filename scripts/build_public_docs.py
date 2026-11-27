@@ -18,6 +18,7 @@ import markdown
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / 'docs/public'
 OUTPUT = ROOT / 'docs/dokumentacja.html'
+PUBLIC_ROOT_CHAPTERS = {'README.md', 'LICENSING.md', 'CONTRIBUTING.md', 'AGENTS.md'}
 
 
 def slug(value):
@@ -144,7 +145,9 @@ def build():
         for path, title in group['chapters']:
             source = (ROOT / path).resolve(); chapter_id = chapters[source]
             if not source.is_file(): raise ValueError(f'Missing public source: {path}')
-            if source != ROOT / 'README.md' and (not source.is_relative_to(ROOT / 'docs') or source.suffix != '.md'): raise ValueError('Source is not public Markdown')
+            public_root_chapter = source.parent == ROOT and source.name in PUBLIC_ROOT_CHAPTERS
+            if not public_root_chapter and (not source.is_relative_to(ROOT / 'docs') or source.suffix != '.md'):
+                raise ValueError('Source is not public Markdown')
             raw = source.read_text(encoding='utf-8')
             html = markdown.markdown(raw, extensions=['tables', 'fenced_code', 'sane_lists', 'toc'])
             rewrite = Rewrite(source, chapter_id, chapters, reports, screenshots); rewrite.feed(html)

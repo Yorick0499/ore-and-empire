@@ -44,14 +44,11 @@ atrybucję, hashe i referencje itemów bez sieci. Uruchamia się także w CI.
 
 ## Prawa i zastępowanie
 
-Fakty/statystyki i fanowski katalog nie nadają prawa do dystrybucji oryginalnych
-assetów. Grafiki gier należą do Piranha Bytes/odpowiednich właścicieli; licencja
-tekstu wiki nie jest automatycznie licencją obrazu. Manifest zachowuje licencję
-zgłoszoną przez API, jeżeli istnieje, oraz jawne „not specified” w pozostałych
-przypadkach. Przed publiczną dystrybucją należy sprawdzić prawa do konkretnych
-plików. Aby je zastąpić, wskaż nowy jawny plik/źródło, importuj, zwiększ wersję
-paczki i uruchom walidację; zachowaj rejestr pochodzenia. Runtime gry korzysta
-wyłącznie z lokalnych plików, a nie połączeń do wiki.
+Kod projektu, tekst wiki i pliki obrazów mają odrębne prawa. Manifest zachowuje
+licencję zgłoszoną przez API lub `not specified`. Przed publiczną dystrybucją
+sprawdź prawa do konkretnych plików. Przy zastępowaniu zachowaj pochodzenie,
+wskaż nowy jawny plik i źródło, zwiększ wersję danych po zmianie ich treści
+i uruchom walidację. W czasie gry obrazy są serwowane lokalnie. [Zakres praw](../LICENSING.md).
 
 Pięć kodów bez obrazu w infoboksie (dwa płonące miecze, pismo „Skazańcy”, ziele dla kopaczy i magiczna woda) korzysta z jawnej ilustracji kategorii z innego wpisu G1. Manifest zapisuje `reference_code`; nie pokazujemy placeholderów „BrakPrzedmiotu” jako grafik gry. Jeżeli infoboks podaje render G2 i ikonę G1, wybieramy ikonę G1.
 

@@ -2,6 +2,16 @@
 
 Scenariusze i pomiary z oznaczeniem wersji. Wszystkie próby wykonujemy na odizolowanych bazach, bez danych prywatnego świata. [Raport wydania z 13 XI](reports/grywalnosc-wydania-2026-11-13.json), [poradnik buildów](BUILD_PLAYTHROUGHS.md), [pełna droga](COMPLETE_JOURNEY.md).
 
+<a id="weryfikacja-25-xi"></a>
+
+## 25 XI — weryfikacja wydania po #188
+
+Jedenaście startów w sześciu frakcjach przeszło od poziomu 0 do ósmej rangi, Irdorath i pierwszych wart. Osobne przejścia trzech kont wykonały faktyczną aktywację Bariery. Tryb zwykły dotarł do Irdorath po 22,98 dnia świata i 246,2 modelowanych minutach aktywności głównego konta. Wariant z odnowieniami energii i 166 rudy z panelu osiągnął ten punkt po 22,70 dnia i 137,3 takich minutach. Strategie używają przyspieszonego zegara. [Przykłady odtworzenia](COMPLETE_JOURNEY.md).
+
+Cztery niezależne próby targu przed Barierą pokryły 10 436 tur w światach po 16 lub 48 botów, po 32 lub 60 godzin zegara gry. Nie wystąpiły wyjątki ani odmowy akcji. Pięć nieaktualnych propozycji wystawienia zamieniono na udane akcje zastępcze. W Khorinis odnotowano od 0 do 4 transakcji w próbach 16 botów i 32 transakcje w próbie 48 botów. Próby obejmują pierwsze dni gry z różnym zagęszczeniem mieszkańców.
+
+Chromium sprawdziło dwa zestawy 70 i 112 wizyt na ekranach przy 320, 390 i 1440 px. Wykonano walki, zakup od bota, wycofanie widoczności oferty nieaktywnego konta oraz zmianę regionu. GitHub potwierdził 9/9 zadań, w tym oba Pythony, PostgreSQL, współbieżność i pełne przejścia. [PR #188](https://github.com/Yorick0499/ore-and-empire/pull/188) · [CI](https://github.com/Yorick0499/ore-and-empire/actions/runs/45582410424).
+
 ## 14 XI — przyspieszenie wspólnoty przez gracza (#152)
 
 [Raport wypraw na rozkaz](reports/wyprawy-na-rozkaz-2026-11-14.json): przygotowany Arcymag Wody35 sam zdobywa wspólnocie poziom10 przez 15 zwycięstw i 31 płatnych wypadów, z regeneracją zamiast odnowień/grantów. Około 8,86 wirtualnej godziny; nie jest to czas aktywnego klikania ani dojścia postaci od zera. Osobno testowano udział bota, zachowanie codziennych/tygodniowych celów, historię migracji 0054→0055 i prawdziwą kopię/odtworzenie. GUI w 320/390/1440 px oraz rzeczywiste formularze CSRF: ogłoszenie, walka, nagroda, ponowne ogłoszenie tego samego dnia.

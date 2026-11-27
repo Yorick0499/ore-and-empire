@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-only
+# See NOTICE for the attribution terms under section 7(b).
 """Local entry point. Use the project's virtual environment Python."""
 import os
 from pathlib import Path

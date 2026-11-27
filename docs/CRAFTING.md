@@ -8,7 +8,9 @@ Skóry, mięso, płyty i jaja pochodzą z istniejących wersjonowanych łupów. 
 
 Obecna polityka baseline-27 okresowo uczy się i szuka potrzebnej receptury, kupuje materiały, przetwarza trofea oraz zachowuje potrzebne składniki przed automatyczną wyprzedażą. Nie dostaje darmowych materiałów ani waluty. Boty i ludzie używają tych samych usług. Bot zostawia ilość potrzebną do przepisu i może sprzedać pozostałe sztuki. Jeżeli na targu jest tańszy składnik, kupuje go podczas planowania pracy. Starsze polityki pozostają odtwarzalne. Rzemiosło zasila jednorazowe osiągnięcie z #21.
 
-`python manage.py simulate_crafting --batches 100` jest odtwarzalnym modelem kosztów i podaży: porównuje zamknięty zapas po 10 jednostek składnika z płatnym zaopatrzeniem NPC. Pokazuje ograniczenie dostępności, podaż produktów przy referencyjnej cenie, opłaty i zakup materiałów jako ujście rudy oraz zerową emisję odłamków w samej recepturze. Nie przewiduje endogenicznych cen rynku, nie wykonuje działań w bazie i nie obejmuje jednorazowych nagród osiągnięć. Domyślne koszty zaopatrzenia i wytworzenia przewyższają sprzedaż produktów NPC; brak pętli darmowej rudy przez odsprzedaż. Rzeczywisty popyt i przeceny działają od #23; zobacz [MARKET_POLICY.md](MARKET_POLICY.md).
+Bot rezerwuje wymaganą ilość w kolejności, w której receptura pobiera najstarsze dostępne stosy. Nadwyżkę może wystawić w partii, a cały zapasowy stos sprzedać NPC. [Zasady rynku](MARKET_POLICY.md).
+
+`python manage.py simulate_crafting --batches 100` jest odtwarzalnym modelem kosztów i podaży: porównuje zamknięty zapas po 10 jednostek składnika z płatnym zaopatrzeniem NPC. Pokazuje ograniczenie dostępności, podaż produktów przy referencyjnej cenie, opłaty i zakup materiałów jako ujście rudy oraz zerową emisję odłamków w samej recepturze. Domyślny koszt zaopatrzenia i wytworzenia przewyższa wpływy ze sprzedaży produktów NPC. Raport dotyczy modelu kosztów, a transakcje na rynku i jednorazowe osiągnięcia wymagają osobnych testów.
 
 ## Dopracowanie pełnej edycji
 

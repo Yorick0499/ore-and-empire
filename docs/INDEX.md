@@ -1,6 +1,6 @@
 # Dokumentacja — indeks
 
-**Stan na 20 listopada 2026. Migracja `0063_patrol_rank_permits`, próby rang, targ Khorinis i nowe dostawy rynsztunku w sześciu odsłonach.** Instrukcje opisują domyślny kod obecnej gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
+**Przegląd 27 listopada 2026 względem `main` po PR #188 (`03cfca7`). Bieżąca migracja to `0063_patrol_rank_permits`.** Instrukcje opisują domyślny kod gry. Własne ceny i wymagania operatora sprawdzaj w jej interfejsie. [README](../README.md) · [Cała publiczna księga offline](dokumentacja.html).
 
 ## Gra od początku do dalszych wart
 
@@ -20,6 +20,7 @@
 - [Ustawienia świata i reset](WORLD_MANAGEMENT.md), [backup i odtwarzanie](BACKUPS.md), [PostgreSQL/import](POSTGRESQL.md), [produkcja HTTPS](PRODUCTION.md).
 - [Monitoring](WORLD_MONITOR.md), [gospodarka](ECONOMY.md), [250 botów i pomiary](BOT_PERFORMANCE.md), [opcjonalne lokalne AI](LOCAL_AI_POLICIES.md).
 - [Bieżąca roadmapa](ROADMAP.md), [testy grywalności i ich granice](SOLO_PLAYTEST.md), [rejestr poprawek](BUG_AUDIT.md).
+- [Licencja i prawa do materiałów](../LICENSING.md), [współtworzenie](../CONTRIBUTING.md), [instrukcje dla agentów](../AGENTS.md).
 - Materiały historyczne: [przegląd 3 XI](PROJECT_REVIEW.md), [naprawa dawnych migracji](LEGACY_SAVES.md). Nie zastępują aktualnych procedur.
 
 ## Wyniki testów i pomiarów
@@ -34,7 +35,7 @@
 - [Dane NK](reports/gothic2-nk-content-2026-11-12.json), [assety NK](reports/gothic2-nk-assets-2026-11-12.json), [publiczny portal](reports/publiczny-jarkendar-2026-11-12.json).
 - [Skalowanie populacji](reports/populacja-250-2026-11-11.json), [PostgreSQL i rzeczywista współbieżność](reports/postgresql-wspolbieznosc-2026-11-07.json).
 
-Raporty JSON i screenshoty zachowują wyniki, daty, wersje i ograniczenia konkretnej próby. Starszych liczb nie przeliczamy na nową wersję ani nie nazywamy bieżącymi. Pełny CI zmian targu przeszedł w [przebiegu #184](https://github.com/Yorick0499/ore-and-empire/actions/runs/44733493785). Dane testowe są odizolowane od prywatnego świata.
+Raporty JSON i screenshoty zachowują wyniki, daty, wersje i ograniczenia konkretnej próby. Testy na aktualnej bazie kończą się zielonym CI dla #188, obejmującym także targ, regiony, plecak botów i pełne przejścia. [Podsumowanie prób 25 XI](SOLO_PLAYTEST.md#weryfikacja-25-xi) · [Przebieg CI #188](https://github.com/Yorick0499/ore-and-empire/actions/runs/45582410424).
 
 ## Utrzymanie dokumentacji
 

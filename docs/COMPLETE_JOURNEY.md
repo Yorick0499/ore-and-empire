@@ -31,13 +31,15 @@ python manage.py simulate_journey --report /tmp/ore-journey-report.json
 
 Wybierz nową nazwę raportu. Polecenie zawsze tworzy własną tymczasową bazę plikową SQLite, nie używa bazy z `.env` i nie zmienia istniejących graczy. Trzy konta zaczynają na poziomie 0: normalne formularze kampanii, kupno sprzętu, trening, zdobyte odłamki, rangi Kopacza/Cienia/Strażnika, projekty i wyprawy wspólnoty. Potem rzeczywiste uderzenia Śniącego, zweryfikowana kopia/odtworzenie i powtórzona idempotentna aktywacja, 23 przydziały Jarkendaru/NK oraz 3 wygrane dawne warty, cztery ścieżki regionalne, tygodniowy cel i ponowna zweryfikowana kopia/odtworzenie z nowymi rekordami. Żądania mają kontrolę powtórzeń.
 
-Nie ustawia się zwycięstwa, wspólnej tożsamości serwera, wysokiego poziomu, wyposażenia ani salda aktorów przez fiksturę. Czas regeneracji i oczekiwania jest wirtualny. Osobny job CI wykonuje tę próbę raz, niezależnie od szybkich testów modułów i PostgreSQL.
+Wygrana, wspólna tożsamość serwera, poziom i wyposażenie wynikają ze zwykłych akcji. Regeneracja, oczekiwanie i porównania terminów dzierżawy w symulatorze korzystają z jednego wirtualnego zegara. Osobne zadanie CI wykonuje pełne przejścia, a testy aktywacji i PostgreSQL sprawdzają dzierżawy z zegarem bazy.
 
 W porównaniu z panelem użyj tego samego polecenia z opcją `--operator energy` lub `--operator energy-ore`. Pomoc dotyczy trzeciego konta i trafia do kroniki przez formularze zarządcy z CSRF. W raporcie odczytaj osobno liczbę dni do aktywacji Bariery, Irdorath i pierwszych wart. Limit 60 sekund pomiędzy uderzeniami nadal działa i korzysta z tego samego zegara co zapis uderzenia. Regeneracja i kalendarz wspólnoty nadal obowiązują.
 
 [Raport gotowości i granice](reports/pelna-droga-2026-11-12.json). Próba nie jest dowodem tempa człowieka, organicznego rozwoju wszystkich buildów ani stabilności wielodniowej gospodarki 250 botów. Trzy strategie wojownika są wykonywane kolejno, a nie równolegle. Pozostałe pakiety nadal sprawdzają magię, łucznika, sześć frakcji, współbieżność i populację. Poprawiono w modelu timer wydobycia oraz odczyt regeneracji/ceny przed zakupem — starsze raporty zachowują historyczny zakres i wyniki.
 
 ## Stan pełnej drogi
+
+[Weryfikacja 25 XI](SOLO_PLAYTEST.md#weryfikacja-25-xi) zawiera zwykłe i wspomagane przejście przez rzeczywistą Barierę, siedem odsłon, Irdorath i pierwsze warty oraz osobne wyniki jedenastu dróg frakcyjnych.
 
 Grafiki aktywnych przedmiotów, lokacji, mobów i bossów są lokalne i walidowane. Pełna droga, jedenaście organicznych kombinacji buildów i frakcji, cztery dalsze awanse, regionalny endgame i wydarzenia #137 są wdrożone. [Roadmapa](ROADMAP.md) wskazuje pozostałe efekty NK, długą gospodarkę i ocenę przez ludzi.
 

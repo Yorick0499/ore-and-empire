@@ -31,6 +31,8 @@ class CompleteJourney(unittest.TestCase):
         self.earn_guard(p,steps);self.people.append(p);self.clock=steps['now']();print('Earned campaign and guard:',p.user.username,file=sys.stderr)
 
     def join_worlds(self,p,steps):
+        from unittest.mock import patch
+        from django.db.models import Value
         from .camp_guilds import current_project
         from . import sleeper
         from .barrier_activation import activate
@@ -90,7 +92,10 @@ class CompleteJourney(unittest.TestCase):
         items=list(OwnedItem.objects.order_by('pk').values('pk','owner_id','blueprint_id','quantity','upgrade_level','is_equipped','equipped_slot','is_market_listed','market_price'))
         before=list(PlayerProfile.objects.filter(pk__in=[a.pk for a in self.people]).order_by('pk').values('pk','level','experience','ore_balance','premium_balance','strength','dexterity','life','mana','skill_points','current_health','current_energy','current_mana','camp','guild'))
         print('Actual siege won; activating verified backup',file=sys.stderr)
-        with tempfile.TemporaryDirectory(prefix='ore-journey-barrier-') as folder:
+        # Lease comparisons run inside SQL. The simulated November journey
+        # must compare against the same clock used to write its lease deadline.
+        with (tempfile.TemporaryDirectory(prefix='ore-journey-barrier-') as folder,
+              patch('characters.barrier_activation.Now', side_effect=lambda: Value(steps['now']()))):
             self.assertTrue(activate(race.pk,Path(folder)));race.refresh_from_db();self.assertTrue(race.backup_digest);self.assertTrue(race.proof)
             self.assertTrue(activate(race.pk,Path(folder)))
         from .barrier import creation_worlds,region_ids
