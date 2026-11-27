@@ -1,4 +1,4 @@
-FROM python:3.12-slim-trixie
+FROM python:3.15-slim-trixie
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/* && useradd --create-home --uid 1000 ore
