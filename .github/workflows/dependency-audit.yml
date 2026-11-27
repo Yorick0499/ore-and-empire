@@ -104,12 +104,14 @@ jobs:
         run: |
           jq -e '.matches | type == "array"' "$REPORT" > /dev/null
           total=$(jq '.matches | length' "$REPORT")
-          actionable=$(jq '[.matches[].vulnerability | select((.severity == "High" or .severity == "Critical") and .fix.state == "fixed")] | length' "$REPORT")
+          jq '[.matches[] | select((.vulnerability.severity == "High" or .vulnerability.severity == "Critical") and .vulnerability.fix.state == "fixed")]' "$REPORT" > actionable.json
+          actionable=$(jq 'length' actionable.json)
           {
             printf 'Findings: **%s** total, **%s** High or Critical with a known fix.\n\n' "$total" "$actionable"
             printf 'Review the full JSON and exact scanned image in the artifacts.\n'
           } >> "$GITHUB_STEP_SUMMARY"
           if (( actionable > 0 )); then
+            jq -r '.[] | ["Finding", .vulnerability.id, .vulnerability.severity, .artifact.name, .artifact.version, (.vulnerability.fix.versions | join(","))] | @tsv' actionable.json
             echo "::warning::$actionable High or Critical container findings have a known fix. Review the audit artifact."
           fi
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
