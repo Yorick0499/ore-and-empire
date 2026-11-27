@@ -31,7 +31,7 @@ python -m venv "$audit_dir/venv"
 "$audit_dir/venv/bin/python" -m pip install -r requirements-audit.txt
 for manifest in requirements.txt requirements-docs.txt requirements-audit.txt; do
   "$audit_dir/venv/bin/python" -m pip_audit --strict -r "$manifest" \
-    --format json --output-file "$audit_dir/${manifest%.txt}.json"
+    -f json -o "$audit_dir/${manifest%.txt}.json"
   printf '%s: kod wyjścia %s\n' "$manifest" "$?"
 done
 printf 'Raporty: %s\n' "$audit_dir"
