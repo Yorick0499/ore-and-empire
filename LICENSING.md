@@ -1,0 +1,22 @@
+# Licencja i pochodzenie materiałów
+
+Autorska część **Ore & Empire** jest dostępna na [GNU AGPL v3](LICENSE) (`AGPL-3.0-only`). [NOTICE](NOTICE) zawiera warunek atrybucji na podstawie §7(b). Autorem projektu jest **Kacper Rzońca (`Yorick0499`)**. Zachowaj informację o autorstwie, prawach i adresie repozytorium źródłowego przy rozpowszechnianiu kopii, także zmodyfikowanych. W interfejsie umieść tę informację przy informacjach prawnych. [Repozytorium źródłowe](https://github.com/Yorick0499/ore-and-empire) · [Tekst AGPL i §7](https://opensource.org/license/agpl-3.0).
+
+Licencja pozwala modyfikować, sprzedawać i komercyjnie wykorzystywać objęty nią kod. Przy rozpowszechnianiu zachowaj `LICENSE` i `NOTICE`, oznacz zmiany i datę oraz udostępnij odpowiedni kod źródłowy zgodnie z AGPL. Gdy użytkownicy wchodzą w interakcję ze zmodyfikowaną wersją przez sieć, §13 wymaga wyraźnej oferty pobrania odpowiadającego jej kodu źródłowego bez opłaty. Ustaw `ORE_PUBLIC_SOURCE_URL` na publiczny adres źródeł **wdrożonej wersji**, np. tagu lub rewizji forka. Oryginalna atrybucja nadal prowadzi do tego projektu. Zmiany używane prywatnie można zachować dla siebie na zasadach §2. [Wdrożenie](docs/PRODUCTION.md) · [AGPL §13](https://opensource.org/license/agpl-3.0).
+
+## Zakres licencji
+
+| Materiał | Zakres praw |
+|---|---|
+| Autorski kod Django, reguły i balans gry, szablony, skrypty, testy i instrukcje | AGPL v3 i `NOTICE` w zakresie praw autorów projektu. Dotyczy także samodzielnych elementów interfejsu, np. własnego CSS i `art/valley.svg`. Licencje zależności pozostają odrębne. |
+| Uniwersum Gothic, postacie, fabuła i nazewnictwo zaczerpnięte z gier, znaki i oryginalne przedstawienia | Prawa należą do ich uprawnionych właścicieli. THQ Nordic potwierdza przejęcie IP i znaku Gothic. Projekt jest nieoficjalną adaptacją fanowską. [Komunikat THQ Nordic](https://thqnordic.com/news/piranha-bytes-acquired-by-thq-nordic). |
+| Ilustracje Gothicpedii, w tym pliki w `characters/static/characters/art/` | [Manifest](characters/static/characters/gothicpedia.json) podaje źródło każdego przypisania. Dla obecnych wpisów pole licencji pliku ma wartość `not specified`. Atrybucja identyfikuje źródło. Prawo do użycia pliku ustala się dla konkretnego materiału. [Zasady Fandom](https://support.fandom.com/hc/en-us/articles/360035075654-I-want-to-reuse-text-or-images-from-a-Fandom-wiki). |
+| Fakty, kody, nazwy i przypisania źródłowe z Gothicpedii w `characters/data/` | Autorskie mechaniki i opracowania podlegają licencji projektu w zakresie przysługujących praw. Dane źródłowe zachowują własne pochodzenie. Przy przejmowaniu chronionego tekstu lub twórczego układu sprawdź właściwą licencję konkretnej strony, autora, rewizję oraz warunki atrybucji i udostępniania adaptacji. Fandom stosuje domyślnie CC BY-SA 3.0 dla tekstu, z wyjątkami na poziomie społeczności i materiału. [Zasady licencjonowania Fandom](https://www.fandom.com/licensing). |
+| `characters/static/characters/fonts/GothicII.ttf` | Konwersja fontu Gothic II przygotowana przez Patrix9999. W repozytorium i wydaniu 1.0 nie znaleziono wyraźnej licencji redystrybucji. Uprawnienia do konwersji i pierwotnego fontu wymagają osobnego ustalenia. [Repozytorium fontu](https://github.com/Patrix9999/Gothic-2-Font) · [Wydanie 1.0](https://github.com/Patrix9999/Gothic-2-Font/releases/tag/1.0). |
+| Zrzuty, księga `docs/dokumentacja.html` oraz inne wydania zawierające powyższe materiały | Kompilacja zachowuje odrębne prawa do tego, co zawiera. Księga osadza grafiki, zrzuty i font. [Pochodzenie zasobów](docs/ASSETS.md). |
+
+## Dystrybucja i wdrożenia
+
+Obecne publiczne repozytorium i obraz gry zawierają materiały o niepotwierdzonych prawach do redystrybucji. Przy wydawaniu kopii gry, publicznym udostępnianiu lub monetyzacji ustal prawo do wykorzystania grafiki, fontu i elementów Gothic w danym zakresie albo zastąp je materiałami z udokumentowaną licencją. Ta sama kontrola obejmuje zrzuty i księgę osadzającą pliki. Polityka THQ Nordic dotycząca wideo reguluje materiały wideo. [Polityka THQ Nordic](https://thqnordic.com/legal/video-policy).
+
+Do wydania autorskiej części na AGPL zachowaj odpowiednie źródła, skrypty budowania i informacje licencyjne, pomiń materiały o nieustalonych prawach oraz użyj niezależnych nazw i zasobów w komercyjnej wersji bez zgody właścicieli Gothic. Testuj takie wydanie ze swoim manifestem i własnymi ilustracjami. `LICENSE` i `NOTICE` dokumentują prawa do kodu. Zgody właścicieli elementów zewnętrznych dokumentuje się oddzielnie.

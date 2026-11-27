@@ -1,6 +1,6 @@
 # Buildy i drogi frakcyjne od nowej postaci
 
-Macierz aktualnego CI obejmuje jedenaście startów. Zweryfikowana droga gry od początku przez kampanię mieszkańca NK do ósmej rangi i dalszych wart. Nie oznacza odtworzenia wszystkich zadań Bezimiennego ani wszystkich efektów oryginalnych przedmiotów.
+Macierz obejmuje jedenaście startów od poziomu 0 przez kampanię mieszkańca NK do ósmej rangi i pierwszych regionalnych wart. [Weryfikacja 25 XI](SOLO_PLAYTEST.md#weryfikacja-25-xi).
 
 Poprawka Wody #150: `new-water` przechodzi teraz całą drogę **bez kupowania zwojów**, z runą każdego kręgu i dalszą runą NK. Wynik: poziom 61, ranga 8, 90 walk magicznych; 4,82 wirtualnego dnia bez oczekiwania na globalną Barierę. Dawna macierz dopuszczała zwoje przeciw odpornościom — jej sukces nie oznaczał wygodnej gry samymi runami. [Parametry i ograniczenia](MAGIC.md), [nowy raport](reports/mag-wody-runy-2026-11-13.json).
 

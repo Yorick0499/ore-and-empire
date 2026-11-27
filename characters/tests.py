@@ -697,8 +697,13 @@ class GothicInterfaceTests(TestCase):
                 self.assertNotContains(response, "fonts.googleapis.com")
 
     def test_credits_are_public(self):
-        response = self.client.get(reverse("credits_page"))
+        with self.settings(ORE_PUBLIC_SOURCE_URL='https://example.test/fork/tree/release'):
+            response = self.client.get(reverse("credits_page"))
         self.assertContains(response, "Patrix9999/Gothic-2-Font")
+        self.assertContains(response, 'Kacper Rzońca')
+        self.assertContains(response, 'ore-and-empire/blob/main/LICENSE')
+        self.assertContains(response, 'href="https://example.test/fork/tree/release"')
+        self.assertContains(response, 'href="https://github.com/Yorick0499/ore-and-empire"')
 
     def test_manifest_images_render_with_local_path_and_source(self):
         import json

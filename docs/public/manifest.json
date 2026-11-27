@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "title": "Ore & Empire — Publiczna księga projektu",
-  "date": "2026-11-20",
-  "code_revision": "Rynsztunek kolejnych odsłon świata",
+  "date": "2026-11-27",
+  "code_revision": "Audyt dokumentacji na bazie 03cfca7 po PR #188",
   "migration": "0063_patrol_rank_permits",
   "repository": "https://github.com/Yorick0499/ore-and-empire",
   "groups": [
@@ -29,6 +29,14 @@
           "docs/FIRST_PLAYABLE.md",
           "Pierwsze kroki i droga do końca kampanii"
         ]
+      ]
+    },
+    {
+      "title": "Licencja i współtworzenie",
+      "chapters": [
+        ["LICENSING.md", "Licencja i prawa do materiałów"],
+        ["CONTRIBUTING.md", "Współtworzenie projektu"],
+        ["AGENTS.md", "Instrukcje dla agentów"]
       ]
     },
     {

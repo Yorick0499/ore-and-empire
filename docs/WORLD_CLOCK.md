@@ -19,7 +19,7 @@ Wschód/zachód słońca i zmierzch cywilny są liczone biblioteką [Astral 3.2]
 
 Pory mają rzeczywistą, sezonowo zmienną długość. Granice są lewostronnie domknięte, prawostronnie otwarte. Jesienią i zimą noc zaczyna się wcześniej. Powtórzona godzina jesiennej zmiany czasu nie tworzy dodatkowej pory ani dodatkowego resetu. Pominięta godzina wiosną nie blokuje licznika; terminy zawierają offset, a licznik mierzy rzeczywisty upływ sekund.
 
-Pasek świata pokazuje aktualną porę, sezon i godzinę kolejnej zmiany z CET/CEST. Przy przekroczeniu granicy prosi o odświeżenie zamiast przeładowywać formularze. Następna akcja zawsze używa rzeczywistego czasu serwera. Podgląd nagrody walki obejmuje premię eventu i pory dnia.
+Pasek świata pokazuje aktualną porę, sezon, opis odwiedzanego regionu i godzinę kolejnej zmiany z CET/CEST. Podróż po Barierze zmienia opis. Oba regiony stosują te same granice pór i podstawowe premie. Przy przekroczeniu granicy pasek prosi o odświeżenie. Następna akcja używa czasu serwera, a podgląd nagrody walki obejmuje premię wydarzenia i pory dnia.
 
 ## Pory roku i kalendarz
 

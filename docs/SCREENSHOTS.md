@@ -100,7 +100,7 @@ Hashe i czas wykonania każdego pliku są w `screenshots/manifest.json`.
 ![Mobilny targ](screenshots/mobile-market.jpg)
 ![Mobilne porównanie](screenshots/mobile-comparison.jpg)
 
-Źródła użytych ilustracji: [ASSETS.md](ASSETS.md), pełny lokalny [manifest](../characters/static/characters/gothicpedia.json). Nazwy, licencjonowanie treści wiki i prawa do obrazów gry nie są tym samym; zachowujemy przypisania źródeł.
+Zrzuty mogą zawierać grafiki i font o osobnych warunkach wykorzystania. Przypisania pochodzenia zachowuje lokalny manifest. [Grafiki](ASSETS.md) · [Manifest](../characters/static/characters/gothicpedia.json) · [Prawa do materiałów](../LICENSING.md).
 
 ## Rozbudowane zlecenia i oprawy rzadkości
 

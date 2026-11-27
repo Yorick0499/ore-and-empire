@@ -102,3 +102,12 @@ CI ujawniło niestabilność krótkiej wspólnej sesji: dostępność oferty zal
 ## 20 XI — handel w Khorinis
 
 Regresje sprawdzają wycenę po cenie jednostkowej, kupno tańszego składnika od gracza, zachowanie rezerwy przez sprzedawcę oraz podział partii bez zmiany właściciela reszty. W 10 symulacjach nie odnotowano ujemnych sald, wyjątków ani handlu przez Barierę. Dwa problemy zapisano osobno. [#185](https://github.com/Yorick0499/ore-and-empire/issues/185) dotyczy zmarnowanej tury po zmianie realnego popytu. [#183](https://github.com/Yorick0499/ore-and-empire/issues/183) dotyczy ofert dezaktywowanych sprzedawców. [Pomiary](reports/targ-khorinis-2026-11-20.json).
+
+## 25 XI — dostępność targu, region i plecak botów
+
+- #183. Wyłączenie konta ukrywa jego oferty przed graczami i botami. Stary formularz zakupu jest odrzucany, a reaktywacja przywraca ofertę. Test obejmuje Khorinis przed Barierą i wspólny rynek po połączeniu.
+- #185. Przy zmianie popytu między planem a rozliczeniem bot może wybrać inną akcję bez ponownej wyceny. Telemetria zachowuje powód i ID przedmiotu.
+- #189. Pasek dnia i nagłówek Magii śledzą odwiedzany region. Targ używa określenia „Inni mieszkańcy”.
+- #190. Receptury rezerwują potrzebną ilość w najstarszych stosach. Bot może sprzedać osobny stos nadwyżki u NPC, zachowując zapas przepisu.
+
+[PR #188](https://github.com/Yorick0499/ore-and-empire/pull/188) · [Wyniki prób](SOLO_PLAYTEST.md#weryfikacja-25-xi) · [Pełny CI](https://github.com/Yorick0499/ore-and-empire/actions/runs/45582410424).

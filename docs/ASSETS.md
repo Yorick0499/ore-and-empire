@@ -33,7 +33,7 @@ Publikuj obraz i manifest razem. Po zmianie uruchom offline `validate_content`, 
 
 ## Prawa
 
-Atrybucja i licencja tekstu wiki nie nadają automatycznie praw do ilustracji gry. Zachowujemy zgłoszone pochodzenie i licencję obrazu, także jawny brak informacji. Projekt fontu nie podaje osobnej kompletnej licencji redystrybucji. Nie deklarujemy własności oryginalnych modeli/rysunków ani nowej licencji na nie. Przy zastępowaniu zasobu zachowaj dokładne źródło i odpowiednie prawa.
+Autorski kod i cudze materiały mają odrębne prawa. Manifest zachowuje pochodzenie obrazów, a obecne wpisy raportują `not specified` w polu licencji. Wydanie fontu 1.0 wskazuje autora konwersji. Atrybucję, zasady licencji AGPL oraz status grafik, fontu i księgi z wbudowanymi zasobami opisuje [LICENSING.md](../LICENSING.md).
 
 [Galeria z datami](SCREENSHOTS.md) pokazuje osobne światy testowe. Zrzut nie jest obietnicą zasobów nowej postaci i nie powinien ujawniać prywatnego administratora.
 

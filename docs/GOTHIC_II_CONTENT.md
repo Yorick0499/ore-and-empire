@@ -42,7 +42,7 @@ Pierwszy skrypt przypina rewizje i waliduje pobrane ilustracje; cache artykułó
 
 Oddzielne przypadki sprawdzają płatne wyposażenie maga Ognia, maga Wody i łucznika oraz pięć przygotowanych frakcji botów. Szybkie kontrakty są w `simulate_release --suite quick`, przejścia w `campaign`, tempo w `pacing`; nie trzeba uruchamiać całego audytu przy każdej zmianie.
 
-#32 pozostaje otwarte: nie wszystkie efekty specjalne, trwałe mikstury, przyzwania, przemiany, teleporty, komplety ozdób i oryginalne interakcje NPC mają implementację. Całość jednej listy kodów nie oznacza całego G2 NK. #128 zostało ukończone: dziewięć organicznych dróg obejmuje różne buildy, frakcje, rangę 8, finał NK i pierwsze regionalne warty. [Poradnik i metoda](BUILD_PLAYTHROUGHS.md). Długoterminowa gospodarka i ocena satysfakcji pozostają w backlogu wydania #9.
+#32 obejmuje odłożone efekty specjalne, trwałe mikstury, przyzwania, przemiany, teleporty, komplety ozdób i oryginalne interakcje NPC. #128 jest ukończone. Macierz rozszerzona po wydaniu obejmuje jedenaście organicznych dróg z różnymi buildami i frakcjami do rangi 8, finału NK i pierwszych regionalnych wart. Długoterminowa gospodarka i ocena satysfakcji pozostają w backlogu #9. [Poradnik i metoda](BUILD_PLAYTHROUGHS.md) · [Weryfikacja 25 XI](SOLO_PLAYTEST.md#weryfikacja-25-xi).
 
 Końcowa krótka próba 250 botów (125+125), połączenie i sesje: 126 żądań HTTP, 0 błędów HTTP/decyzji, szczyt 75,53 MiB RAM, p95 HTTP155,87 ms, CPU39,85% jednego rdzenia. To pomiar lokalny przez 20 s po rozgrzaniu, nie gwarancja hostingu ani wynik wielodniowej gospodarki.
 
