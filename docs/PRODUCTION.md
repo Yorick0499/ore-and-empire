@@ -14,6 +14,8 @@ Domyślna gra lokalna pozostaje przy SQLite i `play.py`. Ten profil dotyczy **os
 
 `deploy/compose.production.yml` zawiera bazę PostgreSQL 17, jednorazowe migracje, web, worker i proxy. Klient pg_dump/pg_restore musi odpowiadać głównej wersji serwera; obraz trixie z klientem 17 odpowiada tej bazie. Osobne szablony systemd są w `deploy/`. Migracje i inicjalizacja nie są wykonywane przez procesy Gunicorna.
 
+Proxy buduje się z `deploy/Dockerfile.proxy`. Podczas aktualizacji wykonaj `docker compose --env-file .env.production -f deploy/compose.production.yml build --pull --no-cache proxy`, a następnie `docker compose --env-file .env.production -f deploy/compose.production.yml up -d proxy`. Budowa pobiera bieżący obraz Caddy i poprawki pakietów z jego gałęzi Alpine. Odtworzenie kontenera zachowuje woluminy certyfikatów oraz konfiguracji.
+
 ## Pierwsza instalacja i staging
 
 1. Skopiuj `.env.production.example` do prywatnego `.env.production`, ustaw uprawnienia 0600 i własne wartości. Wygeneruj długi losowy SECRET_KEY oraz hasło bazy. Plik jest ignorowany przez Git i Docker build; dane do admina nie trafiają do niego automatycznie.

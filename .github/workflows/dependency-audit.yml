@@ -1,0 +1,128 @@
+name: Dependency audit
+
+on:
+  schedule:
+    - cron: '19 5 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'requirements*.txt'
+      - Dockerfile
+      - .dockerignore
+      - deploy/compose.production.yml
+      - deploy/Dockerfile.proxy
+      - '.github/workflows/**'
+      - .github/dependabot.yml
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python ${{ matrix.python-version }} / ${{ matrix.os }} / ${{ matrix.scope }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-24.04, python-version: '3.12', scope: runtime, manifest: requirements.txt}
+          - {os: ubuntu-24.04, python-version: '3.13', scope: runtime, manifest: requirements.txt}
+          - {os: windows-latest, python-version: '3.13', scope: runtime, manifest: requirements.txt}
+          - {os: ubuntu-24.04, python-version: '3.12', scope: docs, manifest: requirements-docs.txt}
+          - {os: ubuntu-24.04, python-version: '3.12', scope: audit, manifest: requirements-audit.txt}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Python scanner
+        run: python -m pip install --disable-pip-version-check -r requirements-audit.txt
+      - name: Resolve and scan Python dependencies
+        env:
+          REQUIREMENTS: ${{ matrix.manifest }}
+        shell: bash
+        run: python -m pip_audit --strict -r "$REQUIREMENTS" -f json -o python-audit.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: python-audit-${{ matrix.scope }}-${{ matrix.os }}-${{ matrix.python-version }}
+          path: python-audit.json
+          retention-days: 14
+
+  containers:
+    name: Container / ${{ matrix.target }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [app, database, proxy, ci-database]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build or pull the image declared in the repository
+        id: image
+        env:
+          TARGET: ${{ matrix.target }}
+        run: |
+          case "$TARGET" in
+            app)
+              image=ore-dependency-audit:local
+              docker build --pull --tag "$image" .
+              ;;
+            proxy)
+              image=ore-dependency-audit-proxy:local
+              docker build --pull -f deploy/Dockerfile.proxy --tag "$image" deploy
+              ;;
+            database|ci-database)
+              image=$(ruby -ryaml -e '
+                target = ARGV.fetch(0)
+                if target == "ci-database"
+                  image = YAML.safe_load_file(".github/workflows/ci.yml").fetch("jobs").fetch("postgres").fetch("services").fetch("postgres").fetch("image")
+                else
+                  image = YAML.safe_load_file("deploy/compose.production.yml", aliases: true).fetch("services").fetch("db").fetch("image")
+                end
+                abort "Expected a literal container image reference" unless image.match?(/\A[a-zA-Z0-9][a-zA-Z0-9_.:\/@-]*\z/)
+                puts image
+              ' "$TARGET")
+              docker pull "$image"
+              ;;
+          esac
+          echo "reference=$image" >> "$GITHUB_OUTPUT"
+          docker image inspect --format '{{.Id}} {{json .RepoDigests}}' "$image" > image-identity.txt
+      - name: Scan packages and bundled binaries
+        id: scan
+        uses: anchore/scan-action@11983a512817154c80a9db660c1a184be7513ed6 # v7.4.3
+        with:
+          image: ${{ steps.image.outputs.reference }}
+          grype-version: v0.122.1
+          output-format: json
+          fail-build: false
+      - name: Summarize findings
+        env:
+          REPORT: ${{ steps.scan.outputs.json }}
+        run: |
+          jq -e '.matches | type == "array"' "$REPORT" > /dev/null
+          total=$(jq '.matches | length' "$REPORT")
+          jq '[.matches[] | select((.vulnerability.severity == "High" or .vulnerability.severity == "Critical") and .vulnerability.fix.state == "fixed")]' "$REPORT" > actionable.json
+          actionable=$(jq 'length' actionable.json)
+          {
+            printf 'Findings: **%s** total, **%s** High or Critical with a known fix.\n\n' "$total" "$actionable"
+            printf 'Review the full JSON and exact scanned image in the artifacts.\n'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if (( actionable > 0 )); then
+            jq -r '.[] | ["Finding", .vulnerability.id, .vulnerability.severity, .artifact.name, .artifact.version, (.vulnerability.fix.versions | join(","))] | @tsv' actionable.json
+            echo "::warning::$actionable High or Critical container findings have a known fix. Review the audit artifact."
+          fi
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: container-audit-${{ matrix.target }}
+          path: |
+            image-identity.txt
+            ${{ steps.scan.outputs.json }}
+          retention-days: 14

@@ -19,6 +19,7 @@
 - [Instalacja Linux/macOS/Windows, restart, zarządca i diagnostyka](public/OPERATOR_GUIDE.md).
 - [Ustawienia świata i reset](WORLD_MANAGEMENT.md), [backup i odtwarzanie](BACKUPS.md), [PostgreSQL/import](POSTGRESQL.md), [produkcja HTTPS](PRODUCTION.md).
 - [Monitoring](WORLD_MONITOR.md), [gospodarka](ECONOMY.md), [250 botów i pomiary](BOT_PERFORMANCE.md), [opcjonalne lokalne AI](LOCAL_AI_POLICIES.md).
+- [Audyt zależności, aktualizacje i procedura dla agentów](DEPENDENCY_SECURITY.md).
 - [Bieżąca roadmapa](ROADMAP.md), [testy grywalności i ich granice](SOLO_PLAYTEST.md), [rejestr poprawek](BUG_AUDIT.md).
 - [Licencja i prawa do materiałów](../LICENSING.md), [współtworzenie](../CONTRIBUTING.md), [instrukcje dla agentów](../AGENTS.md).
 - Materiały historyczne: [przegląd 3 XI](PROJECT_REVIEW.md), [naprawa dawnych migracji](LEGACY_SAVES.md). Nie zastępują aktualnych procedur.

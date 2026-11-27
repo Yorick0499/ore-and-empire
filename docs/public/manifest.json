@@ -165,6 +165,10 @@
           "Docker, HTTPS i produkcja"
         ],
         [
+          "docs/DEPENDENCY_SECURITY.md",
+          "Audyt i aktualizacja zależności"
+        ],
+        [
           "docs/POSTGRESQL.md",
           "PostgreSQL i migracja zapisu"
         ],

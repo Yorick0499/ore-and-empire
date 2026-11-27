@@ -12,6 +12,7 @@ Polskojęzyczne MMORPG przeglądarkowe na Django. Gracz jest mieszkańcem Koloni
 | Boty, handel i saldo | `bots.py`, `bot_personalities.py`, `market_*`, `economic_ledger.py` w `characters/` |
 | UI, dane i raporty | `characters/templates/`, `characters/static/`, `characters/data/`, [indeks dokumentacji](docs/INDEX.md) |
 | Testy i CI | `characters/test_*.py`, `characters/playtest_*.py`, `.github/workflows/ci.yml` |
+| Audyt i aktualizacje zależności | [Procedura i polecenie dla agenta](docs/DEPENDENCY_SECURITY.md) |
 
 ## Praca w repozytorium
 
