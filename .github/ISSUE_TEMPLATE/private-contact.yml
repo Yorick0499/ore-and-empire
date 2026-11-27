@@ -1,0 +1,14 @@
+name: Prośba o prywatny kontakt
+description: Poproś opiekuna projektu o poufny kanał rozmowy.
+title: "[Kontakt] Prośba o prywatny kanał"
+body:
+  - type: markdown
+    attributes:
+      value: To zgłoszenie jest publiczne. Zostaw ogólny tytuł i poczekaj na wskazanie kanału prywatnego. Dane, linki do materiałów i opis sprawy przekaż dopiero tam.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Poufność
+      options:
+        - label: Proszę o prywatny kanał rozmowy. Szczegóły sprawy przekażę prywatnie.
+          required: true

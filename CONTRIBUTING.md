@@ -1,6 +1,6 @@
 # Współtworzenie Ore & Empire
 
-Gra rozwija własną historię mieszkańców, gospodarkę i alianse w dwóch regionach. Wkład powinien poprawiać grywalność i działać zarówno w sesji gracza, jak i w świecie z botami. [Bieżąca roadmapa](docs/ROADMAP.md) · [Instrukcje dla agentów AI](AGENTS.md).
+Gra rozwija własną historię mieszkańców, gospodarkę i alianse w dwóch regionach. Wkład powinien poprawiać grywalność i działać zarówno w sesji gracza, jak i w świecie z botami. [Bieżąca roadmapa](docs/ROADMAP.md) · [Instrukcje dla agentów AI](AGENTS.md) · [Kodeks postępowania](CODE_OF_CONDUCT.md) · [Zgłaszanie podatności](SECURITY.md).
 
 ## Środowisko
 
@@ -8,9 +8,9 @@ Użyj Pythona 3.12 lub 3.13. Szybki start i uruchomienie Khorinis opisuje [READM
 
 ## Zmiana od zgłoszenia do PR
 
-1. Sprawdź stan gałęzi i zgłoszenia. Podaj objaw, kroki lub ziarno odtworzenia i oczekiwany wynik. Użyj osobnej gałęzi od aktualnej bazy. Commit grupuj według celu.
+1. Sprawdź stan gałęzi i zgłoszenia. Wybierz formularz błędu, propozycji lub dokumentacji. Użyj osobnej gałęzi od aktualnej bazy. Commit grupuj według celu. [Formularze zgłoszeń](https://github.com/Yorick0499/ore-and-empire/issues/new/choose).
 2. Umieść poprawkę w zwykłej ścieżce gry. Dla zmian zapisu sprawdź retry, transakcje, zachowanie starych zapisów i odtworzenie. Dla mechaniki botów sprawdź zarówno decyzję, jak i faktyczną akcję oraz koszt w kolejce. Dla UI sprawdź formularz i mniejszy viewport.
-3. Dołącz do PR zakres, sposób weryfikacji, ograniczenia testu i adres zgłoszenia. Zgłoszenie zamykamy po wdrożeniu poprawki na gałęzi głównej. Zmiany scalaj po przejściu wymaganego CI dla bieżącej rewizji. Zachowaj prywatne dane instalacji poza zgłoszeniami, diffem i artefaktami.
+3. Użyj szablonu PR także przy tworzeniu przez CLI lub API. Zgłoszenie zamykamy po wdrożeniu poprawki na gałęzi głównej. Zmiany scalaj po przejściu wymaganego CI dla bieżącej rewizji. Zachowaj prywatne dane instalacji poza zgłoszeniami, diffem i artefaktami. [Szablon PR](.github/PULL_REQUEST_TEMPLATE.md).
 
 ## Dobór testów
 

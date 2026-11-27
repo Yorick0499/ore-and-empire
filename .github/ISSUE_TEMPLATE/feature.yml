@@ -1,0 +1,22 @@
+name: Propozycja zmiany
+description: Zaproponuj mechanikę, usprawnienie interfejsu lub zmianę narzędzi.
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Co chcesz poprawić i dla kogo?
+      description: Opisz potrzebę gracza, zarządcy lub osoby rozwijającej projekt.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Jaki wynik pozwoli uznać zmianę za gotową?
+      description: Podaj widoczny efekt i krótki sposób jego ocenienia.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Istotne ograniczenia
+      description: Jeśli mają znaczenie, wskaż dotychczasowe zapisy, etap świata, balans, wydajność lub powiązane zgłoszenie.
