@@ -2752,6 +2752,7 @@ python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
 <li>Sesje/CSRF mają Secure i SameSite=Lax, sesja HttpOnly, działa przekierowanie HTTPS, HSTS, DENY dla ramek i nosniff. Zaufane proxy określa <code>ORE_TRUSTED_PROXY_CIDRS</code>; cudze X-Forwarded-For poza tą listą nie zmieniają limitów.</li>
 </ul>
 <p><code>deploy/compose.production.yml</code> zawiera bazę PostgreSQL 17, jednorazowe migracje, web, worker i proxy. Klient pg_dump/pg_restore musi odpowiadać głównej wersji serwera; obraz trixie z klientem 17 odpowiada tej bazie. Osobne szablony systemd są w <code>deploy/</code>. Migracje i inicjalizacja nie są wykonywane przez procesy Gunicorna.</p>
+<p>Proxy buduje się z <code>deploy/Dockerfile.proxy</code>. Podczas aktualizacji wykonaj <code>docker compose --env-file .env.production -f deploy/compose.production.yml build --pull --no-cache proxy</code>, a następnie <code>docker compose --env-file .env.production -f deploy/compose.production.yml up -d proxy</code>. Budowa pobiera bieżący obraz Caddy i poprawki pakietów z jego gałęzi Alpine. Odtworzenie kontenera zachowuje woluminy certyfikatów oraz konfiguracji.</p>
 <h3 id="doc-production--pierwsza-instalacja-i-staging">Pierwsza instalacja i staging</h3>
 <ol>
 <li>Skopiuj <code>.env.production.example</code> do prywatnego <code>.env.production</code>, ustaw uprawnienia 0600 i własne wartości. Wygeneruj długi losowy SECRET_KEY oraz hasło bazy. Plik jest ignorowany przez Git i Docker build; dane do admina nie trafiają do niego automatycznie.</li>
@@ -2814,8 +2815,8 @@ python manage.py barrier_transition ID_WYSCIGU --resume --operator LOGIN_ADMINA
 <td>Generator dokumentacji i narzędzie audytu wraz z zależnościami przechodnimi. Każdy manifest ma odrębny raport.</td>
 </tr>
 <tr>
-<td><code>Dockerfile</code>, <code>deploy/compose.production.yml</code></td>
-<td>Zbudowany obraz gry (Python 3.12 na Debianie Trixie z klientem PostgreSQL), <code>postgres:17</code> i <code>caddy:2-alpine</code>.</td>
+<td><code>Dockerfile</code>, <code>deploy/compose.production.yml</code>, <code>deploy/Dockerfile.proxy</code></td>
+<td>Zbudowany obraz gry (Python 3.12 na Debianie Trixie z klientem PostgreSQL), <code>postgres:17</code> i obraz proxy z <code>caddy:2-alpine</code> z poprawkami Alpine.</td>
 </tr>
 <tr>
 <td><code>.github/workflows/</code></td>
@@ -2872,7 +2873,8 @@ printf 'Raporty: %s\n' &quot;$audit_dir&quot;
 </tr>
 </tbody>
 </table></div>
-<p>Wynik skanu opisuje stan bazy podatności z chwili uruchomienia. Wnioski dotyczące kontenerów opieraj na osobnych raportach z ich rzeczywistymi identyfikatorami.</p></article><article id="doc-postgresql" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/POSTGRESQL.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/POSTGRESQL.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-postgresql--postgresql-i-wyaczny-scheduler-19">PostgreSQL i wyłączny scheduler (#19)</h2>
+<p>W obrazie Caddy 2.11.9 audyt wskazał poprawki dla <code>zlib</code>, <code>libcrypto3</code> i <code>libssl3</code>. Obraz proxy instaluje aktualizacje pakietów Alpine przy budowie. Dwa zgłoszenia dotyczą modułów skompilowanych z Caddy. <code>GO-2026-6860</code> dotyczy parsowania HTML, a <code>GO-2026-6865</code> dekodowania Zstandard. Domyślna konfiguracja proxy przekazuje żądania i kompresuje odpowiedzi. Przy następnym wydaniu Caddy sprawdź wersje modułów i powtórz skan obrazu. <a href="https://security.alpinelinux.org/vuln/CVE-2026-4738" target="_blank" rel="noopener noreferrer">Alpine</a> · <a href="https://pkg.go.dev/vuln/GO-2026-6860" target="_blank" rel="noopener noreferrer">GO-2026-6860</a> · <a href="https://pkg.go.dev/vuln/GO-2026-6865" target="_blank" rel="noopener noreferrer">GO-2026-6865</a>.</p>
+<p>Wynik skanu opisuje stan bazy podatności z chwili uruchomienia. Wnioski dotyczące kontenerów opieraj na raportach z ich rzeczywistymi identyfikatorami.</p></article><article id="doc-postgresql" class="chapter" data-doc-section tabindex="-1"><div class="chapter-meta"><span>Zarządzanie serwerem</span><span>docs/POSTGRESQL.md</span><a href="https://github.com/Yorick0499/ore-and-empire/blob/main/docs/POSTGRESQL.md" target="_blank" rel="noopener noreferrer">Źródło Markdown ↗</a></div><h2 id="doc-postgresql--postgresql-i-wyaczny-scheduler-19">PostgreSQL i wyłączny scheduler (#19)</h2>
 <p>Aktualny opis zasad domyślnej gry. <a href="#doc-index">Wersja i zakres dokumentacji</a>.</p>
 <p>Gra lokalna nadal domyślnie używa SQLite i jednego <code>play.py</code>. PostgreSQL jest osobną, wybieraną konfiguracją. Nie przełączamy automatycznie prywatnego zapisu ani nie uruchamiamy drugiego schedulera.</p>
 <h3 id="doc-postgresql--konfiguracja">Konfiguracja</h3>

@@ -48,7 +48,9 @@ services:
       timeout: 10s
       retries: 3
   proxy:
-    image: caddy:2-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
     env_file: ../.env.production
     restart: unless-stopped
     ports:

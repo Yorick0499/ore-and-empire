@@ -1,0 +1,4 @@
+FROM caddy:2-alpine
+
+# Alpine can ship security fixes before the upstream Caddy image is rebuilt.
+RUN apk upgrade --no-cache

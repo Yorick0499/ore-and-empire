@@ -10,6 +10,7 @@ on:
       - Dockerfile
       - .dockerignore
       - deploy/compose.production.yml
+      - deploy/Dockerfile.proxy
       - '.github/workflows/**'
       - .github/dependabot.yml
 
@@ -73,14 +74,17 @@ jobs:
               image=ore-dependency-audit:local
               docker build --pull --tag "$image" .
               ;;
-            database|proxy|ci-database)
+            proxy)
+              image=ore-dependency-audit-proxy:local
+              docker build --pull -f deploy/Dockerfile.proxy --tag "$image" deploy
+              ;;
+            database|ci-database)
               image=$(ruby -ryaml -e '
                 target = ARGV.fetch(0)
                 if target == "ci-database"
                   image = YAML.safe_load_file(".github/workflows/ci.yml").fetch("jobs").fetch("postgres").fetch("services").fetch("postgres").fetch("image")
                 else
-                  service = {"database" => "db", "proxy" => "proxy"}.fetch(target)
-                  image = YAML.safe_load_file("deploy/compose.production.yml", aliases: true).fetch("services").fetch(service).fetch("image")
+                  image = YAML.safe_load_file("deploy/compose.production.yml", aliases: true).fetch("services").fetch("db").fetch("image")
                 end
                 abort "Expected a literal container image reference" unless image.match?(/\A[a-zA-Z0-9][a-zA-Z0-9_.:\/@-]*\z/)
                 puts image
