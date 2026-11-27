@@ -4,7 +4,7 @@ django-stubs==6.1.2
 django-stubs-ext==6.0.7
 numpy==2.5.1
 pandas==3.1.1
-python-dateutil==2.9.0.post0
+python-dateutil==4.0.0
 six==1.17.0
 sqlparse==0.6.1
 types-PyYAML==6.0.12.20260518
